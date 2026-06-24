@@ -29,7 +29,7 @@ export default function Home() {
             className="pointer-events-none absolute inset-0 opacity-[0.5]"
             style={{
               background:
-                "radial-gradient(60% 60% at 75% 0%, rgba(45,212,168,0.16), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(96,165,250,0.10), transparent 70%)",
+                "radial-gradient(60% 60% at 75% 0%, rgba(124,131,255,0.18), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(45,212,168,0.10), transparent 70%)",
             }}
           />
           <Container className="relative grid items-center gap-12 py-20 md:grid-cols-[1.05fr_0.95fr] md:py-28">
@@ -146,7 +146,7 @@ function HeroChain() {
   const nodes = [
     { x: 60, y: 230, c: "var(--accent)" },
     { x: 130, y: 150, c: "var(--accent-blue)" },
-    { x: 205, y: 215, c: "var(--accent-indigo)" },
+    { x: 205, y: 215, c: "var(--accent-teal)" },
     { x: 270, y: 120, c: "var(--accent-purple)" },
     { x: 335, y: 185, c: "var(--accent-amber)" },
     { x: 395, y: 95, c: "var(--accent)" },

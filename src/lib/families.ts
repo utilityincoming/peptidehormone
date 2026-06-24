@@ -108,7 +108,7 @@ export const FAMILIES: Family[] = [
       { name: "α-MSH", role: "Core melanocortin ligand; pigmentation, appetite, and anti-inflammatory signaling." },
       { name: "MC1R", role: "Melanocyte receptor; governs eumelanin vs pheomelanin synthesis." },
       { name: "MC4R", role: "Hypothalamic receptor; central regulator of appetite and energy balance." },
-      { name: "ACTH / MC2R", role: "Drives adrenal cortisol synthesis — the endocrine arm of the family." },
+      { name: "ACTH", role: "Acts at MC2R to drive adrenal cortisol synthesis — the endocrine arm of the family." },
       { name: "Setmelanotide", role: "MC4R agonist studied in specific genetic obesity syndromes." },
     ],
     notes: [
@@ -137,7 +137,7 @@ export const FAMILIES: Family[] = [
     ],
     signals: [
       { name: "Oxytocin", role: "Parturition, lactation, and social/affiliative behavior." },
-      { name: "Vasopressin (ADH)", role: "Renal water retention and vasoconstriction; osmotic control." },
+      { name: "Vasopressin", role: "Also called ADH; renal water retention and vasoconstriction; osmotic control." },
       { name: "CRH", role: "Apex of the HPA stress axis; drives pituitary ACTH release." },
       { name: "TRH", role: "Drives pituitary TSH release; sets thyroid-axis tone." },
     ],
@@ -155,7 +155,7 @@ export const FAMILIES: Family[] = [
   {
     slug: "gut-appetite",
     name: "Gut & appetite",
-    accent: "text-accent-indigo",
+    accent: "text-accent-teal",
     blurb: "The enteroendocrine peptides that report on the meal you just ate.",
     examples: "PYY · CCK · secretin · motilin",
     tagline: "The gut's hormonal report on digestion, satiety, and motility.",
@@ -184,7 +184,7 @@ export const FAMILIES: Family[] = [
   {
     slug: "reproductive-gonadal",
     name: "Reproductive & gonadal",
-    accent: "text-accent",
+    accent: "text-accent-rose",
     blurb: "Pulsatile control of the reproductive axis, from hypothalamus to gonad.",
     examples: "GnRH · LH · FSH · kisspeptin · hCG",
     tagline: "The pulsatile cascade that governs the reproductive axis.",

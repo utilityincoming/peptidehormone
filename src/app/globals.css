@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 /* ── Theme tokens ──────────────────────────────────────────────────────────
-   Neutral "ink" (foreground) over a deep "surface" (page background), with
-   teal as the brand accent — consistent with the americanpeptide family.
+   Sister palette to AmericanPeptide.com, deliberately distinct: the brand
+   accent is periwinkle-indigo (not AP's teal), on a slightly cooler, more
+   violet-neutral surface. AP's teal is retained as a *complementary* secondary
+   accent so the two properties read as a family without being interchangeable.
    Dark-only for now; tokens are CSS variables so a light mode can be added
    later with a single class swap on <html>. */
 :root {
   --ink: #ffffff;          /* foreground + light overlays (borders, panels) */
-  --surface: #0B1220;      /* page background */
-  --surface-deep: #040810; /* deepest background (footers, code wells) */
-  --panel: #0F1828;        /* raised solid panels */
-  --accent: #2DD4A8;       /* teal accent, used as text/link color */
-  --accent-indigo: #818CF8;
-  --accent-blue: #60A5FA;
-  --accent-purple: #A78BFA;
-  --accent-amber: #FBBF24;
+  --surface: #0A0E1A;      /* page background — cooler/violet vs AP's blue-navy */
+  --surface-deep: #05070F; /* deepest background (footers, wells) */
+  --panel: #11162A;        /* raised solid panels */
+  --accent: #7C83FF;       /* periwinkle-indigo — the PeptideHormone brand accent */
+  --accent-teal: #2DD4A8;  /* the AmericanPeptide complement, used sparingly */
+  --accent-blue: #5EA8FA;
+  --accent-purple: #B58CFA;
+  --accent-amber: #F5B544;
+  --accent-rose: #F472B6;
 
   --background: var(--surface);
   --foreground: var(--ink);
@@ -28,10 +31,11 @@
   --color-surface-deep: var(--surface-deep);
   --color-panel: var(--panel);
   --color-accent: var(--accent);
-  --color-accent-indigo: var(--accent-indigo);
+  --color-accent-teal: var(--accent-teal);
   --color-accent-blue: var(--accent-blue);
   --color-accent-purple: var(--accent-purple);
   --color-accent-amber: var(--accent-amber);
+  --color-accent-rose: var(--accent-rose);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-space-grotesk);
