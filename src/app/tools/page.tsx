@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: string }[] = [
   {
-    href: "/tools/reconstitution",
-    name: "Reconstitution calculator",
+    href: "/tools/half-life",
+    name: "Half-life & dosing calculator",
     blurb:
-      "Enter peptide mass, water volume, and target dose to get concentration, volume per dose, insulin-syringe units, and doses per vial.",
-    tag: "Concentration",
+      "Model how long a peptide stays bioactive and how dose frequency vs half-life builds to steady state — accumulation, peak-to-trough swing, and a concentration-over-time chart.",
+    tag: "Pharmacokinetics",
     accent: "text-accent",
   },
   {
@@ -57,8 +57,8 @@ export default function ToolsIndex() {
               Research tools & calculators
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Fast, transparent utilities for peptide research — the concentration
-              math you actually need, plus a citation-grounded research agent.
+              Fast, transparent utilities for peptide research — pharmacokinetics
+              and concentration math, plus a citation-grounded research agent.
               Everything runs in your browser. Educational only, not medical or
               dosing advice.
             </p>
