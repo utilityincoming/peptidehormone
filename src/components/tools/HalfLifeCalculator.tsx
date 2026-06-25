@@ -37,11 +37,17 @@ function dur(value: number, unit: Unit): string {
   return `${fmt(days / 7, 1)} wk`;
 }
 
-export default function HalfLifeCalculator() {
-  const [unit, setUnit] = useState<Unit>("h");
-  const [halfLife, setHalfLife] = useState("6");
+export default function HalfLifeCalculator({
+  initialHalfLife,
+  initialUnit,
+}: {
+  initialHalfLife?: string;
+  initialUnit?: Unit;
+}) {
+  const [unit, setUnit] = useState<Unit>(initialUnit ?? "h");
+  const [halfLife, setHalfLife] = useState(initialHalfLife ?? "6");
   const [dose, setDose] = useState("100");
-  const [interval, setInterval] = useState("24");
+  const [interval, setInterval] = useState(initialUnit === "d" ? "1" : initialUnit === "min" ? "60" : "24");
 
   const t12 = num(halfLife);
   const d = num(dose);

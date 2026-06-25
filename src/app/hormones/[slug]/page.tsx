@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HORMONES, getHormone, hormonesByFamily } from "@/lib/hormones";
+import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 
@@ -101,6 +101,55 @@ export default async function HormonePage({
                 ))}
               </dl>
             </section>
+
+            {(h.mw || h.halfLife) && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {h.mw && (
+                    <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <div className="text-xs font-medium uppercase tracking-wide text-ink/40">
+                        Molecular weight
+                      </div>
+                      <div className="mt-1 font-display text-2xl font-semibold text-ink">
+                        {h.mwApprox ? "≈ " : "~"}
+                        {h.mw.toLocaleString()} <span className="text-base font-medium text-ink/50">Da</span>
+                      </div>
+                      <Link
+                        href={`/tools/molarity?mw=${h.mw}`}
+                        className="mt-3 inline-flex items-center gap-1 text-sm text-accent transition-transform hover:translate-x-0.5"
+                      >
+                        Model molarity <span aria-hidden>→</span>
+                      </Link>
+                    </div>
+                  )}
+                  {h.halfLife && (
+                    <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <div className="text-xs font-medium uppercase tracking-wide text-ink/40">
+                        Half-life (native)
+                      </div>
+                      <div className="mt-1 font-display text-xl font-semibold text-ink">{h.halfLife}</div>
+                      {h.halfLifeMin != null &&
+                        (() => {
+                          const { value, unit } = halfLifeForLink(h.halfLifeMin);
+                          return (
+                            <Link
+                              href={`/tools/half-life?t12=${value}&unit=${unit}`}
+                              className="mt-3 inline-flex items-center gap-1 text-sm text-accent transition-transform hover:translate-x-0.5"
+                            >
+                              Model dosing <span aria-hidden>→</span>
+                            </Link>
+                          );
+                        })()}
+                    </div>
+                  )}
+                </div>
+                <p className="mt-3 text-xs leading-5 text-ink/40">
+                  Approximate values for the native hormone. Engineered analogs are
+                  often deliberately larger and far longer-acting.
+                </p>
+              </section>
+            )}
 
             <section className="mt-12">
               <h2 className="font-display text-2xl font-semibold">Mechanism</h2>

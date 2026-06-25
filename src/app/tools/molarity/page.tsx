@@ -9,7 +9,13 @@ export const metadata: Metadata = {
     "Convert peptide mass, molecular weight, and solvent volume into molar concentration (mM, µM, nM) for assay preparation. Free, in-browser, educational only.",
 };
 
-export default function MolarityPage() {
+export default async function MolarityPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ mw?: string }>;
+}) {
+  const { mw } = await searchParams;
+  const initialMw = mw && Number.isFinite(parseFloat(mw)) && parseFloat(mw) > 0 ? mw : undefined;
   return (
     <>
       <SiteHeader />
@@ -31,7 +37,7 @@ export default function MolarityPage() {
           </p>
 
           <div className="mt-10">
-            <MolarityCalculator />
+            <MolarityCalculator initialMw={initialMw} />
           </div>
 
           <section className="mt-16 max-w-2xl">

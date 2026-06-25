@@ -48,9 +48,9 @@ function fmt(n: number, digits = 3): string {
   return n.toLocaleString(undefined, { maximumFractionDigits: digits });
 }
 
-export default function MolarityCalculator() {
+export default function MolarityCalculator({ initialMw }: { initialMw?: string }) {
   const [mass, setMass] = useState("1"); // mg
-  const [mw, setMw] = useState("3357.9"); // g/mol (Da) — default ≈ GLP-1(7-37)
+  const [mw, setMw] = useState(initialMw ?? "3357.9"); // g/mol (Da) — default ≈ GLP-1
   const [volume, setVolume] = useState("1"); // mL
 
   const m = num(mass);

@@ -9,7 +9,8 @@ const FAMILY_MAP = Object.fromEntries(
   FAMILIES.map((f) => [f.slug, { name: f.name, accent: f.accent }]),
 );
 
-type Sort = "name" | "family";
+type Sort = "family" | "name" | "mw" | "halflife";
+const SORT_LABEL: Record<Sort, string> = { family: "Family", name: "A–Z", mw: "MW", halflife: "t½" };
 const FAMILY_ORDER = Object.fromEntries(FAMILIES.map((f, i) => [f.slug, i]));
 
 export default function CatalogBrowser() {
@@ -31,6 +32,12 @@ export default function CatalogBrowser() {
       if (sort === "family") {
         const fd = (FAMILY_ORDER[a.family] ?? 0) - (FAMILY_ORDER[b.family] ?? 0);
         if (fd !== 0) return fd;
+      } else if (sort === "mw") {
+        const d = (a.mw ?? Infinity) - (b.mw ?? Infinity);
+        if (d !== 0) return d;
+      } else if (sort === "halflife") {
+        const d = (a.halfLifeMin ?? Infinity) - (b.halfLifeMin ?? Infinity);
+        if (d !== 0) return d;
       }
       return a.name.localeCompare(b.name);
     });
@@ -49,16 +56,17 @@ export default function CatalogBrowser() {
             className="flex-1 rounded-xl border border-ink/15 bg-panel/40 px-4 py-2.5 text-[15px] text-ink outline-none placeholder:text-ink/35 focus:border-accent/60"
           />
           <div className="flex shrink-0 overflow-hidden rounded-xl border border-ink/15 text-sm">
-            {(["family", "name"] as Sort[]).map((s) => (
+            {(["family", "name", "mw", "halflife"] as Sort[]).map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => setSort(s)}
+                title={`Sort by ${s === "mw" ? "molecular weight" : s === "halflife" ? "half-life" : SORT_LABEL[s]}`}
                 className={`px-3.5 py-2.5 transition-colors ${
                   sort === s ? "bg-accent/20 text-accent" : "bg-panel/40 text-ink/50 hover:text-ink/80"
                 }`}
               >
-                {s === "family" ? "By family" : "A–Z"}
+                {SORT_LABEL[s]}
               </button>
             ))}
           </div>
@@ -106,8 +114,21 @@ export default function CatalogBrowser() {
                 </div>
                 <h3 className="mt-3 font-display text-lg font-semibold leading-snug">{h.name}</h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink/60">{h.summary}</p>
-                <div className="mt-4 border-t border-ink/[0.06] pt-3 text-xs leading-5 text-ink/40">
-                  {h.class}
+                <div className="mt-4 border-t border-ink/[0.06] pt-3">
+                  <div className="text-xs leading-5 text-ink/40">{h.class}</div>
+                  {(h.mw || h.halfLife) && (
+                    <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-ink/50">
+                      {h.mw && (
+                        <span>
+                          {h.mwApprox ? "≈" : "~"}
+                          {h.mw.toLocaleString()} Da
+                        </span>
+                      )}
+                      {h.halfLife && (
+                        <span>t½ {h.halfLife.replace(/\(.*?\)/g, "").replace(/^[~≈]/, "").trim()}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </Link>
             );

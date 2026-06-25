@@ -23,9 +23,17 @@ export interface Hormone {
   facts: string[];
   /** Seed questions for the research agent. */
   questions: string[];
+  /** Average molecular weight in daltons (approximate). */
+  mw?: number;
+  /** True when MW is a rough figure (glycoproteins, multiple active forms). */
+  mwApprox?: boolean;
+  /** Human-readable native circulating half-life. */
+  halfLife?: string;
+  /** Representative half-life in minutes, for sorting + calculator deep-links. */
+  halfLifeMin?: number;
 }
 
-export const HORMONES: Hormone[] = [
+const BASE: Hormone[] = [
   // ── Incretins & metabolic ──────────────────────────────────────────────
   {
     slug: "glp-1",
@@ -556,6 +564,48 @@ export const HORMONES: Hormone[] = [
     ],
   },
 ];
+
+// Physical properties, merged onto the base records. Values are reference-grade
+// approximations for the NATIVE/endogenous hormone — average MW in daltons and a
+// representative circulating half-life. Engineered analogs differ substantially.
+// Glycoprotein MWs vary with glycosylation (mwApprox).
+const PROPS: Record<string, Pick<Hormone, "mw" | "mwApprox" | "halfLife" | "halfLifeMin">> = {
+  "glp-1": { mw: 3297.7, halfLife: "~1–2 min (native; DPP-4 cleaved)", halfLifeMin: 1.5 },
+  gip: { mw: 4983.6, halfLife: "~5–7 min (native; DPP-4)", halfLifeMin: 6 },
+  glucagon: { mw: 3482.8, halfLife: "~3–6 min", halfLifeMin: 5 },
+  amylin: { mw: 3903.3, halfLife: "~13 min (native)", halfLifeMin: 13 },
+  insulin: { mw: 5807.6, halfLife: "~4–6 min", halfLifeMin: 5 },
+  "growth-hormone": { mw: 22124, mwApprox: true, halfLife: "~10–20 min", halfLifeMin: 15 },
+  "igf-1": { mw: 7649, halfLife: "~12–16 h bound to IGFBPs (~10 min free)", halfLifeMin: 720 },
+  ghrh: { mw: 5039.6, halfLife: "~7–50 min", halfLifeMin: 10 },
+  ghrelin: { mw: 3370.9, halfLife: "~30 min (acyl-ghrelin)", halfLifeMin: 30 },
+  somatostatin: { mw: 1637.9, halfLife: "~1–3 min (very short)", halfLifeMin: 2 },
+  "alpha-msh": { mw: 1664.9, halfLife: "~minutes (very short)", halfLifeMin: 5 },
+  acth: { mw: 4541.1, halfLife: "~10–20 min", halfLifeMin: 15 },
+  oxytocin: { mw: 1007.2, halfLife: "~1–6 min", halfLifeMin: 3 },
+  vasopressin: { mw: 1084.2, halfLife: "~15–30 min", halfLifeMin: 20 },
+  crh: { mw: 4757.5, halfLife: "~minutes (biphasic clearance)", halfLifeMin: 30 },
+  trh: { mw: 362.4, halfLife: "~2–5 min", halfLifeMin: 4 },
+  pyy: { mw: 4309.7, mwApprox: true, halfLife: "~minutes", halfLifeMin: 8 },
+  cck: { mw: 1143.3, mwApprox: true, halfLife: "~1–2.5 min", halfLifeMin: 2 },
+  secretin: { mw: 3039.5, halfLife: "~4 min", halfLifeMin: 4 },
+  motilin: { mw: 2698.1, halfLife: "~4–5 min", halfLifeMin: 5 },
+  gnrh: { mw: 1182.3, halfLife: "~2–4 min", halfLifeMin: 3 },
+  lh: { mw: 30000, mwApprox: true, halfLife: "~20 min", halfLifeMin: 20 },
+  fsh: { mw: 35500, mwApprox: true, halfLife: "~3–4 h", halfLifeMin: 210 },
+  kisspeptin: { mw: 1302.5, mwApprox: true, halfLife: "~4–30 min (by fragment)", halfLifeMin: 20 },
+  hcg: { mw: 36700, mwApprox: true, halfLife: "~24–36 h", halfLifeMin: 1800 },
+};
+
+export const HORMONES: Hormone[] = BASE.map((h) => ({ ...h, ...(PROPS[h.slug] ?? {}) }));
+
+// Convert a half-life in minutes to a value + unit for the calculator deep-link.
+export function halfLifeForLink(min: number): { value: number; unit: "min" | "h" | "d" } {
+  if (min < 90) return { value: Math.round(min * 100) / 100, unit: "min" };
+  const h = min / 60;
+  if (h < 48) return { value: Math.round(h * 10) / 10, unit: "h" };
+  return { value: Math.round((h / 24) * 10) / 10, unit: "d" };
+}
 
 export function getHormone(slug: string): Hormone | undefined {
   return HORMONES.find((h) => h.slug === slug);

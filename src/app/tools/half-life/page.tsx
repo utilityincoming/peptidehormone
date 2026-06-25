@@ -9,7 +9,15 @@ export const metadata: Metadata = {
     "Model how long a peptide stays bioactive, and how dose frequency vs half-life builds to steady state — accumulation, peak-to-trough swing, time to steady state, and a concentration-over-time chart. Educational only.",
 };
 
-export default function HalfLifePage() {
+export default async function HalfLifePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ t12?: string; unit?: string }>;
+}) {
+  const { t12, unit } = await searchParams;
+  const initialHalfLife =
+    t12 && Number.isFinite(parseFloat(t12)) && parseFloat(t12) > 0 ? t12 : undefined;
+  const initialUnit = unit === "min" || unit === "h" || unit === "d" ? unit : undefined;
   return (
     <>
       <SiteHeader />
@@ -32,7 +40,7 @@ export default function HalfLifePage() {
           </p>
 
           <div className="mt-10">
-            <HalfLifeCalculator />
+            <HalfLifeCalculator initialHalfLife={initialHalfLife} initialUnit={initialUnit} />
           </div>
 
           <section className="mt-16 max-w-2xl">
