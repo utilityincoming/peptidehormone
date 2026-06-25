@@ -85,6 +85,13 @@ export default function Home() {
                 anatomy, and logic — each a hub of the molecules that matter and the
                 evidence behind them. Open any one for the full reference.
               </p>
+              <Link
+                href="/catalog"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+              >
+                Browse the full catalog
+                <span aria-hidden>→</span>
+              </Link>
             </div>
 
             <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">

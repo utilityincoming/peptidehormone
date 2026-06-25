@@ -5,7 +5,7 @@ import { HORMONES } from "@/lib/hormones";
 const BASE = "https://www.peptidehormone.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/research", "/tools", "/tools/half-life", "/tools/molarity"];
+  const staticPages = ["", "/catalog", "/research", "/tools", "/tools/half-life", "/tools/molarity"];
   const familyPages = FAMILIES.map((f) => `/families/${f.slug}`);
   const hormonePages = HORMONES.map((h) => `/hormones/${h.slug}`);
 
