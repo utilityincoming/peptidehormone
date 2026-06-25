@@ -41,7 +41,7 @@ export function SiteHeader() {
         <Wordmark />
         <nav className="hidden items-center gap-8 text-sm text-ink/60 sm:flex">
           <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
-          <Link href="/#families" className="transition-colors hover:text-ink">Families</Link>
+          <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
           <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
           <Link
             href="/research"
@@ -82,9 +82,9 @@ export function SiteFooter() {
             <p className="font-medium text-ink/40">Explore</p>
             <ul className="mt-3 space-y-2 text-ink/65">
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
+              <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
               <li><Link href="/research" className="hover:text-ink">Research agent</Link></li>
-              <li><Link href="/#approach" className="hover:text-ink">Approach</Link></li>
             </ul>
           </div>
         </div>
