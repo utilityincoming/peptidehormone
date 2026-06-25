@@ -44,10 +44,10 @@ export function SiteHeader() {
           <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
           <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
           <Link
-            href="/research"
+            href="/catalog"
             className="rounded-full border border-ink/15 px-4 py-1.5 text-ink/90 transition-colors hover:border-accent hover:text-accent"
           >
-            Research agent
+            Browse catalog
           </Link>
         </nav>
       </Container>
@@ -84,7 +84,6 @@ export function SiteFooter() {
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
-              <li><Link href="/research" className="hover:text-ink">Research agent</Link></li>
             </ul>
           </div>
         </div>

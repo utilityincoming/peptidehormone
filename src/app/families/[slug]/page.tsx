@@ -51,6 +51,7 @@ export default async function FamilyHub({
 
   const others = FAMILIES.filter((f) => f.slug !== family.slug);
   const famHormones = hormonesByFamily(family.slug);
+  const analogs = famHormones.filter((x) => x.type === "analog");
 
   return (
     <>
@@ -135,6 +136,27 @@ export default async function FamilyHub({
                 ))}
               </ul>
             </section>
+
+            {analogs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Analogs &amp; therapeutics</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">
+                  Engineered molecules built on this family&rsquo;s biology — same
+                  receptors, re-tuned for stability and duration.
+                </p>
+                <div className="mt-5 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
+                  {analogs.map((a) => (
+                    <Link key={a.slug} href={`/hormones/${a.slug}`} className="group bg-surface p-5 transition-colors hover:bg-panel">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-display text-base font-semibold">{a.name}</span>
+                        <span className="font-mono text-[10px] uppercase tracking-wide text-ink/40">{a.evidence}</span>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-6 text-ink/60">{a.summary}</p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
           {/* ── Sidebar ── */}

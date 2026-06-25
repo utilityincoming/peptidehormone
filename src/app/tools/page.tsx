@@ -25,14 +25,6 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     tag: "Molarity",
     accent: "text-accent-teal",
   },
-  {
-    href: "/research",
-    name: "Research agent",
-    blurb:
-      "Ask any peptide-hormone question and get a grounded answer with linked citations from PubChem, UniProt, ClinicalTrials.gov, and PubMed.",
-    tag: "Agent",
-    accent: "text-accent-purple",
-  },
 ];
 
 export default function ToolsIndex() {
@@ -58,15 +50,14 @@ export default function ToolsIndex() {
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
               Fast, transparent utilities for peptide research — pharmacokinetics
-              and concentration math, plus a citation-grounded research agent.
-              Everything runs in your browser. Educational only, not medical or
-              dosing advice.
+              and concentration math. Everything runs in your browser. Educational
+              only, not medical or dosing advice.
             </p>
           </Container>
         </section>
 
         <Container className="py-16 md:py-20">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
             {TOOLS.map((t) => (
               <Link
                 key={t.href}

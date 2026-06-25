@@ -47,8 +47,8 @@ export default function Home() {
                 that run the body to the compounds redrawing the edge of research
                 and discovery. PeptideHormone is the independent, research-grade
                 catalog of peptide science: every signaling family, the molecules
-                that matter, and the evidence behind them — citation-grounded,
-                with a research agent and pharmacokinetic tools.
+                that matter, and the evidence behind them — sourced, graded, and
+                cross-linked, with pharmacokinetic tools.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -59,10 +59,10 @@ export default function Home() {
                   <span aria-hidden>→</span>
                 </a>
                 <Link
-                  href="/research"
+                  href="/catalog"
                   className="inline-flex h-12 items-center justify-center rounded-full border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
                 >
-                  Ask the research agent
+                  Browse the catalog
                 </Link>
               </div>
             </div>

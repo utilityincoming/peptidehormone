@@ -9,6 +9,21 @@ export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
 }
 
+function evidenceClass(tier: string): string {
+  switch (tier) {
+    case "Established":
+      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
+    case "Clinical":
+      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
+    case "Investigational":
+      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
+    case "Preclinical":
+      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
+    default:
+      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -37,6 +52,9 @@ export default async function HormonePage({
   const family = getFamily(h.family);
   const accent = family?.accent ?? "text-accent";
   const related = hormonesByFamily(h.family).filter((x) => x.slug !== h.slug);
+  const parent = h.parent ? getHormone(h.parent) : undefined;
+  const typeLabel = h.type === "analog" ? "Analog" : h.type === "research" ? "Research peptide" : "Endogenous";
+  const evidence = h.evidence ?? "Established";
 
   const identity = [
     { label: "Class", value: h.class },
@@ -77,6 +95,22 @@ export default async function HormonePage({
               {h.abbr && <span className={`ml-3 text-2xl font-medium ${accent}`}>{h.abbr}</span>}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">{h.summary}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs">
+              <span className="rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/65">
+                {typeLabel}
+              </span>
+              <span className={`rounded-full border px-3 py-1 font-medium ${evidenceClass(evidence)}`}>
+                {evidence}
+              </span>
+              {parent && (
+                <span className="text-ink/50">
+                  Based on{" "}
+                  <Link href={`/hormones/${parent.slug}`} className="text-accent hover:underline">
+                    {parent.name}
+                  </Link>
+                </span>
+              )}
+            </div>
           </Container>
         </section>
 

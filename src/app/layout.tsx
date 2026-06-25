@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s · Peptide Hormone",
   },
   description:
-    "An independent, research-grade catalog of peptide science — every signaling family, the molecules that matter, and the evidence behind them, with a citation-grounded research agent and pharmacokinetic tools. Not medical advice.",
+    "An independent, research-grade catalog of peptide science — every signaling family, the molecules that matter, and the evidence behind them: sourced, evidence-graded, and cross-linked, with pharmacokinetic tools. Not medical advice.",
   openGraph: {
     title: "Peptide Hormone",
     description:

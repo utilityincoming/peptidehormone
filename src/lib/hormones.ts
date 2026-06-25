@@ -31,7 +31,21 @@ export interface Hormone {
   halfLife?: string;
   /** Representative half-life in minutes, for sorting + calculator deep-links. */
   halfLifeMin?: number;
+  /** Endogenous hormone, engineered analog, or community "research peptide". */
+  type?: "endogenous" | "analog" | "research";
+  /** Evidence tier — drives a filterable rigor badge. */
+  evidence?: "Established" | "Clinical" | "Investigational" | "Preclinical" | "Limited";
+  /** For analogs: slug of the endogenous hormone it is based on. */
+  parent?: string;
 }
+
+export const EVIDENCE_TIERS = [
+  "Established",
+  "Clinical",
+  "Investigational",
+  "Preclinical",
+  "Limited",
+] as const;
 
 const BASE: Hormone[] = [
   // ── Incretins & metabolic ──────────────────────────────────────────────
@@ -137,6 +151,135 @@ const BASE: Hormone[] = [
       "How does insulin signaling differ mechanistically from GPCR-based hormones?",
       "How do incretins amplify glucose-stimulated insulin secretion?",
     ],
+  },
+
+  // ── Incretin analogs & therapeutics ─────────────────────────────────────
+  {
+    slug: "semaglutide",
+    name: "Semaglutide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Established",
+    parent: "glp-1",
+    summary: "A long-acting GLP-1 receptor agonist engineered for once-weekly dosing.",
+    class: "GLP-1 receptor agonist (acylated peptide, 31 aa)",
+    source: "Synthetic analog of human GLP-1",
+    receptor: "GLP-1 receptor (GLP-1R)",
+    mechanism:
+      "Semaglutide is a GLP-1 analog modified to resist DPP-4 and to bind albumin via a C18 fatty-diacid chain, stretching its half-life from GLP-1's ~2 minutes to roughly a week. At the receptor it is the same molecule as native GLP-1 — driving glucose-dependent insulin secretion, slowed gastric emptying, and central satiety. The engineering is entirely about durability and delivery, not a new mechanism.",
+    facts: [
+      "Two amino-acid substitutions plus fatty-acid acylation give albumin binding and DPP-4 resistance — the basis of weekly dosing.",
+      "Approved for type 2 diabetes and chronic weight management; studied in cardiovascular and renal outcomes.",
+      "Mechanistically identical at the receptor to native GLP-1 — see the GLP-1 reference for the underlying cascade.",
+    ],
+    questions: [
+      "How does semaglutide's acylation extend its half-life versus native GLP-1?",
+      "What does the clinical trial evidence show for semaglutide in weight management?",
+    ],
+    mw: 4113.6,
+    halfLife: "~7 days (~165 h)",
+    halfLifeMin: 9900,
+  },
+  {
+    slug: "tirzepatide",
+    name: "Tirzepatide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Established",
+    parent: "gip",
+    summary: "A dual GIP and GLP-1 receptor agonist — the first of the co-agonists.",
+    class: "Dual GIP/GLP-1 receptor agonist (39 aa, acylated)",
+    source: "Synthetic; engineered on a GIP backbone",
+    receptor: "GIP receptor + GLP-1 receptor",
+    mechanism:
+      "Tirzepatide activates both the GIP and GLP-1 receptors from a single GIP-based, acylated peptide, with a half-life of about five days. Engaging two incretin pathways at once is studied for metabolic effects beyond either alone — the rationale behind incretin co-agonism.",
+    facts: [
+      "The first approved 'twincretin' — one molecule with dual GIP/GLP-1 agonism.",
+      "Built on a GIP backbone with fatty-acid acylation for once-weekly dosing.",
+      "Its dual mechanism is why it is studied head-to-head against single GLP-1 agonists.",
+    ],
+    questions: [
+      "Why does dual GIP/GLP-1 agonism differ from a GLP-1 agonist alone?",
+      "What does the evidence show for tirzepatide versus single-incretin agonists?",
+    ],
+    mw: 4813.5,
+    halfLife: "~5 days (~120 h)",
+    halfLifeMin: 7200,
+  },
+  {
+    slug: "liraglutide",
+    name: "Liraglutide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Established",
+    parent: "glp-1",
+    summary: "A once-daily GLP-1 receptor agonist; an earlier acylated analog.",
+    class: "GLP-1 receptor agonist (acylated, 31 aa)",
+    source: "Synthetic analog of human GLP-1",
+    receptor: "GLP-1 receptor (GLP-1R)",
+    mechanism:
+      "Liraglutide is a GLP-1 analog with a C16 fatty-acid acylation that promotes albumin binding and self-association, giving a ~13-hour half-life suited to once-daily dosing. It signals through the same GLP-1R cascade as native GLP-1.",
+    facts: [
+      "About 97% sequence identity to native GLP-1, with one substitution and a fatty-acid chain.",
+      "Once-daily — an intermediate step between native GLP-1 and the weekly analogs.",
+      "Approved for type 2 diabetes and weight management.",
+    ],
+    questions: [
+      "How does liraglutide's half-life compare to native GLP-1 and to weekly analogs?",
+    ],
+    mw: 3751.2,
+    halfLife: "~13 h",
+    halfLifeMin: 780,
+  },
+  {
+    slug: "exenatide",
+    name: "Exenatide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Established",
+    parent: "glp-1",
+    summary: "A GLP-1 receptor agonist derived from Gila monster venom (exendin-4).",
+    class: "GLP-1 receptor agonist (exendin-4, 39 aa)",
+    source: "Synthetic exendin-4; originally from Gila monster venom",
+    receptor: "GLP-1 receptor (GLP-1R)",
+    mechanism:
+      "Exenatide is the synthetic form of exendin-4, a peptide from Gila monster venom that fully activates GLP-1R but — unlike human GLP-1 — is naturally resistant to DPP-4. That built-in resistance gives a far longer half-life than native GLP-1 without any acylation.",
+    facts: [
+      "Exendin-4's natural DPP-4 resistance is the discovery that made long-acting GLP-1 therapy feasible.",
+      "Shares only ~53% identity with human GLP-1 yet fully activates the receptor.",
+      "Available in immediate-release and extended-release (microsphere) formulations.",
+    ],
+    questions: [
+      "Why is exendin-4 resistant to DPP-4 when native GLP-1 is not?",
+    ],
+    mw: 4186.6,
+    halfLife: "~2.4 h (immediate-release)",
+    halfLifeMin: 144,
+  },
+  {
+    slug: "retatrutide",
+    name: "Retatrutide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "glp-1",
+    summary: "An investigational GIP/GLP-1/glucagon triple receptor agonist.",
+    class: "GIP/GLP-1/glucagon triple agonist (acylated peptide)",
+    source: "Synthetic; engineered tri-agonist",
+    receptor: "GIP + GLP-1 + glucagon receptors",
+    mechanism:
+      "Retatrutide engages three receptors — GIP, GLP-1, and glucagon — from a single acylated peptide. Adding glucagon-receptor agonism recruits an energy-expenditure arm alongside the incretin effects. It is in clinical trials and not approved.",
+    facts: [
+      "A 'triple agonist' — incretin co-agonism extended to a third receptor.",
+      "Glucagon-receptor agonism adds an energy-expenditure arm to the GLP-1/GIP effects.",
+      "Investigational — under clinical study, not approved.",
+    ],
+    questions: [
+      "What does adding glucagon agonism contribute in a tri-agonist?",
+      "What is the current clinical trial status of retatrutide?",
+    ],
+    halfLife: "~6 days",
+    halfLifeMin: 8640,
   },
 
   // ── Growth & repair ────────────────────────────────────────────────────
