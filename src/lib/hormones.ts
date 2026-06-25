@@ -1077,6 +1077,257 @@ const BASE: Hormone[] = [
       "What is genuinely known about TB-500 in humans?",
     ],
   },
+
+  // ── GnRH analogs ────────────────────────────────────────────────────────
+  {
+    slug: "leuprolide",
+    name: "Leuprolide",
+    family: "reproductive-gonadal",
+    type: "analog",
+    evidence: "Established",
+    parent: "gnrh",
+    summary: "A GnRH agonist that suppresses the axis through continuous stimulation.",
+    class: "GnRH receptor agonist (nonapeptide analog)",
+    source: "Synthetic analog of GnRH",
+    receptor: "GnRH receptor (GnRHR)",
+    mechanism:
+      "Leuprolide is a long-acting GnRH agonist. Because GnRH normally signals in pulses, continuous agonist exposure first causes a transient surge ('flare') and then desensitizes the receptor — paradoxically shutting the axis down. Depot formulations exploit this to maintain chronic suppression.",
+    facts: [
+      "It suppresses the reproductive axis by overriding GnRH's required pulsatility — continuous stimulation desensitizes the receptor.",
+      "An initial hormonal 'flare' precedes suppression — a direct consequence of the agonist mechanism.",
+      "Depot formulations release the drug over months to sustain the effect.",
+    ],
+    questions: [
+      "Why does a GnRH agonist suppress, rather than stimulate, the axis?",
+      "What causes the initial flare with leuprolide?",
+    ],
+    mw: 1209.4,
+    halfLife: "~3 h (depot formulations act for months)",
+    halfLifeMin: 180,
+  },
+  {
+    slug: "goserelin",
+    name: "Goserelin",
+    family: "reproductive-gonadal",
+    type: "analog",
+    evidence: "Established",
+    parent: "gnrh",
+    summary: "A depot GnRH agonist; same flare-then-suppression mechanism as leuprolide.",
+    class: "GnRH receptor agonist (decapeptide analog)",
+    source: "Synthetic analog of GnRH",
+    receptor: "GnRH receptor (GnRHR)",
+    mechanism:
+      "Goserelin is a GnRH agonist delivered as a slow-release implant. Like other agonists, continuous exposure desensitizes the GnRH receptor after an initial flare, producing sustained suppression of the gonadotropins and downstream sex steroids.",
+    facts: [
+      "Delivered as a subcutaneous depot implant for steady, long-term exposure.",
+      "Shares the agonist flare-then-desensitization mechanism with leuprolide.",
+      "Illustrates the pulsatility principle: continuous GnRH signaling suppresses the axis.",
+    ],
+    questions: [
+      "How does continuous goserelin exposure differ from natural pulsatile GnRH?",
+    ],
+    mw: 1269.4,
+    halfLife: "~4–5 h (implant depot)",
+    halfLifeMin: 270,
+  },
+  {
+    slug: "cetrorelix",
+    name: "Cetrorelix",
+    family: "reproductive-gonadal",
+    type: "analog",
+    evidence: "Established",
+    parent: "gnrh",
+    summary: "A GnRH antagonist — immediate suppression with no flare.",
+    class: "GnRH receptor antagonist (decapeptide)",
+    source: "Synthetic GnRH antagonist",
+    receptor: "GnRH receptor (GnRHR) — competitive antagonist",
+    mechanism:
+      "Cetrorelix blocks the GnRH receptor directly, so it suppresses gonadotropin release immediately and without the initial flare that agonists cause. This clean, rapid suppression is the key mechanistic contrast with agonists like leuprolide.",
+    facts: [
+      "As an antagonist, it produces immediate suppression — no agonist flare.",
+      "It is the mechanistic mirror image of GnRH agonists at the same receptor.",
+      "The flare-vs-no-flare difference is a clear teaching case in receptor pharmacology.",
+    ],
+    questions: [
+      "Why does a GnRH antagonist avoid the flare that agonists cause?",
+      "How do cetrorelix and leuprolide differ at the same receptor?",
+    ],
+    mw: 1431.0,
+    halfLife: "~5 h (immediate-release)",
+    halfLifeMin: 300,
+  },
+
+  // ── Somatostatin analogs ────────────────────────────────────────────────
+  {
+    slug: "octreotide",
+    name: "Octreotide",
+    family: "growth-repair",
+    type: "analog",
+    evidence: "Established",
+    parent: "somatostatin",
+    summary: "A long-acting somatostatin analog used to suppress GH and other hormones.",
+    class: "Somatostatin analog (cyclic octapeptide)",
+    source: "Synthetic analog of somatostatin",
+    receptor: "Somatostatin receptors (SSTR2 and SSTR5 preferential)",
+    mechanism:
+      "Octreotide reproduces somatostatin's inhibitory action but with a far longer half-life than the native peptide's ~2 minutes. By preferentially engaging SSTR2/SSTR5 it suppresses growth hormone and several gut hormones, which is why it is used in acromegaly and neuroendocrine tumors.",
+    facts: [
+      "Native somatostatin is too short-lived to be a practical drug; octreotide solves the half-life problem.",
+      "It is receptor-subtype-selective (SSTR2/5), unlike native somatostatin's broad SSTR coverage.",
+      "Long-acting (LAR) depot formulations act over roughly a month.",
+    ],
+    questions: [
+      "How does octreotide overcome somatostatin's very short half-life?",
+      "Why does receptor-subtype selectivity matter for somatostatin analogs?",
+    ],
+    mw: 1019.2,
+    halfLife: "~1.5 h (subcutaneous; LAR depot ~monthly)",
+    halfLifeMin: 90,
+  },
+  {
+    slug: "lanreotide",
+    name: "Lanreotide",
+    family: "growth-repair",
+    type: "analog",
+    evidence: "Established",
+    parent: "somatostatin",
+    summary: "A depot somatostatin analog, similar in action to octreotide.",
+    class: "Somatostatin analog (cyclic octapeptide)",
+    source: "Synthetic analog of somatostatin",
+    receptor: "Somatostatin receptors (SSTR2 and SSTR5 preferential)",
+    mechanism:
+      "Lanreotide is a somatostatin analog formulated as a long-acting depot (autogel) that releases over weeks, suppressing growth hormone and neuroendocrine secretion much like octreotide. Its prolonged depot kinetics are the practical contrast with the native peptide's minutes-long half-life.",
+    facts: [
+      "Delivered as an extended-release depot acting over weeks.",
+      "Shares octreotide's SSTR2/5-preferential profile.",
+      "Used in acromegaly and neuroendocrine tumors.",
+    ],
+    questions: [
+      "How does lanreotide's depot delivery change somatostatin pharmacology?",
+    ],
+    mw: 1096.3,
+    halfLife: "depot-dominant (autogel acts over weeks)",
+  },
+  {
+    slug: "pasireotide",
+    name: "Pasireotide",
+    family: "growth-repair",
+    type: "analog",
+    evidence: "Established",
+    parent: "somatostatin",
+    summary: "A broader-spectrum somatostatin analog hitting more receptor subtypes.",
+    class: "Somatostatin analog (cyclic hexapeptide)",
+    source: "Synthetic analog of somatostatin",
+    receptor: "Somatostatin receptors (SSTR1, 2, 3, and 5)",
+    mechanism:
+      "Pasireotide binds a wider range of somatostatin receptor subtypes than octreotide — including SSTR1, 2, 3, and 5 — giving it a different activity profile, notably more SSTR5 engagement that underlies its use in conditions octreotide addresses less well.",
+    facts: [
+      "Its broader SSTR-subtype coverage is the key distinction from octreotide and lanreotide.",
+      "Greater SSTR5 affinity drives a different clinical profile.",
+      "Illustrates how analog receptor-selectivity engineering changes effects.",
+    ],
+    questions: [
+      "How does pasireotide's broader receptor profile differ from octreotide's?",
+    ],
+    mw: 1047.2,
+    halfLife: "~12 h",
+    halfLifeMin: 720,
+  },
+
+  // ── Mitochondrial-derived peptides ──────────────────────────────────────
+  {
+    slug: "mots-c",
+    name: "MOTS-c",
+    family: "mitochondrial",
+    type: "endogenous",
+    evidence: "Preclinical",
+    summary: "A mitochondrial-encoded peptide linked to metabolism and exercise biology.",
+    class: "Mitochondrial-derived peptide (16 aa, encoded in 12S rRNA)",
+    source: "Encoded in mitochondrial DNA",
+    receptor: "No classical receptor; acts via AMPK and metabolic signaling",
+    mechanism:
+      "MOTS-c is a short peptide encoded within mitochondrial DNA that signals to the rest of the cell, acting partly through AMPK to influence glucose metabolism and insulin sensitivity. In animal studies it behaves as an exercise-mimetic, though human evidence remains early.",
+    facts: [
+      "It is encoded in mitochondrial — not nuclear — DNA, an unusual origin for a signaling peptide.",
+      "It acts substantially through AMPK and metabolic-stress pathways rather than a single surface receptor.",
+      "Evidence is largely preclinical; human metabolic roles are still being mapped.",
+    ],
+    questions: [
+      "What makes mitochondrial-derived peptides like MOTS-c unusual?",
+      "How does MOTS-c relate to metabolism and exercise?",
+    ],
+  },
+  {
+    slug: "humanin",
+    name: "Humanin",
+    family: "mitochondrial",
+    type: "endogenous",
+    evidence: "Preclinical",
+    summary: "A cytoprotective mitochondrial-derived peptide studied in stress and ageing.",
+    class: "Mitochondrial-derived peptide (24 aa, encoded in 16S rRNA)",
+    source: "Encoded in mitochondrial DNA",
+    receptor: "Proposed receptors incl. a trimeric receptor and intracellular targets",
+    mechanism:
+      "Humanin is a mitochondrial-encoded peptide with broad cytoprotective and anti-apoptotic effects, studied in neuroprotection, metabolic stress, and ageing. Several signaling routes have been proposed, but its full mechanism and human physiology are still being characterized.",
+    facts: [
+      "Like MOTS-c, it is encoded in mitochondrial DNA — part of the emerging mitochondrial-derived-peptide class.",
+      "Its hallmark is cytoprotection — limiting cell death under stress.",
+      "The evidence base is mostly preclinical; human roles remain under study.",
+    ],
+    questions: [
+      "What is humanin's cytoprotective role?",
+      "How do humanin and MOTS-c compare as mitochondrial-derived peptides?",
+    ],
+  },
+
+  // ── Additional research peptides ────────────────────────────────────────
+  {
+    slug: "epitalon",
+    name: "Epitalon",
+    family: "repair",
+    type: "research",
+    evidence: "Limited",
+    summary: "A synthetic tetrapeptide promoted for longevity; limited independent evidence.",
+    class: "Synthetic tetrapeptide (Ala-Glu-Asp-Gly)",
+    source: "Synthetic; modeled on a pineal peptide preparation",
+    receptor: "No established receptor; proposed effects on telomerase and pineal signaling",
+    mechanism:
+      "Epitalon is a synthetic tetrapeptide promoted for anti-ageing effects, with proposed influence on telomerase activity and pineal/melatonin signaling. Much of the supporting work comes from a small number of research groups, and rigorous, independent human evidence is limited.",
+    facts: [
+      "Its claims (telomerase, longevity) rest on limited and largely single-source evidence.",
+      "No well-established receptor or mechanism in humans.",
+      "A clear case for reading the evidence badge rather than the marketing.",
+    ],
+    questions: [
+      "What is actually established about epitalon versus what is claimed?",
+      "Why is the longevity evidence for epitalon considered limited?",
+    ],
+    mw: 390.4,
+  },
+  {
+    slug: "selank",
+    name: "Selank",
+    family: "neuropeptides",
+    type: "research",
+    evidence: "Limited",
+    summary: "A synthetic anxiolytic/nootropic peptide derived from tuftsin.",
+    class: "Synthetic heptapeptide (tuftsin analog)",
+    source: "Synthetic; based on the immunopeptide tuftsin",
+    receptor: "No single established receptor; effects on GABA/serotonin and immune signaling proposed",
+    mechanism:
+      "Selank is a synthetic heptapeptide based on the immune-active fragment tuftsin, developed (largely in Russia) as an anxiolytic and nootropic. Proposed effects touch GABAergic, serotonergic, and immune signaling, but well-controlled independent human evidence is limited.",
+    facts: [
+      "Derived from tuftsin, an endogenous immunomodulatory peptide fragment.",
+      "Developed primarily outside large international trial programs; independent evidence is limited.",
+      "Mechanism is proposed across several systems rather than firmly established.",
+    ],
+    questions: [
+      "What does the evidence actually show for selank?",
+      "How does selank relate to the endogenous peptide tuftsin?",
+    ],
+    mw: 751.9,
+    mwApprox: true,
+  },
 ];
 
 // Physical properties, merged onto the base records. Values are reference-grade

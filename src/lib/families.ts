@@ -341,6 +341,31 @@ export const FAMILIES: Family[] = [
       "How does thymosin β4 support wound healing?",
     ],
   },
+  {
+    slug: "mitochondrial",
+    name: "Mitochondrial-derived peptides",
+    accent: "text-accent-blue",
+    blurb: "Short peptides encoded inside the mitochondrial genome that signal to the cell.",
+    examples: "MOTS-c · humanin",
+    tagline: "Signals from the cell's powerhouses — a recently discovered layer of peptide biology.",
+    overview: [
+      "Beyond the nuclear genome, the mitochondria's own small circular DNA encodes a handful of short peptides — the mitochondrial-derived peptides (MDPs). Discovered only recently, they act as signals from the cell's powerhouses to the rest of the body, influencing metabolism and stress resistance.",
+      "MOTS-c and humanin are the best-characterized. MOTS-c links to metabolic homeostasis and exercise biology; humanin is broadly cytoprotective. The field is young and much of the evidence is preclinical — but it represents a genuinely new layer of peptide signaling.",
+    ],
+    signals: [
+      { name: "MOTS-c", role: "Metabolic regulator (AMPK); described as an exercise-mimetic in animal studies." },
+      { name: "Humanin", role: "Broadly cytoprotective and anti-apoptotic; neuroprotective roles studied." },
+    ],
+    notes: [
+      "MDPs are encoded in mitochondrial DNA, not the nuclear genome — an unusual origin for a signaling peptide.",
+      "MOTS-c acts partly through AMPK and is described as an exercise-mimetic in animal studies.",
+      "An emerging area: most evidence is preclinical, and the human roles are still being mapped.",
+    ],
+    questions: [
+      "What are mitochondrial-derived peptides, and why are they unusual?",
+      "How does MOTS-c relate to metabolism and exercise?",
+    ],
+  },
 ];
 
 export function getFamily(slug: string): Family | undefined {
