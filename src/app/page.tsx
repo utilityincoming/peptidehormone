@@ -36,17 +36,19 @@ export default function Home() {
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Research-grade reference · independent
+                Independent · research-grade · no products
               </span>
               <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl">
-                The peptide hormone system,
-                <span className="text-accent"> explained from the source.</span>
+                The peptide frontier,
+                <span className="text-accent"> mapped from the source.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-ink/65">
-                A clear, sourced reference on the hormones that signal in short
-                chains of amino acids — incretins, growth, melanocortins,
-                neuropeptides, and the gut–brain axis. Mechanism first. Citations
-                always. No products.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/65">
+                Short chains of amino acids, outsized reach — from the signals
+                that run the body to the compounds redrawing the edge of research
+                and discovery. PeptideHormone is the independent, research-grade
+                catalog of peptide science: every signaling family, the molecules
+                that matter, and the evidence behind them — citation-grounded,
+                with a research agent and pharmacokinetic tools.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
@@ -76,11 +78,12 @@ export default function Home() {
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                Organized by signaling family
+                The catalog, by signaling family
               </h2>
               <p className="mt-4 text-lg leading-8 text-ink/60">
-                Peptide hormones are easier to understand as families that share
-                receptors, anatomy, and logic. Open any one for the full reference.
+                The whole landscape, mapped into the families that share receptors,
+                anatomy, and logic — each a hub of the molecules that matter and the
+                evidence behind them. Open any one for the full reference.
               </p>
             </div>
 

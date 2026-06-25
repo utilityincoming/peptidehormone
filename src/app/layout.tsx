@@ -20,15 +20,15 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.peptidehormone.com"),
   title: {
-    default: "Peptide Hormone — a research-grade reference on the peptide hormone system",
+    default: "Peptide Hormone — the research-grade catalog of peptide science",
     template: "%s · Peptide Hormone",
   },
   description:
-    "An independent, sourced reference on peptide hormones — incretins, growth, metabolic, melanocortin, and neuropeptide signaling. Research-grade, not medical advice.",
+    "An independent, research-grade catalog of peptide science — every signaling family, the molecules that matter, and the evidence behind them, with a citation-grounded research agent and pharmacokinetic tools. Not medical advice.",
   openGraph: {
     title: "Peptide Hormone",
     description:
-      "A research-grade reference on the peptide hormone system. Sourced, independent, not medical advice.",
+      "The research-grade catalog of peptide science — families, molecules, and the evidence behind them. Independent, citation-grounded, not medical advice.",
     url: "https://www.peptidehormone.com",
     siteName: "Peptide Hormone",
     type: "website",
