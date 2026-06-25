@@ -149,12 +149,6 @@ export default async function HormonePage({
                         {h.mwApprox ? "≈ " : "~"}
                         {h.mw.toLocaleString()} <span className="text-base font-medium text-ink/50">Da</span>
                       </div>
-                      <Link
-                        href={`/tools/molarity?mw=${h.mw}`}
-                        className="mt-3 inline-flex items-center gap-1 text-sm text-accent transition-transform hover:translate-x-0.5"
-                      >
-                        Model molarity <span aria-hidden>→</span>
-                      </Link>
                     </div>
                   )}
                   {h.halfLife && (

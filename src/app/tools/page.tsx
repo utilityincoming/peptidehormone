@@ -5,7 +5,7 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 export const metadata: Metadata = {
   title: "Research tools & calculators",
   description:
-    "Free peptide research calculators — reconstitution concentration and peptide molarity — plus the grounded research agent. Educational, not medical advice.",
+    "Free, in-browser peptide research tools — a half-life & dosing calculator that models how long a compound stays bioactive and how dose frequency builds to steady state. Educational, not medical advice.",
 };
 
 const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: string }[] = [
@@ -16,14 +16,6 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
       "Model how long a peptide stays bioactive and how dose frequency vs half-life builds to steady state — accumulation, peak-to-trough swing, and a concentration-over-time chart.",
     tag: "Pharmacokinetics",
     accent: "text-accent",
-  },
-  {
-    href: "/tools/molarity",
-    name: "Peptide molarity calculator",
-    blurb:
-      "Convert peptide mass, molecular weight, and solvent volume into molar concentration — mM, µM, and nM — for assay preparation.",
-    tag: "Molarity",
-    accent: "text-accent-teal",
   },
 ];
 
@@ -49,15 +41,14 @@ export default function ToolsIndex() {
               Research tools & calculators
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Fast, transparent utilities for peptide research — pharmacokinetics
-              and concentration math. Everything runs in your browser. Educational
-              only, not medical or dosing advice.
+              Fast, transparent utilities for peptide research. Everything runs in
+              your browser. Educational only, not medical or dosing advice.
             </p>
           </Container>
         </section>
 
         <Container className="py-16 md:py-20">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
             {TOOLS.map((t) => (
               <Link
                 key={t.href}
