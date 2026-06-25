@@ -211,6 +211,136 @@ export const FAMILIES: Family[] = [
       "How do LH and FSH divide the work at the gonad?",
     ],
   },
+  {
+    slug: "adipokines",
+    name: "Adipokines & energy balance",
+    accent: "text-accent-amber",
+    blurb: "The hormones fat tissue uses to report energy reserves to the brain.",
+    examples: "leptin · adiponectin",
+    tagline: "Adipose tissue as an endocrine organ — reporting how much fuel is in the tank.",
+    overview: [
+      "Adipose tissue is not inert storage. It is an endocrine organ that secretes peptide hormones — the adipokines — which report the size of the body's energy reserves to the brain and tune whole-body metabolism.",
+      "Leptin signals the size of fat stores and restrains appetite; adiponectin tracks metabolic health and improves insulin sensitivity. Their dysregulation sits at the center of obesity and metabolic disease, which is why this family connects directly to the incretin and appetite pathways.",
+    ],
+    signals: [
+      { name: "Leptin", role: "Reports fat-store size to the hypothalamus; restrains appetite." },
+      { name: "Adiponectin", role: "Improves insulin sensitivity; rises as fat mass falls — the inverse of leptin." },
+    ],
+    notes: [
+      "Leptin resistance — high leptin with a blunted response — is a hallmark of common obesity, distinct from rare leptin deficiency.",
+      "Adiponectin is unusual: its levels fall as fat mass rises, the opposite of leptin.",
+      "These adipokines tie this family directly to the incretin and appetite-regulating systems.",
+    ],
+    questions: [
+      "Why does leptin rise with fat mass while adiponectin falls?",
+      "What is leptin resistance, and how does it differ from leptin deficiency?",
+    ],
+  },
+  {
+    slug: "calcium-bone",
+    name: "Calcium & bone",
+    accent: "text-accent-blue",
+    blurb: "The peptide hormones that hold blood calcium in a tight range.",
+    examples: "PTH · calcitonin · PTHrP",
+    tagline: "A fast hormonal loop that keeps blood calcium within a narrow band.",
+    overview: [
+      "Blood calcium is held within a narrow range by a fast-acting hormonal loop. Parathyroid hormone raises it; calcitonin opposes it; vitamin D (a steroid, not a peptide) supplies the slower arm.",
+      "These signals act on bone, kidney, and gut to move calcium in and out of the blood. The same PTH receptor is also engaged by PTH-related protein in development — and pathologically in some cancers.",
+    ],
+    signals: [
+      { name: "PTH", role: "Raises blood calcium via bone, kidney, and (indirectly) gut." },
+      { name: "Calcitonin", role: "Lowers blood calcium; opposes PTH." },
+      { name: "PTHrP", role: "Shares the PTH1 receptor; key in development and in hypercalcemia of malignancy." },
+    ],
+    notes: [
+      "PTH and calcitonin are a classic opposing pair — raise versus lower calcium.",
+      "Intermittent PTH exposure builds bone while continuous exposure breaks it down — a pulsatility effect echoing other axes.",
+      "PTHrP shares the PTH1 receptor, which is why it can drive hypercalcemia in malignancy.",
+    ],
+    questions: [
+      "Why does intermittent vs continuous PTH have opposite effects on bone?",
+      "How do PTH and calcitonin oppose each other?",
+    ],
+  },
+  {
+    slug: "cardiovascular",
+    name: "Cardiovascular & natriuretic",
+    accent: "text-accent-teal",
+    blurb: "Peptides the heart and vessels use to manage pressure and fluid.",
+    examples: "ANP · BNP · CNP",
+    tagline: "The heart as an endocrine organ — releasing peptides to shed the load that stretches it.",
+    overview: [
+      "The heart is also an endocrine organ. When its chambers stretch under volume or pressure load, cardiac myocytes release natriuretic peptides that promote sodium and water excretion and relax blood vessels — lowering the load that triggered them.",
+      "ANP and BNP act through a guanylyl-cyclase-linked receptor to raise cGMP; BNP's blood level is a routine clinical marker of heart failure. Alongside them sit the vasoactive peptides angiotensin II and endothelin-1, which push the other way.",
+    ],
+    signals: [
+      { name: "ANP", role: "Atrial peptide; promotes natriuresis and vasodilation." },
+      { name: "BNP", role: "Ventricular peptide; a widely used heart-failure biomarker." },
+      { name: "CNP", role: "Endothelial/CNS peptide; vascular tone and endochondral bone growth." },
+    ],
+    notes: [
+      "Natriuretic peptides signal through membrane guanylyl-cyclase receptors (NPR-A/B), raising cGMP — a different second messenger from the cAMP/GPCR families.",
+      "BNP and its NT-proBNP fragment are standard heart-failure biomarkers.",
+      "Angiotensin II and endothelin-1 are the opposing vasoconstrictor peptides in this system.",
+    ],
+    questions: [
+      "How do natriuretic peptides lower cardiac load?",
+      "Why is BNP used as a heart-failure biomarker?",
+    ],
+  },
+  {
+    slug: "muscle-tgfb",
+    name: "Muscle & TGF-β signaling",
+    accent: "text-accent-purple",
+    blurb: "The signals that cap muscle growth — and the targets for releasing the brake.",
+    examples: "myostatin · activin A · follistatin",
+    tagline: "The brake on muscle mass, and the antagonists that let it off.",
+    overview: [
+      "Skeletal muscle mass is actively restrained. Myostatin, a member of the TGF-β superfamily, is a negative regulator: it signals through activin type II receptors and Smad2/3 to limit muscle growth. Disable it and muscle mass increases markedly.",
+      "Activin A signals through the same receptors with broader roles, and follistatin is the natural antagonist that binds and neutralizes both — raising muscle. This system is a drug-development frontier, especially for preserving muscle during the rapid weight loss seen with incretin therapies.",
+    ],
+    signals: [
+      { name: "Myostatin", role: "TGF-β-family negative regulator of skeletal muscle mass." },
+      { name: "Activin A", role: "Signals through activin type II receptors; muscle, fibrosis, and more." },
+      { name: "Follistatin", role: "Endogenous antagonist that neutralizes myostatin and activin." },
+    ],
+    notes: [
+      "Myostatin and activin signal through activin type II receptors (ActRIIA/B) and Smad2/3 — distinct from the GPCR families.",
+      "Follistatin is the endogenous antagonist; blocking myostatin/activin is the basis of investigational muscle-preserving therapeutics.",
+      "This is the muscle-preservation frontier flagged by the GLP-1 weight-loss story.",
+    ],
+    questions: [
+      "How does myostatin limit muscle growth?",
+      "Why is the myostatin/activin pathway targeted for muscle preservation during weight loss?",
+    ],
+  },
+  {
+    slug: "repair",
+    name: "Repair & regenerative",
+    accent: "text-accent-rose",
+    blurb: "Endogenous repair signals — and the community 'research peptides' that target them.",
+    examples: "thymosin β4 · GHK-Cu · BPC-157 · TB-500",
+    tagline: "Where tissue-repair biology meets the most-hyped corner of the peptide world — graded honestly.",
+    overview: [
+      "Tissue repair is coordinated by peptide signals that regulate the cytoskeleton, angiogenesis, and inflammation. Thymosin β4 sequesters actin and supports wound healing; the copper-binding tripeptide GHK influences skin remodeling.",
+      "This family is also where the popular 'research peptides' cluster — compounds like BPC-157 and TB-500 that are widely discussed but, in most cases, supported predominantly by preclinical (animal) data. Each entry carries an explicit evidence badge so the biology stays separated from the marketing.",
+    ],
+    signals: [
+      { name: "Thymosin β4", role: "Endogenous actin-sequestering peptide; wound healing and angiogenesis." },
+      { name: "GHK-Cu", role: "Endogenous copper-binding tripeptide; skin remodeling and repair signaling." },
+      { name: "BPC-157", role: "Synthetic peptide with broad preclinical repair claims; limited human data." },
+      { name: "TB-500", role: "Synthetic thymosin β4 fragment marketed for recovery; preclinical evidence." },
+    ],
+    notes: [
+      "Several entries here are synthetic 'research peptides' with limited or preclinical human evidence — read the evidence badge on each.",
+      "Thymosin β4 (endogenous) and its fragment TB-500 are frequently conflated in the community; they are not the same thing.",
+      "Honest evidence grading is the point: real biology, clearly separated from claims.",
+    ],
+    questions: [
+      "What is actually established about BPC-157 versus what is merely claimed?",
+      "How does thymosin β4 support wound healing?",
+    ],
+  },
 ];
 
 export function getFamily(slug: string): Family | undefined {
