@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import AnalogComparer from "@/components/tools/AnalogComparer";
+import { JsonLd } from "@/components/JsonLd";
+import { toolLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Analog comparison tool",
@@ -19,6 +21,14 @@ export default async function ComparePage({
 
   return (
     <>
+      <JsonLd
+        data={toolLd({
+          path: "/tools/compare",
+          name: "Analog comparison",
+          description:
+            "Compare peptide hormones and their engineered analogs side by side — type, evidence tier, receptor, molecular weight, and half-life on one log-scaled axis.",
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <Container className="py-12 md:py-16">

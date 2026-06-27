@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { hormoneLd } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -71,6 +73,7 @@ export default async function HormonePage({
 
   return (
     <>
+      <JsonLd data={hormoneLd(h, family)} />
       <SiteHeader />
 
       <main className="flex-1">

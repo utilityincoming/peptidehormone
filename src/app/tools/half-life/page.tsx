@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import HalfLifeCalculator, { type CompoundPreset } from "@/components/tools/HalfLifeCalculator";
+import { JsonLd } from "@/components/JsonLd";
+import { toolLd } from "@/lib/jsonld";
 import { HORMONES, halfLifeForLink } from "@/lib/hormones";
 
 export const metadata: Metadata = {
@@ -48,6 +50,14 @@ export default async function HalfLifePage({
     });
   return (
     <>
+      <JsonLd
+        data={toolLd({
+          path: "/tools/half-life",
+          name: "Half-life & dosing calculator",
+          description:
+            "Model how long a peptide stays bioactive and how dose frequency versus half-life builds to steady state — accumulation, peak-to-trough swing, and a concentration-over-time chart.",
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <Container className="py-12 md:py-16">
