@@ -28,7 +28,7 @@ export const INSIGHTS: Insight[] = [
     dek: "GHRH and ghrelin push, somatostatin brakes, IGF-1 closes the loop. A tour of the axis — and why brief, low-amplitude signals, not sustained floods, are how the system is built to work.",
     family: "growth-repair",
     readingMinutes: 10,
-    reviewed: "June 2026",
+    reviewed: "July 2026",
   },
   {
     slug: "from-insulin-to-glp-1",
@@ -36,7 +36,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A century in three acts — insulin proved a peptide could be a drug, fertility medicine learned to steer a whole hormonal axis, and GLP-1 shows what happens when you engineer the molecule itself.",
     family: "incretins-metabolic",
     readingMinutes: 11,
-    reviewed: "June 2026",
+    reviewed: "July 2026",
   },
   {
     slug: "glp-1-signaling",
@@ -44,7 +44,7 @@ export const INSIGHTS: Insight[] = [
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "June 2026",
+    reviewed: "July 2026",
   },
 ];
 
