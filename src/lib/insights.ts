@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "growth-hormone-axis",
+    title: "The growth-hormone axis: why the body doses itself in pulses",
+    dek: "GHRH and ghrelin push, somatostatin brakes, IGF-1 closes the loop. A tour of the axis — and why brief, low-amplitude signals, not sustained floods, are how the system is built to work.",
+    family: "growth-repair",
+    readingMinutes: 10,
+    reviewed: "June 2026",
+  },
+  {
     slug: "from-insulin-to-glp-1",
     title: "From insulin to GLP-1: a short history of peptide medicine",
     dek: "A century in three acts — insulin proved a peptide could be a drug, fertility medicine learned to steer a whole hormonal axis, and GLP-1 shows what happens when you engineer the molecule itself.",
