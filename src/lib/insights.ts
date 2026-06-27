@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "insulin-to-the-peptide-boom",
+    title: "From insulin to the peptide boom",
+    dek: "A hundred years of peptide medicine — the first miracle, the families it built, and how the molecules quietly running your body became a 2026 cultural phenomenon.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "June 2026",
+  },
+  {
     slug: "glp-1-signaling",
     title: "How GLP-1 actually works",
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
