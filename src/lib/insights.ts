@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "melanocortin-system",
+    title: "The melanocortin system: one peptide family, five receptors",
+    dek: "Pigment, cortisol, appetite, sexual function — all from peptides cut out of a single precursor. The physiology isn't in the ligand; it's in which receptor, in which tissue, it happens to reach.",
+    family: "melanocortins",
+    readingMinutes: 9,
+    reviewed: "July 2026",
+  },
+  {
     slug: "growth-hormone-axis",
     title: "The growth-hormone axis: why the body doses itself in pulses",
     dek: "GHRH and ghrelin push, somatostatin brakes, IGF-1 closes the loop. A tour of the axis — and why brief, low-amplitude signals, not sustained floods, are how the system is built to work.",
