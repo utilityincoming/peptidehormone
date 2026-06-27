@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import HalfLifeCalculator from "@/components/tools/HalfLifeCalculator";
+import HalfLifeCalculator, { type CompoundPreset } from "@/components/tools/HalfLifeCalculator";
+import { HORMONES, halfLifeForLink } from "@/lib/hormones";
 
 export const metadata: Metadata = {
   title: "Peptide half-life & dosing calculator",
@@ -18,6 +19,33 @@ export default async function HalfLifePage({
   const initialHalfLife =
     t12 && Number.isFinite(parseFloat(t12)) && parseFloat(t12) > 0 ? t12 : undefined;
   const initialUnit = unit === "min" || unit === "h" || unit === "d" ? unit : undefined;
+
+  // Catalog-driven presets: every compound with a representative half-life,
+  // grouped native → analog → research so the picker mirrors the catalog.
+  const GROUP_LABEL: Record<string, string> = {
+    endogenous: "Native hormones",
+    analog: "Engineered analogs",
+    research: "Research peptides",
+  };
+  const GROUP_ORDER = ["endogenous", "analog", "research"];
+  const compounds: CompoundPreset[] = HORMONES.filter((h) => h.halfLifeMin != null)
+    .slice()
+    .sort((a, b) => {
+      const ga = GROUP_ORDER.indexOf(a.type ?? "endogenous");
+      const gb = GROUP_ORDER.indexOf(b.type ?? "endogenous");
+      if (ga !== gb) return ga - gb;
+      return a.name.localeCompare(b.name);
+    })
+    .map((h) => {
+      const { value, unit: u } = halfLifeForLink(h.halfLifeMin!);
+      return {
+        slug: h.slug,
+        label: h.abbr ? `${h.name} (${h.abbr})` : h.name,
+        value: String(value),
+        unit: u,
+        group: GROUP_LABEL[h.type ?? "endogenous"] ?? "Other",
+      };
+    });
   return (
     <>
       <SiteHeader />
@@ -40,7 +68,11 @@ export default async function HalfLifePage({
           </p>
 
           <div className="mt-10">
-            <HalfLifeCalculator initialHalfLife={initialHalfLife} initialUnit={initialUnit} />
+            <HalfLifeCalculator
+              initialHalfLife={initialHalfLife}
+              initialUnit={initialUnit}
+              compounds={compounds}
+            />
           </div>
 
           <section className="mt-16 max-w-2xl">

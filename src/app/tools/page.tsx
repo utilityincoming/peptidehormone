@@ -17,6 +17,14 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     tag: "Pharmacokinetics",
     accent: "text-accent",
   },
+  {
+    href: "/tools/compare",
+    name: "Analog comparison",
+    blurb:
+      "Put a native hormone beside the analogs engineered from it — receptor, molecular weight, evidence tier, and half-life on one log-scaled axis. See how durability engineering stretches minutes into days.",
+    tag: "Structure–activity",
+    accent: "text-accent-teal",
+  },
 ];
 
 export default function ToolsIndex() {

@@ -56,6 +56,13 @@ export default async function HormonePage({
   const typeLabel = h.type === "analog" ? "Analog" : h.type === "research" ? "Research peptide" : "Endogenous";
   const evidence = h.evidence ?? "Established";
 
+  // Lineage = the native hormone plus every analog engineered from it. Show a
+  // comparison deep-link whenever this molecule sits in such a lineage.
+  const lineageRoot = h.parent ?? (HORMONES.some((x) => x.parent === h.slug) ? h.slug : undefined);
+  const lineageSlugs = lineageRoot
+    ? [lineageRoot, ...HORMONES.filter((x) => x.parent === lineageRoot).map((x) => x.slug)]
+    : [];
+
   const identity = [
     { label: "Class", value: h.class },
     { label: "Source", value: h.source },
@@ -109,6 +116,14 @@ export default async function HormonePage({
                     {parent.name}
                   </Link>
                 </span>
+              )}
+              {lineageSlugs.length > 1 && (
+                <Link
+                  href={`/tools/compare?ids=${lineageSlugs.join(",")}`}
+                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                >
+                  Compare lineage <span aria-hidden>→</span>
+                </Link>
               )}
             </div>
           </Container>
