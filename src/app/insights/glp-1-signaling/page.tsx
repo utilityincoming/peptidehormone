@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
+import { getFamily } from "@/lib/families";
 
 const insight = getInsight("glp-1-signaling")!;
 
@@ -14,6 +17,7 @@ export const metadata: Metadata = {
 export default function Article() {
   return (
     <>
+      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
       <SiteHeader />
       <main className="flex-1">
         {/* ── Header ── */}

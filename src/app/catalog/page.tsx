@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import CatalogBrowser from "@/components/CatalogBrowser";
+import { JsonLd } from "@/components/JsonLd";
+import { collectionLd } from "@/lib/jsonld";
 import { HORMONES } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
 
@@ -12,6 +14,18 @@ export const metadata: Metadata = {
 export default function CatalogPage() {
   return (
     <>
+      <JsonLd
+        data={collectionLd({
+          path: "/catalog",
+          name: "The catalog — every peptide hormone",
+          description: `The full catalog of ${HORMONES.length} peptide hormones across ${FAMILIES.length} signaling families.`,
+          items: HORMONES.map((h) => ({ name: h.name, path: `/hormones/${h.slug}` })),
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Catalog", path: "/catalog" },
+          ],
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">

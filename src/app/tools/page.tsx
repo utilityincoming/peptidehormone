@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { collectionLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Research tools & calculators",
@@ -17,11 +19,32 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     tag: "Pharmacokinetics",
     accent: "text-accent",
   },
+  {
+    href: "/tools/compare",
+    name: "Analog comparison",
+    blurb:
+      "Put a native hormone beside the analogs engineered from it — receptor, molecular weight, evidence tier, and half-life on one log-scaled axis. See how durability engineering stretches minutes into days.",
+    tag: "Structure–activity",
+    accent: "text-accent-teal",
+  },
 ];
 
 export default function ToolsIndex() {
   return (
     <>
+      <JsonLd
+        data={collectionLd({
+          path: "/tools",
+          name: "Research tools & calculators",
+          description:
+            "Free, in-browser peptide research tools — pharmacokinetic and structure–activity utilities.",
+          items: TOOLS.map((t) => ({ name: t.name, path: t.href })),
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Tools", path: "/tools" },
+          ],
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">

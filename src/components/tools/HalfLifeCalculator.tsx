@@ -37,17 +37,52 @@ function dur(value: number, unit: Unit): string {
   return `${fmt(days / 7, 1)} wk`;
 }
 
+// A catalogued compound with its native half-life pre-resolved to value+unit.
+export type CompoundPreset = {
+  slug: string;
+  label: string;
+  value: string;
+  unit: Unit;
+  group: string;
+};
+
+const DEFAULT_INTERVAL: Record<Unit, string> = { min: "60", h: "24", d: "1" };
+
 export default function HalfLifeCalculator({
   initialHalfLife,
   initialUnit,
+  compounds = [],
 }: {
   initialHalfLife?: string;
   initialUnit?: Unit;
+  compounds?: CompoundPreset[];
 }) {
   const [unit, setUnit] = useState<Unit>(initialUnit ?? "h");
   const [halfLife, setHalfLife] = useState(initialHalfLife ?? "6");
   const [dose, setDose] = useState("100");
   const [interval, setInterval] = useState(initialUnit === "d" ? "1" : initialUnit === "min" ? "60" : "24");
+
+  // Group the catalog compounds for the <optgroup> picker, preserving order.
+  const compoundGroups = useMemo(() => {
+    const groups: { group: string; items: CompoundPreset[] }[] = [];
+    for (const c of compounds) {
+      let g = groups.find((x) => x.group === c.group);
+      if (!g) {
+        g = { group: c.group, items: [] };
+        groups.push(g);
+      }
+      g.items.push(c);
+    }
+    return groups;
+  }, [compounds]);
+
+  const loadCompound = (slug: string) => {
+    const c = compounds.find((x) => x.slug === slug);
+    if (!c) return;
+    setUnit(c.unit);
+    setHalfLife(c.value);
+    setInterval(DEFAULT_INTERVAL[c.unit]);
+  };
 
   const t12 = num(halfLife);
   const d = num(dose);
@@ -105,6 +140,36 @@ export default function HalfLifeCalculator({
 
   return (
     <div className="space-y-8">
+      {/* Load a real compound's native half-life from the catalog */}
+      {compoundGroups.length > 0 && (
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="text-sm text-ink/55">
+            Load from catalog
+            <select
+              value=""
+              onChange={(e) => loadCompound(e.target.value)}
+              className="ml-2 rounded-xl border border-ink/15 bg-panel/40 px-3 py-2 text-sm text-ink outline-none focus:border-accent/60"
+            >
+              <option value="" disabled>
+                Choose a compound…
+              </option>
+              {compoundGroups.map((g) => (
+                <optgroup key={g.group} label={g.group}>
+                  {g.items.map((c) => (
+                    <option key={c.slug} value={c.slug}>
+                      {c.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+            </select>
+          </label>
+          <span className="text-xs text-ink/35">
+            loads its reference half-life — then tune the interval below
+          </span>
+        </div>
+      )}
+
       {/* Presets */}
       <div className="flex flex-wrap gap-2">
         {PRESETS.map((p) => (

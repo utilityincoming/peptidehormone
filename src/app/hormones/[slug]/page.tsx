@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink } from "@/lib/hormones";
+import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { hormoneLd } from "@/lib/jsonld";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -56,6 +59,15 @@ export default async function HormonePage({
   const typeLabel = h.type === "analog" ? "Analog" : h.type === "research" ? "Research peptide" : "Endogenous";
   const evidence = h.evidence ?? "Established";
 
+  // Lineage = the native hormone plus every analog engineered from it. Show a
+  // comparison deep-link whenever this molecule sits in such a lineage.
+  const lineageRoot = h.parent ?? (HORMONES.some((x) => x.parent === h.slug) ? h.slug : undefined);
+  const lineageSlugs = lineageRoot
+    ? [lineageRoot, ...HORMONES.filter((x) => x.parent === lineageRoot).map((x) => x.slug)]
+    : [];
+
+  const references = referencesFor(h.slug);
+
   const identity = [
     { label: "Class", value: h.class },
     { label: "Source", value: h.source },
@@ -64,6 +76,7 @@ export default async function HormonePage({
 
   return (
     <>
+      <JsonLd data={hormoneLd(h, family)} />
       <SiteHeader />
 
       <main className="flex-1">
@@ -109,6 +122,14 @@ export default async function HormonePage({
                     {parent.name}
                   </Link>
                 </span>
+              )}
+              {lineageSlugs.length > 1 && (
+                <Link
+                  href={`/tools/compare?ids=${lineageSlugs.join(",")}`}
+                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                >
+                  Compare lineage <span aria-hidden>→</span>
+                </Link>
               )}
             </div>
           </Container>
@@ -195,6 +216,39 @@ export default async function HormonePage({
                 ))}
               </ul>
             </section>
+
+            {references.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Selected literature</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">
+                  Curated peer-reviewed reviews, sourced from PubMed. Selected for
+                  relevance, not exhaustive — open any entry on PubMed for the full
+                  record and its primary citations.
+                </p>
+                <ol className="mt-5 space-y-3">
+                  {references.map((r, i) => (
+                    <li key={r.pmid} className="flex gap-3 text-[15px] leading-7 text-ink/75">
+                      <span className="mt-0.5 shrink-0 font-mono text-xs text-ink/35">{i + 1}.</span>
+                      <span>
+                        <a
+                          href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-ink transition-colors hover:text-accent"
+                        >
+                          {r.title}
+                        </a>
+                        <span className="text-ink/45">
+                          {" "}· <span className="italic">{r.source}</span>
+                          {r.year ? `, ${r.year}` : ""} · PMID{" "}
+                          <span className="font-mono text-xs">{r.pmid}</span>
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
           </div>
 
           {/* ── Sidebar ── */}

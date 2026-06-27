@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { FAMILIES, getFamily } from "@/lib/families";
 import { hormonesByFamily, type Hormone } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { familyLd } from "@/lib/jsonld";
 
 // Resolve a family signal label to its hormone detail page, if one exists.
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -55,6 +57,7 @@ export default async function FamilyHub({
 
   return (
     <>
+      <JsonLd data={familyLd(family, famHormones)} />
       <SiteHeader />
 
       <main className="flex-1">
