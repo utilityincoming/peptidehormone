@@ -9,6 +9,7 @@
 import type { Hormone } from "@/lib/hormones";
 import type { Family } from "@/lib/families";
 import type { Insight } from "@/lib/insights";
+import { referencesFor } from "@/lib/references";
 
 export const SITE_URL = "https://www.peptidehormone.com";
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -96,6 +97,16 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
     };
   }
 
+  const refs = referencesFor(h.slug);
+  const citation = refs.map((r) => ({
+    "@type": "ScholarlyArticle",
+    headline: r.title,
+    url: `https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`,
+    ...(r.source ? { isPartOf: { "@type": "Periodical", name: r.source } } : {}),
+    ...(r.year ? { datePublished: r.year } : {}),
+    identifier: { "@type": "PropertyValue", propertyID: "PMID", value: r.pmid },
+  }));
+
   const page: Node = {
     "@type": "MedicalWebPage",
     "@id": url,
@@ -108,6 +119,7 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
     primaryImageOfPage: `${url}/opengraph-image`,
     about: { "@id": `${url}#substance` },
     breadcrumb: { "@id": `${url}#breadcrumb` },
+    ...(citation.length ? { citation } : {}),
     ...(family ? { significantLink: `${SITE_URL}/families/${family.slug}` } : {}),
   };
 
