@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "from-insulin-to-glp-1",
+    title: "From insulin to GLP-1: a short history of peptide medicine",
+    dek: "A century in three acts — insulin proved a peptide could be a drug, fertility medicine learned to steer a whole hormonal axis, and GLP-1 shows what happens when you engineer the molecule itself.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "June 2026",
+  },
+  {
     slug: "glp-1-signaling",
     title: "How GLP-1 actually works",
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
