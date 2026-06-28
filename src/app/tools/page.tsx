@@ -27,6 +27,14 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     tag: "Structure–activity",
     accent: "text-accent-teal",
   },
+  {
+    href: "/tools/cycle-planner",
+    name: "Cycle planner",
+    blurb:
+      "Sketch a research cycle from a goal stack: pick a length and level, then see the week-by-week timeline, reference dosing, and a vial-and-cost estimate. Shareable by URL. Research-use only.",
+    tag: "Protocol planning",
+    accent: "text-accent-amber",
+  },
 ];
 
 export default function ToolsIndex() {

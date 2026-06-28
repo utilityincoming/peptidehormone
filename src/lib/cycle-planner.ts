@@ -1,0 +1,204 @@
+// Reference data for the cycle planner tool. Dosing figures are illustrative
+// reference ranges drawn from the published and community research literature —
+// they are NOT dosing advice, and most listed peptides are research-use only.
+// The disclaimer block in the UI is load-bearing; see CyclePlanner.tsx.
+
+export type Evidence =
+  | "clinical" // studied in human trials
+  | "emerging" // early human / strong preclinical
+  | "preclinical" // animal / in-vitro only
+  | "anecdotal"; // community-reported, little formal data
+
+export type Route = "SubQ" | "IM" | "Oral" | "Nasal";
+
+export interface Peptide {
+  /** URL-safe key, also used in the `p` query param. */
+  id: string;
+  name: string;
+  /** Reference dose range, in mcg, per administration. */
+  doseLow: number;
+  doseHigh: number;
+  /** Administrations per week (timeline frequency). */
+  perWeek: number;
+  route: Route;
+  evidence: Evidence;
+  /** Categorical bar hue (CSS color). */
+  hue: string;
+  /** One-line mechanism / use note. */
+  note: string;
+  /** Reference vial size in mg, for the supply estimate. */
+  vialMg: number;
+  /** Indicative price per vial, USD — a rough planning figure, not a quote. */
+  vialUsd: number;
+  /** Slug into the on-site catalog, when a monograph exists. */
+  catalogSlug?: string;
+}
+
+// Categorical hues — teal / amber / violet / rose / blue / green.
+const HUE = {
+  teal: "#2DD4A8",
+  amber: "#E8B65A",
+  violet: "#B58CFA",
+  rose: "#F472B6",
+  blue: "#5EA8FA",
+  green: "#34D399",
+} as const;
+
+export const PEPTIDES: Record<string, Peptide> = {
+  "bpc-157": {
+    id: "bpc-157", name: "BPC-157", doseLow: 250, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.teal,
+    note: "Gastric pentadecapeptide studied for tendon, ligament, and gut healing.",
+    vialMg: 5, vialUsd: 40, catalogSlug: "bpc-157",
+  },
+  "tb-500": {
+    id: "tb-500", name: "TB-500", doseLow: 2000, doseHigh: 2500, perWeek: 2,
+    route: "SubQ", evidence: "preclinical", hue: HUE.amber,
+    note: "Thymosin β4 fragment investigated for tissue repair and angiogenesis.",
+    vialMg: 5, vialUsd: 50, catalogSlug: "tb-500",
+  },
+  "ghk-cu": {
+    id: "ghk-cu", name: "GHK-Cu", doseLow: 1000, doseHigh: 2000, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Copper tripeptide studied for skin remodeling and wound signaling.",
+    vialMg: 50, vialUsd: 45, catalogSlug: "ghk-cu",
+  },
+  ipamorelin: {
+    id: "ipamorelin", name: "Ipamorelin", doseLow: 200, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.rose,
+    note: "Selective GH secretagogue (ghrelin-receptor agonist), minimal cortisol/prolactin.",
+    vialMg: 5, vialUsd: 40,
+  },
+  "cjc-1295": {
+    id: "cjc-1295", name: "CJC-1295 (no DAC)", doseLow: 100, doseHigh: 200, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.blue,
+    note: "GHRH analog; paired with a secretagogue to amplify pulsatile GH release.",
+    vialMg: 5, vialUsd: 40,
+  },
+  tesamorelin: {
+    id: "tesamorelin", name: "Tesamorelin", doseLow: 1000, doseHigh: 2000, perWeek: 7,
+    route: "SubQ", evidence: "clinical", hue: HUE.green,
+    note: "Stabilized GHRH analog; the one FDA-approved entry here (HIV lipodystrophy).",
+    vialMg: 5, vialUsd: 90,
+  },
+  "aod-9604": {
+    id: "aod-9604", name: "AOD-9604", doseLow: 300, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.amber,
+    note: "GH fragment (176–191) studied for lipolysis without IGF-1 elevation.",
+    vialMg: 5, vialUsd: 45,
+  },
+  semaglutide: {
+    id: "semaglutide", name: "Semaglutide", doseLow: 250, doseHigh: 1000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.teal,
+    note: "Long-acting GLP-1 receptor agonist; titrated weekly for metabolic effect.",
+    vialMg: 5, vialUsd: 120, catalogSlug: "semaglutide",
+  },
+  tirzepatide: {
+    id: "tirzepatide", name: "Tirzepatide", doseLow: 2500, doseHigh: 5000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.blue,
+    note: "Dual GIP/GLP-1 co-agonist; weekly dosing, stepwise titration.",
+    vialMg: 10, vialUsd: 150, catalogSlug: "tirzepatide",
+  },
+  "mots-c": {
+    id: "mots-c", name: "MOTS-c", doseLow: 5000, doseHigh: 10000, perWeek: 3,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Mitochondrial-derived peptide studied for metabolic and exercise signaling.",
+    vialMg: 10, vialUsd: 55, catalogSlug: "mots-c",
+  },
+  epitalon: {
+    id: "epitalon", name: "Epithalon", doseLow: 5000, doseHigh: 10000, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.rose,
+    note: "Tetrapeptide studied for telomerase and circadian/pineal signaling, in short courses.",
+    vialMg: 50, vialUsd: 50, catalogSlug: "epitalon",
+  },
+  semax: {
+    id: "semax", name: "Semax", doseLow: 300, doseHigh: 600, perWeek: 7,
+    route: "Nasal", evidence: "emerging", hue: HUE.amber,
+    note: "ACTH(4–10) analog studied for neuroprotection and cognition (intranasal).",
+    vialMg: 30, vialUsd: 45,
+  },
+  selank: {
+    id: "selank", name: "Selank", doseLow: 250, doseHigh: 500, perWeek: 7,
+    route: "Nasal", evidence: "emerging", hue: HUE.green,
+    note: "Tuftsin analog studied for anxiolytic and immune-modulating effects (intranasal).",
+    vialMg: 10, vialUsd: 45, catalogSlug: "selank",
+  },
+  dsip: {
+    id: "dsip", name: "DSIP", doseLow: 100, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "anecdotal", hue: HUE.blue,
+    note: "Delta sleep-inducing peptide; pre-sleep timing, sparse human data.",
+    vialMg: 5, vialUsd: 40,
+  },
+  "thymosin-alpha-1": {
+    id: "thymosin-alpha-1", name: "Thymosin α1", doseLow: 1600, doseHigh: 1600, perWeek: 2,
+    route: "SubQ", evidence: "clinical", hue: HUE.teal,
+    note: "Immune-modulating peptide trialed in infection and adjuvant settings.",
+    vialMg: 5, vialUsd: 70,
+  },
+  "melanotan-2": {
+    id: "melanotan-2", name: "Melanotan II", doseLow: 250, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "anecdotal", hue: HUE.amber,
+    note: "Melanocortin agonist studied for pigmentation; notable off-target effects.",
+    vialMg: 10, vialUsd: 40,
+  },
+};
+
+export interface Goal {
+  id: string;
+  label: string;
+  blurb: string;
+  /** Peptide ids in the default stack for this goal. */
+  stack: string[];
+}
+
+export const GOALS: Goal[] = [
+  { id: "injury", label: "Injury recovery", blurb: "Tissue repair & connective-tissue signaling", stack: ["bpc-157", "tb-500", "ghk-cu"] },
+  { id: "fat-loss", label: "Fat loss", blurb: "Metabolic & lipolytic pathways", stack: ["tesamorelin", "aod-9604", "semaglutide"] },
+  { id: "muscle", label: "Muscle growth", blurb: "GH-axis secretagogue stack", stack: ["cjc-1295", "ipamorelin", "tesamorelin"] },
+  { id: "recomp", label: "Body recomposition", blurb: "GH axis + incretin co-agonist", stack: ["cjc-1295", "ipamorelin", "tirzepatide"] },
+  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "ghk-cu"] },
+  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank"] },
+  { id: "sleep", label: "Sleep", blurb: "Sleep architecture & calming signaling", stack: ["dsip", "selank"] },
+  { id: "aesthetic", label: "Aesthetic", blurb: "Skin, pigmentation & melanocortin", stack: ["ghk-cu", "melanotan-2"] },
+  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "bpc-157"] },
+];
+
+export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
+export type Level = (typeof LEVELS)[number];
+
+export const WEEKS_MIN = 4;
+export const WEEKS_MAX = 12;
+export const WEEKS_DEFAULT = 6;
+export const MAX_PEPTIDES = 6;
+
+// Pick a single reference dose within a peptide's range, by experience level:
+// beginner → low end, intermediate → midpoint, advanced → high end.
+export function doseForLevel(p: Peptide, level: Level): number {
+  if (p.doseLow === p.doseHigh) return p.doseLow;
+  const f = level === "beginner" ? 0 : level === "advanced" ? 1 : 0.5;
+  const raw = p.doseLow + (p.doseHigh - p.doseLow) * f;
+  // round to a clean 25 mcg step
+  return Math.round(raw / 25) * 25;
+}
+
+export interface SupplyLine {
+  peptide: Peptide;
+  dose: number; // mcg per administration
+  totalMcg: number; // across the whole cycle
+  vials: number;
+  cost: number;
+}
+
+export function supplyFor(peptide: Peptide, level: Level, weeks: number): SupplyLine {
+  const dose = doseForLevel(peptide, level);
+  const totalMcg = dose * peptide.perWeek * weeks;
+  const vials = Math.max(1, Math.ceil(totalMcg / 1000 / peptide.vialMg));
+  return { peptide, dose, totalMcg, vials, cost: vials * peptide.vialUsd };
+}
+
+export const EVIDENCE_LABEL: Record<Evidence, string> = {
+  clinical: "clinical",
+  emerging: "emerging",
+  preclinical: "preclinical",
+  anecdotal: "anecdotal",
+};
