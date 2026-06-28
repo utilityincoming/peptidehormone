@@ -95,7 +95,7 @@ export default async function CyclePlannerPage({
       <SiteHeader />
       <main className="flex-1">
         <Container className="py-12 md:py-16">
-          <nav className="flex items-center gap-2 text-sm text-ink/45">
+          <nav className="cp-no-print flex items-center gap-2 text-sm text-ink/45">
             <Link href="/tools" className="hover:text-ink">Tools</Link>
             <span aria-hidden>/</span>
             <span className="text-ink/70">Cycle planner</span>
@@ -103,7 +103,7 @@ export default async function CyclePlannerPage({
           <h1 className="mt-5 font-display text-3xl font-semibold sm:text-4xl">
             Peptide cycle planner
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-ink/65">
+          <p className="cp-no-print mt-4 max-w-2xl text-lg leading-8 text-ink/65">
             Sketch a research cycle from a goal stack or build your own: pick a length and
             experience level, see the week-by-week schedule, reference dosing, and a rough
             supply-and-cost estimate. Every plan is encoded in the URL, so it&rsquo;s shareable.
@@ -114,7 +114,7 @@ export default async function CyclePlannerPage({
             <CyclePlanner init={init} />
           </div>
 
-          <section className="mt-16 max-w-2xl">
+          <section className="cp-no-print mt-16 max-w-2xl">
             <h2 className="font-display text-2xl font-semibold">How to read this</h2>
             <div className="mt-5 space-y-4 text-[15px] leading-7 text-ink/70">
               <p>

@@ -125,8 +125,19 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
 
   return (
     <div className="space-y-10">
+      {/* Print-only protocol header — populates the exported PDF */}
+      <div className="cp-print-only border-b border-ink/20 pb-4">
+        <p className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/50">
+          Protocol summary
+        </p>
+        <p className="mt-1 text-sm text-ink/80">
+          {goalMeta ? goalMeta.label : "Custom stack"} · {weeks}-week cycle · {level} level ·{" "}
+          {peptides.length} peptide{peptides.length === 1 ? "" : "s"}
+        </p>
+      </div>
+
       {/* ── Quick-add goal stacks ── */}
-      <section aria-labelledby="goals-h">
+      <section aria-labelledby="goals-h" className="cp-no-print">
         <h2 id="goals-h" className="mb-3 text-xs font-medium uppercase tracking-wide text-ink/40">
           Quick-add a goal stack
         </h2>
@@ -158,7 +169,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
       </section>
 
       {/* ── Cycle controls ── */}
-      <section className="grid gap-5 rounded-2xl border border-ink/10 bg-surface p-6 sm:grid-cols-[1fr_1fr_auto]">
+      <section className="cp-no-print grid gap-5 rounded-2xl border border-ink/10 bg-surface p-6 sm:grid-cols-[1fr_1fr_auto]">
         <div>
           <label htmlFor="weeks" className="mb-1.5 flex items-baseline justify-between text-sm font-medium text-ink/70">
             <span>Cycle length</span>
@@ -284,7 +295,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
 
         {/* Add peptide */}
         {peptides.length < MAX_PEPTIDES && (
-          <div className="mt-4">
+          <div className="cp-no-print mt-4">
             {!adderOpen ? (
               <button
                 type="button"
@@ -366,7 +377,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                           type="button"
                           onClick={() => removePeptide(p.id)}
                           aria-label={`Remove ${p.name}`}
-                          className="ml-3 rounded-full px-1.5 text-ink/30 transition-colors hover:text-accent-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-rose"
+                          className="cp-no-print ml-3 rounded-full px-1.5 text-ink/30 transition-colors hover:text-accent-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-rose"
                         >
                           ✕
                         </button>
@@ -412,7 +423,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
             </p>
           </div>
 
-          <div className="flex flex-col justify-between rounded-2xl border border-ink/10 bg-panel/20 p-6">
+          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-ink/10 bg-panel/20 p-6">
             <div>
               <h2 className="font-display text-xl font-semibold">Next steps</h2>
               <p className="mt-2 text-sm leading-6 text-ink/55">
@@ -463,7 +474,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
       {toast && (
         <div
           role="status"
-          className="fixed inset-x-0 bottom-6 z-50 mx-auto w-fit max-w-[90vw] rounded-full border border-ink/15 bg-panel px-5 py-2.5 text-sm text-ink/85 shadow-lg"
+          className="cp-no-print fixed inset-x-0 bottom-6 z-50 mx-auto w-fit max-w-[90vw] rounded-full border border-ink/15 bg-panel px-5 py-2.5 text-sm text-ink/85 shadow-lg"
         >
           {toast}
         </div>
@@ -472,11 +483,17 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
       <style>{`
         @keyframes cpGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
         .cp-bar { transform-origin: left center; animation: cpGrow 620ms cubic-bezier(0.22,1,0.36,1) both; }
+        .cp-print-only { display: none; }
         @media (prefers-reduced-motion: reduce) {
           .cp-bar { animation: none; transform: none; }
         }
         @media print {
-          .cp-bar { animation: none; transform: none; }
+          /* A clean protocol sheet: drop site chrome and interactive controls,
+             keep the timeline, dosing, supply, and the load-bearing disclaimer. */
+          header, footer, .cp-no-print { display: none !important; }
+          .cp-print-only { display: block !important; }
+          .cp-bar { animation: none !important; transform: none !important; }
+          * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
       `}</style>
     </div>
