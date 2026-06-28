@@ -141,6 +141,102 @@ export const PEPTIDES: Record<string, Peptide> = {
     note: "Melanocortin agonist studied for pigmentation; notable off-target effects.",
     vialMg: 10, vialUsd: 40,
   },
+  retatrutide: {
+    id: "retatrutide", name: "Retatrutide", doseLow: 2000, doseHigh: 6000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.blue,
+    note: "Triple GIP/GLP-1/glucagon agonist in late-stage trials; weekly, titrated.",
+    vialMg: 10, vialUsd: 160, catalogSlug: "retatrutide",
+  },
+  cagrilintide: {
+    id: "cagrilintide", name: "Cagrilintide", doseLow: 300, doseHigh: 2400, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.teal,
+    note: "Long-acting amylin analog trialed for weight management, often with semaglutide.",
+    vialMg: 5, vialUsd: 130,
+  },
+  "pt-141": {
+    id: "pt-141", name: "PT-141 (Bremelanotide)", doseLow: 1000, doseHigh: 2000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.rose,
+    note: "Melanocortin agonist approved for HSDD; used as-needed, not continuously.",
+    vialMg: 10, vialUsd: 50,
+  },
+  "kisspeptin-10": {
+    id: "kisspeptin-10", name: "Kisspeptin-10", doseLow: 50, doseHigh: 100, perWeek: 3,
+    route: "SubQ", evidence: "emerging", hue: HUE.violet,
+    note: "Upstream driver of GnRH pulses; studied for reproductive-axis signaling.",
+    vialMg: 5, vialUsd: 50, catalogSlug: "kisspeptin",
+  },
+  sermorelin: {
+    id: "sermorelin", name: "Sermorelin", doseLow: 200, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "clinical", hue: HUE.green,
+    note: "GHRH(1–29) analog studied to stimulate endogenous GH release.",
+    vialMg: 5, vialUsd: 45,
+  },
+  "ghrp-6": {
+    id: "ghrp-6", name: "GHRP-6", doseLow: 100, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.amber,
+    note: "GH secretagogue; strong appetite (ghrelin) stimulation alongside GH release.",
+    vialMg: 5, vialUsd: 35,
+  },
+  "ghrp-2": {
+    id: "ghrp-2", name: "GHRP-2", doseLow: 100, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.blue,
+    note: "GH secretagogue with less appetite drive than GHRP-6; pairs with a GHRH analog.",
+    vialMg: 5, vialUsd: 35,
+  },
+  hexarelin: {
+    id: "hexarelin", name: "Hexarelin", doseLow: 100, doseHigh: 100, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.rose,
+    note: "Potent GH secretagogue; receptor desensitization limits continuous use.",
+    vialMg: 5, vialUsd: 45,
+  },
+  "igf-1-lr3": {
+    id: "igf-1-lr3", name: "IGF-1 LR3", doseLow: 20, doseHigh: 50, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.blue,
+    note: "Long-acting IGF-1 analog studied for anabolic and hypertrophic signaling.",
+    vialMg: 1, vialUsd: 55, catalogSlug: "igf-1",
+  },
+  humanin: {
+    id: "humanin", name: "Humanin", doseLow: 1000, doseHigh: 4000, perWeek: 3,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Mitochondrial-derived peptide studied for cytoprotection and metabolic aging.",
+    vialMg: 10, vialUsd: 60, catalogSlug: "humanin",
+  },
+  pinealon: {
+    id: "pinealon", name: "Pinealon", doseLow: 5000, doseHigh: 10000, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Short peptide bioregulator studied for neuroprotection, in brief courses.",
+    vialMg: 20, vialUsd: 50,
+  },
+  "ll-37": {
+    id: "ll-37", name: "LL-37", doseLow: 100, doseHigh: 100, perWeek: 3,
+    route: "SubQ", evidence: "preclinical", hue: HUE.teal,
+    note: "Host-defense (cathelicidin) peptide studied for antimicrobial and immune roles.",
+    vialMg: 5, vialUsd: 55,
+  },
+  thymalin: {
+    id: "thymalin", name: "Thymalin", doseLow: 5000, doseHigh: 10000, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.blue,
+    note: "Thymic peptide preparation studied for immune restoration, in short courses.",
+    vialMg: 10, vialUsd: 50,
+  },
+  kpv: {
+    id: "kpv", name: "KPV", doseLow: 250, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.amber,
+    note: "α-MSH C-terminal tripeptide studied for anti-inflammatory and gut signaling.",
+    vialMg: 5, vialUsd: 45,
+  },
+  larazotide: {
+    id: "larazotide", name: "Larazotide", doseLow: 500, doseHigh: 500, perWeek: 7,
+    route: "Oral", evidence: "clinical", hue: HUE.green,
+    note: "Tight-junction regulator trialed orally for intestinal barrier integrity (celiac).",
+    vialMg: 5, vialUsd: 60,
+  },
+  vip: {
+    id: "vip", name: "VIP", doseLow: 50, doseHigh: 100, perWeek: 7,
+    route: "Nasal", evidence: "emerging", hue: HUE.rose,
+    note: "Vasoactive intestinal peptide studied for immune and inflammatory modulation.",
+    vialMg: 5, vialUsd: 60,
+  },
 };
 
 export interface Goal {
@@ -156,11 +252,15 @@ export const GOALS: Goal[] = [
   { id: "fat-loss", label: "Fat loss", blurb: "Metabolic & lipolytic pathways", stack: ["tesamorelin", "aod-9604", "semaglutide"] },
   { id: "muscle", label: "Muscle growth", blurb: "GH-axis secretagogue stack", stack: ["cjc-1295", "ipamorelin", "tesamorelin"] },
   { id: "recomp", label: "Body recomposition", blurb: "GH axis + incretin co-agonist", stack: ["cjc-1295", "ipamorelin", "tirzepatide"] },
-  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "ghk-cu"] },
-  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank"] },
+  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "humanin"] },
+  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank", "pinealon"] },
   { id: "sleep", label: "Sleep", blurb: "Sleep architecture & calming signaling", stack: ["dsip", "selank"] },
   { id: "aesthetic", label: "Aesthetic", blurb: "Skin, pigmentation & melanocortin", stack: ["ghk-cu", "melanotan-2"] },
-  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "bpc-157"] },
+  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "ll-37", "thymalin"] },
+  { id: "libido", label: "Libido", blurb: "Sexual health & melanocortin/kisspeptin signaling", stack: ["pt-141", "kisspeptin-10", "melanotan-2"] },
+  { id: "gut", label: "Gut health", blurb: "Mucosal repair & barrier integrity", stack: ["bpc-157", "kpv", "larazotide"] },
+  { id: "anti-aging", label: "Anti-aging", blurb: "GH-axis & cellular-aging signaling", stack: ["sermorelin", "epitalon", "ghk-cu"] },
+  { id: "metabolic", label: "Metabolic", blurb: "Incretin & amylin co-agonism", stack: ["retatrutide", "cagrilintide"] },
 ];
 
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
