@@ -32,6 +32,13 @@ export interface Peptide {
   vialUsd: number;
   /** Slug into the on-site catalog, when a monograph exists. */
   catalogSlug?: string;
+  /** When in the day it is typically taken (e.g. "Pre-sleep", "AM", "As needed"). */
+  timing?: string;
+  /** Relation to meals (e.g. "Empty stomach", "Before meals", "Any"). */
+  withFood?: string;
+  /** Short-course / on-off scheduling. Absent = dosed every cycle week.
+   *  `onWeeks` alone = a single course at the start; with `offWeeks` it repeats. */
+  course?: { onWeeks: number; offWeeks?: number };
 }
 
 // Categorical hues — teal / amber / violet / rose / blue / green.
@@ -239,6 +246,48 @@ export const PEPTIDES: Record<string, Peptide> = {
   },
 };
 
+// Per-week scheduling metadata, merged onto the catalog above so the entries
+// stay readable. timing/withFood drive the dosing table; `course` segments the
+// timeline and scopes the supply estimate to weeks actually dosed.
+const SCHEDULE: Record<string, Partial<Peptide>> = {
+  "bpc-157": { timing: "AM or split", withFood: "Any" },
+  "tb-500": { timing: "AM", withFood: "Any" },
+  "ghk-cu": { timing: "AM", withFood: "Any" },
+  ipamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "cjc-1295": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  tesamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "aod-9604": { timing: "AM, fasted", withFood: "Empty stomach" },
+  semaglutide: { timing: "Any day", withFood: "Any" },
+  tirzepatide: { timing: "Any day", withFood: "Any" },
+  "mots-c": { timing: "AM", withFood: "Any" },
+  epitalon: { timing: "AM", course: { onWeeks: 3 } },
+  semax: { timing: "AM", withFood: "Any" },
+  selank: { timing: "AM", withFood: "Any" },
+  dsip: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "thymosin-alpha-1": { timing: "AM", withFood: "Any" },
+  "melanotan-2": { timing: "PM", withFood: "Any" },
+  retatrutide: { timing: "Any day", withFood: "Any" },
+  cagrilintide: { timing: "Any day", withFood: "Any" },
+  "pt-141": { timing: "As needed (~45 min prior)", withFood: "Empty stomach" },
+  "kisspeptin-10": { timing: "AM", withFood: "Any" },
+  sermorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "ghrp-6": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "ghrp-2": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  hexarelin: { timing: "Pre-workout", withFood: "Empty stomach", course: { onWeeks: 4, offWeeks: 4 } },
+  "igf-1-lr3": { timing: "Post-workout", withFood: "Any" },
+  humanin: { timing: "AM", withFood: "Any" },
+  pinealon: { timing: "AM", course: { onWeeks: 2 } },
+  "ll-37": { timing: "AM", withFood: "Any" },
+  thymalin: { timing: "AM", course: { onWeeks: 2 } },
+  kpv: { timing: "AM", withFood: "Any" },
+  larazotide: { timing: "Before meals", withFood: "Before meals" },
+  vip: { timing: "AM", withFood: "Any" },
+};
+
+for (const [id, meta] of Object.entries(SCHEDULE)) {
+  if (PEPTIDES[id]) Object.assign(PEPTIDES[id], meta);
+}
+
 export interface Goal {
   id: string;
   label: string;
@@ -289,9 +338,33 @@ export interface SupplyLine {
   cost: number;
 }
 
+// Which cycle weeks a peptide is actually dosed (0-indexed booleans). Continuous
+// compounds are active every week; short courses follow their on/off pattern.
+export function weekFlags(p: Peptide, weeks: number): boolean[] {
+  const c = p.course;
+  return Array.from({ length: weeks }, (_, i) => {
+    if (!c) return true;
+    if (c.offWeeks && c.offWeeks > 0) return i % (c.onWeeks + c.offWeeks) < c.onWeeks;
+    return i < c.onWeeks;
+  });
+}
+
+export function activeWeeks(p: Peptide, weeks: number): number {
+  return weekFlags(p, weeks).filter(Boolean).length;
+}
+
+// Short human label for a course, or null when the compound runs continuously.
+export function courseLabel(p: Peptide): string | null {
+  const c = p.course;
+  if (!c) return null;
+  if (c.offWeeks && c.offWeeks > 0) return `${c.onWeeks} on / ${c.offWeeks} off`;
+  return `wk 1–${c.onWeeks}`;
+}
+
 export function supplyFor(peptide: Peptide, level: Level, weeks: number): SupplyLine {
   const dose = doseForLevel(peptide, level);
-  const totalMcg = dose * peptide.perWeek * weeks;
+  // Count only the weeks the compound is dosed, so short courses don't over-order.
+  const totalMcg = dose * peptide.perWeek * activeWeeks(peptide, weeks);
   const vials = Math.max(1, Math.ceil(totalMcg / 1000 / peptide.vialMg));
   return { peptide, dose, totalMcg, vials, cost: vials * peptide.vialUsd };
 }

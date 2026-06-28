@@ -12,6 +12,8 @@ import {
   EVIDENCE_LABEL,
   doseForLevel,
   supplyFor,
+  weekFlags,
+  courseLabel,
   type Goal,
   type Level,
   type Peptide,
@@ -255,37 +257,52 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                     className="grid items-center gap-x-3"
                     style={{ gridTemplateColumns: `180px 1fr` }}
                   >
-                    <div className="flex items-center gap-2 truncate">
-                      <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: p.hue }} />
-                      <span className="truncate text-sm text-ink/80">{p.name}</span>
-                    </div>
-                    <div className="relative h-8 overflow-hidden rounded-md border border-ink/[0.06]">
-                      {/* per-week gridlines */}
-                      <div
-                        className="absolute inset-0 grid"
-                        style={{ gridTemplateColumns: `repeat(${weeks}, 1fr)` }}
-                        aria-hidden
-                      >
-                        {weekCols.map((w) => (
-                          <span key={w} className="border-l border-ink/[0.05] first:border-l-0" />
-                        ))}
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: p.hue }} />
+                        <span className="truncate text-sm text-ink/80">{p.name}</span>
                       </div>
-                      {/* the signature scaleX grow bar */}
-                      <div
-                        className="cp-bar absolute inset-y-1 left-1 flex items-center rounded px-2.5"
-                        style={{
-                          right: 4,
-                          backgroundColor: `${p.hue}26`,
-                          borderLeft: `3px solid ${p.hue}`,
-                          // stagger the grow so rows cascade in
-                          animationDelay: `${i * 70}ms`,
-                        }}
-                      >
-                        <span className="font-[family-name:var(--font-plex-mono)] text-[11px] text-ink/75">
-                          {p.perWeek}×/wk · {p.route}
-                        </span>
-                      </div>
+                      <span className="ml-[18px] mt-0.5 block font-[family-name:var(--font-plex-mono)] text-[10px] text-ink/40">
+                        {p.timing}{courseLabel(p) ? ` · ${courseLabel(p)}` : ""}
+                      </span>
                     </div>
+                    {(() => {
+                      const flags = weekFlags(p, weeks);
+                      return (
+                        <div className="relative h-8 overflow-hidden rounded-md border border-ink/[0.06]">
+                          {/* the signature scaleX grow track — one cell per week,
+                              filled only on dosed weeks so short courses read as segments */}
+                          <div
+                            className="cp-bar absolute inset-0 grid"
+                            style={{
+                              gridTemplateColumns: `repeat(${weeks}, 1fr)`,
+                              animationDelay: `${i * 70}ms`,
+                            }}
+                          >
+                            {flags.map((on, w) => {
+                              const runStart = on && (w === 0 || !flags[w - 1]);
+                              return (
+                                <span
+                                  key={w}
+                                  className="h-full border-l border-ink/[0.05] first:border-l-0"
+                                  style={
+                                    on
+                                      ? {
+                                          backgroundColor: `${p.hue}26`,
+                                          borderLeft: runStart ? `3px solid ${p.hue}` : undefined,
+                                        }
+                                      : undefined
+                                  }
+                                />
+                              );
+                            })}
+                          </div>
+                          <span className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center font-[family-name:var(--font-plex-mono)] text-[11px] text-ink/75">
+                            {p.perWeek}×/wk · {p.route}
+                          </span>
+                        </div>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>
@@ -340,6 +357,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                   <th scope="col" className="p-3 font-medium">This plan</th>
                   <th scope="col" className="p-3 font-medium">Frequency</th>
                   <th scope="col" className="p-3 font-medium">Route</th>
+                  <th scope="col" className="p-3 font-medium">Timing</th>
                   <th scope="col" className="p-3 font-medium">Evidence</th>
                   <th scope="col" className="p-3" />
                 </tr>
@@ -360,8 +378,19 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                         {p.doseLow === p.doseHigh ? `${p.doseLow}` : `${p.doseLow}–${p.doseHigh}`} mcg
                       </td>
                       <td className="p-3 font-[family-name:var(--font-plex-mono)] text-[var(--accent-amber)]">{dose} mcg</td>
-                      <td className="p-3 font-[family-name:var(--font-plex-mono)] text-ink/70">{p.perWeek}×/wk</td>
+                      <td className="p-3 font-[family-name:var(--font-plex-mono)] text-ink/70">
+                        {p.perWeek}×/wk
+                        {courseLabel(p) && (
+                          <span className="mt-1 block text-[11px] text-[var(--accent-amber)]">{courseLabel(p)}</span>
+                        )}
+                      </td>
                       <td className="p-3 text-ink/70">{p.route}</td>
+                      <td className="p-3 text-ink/70">
+                        {p.timing ?? "—"}
+                        {p.withFood && p.withFood !== "Any" && (
+                          <span className="mt-1 block text-xs text-ink/40">{p.withFood}</span>
+                        )}
+                      </td>
                       <td className="p-3">
                         <span className={`rounded-full border px-2 py-0.5 text-[11px] font-medium ${evidenceClass(p.evidence)}`}>
                           {EVIDENCE_LABEL[p.evidence]}
