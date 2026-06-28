@@ -32,6 +32,13 @@ export interface Peptide {
   vialUsd: number;
   /** Slug into the on-site catalog, when a monograph exists. */
   catalogSlug?: string;
+  /** When in the day it is typically taken (e.g. "Pre-sleep", "AM", "As needed"). */
+  timing?: string;
+  /** Relation to meals (e.g. "Empty stomach", "Before meals", "Any"). */
+  withFood?: string;
+  /** Short-course / on-off scheduling. Absent = dosed every cycle week.
+   *  `onWeeks` alone = a single course at the start; with `offWeeks` it repeats. */
+  course?: { onWeeks: number; offWeeks?: number };
 }
 
 // Categorical hues — teal / amber / violet / rose / blue / green.
@@ -141,7 +148,145 @@ export const PEPTIDES: Record<string, Peptide> = {
     note: "Melanocortin agonist studied for pigmentation; notable off-target effects.",
     vialMg: 10, vialUsd: 40,
   },
+  retatrutide: {
+    id: "retatrutide", name: "Retatrutide", doseLow: 2000, doseHigh: 6000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.blue,
+    note: "Triple GIP/GLP-1/glucagon agonist in late-stage trials; weekly, titrated.",
+    vialMg: 10, vialUsd: 160, catalogSlug: "retatrutide",
+  },
+  cagrilintide: {
+    id: "cagrilintide", name: "Cagrilintide", doseLow: 300, doseHigh: 2400, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.teal,
+    note: "Long-acting amylin analog trialed for weight management, often with semaglutide.",
+    vialMg: 5, vialUsd: 130,
+  },
+  "pt-141": {
+    id: "pt-141", name: "PT-141 (Bremelanotide)", doseLow: 1000, doseHigh: 2000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.rose,
+    note: "Melanocortin agonist approved for HSDD; used as-needed, not continuously.",
+    vialMg: 10, vialUsd: 50,
+  },
+  "kisspeptin-10": {
+    id: "kisspeptin-10", name: "Kisspeptin-10", doseLow: 50, doseHigh: 100, perWeek: 3,
+    route: "SubQ", evidence: "emerging", hue: HUE.violet,
+    note: "Upstream driver of GnRH pulses; studied for reproductive-axis signaling.",
+    vialMg: 5, vialUsd: 50, catalogSlug: "kisspeptin",
+  },
+  sermorelin: {
+    id: "sermorelin", name: "Sermorelin", doseLow: 200, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "clinical", hue: HUE.green,
+    note: "GHRH(1–29) analog studied to stimulate endogenous GH release.",
+    vialMg: 5, vialUsd: 45,
+  },
+  "ghrp-6": {
+    id: "ghrp-6", name: "GHRP-6", doseLow: 100, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.amber,
+    note: "GH secretagogue; strong appetite (ghrelin) stimulation alongside GH release.",
+    vialMg: 5, vialUsd: 35,
+  },
+  "ghrp-2": {
+    id: "ghrp-2", name: "GHRP-2", doseLow: 100, doseHigh: 300, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.blue,
+    note: "GH secretagogue with less appetite drive than GHRP-6; pairs with a GHRH analog.",
+    vialMg: 5, vialUsd: 35,
+  },
+  hexarelin: {
+    id: "hexarelin", name: "Hexarelin", doseLow: 100, doseHigh: 100, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.rose,
+    note: "Potent GH secretagogue; receptor desensitization limits continuous use.",
+    vialMg: 5, vialUsd: 45,
+  },
+  "igf-1-lr3": {
+    id: "igf-1-lr3", name: "IGF-1 LR3", doseLow: 20, doseHigh: 50, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.blue,
+    note: "Long-acting IGF-1 analog studied for anabolic and hypertrophic signaling.",
+    vialMg: 1, vialUsd: 55, catalogSlug: "igf-1",
+  },
+  humanin: {
+    id: "humanin", name: "Humanin", doseLow: 1000, doseHigh: 4000, perWeek: 3,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Mitochondrial-derived peptide studied for cytoprotection and metabolic aging.",
+    vialMg: 10, vialUsd: 60, catalogSlug: "humanin",
+  },
+  pinealon: {
+    id: "pinealon", name: "Pinealon", doseLow: 5000, doseHigh: 10000, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.violet,
+    note: "Short peptide bioregulator studied for neuroprotection, in brief courses.",
+    vialMg: 20, vialUsd: 50,
+  },
+  "ll-37": {
+    id: "ll-37", name: "LL-37", doseLow: 100, doseHigh: 100, perWeek: 3,
+    route: "SubQ", evidence: "preclinical", hue: HUE.teal,
+    note: "Host-defense (cathelicidin) peptide studied for antimicrobial and immune roles.",
+    vialMg: 5, vialUsd: 55,
+  },
+  thymalin: {
+    id: "thymalin", name: "Thymalin", doseLow: 5000, doseHigh: 10000, perWeek: 7,
+    route: "SubQ", evidence: "emerging", hue: HUE.blue,
+    note: "Thymic peptide preparation studied for immune restoration, in short courses.",
+    vialMg: 10, vialUsd: 50,
+  },
+  kpv: {
+    id: "kpv", name: "KPV", doseLow: 250, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "preclinical", hue: HUE.amber,
+    note: "α-MSH C-terminal tripeptide studied for anti-inflammatory and gut signaling.",
+    vialMg: 5, vialUsd: 45,
+  },
+  larazotide: {
+    id: "larazotide", name: "Larazotide", doseLow: 500, doseHigh: 500, perWeek: 7,
+    route: "Oral", evidence: "clinical", hue: HUE.green,
+    note: "Tight-junction regulator trialed orally for intestinal barrier integrity (celiac).",
+    vialMg: 5, vialUsd: 60,
+  },
+  vip: {
+    id: "vip", name: "VIP", doseLow: 50, doseHigh: 100, perWeek: 7,
+    route: "Nasal", evidence: "emerging", hue: HUE.rose,
+    note: "Vasoactive intestinal peptide studied for immune and inflammatory modulation.",
+    vialMg: 5, vialUsd: 60,
+  },
 };
+
+// Per-week scheduling metadata, merged onto the catalog above so the entries
+// stay readable. timing/withFood drive the dosing table; `course` segments the
+// timeline and scopes the supply estimate to weeks actually dosed.
+const SCHEDULE: Record<string, Partial<Peptide>> = {
+  "bpc-157": { timing: "AM or split", withFood: "Any" },
+  "tb-500": { timing: "AM", withFood: "Any" },
+  "ghk-cu": { timing: "AM", withFood: "Any" },
+  ipamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "cjc-1295": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  tesamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "aod-9604": { timing: "AM, fasted", withFood: "Empty stomach" },
+  semaglutide: { timing: "Any day", withFood: "Any" },
+  tirzepatide: { timing: "Any day", withFood: "Any" },
+  "mots-c": { timing: "AM", withFood: "Any" },
+  epitalon: { timing: "AM", course: { onWeeks: 3 } },
+  semax: { timing: "AM", withFood: "Any" },
+  selank: { timing: "AM", withFood: "Any" },
+  dsip: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "thymosin-alpha-1": { timing: "AM", withFood: "Any" },
+  "melanotan-2": { timing: "PM", withFood: "Any" },
+  retatrutide: { timing: "Any day", withFood: "Any" },
+  cagrilintide: { timing: "Any day", withFood: "Any" },
+  "pt-141": { timing: "As needed (~45 min prior)", withFood: "Empty stomach" },
+  "kisspeptin-10": { timing: "AM", withFood: "Any" },
+  sermorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "ghrp-6": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  "ghrp-2": { timing: "Pre-sleep", withFood: "Empty stomach" },
+  hexarelin: { timing: "Pre-workout", withFood: "Empty stomach", course: { onWeeks: 4, offWeeks: 4 } },
+  "igf-1-lr3": { timing: "Post-workout", withFood: "Any" },
+  humanin: { timing: "AM", withFood: "Any" },
+  pinealon: { timing: "AM", course: { onWeeks: 2 } },
+  "ll-37": { timing: "AM", withFood: "Any" },
+  thymalin: { timing: "AM", course: { onWeeks: 2 } },
+  kpv: { timing: "AM", withFood: "Any" },
+  larazotide: { timing: "Before meals", withFood: "Before meals" },
+  vip: { timing: "AM", withFood: "Any" },
+};
+
+for (const [id, meta] of Object.entries(SCHEDULE)) {
+  if (PEPTIDES[id]) Object.assign(PEPTIDES[id], meta);
+}
 
 export interface Goal {
   id: string;
@@ -156,11 +301,15 @@ export const GOALS: Goal[] = [
   { id: "fat-loss", label: "Fat loss", blurb: "Metabolic & lipolytic pathways", stack: ["tesamorelin", "aod-9604", "semaglutide"] },
   { id: "muscle", label: "Muscle growth", blurb: "GH-axis secretagogue stack", stack: ["cjc-1295", "ipamorelin", "tesamorelin"] },
   { id: "recomp", label: "Body recomposition", blurb: "GH axis + incretin co-agonist", stack: ["cjc-1295", "ipamorelin", "tirzepatide"] },
-  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "ghk-cu"] },
-  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank"] },
+  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "humanin"] },
+  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank", "pinealon"] },
   { id: "sleep", label: "Sleep", blurb: "Sleep architecture & calming signaling", stack: ["dsip", "selank"] },
   { id: "aesthetic", label: "Aesthetic", blurb: "Skin, pigmentation & melanocortin", stack: ["ghk-cu", "melanotan-2"] },
-  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "bpc-157"] },
+  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "ll-37", "thymalin"] },
+  { id: "libido", label: "Libido", blurb: "Sexual health & melanocortin/kisspeptin signaling", stack: ["pt-141", "kisspeptin-10", "melanotan-2"] },
+  { id: "gut", label: "Gut health", blurb: "Mucosal repair & barrier integrity", stack: ["bpc-157", "kpv", "larazotide"] },
+  { id: "anti-aging", label: "Anti-aging", blurb: "GH-axis & cellular-aging signaling", stack: ["sermorelin", "epitalon", "ghk-cu"] },
+  { id: "metabolic", label: "Metabolic", blurb: "Incretin & amylin co-agonism", stack: ["retatrutide", "cagrilintide"] },
 ];
 
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
@@ -189,9 +338,33 @@ export interface SupplyLine {
   cost: number;
 }
 
+// Which cycle weeks a peptide is actually dosed (0-indexed booleans). Continuous
+// compounds are active every week; short courses follow their on/off pattern.
+export function weekFlags(p: Peptide, weeks: number): boolean[] {
+  const c = p.course;
+  return Array.from({ length: weeks }, (_, i) => {
+    if (!c) return true;
+    if (c.offWeeks && c.offWeeks > 0) return i % (c.onWeeks + c.offWeeks) < c.onWeeks;
+    return i < c.onWeeks;
+  });
+}
+
+export function activeWeeks(p: Peptide, weeks: number): number {
+  return weekFlags(p, weeks).filter(Boolean).length;
+}
+
+// Short human label for a course, or null when the compound runs continuously.
+export function courseLabel(p: Peptide): string | null {
+  const c = p.course;
+  if (!c) return null;
+  if (c.offWeeks && c.offWeeks > 0) return `${c.onWeeks} on / ${c.offWeeks} off`;
+  return `wk 1–${c.onWeeks}`;
+}
+
 export function supplyFor(peptide: Peptide, level: Level, weeks: number): SupplyLine {
   const dose = doseForLevel(peptide, level);
-  const totalMcg = dose * peptide.perWeek * weeks;
+  // Count only the weeks the compound is dosed, so short courses don't over-order.
+  const totalMcg = dose * peptide.perWeek * activeWeeks(peptide, weeks);
   const vials = Math.max(1, Math.ceil(totalMcg / 1000 / peptide.vialMg));
   return { peptide, dose, totalMcg, vials, cost: vials * peptide.vialUsd };
 }
@@ -202,3 +375,55 @@ export const EVIDENCE_LABEL: Record<Evidence, string> = {
   preclinical: "preclinical",
   anecdotal: "anecdotal",
 };
+
+// ── Save / compare two plans ──
+// A plan is the full planner state; comparison summaries are derived from it,
+// and it round-trips through a single URL param so a comparison is shareable.
+
+export interface PlanSnapshot {
+  goal: string;
+  weeks: number;
+  level: Level;
+  active: string[];
+}
+
+export interface PlanSummary {
+  lines: SupplyLine[];
+  totalVials: number;
+  totalCost: number;
+  count: number;
+}
+
+export function summarizePlan(s: PlanSnapshot): PlanSummary {
+  const lines = s.active
+    .map((id) => PEPTIDES[id])
+    .filter((p): p is Peptide => Boolean(p))
+    .map((p) => supplyFor(p, s.level, s.weeks));
+  return {
+    lines,
+    totalVials: lines.reduce((a, l) => a + l.vials, 0),
+    totalCost: lines.reduce((a, l) => a + l.cost, 0),
+    count: lines.length,
+  };
+}
+
+// Compact, URL-safe encoding: "goal~weeks~level~id1,id2" (peptide ids have no
+// "~" or ",", so no escaping is needed).
+export function encodePlan(s: PlanSnapshot): string {
+  return [s.goal, s.weeks, s.level, s.active.join(",")].join("~");
+}
+
+export function decodePlan(raw: string | null | undefined): PlanSnapshot | null {
+  if (!raw) return null;
+  const [g, w, l, p] = raw.split("~");
+  const weeks = Math.min(WEEKS_MAX, Math.max(WEEKS_MIN, parseInt(w, 10)));
+  if (!Number.isFinite(weeks)) return null;
+  const level: Level = (LEVELS as readonly string[]).includes(l) ? (l as Level) : "beginner";
+  const active = (p ?? "").split(",").filter((id) => PEPTIDES[id]).slice(0, MAX_PEPTIDES);
+  if (!active.length) return null;
+  return { goal: g || "custom", weeks, level, active };
+}
+
+export function goalLabel(goalId: string): string {
+  return GOALS.find((g) => g.id === goalId)?.label ?? "Custom stack";
+}

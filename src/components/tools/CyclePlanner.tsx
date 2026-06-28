@@ -12,6 +12,13 @@ import {
   EVIDENCE_LABEL,
   doseForLevel,
   supplyFor,
+  weekFlags,
+  courseLabel,
+  summarizePlan,
+  encodePlan,
+  goalLabel,
+  type PlanSnapshot,
+  type PlanSummary,
   type Goal,
   type Level,
   type Peptide,
@@ -44,13 +51,20 @@ function evidenceClass(e: string): string {
   }
 }
 
-export default function CyclePlanner({ init }: { init: PlannerInit }) {
+export default function CyclePlanner({
+  init,
+  compareInit = null,
+}: {
+  init: PlannerInit;
+  compareInit?: PlanSnapshot | null;
+}) {
   const [goal, setGoal] = useState<string>(init.goal);
   const [weeks, setWeeks] = useState<number>(clampWeeks(init.weeks));
   const [level, setLevel] = useState<Level>(init.level);
   const [active, setActive] = useState<string[]>(
     init.active.filter((id) => PEPTIDES[id]).slice(0, MAX_PEPTIDES),
   );
+  const [saved, setSaved] = useState<PlanSnapshot | null>(compareInit);
   const [toast, setToast] = useState<string | null>(null);
   const [adderOpen, setAdderOpen] = useState(false);
   const liveRef = useRef<HTMLParagraphElement>(null);
@@ -69,12 +83,13 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
       params.set("w", String(weeks));
       params.set("l", level);
       if (active.length) params.set("p", active.join(","));
+      if (saved) params.set("c", encodePlan(saved));
       const url = `${window.location.pathname}?${params.toString()}`;
       window.history.replaceState(null, "", url);
     } catch {
       /* history unavailable — plan still works, just not shareable */
     }
-  }, [goal, weeks, level, active]);
+  }, [goal, weeks, level, active, saved]);
 
   const announce = useCallback((msg: string) => {
     if (liveRef.current) liveRef.current.textContent = msg;
@@ -117,11 +132,35 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
     () => peptides.map((p) => supplyFor(p, level, weeks)),
     [peptides, level, weeks],
   );
-  const totalCost = supply.reduce((s, l) => s + l.cost, 0);
   const totalVials = supply.reduce((s, l) => s + l.vials, 0);
 
   const weekCols = Array.from({ length: weeks }, (_, i) => i + 1);
   const goalMeta = GOALS.find((g) => g.id === goal);
+
+  // ── Save / compare ──
+  const current: PlanSnapshot = useMemo(
+    () => ({ goal, weeks, level, active }),
+    [goal, weeks, level, active],
+  );
+  const savePlan = () => {
+    setSaved(current);
+    announce(`Saved ${goalLabel(goal)} as a comparison baseline.`);
+    showToast("Plan saved — edit freely and compare below.");
+  };
+  const clearSaved = () => {
+    setSaved(null);
+    announce("Comparison cleared.");
+  };
+  const loadSaved = () => {
+    if (!saved) return;
+    setGoal(saved.goal);
+    setWeeks(saved.weeks);
+    setLevel(saved.level);
+    setActive(saved.active);
+    announce("Loaded the saved plan into the editor.");
+  };
+  const savedSummary = saved ? summarizePlan(saved) : null;
+  const currentSummary = summarizePlan(current);
 
   return (
     <div className="space-y-10">
@@ -255,37 +294,52 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                     className="grid items-center gap-x-3"
                     style={{ gridTemplateColumns: `180px 1fr` }}
                   >
-                    <div className="flex items-center gap-2 truncate">
-                      <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: p.hue }} />
-                      <span className="truncate text-sm text-ink/80">{p.name}</span>
-                    </div>
-                    <div className="relative h-8 overflow-hidden rounded-md border border-ink/[0.06]">
-                      {/* per-week gridlines */}
-                      <div
-                        className="absolute inset-0 grid"
-                        style={{ gridTemplateColumns: `repeat(${weeks}, 1fr)` }}
-                        aria-hidden
-                      >
-                        {weekCols.map((w) => (
-                          <span key={w} className="border-l border-ink/[0.05] first:border-l-0" />
-                        ))}
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: p.hue }} />
+                        <span className="truncate text-sm text-ink/80">{p.name}</span>
                       </div>
-                      {/* the signature scaleX grow bar */}
-                      <div
-                        className="cp-bar absolute inset-y-1 left-1 flex items-center rounded px-2.5"
-                        style={{
-                          right: 4,
-                          backgroundColor: `${p.hue}26`,
-                          borderLeft: `3px solid ${p.hue}`,
-                          // stagger the grow so rows cascade in
-                          animationDelay: `${i * 70}ms`,
-                        }}
-                      >
-                        <span className="font-[family-name:var(--font-plex-mono)] text-[11px] text-ink/75">
-                          {p.perWeek}×/wk · {p.route}
-                        </span>
-                      </div>
+                      <span className="ml-[18px] mt-0.5 block font-[family-name:var(--font-plex-mono)] text-[10px] text-ink/40">
+                        {p.timing}{courseLabel(p) ? ` · ${courseLabel(p)}` : ""}
+                      </span>
                     </div>
+                    {(() => {
+                      const flags = weekFlags(p, weeks);
+                      return (
+                        <div className="relative h-8 overflow-hidden rounded-md border border-ink/[0.06]">
+                          {/* the signature scaleX grow track — one cell per week,
+                              filled only on dosed weeks so short courses read as segments */}
+                          <div
+                            className="cp-bar absolute inset-0 grid"
+                            style={{
+                              gridTemplateColumns: `repeat(${weeks}, 1fr)`,
+                              animationDelay: `${i * 70}ms`,
+                            }}
+                          >
+                            {flags.map((on, w) => {
+                              const runStart = on && (w === 0 || !flags[w - 1]);
+                              return (
+                                <span
+                                  key={w}
+                                  className="h-full border-l border-ink/[0.05] first:border-l-0"
+                                  style={
+                                    on
+                                      ? {
+                                          backgroundColor: `${p.hue}26`,
+                                          borderLeft: runStart ? `3px solid ${p.hue}` : undefined,
+                                        }
+                                      : undefined
+                                  }
+                                />
+                              );
+                            })}
+                          </div>
+                          <span className="pointer-events-none absolute inset-y-0 left-2.5 flex items-center font-[family-name:var(--font-plex-mono)] text-[11px] text-ink/75">
+                            {p.perWeek}×/wk · {p.route}
+                          </span>
+                        </div>
+                      );
+                    })()}
                   </div>
                 ))}
               </div>
@@ -340,6 +394,7 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                   <th scope="col" className="p-3 font-medium">This plan</th>
                   <th scope="col" className="p-3 font-medium">Frequency</th>
                   <th scope="col" className="p-3 font-medium">Route</th>
+                  <th scope="col" className="p-3 font-medium">Timing</th>
                   <th scope="col" className="p-3 font-medium">Evidence</th>
                   <th scope="col" className="p-3" />
                 </tr>
@@ -360,8 +415,19 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                         {p.doseLow === p.doseHigh ? `${p.doseLow}` : `${p.doseLow}–${p.doseHigh}`} mcg
                       </td>
                       <td className="p-3 font-[family-name:var(--font-plex-mono)] text-[var(--accent-amber)]">{dose} mcg</td>
-                      <td className="p-3 font-[family-name:var(--font-plex-mono)] text-ink/70">{p.perWeek}×/wk</td>
+                      <td className="p-3 font-[family-name:var(--font-plex-mono)] text-ink/70">
+                        {p.perWeek}×/wk
+                        {courseLabel(p) && (
+                          <span className="mt-1 block text-[11px] text-[var(--accent-amber)]">{courseLabel(p)}</span>
+                        )}
+                      </td>
                       <td className="p-3 text-ink/70">{p.route}</td>
+                      <td className="p-3 text-ink/70">
+                        {p.timing ?? "—"}
+                        {p.withFood && p.withFood !== "Any" && (
+                          <span className="mt-1 block text-xs text-ink/40">{p.withFood}</span>
+                        )}
+                      </td>
                       <td className="p-3">
                         <span className={`rounded-full border px-2 py-0.5 text-[11px] font-medium ${evidenceClass(p.evidence)}`}>
                           {EVIDENCE_LABEL[p.evidence]}
@@ -391,11 +457,11 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
         </section>
       )}
 
-      {/* ── Supply / cost estimate + handoff ── */}
+      {/* ── Supply list + vendor handoff ── */}
       {peptides.length > 0 && (
-        <section className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+        <section className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
           <div className="rounded-2xl border border-ink/10 bg-surface p-6">
-            <h2 className="mb-4 font-display text-xl font-semibold">Supply estimate</h2>
+            <h2 className="mb-4 font-display text-xl font-semibold">Supply list</h2>
             <ul className="space-y-2.5">
               {supply.map((l) => (
                 <li key={l.peptide.id} className="flex items-center justify-between gap-3 text-sm">
@@ -404,51 +470,106 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
                     {l.peptide.name}
                   </span>
                   <span className="font-[family-name:var(--font-plex-mono)] text-ink/55">
-                    {l.vials} × {l.peptide.vialMg}mg vial · ${l.cost}
+                    {l.vials} × {l.peptide.vialMg}mg vial
                   </span>
                 </li>
               ))}
             </ul>
             <div className="mt-4 flex items-center justify-between border-t border-ink/10 pt-4">
               <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
-                {totalVials} vials · {weeks}-week cycle
+                Total to source
               </span>
               <span className="font-display text-2xl font-semibold text-[var(--accent-amber)]">
-                ≈ ${totalCost.toLocaleString()}
+                {totalVials} vials
               </span>
             </div>
             <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] leading-4 text-ink/35">
-              Indicative planning figures from typical vial sizes — not quotes. Reconstitution,
-              waste, and titration change real totals.
+              Vial counts are estimates from typical sizes; reconstitution, waste, and titration
+              change real quantities. Pricing varies by supplier.
             </p>
           </div>
 
-          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-ink/10 bg-panel/20 p-6">
+          {/* Vendor spotlight — the conversion point of the funnel */}
+          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.06] p-6">
             <div>
-              <h2 className="font-display text-xl font-semibold">Next steps</h2>
-              <p className="mt-2 text-sm leading-6 text-ink/55">
-                Export the protocol for your records, or find a research-supplier directory for the
-                compounds in this plan.
+              <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-[var(--accent-amber)]">
+                Source this protocol
+              </p>
+              <h2 className="mt-2 font-display text-2xl font-semibold">
+                Connect to a research supplier
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-ink/60">
+                Hand off this {peptides.length}-compound, {weeks}-week stack to a vetted research
+                vendor for current availability and pricing — third-party tested, shipped to your
+                region.
               </p>
             </div>
-            <div className="mt-5 flex flex-col gap-2.5">
-              <button
-                type="button"
-                onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
-                className="rounded-xl border border-ink/15 bg-surface px-4 py-2.5 text-sm font-medium text-ink/85 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
-              >
-                Export protocol PDF
-              </button>
+            <div className="mt-5">
               <button
                 type="button"
                 onClick={() => showToast("Vendor directory coming soon — verify third-party testing and legality in your region.")}
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#0C0E11] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-[var(--accent-amber)]"
+                className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-base font-semibold text-[#0C0E11] shadow-sm transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-[var(--accent-amber)]"
                 style={{ backgroundColor: ACCENT }}
               >
-                Find a vendor →
+                Find a vendor for this stack <span aria-hidden>→</span>
+              </button>
+              <div className="mt-3 flex items-center gap-4 text-xs">
+                <button
+                  type="button"
+                  onClick={savePlan}
+                  className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+                >
+                  {saved ? "Update saved plan" : "Save to compare"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
+                  className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+                >
+                  Export protocol PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── Save / compare panel ── */}
+      {saved && savedSummary && (
+        <section aria-labelledby="compare-h" className="cp-no-print">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 id="compare-h" className="font-display text-xl font-semibold">Compare plans</h2>
+            <div className="flex items-center gap-2 text-xs">
+              <button
+                type="button"
+                onClick={loadSaved}
+                className="rounded-full border border-ink/15 px-3 py-1 text-ink/65 transition-colors hover:border-[var(--accent-amber)]/50 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+              >
+                Load saved
+              </button>
+              <button
+                type="button"
+                onClick={clearSaved}
+                className="rounded-full border border-ink/15 px-3 py-1 text-ink/45 transition-colors hover:text-accent-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-rose"
+              >
+                Clear
               </button>
             </div>
           </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <PlanColumn tag="A · Saved" snapshot={saved} summary={savedSummary} />
+            <PlanColumn
+              tag="B · Current"
+              snapshot={current}
+              summary={currentSummary}
+              accent
+              vialDelta={currentSummary.totalVials - savedSummary.totalVials}
+            />
+          </div>
+          <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] text-ink/35">
+            Each plan keeps its own length and level. This comparison is encoded in the URL — copy
+            the address to share both side by side.
+          </p>
         </section>
       )}
 
@@ -496,6 +617,64 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
           * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
       `}</style>
+    </div>
+  );
+}
+
+function delta(n: number, money = false): string {
+  const v = Math.abs(n).toLocaleString();
+  if (n === 0) return "±0";
+  return `${n > 0 ? "+" : "−"}${money ? "$" : ""}${v}`;
+}
+
+function PlanColumn({
+  tag,
+  snapshot,
+  summary,
+  accent,
+  vialDelta,
+}: {
+  tag: string;
+  snapshot: PlanSnapshot;
+  summary: PlanSummary;
+  accent?: boolean;
+  vialDelta?: number;
+}) {
+  return (
+    <div className={`rounded-2xl border p-5 ${accent ? "border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.05]" : "border-ink/10 bg-panel/20"}`}>
+      <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-ink/40">{tag}</p>
+      <p className="mt-1 font-display text-lg font-semibold text-ink">{goalLabel(snapshot.goal)}</p>
+      <p className="font-[family-name:var(--font-plex-mono)] text-xs text-ink/50">
+        {snapshot.weeks} wk · {snapshot.level} · {summary.count} peptide{summary.count === 1 ? "" : "s"}
+      </p>
+
+      <div className="mt-4 flex items-end justify-between border-t border-ink/10 pt-4">
+        <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
+          To source
+        </span>
+        <div className="text-right">
+          <div className={`font-display text-2xl font-semibold ${accent ? "text-[var(--accent-amber)]" : "text-ink"}`}>
+            {summary.totalVials} vials
+          </div>
+          {vialDelta !== undefined && vialDelta !== 0 && (
+            <div className={`font-[family-name:var(--font-plex-mono)] text-[11px] ${vialDelta > 0 ? "text-accent-rose" : "text-accent-teal"}`}>
+              {delta(vialDelta)} vs A
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ul className="mt-4 space-y-1.5">
+        {summary.lines.map((l) => (
+          <li key={l.peptide.id} className="flex items-center justify-between gap-2 text-xs">
+            <span className="flex items-center gap-2 text-ink/70">
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: l.peptide.hue }} />
+              {l.peptide.name}
+            </span>
+            <span className="font-[family-name:var(--font-plex-mono)] text-ink/45">{l.vials} × {l.peptide.vialMg}mg</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
