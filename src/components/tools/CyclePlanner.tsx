@@ -132,7 +132,6 @@ export default function CyclePlanner({
     () => peptides.map((p) => supplyFor(p, level, weeks)),
     [peptides, level, weeks],
   );
-  const totalCost = supply.reduce((s, l) => s + l.cost, 0);
   const totalVials = supply.reduce((s, l) => s + l.vials, 0);
 
   const weekCols = Array.from({ length: weeks }, (_, i) => i + 1);
@@ -458,11 +457,11 @@ export default function CyclePlanner({
         </section>
       )}
 
-      {/* ── Supply / cost estimate + handoff ── */}
+      {/* ── Supply list + vendor handoff ── */}
       {peptides.length > 0 && (
-        <section className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+        <section className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
           <div className="rounded-2xl border border-ink/10 bg-surface p-6">
-            <h2 className="mb-4 font-display text-xl font-semibold">Supply estimate</h2>
+            <h2 className="mb-4 font-display text-xl font-semibold">Supply list</h2>
             <ul className="space-y-2.5">
               {supply.map((l) => (
                 <li key={l.peptide.id} className="flex items-center justify-between gap-3 text-sm">
@@ -471,56 +470,65 @@ export default function CyclePlanner({
                     {l.peptide.name}
                   </span>
                   <span className="font-[family-name:var(--font-plex-mono)] text-ink/55">
-                    {l.vials} × {l.peptide.vialMg}mg vial · ${l.cost}
+                    {l.vials} × {l.peptide.vialMg}mg vial
                   </span>
                 </li>
               ))}
             </ul>
             <div className="mt-4 flex items-center justify-between border-t border-ink/10 pt-4">
               <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
-                {totalVials} vials · {weeks}-week cycle
+                Total to source
               </span>
               <span className="font-display text-2xl font-semibold text-[var(--accent-amber)]">
-                ≈ ${totalCost.toLocaleString()}
+                {totalVials} vials
               </span>
             </div>
             <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] leading-4 text-ink/35">
-              Indicative planning figures from typical vial sizes — not quotes. Reconstitution,
-              waste, and titration change real totals.
+              Vial counts are estimates from typical sizes; reconstitution, waste, and titration
+              change real quantities. Pricing varies by supplier.
             </p>
           </div>
 
-          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-ink/10 bg-panel/20 p-6">
+          {/* Vendor spotlight — the conversion point of the funnel */}
+          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.06] p-6">
             <div>
-              <h2 className="font-display text-xl font-semibold">Next steps</h2>
-              <p className="mt-2 text-sm leading-6 text-ink/55">
-                Export the protocol for your records, or find a research-supplier directory for the
-                compounds in this plan.
+              <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-[var(--accent-amber)]">
+                Source this protocol
+              </p>
+              <h2 className="mt-2 font-display text-2xl font-semibold">
+                Connect to a research supplier
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-ink/60">
+                Hand off this {peptides.length}-compound, {weeks}-week stack to a vetted research
+                vendor for current availability and pricing — third-party tested, shipped to your
+                region.
               </p>
             </div>
-            <div className="mt-5 flex flex-col gap-2.5">
-              <button
-                type="button"
-                onClick={savePlan}
-                className="rounded-xl border border-ink/15 bg-surface px-4 py-2.5 text-sm font-medium text-ink/85 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
-              >
-                {saved ? "Update saved plan ↻" : "Save to compare ⊕"}
-              </button>
-              <button
-                type="button"
-                onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
-                className="rounded-xl border border-ink/15 bg-surface px-4 py-2.5 text-sm font-medium text-ink/85 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
-              >
-                Export protocol PDF
-              </button>
+            <div className="mt-5">
               <button
                 type="button"
                 onClick={() => showToast("Vendor directory coming soon — verify third-party testing and legality in your region.")}
-                className="rounded-xl px-4 py-2.5 text-sm font-semibold text-[#0C0E11] transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-[var(--accent-amber)]"
+                className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-base font-semibold text-[#0C0E11] shadow-sm transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-[var(--accent-amber)]"
                 style={{ backgroundColor: ACCENT }}
               >
-                Find a vendor →
+                Find a vendor for this stack <span aria-hidden>→</span>
               </button>
+              <div className="mt-3 flex items-center gap-4 text-xs">
+                <button
+                  type="button"
+                  onClick={savePlan}
+                  className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+                >
+                  {saved ? "Update saved plan" : "Save to compare"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
+                  className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+                >
+                  Export protocol PDF
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -556,7 +564,6 @@ export default function CyclePlanner({
               summary={currentSummary}
               accent
               vialDelta={currentSummary.totalVials - savedSummary.totalVials}
-              costDelta={currentSummary.totalCost - savedSummary.totalCost}
             />
           </div>
           <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] text-ink/35">
@@ -626,14 +633,12 @@ function PlanColumn({
   summary,
   accent,
   vialDelta,
-  costDelta,
 }: {
   tag: string;
   snapshot: PlanSnapshot;
   summary: PlanSummary;
   accent?: boolean;
   vialDelta?: number;
-  costDelta?: number;
 }) {
   return (
     <div className={`rounded-2xl border p-5 ${accent ? "border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.05]" : "border-ink/10 bg-panel/20"}`}>
@@ -644,21 +649,16 @@ function PlanColumn({
       </p>
 
       <div className="mt-4 flex items-end justify-between border-t border-ink/10 pt-4">
-        <div>
-          <div className="font-[family-name:var(--font-plex-mono)] text-xs text-ink/45">{summary.totalVials} vials</div>
+        <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
+          To source
+        </span>
+        <div className="text-right">
+          <div className={`font-display text-2xl font-semibold ${accent ? "text-[var(--accent-amber)]" : "text-ink"}`}>
+            {summary.totalVials} vials
+          </div>
           {vialDelta !== undefined && vialDelta !== 0 && (
             <div className={`font-[family-name:var(--font-plex-mono)] text-[11px] ${vialDelta > 0 ? "text-accent-rose" : "text-accent-teal"}`}>
               {delta(vialDelta)} vs A
-            </div>
-          )}
-        </div>
-        <div className="text-right">
-          <div className={`font-display text-2xl font-semibold ${accent ? "text-[var(--accent-amber)]" : "text-ink"}`}>
-            ≈ ${summary.totalCost.toLocaleString()}
-          </div>
-          {costDelta !== undefined && costDelta !== 0 && (
-            <div className={`font-[family-name:var(--font-plex-mono)] text-[11px] ${costDelta > 0 ? "text-accent-rose" : "text-accent-teal"}`}>
-              {delta(costDelta, true)} vs A
             </div>
           )}
         </div>
@@ -671,7 +671,7 @@ function PlanColumn({
               <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: l.peptide.hue }} />
               {l.peptide.name}
             </span>
-            <span className="font-[family-name:var(--font-plex-mono)] text-ink/45">${l.cost}</span>
+            <span className="font-[family-name:var(--font-plex-mono)] text-ink/45">{l.vials} × {l.peptide.vialMg}mg</span>
           </li>
         ))}
       </ul>

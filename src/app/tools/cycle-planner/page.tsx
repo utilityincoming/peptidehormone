@@ -24,7 +24,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const DESCRIPTION =
-  "Plan a peptide research cycle — quick-add goal stacks, an animated week-by-week timeline, reference dosing, and a vial-and-cost estimate. Shareable via URL. Research-use only, not medical advice.";
+  "Plan a peptide research cycle — quick-add goal stacks, an animated week-by-week timeline, reference dosing, and a supply list to hand to a vendor. Shareable via URL. Research-use only, not medical advice.";
 
 export const metadata: Metadata = {
   title: "Peptide cycle planner",
@@ -86,7 +86,7 @@ export default async function CyclePlannerPage({
           path: "/tools/cycle-planner",
           name: "Peptide cycle planner",
           description:
-            "Plan a peptide research cycle — goal stacks, a week-by-week timeline, reference dosing, and a supply-and-cost estimate. Educational, not medical advice.",
+            "Plan a peptide research cycle — goal stacks, a week-by-week timeline, reference dosing, and a supply list to hand to a vendor. Educational, not medical advice.",
         })}
       />
       <a
@@ -109,7 +109,7 @@ export default async function CyclePlannerPage({
           <p className="cp-no-print mt-4 max-w-2xl text-lg leading-8 text-ink/65">
             Sketch a research cycle from a goal stack or build your own: pick a length and
             experience level, see the week-by-week schedule, reference dosing, and a rough
-            supply-and-cost estimate. Every plan is encoded in the URL, so it&rsquo;s shareable.
+            supply list to source. Every plan is encoded in the URL, so it&rsquo;s shareable.
             Educational only — most listed compounds are research-use, not approved for human use.
           </p>
 
