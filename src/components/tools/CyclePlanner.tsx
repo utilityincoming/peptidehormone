@@ -14,6 +14,11 @@ import {
   supplyFor,
   weekFlags,
   courseLabel,
+  summarizePlan,
+  encodePlan,
+  goalLabel,
+  type PlanSnapshot,
+  type PlanSummary,
   type Goal,
   type Level,
   type Peptide,
@@ -46,13 +51,20 @@ function evidenceClass(e: string): string {
   }
 }
 
-export default function CyclePlanner({ init }: { init: PlannerInit }) {
+export default function CyclePlanner({
+  init,
+  compareInit = null,
+}: {
+  init: PlannerInit;
+  compareInit?: PlanSnapshot | null;
+}) {
   const [goal, setGoal] = useState<string>(init.goal);
   const [weeks, setWeeks] = useState<number>(clampWeeks(init.weeks));
   const [level, setLevel] = useState<Level>(init.level);
   const [active, setActive] = useState<string[]>(
     init.active.filter((id) => PEPTIDES[id]).slice(0, MAX_PEPTIDES),
   );
+  const [saved, setSaved] = useState<PlanSnapshot | null>(compareInit);
   const [toast, setToast] = useState<string | null>(null);
   const [adderOpen, setAdderOpen] = useState(false);
   const liveRef = useRef<HTMLParagraphElement>(null);
@@ -71,12 +83,13 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
       params.set("w", String(weeks));
       params.set("l", level);
       if (active.length) params.set("p", active.join(","));
+      if (saved) params.set("c", encodePlan(saved));
       const url = `${window.location.pathname}?${params.toString()}`;
       window.history.replaceState(null, "", url);
     } catch {
       /* history unavailable — plan still works, just not shareable */
     }
-  }, [goal, weeks, level, active]);
+  }, [goal, weeks, level, active, saved]);
 
   const announce = useCallback((msg: string) => {
     if (liveRef.current) liveRef.current.textContent = msg;
@@ -124,6 +137,31 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
 
   const weekCols = Array.from({ length: weeks }, (_, i) => i + 1);
   const goalMeta = GOALS.find((g) => g.id === goal);
+
+  // ── Save / compare ──
+  const current: PlanSnapshot = useMemo(
+    () => ({ goal, weeks, level, active }),
+    [goal, weeks, level, active],
+  );
+  const savePlan = () => {
+    setSaved(current);
+    announce(`Saved ${goalLabel(goal)} as a comparison baseline.`);
+    showToast("Plan saved — edit freely and compare below.");
+  };
+  const clearSaved = () => {
+    setSaved(null);
+    announce("Comparison cleared.");
+  };
+  const loadSaved = () => {
+    if (!saved) return;
+    setGoal(saved.goal);
+    setWeeks(saved.weeks);
+    setLevel(saved.level);
+    setActive(saved.active);
+    announce("Loaded the saved plan into the editor.");
+  };
+  const savedSummary = saved ? summarizePlan(saved) : null;
+  const currentSummary = summarizePlan(current);
 
   return (
     <div className="space-y-10">
@@ -463,6 +501,13 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
             <div className="mt-5 flex flex-col gap-2.5">
               <button
                 type="button"
+                onClick={savePlan}
+                className="rounded-xl border border-ink/15 bg-surface px-4 py-2.5 text-sm font-medium text-ink/85 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+              >
+                {saved ? "Update saved plan ↻" : "Save to compare ⊕"}
+              </button>
+              <button
+                type="button"
                 onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
                 className="rounded-xl border border-ink/15 bg-surface px-4 py-2.5 text-sm font-medium text-ink/85 transition-colors hover:border-ink/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
               >
@@ -478,6 +523,46 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
               </button>
             </div>
           </div>
+        </section>
+      )}
+
+      {/* ── Save / compare panel ── */}
+      {saved && savedSummary && (
+        <section aria-labelledby="compare-h" className="cp-no-print">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <h2 id="compare-h" className="font-display text-xl font-semibold">Compare plans</h2>
+            <div className="flex items-center gap-2 text-xs">
+              <button
+                type="button"
+                onClick={loadSaved}
+                className="rounded-full border border-ink/15 px-3 py-1 text-ink/65 transition-colors hover:border-[var(--accent-amber)]/50 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+              >
+                Load saved
+              </button>
+              <button
+                type="button"
+                onClick={clearSaved}
+                className="rounded-full border border-ink/15 px-3 py-1 text-ink/45 transition-colors hover:text-accent-rose focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-rose"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <PlanColumn tag="A · Saved" snapshot={saved} summary={savedSummary} />
+            <PlanColumn
+              tag="B · Current"
+              snapshot={current}
+              summary={currentSummary}
+              accent
+              vialDelta={currentSummary.totalVials - savedSummary.totalVials}
+              costDelta={currentSummary.totalCost - savedSummary.totalCost}
+            />
+          </div>
+          <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] text-ink/35">
+            Each plan keeps its own length and level. This comparison is encoded in the URL — copy
+            the address to share both side by side.
+          </p>
         </section>
       )}
 
@@ -525,6 +610,71 @@ export default function CyclePlanner({ init }: { init: PlannerInit }) {
           * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
       `}</style>
+    </div>
+  );
+}
+
+function delta(n: number, money = false): string {
+  const v = Math.abs(n).toLocaleString();
+  if (n === 0) return "±0";
+  return `${n > 0 ? "+" : "−"}${money ? "$" : ""}${v}`;
+}
+
+function PlanColumn({
+  tag,
+  snapshot,
+  summary,
+  accent,
+  vialDelta,
+  costDelta,
+}: {
+  tag: string;
+  snapshot: PlanSnapshot;
+  summary: PlanSummary;
+  accent?: boolean;
+  vialDelta?: number;
+  costDelta?: number;
+}) {
+  return (
+    <div className={`rounded-2xl border p-5 ${accent ? "border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.05]" : "border-ink/10 bg-panel/20"}`}>
+      <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-ink/40">{tag}</p>
+      <p className="mt-1 font-display text-lg font-semibold text-ink">{goalLabel(snapshot.goal)}</p>
+      <p className="font-[family-name:var(--font-plex-mono)] text-xs text-ink/50">
+        {snapshot.weeks} wk · {snapshot.level} · {summary.count} peptide{summary.count === 1 ? "" : "s"}
+      </p>
+
+      <div className="mt-4 flex items-end justify-between border-t border-ink/10 pt-4">
+        <div>
+          <div className="font-[family-name:var(--font-plex-mono)] text-xs text-ink/45">{summary.totalVials} vials</div>
+          {vialDelta !== undefined && vialDelta !== 0 && (
+            <div className={`font-[family-name:var(--font-plex-mono)] text-[11px] ${vialDelta > 0 ? "text-accent-rose" : "text-accent-teal"}`}>
+              {delta(vialDelta)} vs A
+            </div>
+          )}
+        </div>
+        <div className="text-right">
+          <div className={`font-display text-2xl font-semibold ${accent ? "text-[var(--accent-amber)]" : "text-ink"}`}>
+            ≈ ${summary.totalCost.toLocaleString()}
+          </div>
+          {costDelta !== undefined && costDelta !== 0 && (
+            <div className={`font-[family-name:var(--font-plex-mono)] text-[11px] ${costDelta > 0 ? "text-accent-rose" : "text-accent-teal"}`}>
+              {delta(costDelta, true)} vs A
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ul className="mt-4 space-y-1.5">
+        {summary.lines.map((l) => (
+          <li key={l.peptide.id} className="flex items-center justify-between gap-2 text-xs">
+            <span className="flex items-center gap-2 text-ink/70">
+              <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: l.peptide.hue }} />
+              {l.peptide.name}
+            </span>
+            <span className="font-[family-name:var(--font-plex-mono)] text-ink/45">${l.cost}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

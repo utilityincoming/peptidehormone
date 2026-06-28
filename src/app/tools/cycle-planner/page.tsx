@@ -13,6 +13,7 @@ import {
   WEEKS_MIN,
   WEEKS_MAX,
   MAX_PEPTIDES,
+  decodePlan,
   type Level,
 } from "@/lib/cycle-planner";
 
@@ -74,7 +75,9 @@ export default async function CyclePlannerPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const init = seedFromParams(await searchParams);
+  const sp = await searchParams;
+  const init = seedFromParams(sp);
+  const compareInit = decodePlan(Array.isArray(sp.c) ? sp.c[0] : sp.c);
 
   return (
     <div className={plexMono.variable}>
@@ -111,7 +114,7 @@ export default async function CyclePlannerPage({
           </p>
 
           <div id="planner" className="mt-10 scroll-mt-20">
-            <CyclePlanner init={init} />
+            <CyclePlanner init={init} compareInit={compareInit} />
           </div>
 
           <section className="cp-no-print mt-16 max-w-2xl">

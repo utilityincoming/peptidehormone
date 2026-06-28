@@ -375,3 +375,55 @@ export const EVIDENCE_LABEL: Record<Evidence, string> = {
   preclinical: "preclinical",
   anecdotal: "anecdotal",
 };
+
+// ── Save / compare two plans ──
+// A plan is the full planner state; comparison summaries are derived from it,
+// and it round-trips through a single URL param so a comparison is shareable.
+
+export interface PlanSnapshot {
+  goal: string;
+  weeks: number;
+  level: Level;
+  active: string[];
+}
+
+export interface PlanSummary {
+  lines: SupplyLine[];
+  totalVials: number;
+  totalCost: number;
+  count: number;
+}
+
+export function summarizePlan(s: PlanSnapshot): PlanSummary {
+  const lines = s.active
+    .map((id) => PEPTIDES[id])
+    .filter((p): p is Peptide => Boolean(p))
+    .map((p) => supplyFor(p, s.level, s.weeks));
+  return {
+    lines,
+    totalVials: lines.reduce((a, l) => a + l.vials, 0),
+    totalCost: lines.reduce((a, l) => a + l.cost, 0),
+    count: lines.length,
+  };
+}
+
+// Compact, URL-safe encoding: "goal~weeks~level~id1,id2" (peptide ids have no
+// "~" or ",", so no escaping is needed).
+export function encodePlan(s: PlanSnapshot): string {
+  return [s.goal, s.weeks, s.level, s.active.join(",")].join("~");
+}
+
+export function decodePlan(raw: string | null | undefined): PlanSnapshot | null {
+  if (!raw) return null;
+  const [g, w, l, p] = raw.split("~");
+  const weeks = Math.min(WEEKS_MAX, Math.max(WEEKS_MIN, parseInt(w, 10)));
+  if (!Number.isFinite(weeks)) return null;
+  const level: Level = (LEVELS as readonly string[]).includes(l) ? (l as Level) : "beginner";
+  const active = (p ?? "").split(",").filter((id) => PEPTIDES[id]).slice(0, MAX_PEPTIDES);
+  if (!active.length) return null;
+  return { goal: g || "custom", weeks, level, active };
+}
+
+export function goalLabel(goalId: string): string {
+  return GOALS.find((g) => g.id === goalId)?.label ?? "Custom stack";
+}
