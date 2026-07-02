@@ -480,7 +480,7 @@ export default function CyclePlanner({
         </section>
       )}
 
-      {/* ── Supply list + vendor handoff ── */}
+      {/* ── Supply list + evidence snapshot ── */}
       {peptides.length > 0 && (
         <section className="grid gap-5 lg:grid-cols-[1fr_1.05fr]">
           <div className="rounded-2xl border border-ink/10 bg-surface p-6">
@@ -500,7 +500,7 @@ export default function CyclePlanner({
             </ul>
             <div className="mt-4 flex items-center justify-between border-t border-ink/10 pt-4">
               <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
-                Total to source
+                Vials needed
               </span>
               <span className="font-display text-2xl font-semibold text-[var(--accent-amber)]">
                 {totalVials} vials
@@ -688,7 +688,7 @@ function PlanColumn({
 
       <div className="mt-4 flex items-end justify-between border-t border-ink/10 pt-4">
         <span className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/40">
-          To source
+          Vials
         </span>
         <div className="text-right">
           <div className={`font-display text-2xl font-semibold ${accent ? "text-[var(--accent-amber)]" : "text-ink"}`}>

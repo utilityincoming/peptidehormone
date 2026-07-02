@@ -31,7 +31,7 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     href: "/tools/cycle-planner",
     name: "Cycle planner",
     blurb:
-      "Sketch a research cycle from a goal stack: pick a length and level, then see the week-by-week timeline, reference dosing, and a supply list to hand to a vendor. Shareable by URL. Research-use only.",
+      "Sketch a research cycle from a goal stack: pick a length and level, then see the week-by-week timeline, reference dosing, and an estimated supply list. Shareable by URL. Research-use only.",
     tag: "Protocol planning",
     accent: "text-accent-amber",
   },

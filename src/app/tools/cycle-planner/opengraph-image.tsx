@@ -10,7 +10,7 @@ export default function Image() {
     ogImage({
       eyebrow: "Free tool · no sign-up",
       title: "Plan a peptide cycle from goal to schedule.",
-      subtitle: "Goal stacks, a week-by-week timeline, reference dosing, and a supply list to source. Research-use only.",
+      subtitle: "Goal stacks, a week-by-week timeline, reference dosing, and an estimated supply list. Research-use only.",
       accent: "#F5B544",
     }),
     { ...size },
