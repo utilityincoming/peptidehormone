@@ -22,9 +22,13 @@ import {
   type Goal,
   type Level,
   type Peptide,
+  type Evidence,
 } from "@/lib/cycle-planner";
 
 const ACCENT = "#E8B65A";
+
+// Best-to-weakest, so the evidence snapshot reads top-down by strength.
+const EVIDENCE_ORDER: Evidence[] = ["clinical", "emerging", "preclinical", "anecdotal"];
 
 export interface PlannerInit {
   goal: string;
@@ -134,6 +138,17 @@ export default function CyclePlanner({
   );
   const totalVials = supply.reduce((s, l) => s + l.vials, 0);
 
+  // Evidence composition of the current stack — powers the review snapshot.
+  const evidenceBreakdown = useMemo(() => {
+    const counts = new Map<Evidence, number>();
+    for (const p of peptides) counts.set(p.evidence, (counts.get(p.evidence) ?? 0) + 1);
+    return EVIDENCE_ORDER.filter((tier) => counts.has(tier)).map((tier) => ({
+      tier,
+      label: EVIDENCE_LABEL[tier],
+      count: counts.get(tier) as number,
+    }));
+  }, [peptides]);
+
   const weekCols = Array.from({ length: weeks }, (_, i) => i + 1);
   const goalMeta = GOALS.find((g) => g.id === goal);
 
@@ -150,6 +165,14 @@ export default function CyclePlanner({
   const clearSaved = () => {
     setSaved(null);
     announce("Comparison cleared.");
+  };
+  const copyLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      showToast("Shareable link copied — the URL carries the full protocol.");
+    } catch {
+      showToast("Couldn't copy automatically — copy the URL from your address bar.");
+    }
   };
   const loadSaved = () => {
     if (!saved) return;
@@ -485,35 +508,38 @@ export default function CyclePlanner({
             </div>
             <p className="mt-3 font-[family-name:var(--font-plex-mono)] text-[10px] leading-4 text-ink/35">
               Vial counts are estimates from typical sizes; reconstitution, waste, and titration
-              change real quantities. Pricing varies by supplier.
+              change the real quantities.
             </p>
           </div>
 
-          {/* Vendor spotlight — the conversion point of the funnel */}
-          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-[var(--accent-amber)]/40 bg-[var(--accent-amber)]/[0.06] p-6">
+          {/* Evidence snapshot — reviews the stack's support instead of selling it */}
+          <div className="cp-no-print flex flex-col justify-between rounded-2xl border border-ink/10 bg-surface p-6">
             <div>
-              <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-[var(--accent-amber)]">
-                Source this protocol
+              <p className="font-[family-name:var(--font-plex-mono)] text-[10px] uppercase tracking-wide text-ink/40">
+                Review this protocol
               </p>
               <h2 className="mt-2 font-display text-2xl font-semibold">
-                Connect to a research supplier
+                Evidence snapshot
               </h2>
               <p className="mt-2 text-sm leading-6 text-ink/60">
-                Hand off this {peptides.length}-compound, {weeks}-week stack to a vetted research
-                vendor for current availability and pricing — third-party tested, shipped to your
-                region.
+                How well-supported this {peptides.length}-compound, {weeks}-week stack is. Open any
+                compound&apos;s monograph for the underlying studies before you rely on it.
               </p>
+              <ul className="mt-4 space-y-2">
+                {evidenceBreakdown.map(({ tier, label, count }) => (
+                  <li key={tier} className="flex items-center justify-between gap-3 text-sm">
+                    <span className={`rounded-full border px-2 py-0.5 text-[11px] font-medium capitalize ${evidenceClass(tier)}`}>
+                      {label}
+                    </span>
+                    <span className="font-[family-name:var(--font-plex-mono)] text-ink/55">
+                      {count} compound{count === 1 ? "" : "s"}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
             <div className="mt-5">
-              <button
-                type="button"
-                onClick={() => showToast("Vendor directory coming soon — verify third-party testing and legality in your region.")}
-                className="flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-base font-semibold text-[#0C0E11] shadow-sm transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-surface focus-visible:ring-[var(--accent-amber)]"
-                style={{ backgroundColor: ACCENT }}
-              >
-                Find a vendor for this stack <span aria-hidden>→</span>
-              </button>
-              <div className="mt-3 flex items-center gap-4 text-xs">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
                 <button
                   type="button"
                   onClick={savePlan}
@@ -523,12 +549,24 @@ export default function CyclePlanner({
                 </button>
                 <button
                   type="button"
+                  onClick={copyLink}
+                  className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
+                >
+                  Copy shareable link
+                </button>
+                <button
+                  type="button"
                   onClick={() => { try { window.print(); } catch { showToast("Printing isn't available here."); } }}
                   className="text-ink/55 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-amber)]"
                 >
                   Export protocol PDF
                 </button>
               </div>
+              <p className="mt-4 border-t border-ink/10 pt-3 text-[11px] leading-4 text-ink/40">
+                Educational reference only — not medical advice, and not a sourcing service. Verify
+                legality and third-party testing in your region, and review any protocol with a
+                qualified clinician.
+              </p>
             </div>
           </div>
         </section>
