@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "glp-1-muscle-preservation",
+    title: "Keeping the muscle on GLP-1",
+    dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
+    family: "muscle-tgfb",
+    readingMinutes: 10,
+    reviewed: "July 2026",
+  },
+  {
     slug: "insulin-to-the-peptide-boom",
     title: "From insulin to the peptide boom",
     dek: "A hundred years of peptide medicine — the first miracle, the families it built, and how the molecules quietly running your body became a 2026 cultural phenomenon.",
