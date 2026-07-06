@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "early-adopters-catalog",
+    title: "The community found it first",
+    dek: "Long before GLP-1 went mainstream, the community running peptide protocols was the field's informal R&D — and their demand shaped the catalogs of synthesis companies and compounding pharmacies. Their core instinct, foundation first, is exactly what the metabolic era is proving right.",
+    family: "growth-repair",
+    readingMinutes: 9,
+    reviewed: "July 2026",
+  },
+  {
     slug: "glp-1-muscle-preservation",
     title: "Keeping the muscle on GLP-1",
     dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
