@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-triple-agonist",
+    title: "The triple agonist",
+    dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
+    family: "incretins-metabolic",
+    readingMinutes: 8,
+    reviewed: "July 2026",
+  },
+  {
     slug: "early-adopters-catalog",
     title: "The community found it first",
     dek: "Long before GLP-1 went mainstream, the community running peptide protocols was the field's informal R&D — and their demand shaped the catalogs of synthesis companies and compounding pharmacies. Their core instinct, foundation first, is exactly what the metabolic era is proving right.",
