@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "where-the-powder-comes-from",
+    title: "Where the powder comes from",
+    dek: "Most of the world's finished, lyophilized peptide traces back to a handful of Chinese manufacturing lines — and China's 2026 drug law just pushed that supply chain toward real traceability. The strategic read: \"American made\" often marks more hand-offs, not fewer, and in lyophilized peptide every hand-off is an irreversible chance to lose purity. Fewest transfers, finished direct, wins.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "July 2026",
+  },
+  {
     slug: "the-triple-agonist",
     title: "The triple agonist",
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
