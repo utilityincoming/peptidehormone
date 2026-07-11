@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { siteLd } from "@/lib/jsonld";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,6 +51,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <JsonLd data={siteLd()} />
         {children}
+        <Analytics />
       </body>
     </html>
   );
