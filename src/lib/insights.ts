@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "getting-the-molecule-in",
+    title: "The delivery problem",
+    dek: "A peptide is, chemically, food — swallow it and your gut digests it; rub it on your skin and it never gets past the surface. The needle isn't a preference, it's physics. Inside the barriers that block every other route, why most \"oral\" peptide claims are marketing, and the narrow cases where a nasal spray genuinely works.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "July 2026",
+  },
+  {
     slug: "where-the-powder-comes-from",
     title: "Where the powder comes from",
     dek: "Most of the world's finished, lyophilized peptide traces back to a handful of Chinese manufacturing lines — and China's 2026 drug law just pushed that supply chain toward real traceability. The strategic read: \"American made\" often marks more hand-offs, not fewer, and in lyophilized peptide every hand-off is an irreversible chance to lose purity. Fewest transfers, finished direct, wins.",
