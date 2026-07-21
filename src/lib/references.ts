@@ -55,6 +55,22 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "39318607", title: "Effects of once-weekly subcutaneous retatrutide on weight and metabolic markers: A systematic review and meta-analysis of randomized controlled trials", source: "Metabolism open", year: "2024" },
     { pmid: "38843460", title: "Efficacy and Safety of GLP-1 Medicines for Type 2 Diabetes and Obesity", source: "Diabetes care", year: "2024" },
   ],
+  pramlintide: [
+    { pmid: "21564002", title: "Pramlintide and the treatment of diabetes: a review of the data since its introduction", source: "Expert opinion on pharmacotherapy", year: "2011" },
+    { pmid: "30000033", title: "Pramlintide", source: "", year: "2006" },
+  ],
+  cagrilintide: [
+    { pmid: "34798060", title: "Once-weekly cagrilintide for weight management in people with overweight and obesity: a multicentre, randomised, double-blind, placebo-controlled and active-controlled, dose-finding phase 2 trial", source: "Lancet (London, England)", year: "2021" },
+    { pmid: "40544433", title: "Coadministered Cagrilintide and Semaglutide in Adults with Overweight or Obesity", source: "The New England journal of medicine", year: "2025" },
+  ],
+  amycretin: [
+    { pmid: "40550229", title: "Safety, tolerability, pharmacokinetics, and pharmacodynamics of the first-in-class GLP-1 and amylin receptor agonist, amycretin: a first-in-human, phase 1, double-blind, randomised, placebo-controlled trial", source: "Lancet (London, England)", year: "2025" },
+    { pmid: "40550231", title: "Amycretin, a novel, unimolecular GLP-1 and amylin receptor agonist administered subcutaneously: results from a phase 1b/2a randomised controlled study", source: "Lancet (London, England)", year: "2025" },
+  ],
+  "maridebart-cafraglutide": [
+    { pmid: "40549887", title: "Once-Monthly Maridebart Cafraglutide for the Treatment of Obesity - A Phase 2 Trial", source: "The New England journal of medicine", year: "2025" },
+    { pmid: "38316982", title: "A GIPR antagonist conjugated to GLP-1 analogues promotes weight loss with improved metabolic parameters in preclinical and phase 1 settings", source: "Nature metabolism", year: "2024" },
+  ],
   "growth-hormone": [
     { pmid: "33029711", title: "Growth hormone deficiency and replacement in children", source: "Reviews in endocrine & metabolic disorders", year: "2021" },
     { pmid: "36948778", title: "Growth Hormone and Aging", source: "Endocrinology and metabolism clinics of North America", year: "2023" },

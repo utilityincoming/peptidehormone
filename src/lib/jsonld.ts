@@ -218,6 +218,32 @@ export function insightLd(insight: Insight, family?: Family): Node {
   return graph([article, crumbs]);
 }
 
+// ── Methodology / About: AboutPage + breadcrumb ──
+export function methodologyLd(): Node {
+  const url = `${SITE_URL}/methodology`;
+  const page: Node = {
+    "@type": "AboutPage",
+    "@id": url,
+    url,
+    name: "Methodology & standards",
+    description:
+      "How Peptide Hormone sources its references, grades evidence, classifies molecules, and bounds its scope — the standard behind an independent, research-grade reference.",
+    inLanguage: "en",
+    isPartOf: SITE_REF,
+    publisher: ORG_REF,
+    about: ORG_REF,
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+  };
+  const crumbs = breadcrumbLd(
+    [
+      { name: "Home", path: "/" },
+      { name: "Methodology", path: "/methodology" },
+    ],
+    `${url}#breadcrumb`,
+  );
+  return graph([page, crumbs]);
+}
+
 // ── Interactive tool: WebApplication + breadcrumb ──
 export function toolLd(opts: { path: string; name: string; description: string }): Node {
   const url = `${SITE_URL}${opts.path}`;

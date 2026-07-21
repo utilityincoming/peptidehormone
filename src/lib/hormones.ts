@@ -281,6 +281,99 @@ const BASE: Hormone[] = [
     halfLife: "~6 days",
     halfLifeMin: 8640,
   },
+  {
+    slug: "pramlintide",
+    name: "Pramlintide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Established",
+    parent: "amylin",
+    summary: "The first amylin analog — native amylin with its self-aggregation edited out.",
+    class: "Amylin analog (synthetic 37 aa peptide)",
+    source: "Synthetic analog of human amylin",
+    receptor: "Amylin receptors (calcitonin receptor + RAMP)",
+    mechanism:
+      "Pramlintide is a synthetic amylin analog carrying three proline substitutions — borrowed from non-aggregating rodent amylin — that prevent the fibril formation which makes native human amylin undruggable. At amylin receptors it reproduces amylin's biology: slowing gastric emptying, suppressing post-meal glucagon, and promoting satiety. It is approved as an adjunct to mealtime insulin, the two hormones' natural partnership rebuilt as a drug.",
+    facts: [
+      "The proline substitutions solve amylin's self-aggregation problem — the core engineering that made a stable amylin drug possible.",
+      "Approved as an adjunct to mealtime insulin in type 1 and type 2 diabetes.",
+      "Complements insulin rather than replacing it — amylin and insulin are co-secreted natively.",
+    ],
+    questions: [
+      "How do pramlintide's proline substitutions prevent the aggregation seen with native human amylin?",
+      "What does pramlintide add when paired with mealtime insulin?",
+    ],
+  },
+  {
+    slug: "cagrilintide",
+    name: "Cagrilintide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "amylin",
+    summary: "A long-acting amylin analog built for once-weekly dosing and GLP-1 pairing.",
+    class: "Long-acting amylin analog (acylated peptide)",
+    source: "Synthetic; engineered long-acting amylin analog",
+    receptor: "Amylin receptors (calcitonin receptor + RAMP)",
+    mechanism:
+      "Cagrilintide is an acylated amylin analog engineered for once-weekly dosing. It agonizes amylin receptors to drive satiety and slow gastric emptying, and is studied both on its own and — as the combination known as CagriSema — alongside semaglutide, stacking an amylin axis onto a GLP-1 axis for additive appetite suppression. It is investigational.",
+    facts: [
+      "Designed for once-weekly dosing, unlike the mealtime-injected first-generation amylin analog pramlintide.",
+      "Studied in combination with semaglutide (CagriSema), pairing amylin and GLP-1 pathways in one regimen.",
+      "Investigational — under clinical study, not approved.",
+    ],
+    questions: [
+      "Why is amylin agonism combined with GLP-1 agonism in CagriSema?",
+      "What does the phase 2 evidence show for cagrilintide in weight management?",
+    ],
+  },
+  {
+    slug: "amycretin",
+    name: "Amycretin",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "amylin",
+    summary: "GLP-1 and amylin agonism combined in a single molecule, not a two-drug combination.",
+    class: "Unimolecular GLP-1 + amylin receptor agonist (peptide)",
+    source: "Synthetic; engineered unimolecular dual agonist",
+    receptor: "GLP-1 receptor + amylin receptors",
+    mechanism:
+      "Amycretin is a single molecule that agonizes both the GLP-1 receptor and amylin receptors — two appetite-suppressing pathways combined in one agent rather than as a two-drug combination. Developed in both subcutaneous and oral forms, it is an early-stage attempt to capture the additive GLP-1-plus-amylin effect from a single molecule. It is investigational.",
+    facts: [
+      "Combines GLP-1 and amylin agonism in one molecule — the single-agent counterpart to the CagriSema combination.",
+      "Under investigation in both injectable and oral formulations.",
+      "Investigational and early-stage — first-in-human and phase 1b/2a data only.",
+    ],
+    questions: [
+      "What is the rationale for combining GLP-1 and amylin agonism in a single molecule?",
+      "How does amycretin's early clinical evidence look so far?",
+    ],
+  },
+  {
+    slug: "maridebart-cafraglutide",
+    name: "Maridebart cafraglutide",
+    abbr: "MariTide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "glp-1",
+    summary: "GLP-1 agonism paired with GIP receptor antagonism — the opposite GIP direction to tirzepatide.",
+    class: "GLP-1 agonist–GIP-antagonist peptide–antibody conjugate",
+    source: "Synthetic; anti-GIP-receptor antibody conjugated to GLP-1 peptides",
+    receptor: "GLP-1 receptor (agonist) + GIP receptor (antagonist)",
+    mechanism:
+      "Maridebart cafraglutide pairs GLP-1 receptor agonism with GIP receptor antagonism on a single peptide–antibody conjugate — an anti-GIP-receptor antibody carrying GLP-1 peptides. It blocks the very GIP receptor that tirzepatide activates, yet also drives weight loss, and its antibody scaffold gives a long half-life that enables once-monthly dosing. It is investigational.",
+    facts: [
+      "Turns the GIP receptor off while turning GLP-1 on — the opposite GIP direction to tirzepatide, and both approaches reduce weight.",
+      "Built as a peptide–antibody conjugate, whose long half-life supports once-monthly dosing.",
+      "Investigational — phase 2 reported, larger trials ongoing.",
+    ],
+    questions: [
+      "How can GIP antagonism (maridebart) and GIP agonism (tirzepatide) both aid weight loss?",
+      "What does the antibody-conjugate design contribute to maridebart's dosing interval?",
+    ],
+  },
 
   // ── Growth & repair ────────────────────────────────────────────────────
   {
