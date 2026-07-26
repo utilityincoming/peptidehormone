@@ -31,6 +31,14 @@ export const INSIGHTS: Insight[] = [
     reviewed: "August 2026",
   },
   {
+    slug: "peptide-half-life-engineering",
+    title: "Two minutes to seven days",
+    dek: "Natural GLP-1 is destroyed about two minutes after the gut releases it. Semaglutide — the same signal, essentially the same shape — survives a week. That gap is a five-thousand-fold engineering feat, and it wasn't achieved by making the peptide tougher. It was achieved by attaching it to something the body has already decided to keep. Inside the three tricks that turned a disposable hormone into a weekly drug, and why the next cadence is monthly.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "July 2026",
+  },
+  {
     slug: "the-gip-paradox",
     title: "The GIP paradox",
     dek: "Tirzepatide turns the GIP receptor on. Maridebart cafraglutide turns the same receptor off. Both drive weight loss. That should be impossible under a \"more signal is better\" model of pharmacology — and the fact that it isn't is one of the most revealing puzzles on the metabolic frontier. How a receptor can be pushed either way and land in the same place.",
