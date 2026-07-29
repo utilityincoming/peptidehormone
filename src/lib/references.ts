@@ -235,6 +235,31 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "28170483", title: "Diagnosis and Treatment of Pituitary Adenomas: A Review", source: "JAMA", year: "2017" },
     { pmid: "30899019", title: "Acromegaly", source: "Nature reviews. Disease primers", year: "2019" },
   ],
+  tesamorelin: [
+    { pmid: "22298602", title: "Tesamorelin: a growth hormone-releasing factor analogue for HIV-associated lipodystrophy", source: "The Annals of pharmacotherapy", year: "2012" },
+    { pmid: "21668043", title: "Tesamorelin: a review of its use in the management of HIV-associated lipodystrophy", source: "Drugs", year: "2011" },
+    { pmid: "38905488", title: "Efficacy and safety of tesamorelin in people with HIV on integrase inhibitors", source: "AIDS (London, England)", year: "2024" },
+  ],
+  "cjc-1295": [
+    { pmid: "16352683", title: "Prolonged stimulation of growth hormone (GH) and insulin-like growth factor I secretion by CJC-1295, a long-acting analog of GH-releasing hormone, in healthy adults", source: "The Journal of clinical endocrinology and metabolism", year: "2006" },
+    { pmid: "41966639", title: "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance", source: "Sports medicine (Auckland, N.Z.)", year: "2026" },
+    { pmid: "26771670", title: "Netnography of Female Use of the Synthetic Growth Hormone CJC-1295: Pulses and Potions", source: "Substance use & misuse", year: "2016" },
+  ],
+  sermorelin: [
+    { pmid: "18046908", title: "Sermorelin: a better approach to management of adult-onset growth hormone insufficiency?", source: "Clinical interventions in aging", year: "2006" },
+    { pmid: "18031173", title: "Sermorelin: a review of its use in the diagnosis and treatment of children with idiopathic growth hormone deficiency", source: "BioDrugs", year: "1999" },
+    { pmid: "32257855", title: "Beyond the androgen receptor: the role of growth hormone secretagogues in the modern management of body composition in hypogonadal males", source: "Translational andrology and urology", year: "2020" },
+  ],
+  ipamorelin: [
+    { pmid: "9849822", title: "Ipamorelin, the first selective growth hormone secretagogue", source: "European journal of endocrinology", year: "1998" },
+    { pmid: "10373343", title: "Ipamorelin, a new growth-hormone-releasing peptide, induces longitudinal bone growth in rats", source: "Growth hormone & IGF research", year: "1999" },
+    { pmid: "41966639", title: "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance", source: "Sports medicine (Auckland, N.Z.)", year: "2026" },
+  ],
+  "pt-141": [
+    { pmid: "31429064", title: "Bremelanotide: First Approval", source: "Drugs", year: "2019" },
+    { pmid: "35076581", title: "Bremelanotide for Treatment of Female Hypoactive Sexual Desire", source: "Neurology international", year: "2022" },
+    { pmid: "31893927", title: "Bremelanotide: New Drug Approved for Treating Hypoactive Sexual Desire Disorder", source: "The Annals of pharmacotherapy", year: "2020" },
+  ],
   "mots-c": [
     { pmid: "36761202", title: "MOTS-c: A promising mitochondrial-derived peptide for therapeutic exploitation", source: "Frontiers in endocrinology", year: "2023" },
     { pmid: "36233287", title: "MOTS-c, the Most Recent Mitochondrial Derived Peptide in Human Aging and Age-Related Diseases", source: "International journal of molecular sciences", year: "2022" },
@@ -249,6 +274,36 @@ export const REFERENCES: Record<string, Reference[]> = {
   ],
   selank: [
     { pmid: "28745220", title: "Tuftsin - Properties and Analogs", source: "Current medicinal chemistry", year: "2017" },
+  ],
+  "ss-31": [
+    { pmid: "39940712", title: "Elamipretide: A Review of Its Structure, Mechanism of Action, and Therapeutic Potential", source: "International journal of molecular sciences", year: "2025" },
+    { pmid: "41335372", title: "Elamipretide: First Approval", source: "Drugs", year: "2026" },
+    { pmid: "37268435", title: "Efficacy and Safety of Elamipretide in Individuals With Primary Mitochondrial Myopathy: The MMPOWER-3 Randomized Clinical Trial", source: "Neurology", year: "2023" },
+  ],
+  "aod-9604": [
+    { pmid: "15134286", title: "AOD-9604 Metabolic", source: "Current opinion in investigational drugs (London, England : 2000)", year: "2004" },
+    { pmid: "41966639", title: "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance", source: "Sports medicine (Auckland, N.Z.)", year: "2026" },
+    { pmid: "16625817", title: "Obesity drugs in clinical development", source: "Current opinion in investigational drugs (London, England : 2000)", year: "2006" },
+  ],
+  kpv: [
+    { pmid: "18092346", title: "Melanocortin-derived tripeptide KPV has anti-inflammatory potential in murine models of inflammatory bowel disease", source: "Inflammatory bowel diseases", year: "2008" },
+    { pmid: "18061177", title: "PepT1-mediated tripeptide KPV uptake reduces intestinal inflammation", source: "Gastroenterology", year: "2008" },
+    { pmid: "16965771", title: "Effects of the COOH-terminal tripeptide alpha-MSH(11-13) on corneal epithelial wound healing: role of nitric oxide", source: "Experimental eye research", year: "2006" },
+  ],
+  dsip: [
+    { pmid: "16539679", title: "Delta sleep-inducing peptide (DSIP): a still unresolved riddle", source: "Journal of neurochemistry", year: "2006" },
+    { pmid: "6145137", title: "Delta-sleep-inducing peptide (DSIP): a review", source: "Neuroscience and biobehavioral reviews", year: "1984" },
+    { pmid: "11437870", title: "Delta sleep-inducing peptide", source: "European journal of anaesthesiology", year: "2001" },
+  ],
+  semax: [
+    { pmid: "16362768", title: "Semax, an ACTH(4-10) analogue with nootropic properties, activates dopaminergic and serotoninergic brain systems in rodents", source: "Neurochemical research", year: "2005" },
+    { pmid: "19633950", title: "Semax and Pro-Gly-Pro activate the transcription of neurotrophins and their receptor genes after cerebral ischemia", source: "Cellular and molecular neurobiology", year: "2010" },
+    { pmid: "33418449", title: "Semax, synthetic ACTH(4-10) analogue, attenuates behavioural and neurochemical alterations following early-life fluvoxamine exposure in white rats", source: "Neuropeptides", year: "2021" },
+  ],
+  "ara-290": [
+    { pmid: "28475703", title: "Cibinetide Improves Corneal Nerve Fiber Abundance in Patients With Sarcoidosis-Associated Small Nerve Fiber Loss and Neuropathic Pain", source: "Investigative ophthalmology & visual science", year: "2017" },
+    { pmid: "35008482", title: "The Non-Erythropoietic EPO Analogue Cibinetide Inhibits Osteoclastogenesis In Vitro and Increases Bone Mineral Density in Mice", source: "International journal of molecular sciences", year: "2021" },
+    { pmid: "32674280", title: "A Phase 2 Clinical Trial on the Use of Cibinetide for the Treatment of Diabetic Macular Edema", source: "Journal of clinical medicine", year: "2020" },
   ],
 };
 

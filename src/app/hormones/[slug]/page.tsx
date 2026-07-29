@@ -7,6 +7,8 @@ import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
+import { SourcingNote } from "@/components/Sourcing";
+import { isStocked } from "@/lib/affiliate";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -247,6 +249,13 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ol>
+              </section>
+            )}
+
+            {/* Sourcing — only on molecules ABSIM actually stocks (data-gated). */}
+            {isStocked(h.slug) && (
+              <section className="mt-12">
+                <SourcingNote slug={h.slug} molecule={h.abbr ?? h.name} />
               </section>
             )}
           </div>

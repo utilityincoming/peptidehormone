@@ -5,6 +5,7 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { toolLd } from "@/lib/jsonld";
 import CyclePlanner, { type PlannerInit } from "@/components/tools/CyclePlanner";
+import { SourcingNote } from "@/components/Sourcing";
 import {
   GOALS,
   PEPTIDES,
@@ -145,6 +146,10 @@ export default async function CyclePlannerPage({
               </p>
             </div>
           </section>
+
+          <div className="cp-no-print mt-12 max-w-2xl">
+            <SourcingNote />
+          </div>
         </Container>
       </main>
       <SiteFooter />

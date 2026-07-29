@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { SourcingLine } from "@/components/Sourcing";
 
 const PRINCIPLES: { title: string; body: string }[] = [
   {
@@ -12,8 +13,8 @@ const PRINCIPLES: { title: string; body: string }[] = [
     body: "Reference material for understanding the biology. Nothing here is medical advice, a recommendation, or a substitute for a clinician.",
   },
   {
-    title: "Independent",
-    body: "No products, no storefront, no sponsored conclusions. The incentive is to be correct, not to sell.",
+    title: "Editorially independent",
+    body: "No storefront, no sponsored conclusions. One disclosed affiliate link funds the work — but the incentive that shapes the catalog is to be correct, never to sell.",
   },
 ];
 
@@ -134,13 +135,18 @@ export default function Home() {
                 is the opposite: built to be checked.
               </p>
             </div>
-            <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
-              {PRINCIPLES.map((p) => (
-                <div key={p.title} className="bg-surface p-7">
-                  <h3 className="font-display text-lg font-semibold">{p.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/65">{p.body}</p>
-                </div>
-              ))}
+            <div>
+              <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
+                {PRINCIPLES.map((p) => (
+                  <div key={p.title} className="bg-surface p-7">
+                    <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-ink/65">{p.body}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6">
+                <SourcingLine />
+              </div>
             </div>
           </Container>
         </section>
