@@ -1,0 +1,25 @@
+name: ABSIM stock check
+
+# Weekly guard on the STOCKED affiliate map (src/lib/affiliate.ts). Fails the run
+# if a linked ABSIM product has gone out of stock or been delisted, so the
+# "never link a dead shelf" promise enforces itself instead of relying on memory.
+# Trigger manually anytime from the Actions tab (workflow_dispatch).
+#
+# Caveat: ABSIM is behind Cloudflare. A browser UA passes from residential IPs; if
+# GitHub's datacenter IPs ever get challenged, the job exits 2 (couldn't verify) —
+# re-run it, or run `npm run check:stock` locally, which is the source of truth.
+
+on:
+  schedule:
+    - cron: "0 13 * * 1" # Mondays 13:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/check-absim-stock.mjs
