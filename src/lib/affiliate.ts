@@ -32,7 +32,6 @@ const STOCKED: Record<string, string> = {
   "epitalon": `https://absimpeptides.com/product/epitalon-10mg/${REF}`,
   "tesamorelin": `https://absimpeptides.com/product/tesamorelin-10mg/${REF}`,
   "cjc-1295": `https://absimpeptides.com/product/cjc-1295-no-dac-10mg/${REF}`,
-  "sermorelin": `https://absimpeptides.com/product/sermorelin-10mg/${REF}`,
   "ipamorelin": `https://absimpeptides.com/product/ipamorelin-10mg/${REF}`,
   "pt-141": `https://absimpeptides.com/product/pt-141-10mg/${REF}`,
   "ss-31": `https://absimpeptides.com/product/ss-31-10mg/${REF}`,
@@ -40,9 +39,10 @@ const STOCKED: Record<string, string> = {
   "dsip": `https://absimpeptides.com/product/dsip-5mg/${REF}`,
   "semax": `https://absimpeptides.com/product/semax-10mg/${REF}`,
   "ara-290": `https://absimpeptides.com/product/ara-290-10mg/${REF}`,
-  // aod-9604: monograph exists, but ABSIM is out of stock — intentionally NOT
-  // listed here so the gate shows no note rather than link a dead shelf.
-  // Restore this line when it's restocked:
+  // Out of stock at ABSIM — monographs exist, but intentionally NOT linked here so
+  // the gate shows no note rather than a dead shelf. Restore each line when it's
+  // back in stock (run `npm run check:stock` to catch this drift automatically):
+  //   "sermorelin": `https://absimpeptides.com/product/sermorelin-10mg/${REF}`,
   //   "aod-9604": `https://absimpeptides.com/product/aod-5mg/${REF}`,
 };
 
