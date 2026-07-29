@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import HalfLifeCalculator, { type CompoundPreset } from "@/components/tools/HalfLifeCalculator";
+import { SourcingNote } from "@/components/Sourcing";
 import { JsonLd } from "@/components/JsonLd";
 import { toolLd } from "@/lib/jsonld";
 import { HORMONES, halfLifeForLink } from "@/lib/hormones";
@@ -125,6 +126,10 @@ export default async function HalfLifePage({
               any substance.
             </p>
           </section>
+
+          <div className="mt-12 max-w-2xl">
+            <SourcingNote />
+          </div>
         </Container>
       </main>
       <SiteFooter />

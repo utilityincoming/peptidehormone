@@ -14,7 +14,7 @@ const REFERENCE_COUNT = Object.values(REFERENCES).reduce((n, list) => n + list.l
 export const metadata: Metadata = {
   title: "Methodology & standards",
   description:
-    "How Peptide Hormone sources references, grades evidence, classifies molecules, and bounds its scope — the standard behind an independent, research-grade reference.",
+    "How Peptide Hormone sources references, grades evidence, classifies molecules, and bounds its scope — the standard behind an editorially independent, research-grade reference.",
   openGraph: {
     title: "Methodology & standards · Peptide Hormone",
     description:
@@ -88,8 +88,8 @@ export default function Methodology() {
           <article className="space-y-12">
             <Section title="What this is">
               <P>
-                PeptideHormone is an independent, research-grade reference on the peptide
-                hormone system — the endogenous signals that run the body and the
+                PeptideHormone is an editorially independent, research-grade reference on the
+                peptide hormone system — the endogenous signals that run the body and the
                 engineered molecules redrawing the edge of research. It is a{" "}
                 <Em>reference</Em>, not a store and not a clinic: no products, no
                 storefront, no sponsored conclusions. The whole point of the project is to
@@ -191,12 +191,21 @@ export default function Methodology() {
 
             <Section title="Independence &amp; funding">
               <P>
-                PeptideHormone sells nothing and hosts no storefront. There are no
-                sponsored monographs and no conclusions bent to a seller&rsquo;s interest —
-                the incentive is to be correct, not to move product. If that ever changes —
-                if any funding, affiliate, or commercial relationship enters the picture —
-                it will be disclosed here, plainly, before it touches a single word of the
-                catalog.
+                PeptideHormone hosts no storefront and sells no peptides — but it isn&rsquo;t
+                pretending to be a lone island, either. It is part of the{" "}
+                <Em>American Peptide</Em> network, and that network holds an affiliate
+                relationship with ABSIM Peptides: buy through a sourcing link here and we may
+                earn a commission, at no extra cost to you. We&rsquo;re open about the
+                connection because hiding it would be the actual betrayal.
+              </P>
+              <P>
+                What stays walled off is the science. No evidence tier, no molecule&rsquo;s
+                grading, and no line of mechanism is ever softened, promoted, or reordered to
+                move product — and a sourcing note only appears on molecules the vendor
+                actually stocks, never as a blanket pitch. The relationship pays for the link;
+                it does not buy a conclusion. The network shares a cause — an honest, checkable
+                map of this field — not a sales quota. The day a conclusion bends to a seller
+                is the day this project stops being worth reading.
               </P>
             </Section>
 

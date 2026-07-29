@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import CatalogBrowser from "@/components/CatalogBrowser";
+import { SourcingLine } from "@/components/Sourcing";
 import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { HORMONES } from "@/lib/hormones";
@@ -49,6 +50,9 @@ export default function CatalogPage() {
               source, or class, filter by signaling family, and open any entry for
               the full reference — identity, mechanism, and the evidence behind it.
             </p>
+            <div className="mt-6">
+              <SourcingLine />
+            </div>
           </Container>
         </section>
 

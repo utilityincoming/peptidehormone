@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
 import { getFamily } from "@/lib/families";
+import { SourcingNote } from "@/components/Sourcing";
 
 const insight = getInsight("where-the-powder-comes-from")!;
 
@@ -216,6 +217,9 @@ export default function Article() {
                 the logistics both, the shortest path wins.
               </P>
             </Section>
+
+            {/* This is the argument's natural landing point — the anchor placement. */}
+            <SourcingNote />
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">

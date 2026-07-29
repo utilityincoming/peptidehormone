@@ -62,8 +62,8 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-6 text-ink/45">
-            An independent, research-grade reference on the peptide hormone
-            system. Educational only — not medical advice, diagnosis, or
+            An editorially independent, research-grade reference on the peptide
+            hormone system. Educational only — not medical advice, diagnosis, or
             treatment.
           </p>
         </div>
@@ -85,6 +85,7 @@ export function SiteFooter() {
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
               <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
+              <li><Link href="/methodology" className="text-ink/40 hover:text-ink/70">Affiliate disclosure</Link></li>
             </ul>
           </div>
         </div>
