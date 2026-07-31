@@ -1752,3 +1752,55 @@ export function getHormone(slug: string): Hormone | undefined {
 export function hormonesByFamily(familySlug: string): Hormone[] {
   return HORMONES.filter((h) => h.family === familySlug);
 }
+
+// One-clause evidence-tier and molecule-type descriptions — mirror the ladder on
+// /methodology, used to answer "how strong is the evidence?" from a molecule's
+// own grading rather than any new claim.
+const EVIDENCE_CLAUSE: Record<string, string> = {
+  Established: "its mechanism and core effects are settled across the peer-reviewed literature",
+  Clinical: "it is supported by human clinical trials, though still maturing or narrower in scope",
+  Investigational: "it is under active human investigation — promising, but not yet settled",
+  Preclinical: "the evidence is largely animal or in-vitro, with human data thin or absent",
+  Limited: "the evidence is sparse, older, or mostly community-reported",
+};
+const TYPE_CLAUSE: Record<string, string> = {
+  endogenous: "an endogenous signal the body produces itself",
+  analog: "an engineered analog built on an endogenous hormone",
+  research: "a community research peptide outside the approved-drug system",
+};
+
+/**
+ * Search-oriented FAQ for a monograph, composed ENTIRELY from the molecule's own
+ * vetted fields (summary, class, mechanism, evidence tier, half-life) — no new
+ * facts, the same "sourced, not asserted" discipline as the rest of the catalog.
+ * Rendered visibly on the page AND emitted as FAQPage JSON-LD from the same
+ * source, so schema and content always match. Captures the long-tail
+ * "what is X / how does X work / is X proven / X half-life" queries without
+ * touching the brand-voice H1.
+ */
+export function hormoneFaq(h: Hormone): { q: string; a: string }[] {
+  const label = h.abbr ?? h.name;
+  const evidence = h.evidence ?? "Established";
+  const type = h.type ?? "endogenous";
+  const faq = [
+    {
+      q: `What is ${h.name}${h.abbr ? ` (${h.abbr})` : ""}?`,
+      a: `${h.summary} Structurally it is ${h.class}.`,
+    },
+    {
+      q: `How does ${label} work?`,
+      a: h.mechanism,
+    },
+    {
+      q: `How strong is the evidence for ${label}?`,
+      a: `PeptideHormone grades ${label} at the "${evidence}" evidence tier — ${EVIDENCE_CLAUSE[evidence]}. It is catalogued as ${TYPE_CLAUSE[type]}, and the tier is an editorial judgment about the public literature that can change as the science does.`,
+    },
+  ];
+  if (h.halfLife) {
+    faq.push({
+      q: `What is the half-life of ${label}?`,
+      a: `The reported circulating half-life of ${label} is ${h.halfLife}.`,
+    });
+  }
+  return faq;
+}

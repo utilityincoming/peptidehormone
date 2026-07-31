@@ -7,6 +7,7 @@
 // JSON-LD blocks on a page and resolves @id across them).
 
 import type { Hormone } from "@/lib/hormones";
+import { hormoneFaq } from "@/lib/hormones";
 import type { Family } from "@/lib/families";
 import type { Insight } from "@/lib/insights";
 import { referencesFor } from "@/lib/references";
@@ -133,7 +134,20 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
     `${url}#breadcrumb`,
   );
 
-  return graph([page, substance, crumbs]);
+  // FAQPage from the molecule's own fields (same source the page renders), so
+  // the long-tail "what is / how does / evidence / half-life" queries have a
+  // structured answer that matches the visible content exactly.
+  const faqPage: Node = {
+    "@type": "FAQPage",
+    "@id": `${url}#faq`,
+    mainEntity: hormoneFaq(h).map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
+  return graph([page, substance, faqPage, crumbs]);
 }
 
 // ── Family hub: CollectionPage + ItemList of members + breadcrumb ──
