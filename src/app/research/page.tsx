@@ -5,6 +5,7 @@ import ResearchAgent from "@/components/ResearchAgent";
 
 export const metadata: Metadata = {
   title: "Research agent",
+  alternates: { canonical: "/research" },
   description:
     "Ask the peptide hormone research agent — grounded answers with linked citations from PubChem, UniProt, ClinicalTrials.gov, and PubMed.",
 };

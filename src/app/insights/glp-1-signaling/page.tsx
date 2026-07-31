@@ -11,6 +11,7 @@ const insight = getInsight("glp-1-signaling")!;
 export const metadata: Metadata = {
   title: insight.title,
   description: insight.dek,
+  alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 

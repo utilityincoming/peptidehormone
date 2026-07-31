@@ -42,6 +42,7 @@ export async function generateMetadata({
   return {
     title,
     description: h.summary,
+    alternates: { canonical: `/hormones/${h.slug}` },
     openGraph: { title: `${title} · Peptide Hormone`, description: h.summary },
   };
 }

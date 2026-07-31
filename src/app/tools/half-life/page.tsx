@@ -9,6 +9,7 @@ import { HORMONES, halfLifeForLink } from "@/lib/hormones";
 
 export const metadata: Metadata = {
   title: "Peptide half-life & dosing calculator",
+  alternates: { canonical: "/tools/half-life" },
   description:
     "Model how long a peptide stays bioactive, and how dose frequency vs half-life builds to steady state — accumulation, peak-to-trough swing, time to steady state, and a concentration-over-time chart. Educational only.",
 };

@@ -7,6 +7,7 @@ import { toolLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Analog comparison tool",
+  alternates: { canonical: "/tools/compare" },
   description:
     "Compare peptide hormones and their engineered analogs side by side — type, evidence tier, receptor, molecular weight, and half-life on one log-scaled axis. See how an analog's half-life jumps from minutes to days versus its native hormone. Educational only.",
 };

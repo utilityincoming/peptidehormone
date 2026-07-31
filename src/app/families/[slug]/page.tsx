@@ -38,6 +38,7 @@ export async function generateMetadata({
   return {
     title: family.name,
     description: family.tagline,
+    alternates: { canonical: `/families/${family.slug}` },
     openGraph: { title: `${family.name} · Peptide Hormone`, description: family.tagline },
   };
 }

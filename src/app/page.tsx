@@ -2,6 +2,11 @@ import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { SourcingLine } from "@/components/Sourcing";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const PRINCIPLES: { title: string; body: string }[] = [
   {
