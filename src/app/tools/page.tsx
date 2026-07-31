@@ -6,6 +6,7 @@ import { collectionLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Research tools & calculators",
+  alternates: { canonical: "/tools" },
   description:
     "Free, in-browser peptide research tools — a half-life & dosing calculator that models how long a compound stays bioactive and how dose frequency builds to steady state. Educational, not medical advice.",
 };

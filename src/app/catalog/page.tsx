@@ -9,6 +9,7 @@ import { FAMILIES } from "@/lib/families";
 
 export const metadata: Metadata = {
   title: "Catalog — every peptide hormone, one index",
+  alternates: { canonical: "/catalog" },
   description: `Browse and search the full catalog of ${HORMONES.length} peptide hormones across ${FAMILIES.length} signaling families — by molecule, receptor, source, or class. Research-grade and independent.`,
 };
 

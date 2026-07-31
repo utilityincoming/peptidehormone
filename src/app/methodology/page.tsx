@@ -13,6 +13,7 @@ const REFERENCE_COUNT = Object.values(REFERENCES).reduce((n, list) => n + list.l
 
 export const metadata: Metadata = {
   title: "Methodology & standards",
+  alternates: { canonical: "/methodology" },
   description:
     "How Peptide Hormone sources references, grades evidence, classifies molecules, and bounds its scope — the standard behind an editorially independent, research-grade reference.",
   openGraph: {

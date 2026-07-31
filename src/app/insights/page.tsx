@@ -8,6 +8,7 @@ import { getFamily } from "@/lib/families";
 
 export const metadata: Metadata = {
   title: "Insights — mechanistic deep-dives",
+  alternates: { canonical: "/insights" },
   description:
     "Long-form, research-grade deep-dives into peptide hormone mechanisms and signaling — biology over benefits, sourced and explained.",
 };

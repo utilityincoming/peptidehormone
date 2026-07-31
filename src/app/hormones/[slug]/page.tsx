@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink } from "@/lib/hormones";
+import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink, hormoneFaq } from "@/lib/hormones";
 import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { SourcingNote } from "@/components/Sourcing";
 import { isStocked } from "@/lib/affiliate";
+import { americanPeptideUrl } from "@/lib/network";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -41,6 +42,7 @@ export async function generateMetadata({
   return {
     title,
     description: h.summary,
+    alternates: { canonical: `/hormones/${h.slug}` },
     openGraph: { title: `${title} · Peptide Hormone`, description: h.summary },
   };
 }
@@ -69,6 +71,8 @@ export default async function HormonePage({
     : [];
 
   const references = referencesFor(h.slug);
+  const faqs = hormoneFaq(h);
+  const apUrl = americanPeptideUrl(h.slug);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -219,6 +223,20 @@ export default async function HormonePage({
               </ul>
             </section>
 
+            {faqs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Common questions</h2>
+                <dl className="mt-5 space-y-3">
+                  {faqs.map((f) => (
+                    <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <dt className="font-display text-base font-semibold text-ink">{f.q}</dt>
+                      <dd className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )}
+
             {references.length > 0 && (
               <section className="mt-12">
                 <h2 className="font-display text-2xl font-semibold">Selected literature</h2>
@@ -298,6 +316,24 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {apUrl && (
+              <div className="rounded-2xl border border-ink/10 p-6">
+                <h3 className="font-display text-base font-semibold">On the network</h3>
+                <p className="mt-2 text-sm leading-6 text-ink/55">
+                  Sourcing options and a trust-ranked vendor comparison for{" "}
+                  {h.abbr ?? h.name} at our sister project, American Peptide.
+                </p>
+                <a
+                  href={apUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+                >
+                  View on American Peptide <span aria-hidden>→</span>
+                </a>
               </div>
             )}
 
