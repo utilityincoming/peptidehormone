@@ -9,9 +9,26 @@ import { getFamily } from "@/lib/families";
 
 const insight = getInsight("what-you-can-actually-get")!;
 
+// Visible FAQ === FAQPage schema (same text), for long-tail query capture.
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "Why isn't every catalogued peptide actually available?",
+    a: "A compound can be well characterised in the literature yet not synthesised at research grade, finished, or in stock anywhere. Being catalogued describes what is known about a molecule; availability describes whether you can obtain it right now, in a form you can trust — two different maps.",
+  },
+  {
+    q: "What does research-grade availability mean here?",
+    a: "That a molecule is currently stocked in finished, lyophilised form by a source meeting a fixed sourcing standard: a lot-specific certificate of analysis, primary literature cited on the page, and research-use-only framing. A listing is verified, never paid for.",
+  },
+  {
+    q: "How often does peptide availability change?",
+    a: "Constantly. Unlike a sequence or a receptor, reachability moves — candidates cross from clinical trials into research-grade supply, and manufacturing consolidates. That is why availability is tracked as living data rather than stated once.",
+  },
+];
+
 export const metadata: Metadata = {
-  title: insight.title,
-  description: insight.dek,
+  title: "Cataloged vs. reachable: which research peptides you can actually source",
+  description:
+    "Every catalogue lists what peptides exist. Here's what's actually reachable at research grade now — and why availability, not identity, is the real bottleneck.",
   alternates: { canonical: "/insights/what-you-can-actually-get" },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
@@ -19,7 +36,7 @@ export const metadata: Metadata = {
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main className="flex-1">
         {/* ── Header ── */}
@@ -87,13 +104,30 @@ export default function Article() {
             <Section title="And unlike a sequence, it moves">
               <P>
                 A receptor doesn&rsquo;t change. Reachability does — constantly. A candidate
-                that lived only in trial data crosses over into research-grade powder. A
-                supply line consolidates and a form that was scarce becomes routine. This is
-                the same consolidation the{" "}
+                that lived only in{" "}
+                <a
+                  href="https://clinicaltrials.gov/"
+                  className={LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  clinical-trial data
+                </a>{" "}
+                crosses over into research-grade powder. A supply line consolidates and a form
+                that was scarce becomes routine. This is the same consolidation the{" "}
                 <Link href="/insights/where-the-powder-comes-from" className={LINK}>
                   supply chain
                 </Link>{" "}
-                is going through as it professionalizes — and the community running protocols
+                is going through as it professionalizes under{" "}
+                <a
+                  href="https://www.morganlewis.com/pubs/2026/02/navigating-chinas-new-2026-implementing-regulations-of-the-drug-administration-law"
+                  className={LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  China&rsquo;s 2026 drug-law reforms
+                </a>{" "}
+                — and the community running protocols
                 has always{" "}
                 <Link href="/insights/early-adopters-catalog" className={LINK}>
                   felt those shifts first
@@ -160,6 +194,19 @@ export default function Article() {
                 Open the availability index <span aria-hidden>→</span>
               </Link>
             </div>
+
+            {/* FAQ — mirrors the FAQPage schema for long-tail query capture */}
+            <section>
+              <h2 className="font-display text-2xl font-semibold sm:text-[1.7rem]">Common questions</h2>
+              <div className="mt-5 space-y-4">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                    <h3 className="font-display text-base font-semibold text-ink">{f.q}</h3>
+                    <p className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">

@@ -230,6 +230,7 @@ export default function Article() {
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the volume driver" />
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom" />
+                <CrossLink href="/insights/what-you-can-actually-get" label="What's actually reachable" />
               </ul>
             </div>
 

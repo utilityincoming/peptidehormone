@@ -16,7 +16,7 @@ export interface Insight {
 export const INSIGHTS: Insight[] = [
   {
     slug: "what-you-can-actually-get",
-    title: "What you can actually get",
+    title: "Cataloged vs. reachable",
     dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. Why what's reachable is itself information, and how a reference can publish it as data without becoming a store.",
     family: "incretins-metabolic",
     readingMinutes: 7,

@@ -176,6 +176,7 @@ export default function Article() {
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom (the century-long arc)" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="Keeping the muscle on GLP-1 (foundation + stack, in trials)" />
                 <CrossLink href="/families/growth-repair" label="The growth & repair family" />
+                <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable — what you can source" />
                 <CrossLink href="/catalog" label="See the evidence-graded catalog" />
               </ul>
             </div>
