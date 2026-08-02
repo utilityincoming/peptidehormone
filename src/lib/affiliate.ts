@@ -55,3 +55,29 @@ export function stockedLink(slug: string): string | null {
 export function isStocked(slug: string): boolean {
   return slug in STOCKED;
 }
+
+/** Every slug ABSIM currently stocks — the spine of the /available index. */
+export function stockedSlugs(): string[] {
+  return Object.keys(STOCKED);
+}
+
+/**
+ * The sourcing standard a compound clears to earn a listing — the same provenance
+ * logic argued in "Where the powder comes from." Visibility is editorial and
+ * earned, never pay-to-play; that is what keeps the availability layer worth
+ * anything to a reader.
+ */
+export const SOURCING_STANDARD: { title: string; body: string }[] = [
+  {
+    title: "A lot-specific COA",
+    body: "Third-party HPLC for purity and mass spec for identity, tied to the actual lot shipped — not a generic template.",
+  },
+  {
+    title: "Primary literature on the page",
+    body: "The science cited where the product is sold, not just marketing claims — the same discipline this reference holds itself to.",
+  },
+  {
+    title: "Research-use framing",
+    body: "Sold research-use-only, with provenance you can reason about. As of 2026 that is a reasonable ask, not a fantasy.",
+  },
+];

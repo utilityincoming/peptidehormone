@@ -43,6 +43,7 @@ export function SiteHeader() {
           <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
           <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
           <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
+          <Link href="/available" className="transition-colors hover:text-ink">Availability</Link>
           <Link
             href="/catalog"
             className="rounded-full border border-ink/15 px-4 py-1.5 text-ink/90 transition-colors hover:border-accent hover:text-accent"
@@ -84,6 +85,7 @@ export function SiteFooter() {
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
+              <li><Link href="/available" className="hover:text-ink">Availability</Link></li>
               <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
               <li><Link href="/methodology" className="text-ink/40 hover:text-ink/70">Affiliate disclosure</Link></li>
             </ul>

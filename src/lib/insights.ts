@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "what-you-can-actually-get",
+    title: "What you can actually get",
+    dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. Why what's reachable is itself information, and how a reference can publish it as data without becoming a store.",
+    family: "incretins-metabolic",
+    readingMinutes: 7,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-gip-paradox",
     title: "The GIP paradox",
     dek: "Tirzepatide turns the GIP receptor on. Maridebart cafraglutide turns the same receptor off. Both drive weight loss. That should be impossible under a \"more signal is better\" model of pharmacology — and the fact that it isn't is one of the most revealing puzzles on the metabolic frontier. How a receptor can be pushed either way and land in the same place.",
