@@ -98,7 +98,13 @@ export default function AvailablePage() {
             <p className="mt-5 max-w-3xl text-sm leading-6 text-ink/50">
               Listings are editorial: a compound appears because it meets the standard and our
               network actually stocks it, never because it was paid for. Absence means &ldquo;not
-              currently stocked to the standard&rdquo; — it is not a judgment on the molecule.
+              currently stocked to the standard&rdquo; — it is not a judgment on the molecule.{" "}
+              <Link href="/insights/what-you-can-actually-get" className="text-accent hover:underline">
+                Why availability, not identity, is the real bottleneck →
+              </Link>{" "}
+              <Link href="/insights/the-complexity-ladder" className="text-accent hover:underline">
+                Why complexity, not fraud, sorts the shelf →
+              </Link>
             </p>
           </Container>
         </section>

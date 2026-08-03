@@ -201,7 +201,11 @@ export function collectionLd(opts: {
 }
 
 // ── Insight article: Article + breadcrumb ──
-export function insightLd(insight: Insight, family?: Family): Node {
+export function insightLd(
+  insight: Insight,
+  family?: Family,
+  faqs?: { q: string; a: string }[],
+): Node {
   const url = `${SITE_URL}/insights/${insight.slug}`;
   const modified = parseReviewed(insight.reviewed);
   const article: Node = {
@@ -229,7 +233,19 @@ export function insightLd(insight: Insight, family?: Family): Node {
     ],
     `${url}#breadcrumb`,
   );
-  return graph([article, crumbs]);
+  const nodes: Node[] = [article, crumbs];
+  if (faqs && faqs.length) {
+    nodes.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  return graph(nodes);
 }
 
 // ── Methodology / About: AboutPage + breadcrumb ──
