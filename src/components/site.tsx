@@ -87,7 +87,6 @@ export function SiteFooter() {
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
               <li><Link href="/available" className="hover:text-ink">Availability</Link></li>
               <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
-              <li><Link href="/methodology" className="text-ink/40 hover:text-ink/70">Affiliate disclosure</Link></li>
             </ul>
           </div>
         </div>
