@@ -231,6 +231,7 @@ export default function Article() {
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the volume driver" />
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom" />
                 <CrossLink href="/insights/what-you-can-actually-get" label="What's actually reachable" />
+                <CrossLink href="/insights/the-complexity-ladder" label="Why complexity governs availability" />
               </ul>
             </div>
 

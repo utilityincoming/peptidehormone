@@ -212,6 +212,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/the-complexity-ladder" label="Where trust starts to mean something" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
                 <CrossLink href="/insights/early-adopters-catalog" label="The community found it first" />
                 <CrossLink href="/methodology" label="Methodology & standards" />

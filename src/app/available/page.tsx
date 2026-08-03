@@ -101,6 +101,9 @@ export default function AvailablePage() {
               currently stocked to the standard&rdquo; — it is not a judgment on the molecule.{" "}
               <Link href="/insights/what-you-can-actually-get" className="text-accent hover:underline">
                 Why availability, not identity, is the real bottleneck →
+              </Link>{" "}
+              <Link href="/insights/the-complexity-ladder" className="text-accent hover:underline">
+                Why complexity, not fraud, sorts the shelf →
               </Link>
             </p>
           </Container>

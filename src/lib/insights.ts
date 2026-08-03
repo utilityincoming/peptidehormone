@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-complexity-ladder",
+    title: "Where trust starts to mean something",
+    dek: "Short synthetic peptides are cheap to make and, more to the point, cheap to verify — reversed-phase HPLC and a mass spec settle what they are in an afternoon, and a competitive market keeps them honest. Trust and availability only become live variables higher up the complexity ladder, at the folded biologics — antibodies, ligand traps, the myostatin inhibitors — where correctness lives in the fold, not the sequence, and only a bioassay can confirm it. Why complexity, not fraud, governs what you can actually source.",
+    family: "muscle-tgfb",
+    readingMinutes: 8,
+    reviewed: "August 2026",
+  },
+  {
     slug: "what-you-can-actually-get",
     title: "Cataloged vs. reachable",
     dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. Why what's reachable is itself information, and how a reference can publish it as data without becoming a store.",
