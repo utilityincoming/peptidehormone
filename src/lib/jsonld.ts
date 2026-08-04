@@ -12,7 +12,7 @@ import type { Family } from "@/lib/families";
 import type { Insight } from "@/lib/insights";
 import { referencesFor } from "@/lib/references";
 
-export const SITE_URL = "https://www.peptidehormone.com";
+export const SITE_URL = "https://peptidehormone.com";
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
 const LOGO = `${SITE_URL}/opengraph-image`;

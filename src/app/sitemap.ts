@@ -3,7 +3,7 @@ import { FAMILIES } from "@/lib/families";
 import { HORMONES } from "@/lib/hormones";
 import { INSIGHTS } from "@/lib/insights";
 
-const BASE = "https://www.peptidehormone.com";
+const BASE = "https://peptidehormone.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = ["", "/catalog", "/insights", "/research", "/tools", "/tools/half-life", "/tools/compare", "/tools/cycle-planner", "/methodology"];
