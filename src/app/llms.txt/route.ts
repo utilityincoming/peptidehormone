@@ -9,7 +9,7 @@ import { INSIGHTS } from "@/lib/insights";
 
 export const dynamic = "force-static";
 
-const SITE = "https://www.peptidehormone.com";
+const SITE = "https://peptidehormone.com";
 
 // First sentence only — keeps each index line to one concise entry.
 const firstSentence = (s: string) => s.split(/(?<=\.)\s/)[0];

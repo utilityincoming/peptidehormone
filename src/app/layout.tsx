@@ -21,7 +21,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.peptidehormone.com"),
+  metadataBase: new URL("https://peptidehormone.com"),
   title: {
     default: "Peptide Hormone — the research-grade catalog of peptide science",
     template: "%s · Peptide Hormone",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Peptide Hormone",
     description:
       "The research-grade catalog of peptide science — families, molecules, and the evidence behind them. Independent, citation-grounded, not medical advice.",
-    url: "https://www.peptidehormone.com",
+    url: "https://peptidehormone.com",
     siteName: "Peptide Hormone",
     type: "website",
   },
