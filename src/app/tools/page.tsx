@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { collectionLd } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Research tools & calculators",
+  alternates: { canonical: "/tools" },
   description:
-    "Free peptide research calculators — reconstitution concentration and peptide molarity — plus the grounded research agent. Educational, not medical advice.",
+    "Free, in-browser peptide research tools — a half-life & dosing calculator that models how long a compound stays bioactive and how dose frequency builds to steady state. Educational, not medical advice.",
 };
 
 const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: string }[] = [
@@ -18,26 +21,39 @@ const TOOLS: { href: string; name: string; blurb: string; tag: string; accent: s
     accent: "text-accent",
   },
   {
-    href: "/tools/molarity",
-    name: "Peptide molarity calculator",
+    href: "/tools/compare",
+    name: "Analog comparison",
     blurb:
-      "Convert peptide mass, molecular weight, and solvent volume into molar concentration — mM, µM, and nM — for assay preparation.",
-    tag: "Molarity",
+      "Put a native hormone beside the analogs engineered from it — receptor, molecular weight, evidence tier, and half-life on one log-scaled axis. See how durability engineering stretches minutes into days.",
+    tag: "Structure–activity",
     accent: "text-accent-teal",
   },
   {
-    href: "/research",
-    name: "Research agent",
+    href: "/tools/cycle-planner",
+    name: "Cycle planner",
     blurb:
-      "Ask any peptide-hormone question and get a grounded answer with linked citations from PubChem, UniProt, ClinicalTrials.gov, and PubMed.",
-    tag: "Agent",
-    accent: "text-accent-purple",
+      "Sketch a research cycle from a goal stack: pick a length and level, then see the week-by-week timeline, reference dosing, and an estimated supply list. Shareable by URL. Research-use only.",
+    tag: "Protocol planning",
+    accent: "text-accent-amber",
   },
 ];
 
 export default function ToolsIndex() {
   return (
     <>
+      <JsonLd
+        data={collectionLd({
+          path: "/tools",
+          name: "Research tools & calculators",
+          description:
+            "Free, in-browser peptide research tools — pharmacokinetic and structure–activity utilities.",
+          items: TOOLS.map((t) => ({ name: t.name, path: t.href })),
+          crumbs: [
+            { name: "Home", path: "/" },
+            { name: "Tools", path: "/tools" },
+          ],
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
@@ -57,16 +73,14 @@ export default function ToolsIndex() {
               Research tools & calculators
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Fast, transparent utilities for peptide research — pharmacokinetics
-              and concentration math, plus a citation-grounded research agent.
-              Everything runs in your browser. Educational only, not medical or
-              dosing advice.
+              Fast, transparent utilities for peptide research. Everything runs in
+              your browser. Educational only, not medical or dosing advice.
             </p>
           </Container>
         </section>
 
         <Container className="py-16 md:py-20">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
             {TOOLS.map((t) => (
               <Link
                 key={t.href}

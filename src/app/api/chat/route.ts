@@ -18,7 +18,7 @@ const DEBUG = process.env.AGENT_DEBUG === "1";
 const INTERNAL_PAGES =
   "INTERNAL PAGES — link the first mention of a signaling family to its exact hub URL using markdown. Use ONLY these URLs; never invent one.\n" +
   FAMILIES.map(
-    (f) => `- ${f.name} (${f.examples}): https://www.peptidehormone.com/families/${f.slug}`,
+    (f) => `- ${f.name} (${f.examples}): https://peptidehormone.com/families/${f.slug}`,
   ).join("\n");
 
 const SYSTEM_PROMPT = `You are the research agent for PeptideHormone.com, an independent, research-grade reference on the peptide hormone system. You help users understand the biology of peptide hormones — incretins and metabolic peptides, the growth/somatotropic axis, melanocortins, neuropeptides, the gut–brain axis, and the reproductive (HPG) axis.

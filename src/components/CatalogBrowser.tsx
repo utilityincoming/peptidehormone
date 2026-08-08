@@ -2,25 +2,47 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { HORMONES } from "@/lib/hormones";
+import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
+
+const PRESENT_TIERS = EVIDENCE_TIERS.filter((t) =>
+  HORMONES.some((h) => (h.evidence ?? "Established") === t),
+);
+
+function evidenceClass(tier: string): string {
+  switch (tier) {
+    case "Established":
+      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
+    case "Clinical":
+      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
+    case "Investigational":
+      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
+    case "Preclinical":
+      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
+    default:
+      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
+  }
+}
 
 const FAMILY_MAP = Object.fromEntries(
   FAMILIES.map((f) => [f.slug, { name: f.name, accent: f.accent }]),
 );
 
-type Sort = "name" | "family";
+type Sort = "family" | "name" | "mw" | "halflife";
+const SORT_LABEL: Record<Sort, string> = { family: "Family", name: "A–Z", mw: "MW", halflife: "t½" };
 const FAMILY_ORDER = Object.fromEntries(FAMILIES.map((f, i) => [f.slug, i]));
 
 export default function CatalogBrowser() {
   const [query, setQuery] = useState("");
   const [family, setFamily] = useState<string>("all");
+  const [evidence, setEvidence] = useState<string>("all");
   const [sort, setSort] = useState<Sort>("family");
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const filtered = HORMONES.filter((h) => {
       if (family !== "all" && h.family !== family) return false;
+      if (evidence !== "all" && (h.evidence ?? "Established") !== evidence) return false;
       if (!q) return true;
       return [h.name, h.abbr ?? "", h.summary, h.class, h.source, h.receptor]
         .join(" ")
@@ -31,10 +53,16 @@ export default function CatalogBrowser() {
       if (sort === "family") {
         const fd = (FAMILY_ORDER[a.family] ?? 0) - (FAMILY_ORDER[b.family] ?? 0);
         if (fd !== 0) return fd;
+      } else if (sort === "mw") {
+        const d = (a.mw ?? Infinity) - (b.mw ?? Infinity);
+        if (d !== 0) return d;
+      } else if (sort === "halflife") {
+        const d = (a.halfLifeMin ?? Infinity) - (b.halfLifeMin ?? Infinity);
+        if (d !== 0) return d;
       }
       return a.name.localeCompare(b.name);
     });
-  }, [query, family, sort]);
+  }, [query, family, evidence, sort]);
 
   return (
     <div>
@@ -49,16 +77,17 @@ export default function CatalogBrowser() {
             className="flex-1 rounded-xl border border-ink/15 bg-panel/40 px-4 py-2.5 text-[15px] text-ink outline-none placeholder:text-ink/35 focus:border-accent/60"
           />
           <div className="flex shrink-0 overflow-hidden rounded-xl border border-ink/15 text-sm">
-            {(["family", "name"] as Sort[]).map((s) => (
+            {(["family", "name", "mw", "halflife"] as Sort[]).map((s) => (
               <button
                 key={s}
                 type="button"
                 onClick={() => setSort(s)}
+                title={`Sort by ${s === "mw" ? "molecular weight" : s === "halflife" ? "half-life" : SORT_LABEL[s]}`}
                 className={`px-3.5 py-2.5 transition-colors ${
                   sort === s ? "bg-accent/20 text-accent" : "bg-panel/40 text-ink/50 hover:text-ink/80"
                 }`}
               >
-                {s === "family" ? "By family" : "A–Z"}
+                {SORT_LABEL[s]}
               </button>
             ))}
           </div>
@@ -67,11 +96,24 @@ export default function CatalogBrowser() {
         {/* Family chips */}
         <div className="flex flex-wrap gap-2">
           <Chip active={family === "all"} onClick={() => setFamily("all")}>
-            All
+            All families
           </Chip>
           {FAMILIES.map((f) => (
             <Chip key={f.slug} active={family === f.slug} accent={f.accent} onClick={() => setFamily(f.slug)}>
               {f.name}
+            </Chip>
+          ))}
+        </div>
+
+        {/* Evidence chips */}
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="mr-1 text-xs font-medium uppercase tracking-wide text-ink/35">Evidence</span>
+          <Chip active={evidence === "all"} onClick={() => setEvidence("all")}>
+            Any
+          </Chip>
+          {PRESENT_TIERS.map((t) => (
+            <Chip key={t} active={evidence === t} onClick={() => setEvidence(t)}>
+              {t}
             </Chip>
           ))}
         </div>
@@ -102,12 +144,32 @@ export default function CatalogBrowser() {
                   <span className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}>
                     {fam?.name}
                   </span>
-                  {h.abbr && <span className="font-mono text-[11px] text-ink/40">{h.abbr}</span>}
+                  <span
+                    className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${evidenceClass(h.evidence ?? "Established")}`}
+                  >
+                    {h.evidence ?? "Established"}
+                  </span>
                 </div>
-                <h3 className="mt-3 font-display text-lg font-semibold leading-snug">{h.name}</h3>
+                <h3 className="mt-3 font-display text-lg font-semibold leading-snug">
+                  {h.name}
+                  {h.abbr && <span className="font-mono text-sm font-normal text-ink/40"> · {h.abbr}</span>}
+                </h3>
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink/60">{h.summary}</p>
-                <div className="mt-4 border-t border-ink/[0.06] pt-3 text-xs leading-5 text-ink/40">
-                  {h.class}
+                <div className="mt-4 border-t border-ink/[0.06] pt-3">
+                  <div className="text-xs leading-5 text-ink/40">{h.class}</div>
+                  {(h.mw || h.halfLife) && (
+                    <div className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] text-ink/50">
+                      {h.mw && (
+                        <span>
+                          {h.mwApprox ? "≈" : "~"}
+                          {h.mw.toLocaleString()} Da
+                        </span>
+                      )}
+                      {h.halfLife && (
+                        <span>t½ {h.halfLife.replace(/\(.*?\)/g, "").replace(/^[~≈]/, "").trim()}</span>
+                      )}
+                    </div>
+                  )}
                 </div>
               </Link>
             );

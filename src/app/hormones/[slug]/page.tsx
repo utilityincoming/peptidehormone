@@ -1,12 +1,32 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HORMONES, getHormone, hormonesByFamily } from "@/lib/hormones";
+import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink, hormoneFaq } from "@/lib/hormones";
+import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { JsonLd } from "@/components/JsonLd";
+import { hormoneLd } from "@/lib/jsonld";
+import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
+import { americanPeptideUrl } from "@/lib/network";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
+}
+
+function evidenceClass(tier: string): string {
+  switch (tier) {
+    case "Established":
+      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
+    case "Clinical":
+      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
+    case "Investigational":
+      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
+    case "Preclinical":
+      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
+    default:
+      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
+  }
 }
 
 export async function generateMetadata({
@@ -21,6 +41,7 @@ export async function generateMetadata({
   return {
     title,
     description: h.summary,
+    alternates: { canonical: `/hormones/${h.slug}` },
     openGraph: { title: `${title} · Peptide Hormone`, description: h.summary },
   };
 }
@@ -37,6 +58,20 @@ export default async function HormonePage({
   const family = getFamily(h.family);
   const accent = family?.accent ?? "text-accent";
   const related = hormonesByFamily(h.family).filter((x) => x.slug !== h.slug);
+  const parent = h.parent ? getHormone(h.parent) : undefined;
+  const typeLabel = h.type === "analog" ? "Analog" : h.type === "research" ? "Research peptide" : "Endogenous";
+  const evidence = h.evidence ?? "Established";
+
+  // Lineage = the native hormone plus every analog engineered from it. Show a
+  // comparison deep-link whenever this molecule sits in such a lineage.
+  const lineageRoot = h.parent ?? (HORMONES.some((x) => x.parent === h.slug) ? h.slug : undefined);
+  const lineageSlugs = lineageRoot
+    ? [lineageRoot, ...HORMONES.filter((x) => x.parent === lineageRoot).map((x) => x.slug)]
+    : [];
+
+  const references = referencesFor(h.slug);
+  const faqs = hormoneFaq(h);
+  const apUrl = americanPeptideUrl(h.slug);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -46,6 +81,7 @@ export default async function HormonePage({
 
   return (
     <>
+      <JsonLd data={hormoneLd(h, family)} />
       <SiteHeader />
 
       <main className="flex-1">
@@ -77,6 +113,30 @@ export default async function HormonePage({
               {h.abbr && <span className={`ml-3 text-2xl font-medium ${accent}`}>{h.abbr}</span>}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">{h.summary}</p>
+            <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs">
+              <span className="rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/65">
+                {typeLabel}
+              </span>
+              <span className={`rounded-full border px-3 py-1 font-medium ${evidenceClass(evidence)}`}>
+                {evidence}
+              </span>
+              {parent && (
+                <span className="text-ink/50">
+                  Based on{" "}
+                  <Link href={`/hormones/${parent.slug}`} className="text-accent hover:underline">
+                    {parent.name}
+                  </Link>
+                </span>
+              )}
+              {lineageSlugs.length > 1 && (
+                <Link
+                  href={`/tools/compare?ids=${lineageSlugs.join(",")}`}
+                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                >
+                  Compare lineage <span aria-hidden>→</span>
+                </Link>
+              )}
+            </div>
           </Container>
         </section>
 
@@ -102,6 +162,49 @@ export default async function HormonePage({
               </dl>
             </section>
 
+            {(h.mw || h.halfLife) && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {h.mw && (
+                    <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <div className="text-xs font-medium uppercase tracking-wide text-ink/40">
+                        Molecular weight
+                      </div>
+                      <div className="mt-1 font-display text-2xl font-semibold text-ink">
+                        {h.mwApprox ? "≈ " : "~"}
+                        {h.mw.toLocaleString()} <span className="text-base font-medium text-ink/50">Da</span>
+                      </div>
+                    </div>
+                  )}
+                  {h.halfLife && (
+                    <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <div className="text-xs font-medium uppercase tracking-wide text-ink/40">
+                        Half-life (native)
+                      </div>
+                      <div className="mt-1 font-display text-xl font-semibold text-ink">{h.halfLife}</div>
+                      {h.halfLifeMin != null &&
+                        (() => {
+                          const { value, unit } = halfLifeForLink(h.halfLifeMin);
+                          return (
+                            <Link
+                              href={`/tools/half-life?t12=${value}&unit=${unit}`}
+                              className="mt-3 inline-flex items-center gap-1 text-sm text-accent transition-transform hover:translate-x-0.5"
+                            >
+                              Model dosing <span aria-hidden>→</span>
+                            </Link>
+                          );
+                        })()}
+                    </div>
+                  )}
+                </div>
+                <p className="mt-3 text-xs leading-5 text-ink/40">
+                  Approximate values for the native hormone. Engineered analogs are
+                  often deliberately larger and far longer-acting.
+                </p>
+              </section>
+            )}
+
             <section className="mt-12">
               <h2 className="font-display text-2xl font-semibold">Mechanism</h2>
               <p className="mt-5 text-[15px] leading-7 text-ink/70">{h.mechanism}</p>
@@ -118,10 +221,94 @@ export default async function HormonePage({
                 ))}
               </ul>
             </section>
+
+            {faqs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Common questions</h2>
+                <dl className="mt-5 space-y-3">
+                  {faqs.map((f) => (
+                    <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                      <dt className="font-display text-base font-semibold text-ink">{f.q}</dt>
+                      <dd className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )}
+
+            {references.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Selected literature</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">
+                  Curated peer-reviewed reviews, sourced from PubMed. Selected for
+                  relevance, not exhaustive — open any entry on PubMed for the full
+                  record and its primary citations.
+                </p>
+                <ol className="mt-5 space-y-3">
+                  {references.map((r, i) => (
+                    <li key={r.pmid} className="flex gap-3 text-[15px] leading-7 text-ink/75">
+                      <span className="mt-0.5 shrink-0 font-mono text-xs text-ink/35">{i + 1}.</span>
+                      <span>
+                        <a
+                          href={`https://pubmed.ncbi.nlm.nih.gov/${r.pmid}/`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-ink transition-colors hover:text-accent"
+                        >
+                          {r.title}
+                        </a>
+                        <span className="text-ink/45">
+                          {" "}· <span className="italic">{r.source}</span>
+                          {r.year ? `, ${r.year}` : ""} · PMID{" "}
+                          <span className="font-mono text-xs">{r.pmid}</span>
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
           </div>
 
           {/* ── Sidebar ── */}
           <aside className="space-y-8">
+            {isStocked(h.slug) && (
+              <div className="rounded-2xl border border-accent/25 bg-accent/[0.04] p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="font-display text-base font-semibold">Availability</h3>
+                  <span className="rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2.5 py-0.5 text-xs font-medium text-accent-teal">
+                    In stock
+                  </span>
+                </div>
+                <p className="mt-3 text-sm leading-6 text-ink/60">
+                  Verified research-grade {h.abbr ?? h.name}, sourced through the American
+                  Peptide network to{" "}
+                  <span className="font-medium text-ink/80">ABSIM Peptides</span> — a
+                  certificate of analysis on every lot. {ABSIM_DISCOUNT} off with code{" "}
+                  <span className="font-mono text-ink/80">{ABSIM_CODE}</span>.
+                </p>
+                <a
+                  href={stockedLink(h.slug) ?? ABSIM_HOME}
+                  target="_blank"
+                  rel={AFFILIATE_REL}
+                  className="mt-4 flex items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
+                >
+                  View product at ABSIM <span aria-hidden>→</span>
+                </a>
+                <p className="mt-3 text-[11px] leading-4 text-ink/40">
+                  Affiliate link across our network — supports this reference at no cost to
+                  you, and buys not one word of the catalog.{" "}
+                  <Link
+                    href="/available"
+                    className="text-ink/60 underline decoration-ink/20 underline-offset-2 hover:text-accent"
+                  >
+                    How we verify
+                  </Link>
+                </p>
+              </div>
+            )}
+
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Ask the research agent</h3>
               <p className="mt-2 text-sm leading-6 text-ink/55">
@@ -158,6 +345,24 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {apUrl && (
+              <div className="rounded-2xl border border-ink/10 p-6">
+                <h3 className="font-display text-base font-semibold">On the network</h3>
+                <p className="mt-2 text-sm leading-6 text-ink/55">
+                  Sourcing options and a trust-ranked vendor comparison for{" "}
+                  {h.abbr ?? h.name} at our sister project, American Peptide.
+                </p>
+                <a
+                  href={apUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+                >
+                  View on American Peptide <span aria-hidden>→</span>
+                </a>
               </div>
             )}
 

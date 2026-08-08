@@ -1,17 +1,65 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import HalfLifeCalculator from "@/components/tools/HalfLifeCalculator";
+import HalfLifeCalculator, { type CompoundPreset } from "@/components/tools/HalfLifeCalculator";
+import { SourcingNote } from "@/components/Sourcing";
+import { JsonLd } from "@/components/JsonLd";
+import { toolLd } from "@/lib/jsonld";
+import { HORMONES, halfLifeForLink } from "@/lib/hormones";
 
 export const metadata: Metadata = {
   title: "Peptide half-life & dosing calculator",
+  alternates: { canonical: "/tools/half-life" },
   description:
     "Model how long a peptide stays bioactive, and how dose frequency vs half-life builds to steady state — accumulation, peak-to-trough swing, time to steady state, and a concentration-over-time chart. Educational only.",
 };
 
-export default function HalfLifePage() {
+export default async function HalfLifePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ t12?: string; unit?: string }>;
+}) {
+  const { t12, unit } = await searchParams;
+  const initialHalfLife =
+    t12 && Number.isFinite(parseFloat(t12)) && parseFloat(t12) > 0 ? t12 : undefined;
+  const initialUnit = unit === "min" || unit === "h" || unit === "d" ? unit : undefined;
+
+  // Catalog-driven presets: every compound with a representative half-life,
+  // grouped native → analog → research so the picker mirrors the catalog.
+  const GROUP_LABEL: Record<string, string> = {
+    endogenous: "Native hormones",
+    analog: "Engineered analogs",
+    research: "Research peptides",
+  };
+  const GROUP_ORDER = ["endogenous", "analog", "research"];
+  const compounds: CompoundPreset[] = HORMONES.filter((h) => h.halfLifeMin != null)
+    .slice()
+    .sort((a, b) => {
+      const ga = GROUP_ORDER.indexOf(a.type ?? "endogenous");
+      const gb = GROUP_ORDER.indexOf(b.type ?? "endogenous");
+      if (ga !== gb) return ga - gb;
+      return a.name.localeCompare(b.name);
+    })
+    .map((h) => {
+      const { value, unit: u } = halfLifeForLink(h.halfLifeMin!);
+      return {
+        slug: h.slug,
+        label: h.abbr ? `${h.name} (${h.abbr})` : h.name,
+        value: String(value),
+        unit: u,
+        group: GROUP_LABEL[h.type ?? "endogenous"] ?? "Other",
+      };
+    });
   return (
     <>
+      <JsonLd
+        data={toolLd({
+          path: "/tools/half-life",
+          name: "Half-life & dosing calculator",
+          description:
+            "Model how long a peptide stays bioactive and how dose frequency versus half-life builds to steady state — accumulation, peak-to-trough swing, and a concentration-over-time chart.",
+        })}
+      />
       <SiteHeader />
       <main className="flex-1">
         <Container className="py-12 md:py-16">
@@ -32,7 +80,11 @@ export default function HalfLifePage() {
           </p>
 
           <div className="mt-10">
-            <HalfLifeCalculator />
+            <HalfLifeCalculator
+              initialHalfLife={initialHalfLife}
+              initialUnit={initialUnit}
+              compounds={compounds}
+            />
           </div>
 
           <section className="mt-16 max-w-2xl">
@@ -75,6 +127,10 @@ export default function HalfLifePage() {
               any substance.
             </p>
           </section>
+
+          <div className="mt-12 max-w-2xl">
+            <SourcingNote />
+          </div>
         </Container>
       </main>
       <SiteFooter />

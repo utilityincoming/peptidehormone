@@ -41,13 +41,14 @@ export function SiteHeader() {
         <Wordmark />
         <nav className="hidden items-center gap-8 text-sm text-ink/60 sm:flex">
           <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
-          <Link href="/#families" className="transition-colors hover:text-ink">Families</Link>
+          <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
           <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
+          <Link href="/available" className="transition-colors hover:text-ink">Availability</Link>
           <Link
-            href="/research"
+            href="/catalog"
             className="rounded-full border border-ink/15 px-4 py-1.5 text-ink/90 transition-colors hover:border-accent hover:text-accent"
           >
-            Research agent
+            Browse catalog
           </Link>
         </nav>
       </Container>
@@ -62,8 +63,8 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-6 text-ink/45">
-            An independent, research-grade reference on the peptide hormone
-            system. Educational only — not medical advice, diagnosis, or
+            An editorially independent, research-grade reference on the peptide
+            hormone system. Educational only — not medical advice, diagnosis, or
             treatment.
           </p>
         </div>
@@ -82,9 +83,10 @@ export function SiteFooter() {
             <p className="font-medium text-ink/40">Explore</p>
             <ul className="mt-3 space-y-2 text-ink/65">
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
+              <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
-              <li><Link href="/research" className="hover:text-ink">Research agent</Link></li>
-              <li><Link href="/#approach" className="hover:text-ink">Approach</Link></li>
+              <li><Link href="/available" className="hover:text-ink">Availability</Link></li>
+              <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
             </ul>
           </div>
         </div>
