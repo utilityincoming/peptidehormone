@@ -158,6 +158,7 @@ export default function Article() {
                 reason albumin and IgG survive for around three weeks while a naked peptide
                 of the same journey lasts minutes.
               </P>
+              <SalvageLoop />
               <P>
                 So a fatty-acid chain is not really armor. It is a boarding pass. The
                 peptide doesn&rsquo;t out-engineer clearance; it attaches itself to a
@@ -369,6 +370,156 @@ function HalfLifeLadder() {
       <figcaption className="mt-2 text-center text-xs text-ink/40">
         Logarithmic scale — each step right is ten times longer. Every rung above the first
         is a way of borrowing something the body keeps.
+      </figcaption>
+    </figure>
+  );
+}
+
+/* ── The FcRn salvage loop: why albumin (and its peptide passenger) survives ── */
+function Albumin({ x, y }: { x: number; y: number }) {
+  return (
+    <g>
+      {/* fatty-acid tail linking peptide passenger to albumin */}
+      <path
+        d={`M${x + 15} ${y - 4} q6 -5 11 -2 q5 3 9 -1`}
+        fill="none" stroke="var(--accent-amber)" strokeOpacity="0.85" strokeWidth="1.4"
+      />
+      <circle
+        cx={x + 36} cy={y - 9} r="4.5"
+        fill="var(--accent-amber)" fillOpacity="0.35" stroke="var(--accent-amber)" strokeWidth="1.3"
+      />
+      {/* albumin body */}
+      <ellipse
+        cx={x} cy={y} rx="17" ry="12"
+        fill="var(--accent)" fillOpacity="0.18" stroke="var(--accent)" strokeOpacity="0.65" strokeWidth="1.3"
+      />
+      <text
+        x={x} y={y + 3} textAnchor="middle" fontSize="7.5" fontWeight="600"
+        fill="var(--accent)" fillOpacity="0.9" fontFamily="var(--font-geist-mono), monospace"
+      >
+        ALB
+      </text>
+    </g>
+  );
+}
+
+function FreePeptide({ x, y }: { x: number; y: number }) {
+  return (
+    <g>
+      <path d={`M${x - 8} ${y + 5} q4 -4 8 -1`} fill="none" stroke="var(--accent-amber)" strokeOpacity="0.7" strokeWidth="1.3" />
+      <circle cx={x} cy={y} r="4.5" fill="var(--accent-amber)" fillOpacity="0.3" stroke="var(--accent-amber)" strokeWidth="1.2" />
+    </g>
+  );
+}
+
+function SalvageLoop() {
+  const W = 620, H = 300;
+  // compartments
+  const A = { x: 16, w: 150 }, B = { x: 250, w: 150 }, C = { x: 474, w: 130 };
+  const RY = 150, RH = 118;
+  const cx = (c: { x: number; w: number }) => c.x + c.w / 2;
+
+  const Box = ({ c, title, sub }: { c: { x: number; w: number }; title: string; sub: string }) => (
+    <g>
+      <rect
+        x={c.x} y={RY} width={c.w} height={RH} rx="14"
+        fill="var(--color-ink)" fillOpacity="0.02" stroke="var(--color-ink)" strokeOpacity="0.12" strokeWidth="1"
+      />
+      <text x={cx(c)} y={RY + 22} textAnchor="middle" fontSize="10.5" fontWeight="700"
+        fill="var(--color-ink)" fillOpacity="0.7" fontFamily="var(--font-space-grotesk), sans-serif" letterSpacing="0.5">
+        {title}
+      </text>
+      <text x={cx(c)} y={RY + 36} textAnchor="middle" fontSize="8.5"
+        fill="var(--color-ink)" fillOpacity="0.4" fontFamily="var(--font-geist-mono), monospace">
+        {sub}
+      </text>
+    </g>
+  );
+
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="w-full"
+        role="img"
+        aria-label="The FcRn salvage loop. A cell samples plasma into an acidic endosome; the FcRn receptor grabs albumin and whatever is hitched to it and recycles it back to the bloodstream, where it survives about three weeks, while unbound peptides continue to the lysosome and are degraded."
+      >
+        <defs>
+          <marker id="sl-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--color-ink)" fillOpacity="0.4" />
+          </marker>
+          <marker id="sl-ah-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7.5" markerHeight="7.5" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--accent-teal)" />
+          </marker>
+        </defs>
+
+        {/* ── the recycle arc: FcRn returns albumin to the blood ── */}
+        <path
+          d={`M${cx(B)} ${RY} C ${cx(B)} 44, ${cx(A)} 44, ${cx(A)} ${RY}`}
+          fill="none" stroke="var(--accent-teal)" strokeOpacity="0.75" strokeWidth="1.8"
+          markerEnd="url(#sl-ah-teal)"
+        />
+        <text x={(cx(A) + cx(B)) / 2} y="48" textAnchor="middle" fontSize="10" fontWeight="600"
+          fill="var(--accent-teal)" fontFamily="var(--font-space-grotesk), sans-serif">
+          FcRn grabs albumin → recycled to blood
+        </text>
+        <text x={(cx(A) + cx(B)) / 2} y="63" textAnchor="middle" fontSize="8.5"
+          fill="var(--accent-teal)" fillOpacity="0.85" fontFamily="var(--font-geist-mono), monospace">
+          survives ~3 weeks
+        </text>
+
+        {/* ── compartments ── */}
+        <Box c={A} title="BLOODSTREAM" sub="pH 7.4" />
+        <Box c={B} title="ENDOSOME" sub="acidic · pH ~6" />
+        <Box c={C} title="LYSOSOME" sub="degradation" />
+
+        {/* A → B : the cell samples everything indiscriminately */}
+        <line x1={A.x + A.w} y1="215" x2={B.x - 4} y2="215" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.4" markerEnd="url(#sl-ah)" />
+        <text x={(A.x + A.w + B.x) / 2} y="206" textAnchor="middle" fontSize="8.5"
+          fill="var(--color-ink)" fillOpacity="0.45" fontFamily="var(--font-geist-mono), monospace">
+          pinocytosis
+        </text>
+
+        {/* B → C : whatever FcRn doesn't grab moves on to be destroyed */}
+        <line x1={B.x + B.w} y1="235" x2={C.x - 4} y2="235" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.4" markerEnd="url(#sl-ah)" />
+        <text x={(B.x + B.w + C.x) / 2} y="226" textAnchor="middle" fontSize="8.5"
+          fill="var(--color-ink)" fillOpacity="0.45" fontFamily="var(--font-geist-mono), monospace">
+          unbound
+        </text>
+
+        {/* ── contents: bloodstream ── */}
+        <Albumin x={A.x + 42} y={210} />
+        <FreePeptide x={A.x + 118} y={238} />
+
+        {/* ── contents: endosome — FcRn on the wall grabs albumin; free peptide drifts on ── */}
+        <g stroke="var(--accent-teal)" strokeWidth="1.7" strokeLinecap="round" fill="none">
+          <path d={`M${B.x + 14} 206 l-9 0`} />
+          <path d={`M${B.x + 14} 206 l10 -7`} />
+          <path d={`M${B.x + 14} 206 l10 7`} />
+        </g>
+        <Albumin x={B.x + 58} y={210} />
+        {/* short teal cue: the grabbed albumin heads up into the arc */}
+        <path d={`M${B.x + 58} 197 q6 -22 ${cx(B) - (B.x + 58)} -47`} fill="none" stroke="var(--accent-teal)" strokeOpacity="0.5" strokeWidth="1.4" strokeDasharray="2 3" />
+        <FreePeptide x={B.x + B.w - 22} y={238} />
+
+        {/* ── contents: lysosome — fragments ── */}
+        {[[-14, -6], [6, -10], [16, 4], [-6, 8], [0, -2], [-18, 6]].map(([dx, dy], i) => (
+          <line
+            key={i}
+            x1={cx(C) + dx} y1={222 + dy} x2={cx(C) + dx + 6} y2={222 + dy + 4}
+            stroke="var(--accent-amber)" strokeOpacity="0.55" strokeWidth="1.6" strokeLinecap="round"
+          />
+        ))}
+        <text x={cx(C)} y={RY + RH - 12} textAnchor="middle" fontSize="8.5"
+          fill="var(--color-ink)" fillOpacity="0.4" fontFamily="var(--font-geist-mono), monospace">
+          → amino acids
+        </text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        Everything in plasma gets sampled into the cell. FcRn rescues only what it
+        recognizes — albumin, antibodies, and whatever is hitched to them — and returns it
+        to the blood. A fatty-acid chain buys the peptide a seat on that rescue; a naked one
+        rides the other arrow.
       </figcaption>
     </figure>
   );
