@@ -6,6 +6,8 @@ import { methodologyLd } from "@/lib/jsonld";
 import { HORMONES } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
 import { REFERENCES } from "@/lib/references";
+import { TierBadge, EvidenceFloor } from "@/components/evidence";
+import { TIERS as TIER_META, TIER_ORDER, type Claim, type Tier } from "@/lib/evidence/types";
 
 const MOLECULES = HORMONES.length;
 const FAMILY_COUNT = FAMILIES.length;
@@ -140,6 +142,23 @@ export default function Methodology() {
                 molecule is.
               </P>
               <EvidenceLadder />
+            </Section>
+
+            <Section title="Tiering the claim, not the compound">
+              <P>
+                The ladder above grades a whole molecule at a glance — useful, but coarse.
+                A single entry mixes claims of very different weight: a molecular weight you
+                can compute exactly, a half-life measured only in rats, a dose that lives in
+                forum lore. Grading all three as one number would flatter the weakest of them.
+              </P>
+              <P>
+                So underneath the catalog badge sits a finer standard, shared with our sister
+                property: every individual claim carries its own tier, describing{" "}
+                <Em>where the number came from</Em> — its provenance — not how confident or
+                promising it is. A well-replicated rodent study is still <Em>preclinical</Em>.
+                Downgrading is free; upgrading requires a source.
+              </P>
+              <ClaimTierStandard />
             </Section>
 
             <Section title="How molecules are classified">
@@ -287,6 +306,92 @@ function EvidenceLadder() {
       </ol>
       <figcaption className="border-t border-ink/[0.06] px-5 py-3 text-center text-xs text-ink/40">
         The badge grades the weight of the evidence — not how promising the molecule is.
+      </figcaption>
+    </figure>
+  );
+}
+
+/* ── The claim-level standard: six provenance tiers, rendered with the live badges ── */
+const CLAIM_TIER_GLOSS: Record<Tier, string> = {
+  reference:
+    "Deterministic lookup or computation — molecular weight, sequence, a unit conversion. Not an empirical claim.",
+  clinical: "Peer-reviewed human data, or a registered trial with posted results.",
+  preclinical:
+    "Peer-reviewed non-human or in-vitro data — rodent PK, receptor-binding assays, cell culture.",
+  third_party: "An independent lab's measurement, methods disclosed, not peer reviewed.",
+  vendor_reported:
+    "A supplier's own claim about its own product — a COA or spec sheet, reproduced as reported.",
+  community:
+    "Aggregated user-reported signal — protocol conventions, subjective effects, dosing folklore.",
+};
+
+function demoClaim(field: string, tier: Tier, kind: Claim["estimate_kind"]): Claim {
+  return {
+    field,
+    value: "—",
+    tier,
+    freshness: "current",
+    estimate_kind: kind,
+    scope_note: "Illustrative record, for rendering the standard.",
+    provenance: {
+      source_type: "aggregate",
+      source_name: "illustrative",
+      retrieved_at: "2026-08-04T00:00:00Z",
+      schema_version: "0.1.0",
+    },
+  };
+}
+
+// A make-believe page mixing a computed identity fact, a rodent assay, and forum
+// lore — the floor lands on the weakest of them (community), exactly as intended.
+const DEMO_CLAIMS: Claim[] = [
+  demoClaim("molecular_weight", "reference", "identity"),
+  demoClaim("receptor_affinity", "preclinical", "pharmacodynamic"),
+  demoClaim("reported_dose_range", "community", "dose_convention"),
+];
+
+function ClaimTierStandard() {
+  return (
+    <figure className="space-y-6 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-6">
+      {/* Legend — the six provenance tiers, strongest first */}
+      <ul className="space-y-3">
+        {TIER_ORDER.map((tier) => (
+          <li key={tier} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 sm:flex-nowrap">
+            <span className="inline-flex w-16 shrink-0 items-baseline">
+              <TierBadge tier={tier} />
+            </span>
+            <span className="w-28 shrink-0 text-sm font-semibold text-ink">
+              {TIER_META[tier].label}
+            </span>
+            <span className="basis-full text-[13px] leading-6 text-ink/55 sm:basis-0 sm:flex-1">
+              {CLAIM_TIER_GLOSS[tier]}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Freshness (orthogonal) + the computed page-level rollup */}
+      <div className="flex flex-col gap-5 border-t border-ink/[0.06] pt-5 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-2">
+          <p className="text-[11px] uppercase tracking-wide text-ink/40">Freshness is orthogonal</p>
+          <div className="flex items-center gap-5">
+            <TierBadge tier="third_party" freshness="current" retrievedAt="2026-06-01T00:00:00Z" showDate />
+            <TierBadge tier="third_party" freshness="stale" retrievedAt="2024-01-01T00:00:00Z" showDate />
+          </div>
+          <p className="text-xs leading-5 text-ink/40">
+            Same tier — the stale assay desaturates and its date turns amber.
+          </p>
+        </div>
+        <div className="space-y-2">
+          <p className="text-[11px] uppercase tracking-wide text-ink/40">Page-level rollup</p>
+          <EvidenceFloor claims={DEMO_CLAIMS} />
+        </div>
+      </div>
+
+      <figcaption className="border-t border-ink/[0.06] pt-4 text-xs leading-5 text-ink/40">
+        Illustrative — a rendering of the standard, not claims about any one molecule. The
+        floor is computed from the per-claim tiers: a page is only as strong as its weakest
+        load-bearing claim. The catalog&rsquo;s single badge is that floor, surfaced up front.
       </figcaption>
     </figure>
   );
