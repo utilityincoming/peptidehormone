@@ -1121,8 +1121,7 @@ const BASE: Hormone[] = [
       "What is actually established about GHK-Cu in skin versus broader claims?",
       "How does copper binding relate to GHK's effects?",
     ],
-    mw: 340.4,
-    mwApprox: true,
+    mw: 400.9,
   },
   {
     slug: "bpc-157",

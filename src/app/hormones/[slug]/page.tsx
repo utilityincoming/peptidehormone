@@ -174,7 +174,9 @@ export default async function HormonePage({
               <section className="mt-12">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                   <h2 className="font-display text-2xl font-semibold">Key properties</h2>
-                  {claims.length > 0 && <EvidenceFloor claims={claims} />}
+                  {claims.length > 0 && (
+                    <EvidenceFloor claims={claims} loadBearing={(c) => c.estimate_kind !== "identity"} />
+                  )}
                 </div>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   {h.mw && (
