@@ -9,6 +9,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
 import { americanPeptideUrl } from "@/lib/network";
+import { claimsFor, claimField } from "@/lib/claims";
+import { TierBadge, EvidenceFloor } from "@/components/evidence";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -72,6 +74,12 @@ export default async function HormonePage({
   const references = referencesFor(h.slug);
   const faqs = hormoneFaq(h);
   const apUrl = americanPeptideUrl(h.slug);
+
+  // The Standard (lib/evidence), applied per-claim. Present only for molecules
+  // whose figures have been sourced; everything else renders as before.
+  const claims = claimsFor(h.slug);
+  const mwClaim = claimField(h.slug, "molecular_weight");
+  const halfLifeClaim = claimField(h.slug, "half_life");
 
   const identity = [
     { label: "Class", value: h.class },
@@ -164,7 +172,10 @@ export default async function HormonePage({
 
             {(h.mw || h.halfLife) && (
               <section className="mt-12">
-                <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                  {claims.length > 0 && <EvidenceFloor claims={claims} />}
+                </div>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   {h.mw && (
                     <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
@@ -175,14 +186,24 @@ export default async function HormonePage({
                         {h.mwApprox ? "≈ " : "~"}
                         {h.mw.toLocaleString()} <span className="text-base font-medium text-ink/50">Da</span>
                       </div>
+                      {mwClaim && (
+                        <div className="mt-2.5">
+                          <TierBadge claim={mwClaim} />
+                        </div>
+                      )}
                     </div>
                   )}
                   {h.halfLife && (
                     <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
                       <div className="text-xs font-medium uppercase tracking-wide text-ink/40">
-                        Half-life (native)
+                        Half-life{h.type == null || h.type === "endogenous" ? " (native)" : ""}
                       </div>
                       <div className="mt-1 font-display text-xl font-semibold text-ink">{h.halfLife}</div>
+                      {halfLifeClaim && (
+                        <div className="mt-2.5">
+                          <TierBadge claim={halfLifeClaim} />
+                        </div>
+                      )}
                       {h.halfLifeMin != null &&
                         (() => {
                           const { value, unit } = halfLifeForLink(h.halfLifeMin);
@@ -198,10 +219,26 @@ export default async function HormonePage({
                     </div>
                   )}
                 </div>
-                <p className="mt-3 text-xs leading-5 text-ink/40">
-                  Approximate values for the native hormone. Engineered analogs are
-                  often deliberately larger and far longer-acting.
-                </p>
+                {claims.length > 0 ? (
+                  <p className="mt-3 text-xs leading-5 text-ink/40">
+                    Each figure is tiered by where it comes from — its provenance, not its
+                    promise. A molecular weight is a registry lookup; a half-life is human
+                    pharmacokinetics from the cited literature.{" "}
+                    <Link
+                      href="/methodology"
+                      className="underline decoration-ink/20 underline-offset-2 hover:text-accent"
+                    >
+                      See the Standard
+                    </Link>
+                    .
+                  </p>
+                ) : (
+                  <p className="mt-3 text-xs leading-5 text-ink/40">
+                    {h.type == null || h.type === "endogenous"
+                      ? "Approximate values for the native hormone. Engineered analogs are often deliberately larger and far longer-acting."
+                      : "Approximate values as characterized for this molecule."}
+                  </p>
+                )}
               </section>
             )}
 
