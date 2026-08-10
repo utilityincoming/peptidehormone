@@ -4,7 +4,6 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { JsonLd } from "@/components/JsonLd";
 import { siteLd } from "@/lib/jsonld";
-import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
