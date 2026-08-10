@@ -19,3 +19,22 @@ export function provenanceFromReference(ref: Reference, retrievedAt: string): Pr
     schema_version: SCHEMA_VERSION,
   };
 }
+
+/**
+ * Provenance for a `reference`-tier identity claim pulled from the PubChem
+ * compound registry. `retrievedAt` is the date the record was fetched/verified
+ * — the honest anchor for a `reference` claim, since a CID carries no intrinsic
+ * date. Use for MW / formula / CID identity facts that a reader can check by
+ * opening the linked compound page.
+ */
+export function provenanceFromPubChem(cid: string, retrievedAt: string): Provenance {
+  return {
+    source_type: "registry",
+    source_name: "PubChem",
+    source_id: `CID ${cid}`,
+    source_url: `https://pubchem.ncbi.nlm.nih.gov/compound/${cid}`,
+    retrieved_at: retrievedAt,
+    method: "PubChem compound record — average molecular weight",
+    schema_version: SCHEMA_VERSION,
+  };
+}
