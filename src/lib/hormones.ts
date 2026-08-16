@@ -3,6 +3,8 @@
 // educational, not medical advice. Mechanisms summarize public scientific
 // literature and may simplify active research.
 
+import { COMPOUND_TIERS, type CompoundTier } from "@/lib/evidence/compound";
+
 export interface Hormone {
   slug: string;
   name: string;
@@ -33,19 +35,14 @@ export interface Hormone {
   halfLifeMin?: number;
   /** Endogenous hormone, engineered analog, or community "research peptide". */
   type?: "endogenous" | "analog" | "research";
-  /** Evidence tier — drives a filterable rigor badge. */
-  evidence?: "Established" | "Clinical" | "Investigational" | "Preclinical" | "Limited";
+  /** Evidence tier — drives a filterable rigor badge. See lib/evidence/compound. */
+  evidence?: CompoundTier;
   /** For analogs: slug of the endogenous hormone it is based on. */
   parent?: string;
 }
 
-export const EVIDENCE_TIERS = [
-  "Established",
-  "Clinical",
-  "Investigational",
-  "Preclinical",
-  "Limited",
-] as const;
+/** Re-exported for callers that already import the ladder from here. */
+export const EVIDENCE_TIERS = COMPOUND_TIERS;
 
 const BASE: Hormone[] = [
   // ── Incretins & metabolic ──────────────────────────────────────────────

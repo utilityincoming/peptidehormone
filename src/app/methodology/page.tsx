@@ -8,6 +8,7 @@ import { FAMILIES } from "@/lib/families";
 import { REFERENCES } from "@/lib/references";
 import { TierBadge, EvidenceFloor } from "@/components/evidence";
 import { TIERS as TIER_META, TIER_ORDER, type Claim, type Tier } from "@/lib/evidence/types";
+import { COMPOUND_TIERS, type CompoundTier } from "@/lib/evidence/compound";
 
 const MOLECULES = HORMONES.length;
 const FAMILY_COUNT = FAMILIES.length;
@@ -25,29 +26,24 @@ export const metadata: Metadata = {
   },
 };
 
-/* The evidence ladder, in order of rigor — mirrors EVIDENCE_TIERS in lib/hormones.ts. */
-const TIERS: { name: string; body: string }[] = [
-  {
-    name: "Established",
-    body: "Mechanism and core effects are settled across the peer-reviewed literature — typically endogenous hormones or approved drugs with decades of study behind them.",
-  },
-  {
-    name: "Clinical",
-    body: "Supported by human clinical trials, but still maturing, narrower in scope, or newer than the settled canon.",
-  },
-  {
-    name: "Investigational",
-    body: "Under active human investigation. The signal is promising, but the picture is not yet settled.",
-  },
-  {
-    name: "Preclinical",
-    body: "Evidence is largely animal or in-vitro. Human data is thin or absent — read the mechanism as a hypothesis, not a conclusion.",
-  },
-  {
-    name: "Limited",
-    body: "Sparse, older, or mostly community-reported evidence. These carry the loudest claims and the least data — treat them with the most caution.",
-  },
-];
+/* What each rung of the compound ladder means. Keyed by CompoundTier and
+   rendered in COMPOUND_TIERS order, so the page cannot drift out of sync with
+   the ladder: a renamed rung fails the build, and a new one fails to compile
+   until it is described here. */
+const TIER_BODY: Record<CompoundTier, string> = {
+  Established:
+    "Mechanism and core effects are settled across the peer-reviewed literature — typically endogenous hormones or approved drugs with decades of study behind them.",
+  Clinical:
+    "Supported by human clinical trials, but still maturing, narrower in scope, or newer than the settled canon.",
+  Investigational:
+    "Under active human investigation. The signal is promising, but the picture is not yet settled.",
+  Preclinical:
+    "Evidence is largely animal or in-vitro. Human data is thin or absent — read the mechanism as a hypothesis, not a conclusion.",
+  Limited:
+    "Sparse, older, or mostly community-reported evidence. These carry the loudest claims and the least data — treat them with the most caution.",
+};
+
+const TIERS = COMPOUND_TIERS.map((name) => ({ name, body: TIER_BODY[name] }));
 
 const TYPES: [string, string][] = [
   ["Endogenous", "a signal the body produces itself — the native biology the rest of the catalog is measured against"],

@@ -4,25 +4,11 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
+import { compoundTierClasses } from "@/components/evidence";
 
 const PRESENT_TIERS = EVIDENCE_TIERS.filter((t) =>
   HORMONES.some((h) => (h.evidence ?? "Established") === t),
 );
-
-function evidenceClass(tier: string): string {
-  switch (tier) {
-    case "Established":
-      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
-    case "Clinical":
-      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
-    case "Investigational":
-      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
-    case "Preclinical":
-      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
-    default:
-      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
-  }
-}
 
 const FAMILY_MAP = Object.fromEntries(
   FAMILIES.map((f) => [f.slug, { name: f.name, accent: f.accent }]),
@@ -145,7 +131,7 @@ export default function CatalogBrowser() {
                     {fam?.name}
                   </span>
                   <span
-                    className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${evidenceClass(h.evidence ?? "Established")}`}
+                    className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${compoundTierClasses(h.evidence ?? "Established")}`}
                   >
                     {h.evidence ?? "Established"}
                   </span>
