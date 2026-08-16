@@ -68,6 +68,7 @@ export function GET() {
     `- [Analog comparison](${SITE}/tools/compare): compare the molecules in a lineage side by side.`,
     "",
     "## About",
+    `- [Why peptides](${SITE}/why-peptides): why this reference exists — the body's own signaling language, the engineering now rewriting it, and the two truths every page is held to (bullish on the science, sceptical on the page).`,
     `- [Methodology & standards](${SITE}/methodology): how references are sourced from PubMed, how evidence is graded, how molecules are classified, and where the reference stops.`,
     "",
   );

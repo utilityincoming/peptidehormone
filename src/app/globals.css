@@ -92,10 +92,25 @@ body {
   animation: heroDash 30s linear infinite;
 }
 
+/* ── Signal ladder (/why-peptides): bars grow from the axis on load ── */
+@keyframes signalGrow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.signal-bar {
+  transform-origin: left center;
+  animation: signalGrow 1.1s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .hero-float,
   .hero-node,
-  .hero-bond {
+  .hero-bond,
+  .signal-bar {
     animation: none;
   }
   html {
