@@ -249,15 +249,20 @@ export function insightLd(
 }
 
 // ── Methodology / About: AboutPage + breadcrumb ──
-export function methodologyLd(): Node {
-  const url = `${SITE_URL}/methodology`;
+/** AboutPage + breadcrumb — pages that describe the reference itself. */
+export function aboutPageLd(opts: {
+  path: string;
+  name: string;
+  crumb: string;
+  description: string;
+}): Node {
+  const url = `${SITE_URL}${opts.path}`;
   const page: Node = {
     "@type": "AboutPage",
     "@id": url,
     url,
-    name: "Methodology & standards",
-    description:
-      "How Peptide Hormone sources its references, grades evidence, classifies molecules, and bounds its scope — the standard behind an independent, research-grade reference.",
+    name: opts.name,
+    description: opts.description,
     inLanguage: "en",
     isPartOf: SITE_REF,
     publisher: ORG_REF,
@@ -267,11 +272,21 @@ export function methodologyLd(): Node {
   const crumbs = breadcrumbLd(
     [
       { name: "Home", path: "/" },
-      { name: "Methodology", path: "/methodology" },
+      { name: opts.crumb, path: opts.path },
     ],
     `${url}#breadcrumb`,
   );
   return graph([page, crumbs]);
+}
+
+export function methodologyLd(): Node {
+  return aboutPageLd({
+    path: "/methodology",
+    name: "Methodology & standards",
+    crumb: "Methodology",
+    description:
+      "How Peptide Hormone sources its references, grades evidence, classifies molecules, and bounds its scope — the standard behind an independent, research-grade reference.",
+  });
 }
 
 // ── Interactive tool: WebApplication + breadcrumb ──

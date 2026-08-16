@@ -133,12 +133,22 @@ export default function Home() {
           <Container className="grid gap-12 md:grid-cols-[0.9fr_1.1fr]">
             <div>
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                A reference you can trust the edges of
+                Bullish on the science.
+                <span className="text-accent"> Sceptical on the page.</span>
               </h2>
               <p className="mt-4 max-w-md text-lg leading-8 text-ink/60">
-                The peptide space is loud with marketing and thin on rigor. This
-                is the opposite: built to be checked.
+                A signaling language this old and this suddenly writable has
+                earned real enthusiasm. But enthusiasm only counts if it survives
+                the citations — so this is a reference you can trust the edges of,
+                built to be checked.
               </p>
+              <Link
+                href="/why-peptides"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+              >
+                Why this exists
+                <span aria-hidden>→</span>
+              </Link>
             </div>
             <div>
               <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
