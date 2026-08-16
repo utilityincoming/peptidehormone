@@ -5,15 +5,68 @@ import { INSIGHTS } from "@/lib/insights";
 
 const BASE = "https://peptidehormone.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/catalog", "/insights", "/research", "/tools", "/tools/half-life", "/tools/compare", "/tools/cycle-planner", "/methodology"];
-  const familyPages = FAMILIES.map((f) => `/families/${f.slug}`);
-  const hormonePages = HORMONES.map((h) => `/hormones/${h.slug}`);
-  const insightPages = INSIGHTS.map((i) => `/insights/${i.slug}`);
+const MONTHS = [
+  "january", "february", "march", "april", "may", "june",
+  "july", "august", "september", "october", "november", "december",
+];
 
-  return [...staticPages, ...familyPages, ...hormonePages, ...insightPages].map((path) => ({
-    url: `${BASE}${path}`,
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
-  }));
+/**
+ * Parse an insight's human "reviewed" label ("August 2026") into a Date.
+ * Only insights carry a real review date, so they are the only entries that
+ * claim a lastModified — the rest stay silent rather than assert a build-time
+ * date that would tell crawlers the whole site changed on every deploy.
+ */
+function reviewedDate(label: string): Date | undefined {
+  const [month, year] = label.trim().toLowerCase().split(/\s+/);
+  const m = MONTHS.indexOf(month);
+  const y = Number(year);
+  if (m < 0 || !Number.isFinite(y)) return undefined;
+  return new Date(Date.UTC(y, m, 1));
+}
+
+type Entry = MetadataRoute.Sitemap[number];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  // Hubs a crawler should reach first, then the reference bodies.
+  const hubs = [
+    "",
+    "/catalog",
+    "/insights",
+    "/available",
+    "/tools",
+    "/methodology",
+    "/research",
+  ];
+  const toolPages = ["/tools/half-life", "/tools/compare", "/tools/cycle-planner"];
+
+  const entries: Entry[] = [
+    ...hubs.map((path) => ({
+      url: `${BASE}${path}`,
+      changeFrequency: "weekly" as const,
+      priority: path === "" ? 1 : 0.9,
+    })),
+    ...FAMILIES.map((f) => ({
+      url: `${BASE}/families/${f.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...INSIGHTS.map((i) => ({
+      url: `${BASE}/insights/${i.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      lastModified: reviewedDate(i.reviewed),
+    })),
+    ...HORMONES.map((h) => ({
+      url: `${BASE}/hormones/${h.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+    ...toolPages.map((path) => ({
+      url: `${BASE}${path}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return entries;
 }

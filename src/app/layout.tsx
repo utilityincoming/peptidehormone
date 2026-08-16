@@ -49,6 +49,14 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        {/* Keyboard escape hatch past the sticky header and nav. Visually hidden
+            until focused, then pinned over the header. */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:font-medium focus:text-surface-deep focus:outline-none focus:ring-2 focus:ring-ink/40"
+        >
+          Skip to content
+        </a>
         <JsonLd data={siteLd()} />
         {children}
         <Analytics />

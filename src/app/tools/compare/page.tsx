@@ -31,7 +31,7 @@ export default async function ComparePage({
         })}
       />
       <SiteHeader />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <Container className="py-12 md:py-16">
           <nav className="flex items-center gap-2 text-sm text-ink/45">
             <Link href="/tools" className="hover:text-ink">Tools</Link>
