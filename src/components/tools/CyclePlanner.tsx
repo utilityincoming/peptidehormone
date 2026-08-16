@@ -24,6 +24,8 @@ import {
   type Peptide,
   type Evidence,
 } from "@/lib/cycle-planner";
+import { compoundTierClasses } from "@/components/evidence";
+import type { CompoundTier } from "@/lib/evidence/compound";
 
 const ACCENT = "#E8B65A";
 
@@ -42,17 +44,20 @@ function clampWeeks(n: number): number {
   return Math.min(WEEKS_MAX, Math.max(WEEKS_MIN, Math.round(n)));
 }
 
-function evidenceClass(e: string): string {
-  switch (e) {
-    case "clinical":
-      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
-    case "emerging":
-      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
-    case "preclinical":
-      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
-    default:
-      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
-  }
+// The planner grades its own reference peptides on a four-step ladder that
+// predates the catalog's five-step one (lib/evidence/compound). The labels stay
+// as-is — the planner has no "Established" band and its wording is its own —
+// but the COLOUR resolves through the shared ladder so a reader meets one
+// palette site-wide instead of two that disagree.
+const PLANNER_TIER: Record<Evidence, CompoundTier> = {
+  clinical: "Clinical", // studied in human trials
+  emerging: "Investigational", // early human / strong preclinical
+  preclinical: "Preclinical", // animal / in-vitro only
+  anecdotal: "Limited", // community-reported, little formal data
+};
+
+function evidenceClass(e: Evidence): string {
+  return compoundTierClasses(PLANNER_TIER[e]);
 }
 
 export default function CyclePlanner({

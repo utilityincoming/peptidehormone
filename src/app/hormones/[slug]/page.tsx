@@ -9,24 +9,10 @@ import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
 import { americanPeptideUrl } from "@/lib/network";
+import { compoundTierClasses } from "@/components/evidence";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
-}
-
-function evidenceClass(tier: string): string {
-  switch (tier) {
-    case "Established":
-      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
-    case "Clinical":
-      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
-    case "Investigational":
-      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
-    case "Preclinical":
-      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
-    default:
-      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
-  }
 }
 
 export async function generateMetadata({
@@ -117,7 +103,7 @@ export default async function HormonePage({
               <span className="rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/65">
                 {typeLabel}
               </span>
-              <span className={`rounded-full border px-3 py-1 font-medium ${evidenceClass(evidence)}`}>
+              <span className={`rounded-full border px-3 py-1 font-medium ${compoundTierClasses(evidence)}`}>
                 {evidence}
               </span>
               {parent && (

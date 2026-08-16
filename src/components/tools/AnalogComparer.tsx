@@ -4,25 +4,11 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { HORMONES, getHormone, halfLifeForLink, type Hormone } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
+import { compoundTierClasses } from "@/components/evidence";
 
 const FAMILY_MAP = Object.fromEntries(
   FAMILIES.map((f) => [f.slug, { name: f.name, accent: f.accent }]),
 );
-
-function evidenceClass(tier: string): string {
-  switch (tier) {
-    case "Established":
-      return "border-accent-teal/40 bg-accent-teal/10 text-accent-teal";
-    case "Clinical":
-      return "border-accent-blue/40 bg-accent-blue/10 text-accent-blue";
-    case "Investigational":
-      return "border-accent-amber/40 bg-accent-amber/10 text-accent-amber";
-    case "Preclinical":
-      return "border-accent-purple/40 bg-accent-purple/10 text-accent-purple";
-    default:
-      return "border-accent-rose/40 bg-accent-rose/10 text-accent-rose";
-  }
-}
 
 function typeLabel(t?: Hormone["type"]): string {
   return t === "analog" ? "Analog" : t === "research" ? "Research" : "Endogenous";
@@ -86,7 +72,7 @@ export default function AnalogComparer({ initialSlugs }: { initialSlugs?: string
     {
       label: "Evidence",
       render: (h) => (
-        <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${evidenceClass(h.evidence ?? "Established")}`}>
+        <span className={`rounded-full border px-2.5 py-0.5 text-xs font-medium ${compoundTierClasses(h.evidence ?? "Established")}`}>
           {h.evidence ?? "Established"}
         </span>
       ),
