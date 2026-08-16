@@ -29,7 +29,7 @@ export default function CatalogPage() {
         })}
       />
       <SiteHeader />
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
           <div
             className="pointer-events-none absolute inset-0 opacity-40"

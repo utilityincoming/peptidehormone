@@ -61,7 +61,7 @@ export default async function FamilyHub({
       <JsonLd data={familyLd(family, famHormones)} />
       <SiteHeader />
 
-      <main className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Hub hero ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
           <div
