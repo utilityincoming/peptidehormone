@@ -129,6 +129,11 @@ export default async function HormonePage({
         <Container className="grid gap-16 py-14 md:grid-cols-[1.6fr_1fr] md:py-18">
           {/* ── Main column ── */}
           <div className="min-w-0">
+            {h.thread && (
+              <p className="mb-12 border-l-2 border-accent/50 pl-5 text-lg leading-8 text-ink/60">
+                {h.thread}
+              </p>
+            )}
             <section>
               <h2 className="font-display text-2xl font-semibold">Identity</h2>
               <dl className="mt-5 overflow-hidden rounded-2xl border border-ink/10">

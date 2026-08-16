@@ -39,6 +39,13 @@ export interface Hormone {
   evidence?: CompoundTier;
   /** For analogs: slug of the endogenous hormone it is based on. */
   parent?: string;
+  /**
+   * One-line refrain tying this molecule back to the ideas on /why-peptides —
+   * signalling as language, brevity as design, the engineering now rewriting
+   * it. Written against the summary so it complements rather than restates.
+   * Copy lives together in THREADS at the foot of this file.
+   */
+  thread?: string;
 }
 
 /** Re-exported for callers that already import the ladder from here. */
@@ -1732,7 +1739,187 @@ const PROPS: Record<string, Pick<Hormone, "mw" | "mwApprox" | "halfLife" | "half
   hcg: { mw: 36700, mwApprox: true, halfLife: "~24–36 h", halfLifeMin: 1800 },
 };
 
-export const HORMONES: Hormone[] = BASE.map((h) => ({ ...h, ...(PROPS[h.slug] ?? {}) }));
+// Per-monograph refrains. One line each, threading the molecule back to the
+// ideas on /why-peptides: signalling as a language, brevity as design, and the
+// engineering now rewriting it. Written against each summary so the two
+// complement rather than repeat, and kept together here so the voice can be
+// read and tuned as a body of copy rather than hunted through 1,700 lines.
+//
+// RULE for the thinly-evidenced entries — the research peptides graded
+// Preclinical or Limited: the refrain is reverent about the BIOLOGY and honest
+// about the evidence. It never sells the compound. Where a molecule's story is
+// mostly marketing, the line says so.
+const THREADS: Record<string, string> = {
+  // ── Incretins & metabolic ──
+  "glp-1":
+    "Two minutes of life, and the whole modern metabolic class built to prolong them — the clearest case in biology of brevity being the design, not the flaw.",
+  gip:
+    "The body rarely says anything important only once. GIP is the second voice in the incretin conversation, and the one still being argued over.",
+  glucagon:
+    "Insulin's opposite number. Metabolism reads better as an argument the body keeps having with itself than as a switch.",
+  amylin:
+    "Released in the same breath as insulin and overlooked for a century — proof that even a well-mapped system still holds unread sentences.",
+  insulin:
+    "The molecule that proved a peptide could be a medicine at all. Everything else in this catalog is written in the language it opened.",
+  semaglutide:
+    "The same sentence the gut speaks, rewritten to last a week instead of two minutes — and the clearest demonstration of what peptide engineering can now do.",
+  tirzepatide:
+    "One chain speaking to two receptors at once: the first strong evidence that combining signals beats shouting a single one louder.",
+  liraglutide:
+    "The daily precursor that established the trick — do not armour the peptide, tether it to something the body has already decided to keep.",
+  exenatide:
+    "A lizard's venom turned out to hold a durable copy of a human sentence. The class began as a loan from another species.",
+  retatrutide:
+    "Three receptors from one chain. The open question on this frontier is no longer whether signals can be combined, but how many.",
+  pramlintide:
+    "What disqualifies a hormone as a drug is often a single residue. Correct it, and a molecule the body already makes becomes prescribable.",
+  cagrilintide:
+    "The amylin axis rebuilt on a weekly clock, on the wager that the incretins were never the only lever worth pulling.",
+  amycretin:
+    "Two hormones written into one chain rather than mixed in one syringe — the difference between a combination and a molecule.",
+  "maridebart-cafraglutide":
+    "Turning the GIP receptor off also works, which makes this the most instructive puzzle on the metabolic frontier.",
+
+  // ── Growth & repair ──
+  "growth-hormone":
+    "Delivered in pulses, not a stream — the timing carries as much information as the molecule, which is what makes it so hard to copy.",
+  "igf-1":
+    "The messenger that does the growing while growth hormone takes the name — most signals in the body are relayed before they act.",
+  ghrh:
+    "One rung up the axis — the signal that asks for a signal, and the point at which the pituitary reveals itself as a relay rather than a source.",
+  ghrelin:
+    "The only well-established hormone that makes you hungry rather than full — the counterweight that keeps appetite a balance.",
+  somatostatin:
+    "The system's brake. A growth axis with no off-switch would not be a physiology; it would be a tumour.",
+  octreotide:
+    "A natural off-switch too fleeting to prescribe, redrawn until it lasts long enough for a clinic to use.",
+  lanreotide:
+    "The braking signal again, this time formulated to release over weeks: in this field, delivery is as much of the invention as the sequence.",
+  pasireotide:
+    "Deliberately less selective than its predecessors, on the logic that a broader grip on the receptor family answers what a narrow one cannot.",
+  tesamorelin:
+    "Proof the axis can be addressed at its top: ask the pituitary properly and the body still does the arithmetic itself.",
+  "cjc-1295":
+    "Built to stretch a pulse — an interesting question about whether an axis tuned by its timing can be lengthened without being flattened.",
+  sermorelin:
+    "The shortest fragment of GHRH that still carries the whole instruction, and a clean demonstration that most of a peptide is scaffolding.",
+  ipamorelin:
+    "Selectivity as the design goal: the ghrelin receptor spoken to precisely, to see what the hunger signal does when isolated from hunger.",
+  "aod-9604":
+    "A fragment marketed far beyond its evidence. The underlying question — whether one region of GH carries its fat-handling alone — remains genuinely open, and largely unanswered in humans.",
+
+  // ── Melanocortins ──
+  "alpha-msh":
+    "One short peptide the body uses to colour, to calm, and to say enough — the melanocortin system's oldest sentence, spoken wherever a receptor is listening.",
+  acth:
+    "Proof of the family's reach: the same POMC lineage that pigments skin also carries the body's alarm to the adrenal.",
+  "pt-141":
+    "Followed past appetite into desire — the melanocortin family surfacing somewhere nobody thought to look, and approved for it.",
+  kpv:
+    "Three residues from the tail of α-MSH, still carrying the anti-inflammatory half of the message. Brevity taken to its limit.",
+  semax:
+    "A piece of a peptide can come to mean something its parent never did, and act on a system the parent never touched.",
+
+  // ── Neuropeptides ──
+  oxytocin:
+    "Nine residues running parturition, milk, and attachment. The disproportion between the size of the molecule and the size of the job is the whole field in miniature.",
+  vasopressin:
+    "Two residues apart from oxytocin and responsible for something else entirely — the clearest lesson in how little it takes to change a meaning.",
+  crh:
+    "The opening word of the stress response — an alarm routed through three relays, each one a chance to modulate it.",
+  trh:
+    "A tripeptide at the top of the thyroid axis — the shortest sentence in the catalog, and among the most consequential.",
+  selank:
+    "An endogenous fragment given a longer life by synthesis. The neuropeptide biology is real; the human evidence is thin, and mostly from one research tradition.",
+  dsip:
+    "A peptide keeps whatever name its first experiment gave it, long after the finding itself stops holding up.",
+
+  // ── Gut & appetite ──
+  pyy:
+    "Secreted in proportion to how much you ate, not merely that you ate — the gut reports quantity, and the brain reads it as fullness.",
+  cck:
+    "One signal coordinating gallbladder, pancreas, and appetite at once. Economy, not specialisation, is the organising principle here.",
+  secretin:
+    "The first molecule ever called a hormone. Every entry in this catalog descends from what it proved in 1902.",
+  motilin:
+    "The housekeeping signal between meals — evidence that the gut has work to do precisely when it has nothing to digest.",
+
+  // ── Reproductive & gonadal ──
+  gnrh:
+    "Its message is carried in the rhythm rather than the molecule: pulse it and the axis wakes, hold it steady and the axis shuts down.",
+  lh:
+    "A surge rather than a level — one of the few endocrine signals whose meaning is written entirely in its shape over time.",
+  fsh:
+    "The slow counterpart to LH's surge, and half of why the reproductive axis needs two gonadotropins rather than one.",
+  kisspeptin:
+    "The gate above the gate. Finding it rewrote where the reproductive axis was thought to begin.",
+  hcg:
+    "An embryonic signal that borrows the LH receptor to keep a pregnancy going — biology reusing a channel rather than building one.",
+  leuprolide:
+    "Turning a pulsed signal into a constant one shuts the axis off. The clinical trick is the physiology read exactly backwards.",
+  goserelin:
+    "The same inversion in depot form: continuous stimulation as a means of suppression, delivered on a schedule a body can keep.",
+  cetrorelix:
+    "Blocking the receptor outright rather than exhausting it — the same endpoint reached without the flare that precedes it.",
+
+  // ── Adipokines ──
+  leptin:
+    "Fat tissue turns out to be an endocrine organ reporting on itself. That discovery ended the idea of adipose as inert storage.",
+  adiponectin:
+    "A feedback loop pointing the wrong way: the signal that would help most is the one that thins out exactly when it is needed.",
+
+  // ── Calcium & bone ──
+  pth:
+    "Minute-to-minute custody of blood calcium, because the margin between a working nerve and a failing one is narrower than most physiology allows.",
+  calcitonin:
+    "The opposing hand on the same dial. Calcium is held steady by two signals disagreeing, which is how the body holds most things steady.",
+  pthrp:
+    "A developmental signal that speaks through PTH's receptor — and, when a tumour reactivates it, the same words in the wrong context.",
+
+  // ── Cardiovascular ──
+  anp:
+    "The heart as an endocrine gland: stretched by volume, it releases a hormone to reduce the volume stretching it.",
+  bnp:
+    "A signal so faithful to cardiac strain that medicine measures it instead of asking the heart directly.",
+  cnp:
+    "The natriuretic peptide that mostly stayed out of the bloodstream, working locally in vessel wall and growth plate instead.",
+
+  // ── Muscle & TGF-β ──
+  myostatin:
+    "The body writes brakes as carefully as accelerators. Muscle has a ceiling because something is actively holding it there.",
+  "activin-a":
+    "Shares myostatin's receptors and much else besides — which is precisely why blocking this pathway is harder than it first appears.",
+  follistatin:
+    "The body's own antagonist to its own brake. Before anyone thought to inhibit myostatin, the physiology had already done it.",
+
+  // ── Repair ──
+  "thymosin-beta-4":
+    "An actin-binding protein that turns out to matter in healing — a reminder that structural molecules can carry signals too.",
+  "ghk-cu":
+    "Copper is not usually thought of as a signal; a three-residue carrier makes it one. The marketing has run a long way ahead of the literature.",
+  "bpc-157":
+    "Drawn from a gastric protein, with a striking preclinical record and almost no human data — the widest gap between interest and evidence in this catalog.",
+  "tb-500":
+    "A synthetic fragment sold under the name of the protein it came from. The parent biology is genuine; the fragment's own human evidence is not yet there.",
+  epitalon:
+    "Four residues carrying a very large claim. The longevity literature here is thin, largely from one group, and has not been independently reproduced.",
+  "ss-31":
+    "Aimed at a membrane lipid rather than a receptor — a different way to address a cell, and now an approved one.",
+  "ara-290":
+    "Erythropoietin's tissue-protective half, separated from its blood-building half. Splitting one molecule's two jobs is a strategy the field is only starting to use.",
+
+  // ── Mitochondrial ──
+  "mots-c":
+    "Encoded by the mitochondrion rather than the nucleus. The cell's other genome turns out to be writing signals of its own.",
+  humanin:
+    "The peptide that started the search: written in mitochondrial DNA, and the reason anyone thought to look for more.",
+};
+
+export const HORMONES: Hormone[] = BASE.map((h) => ({
+  ...h,
+  ...(PROPS[h.slug] ?? {}),
+  ...(THREADS[h.slug] ? { thread: THREADS[h.slug] } : {}),
+}));
 
 // Convert a half-life in minutes to a value + unit for the calculator deep-link.
 export function halfLifeForLink(min: number): { value: number; unit: "min" | "h" | "d" } {
