@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "when-the-drug-works-too-well",
+    title: "When the drug works too well",
+    dek: "The people who struggle most to come off a GLP-1 are usually the ones it helped most - and that is not weakness, it is physiology doing exactly what it evolved to do. The body defends the weight it has lost, the drug holds that defense at bay, and stopping lets it back in. What the withdrawal trials actually show, why 'chronic' is the honest word for obesity, and how to think about time off: maintenance, tapering, and an off-ramp with a return ticket.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "August 2026",
+  },
+  {
     slug: "born-switched-off",
     title: "Born switched off",
     dek: "Myostatin, the body's brake on muscle, is manufactured pre-disabled: folded shut around its own off-switch and released into the blood inert. Arming it takes two molecular cuts by two different enzymes. That safety-catch design isn't a quirk - it's the exact vulnerability the most selective muscle drugs are built to exploit.",
