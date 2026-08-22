@@ -7,7 +7,16 @@ import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
-import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
+import {
+  isStocked,
+  stockedLink,
+  carriedByAminoClub,
+  ABSIM_HOME,
+  ABSIM_CODE,
+  ABSIM_DISCOUNT,
+  AMINOCLUB_HOME,
+  AFFILIATE_REL,
+} from "@/lib/affiliate";
 import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
@@ -331,6 +340,20 @@ export default async function HormonePage({
                     How we verify
                   </Link>
                 </p>
+                {carriedByAminoClub(h.slug) && (
+                  <p className="mt-3 border-t border-ink/[0.06] pt-3 text-[13px] leading-5 text-ink/55">
+                    Also available through{" "}
+                    <a
+                      href={AMINOCLUB_HOME}
+                      target="_blank"
+                      rel={AFFILIATE_REL}
+                      className="text-accent hover:underline"
+                    >
+                      AminoClub
+                    </a>
+                    , a second network source — research-use-only.
+                  </p>
+                )}
               </div>
             )}
 

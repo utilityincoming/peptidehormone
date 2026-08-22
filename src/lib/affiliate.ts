@@ -1,13 +1,18 @@
-// The site's one commercial relationship, in one place.
+// The site's commercial relationships, in one place.
 //
 // PeptideHormone hosts no storefront. It is part of the American Peptide network,
-// which holds an affiliate relationship with ABSIM Peptides — disclosed in full on
-// /methodology. Placement is deliberately data-gated: the sourcing note only
+// which holds affiliate relationships with two research-peptide suppliers — ABSIM
+// Peptides and AminoClub — disclosed in full on /methodology. ABSIM is the primary,
+// per-product source: placement is deliberately data-gated so a sourcing note only
 // renders on molecules ABSIM actually stocks (STOCKED below), never as a blanket
-// pitch. That keeps the recommendation an output of the standard, not a banner.
+// pitch. AminoClub is a second network source, linked at the storefront level
+// behind a research-use-only gate; we offer it as an additional option rather than
+// folding it into the verified /available index, because we don't assert a per-lot
+// COA we can't see. That keeps every recommendation an output of the standard, not
+// a banner.
 //
-// Attribution flows to the shared network ref (?ref=americanpeptide) on purpose —
-// the sites work together for a common cause and don't hide the connection.
+// Attribution flows to the shared network code/ref on purpose — the sites work
+// together for a common cause and don't hide the connection.
 
 const REF = "?ref=americanpeptide";
 
@@ -59,6 +64,39 @@ export function isStocked(slug: string): boolean {
 /** Every slug ABSIM currently stocks — the spine of the /available index. */
 export function stockedSlugs(): string[] {
   return Object.keys(STOCKED);
+}
+
+// ── AminoClub ───────────────────────────────────────────────────────────────
+// The network's second research-peptide source. Unlike ABSIM it is linked at the
+// storefront level (no per-product deep-links) behind a research-use-only gate, so
+// we present it as an additional option — never inside the verified /available
+// index — and describe it only by what's visible from the outside: a trusted,
+// research-use-only peptide supplier. The shared network code rides in the link for
+// attribution; we deliberately don't advertise it as a discount. The value to a
+// reader is the vetted lead itself — a quality source that makes these available
+// research-use-only — not a coupon.
+
+/** Network storefront link for AminoClub, carrying the shared code + UTM. */
+export const AMINOCLUB_HOME =
+  "https://aminoclub.com?utm_source=affiliate_marketing&code=AMERICANPEPTIDE";
+
+/** Shared network code, carried in AMINOCLUB_HOME for attribution — intentionally
+ *  not surfaced to readers as an offer (kept for parity + future use). */
+export const AMINOCLUB_CODE = "AMERICANPEPTIDE";
+
+// Molecules AminoClub is known to carry, intersected with this catalog. Used only
+// to offer a second source on monographs we already list — a hint, not a stock
+// guarantee (their shelf, behind the gate, is authoritative). Keep in sync.
+const AMINOCLUB_CARRIES: ReadonlySet<string> = new Set([
+  "bpc-157",
+  "tb-500",
+  "ghk-cu",
+  "dsip",
+]);
+
+/** True when AminoClub is known to carry a molecule — a second-source hint only. */
+export function carriedByAminoClub(slug: string): boolean {
+  return AMINOCLUB_CARRIES.has(slug);
 }
 
 /**

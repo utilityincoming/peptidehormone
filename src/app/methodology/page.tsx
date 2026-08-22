@@ -209,10 +209,11 @@ export default function Methodology() {
               <P>
                 PeptideHormone hosts no storefront and sells no peptides — but it isn&rsquo;t
                 pretending to be a lone island, either. It is part of the{" "}
-                <Em>American Peptide</Em> network, and that network holds an affiliate
-                relationship with ABSIM Peptides: buy through a sourcing link here and we may
-                earn a commission, at no extra cost to you. We&rsquo;re open about the
-                connection because hiding it would be the actual betrayal.
+                <Em>American Peptide</Em> network, and that network holds affiliate
+                relationships with two research-peptide suppliers — ABSIM Peptides and
+                AminoClub: buy through a sourcing link here and we may earn a commission, at
+                no extra cost to you. We&rsquo;re open about the connection because hiding it
+                would be the actual betrayal.
               </P>
               <P>
                 What stays walled off is the science. No evidence tier, no molecule&rsquo;s
