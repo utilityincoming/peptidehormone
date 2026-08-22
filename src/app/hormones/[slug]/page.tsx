@@ -9,7 +9,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
 import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
-import { compoundTierClasses } from "@/components/evidence";
+import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
+import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -59,6 +60,11 @@ export default async function HormonePage({
   const faqs = hormoneFaq(h);
   const apUrl = americanPeptideUrl(h.slug);
   const mcUrl = melanocortinUrl(h.slug);
+
+  // Per-claim provenance tiers for the quantitative properties, and the computed
+  // page-level floor - the Standard, surfaced where the claims actually sit.
+  const claimByField = Object.fromEntries(monographClaims(h).map((c) => [c.field, c]));
+  const evidenceFloor = monographFloor(h);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -156,7 +162,10 @@ export default async function HormonePage({
 
             {(h.mw || h.halfLife) && (
               <section className="mt-12">
-                <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h2 className="font-display text-2xl font-semibold">Key properties</h2>
+                  {evidenceFloor && <EvidenceFloor floor={evidenceFloor} />}
+                </div>
                 <div className="mt-5 grid gap-3 sm:grid-cols-2">
                   {h.mw && (
                     <div className="rounded-2xl border border-ink/10 bg-panel/30 p-5">
@@ -167,6 +176,14 @@ export default async function HormonePage({
                         {h.mwApprox ? "≈ " : "~"}
                         {h.mw.toLocaleString()} <span className="text-base font-medium text-ink/50">Da</span>
                       </div>
+                      {claimByField["molecular_weight"] && (
+                        <div className="mt-2.5">
+                          <TierBadge
+                            tier={claimByField["molecular_weight"].tier}
+                            scopeNote={claimByField["molecular_weight"].scopeNote}
+                          />
+                        </div>
+                      )}
                     </div>
                   )}
                   {h.halfLife && (
@@ -175,6 +192,14 @@ export default async function HormonePage({
                         Half-life (native)
                       </div>
                       <div className="mt-1 font-display text-xl font-semibold text-ink">{h.halfLife}</div>
+                      {claimByField["half_life"] && (
+                        <div className="mt-2.5">
+                          <TierBadge
+                            tier={claimByField["half_life"].tier}
+                            scopeNote={claimByField["half_life"].scopeNote}
+                          />
+                        </div>
+                      )}
                       {h.halfLifeMin != null &&
                         (() => {
                           const { value, unit } = halfLifeForLink(h.halfLifeMin);
@@ -191,8 +216,16 @@ export default async function HormonePage({
                   )}
                 </div>
                 <p className="mt-3 text-xs leading-5 text-ink/40">
-                  Approximate values for the native hormone. Engineered analogs are
-                  often deliberately larger and far longer-acting.
+                  Approximate values for the native hormone; engineered analogs are
+                  often deliberately larger and far longer-acting. Each figure carries
+                  its own provenance tier, and the floor is the weakest of them - the{" "}
+                  <Link
+                    href="/methodology"
+                    className="text-ink/60 underline decoration-ink/20 underline-offset-2 hover:text-accent"
+                  >
+                    Standard
+                  </Link>
+                  .
                 </p>
               </section>
             )}
