@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ABSIM_CODE, ABSIM_DISCOUNT, ABSIM_HOME, AFFILIATE_REL, stockedLink } from "@/lib/affiliate";
+import {
+  ABSIM_CODE,
+  ABSIM_DISCOUNT,
+  ABSIM_HOME,
+  AFFILIATE_REL,
+  AMINOCLUB_HOME,
+  stockedLink,
+} from "@/lib/affiliate";
 
 // Two intensities of the same disclosed recommendation. Both are text, never a
 // button; both carry the affiliate disclosure inline and link to /methodology.
@@ -37,8 +44,15 @@ export function SourcingNote({ slug, molecule }: { slug?: string; molecule?: str
         get {ABSIM_DISCOUNT} off with code{" "}
         <span className="font-mono text-ink/90">{ABSIM_CODE}</span>.
       </p>
+      <p className="mt-2.5 text-[15px] leading-7 text-ink/70">
+        A second source in the network,{" "}
+        <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className={AFF_LINK}>
+          AminoClub
+        </a>
+        , makes several of the same peptides available for research use only.
+      </p>
       <p className="mt-2.5 text-xs leading-5 text-ink/40">
-        Affiliate link across our network — a purchase supports this reference at no cost to
+        Affiliate links across our network — a purchase supports this reference at no cost to
         you, and buys not one word of the catalog. See{" "}
         <Link
           href="/methodology"
@@ -64,8 +78,12 @@ export function SourcingLine() {
         ABSIM
       </a>{" "}
       — a COA on every SKU, {ABSIM_DISCOUNT} off with{" "}
-      <span className="font-mono text-ink/75">{ABSIM_CODE}</span>.{" "}
-      <span className="text-ink/40">Affiliate link · </span>
+      <span className="font-mono text-ink/75">{ABSIM_CODE}</span> — and{" "}
+      <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className={AFF_LINK}>
+        AminoClub
+      </a>
+      , a second research-use-only source.{" "}
+      <span className="text-ink/40">Affiliate links · </span>
       <Link
         href="/methodology"
         className="underline decoration-ink/20 underline-offset-2 hover:text-ink/70"

@@ -12,6 +12,7 @@ import {
   ABSIM_HOME,
   ABSIM_CODE,
   ABSIM_DISCOUNT,
+  AMINOCLUB_HOME,
   AFFILIATE_REL,
 } from "@/lib/affiliate";
 
@@ -167,9 +168,19 @@ export default function AvailablePage() {
                 reference at no additional cost to you, and buys not one word of the catalog.
                 Stock is checked against ABSIM&rsquo;s live listing; the seller&rsquo;s page is
                 authoritative. {ABSIM_DISCOUNT} off with code{" "}
-                <span className="font-mono text-ink/60">{ABSIM_CODE}</span>. Not medical advice or
-                an endorsement to obtain or use any compound — regulatory status varies by
-                jurisdiction. See{" "}
+                <span className="font-mono text-ink/60">{ABSIM_CODE}</span>. A second network
+                source,{" "}
+                <a
+                  href={AMINOCLUB_HOME}
+                  target="_blank"
+                  rel={AFFILIATE_REL}
+                  className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60"
+                >
+                  AminoClub
+                </a>
+                , makes several of these available research-use-only; only ABSIM&rsquo;s stock is
+                verified against the standard for this index. Not medical advice or an endorsement
+                to obtain or use any compound — regulatory status varies by jurisdiction. See{" "}
                 <Link href="/methodology" className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60">
                   how we pick
                 </Link>
