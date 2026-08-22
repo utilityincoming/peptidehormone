@@ -27,6 +27,8 @@ export interface Family {
   notes: string[];
   /** Seed questions to hand the research agent. */
   questions: string[];
+  /** Optional cross-site link to a sister property in our network. */
+  seeAlso?: { href: string; label: string; note: string };
 }
 
 export const FAMILIES: Family[] = [
@@ -122,6 +124,11 @@ export const FAMILIES: Family[] = [
       "What is the mechanism of MC4R agonism in genetic obesity?",
       "How is POMC processed differently across tissues?",
     ],
+    seeAlso: {
+      href: "https://melanocortin.com/system",
+      label: "melanocortin.com",
+      note: "Our sister reference on the melanocortin system itself: the five receptors (MC1R–MC5R), the POMC peptides, and the drugs built on them, in depth.",
+    },
   },
   {
     slug: "neuropeptides",
