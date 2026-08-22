@@ -284,6 +284,8 @@ const BASE: Hormone[] = [
     ],
     halfLife: "~6 days",
     halfLifeMin: 8640,
+    mw: 4900,
+    mwApprox: true,
   },
   {
     slug: "pramlintide",
@@ -307,6 +309,9 @@ const BASE: Hormone[] = [
       "How do pramlintide's proline substitutions prevent the aggregation seen with native human amylin?",
       "What does pramlintide add when paired with mealtime insulin?",
     ],
+    mw: 3949.4,
+    halfLife: "~48 min",
+    halfLifeMin: 48,
   },
   {
     slug: "cagrilintide",
@@ -330,6 +335,9 @@ const BASE: Hormone[] = [
       "Why is amylin agonism combined with GLP-1 agonism in CagriSema?",
       "What does the phase 2 evidence show for cagrilintide in weight management?",
     ],
+    mw: 4408.9,
+    halfLife: "~7 days (159-195 h)",
+    halfLifeMin: 10080,
   },
   {
     slug: "amycretin",
@@ -353,6 +361,9 @@ const BASE: Hormone[] = [
       "What is the rationale for combining GLP-1 and amylin agonism in a single molecule?",
       "How does amycretin's early clinical evidence look so far?",
     ],
+    mw: 7900,
+    mwApprox: true,
+    halfLife: "~days (weekly SC dosing)",
   },
   {
     slug: "maridebart-cafraglutide",
@@ -377,6 +388,10 @@ const BASE: Hormone[] = [
       "How can GIP antagonism (maridebart) and GIP agonism (tirzepatide) both aid weight loss?",
       "What does the antibody-conjugate design contribute to maridebart's dosing interval?",
     ],
+    mw: 150000,
+    mwApprox: true,
+    halfLife: "~21 days (monthly dosing)",
+    halfLifeMin: 30240,
   },
 
   // ── Growth & repair ────────────────────────────────────────────────────
@@ -852,6 +867,9 @@ const BASE: Hormone[] = [
       "Why does adiponectin fall as fat mass rises?",
       "How does adiponectin improve insulin sensitivity?",
     ],
+    mw: 30000,
+    mwApprox: true,
+    halfLife: "Hours (poorly characterized in humans)",
   },
 
   // ── Calcium & bone ──────────────────────────────────────────────────────
@@ -928,6 +946,9 @@ const BASE: Hormone[] = [
       "How can PTHrP and PTH share a receptor yet do different jobs?",
       "Why does PTHrP cause hypercalcemia in some cancers?",
     ],
+    mw: 17000,
+    mwApprox: true,
+    halfLife: "~minutes in plasma (isoform-dependent)",
   },
 
   // ── Cardiovascular & natriuretic ────────────────────────────────────────
@@ -1033,6 +1054,9 @@ const BASE: Hormone[] = [
       "How does myostatin restrain muscle growth at the molecular level?",
       "What happens when myostatin signaling is lost?",
     ],
+    mw: 25000,
+    mwApprox: true,
+    halfLife: "Long (circulates as a latent complex)",
   },
   {
     slug: "activin-a",
@@ -1055,6 +1079,9 @@ const BASE: Hormone[] = [
       "How does activin A overlap with myostatin signaling?",
       "Why does blocking activin type II receptors affect multiple ligands?",
     ],
+    mw: 26000,
+    mwApprox: true,
+    halfLife: "Short; set by follistatin binding",
   },
   {
     slug: "follistatin",
@@ -1077,6 +1104,9 @@ const BASE: Hormone[] = [
       "How does follistatin increase muscle without a receptor of its own?",
       "Why is follistatin studied for muscle-wasting conditions?",
     ],
+    mw: 35000,
+    mwApprox: true,
+    halfLife: "~minutes (rapid clearance; form-dependent)",
   },
 
   // ── Repair & regenerative ───────────────────────────────────────────────
@@ -1103,6 +1133,7 @@ const BASE: Hormone[] = [
       "How does thymosin β4 differ from the marketed TB-500?",
     ],
     mw: 4963.4,
+    halfLife: "Poorly characterized in humans",
   },
   {
     slug: "ghk-cu",
@@ -1127,6 +1158,7 @@ const BASE: Hormone[] = [
     ],
     mw: 340.4,
     mwApprox: true,
+    halfLife: "Minutes in plasma (poorly characterized)",
   },
   {
     slug: "bpc-157",
@@ -1150,6 +1182,7 @@ const BASE: Hormone[] = [
       "Why is BPC-157's mechanism considered poorly defined?",
     ],
     mw: 1419.5,
+    halfLife: "Poorly characterized in humans",
   },
   {
     slug: "tb-500",
@@ -1173,6 +1206,7 @@ const BASE: Hormone[] = [
       "How does TB-500 relate to endogenous thymosin β4?",
       "What is genuinely known about TB-500 in humans?",
     ],
+    halfLife: "Poorly characterized in humans",
   },
 
   // ── GnRH analogs ────────────────────────────────────────────────────────
@@ -1490,6 +1524,8 @@ const BASE: Hormone[] = [
       "What makes mitochondrial-derived peptides like MOTS-c unusual?",
       "How does MOTS-c relate to metabolism and exercise?",
     ],
+    mw: 2174.6,
+    halfLife: "Poorly characterized (short in circulation)",
   },
   {
     slug: "humanin",
@@ -1512,6 +1548,8 @@ const BASE: Hormone[] = [
       "What is humanin's cytoprotective role?",
       "How do humanin and MOTS-c compare as mitochondrial-derived peptides?",
     ],
+    mw: 2687.1,
+    halfLife: "~minutes (native; analogs longer)",
   },
 
   // ── Additional research peptides ────────────────────────────────────────
@@ -1537,6 +1575,7 @@ const BASE: Hormone[] = [
       "Why is the longevity evidence for epitalon considered limited?",
     ],
     mw: 390.4,
+    halfLife: "Minutes (rapidly cleared)",
   },
   {
     slug: "selank",
@@ -1561,6 +1600,7 @@ const BASE: Hormone[] = [
     ],
     mw: 751.9,
     mwApprox: true,
+    halfLife: "Minutes in plasma (CNS effects outlast)",
   },
   {
     slug: "ss-31",
@@ -1585,6 +1625,8 @@ const BASE: Hormone[] = [
       "What did the elamipretide trials establish, and where did they disappoint?",
     ],
     mw: 639.8,
+    halfLife: "~4 h (subcutaneous)",
+    halfLifeMin: 240,
   },
   {
     slug: "aod-9604",
@@ -1609,6 +1651,7 @@ const BASE: Hormone[] = [
     ],
     mw: 1815,
     mwApprox: true,
+    halfLife: "Minutes in plasma (effects outlast clearance)",
   },
   {
     slug: "kpv",
@@ -1632,6 +1675,7 @@ const BASE: Hormone[] = [
       "What role does the PepT1 transporter play in KPV's gut activity?",
     ],
     mw: 342.4,
+    halfLife: "Minutes (poorly characterized)",
   },
   {
     slug: "dsip",
@@ -1656,6 +1700,8 @@ const BASE: Hormone[] = [
       "What would it take to establish a receptor and pathway for DSIP?",
     ],
     mw: 848.8,
+    halfLife: "~7 min (rapidly degraded)",
+    halfLifeMin: 7,
   },
   {
     slug: "semax",
@@ -1679,6 +1725,7 @@ const BASE: Hormone[] = [
       "How robust is the evidence that Semax raises BDNF?",
     ],
     mw: 813.9,
+    halfLife: "Minutes in plasma (CNS effects outlast)",
   },
   {
     slug: "ara-290",
@@ -1704,6 +1751,8 @@ const BASE: Hormone[] = [
     ],
     mw: 1257,
     mwApprox: true,
+    halfLife: "~2 min (effects outlast clearance)",
+    halfLifeMin: 2,
   },
 ];
 
@@ -1915,11 +1964,20 @@ const THREADS: Record<string, string> = {
     "The peptide that started the search: written in mitochondrial DNA, and the reason anyone thought to look for more.",
 };
 
-export const HORMONES: Hormone[] = BASE.map((h) => ({
-  ...h,
-  ...(PROPS[h.slug] ?? {}),
-  ...(THREADS[h.slug] ? { thread: THREADS[h.slug] } : {}),
-}));
+export const HORMONES: Hormone[] = BASE.map((h) => {
+  // The native hormones are exactly the keys of PROPS: by construction each is
+  // endogenous, and its core biology is Established. Default those two axes here
+  // so the catalog filter can tag them — while any value set inline on the base
+  // record still wins (…h is spread after the defaults).
+  const nativeDefaults: Partial<Hormone> =
+    h.slug in PROPS ? { type: "endogenous", evidence: "Established" } : {};
+  return {
+    ...nativeDefaults,
+    ...h,
+    ...(PROPS[h.slug] ?? {}),
+    ...(THREADS[h.slug] ? { thread: THREADS[h.slug] } : {}),
+  };
+});
 
 // Convert a half-life in minutes to a value + unit for the calculator deep-link.
 export function halfLifeForLink(min: number): { value: number; unit: "min" | "h" | "d" } {
