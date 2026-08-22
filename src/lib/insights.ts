@@ -15,6 +15,22 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "born-switched-off",
+    title: "Born switched off",
+    dek: "Myostatin, the body's brake on muscle, is manufactured pre-disabled: folded shut around its own off-switch and released into the blood inert. Arming it takes two molecular cuts by two different enzymes. That safety-catch design isn't a quirk - it's the exact vulnerability the most selective muscle drugs are built to exploit.",
+    family: "muscle-tgfb",
+    readingMinutes: 8,
+    reviewed: "August 2026",
+  },
+  {
+    slug: "one-receptor-a-whole-family",
+    title: "One receptor, a whole family",
+    dek: "Myostatin isn't the only brake on muscle. Activin A and GDF-11 sign in through the very same receptor - and GDF-11 is so nearly identical to myostatin that a famous \"rejuvenation\" claim couldn't reliably tell the two apart. Why the muscle brake has a built-in backup, and why that redundancy, not any single molecule, decides how you drug it.",
+    family: "muscle-tgfb",
+    readingMinutes: 8,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-complexity-ladder",
     title: "Where trust starts to mean something",
     dek: "Short synthetic peptides are cheap to make and, more to the point, cheap to verify — reversed-phase HPLC and a mass spec settle what they are in an afternoon, and a competitive market keeps them honest. Trust and availability only become live variables higher up the complexity ladder, at the folded biologics — antibodies, ligand traps, the myostatin inhibitors — where correctness lives in the fold, not the sequence, and only a bioassay can confirm it. Why complexity, not fraud, governs what you can actually source.",

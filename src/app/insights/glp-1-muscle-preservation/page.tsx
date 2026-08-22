@@ -208,10 +208,11 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/born-switched-off" label="Born switched off - how the brake is armed" />
+                <CrossLink href="/insights/one-receptor-a-whole-family" label="One receptor, a whole family - the shared dock" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin reference (the brake itself)" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Why you can't just buy a myostatin inhibitor" />
                 <CrossLink href="/families/muscle-tgfb" label="The muscle & TGF-β family" />
-                <CrossLink href="/insights/glp-1-signaling" label="How GLP-1 actually works" />
                 <CrossLink href="/research?q=What%20does%20the%20clinical%20trial%20evidence%20show%20for%20myostatin%20inhibitors%20preserving%20lean%20mass%20during%20GLP-1%20weight%20loss%3F" label="Ask the research agent for current trials" />
               </ul>
             </div>
