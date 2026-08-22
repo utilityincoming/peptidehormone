@@ -8,7 +8,7 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { isStocked, stockedLink, ABSIM_HOME, ABSIM_CODE, ABSIM_DISCOUNT, AFFILIATE_REL } from "@/lib/affiliate";
-import { americanPeptideUrl } from "@/lib/network";
+import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
 import { compoundTierClasses } from "@/components/evidence";
 
 export function generateStaticParams() {
@@ -58,6 +58,7 @@ export default async function HormonePage({
   const references = referencesFor(h.slug);
   const faqs = hormoneFaq(h);
   const apUrl = americanPeptideUrl(h.slug);
+  const mcUrl = melanocortinUrl(h.slug);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -353,6 +354,24 @@ export default async function HormonePage({
                   className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
                 >
                   View on American Peptide <span aria-hidden>→</span>
+                </a>
+              </div>
+            )}
+
+            {mcUrl && (
+              <div className="rounded-2xl border border-ink/10 p-6">
+                <h3 className="font-display text-base font-semibold">The receptor science</h3>
+                <p className="mt-2 text-sm leading-6 text-ink/55">
+                  {h.abbr ?? h.name} set in the melanocortin system: which
+                  receptors it hits and why, at our sister site melanocortin.com.
+                </p>
+                <a
+                  href={mcUrl}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+                >
+                  View on melanocortin.com <span aria-hidden>→</span>
                 </a>
               </div>
             )}

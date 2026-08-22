@@ -141,6 +141,21 @@ export default async function FamilyHub({
               </ul>
             </section>
 
+            {family.seeAlso && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Across the network</h2>
+                <p className="mt-3 text-[15px] leading-7 text-ink/70">{family.seeAlso.note}</p>
+                <a
+                  href={family.seeAlso.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+                >
+                  Visit {family.seeAlso.label} <span aria-hidden>→</span>
+                </a>
+              </section>
+            )}
+
             {analogs.length > 0 && (
               <section className="mt-12">
                 <h2 className="font-display text-2xl font-semibold">Analogs &amp; therapeutics</h2>
