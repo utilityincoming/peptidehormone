@@ -127,7 +127,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Amylin is released alongside insulin and complements it: it slows gastric emptying, suppresses inappropriate glucagon secretion, and promotes satiety. Together with insulin it shapes the post-meal glucose excursion.",
     facts: [
-      "Amylin and insulin are co-packaged and co-secreted — a built-in partnership.",
+      "Amylin and insulin are co-packaged and co-secreted, a built-in partnership.",
       "Amylin-pathway agonism is studied as an adjunct to incretin therapy for added satiety.",
       "Native human amylin aggregates readily, which shaped the design of stabilized analogs.",
     ],
@@ -148,7 +148,7 @@ const BASE: Hormone[] = [
       "Secreted in response to rising glucose, insulin binds its receptor tyrosine kinase to drive glucose uptake in muscle and fat (via GLUT4) and storage as glycogen and lipid. It is the dominant anabolic signal of the fed state.",
     facts: [
       "Insulin's receptor is a tyrosine kinase, unlike the GPCRs used by most peptide hormones here.",
-      "The incretins act upstream — they amplify glucose-stimulated insulin secretion rather than replacing insulin.",
+      "The incretins act upstream: they amplify glucose-stimulated insulin secretion rather than replacing insulin.",
       "It was the first peptide hormone sequenced and the first produced by recombinant DNA.",
     ],
     questions: [
@@ -172,9 +172,9 @@ const BASE: Hormone[] = [
     mechanism:
       "Semaglutide is a GLP-1 analog modified to resist DPP-4 and to bind albumin via a C18 fatty-diacid chain, stretching its half-life from GLP-1's ~2 minutes to roughly a week. At the receptor it is the same molecule as native GLP-1 — driving glucose-dependent insulin secretion, slowed gastric emptying, and central satiety. The engineering is entirely about durability and delivery, not a new mechanism.",
     facts: [
-      "Two amino-acid substitutions plus fatty-acid acylation give albumin binding and DPP-4 resistance — the basis of weekly dosing.",
+      "Two amino-acid substitutions plus fatty-acid acylation give albumin binding and DPP-4 resistance, the basis of weekly dosing.",
       "Approved for type 2 diabetes and chronic weight management; studied in cardiovascular and renal outcomes.",
-      "Mechanistically identical at the receptor to native GLP-1 — see the GLP-1 reference for the underlying cascade.",
+      "Mechanistically identical at the receptor to native GLP-1. See the GLP-1 reference for the underlying cascade.",
     ],
     questions: [
       "How does semaglutide's acylation extend its half-life versus native GLP-1?",
@@ -198,7 +198,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Tirzepatide activates both the GIP and GLP-1 receptors from a single GIP-based, acylated peptide, with a half-life of about five days. Engaging two incretin pathways at once is studied for metabolic effects beyond either alone — the rationale behind incretin co-agonism.",
     facts: [
-      "The first approved 'twincretin' — one molecule with dual GIP/GLP-1 agonism.",
+      "The first approved 'twincretin': one molecule with dual GIP/GLP-1 agonism.",
       "Built on a GIP backbone with fatty-acid acylation for once-weekly dosing.",
       "Its dual mechanism is why it is studied head-to-head against single GLP-1 agonists.",
     ],
@@ -225,7 +225,7 @@ const BASE: Hormone[] = [
       "Liraglutide is a GLP-1 analog with a C16 fatty-acid acylation that promotes albumin binding and self-association, giving a ~13-hour half-life suited to once-daily dosing. It signals through the same GLP-1R cascade as native GLP-1.",
     facts: [
       "About 97% sequence identity to native GLP-1, with one substitution and a fatty-acid chain.",
-      "Once-daily — an intermediate step between native GLP-1 and the weekly analogs.",
+      "Once-daily, an intermediate step between native GLP-1 and the weekly analogs.",
       "Approved for type 2 diabetes and weight management.",
     ],
     questions: [
@@ -274,7 +274,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Retatrutide engages three receptors — GIP, GLP-1, and glucagon — from a single acylated peptide. Adding glucagon-receptor agonism recruits an energy-expenditure arm alongside the incretin effects. It is in clinical trials and not approved.",
     facts: [
-      "A 'triple agonist' — incretin co-agonism extended to a third receptor.",
+      "A 'triple agonist': incretin co-agonism extended to a third receptor.",
       "Glucagon-receptor agonism adds an energy-expenditure arm to the GLP-1/GIP effects.",
       "Investigational — under clinical study, not approved.",
     ],
@@ -301,9 +301,9 @@ const BASE: Hormone[] = [
     mechanism:
       "Pramlintide is a synthetic amylin analog carrying three proline substitutions — borrowed from non-aggregating rodent amylin — that prevent the fibril formation which makes native human amylin undruggable. At amylin receptors it reproduces amylin's biology: slowing gastric emptying, suppressing post-meal glucagon, and promoting satiety. It is approved as an adjunct to mealtime insulin, the two hormones' natural partnership rebuilt as a drug.",
     facts: [
-      "The proline substitutions solve amylin's self-aggregation problem — the core engineering that made a stable amylin drug possible.",
+      "The proline substitutions solve amylin's self-aggregation problem, the core engineering that made a stable amylin drug possible.",
       "Approved as an adjunct to mealtime insulin in type 1 and type 2 diabetes.",
-      "Complements insulin rather than replacing it — amylin and insulin are co-secreted natively.",
+      "Complements insulin rather than replacing it: amylin and insulin are co-secreted natively.",
     ],
     questions: [
       "How do pramlintide's proline substitutions prevent the aggregation seen with native human amylin?",
@@ -353,7 +353,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Amycretin is a single molecule that agonizes both the GLP-1 receptor and amylin receptors — two appetite-suppressing pathways combined in one agent rather than as a two-drug combination. Developed in both subcutaneous and oral forms, it is an early-stage attempt to capture the additive GLP-1-plus-amylin effect from a single molecule. It is investigational.",
     facts: [
-      "Combines GLP-1 and amylin agonism in one molecule — the single-agent counterpart to the CagriSema combination.",
+      "Combines GLP-1 and amylin agonism in one molecule, the single-agent counterpart to the CagriSema combination.",
       "Under investigation in both injectable and oral formulations.",
       "Investigational and early-stage — first-in-human and phase 1b/2a data only.",
     ],
@@ -373,14 +373,14 @@ const BASE: Hormone[] = [
     type: "analog",
     evidence: "Investigational",
     parent: "glp-1",
-    summary: "GLP-1 agonism paired with GIP receptor antagonism — the opposite GIP direction to tirzepatide.",
+    summary: "GLP-1 agonism paired with GIP receptor antagonism, the opposite GIP direction to tirzepatide.",
     class: "GLP-1 agonist–GIP-antagonist peptide–antibody conjugate",
     source: "Synthetic; anti-GIP-receptor antibody conjugated to GLP-1 peptides",
     receptor: "GLP-1 receptor (agonist) + GIP receptor (antagonist)",
     mechanism:
       "Maridebart cafraglutide pairs GLP-1 receptor agonism with GIP receptor antagonism on a single peptide–antibody conjugate — an anti-GIP-receptor antibody carrying GLP-1 peptides. It blocks the very GIP receptor that tirzepatide activates, yet also drives weight loss, and its antibody scaffold gives a long half-life that enables once-monthly dosing. It is investigational.",
     facts: [
-      "Turns the GIP receptor off while turning GLP-1 on — the opposite GIP direction to tirzepatide, and both approaches reduce weight.",
+      "Turns the GIP receptor off while turning GLP-1 on, the opposite GIP direction to tirzepatide. Both approaches reduce weight.",
       "Built as a peptide–antibody conjugate, whose long half-life supports once-monthly dosing.",
       "Investigational — phase 2 reported, larger trials ongoing.",
     ],
@@ -407,7 +407,7 @@ const BASE: Hormone[] = [
     mechanism:
       "GH is released in pulses set by the balance of hypothalamic GHRH (stimulatory) and somatostatin (inhibitory). Much of its anabolic effect is indirect, mediated by IGF-1 produced in the liver, while it also exerts direct metabolic actions such as lipolysis.",
     facts: [
-      "The axis is pulsatile and feedback-regulated — timing matters as much as amount.",
+      "The axis is pulsatile and feedback-regulated: timing matters as much as amount.",
       "Releasing-peptide approaches (GHRH analogs, secretagogues) work with the body's own pulse; exogenous GH overrides it.",
       "IGF-1 provides negative feedback that limits unbounded GH output.",
     ],
@@ -471,7 +471,7 @@ const BASE: Hormone[] = [
     facts: [
       "Ghrelin is the endogenous ligand for the receptor that synthetic GH secretagogues (GHRPs) target.",
       "It is one of the few clearly orexigenic (hunger-promoting) circulating hormones.",
-      "Its acyl modification is required for GHS-R1a activity — an unusual structural requirement.",
+      "Its acyl modification is required for GHS-R1a activity, an unusual structural requirement.",
     ],
     questions: [
       "How does ghrelin signaling differ from the GHRH pathway?",
@@ -483,14 +483,14 @@ const BASE: Hormone[] = [
     name: "Somatostatin",
     abbr: "SST",
     family: "growth-repair",
-    summary: "The brake on the growth-hormone axis — and much else.",
+    summary: "The brake on the growth-hormone axis, and much else.",
     class: "Cyclic peptide (14 and 28 aa forms)",
     source: "Hypothalamus, pancreatic delta cells, GI tract",
     receptor: "Somatostatin receptors SSTR1–SSTR5",
     mechanism:
       "Somatostatin inhibits GH (and TSH) release from the pituitary and broadly suppresses endocrine and exocrine secretion across the GI tract and pancreas. It is the inhibitory counterweight that, opposing GHRH, sculpts GH pulses.",
     facts: [
-      "Any account of GH timing has to include somatostatin — it sets the troughs between pulses.",
+      "Any account of GH timing has to include somatostatin: it sets the troughs between pulses.",
       "Its broad inhibitory reach extends well beyond GH, into gut and pancreatic secretion.",
       "Stable somatostatin analogs are long-established tools in endocrinology.",
     ],
@@ -619,7 +619,7 @@ const BASE: Hormone[] = [
     mechanism:
       "TRH stimulates the anterior pituitary to release TSH (and prolactin), setting the tone of the thyroid axis. At just three residues it is among the smallest peptide hormones, showing that potency does not require length.",
     facts: [
-      "TRH is only three amino acids — minimal size, full hormonal activity.",
+      "TRH is only three amino acids: minimal size, full hormonal activity.",
       "It drives both TSH and prolactin secretion.",
       "It sits atop the hypothalamic–pituitary–thyroid axis.",
     ],
@@ -644,7 +644,7 @@ const BASE: Hormone[] = [
     facts: [
       "PYY and GLP-1 are co-secreted, directly linking this family to the incretin axis.",
       "The truncated PYY3-36 form is the physiologically relevant circulating species.",
-      "Satiety is multi-signal — PYY is one contributor, not the single 'fullness hormone'.",
+      "Satiety is multi-signal. PYY is one contributor, not the single 'fullness hormone'.",
     ],
     questions: [
       "How does PYY3-36 reduce appetite via the Y2 receptor?",
@@ -684,7 +684,7 @@ const BASE: Hormone[] = [
       "When acidic chyme enters the duodenum, S-cells release secretin, which stimulates the pancreas and bile ducts to secrete bicarbonate-rich fluid, neutralizing acid to protect the mucosa and create the pH range digestive enzymes need.",
     facts: [
       "Secretin was the first hormone ever discovered, giving the field its name.",
-      "Its trigger is duodenal acidity — a direct chemical feedback loop.",
+      "Its trigger is duodenal acidity, a direct chemical feedback loop.",
       "It is the prototype of the secretin/glucagon peptide superfamily.",
     ],
     questions: [
@@ -704,7 +704,7 @@ const BASE: Hormone[] = [
       "Motilin is released cyclically in the fasting state and drives the migrating motor complex — the rhythmic 'housekeeping' contractions that sweep residual contents through the gut between meals. Its role is timing, distinct from the post-meal satiety peptides.",
     facts: [
       "Motilin governs the fasting (interdigestive) motility pattern, not the fed state.",
-      "Certain macrolide antibiotics act as motilin-receptor agonists — an off-target pharmacology.",
+      "Certain macrolide antibiotics act as motilin-receptor agonists, an off-target pharmacology.",
       "Its between-meal role distinguishes it from the post-meal gut peptides.",
     ],
     questions: [
@@ -727,7 +727,7 @@ const BASE: Hormone[] = [
       "GnRH is released in pulses that drive the anterior pituitary to secrete LH and FSH. Pulse frequency encodes the signal: pulsatile delivery stimulates the axis, while continuous exposure desensitizes the receptor and paradoxically suppresses it.",
     facts: [
       "Pulse frequency, not just amount, is the information GnRH carries.",
-      "Continuous GnRH-agonist exposure suppresses the axis via receptor desensitization — the basis of agonist 'down-regulation'.",
+      "Continuous GnRH-agonist exposure suppresses the axis via receptor desensitization, the basis of agonist 'down-regulation'.",
       "It sits at the top of the hypothalamic–pituitary–gonadal (HPG) axis.",
     ],
     questions: [
@@ -788,7 +788,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Kisspeptin neurons act upstream of GnRH, providing the excitatory drive that gates GnRH pulse generation. Their discovery reframed how the reproductive axis is switched on at puberty and tuned across the cycle.",
     facts: [
-      "Loss-of-function in KISS1R causes failure to enter puberty — the finding that revealed the pathway.",
+      "Loss-of-function in KISS1R causes failure to enter puberty, the finding that revealed the pathway.",
       "Kisspeptin is now seen as a key gatekeeper sitting above GnRH.",
       "It integrates metabolic and steroid-feedback signals into the reproductive axis.",
     ],
@@ -809,7 +809,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Produced by the placenta in early pregnancy, hCG acts on the same LHCGR receptor as LH to maintain the corpus luteum and its progesterone output until the placenta takes over. Its presence is the basis of pregnancy testing.",
     facts: [
-      "hCG and LH share the LHCGR receptor — functionally hCG provides an LH-like signal.",
+      "hCG and LH share the LHCGR receptor: functionally hCG provides an LH-like signal.",
       "Its longer half-life than LH suits the sustained support the corpus luteum needs.",
       "Detection of the hCG beta subunit underlies pregnancy tests.",
     ],
@@ -852,7 +852,7 @@ const BASE: Hormone[] = [
     family: "adipokines",
     type: "endogenous",
     evidence: "Established",
-    summary: "An adipokine that improves insulin sensitivity — and falls as fat rises.",
+    summary: "An adipokine that improves insulin sensitivity, yet falls as fat rises.",
     class: "Adipokine (circulates as trimers, hexamers, and HMW multimers)",
     source: "Adipocytes",
     receptor: "Adiponectin receptors AdipoR1 and AdipoR2",
@@ -888,7 +888,7 @@ const BASE: Hormone[] = [
       "Released within minutes of a fall in blood calcium, PTH acts on bone and kidney to raise it — mobilizing calcium from bone, increasing renal reabsorption, and stimulating activation of vitamin D. Its effect on bone is paradoxically dual: continuous exposure is catabolic, but intermittent exposure is anabolic.",
     facts: [
       "PTH is the body's fastest defense against low blood calcium.",
-      "Intermittent PTH builds bone; continuous PTH breaks it down — a striking pulsatility effect.",
+      "Intermittent PTH builds bone; continuous PTH breaks it down. A striking pulsatility effect.",
       "It raises calcium partly by activating vitamin D in the kidney.",
     ],
     questions: [
@@ -912,7 +912,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Calcitonin lowers blood calcium chiefly by inhibiting osteoclast-mediated bone resorption, opposing PTH. Its physiological role in adult humans is comparatively modest, but the pathway is pharmacologically useful.",
     facts: [
-      "Calcitonin opposes PTH — lowering rather than raising calcium.",
+      "Calcitonin opposes PTH, lowering rather than raising calcium.",
       "It works mainly by restraining osteoclasts (the bone-resorbing cells).",
       "Its everyday role in human calcium balance is smaller than PTH's.",
     ],
@@ -931,14 +931,14 @@ const BASE: Hormone[] = [
     family: "calcium-bone",
     type: "endogenous",
     evidence: "Established",
-    summary: "A PTH-receptor ligand central to development — and to cancer hypercalcemia.",
+    summary: "A PTH-receptor ligand central both to development and to cancer hypercalcemia.",
     class: "Peptide hormone (multiple isoforms, ~139–173 aa)",
     source: "Many tissues (paracrine); some tumors",
     receptor: "PTH1 receptor (PTH1R) — shared with PTH",
     mechanism:
       "PTHrP shares PTH's N-terminus and acts on the same PTH1 receptor, but functions largely as a local (paracrine) signal in development — notably in cartilage and bone growth. When tumors secrete it systemically, it drives the most common form of malignancy-associated hypercalcemia.",
     facts: [
-      "PTHrP and PTH act on the same receptor but in different contexts — development vs minute-to-minute calcium control.",
+      "PTHrP and PTH act on the same receptor but in different contexts: development vs minute-to-minute calcium control.",
       "Tumor secretion of PTHrP is the leading cause of hypercalcemia of malignancy.",
       "It is essential to normal endochondral bone growth.",
     ],
@@ -966,7 +966,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Atrial stretch from volume overload releases ANP, which binds NPR-A to raise cGMP, promoting sodium and water excretion and vasodilation — reducing the blood volume and pressure that triggered it. It is a direct negative-feedback brake on cardiac load.",
     facts: [
-      "ANP signals through a membrane guanylyl-cyclase receptor (cGMP), not a GPCR — a different second-messenger system from most of this catalog.",
+      "ANP signals through a membrane guanylyl-cyclase receptor (cGMP), not a GPCR. A different second-messenger system from most of this catalog.",
       "Its trigger is mechanical: atrial wall stretch.",
       "It opposes the renin-angiotensin system's salt-and-water retention.",
     ],
@@ -985,7 +985,7 @@ const BASE: Hormone[] = [
     family: "cardiovascular",
     type: "endogenous",
     evidence: "Established",
-    summary: "A ventricular natriuretic peptide — and a routine heart-failure marker.",
+    summary: "A ventricular natriuretic peptide that doubles as a routine heart-failure marker.",
     class: "Natriuretic peptide (32 aa)",
     source: "Ventricular cardiomyocytes",
     receptor: "Natriuretic peptide receptor A (NPR-A)",
@@ -1046,7 +1046,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Myostatin signals through activin type II receptors and the Smad2/3 pathway to restrain muscle growth — a negative regulator. Animals and rare humans lacking functional myostatin develop pronounced muscle hypertrophy, which is why blocking it is pursued therapeutically.",
     facts: [
-      "Loss of myostatin causes dramatic muscle overgrowth across species — the clearest evidence of its braking role.",
+      "Loss of myostatin causes dramatic muscle overgrowth across species, the clearest evidence of its braking role.",
       "It signals through activin type II receptors and Smad2/3, not a GPCR.",
       "Blocking myostatin is a leading strategy for muscle preservation, including during incretin-driven weight loss.",
     ],
@@ -1096,7 +1096,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Follistatin does not signal through a receptor; it binds activin and myostatin directly and neutralizes them. By removing the brake, raising follistatin increases muscle mass — making it a focus of gene-therapy and muscle-disease research.",
     facts: [
-      "Follistatin is a ligand trap, not a receptor agonist — it works by sequestering activin and myostatin.",
+      "Follistatin is a ligand trap, not a receptor agonist: it works by sequestering activin and myostatin.",
       "Increasing follistatin raises muscle mass by relieving the myostatin/activin brake.",
       "It is studied in muscular dystrophy and muscle-wasting research.",
     ],
@@ -1126,7 +1126,7 @@ const BASE: Hormone[] = [
     facts: [
       "Tβ4 works by binding monomeric actin, not by activating a surface receptor.",
       "Its repair effects come from modulating cell migration, angiogenesis, and inflammation.",
-      "It is the endogenous molecule that the research compound TB-500 is derived from — they are not identical.",
+      "It is the endogenous molecule that the research compound TB-500 is derived from, though they are not identical.",
     ],
     questions: [
       "How does actin sequestration translate into wound-healing effects?",
@@ -1175,7 +1175,7 @@ const BASE: Hormone[] = [
     facts: [
       "The evidence base is predominantly preclinical (rodent); robust human trials are lacking.",
       "Its molecular mechanism is proposed rather than firmly established.",
-      "It is widely marketed in the 'research peptide' space — a context where claims often outrun data.",
+      "It is widely marketed in the 'research peptide' space, a context where claims often outrun data.",
     ],
     questions: [
       "What does the actual evidence show for BPC-157, and what is only claimed?",
@@ -1200,7 +1200,7 @@ const BASE: Hormone[] = [
     facts: [
       "TB-500 is derived from thymosin β4 but is not identical to the full endogenous peptide.",
       "Its claims lean on thymosin β4 biology; direct human evidence for TB-500 is limited.",
-      "It is a 'research peptide' product — read the evidence honestly.",
+      "It is a 'research peptide' product. Read the evidence honestly.",
     ],
     questions: [
       "How does TB-500 relate to endogenous thymosin β4?",
@@ -1224,8 +1224,8 @@ const BASE: Hormone[] = [
     mechanism:
       "Leuprolide is a long-acting GnRH agonist. Because GnRH normally signals in pulses, continuous agonist exposure first causes a transient surge ('flare') and then desensitizes the receptor — paradoxically shutting the axis down. Depot formulations exploit this to maintain chronic suppression.",
     facts: [
-      "It suppresses the reproductive axis by overriding GnRH's required pulsatility — continuous stimulation desensitizes the receptor.",
-      "An initial hormonal 'flare' precedes suppression — a direct consequence of the agonist mechanism.",
+      "It suppresses the reproductive axis by overriding GnRH's required pulsatility: continuous stimulation desensitizes the receptor.",
+      "An initial hormonal 'flare' precedes suppression, a direct consequence of the agonist mechanism.",
       "Depot formulations release the drug over months to sustain the effect.",
     ],
     questions: [
@@ -1275,7 +1275,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Cetrorelix blocks the GnRH receptor directly, so it suppresses gonadotropin release immediately and without the initial flare that agonists cause. This clean, rapid suppression is the key mechanistic contrast with agonists like leuprolide.",
     facts: [
-      "As an antagonist, it produces immediate suppression — no agonist flare.",
+      "As an antagonist, it produces immediate suppression, with no agonist flare.",
       "It is the mechanistic mirror image of GnRH agonists at the same receptor.",
       "The flare-vs-no-flare difference is a clear teaching case in receptor pharmacology.",
     ],
@@ -1380,7 +1380,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Tesamorelin is a stabilized analog of human GHRH(1-44) that stimulates pituitary GH secretion and raises IGF-1 while retaining the endogenous pulsatile pattern. In randomized trials it selectively reduced visceral adipose tissue, which is the basis of its approval for HIV-associated lipodystrophy.",
     facts: [
-      "FDA-approved (2010) — the most clinically established compound in this GH-secretagogue group.",
+      "FDA-approved (2010), the most clinically established compound in this GH-secretagogue group.",
       "Its signature clinical effect is a reduction in visceral, not subcutaneous, fat.",
       "Because the GH is released through the pituitary, it stays feedback-regulated rather than overriding the axis.",
     ],
@@ -1433,7 +1433,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Sermorelin is GHRH(1-29), the minimal N-terminal fragment that retains full GHRH activity, stimulating pituitary GH release. Formerly approved (as Geref) for assessing and treating growth hormone deficiency, it drives endogenous, feedback-regulated GH rather than supplying it directly; it was later withdrawn from the US market for commercial rather than safety reasons.",
     facts: [
-      "GHRH(1-29) is the shortest fragment that keeps full GH-releasing potency — the basis of sermorelin's design.",
+      "GHRH(1-29) is the shortest fragment that keeps full GH-releasing potency, the basis of sermorelin's design.",
       "It was FDA-approved for pediatric GH-deficiency diagnosis and therapy before being commercially withdrawn (~2008).",
       "Its very short half-life produces a brief, physiologic GH pulse.",
     ],
@@ -1460,7 +1460,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Ipamorelin is a synthetic pentapeptide that activates the ghrelin receptor GHS-R1a to trigger GH release, working through the secretagogue pathway rather than the GHRH receptor. It was engineered for selectivity — releasing GH with little effect on cortisol or prolactin, unlike earlier GHRPs — which is why it is often paired with a GHRH analog for additive, still-pulsatile GH output.",
     facts: [
-      "Introduced as 'the first selective growth hormone secretagogue' — its calling card is minimal cortisol and prolactin release.",
+      "Introduced as 'the first selective growth hormone secretagogue'. Its calling card is minimal cortisol and prolactin release.",
       "Foundational efficacy data are largely preclinical (rodent); it was trialed in humans for postoperative ileus, but development was discontinued.",
       "Its GHS-R pathway is synergistic with GHRH analogs because the two act on different receptors.",
     ],
@@ -1490,7 +1490,7 @@ const BASE: Hormone[] = [
       "Bremelanotide is a cyclic analog of α-MSH that activates central melanocortin receptors — principally MC4R — to engage sexual-desire pathways in the brain, a mechanism distinct from the vascular route of PDE5 inhibitors. It is dosed on demand and was approved for premenopausal hypoactive sexual desire disorder.",
     facts: [
       "FDA-approved (2019, as Vyleesi) for premenopausal hypoactive sexual desire disorder.",
-      "It acts centrally through MC4R rather than on vascular tissue — a different mechanism from erectile-focused PDE5 inhibitors.",
+      "It acts centrally through MC4R rather than on vascular tissue, a different mechanism from erectile-focused PDE5 inhibitors.",
       "It derives from the earlier melanotan II line, optimized away from that predecessor's pigmentation-heavy profile.",
     ],
     questions: [
@@ -1540,8 +1540,8 @@ const BASE: Hormone[] = [
     mechanism:
       "Humanin is a mitochondrial-encoded peptide with broad cytoprotective and anti-apoptotic effects, studied in neuroprotection, metabolic stress, and ageing. Several signaling routes have been proposed, but its full mechanism and human physiology are still being characterized.",
     facts: [
-      "Like MOTS-c, it is encoded in mitochondrial DNA — part of the emerging mitochondrial-derived-peptide class.",
-      "Its hallmark is cytoprotection — limiting cell death under stress.",
+      "Like MOTS-c, it is encoded in mitochondrial DNA, part of the emerging mitochondrial-derived-peptide class.",
+      "Its hallmark is cytoprotection, limiting cell death under stress.",
       "The evidence base is mostly preclinical; human roles remain under study.",
     ],
     questions: [
@@ -1609,7 +1609,7 @@ const BASE: Hormone[] = [
     family: "repair",
     type: "research",
     evidence: "Clinical",
-    summary: "A mitochondria-targeting peptide that stabilizes cardiolipin — newly approved.",
+    summary: "A newly approved mitochondria-targeting peptide that stabilizes cardiolipin.",
     class: "Synthetic mitochondria-targeting tetrapeptide (Szeto-Schiller)",
     source: "Synthetic; not derived from an endogenous hormone",
     receptor: "No cell-surface receptor; binds cardiolipin in the inner mitochondrial membrane",
@@ -1716,7 +1716,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Semax is an engineered fragment of ACTH(4-10) — the melanocortin sequence stripped of its cortisol-releasing hormone activity and capped with a C-terminal Pro-Gly-Pro that resists peptidase cleavage. Rather than acting as a melanocortin hormone, it upregulates BDNF and its receptor TrkB and shifts dopaminergic and serotonergic tone, the basis of the nootropic and neuroprotective effects studied largely in Russian programs, where it is a registered drug.",
     facts: [
-      "It keeps the neuroactive core of ACTH(4-10) while shedding the steroidogenic hormone activity — a fragment repurposed away from its parent's endocrine role.",
+      "It keeps the neuroactive core of ACTH(4-10) while shedding the steroidogenic hormone activity, a fragment repurposed away from its parent's endocrine role.",
       "Its central effects run through BDNF/TrkB and monoamine systems, not the melanocortin receptors.",
       "Registered and used clinically in Russia; independent Western trial evidence remains limited.",
     ],
@@ -1741,7 +1741,7 @@ const BASE: Hormone[] = [
     mechanism:
       "Erythropoietin protects tissue through a receptor distinct from the one that raises red cells: the innate repair receptor, an EPOR/β-common-chain heteromer that appears on injured and inflamed tissue. ARA-290 is a short peptide reproducing only the helix-B face of EPO that engages this receptor — delivering EPO's anti-inflammatory, tissue-protective signaling with no erythropoietic (hematocrit-raising) action, and therefore none of EPO's thrombotic liability.",
     facts: [
-      "It decouples EPO's two jobs: tissue protection (kept) from red-cell production (dropped) — the entire design rationale.",
+      "It decouples EPO's two jobs: tissue protection (kept) from red-cell production (dropped), the entire design rationale.",
       "Human phase 2 trials targeted neuropathic pain — notably sarcoidosis-associated small-fiber neuropathy — and diabetic complications.",
       "The evidence is promising but unsettled: an investigational clinical-stage peptide, not an approved drug.",
     ],
@@ -1801,21 +1801,21 @@ const PROPS: Record<string, Pick<Hormone, "mw" | "mwApprox" | "halfLife" | "half
 const THREADS: Record<string, string> = {
   // ── Incretins & metabolic ──
   "glp-1":
-    "Two minutes of life, and the whole modern metabolic class built to prolong them — the clearest case in biology of brevity being the design, not the flaw.",
+    "Two minutes of life, and the whole modern metabolic class built to prolong them: in biology, brevity is often the design, not the flaw.",
   gip:
     "The body rarely says anything important only once. GIP is the second voice in the incretin conversation, and the one still being argued over.",
   glucagon:
     "Insulin's opposite number. Metabolism reads better as an argument the body keeps having with itself than as a switch.",
   amylin:
-    "Released in the same breath as insulin and overlooked for a century — proof that even a well-mapped system still holds unread sentences.",
+    "Released in the same breath as insulin, and overlooked for a century. Even a well-mapped system still holds unread sentences.",
   insulin:
     "The molecule that proved a peptide could be a medicine at all. Everything else in this catalog is written in the language it opened.",
   semaglutide:
-    "The same sentence the gut speaks, rewritten to last a week instead of two minutes — and the clearest demonstration of what peptide engineering can now do.",
+    "The same sentence the gut speaks, rewritten to last a week instead of two minutes. No clearer demonstration of what peptide engineering can now do.",
   tirzepatide:
     "One chain speaking to two receptors at once: the first strong evidence that combining signals beats shouting a single one louder.",
   liraglutide:
-    "The daily precursor that established the trick — do not armour the peptide, tether it to something the body has already decided to keep.",
+    "The daily precursor that established the trick: do not armour the peptide, tether it to something the body has already decided to keep.",
   exenatide:
     "A lizard's venom turned out to hold a durable copy of a human sentence. The class began as a loan from another species.",
   retatrutide:
@@ -1825,19 +1825,19 @@ const THREADS: Record<string, string> = {
   cagrilintide:
     "The amylin axis rebuilt on a weekly clock, on the wager that the incretins were never the only lever worth pulling.",
   amycretin:
-    "Two hormones written into one chain rather than mixed in one syringe — the difference between a combination and a molecule.",
+    "Two hormones written into one chain instead of mixed in one syringe. That is what separates a combination from a molecule.",
   "maridebart-cafraglutide":
     "Turning the GIP receptor off also works, which makes this the most instructive puzzle on the metabolic frontier.",
 
   // ── Growth & repair ──
   "growth-hormone":
-    "Delivered in pulses, not a stream — the timing carries as much information as the molecule, which is what makes it so hard to copy.",
+    "Delivered in pulses rather than a stream, its timing carries as much information as the molecule, which is what makes it so hard to copy.",
   "igf-1":
-    "The messenger that does the growing while growth hormone takes the name — most signals in the body are relayed before they act.",
+    "The messenger that does the growing while growth hormone takes the name, for most signals in the body are relayed before they act.",
   ghrh:
-    "One rung up the axis — the signal that asks for a signal, and the point at which the pituitary reveals itself as a relay rather than a source.",
+    "One rung up the axis: the signal that asks for a signal, the point at which the pituitary reveals itself as a relay rather than a source.",
   ghrelin:
-    "The only well-established hormone that makes you hungry rather than full — the counterweight that keeps appetite a balance.",
+    "The only well-established hormone that makes you hungry rather than full, the counterweight that keeps appetite a balance.",
   somatostatin:
     "The system's brake. A growth axis with no off-switch would not be a physiology; it would be a tumour.",
   octreotide:
@@ -1849,7 +1849,7 @@ const THREADS: Record<string, string> = {
   tesamorelin:
     "Proof the axis can be addressed at its top: ask the pituitary properly and the body still does the arithmetic itself.",
   "cjc-1295":
-    "Built to stretch a pulse — an interesting question about whether an axis tuned by its timing can be lengthened without being flattened.",
+    "Built to stretch a pulse, though whether an axis tuned by its timing can be lengthened without being flattened is the open question.",
   sermorelin:
     "The shortest fragment of GHRH that still carries the whole instruction, and a clean demonstration that most of a peptide is scaffolding.",
   ipamorelin:
@@ -1859,11 +1859,11 @@ const THREADS: Record<string, string> = {
 
   // ── Melanocortins ──
   "alpha-msh":
-    "One short peptide the body uses to colour, to calm, and to say enough — the melanocortin system's oldest sentence, spoken wherever a receptor is listening.",
+    "One short peptide the body uses to colour, to calm, and to say enough: the melanocortin system's oldest sentence, spoken wherever a receptor is listening.",
   acth:
     "Proof of the family's reach: the same POMC lineage that pigments skin also carries the body's alarm to the adrenal.",
   "pt-141":
-    "Followed past appetite into desire — the melanocortin family surfacing somewhere nobody thought to look, and approved for it.",
+    "Followed past appetite into desire. The melanocortin family surfaced somewhere nobody thought to look, and was approved for it.",
   kpv:
     "Three residues from the tail of α-MSH, still carrying the anti-inflammatory half of the message. Brevity taken to its limit.",
   semax:
@@ -1873,11 +1873,11 @@ const THREADS: Record<string, string> = {
   oxytocin:
     "Nine residues running parturition, milk, and attachment. The disproportion between the size of the molecule and the size of the job is the whole field in miniature.",
   vasopressin:
-    "Two residues apart from oxytocin and responsible for something else entirely — the clearest lesson in how little it takes to change a meaning.",
+    "Two residues apart from oxytocin, yet responsible for something else entirely. No clearer lesson in how little it takes to change a meaning.",
   crh:
-    "The opening word of the stress response — an alarm routed through three relays, each one a chance to modulate it.",
+    "The opening word of the stress response: an alarm routed through three relays, each one a chance to modulate it.",
   trh:
-    "A tripeptide at the top of the thyroid axis — the shortest sentence in the catalog, and among the most consequential.",
+    "A tripeptide at the top of the thyroid axis: the shortest sentence in the catalog, and among the most consequential.",
   selank:
     "An endogenous fragment given a longer life by synthesis. The neuropeptide biology is real; the human evidence is thin, and mostly from one research tradition.",
   dsip:
@@ -1885,31 +1885,31 @@ const THREADS: Record<string, string> = {
 
   // ── Gut & appetite ──
   pyy:
-    "Secreted in proportion to how much you ate, not merely that you ate — the gut reports quantity, and the brain reads it as fullness.",
+    "Secreted in proportion to how much you ate, not merely that you ate. The gut reports quantity, and the brain reads it as fullness.",
   cck:
     "One signal coordinating gallbladder, pancreas, and appetite at once. Economy, not specialisation, is the organising principle here.",
   secretin:
     "The first molecule ever called a hormone. Every entry in this catalog descends from what it proved in 1902.",
   motilin:
-    "The housekeeping signal between meals — evidence that the gut has work to do precisely when it has nothing to digest.",
+    "The housekeeping signal between meals. The gut has work to do precisely when it has nothing to digest.",
 
   // ── Reproductive & gonadal ──
   gnrh:
     "Its message is carried in the rhythm rather than the molecule: pulse it and the axis wakes, hold it steady and the axis shuts down.",
   lh:
-    "A surge rather than a level — one of the few endocrine signals whose meaning is written entirely in its shape over time.",
+    "A surge rather than a level, one of the few endocrine signals whose meaning is written entirely in its shape over time.",
   fsh:
     "The slow counterpart to LH's surge, and half of why the reproductive axis needs two gonadotropins rather than one.",
   kisspeptin:
     "The gate above the gate. Finding it rewrote where the reproductive axis was thought to begin.",
   hcg:
-    "An embryonic signal that borrows the LH receptor to keep a pregnancy going — biology reusing a channel rather than building one.",
+    "An embryonic signal that borrows the LH receptor to keep a pregnancy going, biology reusing a channel rather than building one.",
   leuprolide:
     "Turning a pulsed signal into a constant one shuts the axis off. The clinical trick is the physiology read exactly backwards.",
   goserelin:
     "The same inversion in depot form: continuous stimulation as a means of suppression, delivered on a schedule a body can keep.",
   cetrorelix:
-    "Blocking the receptor outright rather than exhausting it — the same endpoint reached without the flare that precedes it.",
+    "Blocking the receptor outright rather than exhausting it, the same endpoint reached without the flare that precedes it.",
 
   // ── Adipokines ──
   leptin:
@@ -1937,23 +1937,23 @@ const THREADS: Record<string, string> = {
   myostatin:
     "The body writes brakes as carefully as accelerators. Muscle has a ceiling because something is actively holding it there.",
   "activin-a":
-    "Shares myostatin's receptors and much else besides — which is precisely why blocking this pathway is harder than it first appears.",
+    "Shares myostatin's receptors and much else besides, which is precisely why blocking this pathway is harder than it first appears.",
   follistatin:
     "The body's own antagonist to its own brake. Before anyone thought to inhibit myostatin, the physiology had already done it.",
 
   // ── Repair ──
   "thymosin-beta-4":
-    "An actin-binding protein that turns out to matter in healing — a reminder that structural molecules can carry signals too.",
+    "An actin-binding protein that turns out to matter in healing, a reminder that structural molecules can carry signals too.",
   "ghk-cu":
     "Copper is not usually thought of as a signal; a three-residue carrier makes it one. The marketing has run a long way ahead of the literature.",
   "bpc-157":
-    "Drawn from a gastric protein, with a striking preclinical record and almost no human data — the widest gap between interest and evidence in this catalog.",
+    "Drawn from a gastric protein, with a striking preclinical record and almost no human data. The widest gap between interest and evidence in this catalog.",
   "tb-500":
     "A synthetic fragment sold under the name of the protein it came from. The parent biology is genuine; the fragment's own human evidence is not yet there.",
   epitalon:
     "Four residues carrying a very large claim. The longevity literature here is thin, largely from one group, and has not been independently reproduced.",
   "ss-31":
-    "Aimed at a membrane lipid rather than a receptor — a different way to address a cell, and now an approved one.",
+    "Aimed at a membrane lipid rather than a receptor: a different way to address a cell, and now an approved one.",
   "ara-290":
     "Erythropoietin's tissue-protective half, separated from its blood-building half. Splitting one molecule's two jobs is a strategy the field is only starting to use.",
 
