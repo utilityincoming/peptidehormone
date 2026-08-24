@@ -438,6 +438,83 @@ const BASE: Hormone[] = [
     ],
   },
   {
+    slug: "igf-2",
+    name: "Insulin-like growth factor 2",
+    abbr: "IGF-2",
+    family: "growth-repair",
+    type: "endogenous",
+    evidence: "Established",
+    summary: "IGF-1's imprinted sibling — the dominant growth factor before birth.",
+    class: "Single-chain growth factor (67 aa)",
+    source: "Liver and many tissues; highly expressed in fetal life",
+    receptor: "IGF-1R and insulin receptor isoform A (IR-A); cleared by the IGF-2/M6P receptor",
+    mechanism:
+      "IGF-2 is the principal driver of fetal growth and is the more abundant of the two IGFs in adult human serum. It signals for growth through IGF-1R and, distinctively, through the insulin receptor's A isoform. A third receptor — the IGF-2/mannose-6-phosphate receptor — does not signal at all: it binds IGF-2 and routes it for degradation, acting as a clearance valve on how much is available.",
+    facts: [
+      "IGF2 is an imprinted gene expressed almost exclusively from the paternal allele; losing that imprinting drives overgrowth syndromes and is common in cancer.",
+      "Unlike IGF-1, IGF-2 is a high-affinity ligand for insulin receptor isoform A — a route to growth signalling that bypasses IGF-1R.",
+      "Its dedicated 'receptor,' the mannose-6-phosphate receptor, is a non-signalling sink that clears IGF-2 rather than relaying it — buffering a tumour can overwhelm to cause hypoglycaemia.",
+    ],
+    questions: [
+      "Why is IGF-2 imprinted, and what happens when that imprinting is lost?",
+      "How can a receptor regulate a hormone by degrading rather than signalling it?",
+    ],
+    mw: 7471,
+    halfLife: "Short when free; extended in IGFBP/ALS ternary complexes",
+  },
+  {
+    slug: "mgf",
+    name: "Mechano growth factor",
+    abbr: "MGF",
+    family: "growth-repair",
+    type: "research",
+    evidence: "Preclinical",
+    parent: "igf-1",
+    summary: "IGF-1's local, load-triggered splice variant — a repair pulse, not a systemic signal.",
+    class: "IGF-1 splice variant (IGF-1Ec); the research peptide is its C-terminal E-domain (~24 aa)",
+    source: "Made locally in muscle after mechanical overload or damage",
+    receptor: "The IGF-1 core acts at IGF-1R; the distinct E-domain peptide's receptor is unidentified",
+    mechanism:
+      "Mechanical loading of muscle switches the IGF-1 gene's splicing toward the Ec exon, producing MGF — the same IGF-1 core carried on a different C-terminal E-domain. The mature E-domain peptide appears to act on its own, activating and proliferating satellite cells to seed repair, and it does so even in cells lacking the IGF-1 receptor — so it is not simply local IGF-1. The synthetic 'MGF' sold for research is that E-domain peptide.",
+    facts: [
+      "MGF is not a separate gene but an alternatively spliced product of IGF-1, distinguished entirely by its E-domain — the pulse a fibre makes when it is worked or injured.",
+      "The E-domain peptide's satellite-cell and neuroprotective effects appear in cells without IGF-1R, implying a receptor of its own that has never been pinned down — genuinely open biology.",
+      "The synthetic peptide is short-lived (minutes), which is why a pegylated form ('PEG-MGF') exists; human efficacy for either is unproven, and the 'distinct hormone' framing is still debated.",
+    ],
+    questions: [
+      "How does mechanical load reroute IGF-1 splicing toward MGF?",
+      "What is the evidence that MGF's E-domain acts independently of the IGF-1 receptor?",
+    ],
+    halfLife: "Minutes (E-domain peptide); longer as PEG-MGF",
+  },
+  {
+    slug: "igf-1-lr3",
+    name: "Long R3 IGF-1",
+    abbr: "IGF-1 LR3",
+    family: "growth-repair",
+    type: "analog",
+    evidence: "Preclinical",
+    parent: "igf-1",
+    summary: "IGF-1 re-engineered to slip past its binding proteins — more free signal, for longer.",
+    class: "83-aa IGF-1 analog (Arg³ substitution + 13-aa N-terminal extension)",
+    source: "Synthetic analog of IGF-1",
+    receptor: "IGF-1 receptor (IGF-1R), a receptor tyrosine kinase",
+    mechanism:
+      "Native IGF-1 travels almost entirely bound to IGF-binding proteins, which buffer its activity and clear it within minutes. LR3 carries two changes — arginine for glutamate at position 3, and a 13-residue N-terminal extension — that together cripple that binding. The analog stays free, delivers the same message to IGF-1R with far more of it reaching the receptor, and lasts hours instead of minutes.",
+    facts: [
+      "Both modifications serve one goal — escape the IGFBPs. Free and unbuffered, LR3 is markedly more potent than native IGF-1, and is a standard cell-culture reagent for exactly that reason.",
+      "The longer, unbuffered exposure is the point and the problem: sustained systemic IGF-1R activation is mitogenic, the core safety concern that keeps it research-only.",
+      "des(1-3)IGF-1, which instead deletes the first three residues, is the sister analog built on the same idea of dodging the binding proteins.",
+    ],
+    questions: [
+      "How do the R3 substitution and N-terminal extension reduce IGFBP binding?",
+      "Why does escaping the binding proteins raise both potency and risk?",
+    ],
+    mw: 9111,
+    mwApprox: true,
+    halfLife: "Hours — free of the IGFBP clearance that limits native IGF-1 to ~10 min",
+  },
+  {
     slug: "ghrh",
     name: "Growth-hormone-releasing hormone",
     abbr: "GHRH",
@@ -1834,6 +1911,12 @@ const THREADS: Record<string, string> = {
     "Delivered in pulses, not a stream — the timing carries as much information as the molecule, which is what makes it so hard to copy.",
   "igf-1":
     "The messenger that does the growing while growth hormone takes the name — most signals in the body are relayed before they act.",
+  "igf-2":
+    "The other insulin-like growth factor, and the one the body built a whole receptor to take back — knowing how to withdraw a signal is as designed as knowing how to send it.",
+  mgf:
+    "The same growth message the muscle already knows, re-spliced on the spot when the fibre is worked — a local dialect the tissue writes for itself, and one the field is still learning to read.",
+  "igf-1-lr3":
+    "Native IGF-1 spends its life held; this is the version engineered to travel free. A signal's reach is set as much by what carries it as by what it says.",
   ghrh:
     "One rung up the axis — the signal that asks for a signal, and the point at which the pituitary reveals itself as a relay rather than a source.",
   ghrelin:
