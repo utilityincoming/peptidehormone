@@ -79,6 +79,21 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "39930003", title: "Regulation and function of insulin and insulin-like growth factor receptor signalling", source: "Nature reviews. Molecular cell biology", year: "2025" },
     { pmid: "29163145", title: "Insulin-Like Growth Factor-1 and Neuroinflammation", source: "Frontiers in aging neuroscience", year: "2017" },
   ],
+  "igf-2": [
+    { pmid: "35741015", title: "IGF2: Development, Genetic and Epigenetic Abnormalities", source: "Cells", year: "2022" },
+    { pmid: "23257688", title: "Insulin-like growth factor 2 in development and disease: a mini-review", source: "Gerontology", year: "2013" },
+    { pmid: "19251055", title: "Insulin-like growth factor-2/mannose-6 phosphate receptors", source: "Vitamins and hormones", year: "2009" },
+  ],
+  mgf: [
+    { pmid: "20130113", title: "Minireview: Mechano-growth factor: a putative product of IGF-I gene expression involved in tissue repair and regeneration", source: "Endocrinology", year: "2010" },
+    { pmid: "10087355", title: "Expression of insulin growth factor-1 splice variants and structural genes in rabbit skeletal muscle induced by stretch and stimulation", source: "The Journal of physiology", year: "1999" },
+    { pmid: "19038252", title: "Mechano-growth factor, an IGF-I splice variant, rescues motoneurons and improves muscle function in SOD1(G93A) mice", source: "Experimental neurology", year: "2009" },
+  ],
+  "igf-1-lr3": [
+    { pmid: "29255001", title: "IGF-binding proteins", source: "Journal of molecular endocrinology", year: "2018" },
+    { pmid: "26522456", title: "Insulin-like growth factor binding proteins 4-6", source: "Best practice & research. Clinical endocrinology & metabolism", year: "2015" },
+    { pmid: "27418865", title: "Implications of Insulin-like Growth Factor 1 Receptor Activation in Lung Cancer", source: "The Malaysian journal of medical sciences : MJMS", year: "2016" },
+  ],
   ghrh: [
     { pmid: "2874984", title: "Growth hormone-releasing hormone", source: "Endocrine reviews", year: "1986" },
     { pmid: "39422787", title: "Growth hormone-releasing hormone and cancer", source: "Reviews in endocrine & metabolic disorders", year: "2025" },

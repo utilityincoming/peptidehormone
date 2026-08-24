@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-other-pedal",
+    title: "The other pedal",
+    dek: "Muscle mass is set by two opposing forces, and this site has only told half the story — the brake, myostatin. The other half is the accelerator: the IGF-1 axis growth hormone works through, the local repair pulse a worked muscle splices for itself, and the research peptides — IGF-1 LR3, MGF — built to push it from outside. Why the accelerator is the older, stronger lever, why it's also the harder and riskier one to pull, and what the honest evidence actually supports.",
+    family: "growth-repair",
+    readingMinutes: 9,
+    reviewed: "August 2026",
+  },
+  {
     slug: "when-the-drug-works-too-well",
     title: "When the drug works too well",
     dek: "The people who struggle most to come off a GLP-1 are usually the ones it helped most - and that is not weakness, it is physiology doing exactly what it evolved to do. The body defends the weight it has lost, the drug holds that defense at bay, and stopping lets it back in. What the withdrawal trials actually show, why 'chronic' is the honest word for obesity, and how to think about time off: maintenance, tapering, and an off-ramp with a return ticket.",
