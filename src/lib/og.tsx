@@ -22,6 +22,11 @@ export function accentHex(cls?: string): string {
 
 const DOTS = ["#7C83FF", "#2DD4A8", "#5EA8FA", "#F5B544", "#B58CFA", "#F472B6"];
 
+// The house tri-residue brand mark, matching the site header, as an inline SVG
+// data URI so Satori can rasterize it (it can't render raw <svg> children).
+const MARK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#7C83FF" stroke-width="1.6" stroke-linecap="round"><path d="M6.7 10.4 10.3 13.6M13.7 13.6 17.3 8.4"/><circle cx="5" cy="9" r="2.4" fill="#7C83FF"/><circle cx="12" cy="15" r="2.4" fill="#7C83FF" opacity="0.72"/><circle cx="19" cy="7" r="2.4" fill="#7C83FF" opacity="0.5"/></svg>`;
+const MARK_URI = `data:image/svg+xml,${encodeURIComponent(MARK_SVG)}`;
+
 export function ogImage({
   eyebrow,
   title,
@@ -51,11 +56,8 @@ export function ogImage({
     >
       {/* Wordmark */}
       <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-        <div style={{ display: "flex", gap: "8px" }}>
-          {DOTS.slice(0, 3).map((c, i) => (
-            <div key={i} style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: c }} />
-          ))}
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img width={44} height={44} src={MARK_URI} alt="" />
         <div style={{ display: "flex", fontSize: 30, fontWeight: 600, letterSpacing: "-0.02em" }}>
           <span>Peptide</span>
           <span style={{ color: "rgba(255,255,255,0.45)" }}>Hormone</span>

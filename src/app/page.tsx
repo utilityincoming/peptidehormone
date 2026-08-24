@@ -9,16 +9,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const PRINCIPLES: { title: string; body: string }[] = [
+const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   {
+    icon: "sourced",
     title: "Sourced, not asserted",
     body: "Every mechanism traces to primary literature, structural data, and registered trials — cited, not paraphrased into authority.",
   },
   {
+    icon: "research",
     title: "Research-grade, not medical",
     body: "Reference material for understanding the biology. Nothing here is medical advice, a recommendation, or a substitute for a clinician.",
   },
   {
+    icon: "independent",
     title: "Editorially independent",
     body: "No storefront, no sponsored conclusions. One disclosed affiliate link funds the work — but the incentive that shapes the catalog is to be correct, never to sell.",
   },
@@ -164,7 +167,8 @@ export default function Home() {
               <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
                 {PRINCIPLES.map((p) => (
                   <div key={p.title} className="bg-surface p-7">
-                    <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+                    <PrincipleIcon name={p.icon} className="h-6 w-6 text-accent" />
+                    <h3 className="mt-4 font-display text-lg font-semibold">{p.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-ink/65">{p.body}</p>
                   </div>
                 ))}
@@ -264,5 +268,61 @@ function HeroChain() {
         ))}
       </svg>
     </div>
+  );
+}
+
+/* ── Principle icons ──
+   Three line-glyphs for the trust principles, in the same grammar as the family
+   marks but a single restrained accent — a sourced document, a research flask,
+   an independence balance. */
+type PrincipleName = "sourced" | "research" | "independent";
+
+function PrincipleIcon({
+  name,
+  className = "",
+}: {
+  name: PrincipleName;
+  className?: string;
+}) {
+  const glyph = {
+    // Sourced — a cited reference page.
+    sourced: (
+      <>
+        <path d="M6.5 3 H13.5 L17.5 7 V21 H6.5 Z" />
+        <path d="M13.5 3 V7 H17.5" />
+        <path d="M9 12 H15 M9 15 H15 M9 18 H12.5" />
+      </>
+    ),
+    // Research-grade — a lab flask.
+    research: (
+      <>
+        <path d="M9 3 H15" />
+        <path d="M10 3 V9.5 L5.8 18.2 Q5.2 20.5 7.6 20.5 H16.4 Q18.8 20.5 18.2 18.2 L14 9.5 V3" />
+        <path d="M7.3 15 H16.7" />
+      </>
+    ),
+    // Editorially independent — a level balance.
+    independent: (
+      <>
+        <path d="M12 4.8 V19 M8.5 19 H15.5 M6 8 H18" />
+        <path d="M6 8 L4.6 12 M6 8 L7.4 12 M4.3 12 A2.6 2.6 0 0 0 7.7 12" />
+        <path d="M18 8 L16.6 12 M18 8 L19.4 12 M16.3 12 A2.6 2.6 0 0 0 19.7 12" />
+        <circle cx="12" cy="4.6" r="1.05" fill="currentColor" stroke="none" />
+      </>
+    ),
+  }[name];
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {glyph}
+    </svg>
   );
 }
