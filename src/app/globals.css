@@ -91,6 +91,22 @@ body {
   stroke-dasharray: 6 10;
   animation: heroDash 30s linear infinite;
 }
+/* Bind-pulse: a ring breathing out from the receptor opening. Animates the SVG
+   geometry `r`, so it stays put and needs no transform-origin. */
+@keyframes heroBind {
+  0% {
+    r: 5px;
+    opacity: 0.55;
+  }
+  70%,
+  100% {
+    r: 27px;
+    opacity: 0;
+  }
+}
+.hero-bind {
+  animation: heroBind 3.2s ease-out infinite;
+}
 
 /* ── Signal ladder (/why-peptides): bars grow from the axis on load ── */
 @keyframes signalGrow {
@@ -110,6 +126,7 @@ body {
   .hero-float,
   .hero-node,
   .hero-bond,
+  .hero-bind,
   .signal-bar {
     animation: none;
   }

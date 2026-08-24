@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FAMILIES, getFamily } from "@/lib/families";
 import { hormonesByFamily, type Hormone } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { JsonLd } from "@/components/JsonLd";
 import { familyLd } from "@/lib/jsonld";
 
@@ -77,7 +78,15 @@ export default async function FamilyHub({
               <span aria-hidden>/</span>
               <span className={family.accent}>{family.name}</span>
             </nav>
-            <h1 className={`mt-6 font-display text-4xl font-semibold leading-tight sm:text-5xl ${family.accent}`}>
+            <span
+              className={`mt-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${family.accent}`}
+              style={{
+                backgroundColor: "color-mix(in oklab, currentColor 12%, transparent)",
+              }}
+            >
+              <FamilyGlyph slug={family.slug} className="h-8 w-8" />
+            </span>
+            <h1 className={`mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl ${family.accent}`}>
               {family.name}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">

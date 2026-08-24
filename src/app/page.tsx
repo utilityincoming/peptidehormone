@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { SourcingLine } from "@/components/Sourcing";
 import type { Metadata } from "next";
 
@@ -73,7 +74,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden md:block">
+            <div className="mx-auto w-full max-w-sm md:max-w-none">
               <HeroChain />
             </div>
           </Container>
@@ -107,18 +108,27 @@ export default function Home() {
                   href={`/families/${f.slug}`}
                   className="group block bg-surface p-7 transition-colors hover:bg-panel"
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className={`font-display text-lg font-semibold ${f.accent}`}>
-                      {f.name}
-                    </h3>
+                  <div className="flex items-start justify-between">
                     <span
-                      className="text-ink/30 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${f.accent}`}
+                      style={{
+                        backgroundColor:
+                          "color-mix(in oklab, currentColor 12%, transparent)",
+                      }}
+                    >
+                      <FamilyGlyph slug={f.slug} className="h-[22px] w-[22px]" />
+                    </span>
+                    <span
+                      className="text-ink/25 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
                       aria-hidden
                     >
                       →
                     </span>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-ink/65">{f.blurb}</p>
+                  <h3 className={`mt-5 font-display text-lg font-semibold ${f.accent}`}>
+                    {f.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-ink/65">{f.blurb}</p>
                   <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-ink/40">
                     {f.examples}
                   </p>
@@ -172,33 +182,84 @@ export default function Home() {
   );
 }
 
-/* ── Hero peptide-chain visual ── */
+/* ── Hero visual: a peptide chain docking into its receptor ──
+   The brand story in one image — a signal (the residue chain, left) meeting the
+   structure that reads it (the receptor cradle, right). Backbone dashes travel
+   toward the pocket; a bind-pulse breathes at the opening. Pure SVG + CSS, so it
+   honours prefers-reduced-motion (see globals.css). */
 function HeroChain() {
   const nodes = [
-    { x: 60, y: 230, c: "var(--accent)" },
-    { x: 130, y: 150, c: "var(--accent-blue)" },
-    { x: 205, y: 215, c: "var(--accent-teal)" },
-    { x: 270, y: 120, c: "var(--accent-purple)" },
-    { x: 335, y: 185, c: "var(--accent-amber)" },
-    { x: 395, y: 95, c: "var(--accent)" },
+    { x: 56, y: 150, c: "var(--accent)" },
+    { x: 126, y: 214, c: "var(--accent-blue)" },
+    { x: 196, y: 136, c: "var(--accent-teal)" },
+    { x: 266, y: 210, c: "var(--accent-purple)" },
+    { x: 346, y: 150, c: "var(--accent-amber)" },
   ];
   return (
     <div className="hero-float">
-      <svg viewBox="0 0 440 320" className="w-full" role="img" aria-label="Stylized peptide chain">
-        <path
-          d="M60 230 L130 150 L205 215 L270 120 L335 185 L395 95"
+      <svg
+        viewBox="0 0 460 340"
+        className="w-full"
+        role="img"
+        aria-label="A peptide chain docking into its receptor"
+      >
+        <defs>
+          <linearGradient id="bbStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="var(--accent)" />
+            <stop offset="1" stopColor="var(--accent-amber)" />
+          </linearGradient>
+          <radialGradient id="heroAmbient" cx="0.72" cy="0.4" r="0.6">
+            <stop offset="0" stopColor="var(--accent)" stopOpacity="0.16" />
+            <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* ambient glow */}
+        <rect x="0" y="0" width="460" height="340" fill="url(#heroAmbient)" />
+
+        {/* receptor cradle the terminal residue docks into */}
+        <g fill="none" stroke="var(--accent)" strokeLinecap="round">
+          <path d="M392 108 A42 42 0 0 1 392 192" strokeWidth="2.5" opacity="0.4" />
+          <path d="M390 122 A30 30 0 0 1 390 178" strokeWidth="2.5" opacity="0.6" />
+        </g>
+        {/* bind-pulse at the opening */}
+        <circle
+          className="hero-bind"
+          cx="360"
+          cy="150"
           fill="none"
-          stroke="var(--accent)"
+          stroke="var(--accent-amber)"
           strokeWidth="2"
+        />
+
+        {/* backbone */}
+        <path
+          d="M56 150 L126 214 L196 136 L266 210 L346 150"
+          fill="none"
+          stroke="url(#bbStroke)"
+          strokeWidth="2.5"
           strokeLinecap="round"
-          opacity="0.35"
+          strokeLinejoin="round"
+          opacity="0.45"
           className="hero-bond"
         />
+
+        {/* residues */}
         {nodes.map((n, i) => (
-          <g key={i} className="hero-node" style={{ animationDelay: `${i * 0.5}s` }}>
-            <circle cx={n.x} cy={n.y} r="22" fill={n.c} opacity="0.12" />
-            <circle cx={n.x} cy={n.y} r="11" fill={n.c} opacity="0.9" />
+          <g key={i}>
+            <circle
+              className="hero-node"
+              style={{ animationDelay: `${i * 0.5}s`, transformOrigin: `${n.x}px ${n.y}px` }}
+              cx={n.x}
+              cy={n.y}
+              r="22"
+              fill={n.c}
+              opacity="0.12"
+            />
+            <circle cx={n.x} cy={n.y} r="11" fill={n.c} opacity="0.95" />
+            <circle cx={n.x} cy={n.y} r="11" fill="none" stroke="#fff" strokeOpacity="0.14" />
             <circle cx={n.x} cy={n.y} r="4" fill="var(--surface-deep)" />
+            <circle cx={n.x - 3.4} cy={n.y - 3.4} r="2.2" fill="#fff" opacity="0.45" />
           </g>
         ))}
       </svg>
