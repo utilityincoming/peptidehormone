@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { SourcingLine } from "@/components/Sourcing";
 import type { Metadata } from "next";
 
@@ -8,16 +9,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const PRINCIPLES: { title: string; body: string }[] = [
+const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   {
+    icon: "sourced",
     title: "Sourced, not asserted",
     body: "Every mechanism traces to primary literature, structural data, and registered trials — cited, not paraphrased into authority.",
   },
   {
+    icon: "research",
     title: "Research-grade, not medical",
     body: "Reference material for understanding the biology. Nothing here is medical advice, a recommendation, or a substitute for a clinician.",
   },
   {
+    icon: "independent",
     title: "Editorially independent",
     body: "No storefront, no sponsored conclusions. One disclosed affiliate link funds the work — but the incentive that shapes the catalog is to be correct, never to sell.",
   },
@@ -73,7 +77,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden md:block">
+            <div className="mx-auto w-full max-w-sm md:max-w-none">
               <HeroChain />
             </div>
           </Container>
@@ -107,18 +111,27 @@ export default function Home() {
                   href={`/families/${f.slug}`}
                   className="group block bg-surface p-7 transition-colors hover:bg-panel"
                 >
-                  <div className="flex items-center justify-between">
-                    <h3 className={`font-display text-lg font-semibold ${f.accent}`}>
-                      {f.name}
-                    </h3>
+                  <div className="flex items-start justify-between">
                     <span
-                      className="text-ink/30 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${f.accent}`}
+                      style={{
+                        backgroundColor:
+                          "color-mix(in oklab, currentColor 12%, transparent)",
+                      }}
+                    >
+                      <FamilyGlyph slug={f.slug} className="h-[22px] w-[22px]" />
+                    </span>
+                    <span
+                      className="text-ink/25 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
                       aria-hidden
                     >
                       →
                     </span>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-ink/65">{f.blurb}</p>
+                  <h3 className={`mt-5 font-display text-lg font-semibold ${f.accent}`}>
+                    {f.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-ink/65">{f.blurb}</p>
                   <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-ink/40">
                     {f.examples}
                   </p>
@@ -154,7 +167,8 @@ export default function Home() {
               <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
                 {PRINCIPLES.map((p) => (
                   <div key={p.title} className="bg-surface p-7">
-                    <h3 className="font-display text-lg font-semibold">{p.title}</h3>
+                    <PrincipleIcon name={p.icon} className="h-6 w-6 text-accent" />
+                    <h3 className="mt-4 font-display text-lg font-semibold">{p.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-ink/65">{p.body}</p>
                   </div>
                 ))}
@@ -172,36 +186,143 @@ export default function Home() {
   );
 }
 
-/* ── Hero peptide-chain visual ── */
+/* ── Hero visual: a peptide chain docking into its receptor ──
+   The brand story in one image — a signal (the residue chain, left) meeting the
+   structure that reads it (the receptor cradle, right). Backbone dashes travel
+   toward the pocket; a bind-pulse breathes at the opening. Pure SVG + CSS, so it
+   honours prefers-reduced-motion (see globals.css). */
 function HeroChain() {
   const nodes = [
-    { x: 60, y: 230, c: "var(--accent)" },
-    { x: 130, y: 150, c: "var(--accent-blue)" },
-    { x: 205, y: 215, c: "var(--accent-teal)" },
-    { x: 270, y: 120, c: "var(--accent-purple)" },
-    { x: 335, y: 185, c: "var(--accent-amber)" },
-    { x: 395, y: 95, c: "var(--accent)" },
+    { x: 56, y: 150, c: "var(--accent)" },
+    { x: 126, y: 214, c: "var(--accent-blue)" },
+    { x: 196, y: 136, c: "var(--accent-teal)" },
+    { x: 266, y: 210, c: "var(--accent-purple)" },
+    { x: 346, y: 150, c: "var(--accent-amber)" },
   ];
   return (
     <div className="hero-float">
-      <svg viewBox="0 0 440 320" className="w-full" role="img" aria-label="Stylized peptide chain">
-        <path
-          d="M60 230 L130 150 L205 215 L270 120 L335 185 L395 95"
+      <svg
+        viewBox="0 0 460 340"
+        className="w-full"
+        role="img"
+        aria-label="A peptide chain docking into its receptor"
+      >
+        <defs>
+          <linearGradient id="bbStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="var(--accent)" />
+            <stop offset="1" stopColor="var(--accent-amber)" />
+          </linearGradient>
+          <radialGradient id="heroAmbient" cx="0.72" cy="0.4" r="0.6">
+            <stop offset="0" stopColor="var(--accent)" stopOpacity="0.16" />
+            <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+
+        {/* ambient glow */}
+        <rect x="0" y="0" width="460" height="340" fill="url(#heroAmbient)" />
+
+        {/* receptor cradle the terminal residue docks into */}
+        <g fill="none" stroke="var(--accent)" strokeLinecap="round">
+          <path d="M392 108 A42 42 0 0 1 392 192" strokeWidth="2.5" opacity="0.4" />
+          <path d="M390 122 A30 30 0 0 1 390 178" strokeWidth="2.5" opacity="0.6" />
+        </g>
+        {/* bind-pulse at the opening */}
+        <circle
+          className="hero-bind"
+          cx="360"
+          cy="150"
           fill="none"
-          stroke="var(--accent)"
+          stroke="var(--accent-amber)"
           strokeWidth="2"
+        />
+
+        {/* backbone */}
+        <path
+          d="M56 150 L126 214 L196 136 L266 210 L346 150"
+          fill="none"
+          stroke="url(#bbStroke)"
+          strokeWidth="2.5"
           strokeLinecap="round"
-          opacity="0.35"
+          strokeLinejoin="round"
+          opacity="0.45"
           className="hero-bond"
         />
+
+        {/* residues */}
         {nodes.map((n, i) => (
-          <g key={i} className="hero-node" style={{ animationDelay: `${i * 0.5}s` }}>
-            <circle cx={n.x} cy={n.y} r="22" fill={n.c} opacity="0.12" />
-            <circle cx={n.x} cy={n.y} r="11" fill={n.c} opacity="0.9" />
+          <g key={i}>
+            <circle
+              className="hero-node"
+              style={{ animationDelay: `${i * 0.5}s`, transformOrigin: `${n.x}px ${n.y}px` }}
+              cx={n.x}
+              cy={n.y}
+              r="22"
+              fill={n.c}
+              opacity="0.12"
+            />
+            <circle cx={n.x} cy={n.y} r="11" fill={n.c} opacity="0.95" />
+            <circle cx={n.x} cy={n.y} r="11" fill="none" stroke="#fff" strokeOpacity="0.14" />
             <circle cx={n.x} cy={n.y} r="4" fill="var(--surface-deep)" />
+            <circle cx={n.x - 3.4} cy={n.y - 3.4} r="2.2" fill="#fff" opacity="0.45" />
           </g>
         ))}
       </svg>
     </div>
+  );
+}
+
+/* ── Principle icons ──
+   Three line-glyphs for the trust principles, in the same grammar as the family
+   marks but a single restrained accent — a sourced document, a research flask,
+   an independence balance. */
+type PrincipleName = "sourced" | "research" | "independent";
+
+function PrincipleIcon({
+  name,
+  className = "",
+}: {
+  name: PrincipleName;
+  className?: string;
+}) {
+  const glyph = {
+    // Sourced — a cited reference page.
+    sourced: (
+      <>
+        <path d="M6.5 3 H13.5 L17.5 7 V21 H6.5 Z" />
+        <path d="M13.5 3 V7 H17.5" />
+        <path d="M9 12 H15 M9 15 H15 M9 18 H12.5" />
+      </>
+    ),
+    // Research-grade — a lab flask.
+    research: (
+      <>
+        <path d="M9 3 H15" />
+        <path d="M10 3 V9.5 L5.8 18.2 Q5.2 20.5 7.6 20.5 H16.4 Q18.8 20.5 18.2 18.2 L14 9.5 V3" />
+        <path d="M7.3 15 H16.7" />
+      </>
+    ),
+    // Editorially independent — a level balance.
+    independent: (
+      <>
+        <path d="M12 4.8 V19 M8.5 19 H15.5 M6 8 H18" />
+        <path d="M6 8 L4.6 12 M6 8 L7.4 12 M4.3 12 A2.6 2.6 0 0 0 7.7 12" />
+        <path d="M18 8 L16.6 12 M18 8 L19.4 12 M16.3 12 A2.6 2.6 0 0 0 19.7 12" />
+        <circle cx="12" cy="4.6" r="1.05" fill="currentColor" stroke="none" />
+      </>
+    ),
+  }[name];
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      {glyph}
+    </svg>
   );
 }
