@@ -11,6 +11,7 @@ import { hormoneFaq } from "@/lib/hormones";
 import type { Family } from "@/lib/families";
 import type { Insight } from "@/lib/insights";
 import { referencesFor } from "@/lib/references";
+import { sameAsUrls, identifierProps } from "@/lib/identifiers";
 
 export const SITE_URL = "https://peptidehormone.com";
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -97,6 +98,13 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
       unitText: "Da",
     };
   }
+  // Knowledge-graph anchors: sameAs entity URLs + typed identifiers, so answer
+  // engines can resolve this molecule to its record in Wikidata, PubChem,
+  // DrugBank, ChEBI, UniProt, and ChEMBL. Verified, never fabricated.
+  const sameAs = sameAsUrls(h.slug);
+  if (sameAs.length) substance.sameAs = sameAs;
+  const identifiers = identifierProps(h.slug);
+  if (identifiers.length) substance.identifier = identifiers;
 
   const refs = referencesFor(h.slug);
   const citation = refs.map((r) => ({
