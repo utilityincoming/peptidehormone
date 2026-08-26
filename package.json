@@ -7,7 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "check:stock": "node scripts/check-absim-stock.mjs"
+    "check:stock": "node scripts/check-absim-stock.mjs",
+    "check:identifiers": "node scripts/fetch-identifiers.mjs --check"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

@@ -18,6 +18,7 @@ import {
   AFFILIATE_REL,
 } from "@/lib/affiliate";
 import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
+import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 
@@ -66,6 +67,7 @@ export default async function HormonePage({
     : [];
 
   const references = referencesFor(h.slug);
+  const extRefs = externalRefs(h.slug);
   const faqs = hormoneFaq(h);
   const apUrl = americanPeptideUrl(h.slug);
   const mcUrl = melanocortinUrl(h.slug);
@@ -300,6 +302,31 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ol>
+              </section>
+            )}
+
+            {extRefs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">External references</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">
+                  {h.abbr ?? h.name} in the public knowledge graph — the same entity
+                  resolved across the authoritative chemistry and protein databases.
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {extRefs.map((r) => (
+                    <li key={r.key}>
+                      <a
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-ink/12 bg-panel/40 px-3 py-1.5 text-sm text-ink/70 transition-colors hover:border-accent/40 hover:text-accent"
+                      >
+                        <span className="font-medium">{r.label}</span>
+                        <span className="font-mono text-xs text-ink/40">{r.value}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 

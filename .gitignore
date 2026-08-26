@@ -42,3 +42,6 @@ next-env.d.ts
 
 # Local Claude Code tooling (preview launch config, etc.)
 .claude/
+
+# identifier resolver audit output (scratch)
+/identifier-audit.json
