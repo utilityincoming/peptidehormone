@@ -12,6 +12,7 @@ import type { Family } from "@/lib/families";
 import type { Insight } from "@/lib/insights";
 import { referencesFor } from "@/lib/references";
 import { sameAsUrls, identifierProps } from "@/lib/identifiers";
+import { ALL_TERMS, termSameAs, type GlossaryTerm } from "@/lib/glossary";
 
 export const SITE_URL = "https://peptidehormone.com";
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -325,6 +326,64 @@ export function toolLd(opts: { path: string; name: string; description: string }
     `${url}#breadcrumb`,
   );
   return graph([app, crumbs]);
+}
+
+// ── Glossary: DefinedTermSet + a DefinedTerm per entry + CollectionPage ──
+// The term definitions are the answer-engine payload; each term's verified
+// sameAs anchors it to Wikipedia/Wikidata so a definition result can be attributed.
+export function glossaryLd(): Node {
+  const url = `${SITE_URL}/glossary`;
+  const setId = `${url}#termset`;
+
+  const term = (t: GlossaryTerm): Node => {
+    const node: Node = {
+      "@type": "DefinedTerm",
+      "@id": `${url}#${t.slug}`,
+      name: t.term,
+      description: t.def,
+      url: `${url}#${t.slug}`,
+      inDefinedTermSet: { "@id": setId },
+    };
+    if (t.abbr) node.termCode = t.abbr;
+    const sa = termSameAs(t);
+    if (sa.length) node.sameAs = sa;
+    return node;
+  };
+
+  const termSet: Node = {
+    "@type": "DefinedTermSet",
+    "@id": setId,
+    name: "Peptide science glossary",
+    description:
+      "The vocabulary of the peptide hormone system — receptors, pharmacokinetics, and molecule classes — defined in plain language.",
+    url,
+    inLanguage: "en",
+    publisher: ORG_REF,
+    hasDefinedTerm: ALL_TERMS.map(term),
+  };
+
+  const page: Node = {
+    "@type": "CollectionPage",
+    "@id": url,
+    url,
+    name: "Peptide science glossary",
+    description: termSet.description,
+    inLanguage: "en",
+    isPartOf: SITE_REF,
+    publisher: ORG_REF,
+    mainEntity: { "@id": setId },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+  };
+
+  const crumbs = breadcrumbLd(
+    [
+      { name: "Home", path: "/" },
+      { name: "Glossary", path: "/glossary" },
+    ],
+    `${url}#breadcrumb`,
+  );
+
+  return graph([page, termSet, crumbs]);
 }
 
 function itemList(items: { name: string; path: string }[]): Node {
