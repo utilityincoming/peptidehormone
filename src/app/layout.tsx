@@ -36,6 +36,12 @@ export const metadata: Metadata = {
     siteName: "Peptide Hormone",
     type: "website",
   },
+  // Large-image card site-wide. Title, description, and image are left unset so
+  // that X falls back to each page's own og:* tags — keeping cards per-page
+  // correct without repeating them on every route.
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

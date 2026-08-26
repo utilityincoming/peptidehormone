@@ -74,6 +74,17 @@ export function siteLd(): Node {
       url: SITE_URL,
       inLanguage: "en",
       publisher: ORG_REF,
+      // Sitelinks-searchbox: a query runs the catalog's own search, which reads
+      // the ?q= param (see CatalogBrowser). The target must be a working search,
+      // so this points at /catalog — never the unadvertised research agent.
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_URL}/catalog?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     },
   ]);
 }

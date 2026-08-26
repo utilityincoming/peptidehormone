@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
@@ -23,6 +23,14 @@ export default function CatalogBrowser() {
   const [family, setFamily] = useState<string>("all");
   const [evidence, setEvidence] = useState<string>("all");
   const [sort, setSort] = useState<Sort>("family");
+
+  // Seed the search from a ?q= param so the homepage sitelinks-searchbox (and any
+  // shared /catalog?q=… deep link) lands pre-filtered. Client-only, read after
+  // mount, so /catalog stays statically rendered.
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get("q");
+    if (q) setQuery(q);
+  }, []);
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
