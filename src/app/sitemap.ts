@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/insights",
     "/available",
     "/tools",
+    "/glossary",
     "/why-peptides",
     "/methodology",
     "/research",
