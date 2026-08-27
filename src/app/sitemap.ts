@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { FAMILIES } from "@/lib/families";
 import { HORMONES } from "@/lib/hormones";
 import { INSIGHTS } from "@/lib/insights";
+import { staticComparePairs, comparePairPath } from "@/lib/compare";
 
 const BASE = "https://peptidehormone.com";
 
@@ -38,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/why-peptides",
     "/methodology",
     "/research",
+    "/compare",
   ];
   const toolPages = ["/tools/half-life", "/tools/compare", "/tools/cycle-planner"];
 
@@ -67,6 +69,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE}${path}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    })),
+    ...staticComparePairs().map(([a, b]) => ({
+      url: `${BASE}/compare/${comparePairPath(a, b)}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
     })),
   ];
 

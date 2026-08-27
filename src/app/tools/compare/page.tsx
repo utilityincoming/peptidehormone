@@ -4,6 +4,17 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import AnalogComparer from "@/components/tools/AnalogComparer";
 import { JsonLd } from "@/components/JsonLd";
 import { toolLd } from "@/lib/jsonld";
+import { getHormone } from "@/lib/hormones";
+import { comparePairPath } from "@/lib/compare";
+
+const FEATURED: [string, string][] = [
+  ["semaglutide", "tirzepatide"],
+  ["glp-1", "semaglutide"],
+  ["semaglutide", "liraglutide"],
+  ["tirzepatide", "retatrutide"],
+  ["cjc-1295", "ipamorelin"],
+  ["bpc-157", "tb-500"],
+];
 
 export const metadata: Metadata = {
   title: "Analog comparison tool",
@@ -87,6 +98,35 @@ export default async function ComparePage({
               substantially. Educational only — not medical advice, dosing guidance,
               or a recommendation to use any substance.
             </p>
+          </section>
+
+          <section className="mt-14">
+            <h2 className="font-display text-2xl font-semibold">Indexable comparisons</h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/55">
+              Static pages for the pairs people search — same table, no JavaScript required
+              to read. Full list on{" "}
+              <Link href="/compare" className="text-accent hover:underline">
+                /compare
+              </Link>
+              .
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {FEATURED.map(([a, b]) => {
+                const ha = getHormone(a);
+                const hb = getHormone(b);
+                if (!ha || !hb) return null;
+                return (
+                  <li key={`${a}-${b}`}>
+                    <Link
+                      href={`/compare/${comparePairPath(a, b)}`}
+                      className="inline-flex rounded-full border border-ink/12 bg-panel/40 px-3 py-1.5 text-xs text-ink/70 hover:border-accent/50 hover:text-ink"
+                    >
+                      {ha.abbr ?? ha.name} vs {hb.abbr ?? hb.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
           </section>
         </Container>
       </main>

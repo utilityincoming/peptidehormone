@@ -13,6 +13,7 @@ import type { Insight } from "@/lib/insights";
 import { referencesFor } from "@/lib/references";
 import { sameAsUrls, identifierProps } from "@/lib/identifiers";
 import { ALL_TERMS, termSameAs, type GlossaryTerm } from "@/lib/glossary";
+import { aliasesFor } from "@/lib/aliases";
 
 export const SITE_URL = "https://peptidehormone.com";
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -101,7 +102,9 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
     description: h.summary,
     url,
   };
-  if (h.abbr) substance.alternateName = h.abbr;
+  const altNames = [h.abbr, ...aliasesFor(h.slug)].filter((n): n is string => Boolean(n));
+  if (altNames.length === 1) substance.alternateName = altNames[0];
+  else if (altNames.length > 1) substance.alternateName = altNames;
   if (h.class) substance.disambiguatingDescription = h.class;
   if (h.mw) {
     substance.molecularWeight = {
@@ -297,6 +300,57 @@ export function aboutPageLd(opts: {
     `${url}#breadcrumb`,
   );
   return graph([page, crumbs]);
+}
+
+// ── Static A-vs-B comparison: WebPage + FAQPage + breadcrumb ──
+export function compareLd(
+  a: Hormone,
+  b: Hormone,
+  pair: string,
+  faqs: { q: string; a: string }[],
+): Node {
+  const url = `${SITE_URL}/compare/${pair}`;
+  const page: Node = {
+    "@type": "WebPage",
+    "@id": url,
+    url,
+    name: `${a.name} vs ${b.name}`,
+    description: `${a.name} vs ${b.name} — type, evidence, receptor, molecular weight, and half-life.`,
+    inLanguage: "en",
+    isPartOf: SITE_REF,
+    publisher: ORG_REF,
+    about: [
+      { "@id": `${SITE_URL}/hormones/${a.slug}#substance` },
+      { "@id": `${SITE_URL}/hormones/${b.slug}#substance` },
+    ],
+    significantLink: [
+      `${SITE_URL}/hormones/${a.slug}`,
+      `${SITE_URL}/hormones/${b.slug}`,
+      `${SITE_URL}/tools/compare?ids=${a.slug},${b.slug}`,
+    ],
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+  };
+  const crumbs = breadcrumbLd(
+    [
+      { name: "Home", path: "/" },
+      { name: "Comparisons", path: "/compare" },
+      { name: `${a.abbr ?? a.name} vs ${b.abbr ?? b.name}`, path: `/compare/${pair}` },
+    ],
+    `${url}#breadcrumb`,
+  );
+  const nodes: Node[] = [page, crumbs];
+  if (faqs.length) {
+    nodes.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  return graph(nodes);
 }
 
 export function methodologyLd(): Node {
