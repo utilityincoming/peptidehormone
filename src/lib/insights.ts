@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-peptide-exercise-writes",
+    title: "The peptide exercise writes",
+    dek: "MOTS-c isn't a pre-workout. It's a signal your muscle writes during hard training — an exercise-induced peptide transcribed from the mitochondrial genome that tells the cell to adapt. That reframes the whole timing question: the stimulus comes first, the peptide follows. What the exercise-mimetic data actually shows, why lifestyle is the real dose, where an injected protocol could plausibly fit around training (and why sport has already banned it), and how the cell's other mitochondrial peptides — the cardiolipin-protector SS-31, the cytoprotectant humanin — play a completely different game.",
+    family: "mitochondrial",
+    readingMinutes: 11,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-last-three-words",
     title: "The last three words",
     dek: "α-MSH is a thirteen-residue hormone that says several things at once — colour the skin, curb the appetite, calm the inflammation. Cut it down to its final three residues and you get KPV, which still says exactly one of them: enough. It keeps the anti-inflammatory clause, drops the pigment and the appetite, and — stranger still — delivers it by breaking the rule that a peptide has to knock on a receptor from the outside. The shortest sentence in the melanocortin system, and why it still parses.",
