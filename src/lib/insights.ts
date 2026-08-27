@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-last-three-words",
+    title: "The last three words",
+    dek: "α-MSH is a thirteen-residue hormone that says several things at once — colour the skin, curb the appetite, calm the inflammation. Cut it down to its final three residues and you get KPV, which still says exactly one of them: enough. It keeps the anti-inflammatory clause, drops the pigment and the appetite, and — stranger still — delivers it by breaking the rule that a peptide has to knock on a receptor from the outside. The shortest sentence in the melanocortin system, and why it still parses.",
+    family: "melanocortins",
+    readingMinutes: 8,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-other-pedal",
     title: "The other pedal",
     dek: "Muscle mass is set by two opposing forces, and this site has only told half the story — the brake, myostatin. The other half is the accelerator: the IGF-1 axis growth hormone works through, the local repair pulse a worked muscle splices for itself, and the research peptides — IGF-1 LR3, MGF — built to push it from outside. Why the accelerator is the older, stronger lever, why it's also the harder and riskier one to pull, and what the honest evidence actually supports.",
