@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink, hormoneFaq } from "@/lib/hormones";
+import { hormoneMetaTitle, hormoneMetaDescription, aliasesFor } from "@/lib/aliases";
+import { comparePairPath } from "@/lib/compare";
 import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
@@ -34,12 +36,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const h = getHormone(slug);
   if (!h) return { title: "Not found" };
-  const title = h.abbr ? `${h.name} (${h.abbr})` : h.name;
+  const title = hormoneMetaTitle(h);
+  const description = hormoneMetaDescription(h);
   return {
     title,
-    description: h.summary,
+    description,
     alternates: { canonical: `/hormones/${h.slug}` },
-    openGraph: { title: `${title} · Peptide Hormone`, description: h.summary },
+    openGraph: { title: `${title} · Peptide Hormone`, description },
   };
 }
 
@@ -117,6 +120,11 @@ export default async function HormonePage({
               {h.abbr && <span className={`ml-3 text-2xl font-medium ${accent}`}>{h.abbr}</span>}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">{h.summary}</p>
+            {aliasesFor(h.slug).length > 0 && (
+              <p className="mt-3 text-sm text-ink/45">
+                Also known as {aliasesFor(h.slug).join(", ")}.
+              </p>
+            )}
             <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs">
               <span className="rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/65">
                 {typeLabel}
@@ -131,6 +139,14 @@ export default async function HormonePage({
                     {parent.name}
                   </Link>
                 </span>
+              )}
+              {parent && (
+                <Link
+                  href={`/compare/${comparePairPath(parent.slug, h.slug)}`}
+                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                >
+                  Compare with {parent.abbr ?? parent.name} <span aria-hidden>→</span>
+                </Link>
               )}
               {lineageSlugs.length > 1 && (
                 <Link

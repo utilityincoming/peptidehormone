@@ -7,6 +7,7 @@ import { HORMONES, getHormone } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
 import { INSIGHTS } from "@/lib/insights";
 import { stockedSlugs } from "@/lib/affiliate";
+import { uniqueComparePairs, comparePairPath } from "@/lib/compare";
 
 export const dynamic = "force-static";
 
@@ -66,6 +67,20 @@ export function GET() {
     `- [Peptide cycle planner](${SITE}/tools/cycle-planner): plan a research cycle — goal stacks, a week-by-week timeline, reference dosing, and a supply estimate.`,
     `- [Half-life & dosing calculator](${SITE}/tools/half-life): model bioactive duration, accumulation, and steady state from a half-life and dosing interval.`,
     `- [Analog comparison](${SITE}/tools/compare): compare the molecules in a lineage side by side.`,
+    "",
+    "## Comparisons",
+  );
+
+  for (const [a, b] of uniqueComparePairs()) {
+    const ha = getHormone(a);
+    const hb = getHormone(b);
+    if (!ha || !hb) continue;
+    const left = ha.abbr ? `${ha.name} (${ha.abbr})` : ha.name;
+    const right = hb.abbr ? `${hb.name} (${hb.abbr})` : hb.name;
+    out.push(`- [${left} vs ${right}](${SITE}/compare/${comparePairPath(a, b)})`);
+  }
+
+  out.push(
     "",
     "## Reference",
     `- [Glossary](${SITE}/glossary): plain-language definitions of the peptide-science vocabulary — receptors, agonism, pharmacokinetics, and molecule classes — each term linked to its record in the wider knowledge graph.`,
