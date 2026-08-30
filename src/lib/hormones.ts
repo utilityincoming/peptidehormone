@@ -496,15 +496,16 @@ const BASE: Hormone[] = [
     type: "analog",
     evidence: "Preclinical",
     parent: "igf-1",
-    summary: "IGF-1 re-engineered to slip past its binding proteins — more free signal, for longer.",
+    summary: "IGF-1 re-engineered to slip past its binding proteins — free, unbuffered signal at the receptor.",
     class: "83-aa IGF-1 analog (Arg³ substitution + 13-aa N-terminal extension)",
     source: "Synthetic analog of IGF-1",
     receptor: "IGF-1 receptor (IGF-1R), a receptor tyrosine kinase",
     mechanism:
-      "Native IGF-1 travels almost entirely bound to IGF-binding proteins, which buffer its activity and clear it within minutes. LR3 carries two changes — arginine for glutamate at position 3, and a 13-residue N-terminal extension — that together cripple that binding. The analog stays free, delivers the same message to IGF-1R with far more of it reaching the receptor, and lasts hours instead of minutes.",
+      "Native IGF-1 travels almost entirely bound to IGF-binding proteins, which buffer its activity and clear it within minutes. LR3 carries two changes — arginine for glutamate at position 3, and a 13-residue N-terminal extension — that together cripple that binding. The analog stays free, delivers the same message to IGF-1R with far more of it reaching the receptor, and — in preclinical and cell-culture work — outlasts free native IGF-1.",
     facts: [
       "Both modifications serve one goal — escape the IGFBPs. Free and unbuffered, LR3 is markedly more potent than native IGF-1, and is a standard cell-culture reagent for exactly that reason.",
-      "The longer, unbuffered exposure is the point and the problem: sustained systemic IGF-1R activation is mitogenic, the core safety concern that keeps it research-only.",
+      "A widely repeated half-life claim is backwards: for native IGF-1, binding to IGFBP-3 and the acid-labile subunit is what extends circulating half-life (~12–16 h bound vs ~10–15 min free), so evading the IGFBPs should shorten persistence, not lengthen it. Any longer-lasting activity is attributed to protease resistance and in-vitro availability, and no human PK for LR3 has been published.",
+      "The unbuffered, systemic exposure is the point and the problem: sustained IGF-1R activation is mitogenic, the core safety concern that keeps it research-only.",
       "des(1-3)IGF-1, which instead deletes the first three residues, is the sister analog built on the same idea of dodging the binding proteins.",
     ],
     questions: [
@@ -513,7 +514,7 @@ const BASE: Hormone[] = [
     ],
     mw: 9111,
     mwApprox: true,
-    halfLife: "Hours — free of the IGFBP clearance that limits native IGF-1 to ~10 min",
+    halfLife: "Hours in vitro (no human PK published)",
   },
   {
     slug: "ghrh",

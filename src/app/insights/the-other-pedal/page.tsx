@@ -151,20 +151,22 @@ export default function Article() {
               </P>
               <Bullets
                 items={[
-                  ["IGF-1 LR3 — the escape artist", "Long R3 IGF-1 adds two changes to the sequence — an arginine swap at position 3 and a 13-residue N-terminal extension — that between them cripple binding-protein capture. It stays free, hits the receptor far more fully, and lasts hours instead of minutes, which is exactly why it is a standard cell-culture reagent."],
+                  ["IGF-1 LR3 — the escape artist", "Long R3 IGF-1 adds two changes to the sequence — an arginine swap at position 3 and a 13-residue N-terminal extension — that between them cripple binding-protein capture. It stays free, hits the receptor far more fully, and outlasts free native IGF-1 in the dish, which is exactly why it is a standard cell-culture reagent — though, as its own deep-dive explains, staying free is not what lengthens its half-life."],
                   ["des(1-3)IGF-1 — the same idea, subtracted", "Its sister analog reaches the same end by deletion, dropping the first three residues so the binding proteins lose their grip. Two routes, one goal: an IGF-1 the buffer can't hold."],
                   ["MGF / PEG-MGF — the local pulse, bottled", "The synthetic MGF sold for research is the E-domain peptide itself. Native it lasts only minutes, so a pegylated form is offered to stretch it — an attempt to supply the mechano-pulse a muscle would otherwise have to earn under load."],
                 ]}
               />
               <P>
-                It is elegant engineering, and it is the same trick the metabolic field used on
-                GLP-1: the reach of a signal is set as much by what carries it as by what it
-                says (more on that in{" "}
+                It is elegant engineering, and it rhymes with the trick the metabolic field
+                used on GLP-1: the reach of a signal is set as much by what carries it as by
+                what it says (more on that in{" "}
                 <Link href="/insights/peptide-half-life-engineering" className={LINK}>
                   two minutes to seven days
                 </Link>
-                ). Free the peptide from its buffer and a two-minute signal becomes a
-                multi-hour one.
+                ). The moves run opposite, though: GLP-1 drugs bolt the peptide onto a
+                long-lived carrier to stretch a two-minute signal into a weekly one, while LR3
+                strips a carrier off. That buys reagent potency in a dish, not a longer
+                half-life.
               </P>
             </Section>
 
@@ -202,6 +204,7 @@ export default function Article() {
                 <CrossLink href="/hormones/mgf" label="MGF — the local, load-triggered pulse" />
                 <CrossLink href="/hormones/igf-1-lr3" label="IGF-1 LR3 — engineered to slip the leash" />
                 <CrossLink href="/hormones/igf-2" label="IGF-2 — the imprinted sibling" />
+                <CrossLink href="/insights/igf-1-lr3" label="The half-life, backwards — the IGF-1 LR3 reference" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="The other pedal: releasing the brake" />
                 <CrossLink href="/research?q=What%20does%20the%20human%20evidence%20show%20for%20IGF-1%20analogs%20like%20LR3%20or%20MGF%20building%20skeletal%20muscle%3F" label="Ask the research agent what the human data shows" />
               </ul>
