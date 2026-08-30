@@ -6,6 +6,7 @@ import { hormoneMetaTitle, hormoneMetaDescription, aliasesFor } from "@/lib/alia
 import { comparePairPath } from "@/lib/compare";
 import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
+import { insightsForHormone } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
@@ -74,6 +75,10 @@ export default async function HormonePage({
   const faqs = hormoneFaq(h);
   const apUrl = americanPeptideUrl(h.slug);
   const mcUrl = melanocortinUrl(h.slug);
+
+  // Long-form insights that treat this molecule directly — surfaced only when
+  // one applies, so the cross-link stays a signal rather than boilerplate.
+  const deepDives = insightsForHormone(h.slug).slice(0, 3);
 
   // Per-claim provenance tiers for the quantitative properties, and the computed
   // page-level floor - the Standard, surfaced where the claims actually sit.
@@ -397,6 +402,34 @@ export default async function HormonePage({
                     , a second network source — research-use-only.
                   </p>
                 )}
+              </div>
+            )}
+
+            {deepDives.length > 0 && (
+              <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
+                <span className={`font-mono text-[11px] uppercase tracking-wide ${accent}`}>
+                  {deepDives.length > 1 ? "Deep-dives" : "Deep-dive"}
+                </span>
+                <h3 className="mt-2 font-display text-base font-semibold">
+                  Go deeper on {h.abbr ?? h.name}
+                </h3>
+                <ul className="mt-4 space-y-4">
+                  {deepDives.map((ins) => (
+                    <li key={ins.slug}>
+                      <Link href={`/insights/${ins.slug}`} className="group block">
+                        <span className="font-display text-[15px] font-semibold leading-snug text-ink transition-colors group-hover:text-accent">
+                          {ins.title}
+                        </span>
+                        <span className="mt-1 flex items-center gap-1.5 text-[13px] leading-5 text-ink/45">
+                          {ins.readingMinutes} min read
+                          <span className="text-accent opacity-0 transition-opacity group-hover:opacity-100" aria-hidden>
+                            →
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 

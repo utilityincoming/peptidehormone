@@ -8,6 +8,13 @@ export interface Insight {
   dek: string;
   /** Family slug this piece anchors to (for accent + cross-links). */
   family: string;
+  /**
+   * Catalog molecules this piece genuinely treats, most-central first. Drives
+   * the "Go deeper" cross-link surfaced in each hormone monograph's sidebar —
+   * the first slug is the primary subject. Omit for site-level essays
+   * (delivery, sourcing, availability) that don't sit on any one molecule.
+   */
+  hormones?: string[];
   readingMinutes: number;
   /** Human label; mechanisms are reviewed, not dated to a publish cycle. */
   reviewed: string;
@@ -16,6 +23,7 @@ export interface Insight {
 export const INSIGHTS: Insight[] = [
   {
     slug: "igf-1-lr3",
+    hormones: ["igf-1-lr3", "igf-1"],
     title: "The half-life, backwards",
     dek: "IGF-1 LR3 is a well-defined molecule with a poorly-defined human profile. The biochemistry is solid: an 83-residue, ~9,100 Da IGF-1 analog re-engineered to slip past the binding proteins while keeping full IGF-1R activity. Almost nothing downstream in humans is — starting with the half-life, where the most-repeated claim has the mechanism backwards. Evading the binding proteins doesn't lengthen IGF-1's persistence; it shortens it. A reference-tier walk through the structure, the half-life the vendor pages get wrong, the mecasermin label that's the closest thing to human data, the IGF-1/cancer evidence, WADA status, and what a certificate of analysis actually has to prove. No dosing.",
     family: "growth-repair",
@@ -24,6 +32,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-peptide-exercise-writes",
+    hormones: ["mots-c", "ss-31", "humanin"],
     title: "The peptide exercise writes",
     dek: "MOTS-c isn't a pre-workout. It's a signal your muscle writes during hard training — an exercise-induced peptide transcribed from the mitochondrial genome that tells the cell to adapt. That reframes the whole timing question: the stimulus comes first, the peptide follows. What the exercise-mimetic data actually shows, why lifestyle is the real dose, where an injected protocol could plausibly fit around training (and why sport has already banned it), and how the cell's other mitochondrial peptides — the cardiolipin-protector SS-31, the cytoprotectant humanin — play a completely different game.",
     family: "mitochondrial",
@@ -32,6 +41,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-last-three-words",
+    hormones: ["kpv", "alpha-msh"],
     title: "The last three words",
     dek: "α-MSH is a thirteen-residue hormone that says several things at once — colour the skin, curb the appetite, calm the inflammation. Cut it down to its final three residues and you get KPV, which still says exactly one of them: enough. It keeps the anti-inflammatory clause, drops the pigment and the appetite, and — stranger still — delivers it by breaking the rule that a peptide has to knock on a receptor from the outside. The shortest sentence in the melanocortin system, and why it still parses.",
     family: "melanocortins",
@@ -40,6 +50,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-other-pedal",
+    hormones: ["igf-1", "igf-1-lr3", "mgf", "myostatin"],
     title: "The other pedal",
     dek: "Muscle mass is set by two opposing forces, and this site has only told half the story — the brake, myostatin. The other half is the accelerator: the IGF-1 axis growth hormone works through, the local repair pulse a worked muscle splices for itself, and the research peptides — IGF-1 LR3, MGF — built to push it from outside. Why the accelerator is the older, stronger lever, why it's also the harder and riskier one to pull, and what the honest evidence actually supports.",
     family: "growth-repair",
@@ -48,6 +59,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "when-the-drug-works-too-well",
+    hormones: ["semaglutide", "tirzepatide", "liraglutide", "glp-1"],
     title: "When the drug works too well",
     dek: "The people who struggle most to come off a GLP-1 are usually the ones it helped most - and that is not weakness, it is physiology doing exactly what it evolved to do. The body defends the weight it has lost, the drug holds that defense at bay, and stopping lets it back in. What the withdrawal trials actually show, why 'chronic' is the honest word for obesity, and how to think about time off: maintenance, tapering, and an off-ramp with a return ticket.",
     family: "incretins-metabolic",
@@ -56,6 +68,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "born-switched-off",
+    hormones: ["myostatin"],
     title: "Born switched off",
     dek: "Myostatin, the body's brake on muscle, is manufactured pre-disabled: folded shut around its own off-switch and released into the blood inert. Arming it takes two molecular cuts by two different enzymes. That safety-catch design isn't a quirk - it's the exact vulnerability the most selective muscle drugs are built to exploit.",
     family: "muscle-tgfb",
@@ -64,6 +77,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "one-receptor-a-whole-family",
+    hormones: ["myostatin", "activin-a"],
     title: "One receptor, a whole family",
     dek: "Myostatin isn't the only brake on muscle. Activin A and GDF-11 sign in through the very same receptor - and GDF-11 is so nearly identical to myostatin that a famous \"rejuvenation\" claim couldn't reliably tell the two apart. Why the muscle brake has a built-in backup, and why that redundancy, not any single molecule, decides how you drug it.",
     family: "muscle-tgfb",
@@ -72,6 +86,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-complexity-ladder",
+    hormones: ["myostatin", "follistatin"],
     title: "Where trust starts to mean something",
     dek: "Short synthetic peptides are cheap to make and, more to the point, cheap to verify — reversed-phase HPLC and a mass spec settle what they are in an afternoon, and a competitive market keeps them honest. Trust and availability only become live variables higher up the complexity ladder, at the folded biologics — antibodies, ligand traps, the myostatin inhibitors — where correctness lives in the fold, not the sequence, and only a bioassay can confirm it. Why complexity, not fraud, governs what you can actually source.",
     family: "muscle-tgfb",
@@ -88,6 +103,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "peptide-half-life-engineering",
+    hormones: ["semaglutide", "glp-1"],
     title: "Two minutes to seven days",
     dek: "Natural GLP-1 is destroyed about two minutes after the gut releases it. Semaglutide — the same signal, essentially the same shape — survives a week. That gap is a five-thousand-fold engineering feat, and it wasn't achieved by making the peptide tougher. It was achieved by attaching it to something the body has already decided to keep. Inside the three tricks that turned a disposable hormone into a weekly drug, and why the next cadence is monthly.",
     family: "incretins-metabolic",
@@ -96,6 +112,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-gip-paradox",
+    hormones: ["gip", "tirzepatide", "maridebart-cafraglutide"],
     title: "The GIP paradox",
     dek: "Tirzepatide turns the GIP receptor on. Maridebart cafraglutide turns the same receptor off. Both drive weight loss. That should be impossible under a \"more signal is better\" model of pharmacology — and the fact that it isn't is one of the most revealing puzzles on the metabolic frontier. How a receptor can be pushed either way and land in the same place.",
     family: "incretins-metabolic",
@@ -104,6 +121,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "glp-1-in-a-pill",
+    hormones: ["semaglutide", "glp-1"],
     title: "Putting GLP-1 in a pill",
     dek: "A peptide is food — swallow it and your gut digests it before it works, which is why this class has lived on the needle. Yet the pill is arriving, by two philosophically opposite routes: smuggle the fragile peptide across the gut wall, or stop using a peptide at all and rebuild the signal from a rugged small molecule. The second one is the real revolution, and it comes down to a quiet truth about receptors — they read the message, not the messenger.",
     family: "incretins-metabolic",
@@ -112,6 +130,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "insulins-forgotten-twin",
+    hormones: ["amylin", "pramlintide", "cagrilintide", "insulin"],
     title: "Insulin's forgotten twin",
     dek: "Every time the pancreas releases insulin, it releases a second hormone from the same granule — amylin. For a century insulin took all the credit while its partner went unnamed. Amylin runs a receptor it borrowed rather than built, sabotages itself by clumping into the amyloid that scars a diabetic pancreas, and is now the metabolic frontier's newest axis. The story of the twin the body never forgot.",
     family: "incretins-metabolic",
@@ -120,6 +139,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "is-there-a-glp-4",
+    hormones: ["glp-1"],
     title: "Is there a GLP-4?",
     dek: "Single agonist, then dual, then triple — so the next breakthrough must be a bigger number, right? There is no GLP-4. GLP-1's \"1\" was never a version number, and seeing why reveals where the field is actually going: not up the same axis, but sideways — into amylin, into GIP antagonism, into the pill and the quality of the weight you keep.",
     family: "incretins-metabolic",
@@ -144,6 +164,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "the-triple-agonist",
+    hormones: ["retatrutide", "glucagon"],
     title: "The triple agonist",
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
     family: "incretins-metabolic",
@@ -160,6 +181,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "glp-1-muscle-preservation",
+    hormones: ["semaglutide", "tirzepatide", "myostatin", "follistatin"],
     title: "Keeping the muscle on GLP-1",
     dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
     family: "muscle-tgfb",
@@ -168,6 +190,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "insulin-to-the-peptide-boom",
+    hormones: ["insulin"],
     title: "From insulin to the peptide boom",
     dek: "A hundred years of peptide medicine — the first miracle, the families it built, and how the molecules quietly running your body became a 2026 cultural phenomenon.",
     family: "incretins-metabolic",
@@ -176,6 +199,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "glp-1-signaling",
+    hormones: ["glp-1", "semaglutide"],
     title: "How GLP-1 actually works",
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",
@@ -186,4 +210,18 @@ export const INSIGHTS: Insight[] = [
 
 export function getInsight(slug: string): Insight | undefined {
   return INSIGHTS.find((i) => i.slug === slug);
+}
+
+/**
+ * Deep-dives that genuinely treat a given molecule, most-relevant first. A
+ * piece is ranked ahead when this hormone is its *primary* subject (the first
+ * entry in `hormones`) rather than a supporting mention; ties keep the array's
+ * newest-first order. Powers the "Go deeper" cross-link in each monograph.
+ */
+export function insightsForHormone(slug: string): Insight[] {
+  return INSIGHTS.filter((i) => i.hormones?.includes(slug)).sort((a, b) => {
+    const aPrimary = a.hormones?.[0] === slug ? 0 : 1;
+    const bPrimary = b.hormones?.[0] === slug ? 0 : 1;
+    return aPrimary - bPrimary;
+  });
 }
