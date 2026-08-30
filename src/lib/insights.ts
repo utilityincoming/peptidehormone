@@ -15,6 +15,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "igf-1-lr3",
+    title: "The half-life, backwards",
+    dek: "IGF-1 LR3 is a well-defined molecule with a poorly-defined human profile. The biochemistry is solid: an 83-residue, ~9,100 Da IGF-1 analog re-engineered to slip past the binding proteins while keeping full IGF-1R activity. Almost nothing downstream in humans is — starting with the half-life, where the most-repeated claim has the mechanism backwards. Evading the binding proteins doesn't lengthen IGF-1's persistence; it shortens it. A reference-tier walk through the structure, the half-life the vendor pages get wrong, the mecasermin label that's the closest thing to human data, the IGF-1/cancer evidence, WADA status, and what a certificate of analysis actually has to prove. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 12,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-peptide-exercise-writes",
     title: "The peptide exercise writes",
     dek: "MOTS-c isn't a pre-workout. It's a signal your muscle writes during hard training — an exercise-induced peptide transcribed from the mitochondrial genome that tells the cell to adapt. That reframes the whole timing question: the stimulus comes first, the peptide follows. What the exercise-mimetic data actually shows, why lifestyle is the real dose, where an injected protocol could plausibly fit around training (and why sport has already banned it), and how the cell's other mitochondrial peptides — the cardiolipin-protector SS-31, the cytoprotectant humanin — play a completely different game.",
