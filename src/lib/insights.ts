@@ -22,6 +22,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-touch-deficit",
+    hormones: ["oxytocin", "pt-141"],
+    title: "The touch deficit",
+    dek: "Oxytocin is the bonding hormone — when it is released where bonding happens. The 'love hormone' industry sells it as a spray or an injection, but the molecule that writes pair-bonds in mammals barely crosses from blood into brain, survives roughly five minutes in plasma, and the famous behavioral studies behind it have largely failed to replicate. What couples-bonding research actually rests on is oxytocin released by touch — the one thing no bottle can substitute for. Why the needle misses the site, what the replication failures mean, and why the melanocortin agonist bremelanotide — the drive half of the same circuit — is the half of a couples strategy with real clinical evidence.",
+    family: "neuropeptides",
+    readingMinutes: 10,
+    reviewed: "August 2026",
+  },
+  {
     slug: "igf-1-lr3",
     hormones: ["igf-1-lr3", "igf-1"],
     title: "The half-life, backwards",
