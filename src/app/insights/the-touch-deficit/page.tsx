@@ -12,11 +12,11 @@ const insight = getInsight("the-touch-deficit")!;
 export const metadata: Metadata = {
   // Editorial H1 lives in `insight.title`; the browser/SERP title carries the
   // descriptive, keyword-first phrasing per the site's headline convention.
-  title: "Oxytocin for Couples Bonding: Why Sprays & Injections Miss the Brain — Reference Guide",
+  title: "Oxytocin for Couples Bonding: Delivery, Evidence & Why Sprays Fall Short — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: {
-    title: "Oxytocin for Couples Bonding: Why Sprays & Injections Miss the Brain · Peptide Hormone",
+    title: "Oxytocin for Couples Bonding: Delivery, Evidence & Why Sprays Fall Short · Peptide Hormone",
     description: insight.dek,
   },
 };
@@ -37,13 +37,23 @@ const REF = {
   firstApproval: "https://pubmed.ncbi.nlm.nih.gov/31429064/", // Bremelanotide: First Approval, Drugs 2019
   pt141men: "https://pubmed.ncbi.nlm.nih.gov/12851303/", // Wessells et al. 2003, Ann NY Acad Sci
   pt141women: "https://pubmed.ncbi.nlm.nih.gov/16839319/", // Diamond et al. 2006, Fertil Steril
+  labeledcsf: "https://pubmed.ncbi.nlm.nih.gov/28289281/", // Lee et al. 2018, Mol Psychiatry (labeled IN reaches CSF/brain)
+  breathpowered: "https://pubmed.ncbi.nlm.nih.gov/27107209/", // Quintana et al. 2016, Transl Psychiatry
+  aerosol: "https://pubmed.ncbi.nlm.nih.gov/24845176/", // Modi et al. 2014, Psychoneuroendocrinology
+  kinetics: "https://pubmed.ncbi.nlm.nih.gov/28629540/", // Spengler et al. 2017, Biol Psychiatry
+  rage: "https://pubmed.ncbi.nlm.nih.gov/30820471/", // Yamamoto et al. 2019, Commun Biol
+  bales: "https://pubmed.ncbi.nlm.nih.gov/23079235/", // Bales et al. 2013, Biol Psychiatry (chronic IN impairs partner preference)
 } as const;
 
 // FAQ — surfaced as FAQPage JSON-LD AND mirrored in a visible <dl> block.
 const FAQS = [
   {
     q: "Does an oxytocin spray or injection improve bonding or intimacy in couples?",
-    a: "There is no clinical evidence that it does. Injected oxytocin is trapped almost entirely in the bloodstream — a 1,007-Da peptide does not meaningfully cross the blood-brain barrier — and is degraded in about 1–6 minutes. Nasal sprays show the same problem: very little reaches the cerebrospinal fluid, and the behavioral studies that built the spray's reputation have repeatedly failed to replicate. The bonding circuit receives oxytocin from direct release inside the brain, not from the blood.",
+    a: "There is no clinical evidence that it does. Injected oxytocin stays almost entirely in the bloodstream — a 1,007-Da peptide crosses the blood-brain barrier only in traces — and is degraded in about 1–6 minutes. Nasal sprays are the better route: labeled studies in primates show a small fraction reaches the cerebrospinal fluid and brain, and improved devices can produce measurable central effects. But no delivery strategy has shown bonding or intimacy benefit in a registered trial, and the behavioral studies behind the sprays have repeatedly failed to replicate. The bonding circuit is supplied most reliably by oxytocin released directly inside the brain, which only behavior provides.",
+  },
+  {
+    q: "Are there strategies that make oxytocin delivery to the brain more efficient?",
+    a: "Yes — and the field is pursuing them. Breath Powered low-dose nasal devices (8 IU, delivered on exhalation against closed nostrils) produced central amygdala effects with peripheral controls in place; aerosolized formulations raise CSF oxytocin more reliably than liquid sprays; and timing matters, because central effects peak hours after dosing and differ between women and men. The barrier also has inward transport — the RAGE transporter carries blood oxytocin into the brain and is required for maternal bonding in mice. All of this improves central reach, but none has yet produced trial evidence of better bonding or relationship outcomes, and chronic intranasal dosing impaired partner-preference formation in prairie voles — a caution against assuming more is better.",
   },
   {
     q: "What actually releases oxytocin in couples?",
@@ -171,23 +181,33 @@ export default function Article() {
               </P>
               <P>
                 The nasal spray was supposed to be the loophole — a direct line up the
-                olfactory route into the brain. It hasn&rsquo;t held up either. A
-                systematic review by two of the field&rsquo;s leading oxytocin
-                physiologists concluded that very little of the large doses applied
-                intranasally appears in the cerebrospinal fluid, and that the
-                &ldquo;wish to believe&rdquo; in the spray&rsquo;s effects needs to be
-                guarded against with scepticism and rigor (
+                olfactory and trigeminal nerves, around the barrier. And it is a better
+                route than the needle: when macaques were given labeled oxytocin
+                intranasally, the label appeared in the cerebrospinal fluid and in
+                brain regions fed by those nerves while blood levels barely moved —
+                direct proof of nose-to-brain transport (
+                <a href={REF.labeledcsf} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Lee et&nbsp;al., Molecular Psychiatry, 2018
+                </a>
+                ). The catch is efficiency: rodent pharmacokinetics put nasal
+                bioavailability at roughly <Em>2%</Em>, and only a tiny fraction of an
+                applied dose reaches the brain. Leading physiologists still caution
+                that the &ldquo;wish to believe&rdquo; in spray effects must be guarded
+                against with scepticism and rigor (
                 <a href={REF.myths} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Leng &amp; Ludwig, Biological Psychiatry, 2016
                 </a>
-                ). Whatever a spray does, the weight of evidence says it is not
-                delivering a behaviorally meaningful dose to the bonding regions.
+                ). The field now broadly accepts that some sprayed oxytocin reaches
+                central tissue — the unresolved question is whether that trickle
+                reliably changes bonding behavior, and the replication record so far
+                says it does not.
               </P>
               <Callout label="The engineering read">
-                Judged as a drug-delivery problem, injected or sprayed oxytocin scores
-                poorly by design: wrong compartment (blood, not brain), wrong duration
-                (minutes), and no evidence the effective site is ever reached. That is
-                not a failure of the molecule — it is a failure of the route.
+                Judged as a drug-delivery problem, injected oxytocin scores poorly by
+                design: wrong compartment (blood, not brain), wrong duration (minutes),
+                and only traces across the barrier. The nasal route improves the
+                compartment but not the dose — and neither route has produced a
+                registered trial showing couples-bonding benefit.
               </Callout>
             </Section>
 
@@ -227,6 +247,59 @@ export default function Article() {
                 </a>
                 ). Even if a spray worked, a shared-dose protocol for two people is
                 assuming away one of the field&rsquo;s few consistent findings.
+              </P>
+            </Section>
+
+            <Section title="Can better delivery fix it?">
+              <P>
+                This is the fair question — if the route is the failure, the route is
+                the fix — and the field is genuinely working on it. The clearest win so
+                far is delivery hardware. The Breath Powered device pushes a low dose
+                (8&nbsp;IU) deep into the upper nasal cavity on exhalation; in an fMRI
+                trial that controlled for peripheral effects, it dampened amygdala
+                reactivity without raising blood oxytocin — evidence of a genuinely
+                central action at a dose a standard spray never delivers centrally (
+                <a href={REF.breathpowered} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Quintana et&nbsp;al., Translational Psychiatry, 2016
+                </a>
+                ). Aerosolized formulations, in turn, raise CSF oxytocin more reliably
+                than liquid drops in macaques (
+                <a href={REF.aerosol} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Modi et&nbsp;al., 2014
+                </a>
+                ).
+              </P>
+              <P>
+                Timing matters as much as hardware. Oxytocin&rsquo;s central effects
+                are dose-dependent and slow to peak — amygdala modulation runs on a
+                multi-hour time course rather than the minutes of the plasma peak, and
+                the optimal window differs between women and men (
+                <a href={REF.kinetics} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Spengler et&nbsp;al., Biological Psychiatry, 2017
+                </a>
+                ). And the barrier is not a perfect wall: a vascular transporter called
+                RAGE carries blood oxytocin into the brain, and in mice it is required
+                for maternal bonding behavior itself (
+                <a href={REF.rage} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Yamamoto et&nbsp;al., Communications Biology, 2019
+                </a>
+                ) — exactly the kind of route a future engineered analog could exploit.
+              </P>
+              <P>
+                So the honest verdict is not flat failure: delivery is improvable, and
+                a well-controlled spray can move the amygdala. But look at what that
+                evidence actually is — neural reactivity to emotional faces, in
+                single-dose lab sessions. The step from &ldquo;the amygdala
+                responds&rdquo; to &ldquo;couples feel more bonded&rdquo; is precisely
+                the step that keeps failing replication, and no registered trial has
+                shown any delivery strategy improving relationship outcomes. The animal
+                record even carries a warning: <Em>chronic</Em> intranasal oxytocin
+                impaired, rather than helped, partner-preference formation in male
+                prairie voles (
+                <a href={REF.bales} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Bales et&nbsp;al., Biological Psychiatry, 2013
+                </a>
+                ). Efficiency can be bought; reliability, so far, cannot.
               </P>
             </Section>
 
@@ -331,7 +404,7 @@ export default function Article() {
                 items={[
                   ["Behavior first, because it is the real oxytocin route", "Sustained touch — hugs measured in tens of seconds, skin-to-skin closeness, sex — releases oxytocin centrally, where bonding happens. This is the only intervention with a plausible mechanism and actual human data (the Light hug study), and it costs nothing."],
                   ["Where desire is the bottleneck, that is the druggable half", "Bremelanotide is the approved, phase-3-backed option for premenopausal women with distressing low desire, acting centrally through MC4R. It addresses drive and arousal — the precondition under which bonding behaviors happen at all."],
-                  ["Skip the oxytocin sprays and injections marketed for bonding", "Injected oxytocin stays in the blood for minutes and does not reach the bonding circuit; nasal sprays have failed both delivery scrutiny and behavioral replication. Money spent here buys peripheral pharmacology, not closeness."],
+                  ["Skip the bonding sprays and injections sold for couples", "Injected oxytocin lasts minutes and reaches the bonding circuit only in traces. Better nasal devices genuinely improve central delivery — but none has shown bonding or relationship benefit in a trial, and the behavioral studies that launched the category keep failing replication. Marketing-grade bonding sprays buy unproven pharmacology, not closeness."],
                   ["Expect sex differences, in both directions", "Oxytocin's central effects differ between women and men in timing and direction; bremelanotide's evidence base exists in women, not men. A shared protocol should not assume two identical pharmacologies — because they aren't."],
                   ["A prescription conversation, not a stack", "Anyone considering peptide hormones for intimacy belongs under clinician supervision. The reasonable question for a couple is not 'which peptides do we add?' but 'is the limiting factor drive, stress, health, or the relationship itself?' — a question a clinician can actually help answer."],
                 ]}
@@ -339,11 +412,14 @@ export default function Article() {
               <P>
                 That is the whole picture, minus the legend. Oxytocin is real, its
                 bonding role is real, and its release is controllable — by behavior, not
-                by bottle. The only peptide hormone in this space with phase-3 clinical
-                evidence sits in the melanocortin system, works on desire, and is
-                approved for the woman in the room. Couples get the honest version of
-                the science: touch for the bond, and if desire is the missing piece,
-                medicine that has actually been tested.
+                by bottle. Delivery science is genuinely advancing — smarter devices,
+                tuned timing, transporters like RAGE that a future analog might ride —
+                but none of it has produced bonding evidence yet. The only peptide
+                hormone in this space with phase-3 clinical evidence sits in the
+                melanocortin system, works on desire, and is approved for the woman in
+                the room. Couples get the honest version of the science: touch for the
+                bond, and if desire is the missing piece, medicine that has actually
+                been tested.
               </P>
             </Section>
 
@@ -411,7 +487,7 @@ function TwoPoolsDiagram() {
         {/* the blocked bridge: injection in blood tries to reach the brain pool */}
         <path d={`M ${leftX + boxW} ${botY + 30} C ${W / 2} ${botY - 40}, ${W / 2} ${midY + 40}, ${rightX} ${midY + 52}`} fill="none" stroke="var(--accent-rose)" strokeOpacity="0.55" strokeWidth="1.8" strokeDasharray="5 5" />
         <text x={W / 2} y={botY - 6} textAnchor="middle" fill="var(--accent-rose)" fontSize="11.5" fontWeight="600">
-          injected oxytocin: almost nothing crosses →
+          injected oxytocin: only traces cross →
         </text>
         <g transform={`translate(${W / 2 - 10}, ${midY + 22})`}>
           <line x1={0} y1={0} x2={20} y2={20} stroke="var(--accent-rose)" strokeWidth="3" />

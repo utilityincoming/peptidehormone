@@ -12,7 +12,7 @@ export default function Image() {
     ogImage({
       eyebrow: "Insight · Neuropeptides",
       title: insight.title,
-      subtitle: "Injected oxytocin stays in the blood for minutes — the bonding circuit only answers to touch.",
+      subtitle: "Delivery is improvable — but the bonding circuit still only answers to touch.",
       accent: "#B58CFA", // neuropeptides family accent
     }),
     { ...size },
