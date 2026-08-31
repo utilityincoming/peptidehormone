@@ -252,7 +252,7 @@ export const PEPTIDES: Record<string, Peptide> = {
 const SCHEDULE: Record<string, Partial<Peptide>> = {
   "bpc-157": { timing: "AM or split", withFood: "Any" },
   "tb-500": { timing: "AM", withFood: "Any" },
-  "ghk-cu": { timing: "AM", withFood: "Any" },
+  "ghk-cu": { timing: "AM", withFood: "Any", course: { onWeeks: 6, offWeeks: 3 } },
   ipamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
   "cjc-1295": { timing: "Pre-sleep", withFood: "Empty stomach" },
   tesamorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },

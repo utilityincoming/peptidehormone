@@ -22,6 +22,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "a-switch-not-a-supply",
+    hormones: ["ghk-cu"],
+    title: "A switch, not a supply",
+    dek: "GHK-Cu isn't a nutrient you top up — it's a signal that launches a program. Each dose starts the same phased wound-repair sequence a fibroblast runs after injury: activation, then collagen and matrix synthesis, then MMP-driven remodeling, then resolution and quiet. A continuous injected signal never lets that program reach its last phase; it pins the tissue in perpetual build-and-remodel, which is the opposite of what settled, mature matrix looks like. Why the mechanism — not any trial — is the real argument for cycling it, why that logic is different from the receptor-tolerance story behind growth-axis peptides, why an injectable needs the break more than a cosmetic topical does, and why the specific 'weeks on / weeks off' numbers everyone repeats are a reasonable range rather than a settled fact.",
+    family: "repair",
+    readingMinutes: 8,
+    reviewed: "August 2026",
+  },
+  {
     slug: "the-touch-deficit",
     hormones: ["oxytocin", "pt-141"],
     title: "The touch deficit",
