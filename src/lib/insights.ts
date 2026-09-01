@@ -18,6 +18,11 @@ export interface Insight {
   readingMinutes: number;
   /** Human label; mechanisms are reviewed, not dated to a publish cycle. */
   reviewed: string;
+  /**
+   * Editor's-pick rank for the homepage rail (lower sorts earlier). Omit to
+   * keep a piece out of the featured set. See {@link featuredInsights}.
+   */
+  featuredRank?: number;
 }
 
 export const INSIGHTS: Insight[] = [
@@ -141,6 +146,7 @@ export const INSIGHTS: Insight[] = [
     slug: "glp-1-in-a-pill",
     hormones: ["semaglutide", "glp-1"],
     title: "Putting GLP-1 in a pill",
+    featuredRank: 2,
     dek: "A peptide is food — swallow it and your gut digests it before it works, which is why this class has lived on the needle. Yet the pill is arriving, by two philosophically opposite routes: smuggle the fragile peptide across the gut wall, or stop using a peptide at all and rebuild the signal from a rugged small molecule. The second one is the real revolution, and it comes down to a quiet truth about receptors — they read the message, not the messenger.",
     family: "incretins-metabolic",
     readingMinutes: 9,
@@ -184,6 +190,7 @@ export const INSIGHTS: Insight[] = [
     slug: "the-triple-agonist",
     hormones: ["retatrutide", "glucagon"],
     title: "The triple agonist",
+    featuredRank: 3,
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
     family: "incretins-metabolic",
     readingMinutes: 8,
@@ -201,6 +208,7 @@ export const INSIGHTS: Insight[] = [
     slug: "glp-1-muscle-preservation",
     hormones: ["semaglutide", "tirzepatide", "myostatin", "follistatin"],
     title: "Keeping the muscle on GLP-1",
+    featuredRank: 4,
     dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
     family: "muscle-tgfb",
     readingMinutes: 10,
@@ -219,6 +227,7 @@ export const INSIGHTS: Insight[] = [
     slug: "glp-1-signaling",
     hormones: ["glp-1", "semaglutide"],
     title: "How GLP-1 actually works",
+    featuredRank: 1,
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",
     readingMinutes: 9,
@@ -228,6 +237,17 @@ export const INSIGHTS: Insight[] = [
 
 export function getInsight(slug: string): Insight | undefined {
   return INSIGHTS.find((i) => i.slug === slug);
+}
+
+/**
+ * Editor's-pick deep-dives for the homepage rail, in curated order
+ * (`featuredRank`, lowest first). Kept data-driven so the homepage rotates
+ * without a code change — set or clear `featuredRank` on any insight.
+ */
+export function featuredInsights(): Insight[] {
+  return INSIGHTS.filter((i) => i.featuredRank != null).sort(
+    (a, b) => (a.featuredRank ?? 0) - (b.featuredRank ?? 0),
+  );
 }
 
 /**
