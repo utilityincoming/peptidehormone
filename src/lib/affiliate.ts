@@ -40,6 +40,8 @@ const AMINOCLUB_CARRIES: readonly string[] = [
   "tb-500",
   "ghk-cu",
   "dsip",
+  "semaglutide",
+  "tirzepatide",
 ];
 
 const AMINOCLUB_CARRIES_SET: ReadonlySet<string> = new Set(AMINOCLUB_CARRIES);
