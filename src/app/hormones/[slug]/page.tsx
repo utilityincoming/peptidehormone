@@ -16,7 +16,7 @@ import {
   AMINOCLUB_CODE,
   AFFILIATE_REL,
 } from "@/lib/affiliate";
-import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
+import { melanocortinUrl } from "@/lib/network";
 import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
@@ -69,7 +69,6 @@ export default async function HormonePage({
   const references = referencesFor(h.slug);
   const extRefs = externalRefs(h.slug);
   const faqs = hormoneFaq(h);
-  const apUrl = americanPeptideUrl(h.slug);
   const mcUrl = melanocortinUrl(h.slug);
 
   // Long-form insights that treat this molecule directly — surfaced only when
@@ -451,24 +450,6 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
-
-            {apUrl && (
-              <div className="rounded-2xl border border-ink/10 p-6">
-                <h3 className="font-display text-base font-semibold">On the network</h3>
-                <p className="mt-2 text-sm leading-6 text-ink/55">
-                  Sourcing options and a trust-ranked vendor comparison for{" "}
-                  {h.abbr ?? h.name} at our sister project, American Peptide.
-                </p>
-                <a
-                  href={apUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
-                >
-                  View on American Peptide <span aria-hidden>→</span>
-                </a>
               </div>
             )}
 
