@@ -2,9 +2,9 @@ import Link from "next/link";
 import { AMINOCLUB_CODE, AMINOCLUB_HOME, AFFILIATE_REL } from "@/lib/affiliate";
 
 // Two intensities of the same disclosed recommendation. Both are text, never a
-// button. The full block (SourcingNote) carries the affiliate disclosure inline;
-// the one-liner (SourcingLine) leads with the reader benefit and links out.
-// Placement (which surface gets which) lives with the pages — see the build notes.
+// button, and both lead high-signal — front-load the answer, then link out. The
+// full block (SourcingNote) keeps the affiliate disclosure inline; the one-liner
+// (SourcingLine) is disclosure-free. Placement lives with the pages.
 
 const AFF_LINK =
   "text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent";
@@ -27,16 +27,14 @@ export function SourcingNote({ molecule }: { molecule?: string }) {
         Where to source
       </div>
       <p className="text-[15px] leading-7 text-ink/70">
-        We don&rsquo;t run a storefront — but the question we hear most is where to actually
-        get {what} that clears the bar this site holds. Our sister project{" "}
-        <span className="font-medium text-ink/90">American Peptide</span> did the legwork and
-        vetted{" "}
+        Where to actually get {what}? We host no storefront — so our sister project{" "}
+        <span className="font-medium text-ink/90">American Peptide</span> vetted the source:{" "}
         <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className={AFF_LINK}>
           AminoClub
         </a>
-        : a research-use-only supplier with provenance you can actually reason about — the
-        same discipline you&rsquo;re reading here — and your reader code{" "}
-        <span className="font-mono text-ink/90">{AMINOCLUB_CODE}</span> rides in the link.
+        , a research-use-only supplier with provenance you can actually reason about — the
+        same bar this reference holds. Your code{" "}
+        <span className="font-mono text-ink/90">{AMINOCLUB_CODE}</span> is already in the link.
       </p>
       <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className={CTA}>
         Browse AminoClub <span aria-hidden>→</span>
@@ -58,20 +56,18 @@ export function SourcingNote({ molecule }: { molecule?: string }) {
 
 /**
  * One-sentence variant for lighter-touch surfaces (catalog, homepage). Coverage
- * without a per-card buy-button — a benefit-led line that leads to the vetted
- * source. Outbound links carry rel="sponsored" as the honest signal for a paid link.
+ * without a per-card buy-button — a high-signal line that front-loads the answer
+ * and links out. Outbound links carry rel="sponsored" as the honest paid-link signal.
  */
 export function SourcingLine() {
   return (
     <p className="text-sm leading-6 text-ink/60">
-      Sourcing your own research material? Our{" "}
-      <span className="text-ink/75">American Peptide</span> network vetted{" "}
+      Where to actually get it:{" "}
       <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className={AFF_LINK}>
         AminoClub
       </a>{" "}
-      — a research-use-only supplier with provenance you can actually reason about — and your
-      reader code{" "}
-      <span className="font-mono text-ink/75">{AMINOCLUB_CODE}</span> rides in the link.{" "}
+      — the research-use-only supplier our network vetted,{" "}
+      <span className="font-mono text-ink/75">{AMINOCLUB_CODE}</span> in the link.{" "}
       <a
         href={AMINOCLUB_HOME}
         target="_blank"
