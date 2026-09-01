@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npx --yes tsx --tsconfig tsconfig.json --test src/lib/*.test.ts",
-    "check:stock": "node scripts/check-absim-stock.mjs",
     "check:identifiers": "node scripts/fetch-identifiers.mjs --check"
   },
   "dependencies": {

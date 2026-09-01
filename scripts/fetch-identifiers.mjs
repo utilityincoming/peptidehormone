@@ -53,7 +53,7 @@ const j = async (url) => {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// ── Parse the catalog (regex, like check-absim-stock.mjs — no build step) ──
+// ── Parse the catalog (regex, no build step) ──
 function readCatalog() {
   const src = readFileSync(join(ROOT, "src/lib/hormones.ts"), "utf8").replace(/\r\n/g, "\n");
   // Entries open with a brace on its own line at 2-space indent: "\n  {\n".

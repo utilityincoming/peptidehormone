@@ -6,7 +6,7 @@
 import { HORMONES, getHormone } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
 import { INSIGHTS } from "@/lib/insights";
-import { stockedSlugs } from "@/lib/affiliate";
+import { aminoClubSlugs } from "@/lib/affiliate";
 import { uniqueComparePairs, comparePairPath } from "@/lib/compare";
 
 export const dynamic = "force-static";
@@ -44,20 +44,20 @@ export function GET() {
   // Availability — cataloged is not the same as reachable, and which molecules are
   // actually obtainable is the one fact a reference can publish that a sequence
   // database cannot. Generated from the same gate the pages use, so it never drifts.
-  const stocked = stockedSlugs()
+  const sourced = aminoClubSlugs()
     .map((slug) => getHormone(slug))
     .filter((h): h is NonNullable<typeof h> => Boolean(h))
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  if (stocked.length) {
+  if (sourced.length) {
     out.push(
       "",
       "## Availability",
-      `- [What's verified in stock](${SITE}/available): the molecules in this catalog reachable at research grade right now, each verified against a fixed sourcing standard. Availability is disclosed data, not a storefront — the site sells nothing.`,
+      `- [What the network sources](${SITE}/available): the molecules in this catalog you can reach at research grade, sourced through the American Peptide network via AminoClub, research-use-only. Availability is disclosed data, not a storefront — the site sells nothing.`,
     );
-    for (const h of stocked) {
+    for (const h of sourced) {
       const name = h.abbr ? `${h.name} (${h.abbr})` : h.name;
-      out.push(`- [${name}](${SITE}/hormones/${h.slug}): currently listed as available.`);
+      out.push(`- [${name}](${SITE}/hormones/${h.slug}): sourced through the network.`);
     }
   }
 

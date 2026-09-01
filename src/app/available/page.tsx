@@ -6,30 +6,27 @@ import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 import {
-  stockedSlugs,
-  stockedLink,
+  aminoClubSlugs,
   SOURCING_STANDARD,
-  ABSIM_HOME,
-  ABSIM_CODE,
-  ABSIM_DISCOUNT,
   AMINOCLUB_HOME,
+  AMINOCLUB_CODE,
   AFFILIATE_REL,
 } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
-  title: "Availability — what's verified in stock",
+  title: "Availability — what the network sources",
   description:
-    "The peptide hormones available at research grade right now — each verified against a fixed sourcing standard before it earns a listing. What you can actually get, not just what exists.",
+    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub, research-use-only. What you can actually get, not just what exists.",
   alternates: { canonical: "/available" },
   openGraph: {
     title: "Availability · Peptide Hormone",
     description:
-      "Research-grade peptides available right now, verified against a fixed sourcing standard.",
+      "Research-grade peptides you can actually reach, sourced through the network via AminoClub.",
   },
 };
 
 export default function AvailablePage() {
-  const items = stockedSlugs()
+  const items = aminoClubSlugs()
     .map((slug) => getHormone(slug))
     .filter((h): h is NonNullable<typeof h> => Boolean(h))
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -39,9 +36,9 @@ export default function AvailablePage() {
       <JsonLd
         data={collectionLd({
           path: "/available",
-          name: "Availability — what's verified in stock",
+          name: "Availability — what the network sources",
           description:
-            "Peptide hormones available at research grade right now, verified against a fixed sourcing standard.",
+            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub.",
           items: items.map((h) => ({ name: h.name, path: `/hormones/${h.slug}` })),
           crumbs: [
             { name: "Home", path: "/" },
@@ -68,16 +65,16 @@ export default function AvailablePage() {
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
               Every reference tells you what a molecule <span className="font-medium text-ink/80">is</span>.
               This is the one that tells you whether you can get it — the compounds our
-              network stocks at research grade right now, each verified against a fixed
-              sourcing standard before it earns a place here.
+              network can point you to at research grade, sourced research-use-only rather
+              than left as an open question.
             </p>
             <p className="mt-6 text-sm leading-6 text-ink/55">
-              Sourced through the American Peptide network to{" "}
-              <a href={ABSIM_HOME} target="_blank" rel={AFFILIATE_REL} className="text-accent hover:underline">
-                ABSIM Peptides
+              Sourced through the American Peptide network via{" "}
+              <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className="text-accent hover:underline">
+                AminoClub
               </a>
-              . Researchers get {ABSIM_DISCOUNT} off with code{" "}
-              <span className="font-mono text-ink/80">{ABSIM_CODE}</span>.
+              , a research-use-only supplier. Use code{" "}
+              <span className="font-mono text-ink/80">{AMINOCLUB_CODE}</span>.
             </p>
           </Container>
         </section>
@@ -86,7 +83,7 @@ export default function AvailablePage() {
         <section className="border-b border-ink/[0.06]">
           <Container className="py-12 md:py-14">
             <h2 className="font-display text-sm font-medium uppercase tracking-wide text-ink/40">
-              How a listing is earned
+              What we look for in a source
             </h2>
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
               {SOURCING_STANDARD.map((c) => (
@@ -97,9 +94,11 @@ export default function AvailablePage() {
               ))}
             </div>
             <p className="mt-5 max-w-3xl text-sm leading-6 text-ink/50">
-              Listings are editorial: a compound appears because it meets the standard and our
-              network actually stocks it, never because it was paid for. Absence means &ldquo;not
-              currently stocked to the standard&rdquo; — it is not a judgment on the molecule.{" "}
+              Listings are editorial: a compound appears because our network sources it
+              research-use-only and it fits the picture above, never because it was paid for.
+              AminoClub links at the storefront level, so its shelf — behind the gate — is
+              authoritative; we point you to a vetted source, we don&rsquo;t verify each lot for
+              you. Absence isn&rsquo;t a judgment on the molecule.{" "}
               <Link href="/insights/what-you-can-actually-get" className="text-accent hover:underline">
                 Why availability, not identity, is the real bottleneck →
               </Link>{" "}
@@ -116,8 +115,8 @@ export default function AvailablePage() {
             <div className="rounded-2xl border border-ink/10 bg-panel/30 p-10 text-center">
               <h2 className="font-display text-xl font-semibold">Curation in progress</h2>
               <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-ink/55">
-                The availability layer is being verified against the sourcing standard and will
-                list here shortly. In the meantime, explore the{" "}
+                The availability layer is being matched against the network&rsquo;s sources and
+                will list here shortly. In the meantime, explore the{" "}
                 <Link href="/catalog" className="text-accent hover:underline">full catalog</Link>.
               </p>
             </div>
@@ -141,7 +140,7 @@ export default function AvailablePage() {
                             {h.abbr && <span className="text-ink/40"> · {h.abbr}</span>}
                           </Link>
                           <span className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal">
-                            In stock
+                            Via AminoClub
                           </span>
                         </div>
                         <p className="mt-1.5 text-sm text-ink/55">
@@ -151,12 +150,12 @@ export default function AvailablePage() {
                         </p>
                       </div>
                       <a
-                        href={stockedLink(h.slug) ?? ABSIM_HOME}
+                        href={AMINOCLUB_HOME}
                         target="_blank"
                         rel={AFFILIATE_REL}
                         className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
                       >
-                        View at ABSIM <span aria-hidden>→</span>
+                        View at AminoClub <span aria-hidden>→</span>
                       </a>
                     </div>
                   );
@@ -164,23 +163,13 @@ export default function AvailablePage() {
               </div>
 
               <p className="mt-6 text-xs leading-5 text-ink/40">
-                Affiliate links across the American Peptide network — a purchase supports this
+                Affiliate link across the American Peptide network — a purchase supports this
                 reference at no additional cost to you, and buys not one word of the catalog.
-                Stock is checked against ABSIM&rsquo;s live listing; the seller&rsquo;s page is
-                authoritative. {ABSIM_DISCOUNT} off with code{" "}
-                <span className="font-mono text-ink/60">{ABSIM_CODE}</span>. A second network
-                source,{" "}
-                <a
-                  href={AMINOCLUB_HOME}
-                  target="_blank"
-                  rel={AFFILIATE_REL}
-                  className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60"
-                >
-                  AminoClub
-                </a>
-                , makes several of these available research-use-only; only ABSIM&rsquo;s stock is
-                verified against the standard for this index. Not medical advice or an endorsement
-                to obtain or use any compound — regulatory status varies by jurisdiction. See{" "}
+                AminoClub links at the storefront level and is sold research-use-only; their
+                page, behind the gate, is authoritative for stock and lot detail. Use code{" "}
+                <span className="font-mono text-ink/60">{AMINOCLUB_CODE}</span>. Not medical advice
+                or an endorsement to obtain or use any compound — regulatory status varies by
+                jurisdiction. See{" "}
                 <Link href="/methodology" className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60">
                   how we pick
                 </Link>
