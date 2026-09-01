@@ -11,13 +11,9 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import {
-  isStocked,
-  stockedLink,
   carriedByAminoClub,
-  ABSIM_HOME,
-  ABSIM_CODE,
-  ABSIM_DISCOUNT,
   AMINOCLUB_HOME,
+  AMINOCLUB_CODE,
   AFFILIATE_REL,
 } from "@/lib/affiliate";
 import { americanPeptideUrl, melanocortinUrl } from "@/lib/network";
@@ -355,53 +351,39 @@ export default async function HormonePage({
 
           {/* ── Sidebar ── */}
           <aside className="space-y-8">
-            {isStocked(h.slug) && (
+            {carriedByAminoClub(h.slug) && (
               <div className="rounded-2xl border border-accent/25 bg-accent/[0.04] p-6">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="font-display text-base font-semibold">Availability</h3>
                   <span className="rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2.5 py-0.5 text-xs font-medium text-accent-teal">
-                    In stock
+                    Via AminoClub
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-6 text-ink/60">
-                  Verified research-grade {h.abbr ?? h.name}, sourced through the American
-                  Peptide network to{" "}
-                  <span className="font-medium text-ink/80">ABSIM Peptides</span> — a
-                  certificate of analysis on every lot. {ABSIM_DISCOUNT} off with code{" "}
-                  <span className="font-mono text-ink/80">{ABSIM_CODE}</span>.
+                  Research-grade {h.abbr ?? h.name}, sourced through the American Peptide
+                  network via{" "}
+                  <span className="font-medium text-ink/80">AminoClub</span> — a research-use-only
+                  supplier, sold with provenance you can reason about. Use code{" "}
+                  <span className="font-mono text-ink/80">{AMINOCLUB_CODE}</span>.
                 </p>
                 <a
-                  href={stockedLink(h.slug) ?? ABSIM_HOME}
+                  href={AMINOCLUB_HOME}
                   target="_blank"
                   rel={AFFILIATE_REL}
                   className="mt-4 flex items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
                 >
-                  View product at ABSIM <span aria-hidden>→</span>
+                  View at AminoClub <span aria-hidden>→</span>
                 </a>
                 <p className="mt-3 text-[11px] leading-4 text-ink/40">
                   Affiliate link across our network — supports this reference at no cost to
                   you, and buys not one word of the catalog.{" "}
                   <Link
-                    href="/available"
+                    href="/methodology"
                     className="text-ink/60 underline decoration-ink/20 underline-offset-2 hover:text-accent"
                   >
-                    How we verify
+                    How we pick
                   </Link>
                 </p>
-                {carriedByAminoClub(h.slug) && (
-                  <p className="mt-3 border-t border-ink/[0.06] pt-3 text-[13px] leading-5 text-ink/55">
-                    Also available through{" "}
-                    <a
-                      href={AMINOCLUB_HOME}
-                      target="_blank"
-                      rel={AFFILIATE_REL}
-                      className="text-accent hover:underline"
-                    >
-                      AminoClub
-                    </a>
-                    , a second network source — research-use-only.
-                  </p>
-                )}
               </div>
             )}
 
