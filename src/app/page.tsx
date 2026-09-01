@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { FAMILIES } from "@/lib/families";
+import { FAMILIES, getFamily } from "@/lib/families";
+import { INSIGHTS, featuredInsights } from "@/lib/insights";
+import { HORMONES } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { SourcingLine } from "@/components/Sourcing";
@@ -27,7 +29,46 @@ const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   },
 ];
 
+// Homepage tools band — a compact echo of the canonical registry in
+// src/app/tools/page.tsx, with shorter blurbs sized for the landing page.
+const HOME_TOOLS: { href: string; tag: string; name: string; blurb: string; accent: string }[] = [
+  {
+    href: "/tools/half-life",
+    tag: "Pharmacokinetics",
+    name: "Half-life & dosing",
+    blurb:
+      "Model how long a compound stays bioactive and how dose frequency vs half-life builds to steady state.",
+    accent: "text-accent",
+  },
+  {
+    href: "/tools/compare",
+    tag: "Structure–activity",
+    name: "Analog comparison",
+    blurb:
+      "Put a native hormone beside the analogs engineered from it — receptor, weight, half-life, and evidence tier on one axis.",
+    accent: "text-accent-teal",
+  },
+  {
+    href: "/tools/cycle-planner",
+    tag: "Protocol planning",
+    name: "Cycle planner",
+    blurb:
+      "Sketch a research cycle from a goal stack: week-by-week timeline, reference dosing, and a supply estimate. Shareable by URL.",
+    accent: "text-accent-amber",
+  },
+];
+
+// At-a-glance coverage — counts driven from the data so they never drift.
+// The page is a server component, so the large HORMONES array stays server-side.
+const STATS: { n: string; label: string }[] = [
+  { n: `${HORMONES.length}`, label: "molecules, graded" },
+  { n: `${FAMILIES.length}`, label: "signaling families" },
+  { n: `${INSIGHTS.length}`, label: "long-form deep-dives" },
+  { n: "3", label: "research tools" },
+];
+
 export default function Home() {
+  const featured = featuredInsights();
   return (
     <>
       <SiteHeader />
@@ -80,6 +121,22 @@ export default function Home() {
             <div className="mx-auto w-full max-w-sm md:max-w-none">
               <HeroChain />
             </div>
+          </Container>
+        </section>
+
+        {/* ── At a glance ── */}
+        <section className="border-b border-ink/[0.06]">
+          <Container className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="px-3 text-center">
+                <div className="font-display text-3xl font-semibold text-accent sm:text-4xl">
+                  {s.n}
+                </div>
+                <div className="mt-1.5 text-xs font-medium uppercase tracking-wide text-ink/50">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </Container>
         </section>
 
@@ -141,6 +198,110 @@ export default function Home() {
           </Container>
         </section>
 
+        {/* ── Insights rail ── */}
+        <section id="insights" className="border-b border-ink/[0.06] py-20 md:py-24">
+          <Container>
+            <div className="max-w-2xl">
+              <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+                The mechanisms, in long form
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-ink/60">
+                Long-form deep-dives that trace one molecule — or one question — back
+                to the source: receptors, second messengers, and the evidence behind
+                them. Biology over benefits.
+              </p>
+              <Link
+                href="/insights"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+              >
+                All insights
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
+              {featured.map((post) => {
+                const fam = getFamily(post.family);
+                return (
+                  <Link
+                    key={post.slug}
+                    href={`/insights/${post.slug}`}
+                    className="group block bg-surface p-7 transition-colors hover:bg-panel"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <span
+                        className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}
+                      >
+                        {fam?.name ?? "Peptide science"}
+                      </span>
+                      <span className="font-mono text-[11px] text-ink/40">
+                        {post.readingMinutes} min
+                      </span>
+                    </div>
+                    <h3 className="mt-3 font-display text-xl font-semibold leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-ink/60">
+                      {post.dek}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
+                      Read the deep-dive <span aria-hidden>→</span>
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          </Container>
+        </section>
+
+        {/* ── Tools band ── */}
+        <section id="tools" className="border-b border-ink/[0.06] py-20 md:py-24">
+          <Container>
+            <div className="max-w-2xl">
+              <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+                Run the numbers yourself
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-ink/60">
+                Free, in-browser, no sign-up — the pharmacokinetics the vendor pages
+                skip. Educational, not dosing advice.
+              </p>
+              <Link
+                href="/tools"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+              >
+                All tools &amp; calculators
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-3">
+              {HOME_TOOLS.map((t) => (
+                <Link
+                  key={t.href}
+                  href={t.href}
+                  className="group block bg-surface p-7 transition-colors hover:bg-panel"
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`font-mono text-[11px] uppercase tracking-wide ${t.accent}`}
+                    >
+                      {t.tag}
+                    </span>
+                    <span
+                      className="text-ink/30 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold">{t.name}</h3>
+                  <p className="mt-2 text-sm leading-6 text-ink/60">{t.blurb}</p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+
         {/* ── Approach ── */}
         <section id="approach" className="py-20 md:py-24">
           <Container className="grid gap-12 md:grid-cols-[0.9fr_1.1fr]">
@@ -150,18 +311,29 @@ export default function Home() {
                 <span className="text-accent"> Sceptical on the page.</span>
               </h2>
               <p className="mt-4 max-w-md text-lg leading-8 text-ink/60">
-                A signaling language this old and this suddenly writable has
-                earned real enthusiasm. But enthusiasm only counts if it survives
-                the citations — so this is a reference you can trust the edges of,
-                built to be checked.
+                A signaling system this old, this economical, and this suddenly
+                writable has earned real enthusiasm — pretending otherwise would be
+                its own kind of dishonesty. But enthusiasm that outruns its citations
+                is just marketing with better vocabulary. So every claim here carries
+                its evidence, graded by how far it actually goes — settled where the
+                science is settled, the frontier where it isn&rsquo;t.
               </p>
-              <Link
-                href="/why-peptides"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
-              >
-                Why this exists
-                <span aria-hidden>→</span>
-              </Link>
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                <Link
+                  href="/methodology"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+                >
+                  How we grade
+                  <span aria-hidden>→</span>
+                </Link>
+                <Link
+                  href="/why-peptides"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+                >
+                  Why this exists
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
             </div>
             <div>
               <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
