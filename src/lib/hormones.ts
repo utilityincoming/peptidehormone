@@ -181,12 +181,19 @@ const BASE: Hormone[] = [
       "Semaglutide is a GLP-1 analog modified to resist DPP-4 and to bind albumin via a C18 fatty-diacid chain, stretching its half-life from GLP-1's ~2 minutes to roughly a week. At the receptor it is the same molecule as native GLP-1 — driving glucose-dependent insulin secretion, slowed gastric emptying, and central satiety. The engineering is entirely about durability and delivery, not a new mechanism.",
     facts: [
       "Two amino-acid substitutions plus fatty-acid acylation give albumin binding and DPP-4 resistance — the basis of weekly dosing.",
-      "Approved for type 2 diabetes and chronic weight management; studied in cardiovascular and renal outcomes.",
+      "Approved for type 2 diabetes (Ozempic, 2017; oral Rybelsus, 2019) and chronic weight management (Wegovy, 2021).",
+      "In the STEP-1 obesity trial the weekly injection cut body weight by roughly 15% at 68 weeks — the result that reset expectations for the whole class.",
+      "SELECT showed a cardiovascular-event reduction in people with obesity and established heart disease — evidence the benefit reaches past weight and glucose.",
       "Mechanistically identical at the receptor to native GLP-1 — see the GLP-1 reference for the underlying cascade.",
     ],
     questions: [
       "How does semaglutide's acylation extend its half-life versus native GLP-1?",
       "What does the clinical trial evidence show for semaglutide in weight management?",
+    ],
+    narrative: [
+      "Semaglutide is the single note the whole metabolic chord is built out from. At the receptor it is not a new molecule — it drives the same GLP-1 biology as the hormone your gut releases after a meal: glucose-dependent insulin, slowed gastric emptying, central satiety. What makes it a drug rather than a curiosity is durability. Native GLP-1 is gone in about two minutes; semaglutide lasts about a week.",
+      "That week is bought by engineering, not biology. Two amino-acid substitutions shield the peptide from DPP-4, the enzyme that clears the native hormone, and a long fatty-diacid chain latches it onto circulating albumin so the kidney cannot flush it quickly. The result is a molecule that holds a steady signal from a single weekly dose — the delivery problem solved, the mechanism left untouched. An oral form clears the stomach with an absorption enhancer, trading a needle for a strict empty-stomach ritual.",
+      "The clinical readouts are what turned a good diabetes drug into a cultural event: mid-teens percentage weight loss in STEP-1, then a cardiovascular-event reduction in SELECT that pointed past the scale. Semaglutide proved how far one well-delivered incretin note could go — which is exactly what set the field asking whether a second note (tirzepatide) or a third (retatrutide) could go further still. The empty GIP and glucagon slots in the figure above are the sequel the co-agonists were written to answer.",
     ],
     mw: 4113.6,
     halfLife: "~7 days (~165 h)",

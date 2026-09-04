@@ -232,7 +232,112 @@ function TirzepatideDualAgonist(): ReactNode {
   );
 }
 
+/** Semaglutide: one peptide, one receptor arm — the single note the whole
+ *  incretin chord is built out from. Two dashed ghost slots (GIPR, GCGR) mark
+ *  the notes the co-agonists later add, closing the trilogy visually. */
+function SemaglutideSingleAgonist(): ReactNode {
+  const startX = 196;
+  const startY = 150;
+  const recX = 372;
+  const ghosts = [
+    { receptor: "GIPR", note: "added by tirzepatide", y: 196 },
+    { receptor: "GCGR", note: "added by retatrutide", y: 250 },
+  ];
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Semaglutide is a single acylated peptide signalling through one receptor, the GLP-1 receptor — the single incretin note that tirzepatide and retatrutide later build into a chord"
+    >
+      {/* the one live arm */}
+      <path
+        d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} 100, ${recX - 6} 100`}
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={100} r="3" fill="var(--accent)" />
+
+      {/* the two notes semaglutide does not play */}
+      {ghosts.map((g) => (
+        <g key={g.receptor}>
+          <path
+            d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} ${g.y + 14}, ${recX - 6} ${g.y + 14}`}
+            fill="none"
+            stroke="var(--color-ink)"
+            strokeOpacity="0.14"
+            strokeWidth="2"
+            strokeDasharray="2 6"
+          />
+          <rect
+            x={recX}
+            y={g.y}
+            width={244}
+            height={40}
+            rx={12}
+            fill="none"
+            stroke="var(--color-ink)"
+            strokeOpacity="0.14"
+            strokeWidth="1.5"
+            strokeDasharray="4 5"
+          />
+          <text x={recX + 16} y={g.y + 18} fill="var(--color-ink)" fillOpacity="0.32" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+            {g.receptor}
+          </text>
+          <text x={recX + 16} y={g.y + 33} fill="var(--color-ink)" fillOpacity="0.28" fontSize="11">
+            {g.note}
+          </text>
+        </g>
+      ))}
+
+      {/* the single peptide */}
+      <g>
+        <circle
+          cx={startX - 96}
+          cy={startY}
+          r="54"
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text x={startX - 96} y={startY - 6} textAnchor="middle" fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Semaglutide
+        </text>
+        <text x={startX - 96} y={startY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">
+          one peptide
+        </text>
+      </g>
+
+      {/* the live receptor */}
+      <g>
+        <rect x={recX} y={74} width={244} height={52} rx={12} fill="var(--panel)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 16} y={96} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1R
+        </text>
+        <text x={recX + 16} y={115} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+          Satiety · insulin
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
+  semaglutide: {
+    alt: "Semaglutide's single peptide signalling through one incretin receptor",
+    caption: (
+      <>
+        One peptide, one receptor — the single note. Everything else on this
+        page is engineering to make that note <em>last</em>: the GIP and
+        glucagon slots stay empty until the co-agonists arrive.
+      </>
+    ),
+    svg: <SemaglutideSingleAgonist />,
+  },
   retatrutide: {
     alt: "Retatrutide's single peptide signalling through three receptors",
     caption: (
