@@ -435,6 +435,121 @@ function BrenipatideRewardArm(): ReactNode {
   );
 }
 
+/** Maridebart cafraglutide (MariTide): the inverted-arm twist. Same two-arm
+ *  layout as tirzepatide, but the GIP arm is turned OFF rather than on — the
+ *  antibody scaffold carries a live GLP-1R agonist arm and a blocked GIPR arm,
+ *  the mirror image of tirzepatide's live blue GIPR. Left node is an antibody
+ *  conjugate, not a bare peptide, which is what buys the monthly half-life. */
+function MaridebartInvertedArm(): ReactNode {
+  const startX = 196;
+  const startY = 150;
+  const recX = 372;
+  const glpY = 100;
+  const gipY = 200;
+  // where the blocked arm stops short of the receptor — the stop-bar sits here
+  const stopX = recX - 34;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Maridebart cafraglutide is a peptide–antibody conjugate whose GLP-1 receptor arm is a live agonist while its GIP receptor arm is an antagonist — the GIPR is blocked, the mirror image of tirzepatide which activates the same receptor"
+    >
+      {/* live GLP-1R agonist arm — brand accent, same as the trilogy */}
+      <path
+        d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} ${glpY}, ${recX - 6} ${glpY}`}
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={glpY} r="3" fill="var(--accent)" />
+
+      {/* GIP antagonist arm — blue like tirzepatide's GIPR, but capped by a
+          stop-bar short of the receptor: the signal is delivered to block, not
+          to activate */}
+      <path
+        d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${stopX - 40} ${gipY}, ${stopX} ${gipY}`}
+        fill="none"
+        stroke="var(--accent-blue)"
+        strokeOpacity="0.5"
+        strokeWidth="2"
+        strokeDasharray="6 4"
+      />
+      {/* the ⊣ stop-bar — antagonism, drawn as a blockade cap */}
+      <line
+        x1={stopX}
+        y1={gipY - 11}
+        x2={stopX}
+        y2={gipY + 11}
+        stroke="var(--accent-blue)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+
+      {/* the antibody conjugate — deliberately NOT the trilogy's "one peptide"
+          circle: a rounded scaffold, because the antibody is what it is */}
+      <g>
+        <rect
+          x={startX - 150}
+          y={startY - 40}
+          width={108}
+          height={80}
+          rx={20}
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text
+          x={startX - 96}
+          y={startY - 6}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fontSize="15"
+          fontWeight="600"
+          fontFamily="var(--font-space-grotesk), sans-serif"
+        >
+          MariTide
+        </text>
+        <text
+          x={startX - 96}
+          y={startY + 14}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fillOpacity="0.5"
+          fontSize="11"
+        >
+          antibody conjugate
+        </text>
+      </g>
+
+      {/* live GLP-1R */}
+      <g>
+        <rect x={recX} y={glpY - 26} width={244} height={52} rx={12} fill="var(--panel)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 16} y={glpY - 4} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1R
+        </text>
+        <text x={recX + 16} y={glpY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+          Agonist · satiety · insulin
+        </text>
+      </g>
+
+      {/* blocked GIPR — blue outline, but a "blocked" note; the twist */}
+      <g>
+        <rect x={recX} y={gipY - 26} width={244} height={52} rx={12} fill="var(--panel)" stroke="var(--accent-blue)" strokeOpacity="0.5" strokeWidth="1.5" strokeDasharray="6 4" />
+        <text x={recX + 16} y={gipY - 4} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GIPR
+        </text>
+        <text x={recX + 16} y={gipY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+          Antagonist · receptor blocked
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -480,6 +595,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <BrenipatideRewardArm />,
+  },
+  "maridebart-cafraglutide": {
+    alt: "Maridebart cafraglutide's antibody conjugate agonizing GLP-1R while blocking GIPR",
+    caption: (
+      <>
+        The same two arms as tirzepatide, one of them inverted. GLP-1R is
+        switched <em>on</em>; the GIP arm reaches its receptor only to switch it{" "}
+        <em>off</em>. That both directions on the same receptor reduce weight is
+        the paradox the design leans into.
+      </>
+    ),
+    svg: <MaridebartInvertedArm />,
   },
 };
 
