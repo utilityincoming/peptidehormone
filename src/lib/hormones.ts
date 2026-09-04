@@ -24,6 +24,13 @@ export interface Hormone {
   mechanism: string;
   /** Reference notes — settled facts, studied uses, open questions. */
   facts: string[];
+  /**
+   * Optional long-form narrative — a few short paragraphs that tell the
+   * molecule's story where the terse mechanism can only gesture. Rendered as an
+   * "In depth" section; absent on most entries, reserved for molecules whose
+   * design or history rewards the extra room.
+   */
+  narrative?: string[];
   /** Seed questions for the research agent. */
   questions: string[];
   /** Average molecular weight in daltons (approximate). */
@@ -174,12 +181,19 @@ const BASE: Hormone[] = [
       "Semaglutide is a GLP-1 analog modified to resist DPP-4 and to bind albumin via a C18 fatty-diacid chain, stretching its half-life from GLP-1's ~2 minutes to roughly a week. At the receptor it is the same molecule as native GLP-1 — driving glucose-dependent insulin secretion, slowed gastric emptying, and central satiety. The engineering is entirely about durability and delivery, not a new mechanism.",
     facts: [
       "Two amino-acid substitutions plus fatty-acid acylation give albumin binding and DPP-4 resistance — the basis of weekly dosing.",
-      "Approved for type 2 diabetes and chronic weight management; studied in cardiovascular and renal outcomes.",
+      "Approved for type 2 diabetes (Ozempic, 2017; oral Rybelsus, 2019) and chronic weight management (Wegovy, 2021).",
+      "In the STEP-1 obesity trial the weekly injection cut body weight by roughly 15% at 68 weeks — the result that reset expectations for the whole class.",
+      "SELECT showed a cardiovascular-event reduction in people with obesity and established heart disease — evidence the benefit reaches past weight and glucose.",
       "Mechanistically identical at the receptor to native GLP-1 — see the GLP-1 reference for the underlying cascade.",
     ],
     questions: [
       "How does semaglutide's acylation extend its half-life versus native GLP-1?",
       "What does the clinical trial evidence show for semaglutide in weight management?",
+    ],
+    narrative: [
+      "Semaglutide is the single note the whole metabolic chord is built out from. At the receptor it is not a new molecule — it drives the same GLP-1 biology as the hormone your gut releases after a meal: glucose-dependent insulin, slowed gastric emptying, central satiety. What makes it a drug rather than a curiosity is durability. Native GLP-1 is gone in about two minutes; semaglutide lasts about a week.",
+      "That week is bought by engineering, not biology. Two amino-acid substitutions shield the peptide from DPP-4, the enzyme that clears the native hormone, and a long fatty-diacid chain latches it onto circulating albumin so the kidney cannot flush it quickly. The result is a molecule that holds a steady signal from a single weekly dose — the delivery problem solved, the mechanism left untouched. An oral form clears the stomach with an absorption enhancer, trading a needle for a strict empty-stomach ritual.",
+      "The clinical readouts are what turned a good diabetes drug into a cultural event: mid-teens percentage weight loss in STEP-1, then a cardiovascular-event reduction in SELECT that pointed past the scale. Semaglutide proved how far one well-delivered incretin note could go — which is exactly what set the field asking whether a second note (tirzepatide) or a third (retatrutide) could go further still. The empty GIP and glucagon slots in the figure above are the sequel the co-agonists were written to answer.",
     ],
     mw: 4113.6,
     halfLife: "~7 days (~165 h)",
@@ -199,13 +213,19 @@ const BASE: Hormone[] = [
     mechanism:
       "Tirzepatide activates both the GIP and GLP-1 receptors from a single GIP-based, acylated peptide, with a half-life of about five days. Engaging two incretin pathways at once is studied for metabolic effects beyond either alone — the rationale behind incretin co-agonism.",
     facts: [
-      "The first approved 'twincretin' — one molecule with dual GIP/GLP-1 agonism.",
+      "The first approved 'twincretin' — one molecule with dual GIP/GLP-1 agonism (Mounjaro for type 2 diabetes, 2022; Zepbound for obesity, 2023).",
       "Built on a GIP backbone with fatty-acid acylation for once-weekly dosing.",
-      "Its dual mechanism is why it is studied head-to-head against single GLP-1 agonists.",
+      "In the SURMOUNT-1 obesity trial the highest dose reduced body weight by about a fifth at 72 weeks — the result that put co-agonism on the map.",
+      "In SURMOUNT-5, a head-to-head trial, it outperformed a GLP-1-only agonist (semaglutide) on weight — direct evidence that the second receptor earns its place.",
     ],
     questions: [
       "Why does dual GIP/GLP-1 agonism differ from a GLP-1 agonist alone?",
       "What does the evidence show for tirzepatide versus single-incretin agonists?",
+    ],
+    narrative: [
+      "Tirzepatide is the two-note version of the metabolic idea. A GLP-1 agonist plays a single receptor; tirzepatide adds the GIP receptor and plays both from one acylated peptide — the first co-agonist to reach the clinic, and the proof that combining incretin signals in a single molecule is not just tidy chemistry but better medicine.",
+      "The engineering tell is the backbone: rather than bolt GIP activity onto a GLP-1 peptide, the molecule is built on a GIP scaffold that also fits the GLP-1 receptor, with a fatty-acid chain that binds albumin and stretches the half-life to about five days for once-weekly dosing. GIP's biology had long been the awkward incretin — its role in obesity genuinely contested — so agonising it alongside GLP-1 was a real bet, not an obvious one.",
+      "The bet paid. Against a GLP-1-only agonist in a head-to-head trial, the two-note molecule won on weight — the clearest evidence that the second receptor earns its keep. That result is the whole premise behind the next step: if two notes beat one, does a third beat two? Retatrutide adds the glucagon receptor to find out — which is why the empty glucagon slot in the figure above is worth staring at.",
     ],
     mw: 4813.5,
     halfLife: "~5 days (~120 h)",
@@ -277,7 +297,14 @@ const BASE: Hormone[] = [
     facts: [
       "A 'triple agonist' — incretin co-agonism extended to a third receptor.",
       "Glucagon-receptor agonism adds an energy-expenditure arm to the GLP-1/GIP effects.",
-      "Investigational — under clinical study, not approved.",
+      "In a phase 2 obesity trial, the highest dose produced roughly a quarter of body weight lost by 48 weeks — the steepest curve reported for an incretin-class agent at the time (Jastreboff et al., NEJM 2023).",
+      "The phase 3 TRIUMPH program is the deciding evidence; retatrutide is investigational and not approved for any use.",
+      "Beyond weight, it is being studied in fatty-liver disease (MASH), osteoarthritis of the knee, and heart failure with preserved ejection fraction.",
+    ],
+    narrative: [
+      "Metabolic peptides started as a single note. A GLP-1 agonist activates one receptor; tirzepatide added a second, the GIP receptor, from one molecule. Retatrutide adds a third — the glucagon receptor — turning the chord into a triad. All three signals travel on one acylated peptide, engineered like its predecessors to resist the enzymes that clear the native hormones in minutes so a weekly dose can hold.",
+      "The third note is the interesting one. Glucagon on its own raises blood glucose — the opposite of what a diabetes drug wants — but it also spends energy, nudging the body's resting burn upward. The design bet is that the GLP-1 and GIP arms supply enough glucose-dependent insulin to hold blood sugar in check while the glucagon arm quietly turns up expenditure. Balance the three and you recruit weight loss from both sides of the ledger: less taken in, more spent.",
+      "So far the numbers have matched the ambition. The phase 2 readout showed the largest weight reductions yet reported for the class, without a new safety signal that stopped the program. Whether that lead survives contact with phase 3 — at scale, over longer horizons, against a field that is itself moving fast — is exactly what the TRIUMPH trials exist to answer. Retatrutide is a wager on triple agonism, not yet a settled result.",
     ],
     questions: [
       "What does adding glucagon agonism contribute in a tri-agonist?",
