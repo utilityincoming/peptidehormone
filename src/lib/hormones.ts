@@ -316,6 +316,39 @@ const BASE: Hormone[] = [
     mwApprox: true,
   },
   {
+    slug: "brenipatide",
+    name: "Brenipatide",
+    abbr: "LY3537031",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "glp-1",
+    summary:
+      "A once-monthly dual GIP/GLP-1 agonist aimed at the brain's reward circuitry rather than the scale.",
+    class: "GIP/GLP-1 dual agonist (acylated peptide)",
+    source: "Synthetic; engineered long-acting dual agonist (Eli Lilly)",
+    receptor: "GIP + GLP-1 receptors",
+    mechanism:
+      "Brenipatide engages the same two receptors as tirzepatide — GIP and GLP-1 — from a single acylated peptide, but is engineered for a far longer duration, targeting once-monthly dosing. Its development is unusual for the class: the lead RENEW program studies neuropsychiatric and addiction indications, betting that incretin co-agonism modulates the dopamine reward pathways behind craving and mood, not only appetite. It is investigational.",
+    facts: [
+      "A dual GIP/GLP-1 agonist — the same receptor pair as tirzepatide — but tuned for once-monthly rather than weekly dosing.",
+      "Its lead indications are neuropsychiatric: the RENEW program studies alcohol use disorder and bipolar disorder, with further trials in major depression, smoking cessation, and obesity.",
+      "The wager is that GIP/GLP-1 signalling reaches the brain's dopamine reward circuitry, extending the class from metabolism into addiction and mood.",
+      "Developed by Eli Lilly and investigational — not approved for any use.",
+    ],
+    narrative: [
+      "For a decade the incretin story was a metabolic one: hold blood sugar, quiet appetite, lower weight. Brenipatide shares the machinery — two receptors, GIP and GLP-1, read by one engineered peptide, armoured to outlast the enzymes that clear the native hormones — yet it is pointed somewhere else. Lilly is leading its development not with obesity but with alcohol use disorder and bipolar disorder, chasing the growing evidence that these gut signals also speak to the brain's reward system.",
+      "The design choices follow the ambition. A drug meant to blunt craving over months, not meals, benefits from the longest possible reach; brenipatide is built toward once-monthly dosing, a cadence that would make it among the most durable peptides in the class. Whether co-agonism that reshapes metabolism can also quiet the dopamine loops behind addiction and mood is the open question the RENEW trials exist to settle — a bet that the incretin sentence, once written for the pancreas, can be read by the brain.",
+    ],
+    questions: [
+      "How does brenipatide's dual GIP/GLP-1 agonism differ from tirzepatide's beyond dosing interval?",
+      "What is the rationale for studying an incretin agonist in addiction and mood disorders?",
+    ],
+    halfLife: "engineered for once-monthly dosing",
+    mw: 4900,
+    mwApprox: true,
+  },
+  {
     slug: "pramlintide",
     name: "Pramlintide",
     family: "incretins-metabolic",
@@ -1926,6 +1959,8 @@ const THREADS: Record<string, string> = {
     "A lizard's venom turned out to hold a durable copy of a human sentence. The class began as a loan from another species.",
   retatrutide:
     "Three receptors from one chain. The open question on this frontier is no longer whether signals can be combined, but how many.",
+  brenipatide:
+    "The same two-receptor sentence tirzepatide speaks, pointed at the brain instead of the scale — a gut signal being read for what it might say about craving.",
   pramlintide:
     "What disqualifies a hormone as a drug is often a single residue. Correct it, and a molecule the body already makes becomes prescribable.",
   cagrilintide:
