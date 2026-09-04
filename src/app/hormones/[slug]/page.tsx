@@ -19,6 +19,7 @@ import {
 import { melanocortinUrl } from "@/lib/network";
 import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
+import { hormoneFigure } from "@/components/hormone-figures";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 
 export function generateStaticParams() {
@@ -79,6 +80,8 @@ export default async function HormonePage({
   // page-level floor - the Standard, surfaced where the claims actually sit.
   const claimByField = Object.fromEntries(monographClaims(h).map((c) => [c.field, c]));
   const evidenceFloor = monographFloor(h);
+
+  const figure = hormoneFigure(h.slug);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -260,7 +263,28 @@ export default async function HormonePage({
             <section className="mt-12">
               <h2 className="font-display text-2xl font-semibold">Mechanism</h2>
               <p className="mt-5 text-[15px] leading-7 text-ink/70">{h.mechanism}</p>
+              {figure && (
+                <figure className="mt-8 overflow-hidden rounded-2xl border border-ink/10 bg-panel/30 p-6">
+                  {figure.svg}
+                  <figcaption className="mt-4 border-t border-ink/[0.06] pt-4 text-sm leading-6 text-ink/55">
+                    {figure.caption}
+                  </figcaption>
+                </figure>
+              )}
             </section>
+
+            {h.narrative && h.narrative.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">In depth</h2>
+                <div className="mt-5 space-y-5">
+                  {h.narrative.map((para, i) => (
+                    <p key={i} className="text-[15px] leading-7 text-ink/70">
+                      {para}
+                    </p>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <section className="mt-12">
               <h2 className="font-display text-2xl font-semibold">Reference notes</h2>
