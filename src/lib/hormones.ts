@@ -445,6 +445,11 @@ const BASE: Hormone[] = [
       "Built as a peptide–antibody conjugate, whose long half-life supports once-monthly dosing.",
       "Investigational — phase 2 reported, larger trials ongoing.",
     ],
+    narrative: [
+      "Read the incretin story left to right and it looks like a march toward more: semaglutide plays one receptor, tirzepatide two, retatrutide three. Maridebart cafraglutide breaks the pattern by turning one of the notes the wrong way. It agonizes the GLP-1 receptor like the rest of the class, but at the GIP receptor it does the opposite of what tirzepatide does — it blocks it. Two drugs, the same receptor, opposite directions, and both take weight off. That contradiction is the single most instructive puzzle on the metabolic frontier, and this molecule is built around it.",
+      "The design is also a departure in form. Where the others are acylated peptides tethered to albumin, maridebart is a peptide–antibody conjugate: GLP-1 peptides carried on an anti-GIP-receptor antibody. The antibody is not just a passenger — it is the reason the GIP arm blocks rather than activates, and it is the reason the whole molecule lingers. An antibody scaffold is recycled by the same salvage machinery that keeps native antibodies in circulation for weeks, so the dosing interval stretches from weekly toward once a month.",
+      "How the paradox resolves is still open. Sustained GIP agonism may desensitize the receptor until it behaves as if blocked, making agonism and antagonism converge; or the two may act in different tissues; or the field simply does not yet understand what the GIP receptor contributes to weight. Maridebart is the clean experiment — a deliberate, durable GIP blockade set beside GLP-1 agonism — and its trials are where that question gets answered rather than argued.",
+    ],
     questions: [
       "How can GIP antagonism (maridebart) and GIP agonism (tirzepatide) both aid weight loss?",
       "What does the antibody-conjugate design contribute to maridebart's dosing interval?",

@@ -326,6 +326,230 @@ function SemaglutideSingleAgonist(): ReactNode {
   );
 }
 
+/** Brenipatide: the same two incretin receptors tirzepatide plays — GLP-1R and
+ *  GIPR, both live — but the signal is routed forward to the brain's reward
+ *  circuitry rather than to metabolic tissue. A left-to-right flow (peptide →
+ *  two receptors → reward node) makes the destination, not the receptor pair,
+ *  the point. The reward node is amber — the "new place this class is pointed",
+ *  echoing how amber marks what's added elsewhere in the set. */
+function BrenipatideRewardArm(): ReactNode {
+  const pepX = 88;
+  const pepY = 150;
+  // mid column: the two incretin receptor chips
+  const chipX = 214;
+  const chipW = 132;
+  const chipRight = chipX + chipW; // 346
+  const glpY = 121;
+  const gipY = 179;
+  // right column: the brain reward node
+  const rewX = 402;
+  const rewW = 214;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Brenipatide agonizes the same two incretin receptors as tirzepatide — GLP-1R and GIPR, both engaged — but its signal is routed forward to the brain's reward circuitry, the dopamine pathways behind craving and mood, rather than to metabolic tissue"
+    >
+      {/* peptide → each receptor chip */}
+      {[
+        { y: glpY, color: "var(--accent)" },
+        { y: gipY, color: "var(--accent-blue)" },
+      ].map((a) => (
+        <g key={a.y}>
+          <path
+            d={`M ${pepX + 50} ${pepY} C ${pepX + 100} ${pepY}, ${chipX - 40} ${a.y}, ${chipX - 6} ${a.y}`}
+            fill="none"
+            stroke={a.color}
+            strokeOpacity="0.55"
+            strokeWidth="2"
+          />
+          <circle cx={chipX - 6} cy={a.y} r="3" fill={a.color} />
+        </g>
+      ))}
+
+      {/* each receptor chip → the reward node (amber: the shared destination) */}
+      {[glpY, gipY].map((y) => (
+        <g key={`fwd-${y}`}>
+          <path
+            d={`M ${chipRight} ${y} C ${chipRight + 30} ${y}, ${rewX - 30} 150, ${rewX - 6} 150`}
+            fill="none"
+            stroke="var(--accent-amber)"
+            strokeOpacity="0.5"
+            strokeWidth="2"
+          />
+          <circle cx={rewX - 6} cy={150} r="3" fill="var(--accent-amber)" />
+        </g>
+      ))}
+
+      {/* the single peptide */}
+      <g>
+        <circle
+          cx={pepX}
+          cy={pepY}
+          r="50"
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text x={pepX} y={pepY - 5} textAnchor="middle" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Brenipatide
+        </text>
+        <text x={pepX} y={pepY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">
+          once-monthly
+        </text>
+      </g>
+
+      {/* the two incretin receptor chips */}
+      {[
+        { y: glpY, label: "GLP-1R", color: "var(--accent)" },
+        { y: gipY, label: "GIPR", color: "var(--accent-blue)" },
+      ].map((c) => (
+        <g key={c.label}>
+          <rect x={chipX} y={c.y - 22} width={chipW} height={44} rx={11} fill="var(--panel)" stroke={c.color} strokeOpacity="0.5" strokeWidth="1.5" />
+          <text x={chipX + 14} y={c.y - 1} fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+            {c.label}
+          </text>
+          <text x={chipX + 14} y={c.y + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+            agonist
+          </text>
+        </g>
+      ))}
+
+      {/* the brain reward node — the destination that sets brenipatide apart */}
+      <g>
+        <rect x={rewX} y={94} width={rewW} height={112} rx={16} fill="color-mix(in srgb, var(--accent-amber) 9%, var(--panel))" stroke="var(--accent-amber)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x={rewX + 20} y={136} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Reward circuitry
+        </text>
+        <text x={rewX + 20} y={160} fill="var(--color-ink)" fillOpacity="0.6" fontSize="12">
+          dopamine pathways
+        </text>
+        <text x={rewX + 20} y={178} fill="var(--color-ink)" fillOpacity="0.6" fontSize="12">
+          craving · mood
+        </text>
+      </g>
+    </svg>
+  );
+}
+
+/** Maridebart cafraglutide (MariTide): the inverted-arm twist. Same two-arm
+ *  layout as tirzepatide, but the GIP arm is turned OFF rather than on — the
+ *  antibody scaffold carries a live GLP-1R agonist arm and a blocked GIPR arm,
+ *  the mirror image of tirzepatide's live blue GIPR. Left node is an antibody
+ *  conjugate, not a bare peptide, which is what buys the monthly half-life. */
+function MaridebartInvertedArm(): ReactNode {
+  const startX = 196;
+  const startY = 150;
+  const recX = 372;
+  const glpY = 100;
+  const gipY = 200;
+  // where the blocked arm stops short of the receptor — the stop-bar sits here
+  const stopX = recX - 34;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Maridebart cafraglutide is a peptide–antibody conjugate whose GLP-1 receptor arm is a live agonist while its GIP receptor arm is an antagonist — the GIPR is blocked, the mirror image of tirzepatide which activates the same receptor"
+    >
+      {/* live GLP-1R agonist arm — brand accent, same as the trilogy */}
+      <path
+        d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} ${glpY}, ${recX - 6} ${glpY}`}
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={glpY} r="3" fill="var(--accent)" />
+
+      {/* GIP antagonist arm — blue like tirzepatide's GIPR, but capped by a
+          stop-bar short of the receptor: the signal is delivered to block, not
+          to activate */}
+      <path
+        d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${stopX - 40} ${gipY}, ${stopX} ${gipY}`}
+        fill="none"
+        stroke="var(--accent-blue)"
+        strokeOpacity="0.5"
+        strokeWidth="2"
+        strokeDasharray="6 4"
+      />
+      {/* the ⊣ stop-bar — antagonism, drawn as a blockade cap */}
+      <line
+        x1={stopX}
+        y1={gipY - 11}
+        x2={stopX}
+        y2={gipY + 11}
+        stroke="var(--accent-blue)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+
+      {/* the antibody conjugate — deliberately NOT the trilogy's "one peptide"
+          circle: a rounded scaffold, because the antibody is what it is */}
+      <g>
+        <rect
+          x={startX - 150}
+          y={startY - 40}
+          width={108}
+          height={80}
+          rx={20}
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text
+          x={startX - 96}
+          y={startY - 6}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fontSize="15"
+          fontWeight="600"
+          fontFamily="var(--font-space-grotesk), sans-serif"
+        >
+          MariTide
+        </text>
+        <text
+          x={startX - 96}
+          y={startY + 14}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fillOpacity="0.5"
+          fontSize="11"
+        >
+          antibody conjugate
+        </text>
+      </g>
+
+      {/* live GLP-1R */}
+      <g>
+        <rect x={recX} y={glpY - 26} width={244} height={52} rx={12} fill="var(--panel)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 16} y={glpY - 4} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1R
+        </text>
+        <text x={recX + 16} y={glpY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+          Agonist · satiety · insulin
+        </text>
+      </g>
+
+      {/* blocked GIPR — blue outline, but a "blocked" note; the twist */}
+      <g>
+        <rect x={recX} y={gipY - 26} width={244} height={52} rx={12} fill="var(--panel)" stroke="var(--accent-blue)" strokeOpacity="0.5" strokeWidth="1.5" strokeDasharray="6 4" />
+        <text x={recX + 16} y={gipY - 4} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GIPR
+        </text>
+        <text x={recX + 16} y={gipY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+          Antagonist · receptor blocked
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -359,6 +583,30 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <TirzepatideDualAgonist />,
+  },
+  brenipatide: {
+    alt: "Brenipatide agonizing GLP-1R and GIPR with the signal routed to the brain's reward circuitry",
+    caption: (
+      <>
+        The same two receptors tirzepatide plays — but read the arrows to the
+        right. The signal is pointed at the brain&rsquo;s reward circuitry, not
+        the pancreas and fat; the bet is that an incretin duo can quiet{" "}
+        <em>craving</em>, not just appetite.
+      </>
+    ),
+    svg: <BrenipatideRewardArm />,
+  },
+  "maridebart-cafraglutide": {
+    alt: "Maridebart cafraglutide's antibody conjugate agonizing GLP-1R while blocking GIPR",
+    caption: (
+      <>
+        The same two arms as tirzepatide, one of them inverted. GLP-1R is
+        switched <em>on</em>; the GIP arm reaches its receptor only to switch it{" "}
+        <em>off</em>. That both directions on the same receptor reduce weight is
+        the paradox the design leans into.
+      </>
+    ),
+    svg: <MaridebartInvertedArm />,
   },
 };
 
