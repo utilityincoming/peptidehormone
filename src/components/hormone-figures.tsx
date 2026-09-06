@@ -844,6 +844,97 @@ function ExenatideScissorproof(): ReactNode {
   );
 }
 
+/** Liraglutide: the durability ladder. Three steps — native GLP-1 at minutes,
+ *  liraglutide at hours, semaglutide at a week — drawn as an ascending
+ *  staircase, with the middle step lit: liraglutide is the rung the weekly
+ *  analogs climbed past, but the rung that proved the climb was possible. */
+function LiraglutideDurabilityLadder(): ReactNode {
+  const steps = [
+    {
+      label: "GLP-1",
+      note: "native · ~2 min",
+      y: 232,
+      h: 30,
+      lit: false,
+    },
+    {
+      label: "Liraglutide",
+      note: "once daily · ~13 h",
+      y: 176,
+      h: 86,
+      lit: true,
+    },
+    {
+      label: "Semaglutide",
+      note: "once weekly · ~7 days",
+      y: 120,
+      h: 142,
+      lit: false,
+    },
+  ];
+  const stepW = 168;
+  const gap = 24;
+  const x0 = 24;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="A three-step durability ladder for the GLP-1 class: native GLP-1 lasts about two minutes, liraglutide — the lit middle step — stretches it to a thirteen-hour once-daily drug, and semaglutide extends the same playbook to a once-weekly half-life"
+    >
+      {/* ascending connector */}
+      <path
+        d={`M ${x0 + stepW} ${steps[0].y + 15} L ${x0 + stepW + gap} ${steps[1].y + 15} L ${x0 + 2 * stepW + gap} ${steps[1].y + 15} L ${x0 + 2 * stepW + 2 * gap} ${steps[2].y + 15}`}
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.2"
+        strokeWidth="2"
+        strokeDasharray="3 5"
+      />
+
+      {steps.map((s, i) => {
+        const x = x0 + i * (stepW + gap);
+        const stroke = s.lit ? "var(--accent)" : "var(--color-ink)";
+        return (
+          <g key={s.label}>
+            <rect
+              x={x}
+              y={s.y}
+              width={stepW}
+              height={s.h}
+              rx={10}
+              fill={s.lit ? "color-mix(in srgb, var(--accent) 10%, transparent)" : "var(--panel)"}
+              stroke={stroke}
+              strokeOpacity={s.lit ? 0.65 : 0.25}
+              strokeWidth={s.lit ? 2 : 1.5}
+            />
+            <text
+              x={x + 16}
+              y={s.y + 24}
+              fill="var(--color-ink)"
+              fillOpacity={s.lit ? 1 : 0.55}
+              fontSize="14"
+              fontWeight="600"
+              fontFamily="var(--font-space-grotesk), sans-serif"
+            >
+              {s.label}
+            </text>
+            <text x={x + 16} y={s.y + 42} fill="var(--color-ink)" fillOpacity={s.lit ? 0.6 : 0.4} fontSize="11">
+              {s.note}
+            </text>
+          </g>
+        );
+      })}
+
+      {/* the lit step's annotation */}
+      <text x={x0 + stepW + gap + 16} y={steps[1].y - 12} fill="var(--accent)" fillOpacity="0.85" fontSize="11" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+        first human-sequence analog
+      </text>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -936,6 +1027,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <ExenatideScissorproof />,
+  },
+  liraglutide: {
+    alt: "The GLP-1 durability ladder: native GLP-1 at minutes, liraglutide as the lit middle rung at once-daily, semaglutide at once-weekly",
+    caption: (
+      <>
+        The durability ladder. Liraglutide is the lit middle rung — the first
+        analog to stretch GLP-1 from minutes into a day while keeping the
+        hormone&rsquo;s own face. Semaglutide climbed the same ladder to a week
+        and left the daily pen behind.
+      </>
+    ),
+    svg: <LiraglutideDurabilityLadder />,
   },
 };
 

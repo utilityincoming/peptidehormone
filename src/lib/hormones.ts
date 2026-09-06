@@ -249,6 +249,11 @@ const BASE: Hormone[] = [
       "Once-daily — an intermediate step between native GLP-1 and the weekly analogs.",
       "Approved for type 2 diabetes and weight management.",
     ],
+    narrative: [
+      "Where exenatide borrowed its durability from a lizard, liraglutide built its own from chemistry. The molecule is nearly native GLP-1 — about 97% sequence identity, a single amino-acid swap — with a C16 fatty-acid chain grafted on. The chain does two jobs at once: it latches the peptide onto circulating albumin, sheltering it from the kidney, and it makes the peptides self-associate into slow-dissolving heaps at the injection site. Together those tricks stretch a two-minute hormone into a thirteen-hour drug — once-daily dosing from a molecule that still looks, to the receptor, like the hormone itself.",
+      "As Victoza in 2010 it was the first human-sequence GLP-1 analog, and for years it set the bar: better glucose control than anything before it, then a cardiovascular-outcome win in LEADER that first proved the class could protect the heart, not just the pancreas. As Saxenda it became the first GLP-1 approved for weight management — at a higher daily dose, in a population that had never had a pharmacological answer worth the name.",
+      "Its position now is the pioneer left holding the middle. Semaglutide kept liraglutide's human-sequence playbook and swapped the C16 chain for a C18 plus a DPP-4-shielding substitution, stretching thirteen hours into a week. The daily pen was beaten by its own student. But liraglutide remains the proof of concept for everything after: that you could keep the native hormone's face, change only its lifespan, and turn two minutes of biology into a decade of medicine.",
+    ],
     questions: [
       "How does liraglutide's half-life compare to native GLP-1 and to weekly analogs?",
     ],
