@@ -550,6 +550,133 @@ function MaridebartInvertedArm(): ReactNode {
   );
 }
 
+/** Cagrilintide: two separate peptides, each holding its own axis. Cagrilintide
+ *  (blue, amylin) is drawn above semaglutide (accent, GLP-1); their signals
+ *  converge on a shared "satiety" node on the right. The point is stacking —
+ *  two distinct pathways run in parallel, two pens, one regimen (CagriSema). */
+function CagrilintideStackedAxes(): ReactNode {
+  const pepX = 96;
+  const cagY = 100;
+  const semY = 200;
+  const recX = 300;
+  const outX = 462;
+  const outY = 150;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Cagrilintide and semaglutide are two separate peptides: cagrilintide engages the amylin receptor while semaglutide engages the GLP-1 receptor, and their signals converge on a shared satiety outcome — the additive stacking that defines the CagriSema combination"
+    >
+      {/* cagrilintide → AMYR */}
+      <path
+        d={`M ${pepX + 52} ${cagY} C ${pepX + 100} ${cagY}, ${recX - 40} ${cagY}, ${recX - 6} ${cagY}`}
+        fill="none"
+        stroke="var(--accent-blue)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={cagY} r="3" fill="var(--accent-blue)" />
+
+      {/* semaglutide → GLP-1R */}
+      <path
+        d={`M ${pepX + 52} ${semY} C ${pepX + 100} ${semY}, ${recX - 40} ${semY}, ${recX - 6} ${semY}`}
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={semY} r="3" fill="var(--accent)" />
+
+      {/* each receptor → shared satiety node (amber: the convergent outcome) */}
+      {[cagY, semY].map((y) => (
+        <g key={`conv-${y}`}>
+          <path
+            d={`M ${recX + 132} ${y} C ${recX + 170} ${y}, ${outX - 30} ${outY}, ${outX - 6} ${outY}`}
+            fill="none"
+            stroke="var(--accent-amber)"
+            strokeOpacity="0.5"
+            strokeWidth="2"
+          />
+          <circle cx={outX - 6} cy={outY} r="3" fill="var(--accent-amber)" />
+        </g>
+      ))}
+
+      {/* cagrilintide peptide */}
+      <g>
+        <circle
+          cx={pepX}
+          cy={cagY}
+          r="46"
+          fill="color-mix(in srgb, var(--accent-blue) 12%, transparent)"
+          stroke="var(--accent-blue)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text x={pepX} y={cagY - 4} textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Cagrilintide
+        </text>
+        <text x={pepX} y={cagY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="10">
+          weekly
+        </text>
+      </g>
+
+      {/* semaglutide peptide */}
+      <g>
+        <circle
+          cx={pepX}
+          cy={semY}
+          r="46"
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text x={pepX} y={semY - 4} textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Semaglutide
+        </text>
+        <text x={pepX} y={semY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="10">
+          weekly
+        </text>
+      </g>
+
+      {/* amylin receptor chip */}
+      <g>
+        <rect x={recX} y={cagY - 22} width={132} height={44} rx={11} fill="var(--panel)" stroke="var(--accent-blue)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 14} y={cagY - 1} fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          AMYR
+        </text>
+        <text x={recX + 14} y={cagY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+          amylin axis
+        </text>
+      </g>
+
+      {/* GLP-1 receptor chip */}
+      <g>
+        <rect x={recX} y={semY - 22} width={132} height={44} rx={11} fill="var(--panel)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 14} y={semY - 1} fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1R
+        </text>
+        <text x={recX + 14} y={semY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+          incretin axis
+        </text>
+      </g>
+
+      {/* shared satiety outcome node */}
+      <g>
+        <rect x={outX} y={outY - 26} width={152} height={52} rx={12} fill="var(--panel)" stroke="var(--accent-amber)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={outX + 14} y={outY - 3} fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Satiety
+        </text>
+        <text x={outX + 14} y={outY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+          additive (CagriSema)
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -607,6 +734,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <MaridebartInvertedArm />,
+  },
+  cagrilintide: {
+    alt: "Cagrilintide and semaglutide as two separate peptides each engaging its own receptor — the CagriSema stacking of an amylin axis onto a GLP-1 axis",
+    caption: (
+      <>
+        Two molecules, two receptors, one regimen. Cagrilintide holds the
+        amylin note; semaglutide holds the GLP-1 note. CagriSema is the bet
+        that the two satiety signals <em>stack</em> — the combination amycretin
+        later tries to write as a single peptide.
+      </>
+    ),
+    svg: <CagrilintideStackedAxes />,
   },
 };
 

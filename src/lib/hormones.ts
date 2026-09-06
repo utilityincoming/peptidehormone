@@ -392,6 +392,11 @@ const BASE: Hormone[] = [
       "Studied in combination with semaglutide (CagriSema), pairing amylin and GLP-1 pathways in one regimen.",
       "Investigational — under clinical study, not approved.",
     ],
+    narrative: [
+      "Every incretin story on this page starts from a gut hormone; cagrilintide starts from the pancreas's quieter second secretion. Amylin is co-released with insulin after every meal and does the jobs insulin cannot — slowing gastric emptying, suppressing post-meal glucagon, telling the brain the meal is enough. Native human amylin is a terrible drug: it clumps into fibrils in the vial. Cagrilintide is that same hormone rebuilt as a week-long molecule, its aggregation engineered out and a fatty-acid chain added for albumin binding, so a single injection can hold the amylin note for days rather than minutes.",
+      "The clinical logic is stacking, not replacing. Semaglutide plays the GLP-1 axis; cagrilintide plays the amylin axis. On their own each suppresses appetite and slows the gut. Together, as the combination known as CagriSema, they are meant to add up to more than either alone — two distinct satiety signals run in parallel, in two separate pens. The phase 3 REDEFINE trials are where that arithmetic is being tested at scale.",
+      "That design — two molecules, two receptors, one regimen — is also its limitation. It is a combination, not a single agent, which is why the next molecule on the shelf tries to collapse the same two signals into one peptide: amycretin keeps the GLP-1-plus-amylin bet but writes it unimolecular. Cagrilintide is the proof the axis works; amycretin is the attempt to make it elegant.",
+    ],
     questions: [
       "Why is amylin agonism combined with GLP-1 agonism in CagriSema?",
       "What does the phase 2 evidence show for cagrilintide in weight management?",
