@@ -423,6 +423,11 @@ const BASE: Hormone[] = [
       "Under investigation in both injectable and oral formulations.",
       "Investigational and early-stage — first-in-human and phase 1b/2a data only.",
     ],
+    narrative: [
+      "CagriSema proved the GLP-1-plus-amylin bet with two molecules in two pens. Amycretin asks the obvious next question: why two? It is a single peptide engineered to agonize both the GLP-1 receptor and the amylin receptors — the same two satiety pathways cagrilintide and semaglutide play separately, collapsed into one molecule. If the stack works as a combination, the argument runs, it should work unimolecular, with one injection, one pharmacokinetic profile, one manufacturing line.",
+      "The ambition does not stop at the syringe. Amycretin is being developed in both subcutaneous and oral forms — the oral version riding the absorption-enhancer playbook that made Rybelsus possible, the injectable aiming for weekly dosing. A dual agonist you could take as a daily pill would sit at the far end of the convenience spectrum from where this class began: a twice-daily injection derived from lizard venom.",
+      "What exists so far is early. First-in-human and phase 1b/2a data have shown the class-typical weight-loss trajectory and a tolerability profile consistent with the GLP-1 family, but the sample sizes are small and the follow-up short. Amycretin is a promising sketch of where unimolecular multi-agonism goes next — not yet the evidence that it gets there.",
+    ],
     questions: [
       "What is the rationale for combining GLP-1 and amylin agonism in a single molecule?",
       "How does amycretin's early clinical evidence look so far?",
