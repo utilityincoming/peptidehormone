@@ -744,6 +744,106 @@ function AmycretinUnimolecular(): ReactNode {
   );
 }
 
+/** Exenatide: the durability story drawn as an enzyme encounter. Two peptides —
+ *  native GLP-1 and exendin-4 — approach DPP-4's scissors. The native peptide
+ *  is drawn severed (short segments, broken arm); exendin-4 passes through
+ *  intact to the GLP-1R. The figure is why the class exists. */
+function ExenatideScissorproof(): ReactNode {
+  const enzX = 330;
+  const glpY = 100;
+  const exeY = 200;
+  const recX = 500;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Native GLP-1 and exendin-4 both approach the clearing enzyme DPP-4: the native peptide is cut in two and its signal dies, while exendin-4 — the Gila monster peptide exenatide copies — passes through intact and reaches the GLP-1 receptor"
+    >
+      {/* native GLP-1 arm — severed at the enzyme */}
+      <path
+        d={`M 150 ${glpY} C 210 ${glpY}, ${enzX - 50} ${glpY}, ${enzX - 12} ${glpY}`}
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.35"
+        strokeWidth="2"
+      />
+      <path
+        d={`M ${enzX + 14} ${glpY - 5} l 14 -9 M ${enzX + 14} ${glpY + 5} l 18 7`}
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.2"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      {/* severed label */}
+      <text x={enzX + 44} y={glpY + 4} fill="var(--color-ink)" fillOpacity="0.35" fontSize="11">
+        cut · gone in minutes
+      </text>
+
+      {/* exendin-4 arm — passes through, intact */}
+      <path
+        d={`M 150 ${exeY} C 230 ${exeY}, ${recX - 60} ${exeY}, ${recX - 6} ${exeY}`}
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      <circle cx={recX - 6} cy={exeY} r="3" fill="var(--accent)" />
+
+      {/* the two peptides */}
+      <g>
+        <circle cx={96} cy={glpY} r="44" fill="none" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="2" strokeDasharray="4 5" />
+        <text x={96} y={glpY - 4} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1
+        </text>
+        <text x={96} y={glpY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.35" fontSize="10">
+          native · ~2 min
+        </text>
+      </g>
+      <g>
+        <circle cx={96} cy={exeY} r="44" fill="color-mix(in srgb, var(--accent) 12%, transparent)" stroke="var(--accent)" strokeOpacity="0.65" strokeWidth="2" />
+        <text x={96} y={exeY - 4} textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Exendin-4
+        </text>
+        <text x={96} y={exeY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="10">
+          Gila monster
+        </text>
+      </g>
+
+      {/* DPP-4 scissors */}
+      <g>
+        <circle cx={enzX} cy={exeY} r="16" fill="var(--panel)" stroke="var(--accent-amber)" strokeOpacity="0.6" strokeWidth="1.5" />
+        <path
+          d={`M ${enzX - 6} ${exeY - 6} l 12 12 M ${enzX + 6} ${exeY - 6} l -12 12`}
+          stroke="var(--accent-amber)"
+          strokeOpacity="0.6"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        <text x={enzX} y={exeY + 34} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.55" fontSize="11" fontFamily="var(--font-space-grotesk), sans-serif">
+          DPP-4
+        </text>
+        <text x={enzX} y={exeY + 49} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.4" fontSize="10">
+          cannot cut exendin-4
+        </text>
+      </g>
+
+      {/* the live receptor */}
+      <g>
+        <rect x={recX} y={exeY - 26} width={120} height={52} rx={12} fill="var(--panel)" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 14} y={exeY - 3} fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GLP-1R
+        </text>
+        <text x={recX + 14} y={exeY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+          fully activated
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -824,6 +924,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <AmycretinUnimolecular />,
+  },
+  exenatide: {
+    alt: "Exendin-4 passing DPP-4 intact while native GLP-1 is cut — the natural enzyme resistance that made long-acting GLP-1 therapy possible",
+    caption: (
+      <>
+        Same receptor, different fate at the enzyme. DPP-4 severs native
+        GLP-1 in minutes; the Gila monster&rsquo;s exendin-4 slips through{" "}
+        <em>uncut</em> — the natural durability the whole weekly-injection
+        class was reverse-engineered from.
+      </>
+    ),
+    svg: <ExenatideScissorproof />,
   },
 };
 

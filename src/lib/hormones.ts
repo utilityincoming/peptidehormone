@@ -274,6 +274,11 @@ const BASE: Hormone[] = [
       "Shares only ~53% identity with human GLP-1 yet fully activates the receptor.",
       "Available in immediate-release and extended-release (microsphere) formulations.",
     ],
+    narrative: [
+      "The entire long-acting GLP-1 class begins with a lizard. The Gila monster eats a few times a year and somehow keeps its blood sugar stable through months of fasting; in its venom, John Eng found exendin-4, a peptide that fully activates the human GLP-1 receptor but shares only about half its sequence with human GLP-1. That divergence turns out to be the point — the lizard peptide is shaped so that DPP-4, the enzyme that erases human GLP-1 in two minutes, cannot cut it. Nature had already solved the durability problem; the drug industry just had to copy the answer.",
+      "Exenatide is that copy. As Byetta, a twice-daily injection, it became the first GLP-1 receptor agonist approved, in 2005 — proof that incretin biology could be a medicine, not just a physiology lecture. A microsphere formulation (Bydureon) later stretched it to once weekly, the same durability ladder the rest of the class would climb. For a few years the lizard peptide defined what an incretin drug was.",
+      "Its legacy is double. Scientifically, exendin-4 taught the field that a GLP-1 agonist did not have to look like GLP-1 — the pharmacophore could come from a different evolutionary branch and still work. Commercially, exenatide was the pioneer the weekly analogs displaced: semaglutide's acylation-and-albumin strategy bought a longer half-life with a human-like sequence, and the lizard retreated to a historical footnote. But every weekly incretin injection since is, in a sense, standing on scales.",
+    ],
     questions: [
       "Why is exendin-4 resistant to DPP-4 when native GLP-1 is not?",
     ],
