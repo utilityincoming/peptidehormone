@@ -935,6 +935,95 @@ function LiraglutideDurabilityLadder(): ReactNode {
   );
 }
 
+/** Pramlintide: the fibril edit. Top: native human amylin as a chain that
+ *  tangles into fibrils (drawn as a knotted scribble ending in a stuck arrow).
+ *  Bottom: the same chain with three proline marks — straightened, flowing
+ *  cleanly to the amylin receptor. Three edits turn an undruggable hormone
+ *  into the first amylin drug. */
+function PramlintideFibrilEdit(): ReactNode {
+  const natY = 90;
+  const praY = 210;
+  const recX = 520;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Native human amylin tangles into fibrils and cannot be formulated as a drug, while pramlintide — the same peptide carrying three proline substitutions, borrowed from rodent amylin — stays straight and reaches the amylin receptor"
+    >
+      {/* native amylin — the tangle */}
+      <g>
+        <circle cx={88} cy={natY} r="42" fill="none" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="2" strokeDasharray="4 5" />
+        <text x={88} y={natY - 4} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Amylin
+        </text>
+        <text x={88} y={natY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.35" fontSize="10">
+          native · fibrils
+        </text>
+      </g>
+      {/* the knot — a scribble where the signal dies */}
+      <path
+        d={`M 140 ${natY} q 20 -24 34 0 q 14 22 30 0 q 12 -20 28 2 q 12 18 26 -2`}
+        fill="none"
+        stroke="var(--color-ink)"
+        strokeOpacity="0.3"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <text x={200} y={natY + 34} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.35" fontSize="11">
+        aggregates in the vial
+      </text>
+
+      {/* pramlintide — straight through */}
+      <g>
+        <circle cx={88} cy={praY} r="42" fill="color-mix(in srgb, var(--accent-blue) 12%, transparent)" stroke="var(--accent-blue)" strokeOpacity="0.65" strokeWidth="2" />
+        <text x={88} y={praY - 4} textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Pramlintide
+        </text>
+        <text x={88} y={praY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="10">
+          3× proline
+        </text>
+      </g>
+      {/* straight arm with three proline tick-marks */}
+      <path
+        d={`M 140 ${praY} C 260 ${praY}, ${recX - 60} ${praY}, ${recX - 6} ${praY}`}
+        fill="none"
+        stroke="var(--accent-blue)"
+        strokeOpacity="0.55"
+        strokeWidth="2"
+      />
+      {[220, 290, 360].map((x) => (
+        <line
+          key={x}
+          x1={x}
+          y1={praY - 9}
+          x2={x}
+          y2={praY + 9}
+          stroke="var(--accent-amber)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+      ))}
+      <text x={290} y={praY + 30} textAnchor="middle" fill="var(--accent-amber)" fillOpacity="0.85" fontSize="11" fontFamily="var(--font-space-grotesk), sans-serif">
+        three prolines, borrowed from the rat
+      </text>
+      <circle cx={recX - 6} cy={praY} r="3" fill="var(--accent-blue)" />
+
+      {/* amylin receptor */}
+      <g>
+        <rect x={recX} y={praY - 26} width={100} height={52} rx={12} fill="var(--panel)" stroke="var(--accent-blue)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x={recX + 14} y={praY - 3} fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          AMYR
+        </text>
+        <text x={recX + 14} y={praY + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="11">
+          druggable
+        </text>
+      </g>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -1039,6 +1128,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <LiraglutideDurabilityLadder />,
+  },
+  pramlintide: {
+    alt: "Native amylin tangling into fibrils versus pramlintide — the same peptide with three proline edits — flowing straight to the amylin receptor",
+    caption: (
+      <>
+        Same hormone, three edits. Native amylin tangles into fibrils and dies
+        in the vial; three prolines, borrowed from the rat, straighten it into
+        the first amylin drug — the proof of concept the whole amylin
+        renaissance is built on.
+      </>
+    ),
+    svg: <PramlintideFibrilEdit />,
   },
 };
 
