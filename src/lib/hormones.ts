@@ -376,6 +376,11 @@ const BASE: Hormone[] = [
       "Approved as an adjunct to mealtime insulin in type 1 and type 2 diabetes.",
       "Complements insulin rather than replacing it — amylin and insulin are co-secreted natively.",
     ],
+    narrative: [
+      "Insulin has a co-pilot almost nobody has heard of. Every time the beta cell releases insulin, it releases amylin in the same granules — a second hormone that handles the jobs insulin can't: slowing the meal's arrival, silencing glucagon after eating, and telling the brain the meal is over. In type 1 diabetes both are lost at once, yet for a century only one was replaced. Pramlintide is the attempt to replace the other — the first, and still the only, amylin drug.",
+      "The engineering problem was vicious. Native human amylin clumps into fibrils — the same tendency that deposits it as amyloid in the diabetic pancreas — making it impossible to formulate. The fix was borrowed from rodents, whose amylin never aggregates: three proline substitutions at the fibril-forming positions broke the clumping while keeping the receptor pharmacology. Symlin, a mealtime injection beside insulin, reached approval in 2005. The fibril edited out, the co-pilot restored.",
+      "Commercially it was a quiet drug — a separate injection at every meal, for a benefit measured in smoother glucose curves rather than dramatic numbers. But pramlintide is the proof of concept the amylin renaissance is built on. Cagrilintide took the same axis and stretched it from 48 minutes to a week; amycretin folded it into a single molecule with GLP-1. The forgotten twin's drug came first, and everything the amylin field is now betting started with three prolines.",
+    ],
     questions: [
       "How do pramlintide's proline substitutions prevent the aggregation seen with native human amylin?",
       "What does pramlintide add when paired with mealtime insulin?",
