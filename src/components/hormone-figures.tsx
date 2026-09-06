@@ -677,6 +677,73 @@ function CagrilintideStackedAxes(): ReactNode {
   );
 }
 
+/** Amycretin: one peptide, two receptor arms — the unimolecular answer to the
+ *  CagriSema two-pen stack. GLP-1R (accent) and AMYR (blue) arms fan from a
+ *  single peptide; a small "oral + SC" tag under the peptide names the second
+ *  ambition, formulation breadth. */
+function AmycretinUnimolecular(): ReactNode {
+  const arms = [
+    { color: "var(--accent)", receptor: "GLP-1R", effect: "Satiety · insulin", y: 100 },
+    { color: "var(--accent-blue)", receptor: "AMYR", effect: "Satiety · gastric", y: 200 },
+  ];
+  const startX = 196;
+  const startY = 150;
+  const recX = 372;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Amycretin is a single peptide whose signal fans out to two receptors — the GLP-1 receptor and the amylin receptor — the same two satiety pathways CagriSema stacks with two separate molecules, collapsed into one"
+    >
+      {arms.map((a) => (
+        <g key={a.receptor}>
+          <path
+            d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} ${a.y}, ${recX - 6} ${a.y}`}
+            fill="none"
+            stroke={a.color}
+            strokeOpacity="0.55"
+            strokeWidth="2"
+          />
+          <circle cx={recX - 6} cy={a.y} r="3" fill={a.color} />
+        </g>
+      ))}
+
+      {/* the single peptide — annotated with the dual formulation bet */}
+      <g>
+        <circle
+          cx={startX - 96}
+          cy={startY}
+          r="54"
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text x={startX - 96} y={startY - 6} textAnchor="middle" fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          Amycretin
+        </text>
+        <text x={startX - 96} y={startY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">
+          oral + SC
+        </text>
+      </g>
+
+      {arms.map((a) => (
+        <g key={a.receptor}>
+          <rect x={recX} y={a.y - 26} width={244} height={52} rx={12} fill="var(--panel)" stroke={a.color} strokeOpacity="0.5" strokeWidth="1.5" />
+          <text x={recX + 16} y={a.y - 4} fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+            {a.receptor}
+          </text>
+          <text x={recX + 16} y={a.y + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+            {a.effect}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -746,6 +813,17 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <CagrilintideStackedAxes />,
+  },
+  amycretin: {
+    alt: "Amycretin's single peptide engaging both the GLP-1 receptor and the amylin receptor — the unimolecular collapse of the CagriSema stack",
+    caption: (
+      <>
+        One peptide, two receptor arms — the same pair CagriSema plays with
+        two separate molecules. Amycretin is the <em>unimolecular</em> bet,
+        with an oral form chasing convenience alongside the injection.
+      </>
+    ),
+    svg: <AmycretinUnimolecular />,
   },
 };
 
