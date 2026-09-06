@@ -176,7 +176,7 @@ export default function Article() {
                 <CrossLink href="/hormones/maridebart-cafraglutide" label="Maridebart cafraglutide — GLP-1 on, GIP off" />
                 <CrossLink href="/hormones/gip" label="GIP — the other incretin" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
-                <CrossLink href="/insights/the-triple-agonist" label="The triple agonist" />
+                <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist" />
               </ul>
             </div>
 

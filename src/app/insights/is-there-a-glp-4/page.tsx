@@ -236,10 +236,10 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
-                <CrossLink href="/insights/the-triple-agonist" label="The triple agonist — one, two, three" />
+                <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist — one, two, three" />
                 <CrossLink href="/hormones/amylin" label="Amylin — the next axis in the chord" />
-                <CrossLink href="/insights/glp-1-muscle-preservation" label="Keeping the muscle on GLP-1" />
-                <CrossLink href="/insights/getting-the-molecule-in" label="The delivery problem" />
+                <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: keeping muscle while losing weight" />
+                <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
               </ul>
             </div>
 

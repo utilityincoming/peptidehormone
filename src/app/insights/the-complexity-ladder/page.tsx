@@ -326,7 +326,7 @@ export default function Article() {
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable" />
                 <CrossLink href="/available" label="What's verified in stock" />
-                <CrossLink href="/insights/glp-1-muscle-preservation" label="Keeping the muscle on GLP-1" />
+                <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: keeping muscle while losing weight" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin — the brake itself" />
               </ul>
             </div>
