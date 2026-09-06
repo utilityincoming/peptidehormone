@@ -220,7 +220,7 @@ export const GLOSSARY: GlossaryGroup[] = [
         aka: ["dual agonist", "multi-agonist"],
         def: "A single engineered molecule that activates two or more receptors at once — the design behind tirzepatide (GIP + GLP-1) and the triple agonists.",
         see: [
-          { label: "The triple agonist", href: "/insights/the-triple-agonist" },
+          { label: "What is retatrutide? The triple agonist", href: "/insights/the-triple-agonist" },
           { label: "Tirzepatide", href: "/hormones/tirzepatide" },
         ],
       },

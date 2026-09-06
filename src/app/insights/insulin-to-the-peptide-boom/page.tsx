@@ -193,7 +193,7 @@ export default function Article() {
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/insulin" label="Insulin — where it all began" />
-                <CrossLink href="/insights/glp-1-signaling" label="How GLP-1 actually works (the mechanism)" />
+                <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does (the mechanism)" />
                 <CrossLink href="/families/reproductive-gonadal" label="The gonadotropins behind fertility medicine" />
                 <CrossLink href="/catalog" label="See the evidence-graded catalog" />
               </ul>

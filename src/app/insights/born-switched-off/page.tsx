@@ -177,7 +177,7 @@ export default function Article() {
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/one-receptor-a-whole-family" label="One receptor, a whole family (the shared dock)" />
-                <CrossLink href="/insights/glp-1-muscle-preservation" label="Keeping the muscle on GLP-1 (the trial data)" />
+                <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: keeping muscle while losing weight (the trial data)" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin reference" />
                 <CrossLink href="/hormones/follistatin" label="Follistatin - the endogenous trap" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Why you can't just buy a myostatin inhibitor" />

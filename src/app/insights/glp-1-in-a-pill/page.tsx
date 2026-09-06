@@ -197,7 +197,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
-                <CrossLink href="/insights/getting-the-molecule-in" label="The delivery problem" />
+                <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the peptide going oral" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />

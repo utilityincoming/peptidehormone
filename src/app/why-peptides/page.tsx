@@ -149,7 +149,7 @@ export default function WhyPeptides() {
               </P>
               <ul className="space-y-2.5 text-[15px] leading-7">
                 <CrossLink href="/catalog" label="Browse the catalog — every molecule, graded and cross-linked" />
-                <CrossLink href="/insights/peptide-half-life-engineering" label="Two minutes to seven days — how a disposable hormone became a weekly drug" />
+                <CrossLink href="/insights/peptide-half-life-engineering" label="How semaglutide lasts a week: two minutes to seven days" />
                 <CrossLink href="/methodology" label="Methodology & standards — how we source, grade, and bound this reference" />
               </ul>
             </Section>

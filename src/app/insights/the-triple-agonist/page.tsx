@@ -161,7 +161,7 @@ export default function Article() {
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/retatrutide" label="Retatrutide — the triple agonist" />
                 <CrossLink href="/hormones/glucagon" label="Glucagon — the counter-regulatory hormone" />
-                <CrossLink href="/insights/glp-1-signaling" label="How GLP-1 actually works" />
+                <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does: how the hormone actually works" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
               </ul>
             </div>

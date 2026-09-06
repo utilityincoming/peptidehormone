@@ -255,7 +255,7 @@ export default function Article() {
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/tools/half-life" label="Half-life calculator — see accumulation and swing" />
-                <CrossLink href="/insights/getting-the-molecule-in" label="The delivery problem" />
+                <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the week-long analog" />
                 <CrossLink href="/hormones/maridebart-cafraglutide" label="Maridebart cafraglutide — the monthly scaffold" />
               </ul>

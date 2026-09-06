@@ -83,7 +83,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "when-the-drug-works-too-well",
     hormones: ["semaglutide", "tirzepatide", "liraglutide", "glp-1"],
-    title: "When the drug works too well",
+    title: "Stopping Ozempic: what happens when you stop GLP-1 drugs",
     dek: "The people who struggle most to come off a GLP-1 are usually the ones it helped most - and that is not weakness, it is physiology doing exactly what it evolved to do. The body defends the weight it has lost, the drug holds that defense at bay, and stopping lets it back in. What the withdrawal trials actually show, why 'chronic' is the honest word for obesity, and how to think about time off: maintenance, tapering, and an off-ramp with a return ticket.",
     family: "incretins-metabolic",
     readingMinutes: 11,
@@ -127,7 +127,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "peptide-half-life-engineering",
     hormones: ["semaglutide", "glp-1"],
-    title: "Two minutes to seven days",
+    title: "How long does semaglutide last? Two minutes to seven days",
     dek: "Natural GLP-1 is destroyed about two minutes after the gut releases it. Semaglutide — the same signal, essentially the same shape — survives a week. That gap is a five-thousand-fold engineering feat, and it wasn't achieved by making the peptide tougher. It was achieved by attaching it to something the body has already decided to keep. Inside the three tricks that turned a disposable hormone into a weekly drug, and why the next cadence is monthly.",
     family: "incretins-metabolic",
     readingMinutes: 10,
@@ -136,7 +136,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "the-gip-paradox",
     hormones: ["gip", "tirzepatide", "maridebart-cafraglutide"],
-    title: "The GIP paradox",
+    title: "GIP agonist vs antagonist: why both cause weight loss",
     dek: "Tirzepatide turns the GIP receptor on. Maridebart cafraglutide turns the same receptor off. Both drive weight loss. That should be impossible under a \"more signal is better\" model of pharmacology — and the fact that it isn't is one of the most revealing puzzles on the metabolic frontier. How a receptor can be pushed either way and land in the same place.",
     family: "incretins-metabolic",
     readingMinutes: 9,
@@ -145,7 +145,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "glp-1-in-a-pill",
     hormones: ["semaglutide", "glp-1"],
-    title: "Putting GLP-1 in a pill",
+    title: "Oral GLP-1: can you take semaglutide as a pill?",
     featuredRank: 2,
     dek: "A peptide is food — swallow it and your gut digests it before it works, which is why this class has lived on the needle. Yet the pill is arriving, by two philosophically opposite routes: smuggle the fragile peptide across the gut wall, or stop using a peptide at all and rebuild the signal from a rugged small molecule. The second one is the real revolution, and it comes down to a quiet truth about receptors — they read the message, not the messenger.",
     family: "incretins-metabolic",
@@ -155,7 +155,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "insulins-forgotten-twin",
     hormones: ["amylin", "pramlintide", "cagrilintide", "insulin"],
-    title: "Insulin's forgotten twin",
+    title: "What is amylin? Insulin's forgotten twin",
     dek: "Every time the pancreas releases insulin, it releases a second hormone from the same granule — amylin. For a century insulin took all the credit while its partner went unnamed. Amylin runs a receptor it borrowed rather than built, sabotages itself by clumping into the amyloid that scars a diabetic pancreas, and is now the metabolic frontier's newest axis. The story of the twin the body never forgot.",
     family: "incretins-metabolic",
     readingMinutes: 10,
@@ -172,7 +172,7 @@ export const INSIGHTS: Insight[] = [
   },
   {
     slug: "getting-the-molecule-in",
-    title: "The delivery problem",
+    title: "Why are peptides injected? The delivery problem",
     dek: "A peptide is, chemically, food — swallow it and your gut digests it; rub it on your skin and it never gets past the surface. The needle isn't a preference, it's physics. Inside the barriers that block every other route, why most \"oral\" peptide claims are marketing, and the narrow cases where a nasal spray genuinely works.",
     family: "incretins-metabolic",
     readingMinutes: 9,
@@ -189,7 +189,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "the-triple-agonist",
     hormones: ["retatrutide", "glucagon"],
-    title: "The triple agonist",
+    title: "What is retatrutide? The triple agonist explained",
     featuredRank: 3,
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
     family: "incretins-metabolic",
@@ -207,7 +207,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "glp-1-muscle-preservation",
     hormones: ["semaglutide", "tirzepatide", "myostatin", "follistatin"],
-    title: "Keeping the muscle on GLP-1",
+    title: "Muscle loss on GLP-1: how to keep muscle while losing weight",
     featuredRank: 4,
     dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
     family: "muscle-tgfb",
@@ -226,7 +226,7 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "glp-1-signaling",
     hormones: ["glp-1", "semaglutide"],
-    title: "How GLP-1 actually works",
+    title: "What does GLP-1 do? How the hormone actually works",
     featuredRank: 1,
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",

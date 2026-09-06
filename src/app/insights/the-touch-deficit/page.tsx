@@ -429,7 +429,7 @@ export default function Article() {
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/oxytocin" label="Oxytocin reference (the monograph)" />
                 <CrossLink href="/hormones/pt-141" label="Bremelanotide reference (MC4R, Vyleesi)" />
-                <CrossLink href="/insights/getting-the-molecule-in" label="The delivery problem — why peptides need the needle" />
+                <CrossLink href="/insights/getting-the-molecule-in" label="Why are peptides injected? The delivery problem" />
                 <CrossLink href="/families/neuropeptides" label="The neuropeptide family" />
                 <CrossLink href="/families/melanocortins" label="The melanocortin family (drive half of the circuit)" />
                 <CrossLink href="/research?q=What%20evidence%20supports%20behavioral%20oxytocin%20release%20(touch%2C%20hugs)%20for%20couples%2C%20and%20how%20does%20bremelanotide%20compare%20for%20desire%3F" label="Ask the research agent for current evidence" />

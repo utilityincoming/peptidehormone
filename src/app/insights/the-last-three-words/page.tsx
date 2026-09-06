@@ -211,7 +211,7 @@ export default function Article() {
                 <CrossLink href="/hormones/alpha-msh" label="α-MSH — the thirteen-residue parent" />
                 <CrossLink href="/families/melanocortins" label="Melanocortins — one ligand set, five receptors" />
                 <CrossLink href="/hormones/pt-141" label="Bremelanotide — the parent dissected the other way" />
-                <CrossLink href="/insights/getting-the-molecule-in" label="The delivery problem — why KPV's oral route is the exception" />
+                <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle — and why KPV's oral route is the exception" />
                 <CrossLink href="/research?q=What%20controlled%20human%20evidence%20exists%20for%20KPV%20%28alpha-MSH%2011-13%29%20beyond%20preclinical%20colitis%20and%20wound-healing%20models%3F" label="Ask the research agent what the human data shows" />
               </ul>
             </div>
