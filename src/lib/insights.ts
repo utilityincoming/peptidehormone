@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "how-to-reconstitute-peptides",
+    title: "How to reconstitute peptides: the vial is not a recipe",
+    dek: "Adding water to a peptide vial looks like the simplest step in the process. It is where four separate systems collide: product identity, sterile technique, concentration, and stability. Get any one wrong and a clear solution can still be contaminated, mismeasured, or chemically compromised. A label-first guide to what reconstitution actually does, why sterile water and bacteriostatic water are not interchangeable, why there is no universal storage clock, and which shortcuts turn a preparation problem into a patient-safety problem.",
+    family: "growth-repair",
+    readingMinutes: 10,
+    reviewed: "September 2026",
+  },
+  {
     slug: "a-switch-not-a-supply",
     hormones: ["ghk-cu"],
     title: "A switch, not a supply",
