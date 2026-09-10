@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-guts-full-report",
+    hormones: ["pyy", "cck", "secretin", "motilin"],
+    title: "The gut's full report",
+    dek: "The gut is the body's largest endocrine organ, and after every meal it files a report: a timed sequence of peptides that tells the brain what arrived and how digestion should run. CCK fires first from the duodenum. GLP-1 and PYY are released together, further down, from the very same L-cells. Secretin manages acid; motilin runs the housekeeping between meals. The blockbuster GLP-1 drugs are one line of that report, amplified. The proof that the whole report, not any single peptide, governs appetite came from bariatric surgery, which raises the entire post-meal chorus at once. The frontier now is rebuilding that chorus in a vial: PYY analogs, GLP-1 paired with PYY, tri-hormone infusions built to imitate what the gut does after a bypass. A reference-tier read of the enteroendocrine system the incretin era only partly borrowed. No dosing.",
+    family: "gut-appetite",
+    readingMinutes: 11,
+    reviewed: "September 2026",
+  },
+  {
     slug: "how-to-reconstitute-peptides",
     title: "How to reconstitute peptides: the vial is not a recipe",
     dek: "Adding water to a peptide vial looks like the simplest step in the process. It is where four separate systems collide: product identity, sterile technique, concentration, and stability. Get any one wrong and a clear solution can still be contaminated, mismeasured, or chemically compromised. A label-first guide to what reconstitution actually does, why sterile water and bacteriostatic water are not interchangeable, why there is no universal storage clock, and which shortcuts turn a preparation problem into a patient-safety problem.",
