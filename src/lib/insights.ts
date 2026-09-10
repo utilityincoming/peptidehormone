@@ -44,6 +44,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "September 2026",
   },
   {
+    slug: "the-pulse-is-the-message",
+    hormones: ["gnrh", "kisspeptin", "leuprolide", "cetrorelix", "goserelin", "lh", "fsh", "hcg"],
+    title: "The pulse is the message",
+    dek: "The reproductive axis does not read how much GnRH is present. It reads the rhythm. GnRH leaves the hypothalamus in pulses, and the pituitary decodes their frequency: delivered in pulses the same molecule switches the axis on, delivered continuously it switches the axis off, by desensitizing its own receptor. That one fact explains the strangest drug in endocrinology, a GnRH agonist like leuprolide that suppresses the very system it stimulates, and its cleaner mirror, the antagonists that block without the flare and are now going oral. Upstream sits kisspeptin, the gate that generates the pulse and the gene whose failure hides puberty, now being turned into a gentler fertility tool. A reference read of the one axis where frequency, not concentration, is the signal. No dosing.",
+    family: "reproductive-gonadal",
+    readingMinutes: 11,
+    reviewed: "September 2026",
+  },
+  {
     slug: "a-switch-not-a-supply",
     hormones: ["ghk-cu"],
     title: "A switch, not a supply",
