@@ -44,6 +44,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "August 2026",
   },
   {
+    slug: "the-heart-is-a-gland",
+    hormones: ["anp", "bnp", "cnp"],
+    title: "The heart is a gland",
+    dek: "The heart is not only a pump. It is a gland. When its walls stretch under too much blood, cardiac muscle secretes hormones, ANP from the atria and BNP from the ventricles, that tell the kidney to shed salt and water and the vessels to relax, unloading the very stretch that released them. That one circuit explains three things at once: why a blood test for BNP is how heart failure is diagnosed, why the best modern heart-failure drug does not supply the hormone but blocks the enzyme that destroys it, and why the third family member, CNP, became a treatment for a form of dwarfism. A reference read of the peptides the heart uses to manage its own load, and of why, in this family, protecting the signal beat replacing it. No dosing.",
+    family: "cardiovascular",
+    readingMinutes: 10,
+    reviewed: "September 2026",
+  },
+  {
     slug: "the-touch-deficit",
     hormones: ["oxytocin", "pt-141"],
     title: "The touch deficit",
