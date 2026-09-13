@@ -1,15 +1,14 @@
 // The site's commercial relationships, in one place.
 //
 // PeptideHormone hosts no storefront. It is part of the American Peptide network,
-// which holds a single disclosed affiliate relationship with a research-peptide
-// supplier — AminoClub — set out in full on /methodology. AminoClub is linked at
-// the storefront level (no per-product deep-links) behind a research-use-only
-// gate: we present it as a vetted option and describe it only by what's visible
-// from the outside — a trusted, research-use-only peptide supplier — never
-// asserting a per-lot COA we can't see. The shared network code rides in the link
-// and is surfaced to readers as the offer. Placement stays an output of the
-// standard, not a banner — a sourcing note appears only where it earns its place,
-// never as a blanket pitch.
+// which holds disclosed affiliate relationships with research-peptide suppliers —
+// AminoClub and ElyriaBio — set out in full on /methodology. Each is linked at the
+// storefront level (no per-product deep-links) behind a research-use-only gate: we
+// present them as vetted options and describe each one only by what's visible from
+// the outside, never asserting a per-lot COA we can't see. Where a vendor surfaces a
+// reader code it rides in the link. Placement stays an output of the standard, not a
+// banner — a sourcing note appears only where it earns its place, on molecules a
+// vendor actually carries, never as a blanket pitch.
 //
 // Attribution flows to the shared network code/ref on purpose — the sites work
 // together for a common cause and don't hide the connection.
@@ -18,42 +17,85 @@
  *  SEO-correct signal for a paid relationship. */
 export const AFFILIATE_REL = "sponsored nofollow noopener noreferrer";
 
-// ── AminoClub ───────────────────────────────────────────────────────────────
-// The network's research-peptide source. Linked at the storefront level behind a
-// research-use-only gate, so we present it as a vetted option — never claiming a
-// per-product stock or a per-lot COA we can't see. The shared network code rides
-// in the link and is surfaced to readers as the offer.
+/**
+ * One research-peptide source in the network. Described by what's visible from the
+ * outside — never a per-lot COA we can't see. `code` is a reader-facing offer that
+ * rides in the link; omitted where a vendor has none (the ref is attribution only).
+ */
+export type Vendor = {
+  /** stable key, for React lists */
+  key: string;
+  /** display name */
+  name: string;
+  /** affiliate storefront link, carrying the network ref/code */
+  home: string;
+  /** reader-facing code surfaced as the offer — omit where there is none */
+  code?: string;
+  /** one honest line describing the source, keyed off what's visible from outside */
+  blurb: string;
+  /** molecules this vendor is known to carry, intersected with the catalog */
+  carries: ReadonlySet<string>;
+};
 
-/** Network storefront link for AminoClub, carrying the shared code + UTM. */
-export const AMINOCLUB_HOME =
-  "https://aminoclub.com?utm_source=affiliate_marketing&code=AMERICANPEPTIDE";
-
-/** Shared network code, surfaced to readers as the offer at AminoClub. */
-export const AMINOCLUB_CODE = "AMERICANPEPTIDE";
-
-// Molecules AminoClub is known to carry, intersected with this catalog — the spine
+// Molecules each vendor is known to carry, intersected with this catalog — the spine
 // of the /available index and the gate for a monograph sourcing note. A hint, not a
-// stock guarantee (their shelf, behind the gate, is authoritative). Keep in sync:
-// add a slug here to surface it on /available and on its monograph.
-const AMINOCLUB_CARRIES: readonly string[] = [
-  "bpc-157",
-  "tb-500",
-  "ghk-cu",
-  "dsip",
-  "semaglutide",
-  "tirzepatide",
-];
+// stock guarantee (their shelf, behind the gate, is authoritative). Keep in sync: add
+// a slug here to surface it on /available and on its monograph. Blends (e.g. GLOW,
+// KLOW, BPC+TB), bacteriostatic water, and non-catalog compounds are deliberately out.
 
-const AMINOCLUB_CARRIES_SET: ReadonlySet<string> = new Set(AMINOCLUB_CARRIES);
+const AMINOCLUB: Vendor = {
+  key: "aminoclub",
+  name: "AminoClub",
+  // Network storefront link for AminoClub, carrying the shared code + UTM.
+  home: "https://aminoclub.com?utm_source=affiliate_marketing&code=AMERICANPEPTIDE",
+  code: "AMERICANPEPTIDE",
+  blurb: "a research-use-only supplier with provenance you can reason about",
+  carries: new Set([
+    "bpc-157",
+    "tb-500",
+    "ghk-cu",
+    "dsip",
+    "semaglutide",
+    "tirzepatide",
+  ]),
+};
 
-/** True when AminoClub is known to carry a molecule — the sourcing-note gate. */
-export function carriedByAminoClub(slug: string): boolean {
-  return AMINOCLUB_CARRIES_SET.has(slug);
+const ELYRIA: Vendor = {
+  key: "elyriabio",
+  name: "ElyriaBio",
+  // Referral link carries attribution only — no reader discount code (so `code` is
+  // unset; ElyriaBio's own new-customer offer is not ours to surface as a reader code).
+  home: "https://elyriabio.com/?ref=PEPTIDE",
+  blurb:
+    "a research-use-only source that commits to a per-lot third-party COA (a ≥99% HPLC purity floor)",
+  carries: new Set([
+    "bpc-157",
+    "tb-500",
+    "ghk-cu",
+    "kisspeptin",
+    "mots-c",
+    "ss-31",
+    "tesamorelin",
+  ]),
+};
+
+/** Every vendor in the network, in display order. Co-equal — order is tenure in the
+ *  network, not a ranking; the standard, not the order, is what a listing earns. */
+export const VENDORS: readonly Vendor[] = [AMINOCLUB, ELYRIA];
+
+/** The vendors known to carry a molecule — the sourcing-note gate (empty = no note). */
+export function vendorsFor(slug: string): Vendor[] {
+  return VENDORS.filter((v) => v.carries.has(slug));
 }
 
-/** Every slug AminoClub is known to carry — the spine of the /available index. */
-export function aminoClubSlugs(): string[] {
-  return [...AMINOCLUB_CARRIES];
+/** True when any vendor carries a molecule. */
+export function isSourced(slug: string): boolean {
+  return VENDORS.some((v) => v.carries.has(slug));
+}
+
+/** Union of every slug any vendor carries — the spine of the /available index. */
+export function sourcedSlugs(): string[] {
+  return [...new Set(VENDORS.flatMap((v) => [...v.carries]))];
 }
 
 /**

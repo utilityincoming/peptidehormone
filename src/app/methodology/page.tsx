@@ -209,17 +209,17 @@ export default function Methodology() {
               <P>
                 PeptideHormone hosts no storefront and sells no peptides — but it isn&rsquo;t
                 pretending to be a lone island, either. It is part of the{" "}
-                <Em>American Peptide</Em> network, and that network holds a disclosed
-                affiliate relationship with a research-peptide supplier, AminoClub: buy
-                through a sourcing link here and we may earn a commission, at no extra cost
-                to you. We&rsquo;re open about the connection because hiding it
+                <Em>American Peptide</Em> network, and that network holds disclosed
+                affiliate relationships with two research-peptide suppliers, AminoClub and
+                ElyriaBio: buy through a sourcing link here and we may earn a commission, at
+                no extra cost to you. We&rsquo;re open about the connection because hiding it
                 would be the actual betrayal.
               </P>
               <P>
                 What stays walled off is the science. No evidence tier, no molecule&rsquo;s
                 grading, and no line of mechanism is ever softened, promoted, or reordered to
-                move product — and a sourcing note only appears on molecules the vendor
-                actually stocks, never as a blanket pitch. The relationship pays for the link;
+                move product — and a sourcing note only appears on molecules a vendor
+                actually carries, never as a blanket pitch. The relationships pay for the link;
                 it does not buy a conclusion. The network shares a cause — an honest, checkable
                 map of this field — not a sales quota. The day a conclusion bends to a seller
                 is the day this project stops being worth reading.

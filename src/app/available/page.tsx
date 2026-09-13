@@ -6,27 +6,27 @@ import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 import {
-  aminoClubSlugs,
+  sourcedSlugs,
+  vendorsFor,
+  VENDORS,
   SOURCING_STANDARD,
-  AMINOCLUB_HOME,
-  AMINOCLUB_CODE,
   AFFILIATE_REL,
 } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Availability — what the network sources",
   description:
-    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub, research-use-only. What you can actually get, not just what exists.",
+    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub and ElyriaBio, research-use-only. What you can actually get, not just what exists.",
   alternates: { canonical: "/available" },
   openGraph: {
     title: "Availability · Peptide Hormone",
     description:
-      "Research-grade peptides you can actually reach, sourced through the network via AminoClub.",
+      "Research-grade peptides you can actually reach, sourced through the network via AminoClub and ElyriaBio.",
   },
 };
 
 export default function AvailablePage() {
-  const items = aminoClubSlugs()
+  const items = sourcedSlugs()
     .map((slug) => getHormone(slug))
     .filter((h): h is NonNullable<typeof h> => Boolean(h))
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -38,7 +38,7 @@ export default function AvailablePage() {
           path: "/available",
           name: "Availability — what the network sources",
           description:
-            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub.",
+            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub and ElyriaBio.",
           items: items.map((h) => ({ name: h.name, path: `/hormones/${h.slug}` })),
           crumbs: [
             { name: "Home", path: "/" },
@@ -68,13 +68,17 @@ export default function AvailablePage() {
               network can point you to at research grade, sourced research-use-only rather
               than left as an open question.
             </p>
-            <p className="mt-6 text-sm leading-6 text-ink/55">
-              Sourced through the American Peptide network via{" "}
-              <a href={AMINOCLUB_HOME} target="_blank" rel={AFFILIATE_REL} className="text-accent hover:underline">
-                AminoClub
-              </a>
-              , a research-use-only supplier. Use code{" "}
-              <span className="font-mono text-ink/80">{AMINOCLUB_CODE}</span>.
+            <p className="mt-6 max-w-2xl text-sm leading-6 text-ink/55">
+              Sourced through the American Peptide network from two research-use-only sources —{" "}
+              {VENDORS.map((v, i) => (
+                <span key={v.key}>
+                  <a href={v.home} target="_blank" rel={AFFILIATE_REL} className="text-accent hover:underline">
+                    {v.name}
+                  </a>
+                  {i < VENDORS.length - 2 ? ", " : i === VENDORS.length - 2 ? " and " : ""}
+                </span>
+              ))}
+              . Each row shows which one carries it.
             </p>
           </Container>
         </section>
@@ -96,7 +100,7 @@ export default function AvailablePage() {
             <p className="mt-5 max-w-3xl text-sm leading-6 text-ink/50">
               Listings are editorial: a compound appears because our network sources it
               research-use-only and it fits the picture above, never because it was paid for.
-              AminoClub links at the storefront level, so its shelf — behind the gate — is
+              Each vendor links at the storefront level, so its shelf — behind the gate — is
               authoritative; we point you to a vetted source, we don&rsquo;t verify each lot for
               you. Absence isn&rsquo;t a judgment on the molecule.{" "}
               <Link href="/insights/what-you-can-actually-get" className="text-accent hover:underline">
@@ -125,13 +129,14 @@ export default function AvailablePage() {
               <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
                 {items.map((h) => {
                   const fam = getFamily(h.family);
+                  const carriers = vendorsFor(h.slug);
                   return (
                     <div
                       key={h.slug}
                       className="flex flex-col gap-4 bg-surface p-6 sm:flex-row sm:items-center sm:justify-between"
                     >
                       <div className="min-w-0">
-                        <div className="flex items-center gap-2.5">
+                        <div className="flex flex-wrap items-center gap-2.5">
                           <Link
                             href={`/hormones/${h.slug}`}
                             className="font-display text-lg font-semibold leading-snug transition-colors hover:text-accent"
@@ -139,9 +144,14 @@ export default function AvailablePage() {
                             {h.name}
                             {h.abbr && <span className="text-ink/40"> · {h.abbr}</span>}
                           </Link>
-                          <span className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal">
-                            Via AminoClub
-                          </span>
+                          {carriers.map((v) => (
+                            <span
+                              key={v.key}
+                              className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal"
+                            >
+                              {v.name}
+                            </span>
+                          ))}
                         </div>
                         <p className="mt-1.5 text-sm text-ink/55">
                           <span className={fam?.accent ?? "text-accent"}>{fam?.name ?? "Peptide"}</span>
@@ -149,27 +159,31 @@ export default function AvailablePage() {
                           {h.summary}
                         </p>
                       </div>
-                      <a
-                        href={AMINOCLUB_HOME}
-                        target="_blank"
-                        rel={AFFILIATE_REL}
-                        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
-                      >
-                        View at AminoClub <span aria-hidden>→</span>
-                      </a>
+                      <div className="flex shrink-0 flex-col gap-2 sm:items-end">
+                        {carriers.map((v) => (
+                          <a
+                            key={v.key}
+                            href={v.home}
+                            target="_blank"
+                            rel={AFFILIATE_REL}
+                            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
+                          >
+                            View at {v.name} <span aria-hidden>→</span>
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   );
                 })}
               </div>
 
               <p className="mt-6 text-xs leading-5 text-ink/40">
-                Affiliate link across the American Peptide network — a purchase supports this
+                Affiliate links across the American Peptide network — a purchase supports this
                 reference at no additional cost to you, and buys not one word of the catalog.
-                AminoClub links at the storefront level and is sold research-use-only; their
-                page, behind the gate, is authoritative for stock and lot detail. Use code{" "}
-                <span className="font-mono text-ink/60">{AMINOCLUB_CODE}</span>. Not medical advice
-                or an endorsement to obtain or use any compound — regulatory status varies by
-                jurisdiction. See{" "}
+                Each vendor links at the storefront level and is sold research-use-only; their
+                page, behind the gate, is authoritative for stock and lot detail. Not medical
+                advice or an endorsement to obtain or use any compound — regulatory status
+                varies by jurisdiction. See{" "}
                 <Link href="/methodology" className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60">
                   how we pick
                 </Link>
