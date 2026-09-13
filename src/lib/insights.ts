@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-rest-of-the-cascade",
+    hormones: ["hcg", "lh"],
+    title: "The rest of the cascade",
+    dek: "Men on testosterone sometimes add hCG and report feeling steadier, clearer, more themselves — benefits the testosterone number alone never predicted. The reason is less exotic than a mood drug and more interesting. Testosterone replacement fixes one hormone while switching off the gland that made it: the pituitary goes quiet, intratesticular testosterone collapses by about 94 percent, and the testis stops producing the whole steroid cascade around testosterone — pregnenolone, progesterone, estradiol, the brain-active ones included. hCG is an LH signal that relights that factory. The honest read of the 'mental benefits' is estradiol you can measure on a lab draw, plus a broader neurosteroid milieu you mostly can't, plus a good deal of reassurance and expectancy. Why the fertility claim is settled and the mood claim is still thinly evidenced — and why this exact molecule has overpromised wellbeing before. Bullish on the science, sceptical on the page.",
+    family: "reproductive-gonadal",
+    readingMinutes: 12,
+    reviewed: "September 2026",
+  },
+  {
     slug: "the-guts-full-report",
     hormones: ["pyy", "cck", "secretin", "motilin"],
     title: "The gut's full report",
