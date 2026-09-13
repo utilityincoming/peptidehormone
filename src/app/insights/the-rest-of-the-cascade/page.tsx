@@ -189,6 +189,71 @@ export default function Article() {
               </P>
             </Section>
 
+            <Section title="Which hormone lights which cell">
+              <P>
+                Everything so far has been the Leydig cell&rsquo;s story. The testis
+                runs on two signals, though, not one, and they wake two different cells.{" "}
+                <Link href="/hormones/lh" className={LINK}>LH</Link> drives the Leydig
+                cell and its steroid cascade.{" "}
+                <Link href="/hormones/fsh" className={LINK}>FSH</Link> drives the Sertoli
+                cell, the nurse cell of sperm production, which also makes inhibin B and
+                runs its own aromatase inside the seminiferous tubule.
+              </P>
+              <TwoArmFigure />
+              <P>
+                hCG stands in for LH, and only for LH. It relights the Leydig arm &ndash;
+                the intratesticular testosterone, the steroid cascade, the estradiol
+                &ndash; and leaves the Sertoli arm dark. That is why hCG keeps the testes
+                full-sized and holds some sperm production, while a man who wants full
+                fertility back, especially after a long shutdown, usually needs FSH as
+                well.
+              </P>
+              <P>
+                That is where hMG earns its place. Human menopausal gonadotropin, or
+                menotropin, is purified from urine and carries both LH and FSH activity in
+                roughly equal measure &ndash; and in some modern preparations the LH half
+                is literally supplied by added hCG. Recombinant FSH does the Sertoli job
+                on its own. So the hormones sort cleanly by the cell they wake: hCG and LH
+                light the Leydig, steroid-making arm; hMG and FSH light the Sertoli,
+                fertility arm.{" "}
+                <Link href="/hormones/gnrh" className={LINK}>GnRH</Link> and the
+                estrogen-blocking SERMs sit higher up and wake both, by working through the
+                pituitary rather than the testis.
+              </P>
+              <Callout label="Where the feeling lives">
+                Most of the mood and wellbeing story sits on the Leydig arm &ndash; the
+                steroids and estradiol &ndash; which is the arm hCG addresses directly. The
+                FSH arm is mostly about fertility and a sense of completeness, less about
+                the day-to-day baseline. So the rest of the cascade honestly includes a
+                whole second axis that hCG alone never touches, even if that axis is not
+                where a man usually notices his mood.
+              </Callout>
+            </Section>
+
+            <Section title="From replacement to restart">
+              <P>
+                Line the options up and they form a ladder, rung by rung, by how much of
+                the system stays awake. What men describe as they climb it is less a
+                matter of more testosterone than of more gland.
+              </P>
+              <Bullets
+                items={[
+                  ["Testosterone alone", "The floor. Both arms dark, the testes idle, the axis silent. The serum number is right, and men still often describe a flatness, a sense of being switched off, sometimes a testicular emptiness or ache. Everything upstream of the injection goes unmade."],
+                  ["Testosterone with hCG", "The Leydig arm back on: intratesticular testosterone and the steroid cascade restored, the testes full. This is where the 'switched on again' reports cluster, from libido to drive to a steadier baseline. The catch is estradiol. hCG revives the testis's own aromatization, so some men swing high and have to manage it; the hormone that helps is also the one that can overshoot."],
+                  ["hCG plus hMG or FSH", "Both arms awake. Added mostly when fertility is the goal: sperm production, inhibin B, the fuller testicular ecosystem. What men report here is less a mood shift than a sense of completeness, the gland doing its whole job again rather than the steroid half alone."],
+                  ["A SERM instead, enclomiphene or clomiphene", "Skip the injections and lift the whole axis from the top by taking estrogen's brake off the pituitary: your own LH and FSH, pulsatile, fertility preserved. It works only if the pituitary is intact, and older clomiphene carries a long-lived estrogenic isomer that can bring its own mood and visual side effects. Enclomiphene is the cleaner cut."],
+                  ["Pulsatile GnRH", "The most faithful copy of physiology, restoring both gonadotropins in rhythm rather than as a steady dose. It needs a pump and an intact pituitary, so it stays largely a specialist tool, but it is the reference standard the rest of the ladder is only approximating."],
+                ]}
+              />
+              <P>
+                The throughline is the one the piece keeps arriving at. Replacement hands
+                you the hormone; each rung above it hands back more of the gland, and for
+                some men more of the way they used to feel. Which rung fits is a clinical
+                decision with real trade-offs at every step. None of this is a protocol,
+                only the reasoning under one.
+              </P>
+            </Section>
+
             <Section title="The part that isn't chemistry">
               <P>
                 Not all of the reported benefit needs a steroid to explain it, and the
@@ -226,6 +291,7 @@ export default function Article() {
               <Bullets
                 items={[
                   ["Well established", "hCG maintains intratesticular testosterone and testicular function while exogenous testosterone suppresses the axis, preserving testis size and fertility. This rests on randomized, dose-response human data (Coviello 2005)."],
+                  ["Settled, for fertility", "Beyond maintaining intratesticular testosterone, adding FSH activity (as hMG or recombinant FSH) restores spermatogenesis, most clearly in hypogonadotropic hypogonadism. The division of labor between the LH and FSH arms is standard reproductive endocrinology, not conjecture."],
                   ["Well grounded", "Estradiol is independently necessary for male libido, erectile function, and mood; restoring the testis's own estrogen output is a real, measurable route to feeling better (Finkelstein 2013)."],
                   ["Plausible, not proven", "A broader circulating steroid milieu — pregnenolone, progesterone, and the neuroactive steroids they feed — as a path to a steadier baseline. The biology is sound; no controlled trial has tested hCG-on-TRT against a mood endpoint."],
                   ["Confounded", "The subjective 'mental benefit' reports are unblinded and uncontrolled, and they mix chemistry with reassurance, expectancy, and the quiet correction of bad protocols."],
@@ -258,7 +324,9 @@ export default function Article() {
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/hcg" label="hCG — the reference monograph" />
                 <CrossLink href="/hormones/lh" label="LH — the signal hCG imitates" />
+                <CrossLink href="/hormones/fsh" label="FSH — the Sertoli arm hCG leaves dark" />
                 <CrossLink href="/families/reproductive-gonadal" label="Reproductive & gonadal — the HPG axis, end to end" />
+                <CrossLink href="/insights/the-pulse-is-the-message" label="The pulse is the message — how rhythm, not level, runs the axis" />
                 <CrossLink href="/insights/a-switch-not-a-supply" label="A switch, not a supply — the replace-versus-restore distinction, on repair biology" />
                 <CrossLink href="/research?q=Is%20there%20any%20controlled%20human%20evidence%20that%20adding%20hCG%20to%20testosterone%20therapy%20improves%20mood%20or%20wellbeing%2C%20or%20is%20the%20reported%20benefit%20better%20explained%20by%20estradiol%20and%20expectancy%3F" label="Ask the research agent what the human data shows" />
               </ul>
@@ -417,6 +485,87 @@ function CascadeFigure() {
         testosterone supplies only the end product and, out in the periphery, some
         estradiol (ink bracket) &ndash; leaving the upstream steroids, and the testis&rsquo;s
         own estradiol, unmade. Illustrative pathway, not to scale.
+      </figcaption>
+    </figure>
+  );
+}
+
+/* ── Two signals, two cells. LH (and its stand-in hCG) drive the Leydig cell
+      and the steroid/mood arm; FSH (and hMG or recombinant FSH) drive the
+      Sertoli cell and the fertility arm. hMG carries both; SERMs and pulsatile
+      GnRH act higher, at the pituitary. ── */
+function TwoArmFigure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 640 352"
+        className="mx-auto w-full max-w-xl"
+        role="img"
+        aria-label="A branching diagram of the two-signal control of the testis. At the top, a box labelled Pituitary, annotated that SERMs and GnRH act at this level. Two arrows branch down from it: to LH on the left and FSH on the right. LH points down to the Leydig cell, whose outputs are testosterone, the steroid cascade, and estradiol via aromatase — labelled the steroid and mood arm; a note says hCG acts as LH. FSH points down to the Sertoli cell, whose outputs are sperm, inhibin B, and intratubular aromatase — labelled the fertility arm; a note says hMG or recombinant FSH act as FSH. A bracket beneath both columns notes that hMG carries both arms."
+      >
+        <defs>
+          <marker id="arm-arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--color-ink)" fillOpacity="0.35" />
+          </marker>
+        </defs>
+
+        {/* pituitary */}
+        <rect x="235" y="22" width="170" height="40" rx="11" fill="var(--color-ink)" fillOpacity="0.05" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.5" />
+        <text x="320" y="47" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="13" fontFamily="var(--font-space-grotesk), sans-serif">Pituitary</text>
+        <text x="414" y="38" fill="var(--color-ink)" fillOpacity="0.5" fontSize="9.5" fontFamily="var(--font-space-grotesk), sans-serif">SERMs &amp; GnRH</text>
+        <text x="414" y="50" fill="var(--color-ink)" fillOpacity="0.45" fontSize="9.5" fontFamily="var(--font-space-grotesk), sans-serif">act at this level</text>
+
+        {/* branch arrows to LH / FSH */}
+        <line x1="320" y1="62" x2="176" y2="114" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+        <line x1="320" y1="62" x2="464" y2="114" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+
+        {/* LH node + hCG tag */}
+        <rect x="124" y="116" width="92" height="32" rx="9" fill="var(--accent-rose)" fillOpacity="0.1" stroke="var(--accent-rose)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x="170" y="136" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">LH</text>
+        <text x="18" y="128" fill="var(--accent-rose)" fillOpacity="0.95" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">hCG acts</text>
+        <text x="18" y="140" fill="var(--accent-rose)" fillOpacity="0.7" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">as LH</text>
+
+        {/* FSH node + hMG tag */}
+        <rect x="424" y="116" width="92" height="32" rx="9" fill="var(--accent-blue)" fillOpacity="0.1" stroke="var(--accent-blue)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x="470" y="136" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">FSH</text>
+        <text x="548" y="128" fill="var(--accent-blue)" fillOpacity="0.95" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">hMG / rFSH</text>
+        <text x="548" y="140" fill="var(--accent-blue)" fillOpacity="0.7" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">act as FSH</text>
+
+        {/* down arrows to cells */}
+        <line x1="170" y1="148" x2="170" y2="190" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+        <line x1="470" y1="148" x2="470" y2="190" stroke="var(--color-ink)" strokeOpacity="0.3" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+
+        {/* Leydig cell */}
+        <rect x="95" y="192" width="150" height="40" rx="11" fill="var(--accent-rose)" fillOpacity="0.1" stroke="var(--accent-rose)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x="170" y="217" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="13" fontFamily="var(--font-space-grotesk), sans-serif">Leydig cell</text>
+
+        {/* Sertoli cell */}
+        <rect x="395" y="192" width="150" height="40" rx="11" fill="var(--accent-blue)" fillOpacity="0.1" stroke="var(--accent-blue)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x="470" y="217" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="13" fontFamily="var(--font-space-grotesk), sans-serif">Sertoli cell</text>
+
+        {/* output ticks */}
+        <line x1="170" y1="232" x2="170" y2="248" stroke="var(--color-ink)" strokeOpacity="0.25" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+        <line x1="470" y1="232" x2="470" y2="248" stroke="var(--color-ink)" strokeOpacity="0.25" strokeWidth="1.5" markerEnd="url(#arm-arw)" />
+
+        {/* Leydig outputs */}
+        <text x="170" y="264" textAnchor="middle" fill="var(--accent-rose)" fillOpacity="0.9" fontSize="11" fontFamily="var(--font-space-grotesk), sans-serif">testosterone + steroids</text>
+        <text x="170" y="278" textAnchor="middle" fill="var(--accent-rose)" fillOpacity="0.6" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">→ estradiol (aromatase)</text>
+        <text x="170" y="298" textAnchor="middle" fill="var(--accent-rose)" fillOpacity="0.95" fontSize="10.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">the steroid / mood arm</text>
+
+        {/* Sertoli outputs */}
+        <text x="470" y="264" textAnchor="middle" fill="var(--accent-blue)" fillOpacity="0.9" fontSize="11" fontFamily="var(--font-space-grotesk), sans-serif">sperm · inhibin B</text>
+        <text x="470" y="278" textAnchor="middle" fill="var(--accent-blue)" fillOpacity="0.6" fontSize="10" fontFamily="var(--font-space-grotesk), sans-serif">+ intratubular aromatase</text>
+        <text x="470" y="298" textAnchor="middle" fill="var(--accent-blue)" fillOpacity="0.95" fontSize="10.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">the fertility arm</text>
+
+        {/* hMG-carries-both bracket */}
+        <path d="M 170 312 L 170 318 L 470 318 L 470 312" fill="none" stroke="var(--accent)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x="320" y="335" textAnchor="middle" fill="var(--accent)" fillOpacity="0.9" fontSize="10.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">hMG carries both arms</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        Two signals, two cells. LH (and its stand-in hCG) drive the Leydig cell and the
+        steroid arm where most of the mood story lives; FSH (and hMG or recombinant FSH)
+        drive the Sertoli cell and fertility. hMG carries both; SERMs and pulsatile GnRH
+        act higher, at the pituitary. Schematic, not to scale.
       </figcaption>
     </figure>
   );
