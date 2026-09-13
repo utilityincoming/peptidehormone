@@ -971,20 +971,23 @@ const BASE: Hormone[] = [
     name: "Human chorionic gonadotropin",
     abbr: "hCG",
     family: "reproductive-gonadal",
-    summary: "LH-like hormone that sustains the corpus luteum in early pregnancy.",
+    summary: "LH-like hormone: sustains the corpus luteum in pregnancy, and a clinical stand-in for LH at the gonad.",
     class: "Glycoprotein hormone (α/β heterodimer)",
     source: "Placental syncytiotrophoblast",
     receptor: "LH/choriogonadotropin receptor (LHCGR)",
     mechanism:
-      "Produced by the placenta in early pregnancy, hCG acts on the same LHCGR receptor as LH to maintain the corpus luteum and its progesterone output until the placenta takes over. Its presence is the basis of pregnancy testing.",
+      "Produced by the placenta in early pregnancy, hCG acts on the same LHCGR receptor as LH to maintain the corpus luteum and its progesterone output until the placenta takes over. Its presence is the basis of pregnancy testing. Because it reads as an LH signal at the gonad, hCG is also given therapeutically to drive it directly: in men on testosterone therapy it keeps the Leydig cells producing the intratesticular testosterone — and the wider steroid output — that exogenous testosterone suppresses, preserving testis size and, with added FSH activity from hMG or recombinant FSH, fertility.",
     facts: [
       "hCG and LH share the LHCGR receptor — functionally hCG provides an LH-like signal.",
       "Its longer half-life than LH suits the sustained support the corpus luteum needs.",
       "Detection of the hCG beta subunit underlies pregnancy tests.",
+      "In men on testosterone therapy, hCG maintains the intratesticular testosterone and testis size that exogenous testosterone suppresses.",
+      "Paired with FSH activity (hMG or recombinant FSH), hCG restores the Sertoli-cell arm needed for spermatogenesis.",
     ],
     questions: [
       "How does hCG sustain the corpus luteum in early pregnancy?",
       "Why does hCG act like LH at the receptor level?",
+      "Why do some men add hCG to testosterone therapy?",
     ],
   },
 
