@@ -208,6 +208,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/bigger-not-stronger" label="Bigger, but not stronger - why lean mass isn't strength" />
                 <CrossLink href="/insights/born-switched-off" label="Born switched off - how the brake is armed" />
                 <CrossLink href="/insights/one-receptor-a-whole-family" label="One receptor, a whole family - the shared dock" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin reference (the brake itself)" />
