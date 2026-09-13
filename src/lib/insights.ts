@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "bigger-not-stronger",
+    hormones: ["follistatin", "myostatin", "activin-a"],
+    title: "Bigger, but not stronger",
+    dek: "For fifteen years the drugs that release muscle's brake kept failing the same strange way — not by doing nothing, but by working. ACE-083 grew its target muscle by double digits on the scan and left patients no stronger; ACE-031 built lean mass and had to be pulled for nosebleeds. Buried in both is the fact the field kept relearning: making a muscle bigger and making it work are different problems. The same ligand-trap platform that failed in muscle quietly became two approved drugs for the blood and the lung — and in 2026 apitegromab finally moved a functional endpoint in spinal muscular atrophy, but only by being added on top of therapy that had already repaired the nerve. Why size was never the finish line, and what all of it means for the muscle everyone is now racing to save from GLP-1 weight loss.",
+    family: "muscle-tgfb",
+    readingMinutes: 11,
+    reviewed: "September 2026",
+  },
+  {
     slug: "the-rest-of-the-cascade",
     hormones: ["hcg", "lh", "fsh"],
     title: "The rest of the cascade",
