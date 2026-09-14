@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -91,9 +92,10 @@ export default function Article() {
               <P>
                 IGF-1 LR3 is a well-defined molecule with a poorly-defined human
                 profile. This piece separates the two. It covers what the molecule is
-                and how it behaves; it does <Em>not</Em> describe how to administer it,
-                because there is no approved human dosing for any performance or
-                body-composition use, and none is implied here.
+                and how it behaves. There is no approved human dosing for any
+                performance or body-composition use; the community-reported range is
+                documented below, labelled by its provenance &ndash; convention, not a
+                recommendation and not a clinical dose.
               </P>
               <P>
                 Every claim below is tagged by evidence tier, so you can see exactly
@@ -104,6 +106,8 @@ export default function Article() {
               </P>
               <GradeLegend />
             </Section>
+
+            <DocumentedRange id="igf-1-lr3" />
 
             <Section title="What the molecule actually is">
               <P>

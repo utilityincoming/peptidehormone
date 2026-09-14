@@ -197,8 +197,11 @@ export const PEPTIDES: Record<string, Peptide> = {
     vialMg: 5, vialUsd: 45,
   },
   "igf-1-lr3": {
-    id: "igf-1-lr3", name: "IGF-1 LR3", doseLow: 20, doseHigh: 50, perWeek: 7,
-    route: "SubQ", evidence: "preclinical", hue: HUE.blue,
+    id: "igf-1-lr3", name: "IGF-1 LR3", doseLow: 100, doseHigh: 500, perWeek: 7,
+    route: "SubQ", evidence: "anecdotal", hue: HUE.blue,
+    // Community convention, not clinical/preclinical: the 100–500 mcg range is
+    // what the bodybuilding/research community currently circulates in knowledge
+    // transfer — no human trial, no approved dose. Graded "anecdotal" honestly.
     note: "Long-acting IGF-1 analog studied for anabolic and hypertrophic signaling.",
     vialMg: 1, vialUsd: 55, catalogSlug: "igf-1",
   },
