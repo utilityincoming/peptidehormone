@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { INSIGHTS } from "@/lib/insights";
-import { getFamily } from "@/lib/families";
+import InsightsBrowser from "@/components/InsightsBrowser";
 
 export const metadata: Metadata = {
   title: "Insights — mechanistic deep-dives",
@@ -14,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function InsightsIndex() {
+  const familyCount = new Set(INSIGHTS.map((i) => i.family)).size;
   return (
     <>
       <JsonLd
@@ -49,36 +49,22 @@ export default function InsightsIndex() {
               receptors, second messengers, and physiology, traced from the source.
               Mechanistic depth, not marketing.
             </p>
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-ink/45">
+              <span>
+                <span className="text-ink/80">{INSIGHTS.length}</span> deep-dives
+              </span>
+              <span aria-hidden className="text-ink/20">·</span>
+              <span>
+                <span className="text-ink/80">{familyCount}</span> families
+              </span>
+              <span aria-hidden className="text-ink/20">·</span>
+              <span>Sourced, reviewed — no dosing</span>
+            </div>
           </Container>
         </section>
 
-        <Container className="py-14 md:py-18">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
-            {INSIGHTS.map((post) => {
-              const fam = getFamily(post.family);
-              return (
-                <Link
-                  key={post.slug}
-                  href={`/insights/${post.slug}`}
-                  className="group block bg-surface p-7 transition-colors hover:bg-panel"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}>
-                      {fam?.name ?? "Peptide science"}
-                    </span>
-                    <span className="font-mono text-[11px] text-ink/40">
-                      {post.readingMinutes} min · {post.reviewed}
-                    </span>
-                  </div>
-                  <h2 className="mt-3 font-display text-2xl font-semibold leading-snug">{post.title}</h2>
-                  <p className="mt-2 max-w-2xl text-[15px] leading-7 text-ink/60">{post.dek}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
-                    Read the deep-dive <span aria-hidden>→</span>
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+        <Container className="py-12 md:py-16">
+          <InsightsBrowser />
         </Container>
       </main>
       <SiteFooter />
