@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PEPTIDES, EVIDENCE_LABEL } from "@/lib/cycle-planner";
+import { PEPTIDES, EVIDENCE_LABEL, type Evidence } from "@/lib/cycle-planner";
 import { compoundTierClasses } from "@/components/evidence";
 import type { CompoundTier } from "@/lib/evidence/compound";
 
@@ -17,11 +17,26 @@ import type { CompoundTier } from "@/lib/evidence/compound";
 // anecdotal); map to the shared compound-tier palette so one colour system holds
 // site-wide, mirroring CyclePlanner.tsx.
 
-const TIER: Record<string, CompoundTier> = {
+const TIER: Record<Evidence, CompoundTier> = {
   clinical: "Clinical",
   emerging: "Investigational",
   preclinical: "Preclinical",
   anecdotal: "Limited",
+};
+
+// Provenance prose, tier-aware: a clinical-tier figure comes from human trials,
+// a preclinical one from animal/cell work, an anecdotal one from community
+// convention. The sentence must never claim "no human trials" for a compound
+// that has them — and must always stop short of prescribing.
+const PROSE: Record<Evidence, (name: string) => string> = {
+  clinical: (name) =>
+    `A reference range from published clinical work. ${name} is studied in human trials, so this reflects what those trials report — still not a prescription and not a recommendation.`,
+  emerging: (name) =>
+    `A reference range from early human and strong preclinical work. ${name} has no approved human dosing, so treat this as investigational rather than clinical guidance.`,
+  preclinical: (name) =>
+    `A reference range from the preclinical research literature. ${name} has no controlled human trials, so this figure is drawn from animal and cell work, not clinical evidence of what is safe or effective.`,
+  anecdotal: (name) =>
+    `A reference range reported in the community literature. ${name} has no controlled human trials, so this figure is community convention — passed between research and bodybuilding communities — not clinical evidence of what is safe or effective.`,
 };
 
 export function DocumentedRange({ id }: { id: string }) {
@@ -45,10 +60,7 @@ export function DocumentedRange({ id }: { id: string }) {
       </p>
 
       <p className="mt-2 text-[13px] leading-6 text-ink/55">
-        A reference range reported in the community literature — not a prescription
-        and not an approved human dose. {p.name} has no controlled human trials, so
-        this figure is community convention, passed between research and bodybuilding
-        communities, rather than clinical evidence of what is safe or effective.
+        {PROSE[p.evidence](p.name)}
       </p>
 
       <div className="mt-3 flex flex-wrap items-center gap-3">
