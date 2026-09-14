@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, CrossLink } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 import { getInsight } from "@/lib/insights";
 
 const insight = getInsight("the-triple-agonist")!;
@@ -44,6 +45,7 @@ export default function Article() {
 
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
+            <DocumentedRange id="retatrutide" />
             <Section title="From one signal to a chord">
               <P>
                 The first metabolic peptides played a single note. A{" "}

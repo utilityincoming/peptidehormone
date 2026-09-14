@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -47,6 +48,7 @@ export default function Article() {
 
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
+            <DocumentedRange id="semaglutide" />
             <Section title="A hormone built to disappear">
               <P>
                 When an intestinal L-cell releases{" "}
