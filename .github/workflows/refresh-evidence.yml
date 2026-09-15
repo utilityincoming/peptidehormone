@@ -1,0 +1,32 @@
+name: Refresh live evidence counts
+
+# Monthly pull of ClinicalTrials.gov + PubMed counts for every catalog molecule.
+# Opens a PR (never pushes to main) so a human eyeballs the diff before it ships.
+on:
+  schedule:
+    - cron: "17 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run evidence:refresh
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/evidence-refresh
+          title: "chore(evidence): monthly registry count refresh"
+          commit-message: "chore(evidence): refresh live registry counts"
+          body: |
+            Automated monthly refresh of `src/lib/evidence-live.ts` from ClinicalTrials.gov and PubMed.
+            Review the diff for any molecule whose count moved sharply – that usually means a search-term collision, not a literature event.
+          labels: evidence
+          delete-branch: true

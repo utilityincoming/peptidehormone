@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npx --yes tsx --tsconfig tsconfig.json --test src/lib/*.test.ts",
-    "check:identifiers": "node scripts/fetch-identifiers.mjs --check"
+    "check:identifiers": "node scripts/fetch-identifiers.mjs --check",
+    "evidence:refresh": "node scripts/fetch-evidence.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
