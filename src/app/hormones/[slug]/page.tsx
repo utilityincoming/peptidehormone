@@ -16,6 +16,7 @@ import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { hormoneFigure } from "@/components/hormone-figures";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
+import LiveEvidenceBlock from "@/components/LiveEvidence";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -309,6 +310,8 @@ export default async function HormonePage({
                 </dl>
               </section>
             )}
+
+            <LiveEvidenceBlock slug={h.slug} label={h.abbr ?? h.name} />
 
             {references.length > 0 && (
               <section className="mt-12">

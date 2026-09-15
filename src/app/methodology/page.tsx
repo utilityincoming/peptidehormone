@@ -121,6 +121,27 @@ export default function Methodology() {
                 claim you can&rsquo;t click through to isn&rsquo;t a claim we make.
               </P>
               <P>
+                Alongside the curated list, every monograph carries an{" "}
+                <Em>In the literature</Em> block: how many registered studies list the
+                molecule as an intervention on{" "}
+                <a
+                  href="https://clinicaltrials.gov/"
+                  className={LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ClinicalTrials.gov
+                </a>
+                , by phase, and how many PubMed records name it in a title or abstract.
+                Those are live counts pulled from the registries&rsquo; own APIs, stamped
+                with the retrieval date and linked to the exact query so you can re-run
+                it. They are search hits, not a curated set, and we never fold them into a
+                score: a count measures how much work exists, not how it turned out. A
+                molecule with four trials and two hundred papers is not &ldquo;worse&rdquo;
+                than one with a thousand — it is earlier, and the block says exactly that
+                and nothing more.
+              </P>
+              <P>
                 One honest limit: monograph mechanisms <Em>summarize</Em> public
                 literature, and summary means simplification. Active research is compressed
                 into a few sentences; where a field is genuinely unsettled, we say so
