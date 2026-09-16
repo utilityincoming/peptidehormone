@@ -8,7 +8,7 @@ import { getInsight } from "@/lib/insights";
 import { getFamily } from "@/lib/families";
 
 const insight = getInsight("slu-pp-332-vs-bam15")!;
-const description = "SLU-PP-332 vs BAM15: ERR agonism, mitochondrial uncoupling, mouse results, missing human evidence, and why an untested stack is not exercise in a pill.";
+const description = "SLU-PP-332 vs BAM15: ERR agonism, mitochondrial uncoupling, mouse results, missing human evidence, and why an untested stack is not exercise in a pill. Includes SLU-PP-915, the orally bioavailable ERR successor.";
 export const metadata: Metadata = {
   title: "SLU-PP-332 vs BAM15: mechanisms, evidence and safety",
   description,
@@ -21,13 +21,20 @@ const REF = {
   bam15: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7224297/",
   hu6liver: "https://pubmed.ncbi.nlm.nih.gov/37806314/",
   hu6heart: "https://pubmed.ncbi.nlm.nih.gov/40072462/",
+  series: "https://pubmed.ncbi.nlm.nih.gov/37421886/",
+  oral915: "https://pubmed.ncbi.nlm.nih.gov/41421047/",
+  heart: "https://pubmed.ncbi.nlm.nih.gov/37961903/",
+  doping: "https://pubmed.ncbi.nlm.nih.gov/41588687/",
 };
 const FAQS = [
   { q: "What is the difference between SLU-PP-332 and BAM15?", a: "SLU-PP-332 activates estrogen-related receptors, changing an exercise-associated gene program. BAM15 is a mitochondrial protonophore that reduces the coupling of fuel oxidation to ATP production. Both can increase fuel use in experimental systems, but they do so through different mechanisms." },
-  { q: "Are SLU-PP-332 and BAM15 peptides?", a: "No. Both are synthetic small molecules, not amino-acid-chain peptides. They are covered here as a comparison with mitochondrial peptide biology, not as members of the mitochondrial-derived peptide family." },
+  { q: "Are SLU-PP-332, SLU-PP-915 and BAM15 peptides?", a: "No. All three are synthetic small molecules, not amino-acid-chain peptides. They are covered here as a comparison with mitochondrial peptide biology, not as members of the mitochondrial-derived peptide family." },
   { q: "Have SLU-PP-332 or BAM15 been tested in human clinical trials?", a: "Our September 15, 2026 literature and ClinicalTrials.gov searches identified no published human intervention studies or registered trials for these exact names, including BAM-15. This does not exclude unpublished work or trials under other identifiers. Human trials of HU6 concern a different compound and cannot establish BAM15 safety." },
   { q: "Can SLU-PP-332 replace exercise?", a: "It induced an exercise-associated gene program and improved endurance in mice. Those results do not establish human exercise replacement. Selected metabolic or endurance outcomes are not evidence that a drug reproduces the full effects of training." },
   { q: "Is BAM15 a safe version of DNP?", a: "That description goes beyond the evidence. BAM15 is structurally different from DNP and showed encouraging tolerability in mouse experiments, including no detected rise in body temperature under the tested conditions. A human therapeutic window and long-term safety have not been established." },
+  { q: "What is SLU-PP-915 and how is it different from SLU-PP-332?", a: "SLU-PP-915 is a chemically distinct pan-ERR agonist from the same laboratory lineage, built around a boronic acid group that improved metabolic stability. Its practical difference is oral bioavailability: SLU-PP-332 lacks it, while 915 retained comparable efficacy in mice when given by mouth, adjusted for systemic exposure. Both remain preclinical." },
+  { q: "Has SLU-PP-915 been tested in humans?", a: "No published human intervention study or ClinicalTrials.gov registration for SLU-PP-915 was identified in our September 15, 2026 searches. All efficacy evidence is from rodent experiments. Anti-doping laboratories have published detection methods for it, which reflects expected non-clinical use rather than clinical testing." },
+  { q: "Does SLU-PP-915 replace exercise?", a: "The 2026 JPET study points the other way. Its notable result was that 915 synergized with exercise training to further increase Ddit4 and mitochondrial gene expression, meaning the strongest effect came in combination with training rather than as a substitute for it." },
   { q: "Can you stack SLU-PP-332 with BAM15?", a: "No controlled evidence validating the combination was identified in this review. Different mechanisms do not demonstrate synergy, compatibility, or safety. There is no evidence-based human stack, dose, or timing schedule to recommend." },
 ];
 function Cite({ source, children }: { source: keyof typeof REF; children: React.ReactNode }) {
@@ -52,8 +59,8 @@ export default function Article() {
       </section>
       <Container className="max-w-3xl py-14 md:py-18">
         <article className="space-y-12">
-          <Callout label="Evidence grade: preclinical for both compounds">
-            Real mechanisms. Meaningful animal results. No published human intervention evidence identified for either exact compound. Human uncoupler trials discussed below used HU6, not BAM15. Neither compound is a peptide.
+          <Callout label="Evidence grade: preclinical for all three compounds">
+            Real mechanisms. Meaningful animal results. No published human intervention evidence identified for any of the three exact compounds, including the orally bioavailable ERR agonist SLU-PP-915. Human uncoupler trials discussed below used HU6, not BAM15. None of them is a peptide.
           </Callout>
           <Section title="The shortcut has two different engines">
             <P>The phrase &ldquo;exercise in a pill&rdquo; makes two promises sound like one: spend more energy, and become a fitter organism. SLU-PP-332 and BAM15 are interesting precisely because they force those promises apart. One changes the instructions the cell reads. The other changes how efficiently the mitochondrion turns fuel into usable energy.</P>
@@ -70,6 +77,19 @@ export default function Article() {
             <P>The follow-up <Cite source="metabolic">metabolic-syndrome paper, published online in 2023 and in the February 2024 journal issue</Cite>, reported increased energy expenditure and fatty-acid oxidation, with reduced fat accumulation and beneficial metabolic changes in mouse obesity models. The appetite-independent angle is part of what makes the work worth following.</P>
             <P>Read past the abstract, though. Chow-fed mice did not show improved glucose metabolism. In diet-induced obesity, the investigators acknowledged conflicting insulin-sensitivity findings: favorable fasting measures did not come with an improvement in the insulin-tolerance test. The discussion also notes that ERRα deletion and some inverse agonists have produced favorable metabolic phenotypes in other experiments. &ldquo;Turn ERR up, fix metabolism&rdquo; is not a universal rule.</P>
             <P>The experiments used small groups of male mice over short periods. Less fat gained in one model and reversal of existing obesity in another are different outcomes. Neither tells us what happens in a trained human, across years of exposure, or alongside other metabolic drugs. These limitations do not erase the positive results. They define what the next study must resolve.</P>
+          </Section>
+          <Section title="SLU-PP-915: the same idea, minus the delivery problem">
+            <P>There is a detail in the SLU-PP-332 story that rarely survives the trip to a product page: it is not orally bioavailable. A compound that has to be injected into the abdomen to work is a laboratory instrument, not a pill. The interesting part of the last three years is the chemistry that went looking for a version you could swallow.</P>
+            <P>That search produced SLU-PP-915. In <Cite source="series">Hampton and colleagues&rsquo; 2023 European Journal of Medicinal Chemistry paper</Cite>, a structure-based design effort starting from the known acyl hydrazide agonist GSK-4716 yielded a series of 2,5-disubstituted thiophenes. The move that matters is small and elegant: the phenol or aniline group could be replaced with a boronic acid, which held the agonist activity while improving metabolic stability in microsomal assays. SLU-PP-915 was the compound that came out of that swap, and it raised the expected ERR target genes in cells and in animals.</P>
+            <P>The payoff arrived in <Cite source="oral915">Billon and colleagues&rsquo; January 2026 JPET paper</Cite>. Given by injection, 915 improved running distance and duration about as much as 332 did. Given by mouth, it kept comparable efficacy once the investigators adjusted for systemic exposure. Both compounds strongly induced Ddit4, a gene switched on by acute aerobic exercise, at levels matching or exceeding treadmill running depending on which muscle was sampled.</P>
+            <Callout label="The finding that argues against the marketing">In that study, 915 <Em>synergized with exercise training</Em>{" "}to further raise Ddit4 and mitochondrial gene expression. The strongest result for this compound came when it was added to training, not when it stood in for training. That is a poor advertisement for exercise in a pill and a genuinely interesting lead for exercise plus a pill.</Callout>
+            <P>The cardiac work is the other reason to take the series seriously. In <Cite source="heart">Xu and colleagues&rsquo; 2024 Circulation study</Cite>, both 332 and 915 improved ejection fraction, reduced fibrosis, and increased survival in a mouse pressure-overload heart failure model, without changing cardiac hypertrophy. Genetic dependency experiments pointed to ERRγ as the main mediator. That is a more demanding experimental standard than a gene-expression panel, and it is the kind of result that moves a molecule toward development.</P>
+            <P>None of which changes the evidence grade. Everything above is rodent. No human intervention study or trial registration for SLU-PP-915 was identified in this review. Oral bioavailability in mice is a solved chemistry problem, not a demonstrated human drug. And the disclosures deserve reading: SLU-PP-915 is covered by Saint Louis University intellectual property with Thomas Burris as an inventor, and Burris holds stock in Myonid Therapeutics and Pelagos Pharmaceuticals, both developing ERR agonists.</P>
+          </Section>
+          <Section title="The anti-doping labs got there before the clinic">
+            <P>One of the six papers mentioning SLU-PP-915 is not pharmacology at all. In <Cite source="doping">a 2026 Rapid Communications in Mass Spectrometry study</Cite>, researchers at the German Sport University Cologne and the European Monitoring Center for Emerging Doping Agents characterized both 332 and 915 by liquid chromatography and high-resolution tandem mass spectrometry, then mapped what human liver preparations do to them.</P>
+            <P>The two compounds behaved differently. SLU-PP-332 produced nine metabolites, six Phase-I and three Phase-II conjugates. SLU-PP-915 produced only Phase-I products, seven in total, three of which the team confirmed by chemical synthesis and NMR. The stated purpose is blunt: to help uncover illicit use of these compounds as performance-enhancing substances.</P>
+            <P>That paper is worth more than its citation count suggests. A detection assay is usually built because a laboratory expects to find something in a sample. Its existence says these molecules are already circulating outside the research setting, years ahead of any human trial. It is also the clearest available answer to anyone treating an ERR agonist as a supplement: sports testing programs classify it as a doping candidate, and now they can see it.</P>
           </Section>
           <Section title="BAM15: change the energy accounting">
             <P>Mitochondria use fuel oxidation to build a proton gradient across their inner membrane. ATP synthase uses that gradient to make ATP, the cell&rsquo;s immediately usable energy currency. A protonophore provides another route for protons to cross the membrane. Some of the energy that could support ATP synthesis is dissipated instead, so maintaining ATP production can require more fuel oxidation.</P>
@@ -113,11 +133,15 @@ export default function Article() {
               <li><Cite source="exercise">Billon et al. Synthetic ERRα/β/γ agonist and exercise capacity. ACS Chemical Biology (2023).</Cite></li>
               <li><Cite source="metabolic">Billon et al. A Synthetic ERR Agonist Alleviates Metabolic Syndrome. JPET (2024 issue; online 2023).</Cite></li>
               <li><Cite source="bam15">Alexopoulos et al. BAM15 reverses diet-induced obesity and insulin resistance in mice. Nature Communications (2020).</Cite></li>
+              <li><Cite source="series">Hampton et al. New chemical series of potent pan-ERR agonists, identification of SLU-PP-915. European Journal of Medicinal Chemistry (2023).</Cite></li>
+              <li><Cite source="oral915">Billon et al. An orally active ERR agonist, SLU-PP-915, enhances aerobic exercise capacity. JPET (2026).</Cite></li>
+              <li><Cite source="heart">Xu et al. Novel pan-ERR agonists ameliorate heart failure. Circulation (2024).</Cite></li>
+              <li><Cite source="doping">M&ouml;ller et al. In vitro metabolism and analytical characterization of SLU-PP-332 and SLU-PP-915. Rapid Communications in Mass Spectrometry (2026).</Cite></li>
               <li><Cite source="hu6liver">Noureddin et al. HU6 in fatty liver disease and high BMI. Lancet Gastroenterology &amp; Hepatology (2023).</Cite></li>
               <li><Cite source="hu6heart">Pandey et al. HuMAIN-HFpEF randomized clinical trial. JAMA Cardiology (2025).</Cite></li>
             </ul>
-            <P>Literature and ClinicalTrials.gov checked September 15, 2026. Exact-name searches for <a className={LINK} href="https://clinicaltrials.gov/search?term=%22SLU-PP-332%22">SLU-PP-332</a>{" "}and <a className={LINK} href="https://clinicaltrials.gov/search?term=%22BAM15%22">BAM15</a>{" "}(also BAM-15) identified no registrations. No published human intervention studies for either exact compound were identified. This is not an exhaustive audit of every international registry and cannot exclude unpublished studies or other identifiers.</P>
-            <P>No retraction or expression-of-concern notice was identified for the foundational Billon and Alexopoulos papers in the publication records checked. That is a publication-status check, not independent validation of the raw data. The studies include disclosed commercial interests: ERR-therapeutic company equity in the SLU work, biotechnology interests in the BAM15 work, and industry funding or relationships in the HU6 studies. These disclosures warrant attention, not automatic dismissal.</P>
+            <P>Literature and ClinicalTrials.gov checked September 15, 2026. Exact-name searches for <a className={LINK} href="https://clinicaltrials.gov/search?term=%22SLU-PP-332%22">SLU-PP-332</a>,{" "}<a className={LINK} href="https://clinicaltrials.gov/search?term=%22SLU-PP-915%22">SLU-PP-915</a>{" "}and <a className={LINK} href="https://clinicaltrials.gov/search?term=%22BAM15%22">BAM15</a>{" "}(also BAM-15) identified no registrations. No published human intervention studies for either exact compound were identified. This is not an exhaustive audit of every international registry and cannot exclude unpublished studies or other identifiers.</P>
+            <P>No retraction or expression-of-concern notice was identified for the foundational Billon, Hampton, Xu and Alexopoulos papers in the publication records checked. That is a publication-status check, not independent validation of the raw data. The studies include disclosed commercial interests: ERR-therapeutic company equity and inventorship on the SLU-PP-332 and SLU-PP-915 work, including Myonid Therapeutics and Pelagos Pharmaceuticals, biotechnology interests in the BAM15 work, and industry funding or relationships in the HU6 studies. These disclosures warrant attention, not automatic dismissal.</P>
           </Section>
           <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
             <h3 className="font-display text-base font-semibold">Keep going</h3>
@@ -128,7 +152,7 @@ export default function Article() {
               <CrossLink href="/methodology" label="How this reference grades evidence" />
             </ul>
           </div>
-          <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">Educational reference on mechanism, summarized from public scientific literature and simplified in places. Not medical advice, dosing guidance, or a recommendation to use any compound. SLU-PP-332 and BAM15 evidence discussed here is preclinical; human HU6 trials concern a different molecule. Specific compounds and trials are named to explain the science; verify any claim against the linked primary sources.</p>
+          <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">Educational reference on mechanism, summarized from public scientific literature and simplified in places. Not medical advice, dosing guidance, or a recommendation to use any compound. SLU-PP-332, SLU-PP-915 and BAM15 evidence discussed here is preclinical; human HU6 trials concern a different molecule. Specific compounds and trials are named to explain the science; verify any claim against the linked primary sources.</p>
         </article>
       </Container>
     </main>
@@ -139,9 +163,9 @@ export default function Article() {
 function MechanismTable() {
   const rows = [
     ["Chemical category", "Synthetic small molecule; not a peptide", "Synthetic small molecule; not a peptide"],
-    ["Primary mechanism", "ERRα/β/γ agonism and altered gene expression", "Proton transport across the inner mitochondrial membrane"],
+    ["Primary mechanism", "ERRα/β/γ agonism and altered gene expression; 915 is orally bioavailable, 332 is not", "Proton transport across the inner mitochondrial membrane"],
     ["Energy logic", "Activate an oxidative, exercise-associated program", "Reduce coupling efficiency so fuel demand can increase"],
-    ["Meaningful evidence", "Mouse endurance, muscle-fiber and metabolic findings", "Mouse adiposity, liver-fat and insulin-sensitivity findings"],
+    ["Meaningful evidence", "Mouse endurance, muscle-fiber, metabolic and heart-failure findings", "Mouse adiposity, liver-fat and insulin-sensitivity findings"],
     ["Human evidence", "No published intervention study identified", "No published intervention study identified"],
     ["Unproven leap", "Exercise replacement in humans", "A safe human fat-loss or fitness drug"],
   ];
@@ -150,10 +174,10 @@ function MechanismTable() {
     <div className="mt-5 overflow-x-auto rounded-2xl border border-ink/10">
       <table className="w-full min-w-[560px] text-left text-sm leading-6">
         <caption className="sr-only">Mechanism and evidence comparison, not a head-to-head trial</caption>
-        <thead className="bg-panel/60"><tr>{["Question", "SLU-PP-332", "BAM15"].map(h => <th key={h} scope="col" className="p-4 font-semibold">{h}</th>)}</tr></thead>
+        <thead className="bg-panel/60"><tr>{["Question", "SLU-PP-332 and SLU-PP-915", "BAM15"].map(h => <th key={h} scope="col" className="p-4 font-semibold">{h}</th>)}</tr></thead>
         <tbody>{rows.map(([label, slu, bam]) => <tr key={label} className="border-t border-ink/10"><th scope="row" className="p-4 font-medium">{label}</th><td className="p-4 text-ink/70">{slu}</td><td className="p-4 text-ink/70">{bam}</td></tr>)}</tbody>
       </table>
     </div>
-    <p className="mt-3 text-xs leading-5 text-ink/45">Comparison of separate research programs. No head-to-head or combination efficacy is implied. Sources: Billon 2023/2024 and Alexopoulos 2020, linked above.</p>
+    <p className="mt-3 text-xs leading-5 text-ink/45">Comparison of separate research programs. No head-to-head or combination efficacy is implied. Sources: Billon 2023/2024/2026, Hampton 2023, Xu 2024 and Alexopoulos 2020, linked above.</p>
   </section>;
 }
