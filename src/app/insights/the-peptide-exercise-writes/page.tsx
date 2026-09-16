@@ -286,6 +286,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/slu-pp-332-vs-bam15" label="SLU-PP-332 vs BAM15: fuel burning is not fitness" />
                 <CrossLink href="/hormones/mots-c" label="MOTS-c reference (the peptide itself)" />
                 <CrossLink href="/hormones/ss-31" label="SS-31 / elamipretide — the cardiolipin protector" />
                 <CrossLink href="/hormones/humanin" label="Humanin — the family's cytoprotectant" />
