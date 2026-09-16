@@ -29,9 +29,9 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "slu-pp-332-vs-bam15",
     title: "SLU-PP-332 vs BAM15: burning fuel is not the same as getting fit",
-    dek: "One switches on an exercise-associated gene program. The other makes mitochondria spend more fuel for a given amount of ATP. Both have meaningful mouse data; neither has established human benefits or a validated stack. What the studies actually show, why neither compound is a peptide, and why the most revealing human uncoupler trial lost fat without improving exercise capacity.",
+    dek: "One switches on an exercise-associated gene program. The other makes mitochondria spend more fuel for a given amount of ATP. Both have meaningful mouse data; neither has established human benefits or a validated stack. What the studies actually show, why neither compound is a peptide, and why the most revealing human uncoupler trial lost fat without improving exercise capacity. Now including SLU-PP-915, the orally bioavailable successor whose best result came from adding it to training rather than replacing it — and the anti-doping assay built for it before any human trial.",
     family: "mitochondrial",
-    readingMinutes: 9,
+    readingMinutes: 11,
     reviewed: "September 2026",
   },
   {
