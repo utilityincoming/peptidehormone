@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "distilled-to-three-letters",
+    title: "Distilled to three letters",
+    dek: "Cartalax is what you get when a whole-cartilage extract is run through a mass spectrometer and asked what, exactly, is doing the work: a single tripeptide, Ala-Glu-Asp, three letters pulled from a complex of thousands. The St. Petersburg school that isolated it makes the boldest claim in peptide science — that a fragment this small carries tissue-specific instructions and acts by binding the chondrocyte's own DNA, turning the apoptosis trigger p53 down and the proliferation marker PCNA up, so cartilage cells that had stopped dividing start again. The mechanism is a genuine pleasure to follow; the human evidence is open-label capsules, subjective pain scores, and nothing moving on the X-ray, almost all of it from one institute. Both halves are true. Bullish on the science, sceptical on the page. No dosing.",
+    family: "calcium-bone",
+    readingMinutes: 10,
+    reviewed: "September 2026",
+  },
+  {
     slug: "asking-the-cells-that-didnt-die",
     hormones: ["humanin"],
     title: "Asking the cells that didn't die",
