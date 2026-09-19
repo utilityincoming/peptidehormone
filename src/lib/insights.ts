@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "asking-the-cells-that-didnt-die",
+    hormones: ["humanin"],
+    title: "Asking the cells that didn't die",
+    dek: "Humanin wasn't designed; it was overheard. In 2001 a lab screened the surviving neurons of an Alzheimer's brain for whatever was keeping them alive and pulled out a 24-residue peptide written not in the nuclear genome but inside mitochondrial DNA — a message from the powerhouse that tells the cell not to kill itself. It reads two ways at once: secreted, it behaves like a hormone, docking a three-part cytokine receptor to switch on STAT3; kept inside, it physically grabs the apoptosis trigger Bax before it can reach the mitochondrion. The blood level falls with age and runs high in the children of centenarians. A reference-grade read of the mitochondrial genome's most surprising export — and an honest account of how little of it has been tested in people. Bullish on the science, sceptical on the page. No dosing.",
+    family: "mitochondrial",
+    readingMinutes: 11,
+    reviewed: "September 2026",
+  },
+  {
     slug: "slu-pp-332-vs-bam15",
     title: "SLU-PP-332 vs BAM15: burning fuel is not the same as getting fit",
     dek: "One switches on an exercise-associated gene program. The other makes mitochondria spend more fuel for a given amount of ATP. Both have meaningful mouse data; neither has established human benefits or a validated stack. What the studies actually show, why neither compound is a peptide, and why the most revealing human uncoupler trial lost fat without improving exercise capacity. Now including SLU-PP-915, the orally bioavailable successor whose best result came from adding it to training rather than replacing it — and the anti-doping assay built for it before any human trial.",
