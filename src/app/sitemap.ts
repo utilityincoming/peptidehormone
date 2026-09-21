@@ -3,6 +3,7 @@ import { FAMILIES } from "@/lib/families";
 import { HORMONES } from "@/lib/hormones";
 import { INSIGHTS } from "@/lib/insights";
 import { staticComparePairs, comparePairPath } from "@/lib/compare";
+import { VENDORS } from "@/lib/affiliate";
 
 const BASE = "https://peptidehormone.com";
 
@@ -48,6 +49,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE}${path}`,
       changeFrequency: "weekly" as const,
       priority: path === "" ? 1 : 0.9,
+    })),
+    ...VENDORS.map((v) => ({
+      url: `${BASE}/available/${v.key}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
     })),
     ...FAMILIES.map((f) => ({
       url: `${BASE}/families/${f.slug}`,

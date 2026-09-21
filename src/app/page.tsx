@@ -25,7 +25,7 @@ const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   {
     icon: "independent",
     title: "Editorially independent",
-    body: "No storefront, no sponsored conclusions. One disclosed affiliate link funds the work — but the incentive that shapes the catalog is to be correct, never to sell.",
+    body: "No storefront, no sponsored conclusions. Disclosed affiliate links fund the work — but the incentive that shapes the catalog is to be correct, never to sell.",
   },
 ];
 

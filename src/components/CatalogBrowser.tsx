@@ -5,6 +5,7 @@ import Link from "next/link";
 import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
 import { compoundTierClasses } from "@/components/evidence";
+import { SOURCED_SLUGS } from "@/lib/affiliate";
 
 const PRESENT_TIERS = EVIDENCE_TIERS.filter((t) =>
   HORMONES.some((h) => (h.evidence ?? "Established") === t),
@@ -23,6 +24,7 @@ export default function CatalogBrowser() {
   const [family, setFamily] = useState<string>("all");
   const [evidence, setEvidence] = useState<string>("all");
   const [sort, setSort] = useState<Sort>("family");
+  const [sourced, setSourced] = useState(false);
 
   // Seed the search from a ?q= param so the homepage sitelinks-searchbox (and any
   // shared /catalog?q=… deep link) lands pre-filtered. Client-only, read after
@@ -37,6 +39,7 @@ export default function CatalogBrowser() {
     const filtered = HORMONES.filter((h) => {
       if (family !== "all" && h.family !== family) return false;
       if (evidence !== "all" && (h.evidence ?? "Established") !== evidence) return false;
+      if (sourced && !SOURCED_SLUGS.has(h.slug)) return false;
       if (!q) return true;
       return [h.name, h.abbr ?? "", h.summary, h.class, h.source, h.receptor]
         .join(" ")
@@ -56,7 +59,7 @@ export default function CatalogBrowser() {
       }
       return a.name.localeCompare(b.name);
     });
-  }, [query, family, evidence, sort]);
+  }, [query, family, evidence, sort, sourced]);
 
   return (
     <div>
@@ -110,6 +113,10 @@ export default function CatalogBrowser() {
               {t}
             </Chip>
           ))}
+          <span className="mx-1 hidden h-4 w-px bg-ink/10 sm:block" aria-hidden />
+          <Chip active={sourced} accent="text-accent-teal" onClick={() => setSourced((s) => !s)}>
+            Reachable · {SOURCED_SLUGS.size}
+          </Chip>
         </div>
       </div>
 
@@ -117,6 +124,7 @@ export default function CatalogBrowser() {
         {results.length} {results.length === 1 ? "molecule" : "molecules"}
         {family !== "all" && ` in ${FAMILY_MAP[family]?.name}`}
         {query && ` matching “${query}”`}
+        {sourced && " · reachable through the network"}
       </p>
 
       {/* Grid */}
@@ -138,10 +146,20 @@ export default function CatalogBrowser() {
                   <span className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}>
                     {fam?.name}
                   </span>
-                  <span
-                    className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${compoundTierClasses(h.evidence ?? "Established")}`}
-                  >
-                    {h.evidence ?? "Established"}
+                  <span className="flex items-center gap-1.5">
+                    {SOURCED_SLUGS.has(h.slug) && (
+                      <span
+                        title="Reachable at research grade through the network"
+                        className="rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[10px] font-medium text-accent-teal"
+                      >
+                        Reachable
+                      </span>
+                    )}
+                    <span
+                      className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${compoundTierClasses(h.evidence ?? "Established")}`}
+                    >
+                      {h.evidence ?? "Established"}
+                    </span>
                   </span>
                 </div>
                 <h3 className="mt-3 font-display text-lg font-semibold leading-snug">
