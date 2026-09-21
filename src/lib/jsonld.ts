@@ -206,6 +206,8 @@ export function collectionLd(opts: {
   description: string;
   items: { name: string; path: string }[];
   crumbs: { name: string; path: string }[];
+  /** optional FAQPage node — the questions readers type before they act */
+  faqs?: { q: string; a: string }[];
 }): Node {
   const url = `${SITE_URL}${opts.path}`;
   const page: Node = {
@@ -220,7 +222,19 @@ export function collectionLd(opts: {
     breadcrumb: { "@id": `${url}#breadcrumb` },
     mainEntity: itemList(opts.items),
   };
-  return graph([page, breadcrumbLd(opts.crumbs, `${url}#breadcrumb`)]);
+  const nodes: Node[] = [page, breadcrumbLd(opts.crumbs, `${url}#breadcrumb`)];
+  if (opts.faqs && opts.faqs.length) {
+    nodes.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: opts.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  return graph(nodes);
 }
 
 // ── Insight article: Article + breadcrumb ──

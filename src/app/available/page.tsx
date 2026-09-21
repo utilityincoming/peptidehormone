@@ -5,13 +5,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
-import {
-  sourcedSlugs,
-  vendorsFor,
-  VENDORS,
-  SOURCING_STANDARD,
-  AFFILIATE_REL,
-} from "@/lib/affiliate";
+import { sourcedSlugs, vendorsFor, VENDORS, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
+import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
+import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 
 export const metadata: Metadata = {
   title: "Availability — what the network sources",
@@ -69,22 +65,41 @@ export default function AvailablePage() {
               than left as an open question.
             </p>
             <p className="mt-6 max-w-2xl text-sm leading-6 text-ink/55">
-              Sourced through the American Peptide network from two research-use-only sources —{" "}
+              Sourced through the American Peptide network from {VENDORS.length} research-use-only sources —{" "}
               {VENDORS.map((v, i) => (
                 <span key={v.key}>
-                  <a href={v.home} target="_blank" rel={AFFILIATE_REL} className="text-accent hover:underline">
+                  <Link href={`/available/${v.key}`} className="text-accent hover:underline">
                     {v.name}
-                  </a>
+                  </Link>
                   {i < VENDORS.length - 2 ? ", " : i === VENDORS.length - 2 ? " and " : ""}
                 </span>
               ))}
-              . Each row shows which one carries it.
+              . Every button below lands on the product itself, research-use-only.
             </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {VENDORS.map((v) => (
+                <div
+                  key={v.key}
+                  className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-ink/10 bg-panel/40 px-4 py-3"
+                >
+                  <AffiliateLink href={v.home} vendor={v.key} surface="available" className={CTA_PILL}>
+                    Browse {v.name} <span aria-hidden>→</span>
+                  </AffiliateLink>
+                  {v.code ? (
+                    <span className="inline-flex items-center gap-1.5 text-xs text-ink/50">
+                      code <CopyCode code={v.code} />
+                    </span>
+                  ) : (
+                    <span className="text-xs text-ink/45">{v.carries.size} from this catalog</span>
+                  )}
+                </div>
+              ))}
+            </div>
           </Container>
         </section>
 
         {/* ── The standard ── */}
-        <section className="border-b border-ink/[0.06]">
+        <section id="standard" className="scroll-mt-20 border-b border-ink/[0.06]">
           <Container className="py-12 md:py-14">
             <h2 className="font-display text-sm font-medium uppercase tracking-wide text-ink/40">
               What we look for in a source
@@ -100,9 +115,9 @@ export default function AvailablePage() {
             <p className="mt-5 max-w-3xl text-sm leading-6 text-ink/50">
               Listings are editorial: a compound appears because our network sources it
               research-use-only and it fits the picture above, never because it was paid for.
-              Each vendor links at the storefront level, so its shelf — behind the gate — is
-              authoritative; we point you to a vetted source, we don&rsquo;t verify each lot for
-              you. Absence isn&rsquo;t a judgment on the molecule.{" "}
+              Each button opens the vendor&rsquo;s own product page, which is authoritative for
+              stock and lot detail; we point you to a vetted source, we don&rsquo;t verify each
+              lot for you. Absence isn&rsquo;t a judgment on the molecule.{" "}
               <Link href="/insights/what-you-can-actually-get" className="text-accent hover:underline">
                 Why availability, not identity, is the real bottleneck →
               </Link>{" "}
@@ -145,12 +160,13 @@ export default function AvailablePage() {
                             {h.abbr && <span className="text-ink/40"> · {h.abbr}</span>}
                           </Link>
                           {carriers.map((v) => (
-                            <span
+                            <Link
                               key={v.key}
-                              className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal"
+                              href={`/available/${v.key}`}
+                              className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal hover:bg-accent-teal/20"
                             >
                               {v.name}
-                            </span>
+                            </Link>
                           ))}
                         </div>
                         <p className="mt-1.5 text-sm text-ink/55">
@@ -161,15 +177,16 @@ export default function AvailablePage() {
                       </div>
                       <div className="flex shrink-0 flex-col gap-2 sm:items-end">
                         {carriers.map((v) => (
-                          <a
+                          <AffiliateLink
                             key={v.key}
-                            href={v.home}
-                            target="_blank"
-                            rel={AFFILIATE_REL}
-                            className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15"
+                            href={productUrl(v, h.slug)}
+                            vendor={v.key}
+                            slug={h.slug}
+                            surface="available"
+                            className={`${CTA_PILL} shrink-0`}
                           >
-                            View at {v.name} <span aria-hidden>→</span>
-                          </a>
+                            Get {h.abbr ?? h.name} at {v.name} <span aria-hidden>→</span>
+                          </AffiliateLink>
                         ))}
                       </div>
                     </div>
@@ -177,17 +194,10 @@ export default function AvailablePage() {
                 })}
               </div>
 
-              <p className="mt-6 text-xs leading-5 text-ink/40">
-                Affiliate links across the American Peptide network — a purchase supports this
-                reference at no additional cost to you, and buys not one word of the catalog.
-                Each vendor links at the storefront level and is sold research-use-only; their
-                page, behind the gate, is authoritative for stock and lot detail. Not medical
-                advice or an endorsement to obtain or use any compound — regulatory status
-                varies by jurisdiction. See{" "}
-                <Link href="/methodology" className="underline decoration-ink/20 underline-offset-2 hover:text-ink/60">
-                  how we pick
-                </Link>
-                .
+              <Disclosure className="mt-6" />
+              <p className="mt-2 text-xs leading-5 text-ink/40">
+                Not medical advice or an endorsement to obtain or use any compound — regulatory
+                status varies by jurisdiction.
               </p>
             </>
           )}
