@@ -1,9 +1,10 @@
 // Static A-vs-B comparison routes, derived from catalog parent/child links
-// plus a small allowlist of high-intent cross-lineage pairs. No new science —
-// pair pages only rearrange fields already on each monograph.
+// plus a small allowlist of high-intent cross-lineage pairs. Selected pairs
+// carry sourced editorial content in addition to the catalog fields.
 
 import { HORMONES, getHormone, type Hormone } from "./hormones";
 import { aliasesFor } from "./aliases";
+import { comparisonEditorial } from "./compare-editorials";
 
 export function comparePairPath(a: string, b: string): string {
   return `${a}-vs-${b}`;
@@ -94,6 +95,8 @@ function label(h: Hormone): string {
 }
 
 export function compareFaq(a: Hormone, b: Hormone): { q: string; a: string }[] {
+  const editorial = comparisonEditorial(a.slug, b.slug);
+  if (editorial) return editorial.faqs;
   const faqs = [
     {
       q: `What is the difference between ${a.name} and ${b.name}?`,
@@ -117,11 +120,14 @@ export function compareFaq(a: Hormone, b: Hormone): { q: string; a: string }[] {
 }
 
 export function compareMetaTitle(a: Hormone, b: Hormone): string {
+  if (comparisonEditorial(a.slug, b.slug)) return `${label(a)} vs ${label(b)}: Evidence & Safety`;
   const left = aliasesFor(a.slug)[0] ? `${a.name} (${aliasesFor(a.slug)[0]})` : label(a);
   const right = aliasesFor(b.slug)[0] ? `${b.name} (${aliasesFor(b.slug)[0]})` : label(b);
   return `${left} vs ${right}`;
 }
 
 export function compareMetaDescription(a: Hormone, b: Hormone): string {
+  const editorial = comparisonEditorial(a.slug, b.slug);
+  if (editorial) return editorial.description;
   return `${a.name} vs ${b.name} — type, evidence tier, receptor, molecular weight, and half-life side by side. ${a.summary} ${b.summary} Educational reference only.`;
 }

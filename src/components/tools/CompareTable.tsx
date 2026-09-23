@@ -61,7 +61,7 @@ export function CompareTable({ hormones }: { hormones: Hormone[] }) {
       ),
     },
     { label: "Class", render: (h) => <span className="text-sm leading-6 text-ink/75">{h.class}</span> },
-    { label: "Receptor", render: (h) => <span className="text-sm leading-6 text-ink/75">{h.receptor}</span> },
+    { label: "Receptor / target", render: (h) => <span className="text-sm leading-6 text-ink/75">{h.receptor}</span> },
     {
       label: "Molecular weight",
       render: (h) =>
@@ -111,7 +111,7 @@ export function CompareTable({ hormones }: { hormones: Hormone[] }) {
             {parent.name}
           </Link>
         ) : (
-          <span className="text-sm text-ink/40">Native hormone</span>
+          <span className="text-sm text-ink/40">{!h.type || h.type === "endogenous" ? "Native hormone" : "No catalog parent assigned"}</span>
         );
       },
     },
