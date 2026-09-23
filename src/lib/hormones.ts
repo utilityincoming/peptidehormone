@@ -1364,11 +1364,11 @@ const BASE: Hormone[] = [
     evidence: "Preclinical",
     parent: "thymosin-beta-4",
     summary: "A synthetic thymosin β4 fragment marketed for recovery; preclinical evidence.",
-    class: "Synthetic thymosin β4 fragment / analog",
+    class: "N-acetylated thymosin β4 fragment (7 aa; Ac-LKKTETQ)",
     source: "Synthetic; based on thymosin β4",
-    receptor: "Same actin-related biology as thymosin β4 (not receptor-mediated)",
+    receptor: "No established receptor; fragment effects cannot be assumed equivalent to thymosin β4",
     mechanism:
-      "TB-500 is a synthetic product based on thymosin β4 — often a specific active fragment — promoted for recovery and healing. Its rationale borrows from thymosin β4's actin and angiogenesis biology, but human clinical evidence specific to TB-500 is limited and preclinical.",
+      "FDA's 2026 evaluation describes TB-500 as Ac-LKKTETQ, the N-acetylated fragment corresponding to residues 17–23 of thymosin β4. Commercial naming is inconsistent. Findings for the full-length 43-amino-acid peptide or unacetylated LKKTETQ cannot establish the fragment's clinical effects. Human recovery benefits are not established.",
     facts: [
       "TB-500 is derived from thymosin β4 but is not identical to the full endogenous peptide.",
       "Its claims lean on thymosin β4 biology; direct human evidence for TB-500 is limited.",

@@ -2,7 +2,7 @@
 //
 // PeptideHormone hosts no storefront. It is part of the American Peptide network,
 // which holds disclosed affiliate relationships with research-peptide suppliers —
-// AminoClub and ElyriaBio — set out in full on /methodology. Every outbound link is
+// AminoClub, ElyriaBio and Paramount Peptides — set out in full on /methodology. Every outbound link is
 // research-use-only and we describe each source only by what's visible from the
 // outside, never asserting a per-lot COA we can't see. Where a vendor surfaces a
 // reader code it rides in the link. Placement stays an output of the standard, not a
@@ -142,9 +142,31 @@ const ELYRIA = vendor({
   },
 });
 
+const PARAMOUNT = vendor({
+  key: "paramount",
+  name: "Paramount Peptides",
+  // Referral link carries attribution only — no reader discount code (so `code` is
+  // unset; the ref is attribution only), matching the ElyriaBio pattern.
+  home: "https://paramountpeptides.com/?ref=PEPTIDE",
+  base: "https://paramountpeptides.com",
+  ref: "ref=PEPTIDE",
+  blurb:
+    "a research-use-only source stating independent third-party HPLC on every batch (a ≥99% purity floor), with COAs searchable by batch number",
+  coa: "states independent third-party HPLC per batch at ≥99% purity, with COAs searchable by product or batch number (lab not named on the storefront)",
+  shipping: "FedEx 2Day to the US and Puerto Rico only; free shipping over $300",
+  // GLP-focused: their public shelf lists only the incretin analogues under coded
+  // names (GLP-1 S / GLP-2 T / GLP-3 R), plus a blend that's out. Deep-links
+  // verified against the collection index (2026-09-22); scoped to what they list.
+  products: {
+    semaglutide: "/product/glp-1-s/",
+    tirzepatide: "/product/glp-2-t/",
+    retatrutide: "/product/glp-3-r/",
+  },
+});
+
 /** Every vendor in the network, in display order. Co-equal — order is tenure in the
  *  network, not a ranking; the standard, not the order, is what a listing earns. */
-export const VENDORS: readonly Vendor[] = [AMINOCLUB, ELYRIA];
+export const VENDORS: readonly Vendor[] = [AMINOCLUB, ELYRIA, PARAMOUNT];
 
 /** Look a vendor up by its key (the /available/[vendor] segment). */
 export function getVendor(key: string): Vendor | undefined {

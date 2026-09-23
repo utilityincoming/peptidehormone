@@ -12,12 +12,12 @@ import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 export const metadata: Metadata = {
   title: "Availability — what the network sources",
   description:
-    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub and ElyriaBio, research-use-only. What you can actually get, not just what exists.",
+    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub, ElyriaBio and Paramount Peptides, research-use-only. What you can actually get, not just what exists.",
   alternates: { canonical: "/available" },
   openGraph: {
     title: "Availability · Peptide Hormone",
     description:
-      "Research-grade peptides you can actually reach, sourced through the network via AminoClub and ElyriaBio.",
+      "Research-grade peptides you can actually reach, sourced through the network via AminoClub, ElyriaBio and Paramount Peptides.",
   },
 };
 
@@ -34,7 +34,7 @@ export default function AvailablePage() {
           path: "/available",
           name: "Availability — what the network sources",
           description:
-            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub and ElyriaBio.",
+            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub, ElyriaBio and Paramount Peptides.",
           items: items.map((h) => ({ name: h.name, path: `/hormones/${h.slug}` })),
           crumbs: [
             { name: "Home", path: "/" },

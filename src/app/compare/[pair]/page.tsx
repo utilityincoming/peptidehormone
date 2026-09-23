@@ -14,6 +14,8 @@ import {
   compareMetaDescription,
 } from "@/lib/compare";
 import { compareLd } from "@/lib/jsonld";
+import { comparisonEditorial } from "@/lib/compare-editorials";
+import { BpcTbComparison } from "@/components/compare-bpc-tb";
 
 export function generateStaticParams() {
   return staticComparePairs().map(([a, b]) => ({ pair: comparePairPath(a, b) }));
@@ -53,6 +55,7 @@ export default async function ComparePairPage({
   if (!a || !b) notFound();
 
   const faqs = compareFaq(a, b);
+  const editorial = comparisonEditorial(a.slug, b.slug);
   const reverse = comparePairPath(b.slug, a.slug);
 
   return (
@@ -74,9 +77,7 @@ export default async function ComparePairPage({
             {a.name} vs {b.name}
           </h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-ink/65">
-            {a.summary} {b.summary} Side by side: type, evidence tier, receptor,
-            molecular weight, and half-life — the same fields as each monograph,
-            rearranged so the engineering difference is visible.
+            {editorial?.intro ?? `${a.summary} ${b.summary} Side by side: type, evidence tier, receptor, molecular weight, and half-life — the same fields as each monograph, rearranged so the engineering difference is visible.`}
           </p>
 
           <div className="mt-10">
@@ -84,10 +85,12 @@ export default async function ComparePairPage({
           </div>
 
           <p className="mt-4 text-xs leading-5 text-ink/40">
-            Half-life bars are on a logarithmic scale across the molecules shown.
+            {[a, b].some((h) => h.halfLifeMin != null) && "Half-life bars are on a logarithmic scale across the molecules shown. "}
             Reference values for the native or representative form — educational
             only, not medical or dosing advice.
           </p>
+
+          {editorial?.id === "bpc-tb" && <BpcTbComparison />}
 
           {faqs.length > 0 && (
             <section className="mt-14 max-w-2xl">
