@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-lizard-that-ate-twice-a-year",
+    hormones: ["exenatide", "glp-1", "semaglutide", "tirzepatide", "retatrutide", "cagrilintide"],
+    title: "The lizard that ate twice a year",
+    dek: "The best-selling molecules in the catalog trace back to a venom. A Gila monster gorges a few times a year and fasts between meals, and in the late 1980s a Bronx VA endocrinologist wondered what kept its pancreas intact through that feast-and-famine — a curiosity that pulled a 39-residue peptide, exendin-4, out of the animal's saliva. It was two-thirds a match for a human gut hormone nobody could yet turn into a drug, and, by an accident of one amino acid, immune to the enzyme that destroyed the human version in two minutes. That single substitution became exenatide, the first GLP-1 drug, and the template for everything after it: liraglutide's fatty-acid tail, semaglutide's weekly dose, tirzepatide's second receptor, retatrutide's third, cagrilintide's borrowed amylin. This is the whole lineage — the incretin idea that took seventy years to pay off, the tangents that didn't, and how a lizard's meal schedule ended up coded on a vendor's shelf as GLP-1, GLP-2, GLP-3. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 16,
+    reviewed: "September 2026",
+  },
+  {
     slug: "two-ways-to-bottle-a-gland",
     hormones: ["thymosin-beta-4"],
     title: "Two ways to bottle a gland",
