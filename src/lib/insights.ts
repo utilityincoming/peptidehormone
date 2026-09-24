@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "two-ways-to-bottle-a-gland",
+    hormones: ["thymosin-beta-4"],
+    title: "Two ways to bottle a gland",
+    dek: "The thymus trains the immune system and then, from puberty on, quietly dissolves itself — so for fifty years two schools have tried to bottle what it does. One is thymalin: a crude polypeptide complex boiled out of calf thymus in Soviet-era Leningrad, never fully characterised, still sold across the former USSR, and hung on a startling claim — that a course of it in the old cut six-year mortality by half. The other is thymosin α1: the same tissue run all the way down to a single defined 28-residue sequence, synthesised, patented, and sold in more than thirty countries as Zadaxin, with four decades of hepatitis-B and sepsis trials behind it and a real receptor — TLR9 on the dendritic cell — under it. Same gland, same starting extract, opposite epistemics: the black box you cannot audit versus the white box you can. A reference-grade read on what each one actually is, why the defined peptide got a drug label and the extract did not, and how much of the longevity headline survives contact with the study design. Bullish on the science, sceptical on the page. No dosing.",
+    family: "repair",
+    readingMinutes: 12,
+    reviewed: "September 2026",
+  },
+  {
     slug: "distilled-to-three-letters",
     title: "Distilled to three letters",
     dek: "Cartalax is what you get when a whole-cartilage extract is run through a mass spectrometer and asked what, exactly, is doing the work: a single tripeptide, Ala-Glu-Asp, three letters pulled from a complex of thousands. The St. Petersburg school that isolated it makes the boldest claim in peptide science — that a fragment this small carries tissue-specific instructions and acts by binding the chondrocyte's own DNA, turning the apoptosis trigger p53 down and the proliferation marker PCNA up, so cartilage cells that had stopped dividing start again. The mechanism is a genuine pleasure to follow; the human evidence is open-label capsules, subjective pain scores, and nothing moving on the X-ray, almost all of it from one institute. Both halves are true. Bullish on the science, sceptical on the page. No dosing.",
