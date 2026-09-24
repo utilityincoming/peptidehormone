@@ -7,6 +7,7 @@
 // A wrong alias is worse than none.
 
 import type { Hormone } from "./hormones";
+import { composeMetaDescription } from "./meta";
 
 export const ALIASES: Record<string, string[]> = {
   semaglutide: ["Ozempic", "Wegovy", "Rybelsus"],
@@ -37,12 +38,16 @@ export function hormoneMetaTitle(h: Hormone): string {
 
 export function hormoneMetaDescription(h: Hormone): string {
   const aliases = aliasesFor(h.slug);
-  if (!aliases.length) return h.summary;
-  const list =
-    aliases.length === 1
-      ? aliases[0]
-      : `${aliases.slice(0, -1).join(", ")}, and ${aliases[aliases.length - 1]}`;
-  return `${h.summary} Also known as ${list}.`;
+  const suffix = aliases.length
+    ? ` Also known as ${
+        aliases.length === 1
+          ? aliases[0]
+          : `${aliases.slice(0, -1).join(", ")}, and ${aliases[aliases.length - 1]}`
+      }.`
+    : "";
+  // The visible card/hero copy is `h.summary`; enrich only the meta description
+  // toward a search-friendly length using the monograph's own mechanism prose.
+  return composeMetaDescription(h.summary, h.mechanism, { suffix });
 }
 
 export function aliasFaq(h: Hormone): { q: string; a: string } | null {

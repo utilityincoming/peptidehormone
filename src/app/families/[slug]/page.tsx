@@ -7,6 +7,7 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { JsonLd } from "@/components/JsonLd";
 import { familyLd } from "@/lib/jsonld";
+import { composeMetaDescription } from "@/lib/meta";
 
 // Resolve a family signal label to its hormone detail page, if one exists.
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -36,11 +37,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const family = getFamily(slug);
   if (!family) return { title: "Not found" };
+  // Hero shows `family.tagline`; the meta description leads with it and, when
+  // short, borrows the first sentence of the family overview to fill out length.
+  const description = composeMetaDescription(family.tagline, family.overview?.[0]);
   return {
     title: family.name,
-    description: family.tagline,
+    description,
     alternates: { canonical: `/families/${family.slug}` },
-    openGraph: { title: `${family.name} · Peptide Hormone`, description: family.tagline },
+    openGraph: { title: `${family.name} · Peptide Hormone`, description },
   };
 }
 

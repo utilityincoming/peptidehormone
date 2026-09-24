@@ -48,10 +48,13 @@ describe("hormoneMetaDescription", () => {
     assert.ok(desc.startsWith(h.summary));
   });
 
-  it("is just the summary when there are no aliases", () => {
+  it("leads with the summary and enriches from mechanism when there are no aliases", () => {
     const h = getHormone("glp-1");
     assert.ok(h);
-    assert.equal(hormoneMetaDescription(h), h.summary);
+    const desc = hormoneMetaDescription(h);
+    assert.ok(desc.startsWith(h.summary), "must lead with the card summary");
+    assert.ok(desc.length > h.summary.length, "short summary should be enriched");
+    assert.ok(desc.length <= 158, `meta description too long: ${desc.length}`);
   });
 });
 
