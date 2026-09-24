@@ -33,7 +33,7 @@ test("suffix (aliases) is reserved and never dropped or cut", () => {
 
 test("already-long base is returned untouched (plus suffix)", () => {
   const base =
-    "A dual GIP and GLP-1 receptor agonist and the first of the co-agonists to reach the clinic for metabolic disease.";
+    "A dual GIP and GLP-1 receptor agonist and the first of the co-agonists to reach the clinic, now studied well beyond glycemic control for metabolic disease.";
   const d = composeMetaDescription(base, MECH);
   assert.equal(d, base);
 });
