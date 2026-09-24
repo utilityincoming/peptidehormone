@@ -12,7 +12,6 @@ import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
 import { vendorsFor } from "@/lib/affiliate";
 import { VendorRow, Disclosure } from "@/components/Sourcing";
-import { melanocortinUrl } from "@/lib/network";
 import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { hormoneFigure } from "@/components/hormone-figures";
@@ -67,7 +66,6 @@ export default async function HormonePage({
   const references = referencesFor(h.slug);
   const extRefs = externalRefs(h.slug);
   const faqs = hormoneFaq(h);
-  const mcUrl = melanocortinUrl(h.slug);
 
   // Long-form insights that treat this molecule directly — surfaced only when
   // one applies, so the cross-link stays a signal rather than boilerplate.
@@ -464,24 +462,6 @@ export default async function HormonePage({
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
-
-            {mcUrl && (
-              <div className="rounded-2xl border border-ink/10 p-6">
-                <h3 className="font-display text-base font-semibold">The receptor science</h3>
-                <p className="mt-2 text-sm leading-6 text-ink/55">
-                  {h.abbr ?? h.name} set in the melanocortin system: which
-                  receptors it hits and why, at our sister site melanocortin.com.
-                </p>
-                <a
-                  href={mcUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
-                >
-                  View on melanocortin.com <span aria-hidden>→</span>
-                </a>
               </div>
             )}
 
