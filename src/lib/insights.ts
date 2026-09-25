@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-famine-without-the-slowdown",
+    hormones: ["semaglutide", "glp-1"],
+    title: "The famine without the slowdown",
+    dek: "For ninety years the oldest result in ageing biology came with a tidy explanation: cut an animal's calories and it lives longer because its metabolism slows down. In September 2026 a Berkeley lab put twenty-month-old mice on semaglutide – the age at which rapamycin earned its reputation – and ran calorie restriction beside it. Both arms lived about 12% longer, both aged better on nearly every readout, and only one of them turned the engine down. The GLP-1 mice kept their metabolic rate and got the dividend anyway. That is the interesting finding, not the headline: a controlled experiment in which the famous slowdown is separated from the benefit it was supposed to cause. What the paper actually measured, why the muscle result reads the opposite way in mice and people, the only human mortality number we have, and how much of a female-only, single-lab lifespan claim survives the study design. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 12,
+    reviewed: "September 2026",
+  },
+  {
     slug: "the-lizard-that-ate-twice-a-year",
     hormones: ["exenatide", "glp-1", "semaglutide", "tirzepatide", "retatrutide", "cagrilintide"],
     title: "The lizard that ate twice a year",
