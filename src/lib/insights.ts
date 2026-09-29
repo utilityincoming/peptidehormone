@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "wrong-end-of-the-hormone",
+    hormones: ["kpv", "pt-141", "alpha-msh"],
+    title: "Wrong end of the hormone",
+    dek: "Somewhere between the catalog page and the group chat, KPV picked up a claim it never earned: that it does something for low sexual desire. The confusion is understandable, because the melanocortin family really does contain an approved drug for hypoactive sexual desire disorder \u2013 bremelanotide, PT-141 \u2013 and both molecules descend from the same thirteen-residue hormone, \u03b1-MSH. But they were cut from opposite ends of it. Bremelanotide keeps the middle four residues that bind the MC4 receptor and drive the whole desire story; KPV is the last three, which bind no melanocortin receptor at all and were kept precisely because they don\u2019t. There is no study of KPV and sexual function in any species. And the drug that does work is a smaller story than its reputation: a third of a point on a desire scale, no difference in satisfying sexual events, nausea in four of ten. Where the erection in a tanning trial came from, why it can\u2019t be in the tail, and what the record actually says. Bullish on the science, sceptical on the page. No dosing.",
+    family: "melanocortins",
+    readingMinutes: 11,
+    reviewed: "September 2026",
+  },
+  {
     slug: "the-famine-without-the-slowdown",
     hormones: ["semaglutide", "glp-1"],
     title: "The famine without the slowdown",
