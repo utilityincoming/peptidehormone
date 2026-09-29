@@ -326,6 +326,43 @@ const BASE: Hormone[] = [
     mwApprox: true,
   },
   {
+    slug: "survodutide",
+    name: "Survodutide",
+    abbr: "BI 456906",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "glp-1",
+    summary:
+      "A dual glucagon and GLP-1 receptor agonist — the co-agonist that skips GIP and aims at the liver.",
+    class: "Glucagon/GLP-1 dual receptor agonist (acylated peptide)",
+    source: "Synthetic; engineered dual agonist (Boehringer Ingelheim / Zealand Pharma)",
+    receptor: "Glucagon receptor (GCGR) + GLP-1 receptor",
+    mechanism:
+      "Survodutide activates two receptors from one acylated, once-weekly peptide — but a different pair than tirzepatide's. It keeps the GLP-1 arm for appetite and glucose-dependent insulin, and adds the glucagon receptor rather than GIP. Glucagon-receptor agonism raises energy expenditure and drives hepatic fat oxidation, which points the molecule at the liver as much as the scale. The GLP-1 arm is what keeps glucagon's tendency to raise blood glucose in check.",
+    facts: [
+      "A glucagon/GLP-1 dual agonist — the same two-receptor idea as tirzepatide, but with glucagon in place of GIP, so the second arm spends energy and mobilizes liver fat rather than amplifying insulin.",
+      "Developed by Boehringer Ingelheim with Zealand Pharma as a once-weekly subcutaneous injection; investigational and not approved for any use.",
+      "In a phase 2 obesity trial the highest dose reduced body weight by roughly 19% at 46 weeks, with the curve still falling at the end (Le Roux et al., Lancet 2024).",
+      "Its standout signal is hepatic: in a phase 2 MASH trial up to ~83% of participants had MASH improvement without worsening fibrosis versus ~18% on placebo (Sanyal et al., NEJM 2024) — the result behind its FDA Breakthrough Therapy designation in MASH.",
+      "The glucagon arm is double-edged: glucagon alone raises glucose and can lift heart rate, so the design leans on the GLP-1 arm and slow dose titration to hold glycemia — a reason the class is escalated gradually, never started at target dose.",
+      "Phase 3 is the deciding evidence: the SYNCHRONIZE obesity program and a phase 3 MASH trial are underway. Nothing here is settled, and it is reaching research-chemical catalogs well ahead of that readout — availability running far in front of the evidence, with no long-term human safety data behind it.",
+    ],
+    narrative: [
+      "Survodutide is the co-agonist that made a different bet. Tirzepatide reads two receptors, GLP-1 and GIP; retatrutide reads three, adding glucagon. Survodutide drops GIP entirely and pairs GLP-1 with glucagon alone — two notes, but not the two everyone else plays. The whole molecule is a wager that the glucagon receptor, not the second incretin, is the arm worth adding to GLP-1.",
+      "The reason is the liver. Glucagon on its own is a diabetes drug's enemy — it raises blood glucose — but it also turns up the body's resting burn and, crucially, pushes the liver to oxidize its own stored fat. Balance it against a GLP-1 arm strong enough to keep glucose in line and you get a molecule pointed at hepatic fat as much as body weight. That is why survodutide's most striking result is not its ~19% weight loss but its MASH data: in phase 2 the great majority of participants cleared steatohepatitis without their fibrosis worsening, a class-leading liver signal that earned an FDA Breakthrough Therapy tag. The cost of the glucagon arm is the thing to respect — it can nudge glucose and heart rate the wrong way, which is exactly why the dose is titrated slowly rather than started where it lands.",
+      "For the near-future marketplace the honest read is the same one this site keeps returning to: cataloged is not the same as proven. Survodutide is arriving on the grey market ahead of its phase 3 verdict, so a buyer is reaching a molecule whose obesity and MASH promise rests on phase 2 and whose long-horizon safety simply has not been measured — on top of the usual unknowns of an unapproved, self-sourced peptide (identity, purity, and dose). Bullish on the biology, sceptical on the page. What is reachable this month is real information; it is not the same information as what works.",
+    ],
+    questions: [
+      "How does survodutide's GLP-1/glucagon pairing differ from tirzepatide's GLP-1/GIP?",
+      "Why does adding glucagon-receptor agonism target the liver and energy expenditure?",
+      "What is survodutide's clinical trial status in obesity and MASH?",
+    ],
+    halfLife: "engineered for once-weekly dosing",
+    mw: 4800,
+    mwApprox: true,
+  },
+  {
     slug: "brenipatide",
     name: "Brenipatide",
     abbr: "LY3537031",
@@ -1992,6 +2029,8 @@ const THREADS: Record<string, string> = {
     "A lizard's venom turned out to hold a durable copy of a human sentence. The class began as a loan from another species.",
   retatrutide:
     "Three receptors from one chain. The open question on this frontier is no longer whether signals can be combined, but how many.",
+  survodutide:
+    "Not more receptors, but a different pair — GLP-1 and glucagon — chosen so the second note is aimed at the liver. Which signals you combine turns out to matter as much as how many.",
   brenipatide:
     "The same two-receptor sentence tirzepatide speaks, pointed at the brain instead of the scale — a gut signal being read for what it might say about craving.",
   pramlintide:

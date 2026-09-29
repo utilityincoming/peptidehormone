@@ -302,6 +302,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "July 2026",
   },
   {
+    slug: "the-arm-that-points-at-the-liver",
+    hormones: ["survodutide", "glucagon", "tirzepatide", "retatrutide"],
+    title: "The arm that points at the liver",
+    dek: "Every co-agonist so far added receptors like verses — one, then two, then three. Survodutide adds only one to GLP-1, and picks the strange one: the glucagon receptor, the same hormone a diabetes drug is built to fight. The bet is that glucagon's other job — spending energy and burning the liver's own fat — is worth its cost in glucose, so long as a GLP-1 arm is there to hold the line. It is why survodutide's headline result is not its ~19% weight loss but a class-leading liver-disease signal and a Breakthrough Therapy tag in MASH. Now it is reaching the grey market ahead of its phase 3 verdict, so here is what the near-future buyer is actually reaching for: why glucagon earns a seat, why the liver and not the scale is the story, why the dose has to be crept up rather than started at target, and how far availability has run in front of the evidence. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "September 2026",
+  },
+  {
     slug: "early-adopters-catalog",
     title: "The community found it first",
     dek: "Long before GLP-1 went mainstream, the community running peptide protocols was the field's informal R&D — and their demand shaped the catalogs of synthesis companies and compounding pharmacies. Their core instinct, foundation first, is exactly what the metabolic era is proving right.",

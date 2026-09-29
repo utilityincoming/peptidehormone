@@ -1024,6 +1024,150 @@ function PramlintideFibrilEdit(): ReactNode {
   );
 }
 
+/** Survodutide: one peptide, two arms — but GLP-1R + glucagon, not the incretin
+ *  chord. Deliberately echoes the tirzepatide/retatrutide layout so the swapped
+ *  second arm reads at a glance: amber glucagon in place of blue GIP, pointed at
+ *  energy expenditure and liver fat. */
+function SurvodutideDualAgonist(): ReactNode {
+  const arms = [
+    {
+      color: "var(--accent)",
+      receptor: "GLP-1R",
+      effect: "Satiety · insulin",
+      y: 105,
+    },
+    {
+      color: "var(--accent-amber)",
+      receptor: "GCGR",
+      effect: "Energy expenditure · liver fat",
+      y: 195,
+    },
+  ];
+  const startX = 196;
+  const startY = 150;
+  const recX = 372;
+
+  return (
+    <svg
+      viewBox="0 0 640 300"
+      className="w-full"
+      role="img"
+      aria-label="Survodutide is a single acylated peptide signalling through two receptors — the GLP-1 receptor and the glucagon receptor — pairing appetite and insulin with an energy-expenditure and hepatic-fat arm, rather than the second incretin GIP that tirzepatide adds"
+    >
+      {/* connecting arms */}
+      {arms.map((a) => {
+        const c1x = startX + 60;
+        return (
+          <g key={a.receptor}>
+            <path
+              d={`M ${startX} ${startY} C ${c1x} ${startY}, ${recX - 60} ${a.y}, ${recX - 6} ${a.y}`}
+              fill="none"
+              stroke={a.color}
+              strokeOpacity="0.55"
+              strokeWidth="2"
+            />
+            <circle cx={recX - 6} cy={a.y} r="3" fill={a.color} />
+          </g>
+        );
+      })}
+
+      {/* the ghost of the GIP arm survodutide does not play */}
+      <g opacity="0.4">
+        <path
+          d={`M ${startX} ${startY} C ${startX + 60} ${startY}, ${recX - 60} 270, ${recX - 6} 270`}
+          fill="none"
+          stroke="var(--accent-blue)"
+          strokeOpacity="0.3"
+          strokeWidth="2"
+          strokeDasharray="4 5"
+        />
+        <rect
+          x={recX}
+          y={244}
+          width={244}
+          height={52}
+          rx={12}
+          fill="none"
+          stroke="var(--accent-blue)"
+          strokeOpacity="0.3"
+          strokeWidth="1.5"
+          strokeDasharray="4 5"
+        />
+        <text x={recX + 16} y={266} fill="var(--color-ink)" fillOpacity="0.4" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          GIPR
+        </text>
+        <text x={recX + 16} y={285} fill="var(--color-ink)" fillOpacity="0.35" fontSize="12">
+          the incretin note it skips
+        </text>
+      </g>
+
+      {/* the single peptide */}
+      <g>
+        <circle
+          cx={startX - 96}
+          cy={startY}
+          r="54"
+          fill="color-mix(in srgb, var(--accent) 12%, transparent)"
+          stroke="var(--accent)"
+          strokeOpacity="0.65"
+          strokeWidth="2"
+        />
+        <text
+          x={startX - 96}
+          y={startY - 6}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fontSize="15"
+          fontWeight="600"
+          fontFamily="var(--font-space-grotesk), sans-serif"
+        >
+          Survodutide
+        </text>
+        <text
+          x={startX - 96}
+          y={startY + 14}
+          textAnchor="middle"
+          fill="var(--color-ink)"
+          fillOpacity="0.5"
+          fontSize="11"
+        >
+          one peptide
+        </text>
+      </g>
+
+      {/* live receptors + effects */}
+      {arms.map((a) => (
+        <g key={a.receptor}>
+          <rect
+            x={recX}
+            y={a.y - 26}
+            width={244}
+            height={52}
+            rx={12}
+            fill="var(--panel)"
+            stroke={a.color}
+            strokeOpacity="0.5"
+            strokeWidth="1.5"
+          />
+          <text
+            x={recX + 16}
+            y={a.y - 4}
+            fill="var(--color-ink)"
+            fontSize="15"
+            fontWeight="600"
+            fontFamily="var(--font-space-grotesk), sans-serif"
+          >
+            {a.receptor}
+          </text>
+          <text x={recX + 16} y={a.y + 15} fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">
+            {a.effect}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -1057,6 +1201,18 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <TirzepatideDualAgonist />,
+  },
+  survodutide: {
+    alt: "Survodutide's single peptide signalling through the GLP-1 and glucagon receptors, with the GIP arm left unplayed",
+    caption: (
+      <>
+        The same two-arm shape as tirzepatide, one arm swapped. The blue GIP
+        note is dashed out; in its place the amber glucagon arm reaches the{" "}
+        <em>liver</em> — the energy-expenditure and hepatic-fat lever that makes
+        this a dual agonist aimed as much at MASH as at the scale.
+      </>
+    ),
+    svg: <SurvodutideDualAgonist />,
   },
   brenipatide: {
     alt: "Brenipatide agonizing GLP-1R and GIPR with the signal routed to the brain's reward circuitry",
