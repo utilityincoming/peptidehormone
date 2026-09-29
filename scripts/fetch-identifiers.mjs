@@ -465,7 +465,6 @@ async function runCheck() {
     console.error("Could not find IDENTIFIERS object in src/lib/identifiers.ts");
     return 2;
   }
-  // eslint-disable-next-line no-eval
   const data = eval(`(${m[1]})`);
   const urls = [];
   for (const [slug, ids] of Object.entries(data)) {
