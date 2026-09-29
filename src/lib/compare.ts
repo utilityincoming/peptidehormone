@@ -24,6 +24,7 @@ export function parseComparePair(pair: string): [string, string] | null {
 const EXTRA_PAIRS: [string, string][] = [
   ["semaglutide", "tirzepatide"],
   ["tirzepatide", "retatrutide"],
+  ["survodutide", "tirzepatide"],
   ["cjc-1295", "ipamorelin"],
   ["sermorelin", "ipamorelin"],
   ["tesamorelin", "ipamorelin"],
