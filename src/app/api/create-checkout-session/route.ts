@@ -24,8 +24,10 @@ export async function POST() {
     automatic_tax: { enabled: false },
     submit_type: "auto",
     integration_identifier: "custom_embedded_web_0001",
-    // Research Pass — one-time price (see STRIPE_INTEGRATION_TODO.md).
-    line_items: [{ price: "price_1ULVcYCzcXl8qKy3Sn3oKwy9", quantity: 1 }],
+    // Research Pass — one-time price. Price IDs are mode-specific, so
+    // STRIPE_PRICE_ID overrides per environment (test key → test price);
+    // the fallback is the live-mode Price.
+    line_items: [{ price: process.env.STRIPE_PRICE_ID?.trim() || "price_1ULVcYCzcXl8qKy3Sn3oKwy9", quantity: 1 }],
   };
 
   if (mode === "subscription") {
