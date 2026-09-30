@@ -37,6 +37,15 @@ export async function POST() {
     return Response.json({ client_secret: session.client_secret });
   } catch (err) {
     console.error("[stripe] checkout session error", err);
-    return Response.json({ error: "Could not start checkout." }, { status: 502 });
+    // Surface Stripe's own diagnosis (type/code/message — never the key) so a
+    // misconfigured Price or API version is visible without reading logs.
+    const e = err as Partial<Stripe.errors.StripeError>;
+    return Response.json(
+      {
+        error: "Could not start checkout.",
+        stripe: { type: e.type ?? null, code: e.code ?? null, message: e.message ?? null, param: e.param ?? null },
+      },
+      { status: 502 },
+    );
   }
 }
