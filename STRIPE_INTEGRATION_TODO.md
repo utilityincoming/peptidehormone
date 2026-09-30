@@ -21,6 +21,7 @@ The following values are placeholders and must be updated before going live.
 | STRIPE_WEBHOOK_SECRET | whsec_... | Signing secret for the `/api/stripe-webhook` endpoint from https://dashboard.stripe.com/workbench/webhooks. |
 | RESEND_API_KEY | (empty) | API key from https://resend.com/api-keys. Without it the webhook logs the code instead of emailing it. |
 | PASS_EMAIL_FROM | pass@peptidehormone.com | A sender on a domain verified in Resend. |
+| KV_REST_API_URL / KV_REST_API_TOKEN | (empty) | Vercel KV (Storage → Create → KV) or Upstash Redis REST credentials. Required for purchased codes to be single-use. |
 
 ## Configured Parameters
 
@@ -62,6 +63,9 @@ for the embedded form.
    `/research` point at the embedded checkout.
 5. Verify your sending domain in Resend, then set `RESEND_API_KEY` and
    `PASS_EMAIL_FROM`. `PASS_SECRET` must be set too — minted codes are signed with it.
+6. Create a KV store in Vercel (Storage → Create Database → KV) and link it to the
+   project; it sets `KV_REST_API_URL` and `KV_REST_API_TOKEN` automatically. This is
+   what makes each purchased code redeemable exactly once.
 
 Dependency added: `stripe@^22.6.2` (already in `package.json`). No client-side package
 is needed; Stripe.js is loaded from Stripe's CDN as PCI requires.
@@ -73,6 +77,7 @@ src/lib/stripe.ts                              server-side Stripe client (pinned
 src/app/api/create-checkout-session/route.ts   POST → { client_secret }
 src/app/api/stripe-webhook/route.ts            POST ← Stripe events; mints + emails the code
 src/lib/email.ts                               Resend transport + the pass email
+src/lib/store.ts                               Upstash/Vercel KV REST client (SET NX for single-use)
 src/components/CheckoutForm.tsx                embedded form (client component)
 src/app/research/pass/page.tsx                 the checkout page
 .env.example                                   variable names used by the code
@@ -90,8 +95,9 @@ src/app/research/pass/page.tsx                 the checkout page
 4. Stripe sends `checkout.session.completed` to `/api/stripe-webhook`. If the session is
    paid, the handler mints a code (`mintCode(PASS_SECRET, session.id)` — deterministic,
    so a retry re-sends the same code) and emails it to `customer_details.email`. The
-   buyer enters it on `/research`; `/api/pass` verifies the signature and sets the pass
-   cookie. No database is involved.
+   buyer enters it on `/research`; `/api/pass` verifies the signature, atomically claims
+   the code in KV (`SET NX`, one year TTL) so it cannot be redeemed twice, and sets the
+   pass cookie.
 
 ## Testing
 
@@ -107,8 +113,9 @@ More at https://docs.stripe.com/testing.
 
 ## Next steps
 
-- **Single-use codes.** Minted codes verify by signature and are not tracked, so one
-  could be shared. Add a datastore keyed on the code (or session id) if that matters.
+- **Single-use codes** are enforced only when KV is configured; without it the redeem
+  route logs a warning and allows reuse. A used code returns `409`; a KV outage returns
+  `503` rather than granting access.
 - **Email failures.** A failed send is logged with the code and the buyer's address so
   it can be fulfilled by hand; the webhook still returns 200. Check the Vercel logs for
   `[stripe]` lines after launch.

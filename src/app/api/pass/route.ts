@@ -7,16 +7,25 @@ import {
   hasPass,
   issuePass,
   meteringEnabled,
+  normaliseCode,
   passConfig,
   readQuota,
   redeemCode,
   remaining,
+  verifyMintedCode,
 } from "@/lib/pass";
+import { claimOnce, storeConfig, storeEnabled } from "@/lib/store";
 
 // Research Pass status + redemption. See src/lib/pass.ts for the model.
 //
 //   GET  → { enabled, pass, remaining, limit, checkoutUrl }
 //   POST { code } → sets the pass cookie on a valid code
+//
+// Minted (purchased) codes are single-use: redemption atomically claims the
+// code in the KV store, so a second device gets "already used". Static
+// PASS_CODES are admin codes and stay reusable. If no store is configured,
+// minted codes fall back to reusable with a warning — set KV_REST_API_URL /
+// KV_REST_API_TOKEN (Vercel KV) to enforce single use.
 
 export const dynamic = "force-dynamic";
 
@@ -78,6 +87,24 @@ export async function POST(request: NextRequest) {
   }
   if (typeof code !== "string" || code.length > 64 || !redeemCode(code, cfg)) {
     return Response.json({ error: "That code isn't valid." }, { status: 400 });
+  }
+
+  if (verifyMintedCode(code, cfg.secret)) {
+    const store = storeConfig();
+    if (storeEnabled(store)) {
+      let fresh: boolean;
+      try {
+        fresh = await claimOnce(`pass:redeemed:${normaliseCode(code)}`, PASS_MAX_AGE_S, store);
+      } catch (err) {
+        console.error("[pass] store unavailable during redeem", err);
+        return Response.json({ error: "Couldn't verify the code right now. Please try again." }, { status: 503 });
+      }
+      if (!fresh) {
+        return Response.json({ error: "That code has already been used." }, { status: 409 });
+      }
+    } else {
+      console.warn("[pass] no KV store configured — minted codes are not single-use.");
+    }
   }
 
   const headers = new Headers();

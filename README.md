@@ -56,5 +56,6 @@ Purchases go through Stripe embedded Checkout at `/research/pass`. On
 `checkout.session.completed` the webhook mints a signed code from the session id
 (retries re-send the same code) and emails it via Resend when `RESEND_API_KEY` and
 `PASS_EMAIL_FROM` are set; otherwise the code is logged for manual delivery. Minted
-codes verify by signature, so they need no database. `STRIPE_INTEGRATION_TODO.md`
+codes verify by signature; with Vercel KV linked (`KV_REST_API_URL`/`KV_REST_API_TOKEN`)
+each is redeemable exactly once. `STRIPE_INTEGRATION_TODO.md`
 lists the remaining Stripe setup.
