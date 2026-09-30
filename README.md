@@ -34,3 +34,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Research Pass (metered research agent)
+
+`/research` bills the Anthropic API per question, so it can be metered. Metering is
+**off** unless `PASS_SECRET` is set; with it unset the agent behaves as before.
+
+| Variable | Purpose |
+| --- | --- |
+| `ANTHROPIC_API_KEY` | Required for the research agent at all. |
+| `PASS_SECRET` | HMAC key for the quota and pass cookies. Setting it turns metering on. |
+| `PASS_FREE_DAILY` | Free questions per UTC day per device (default `5`). |
+| `PASS_CODES` | Comma-separated access codes that unlock a pass for a year. |
+| `PASS_CHECKOUT_URL` | Where "Get a Research Pass" sends readers, e.g. a Stripe Payment Link. |
+
+Readers without a pass get a signed, HttpOnly quota cookie that rolls over at UTC
+midnight; the chat route returns `402` with `code: "quota_exhausted"` once it is spent.
+Redeeming a code at `POST /api/pass` sets the pass cookie. Fulfilment is manual by
+design: sell via the checkout link, email the buyer a code. See `src/lib/pass.ts`.
