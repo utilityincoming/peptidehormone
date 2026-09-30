@@ -141,7 +141,10 @@ export function hasPass(cookie: string | undefined | null, secret: string): bool
   return payload !== null && payload.startsWith(PASS_PAYLOAD_PREFIX);
 }
 
-/** Constant-time membership check against the configured codes. */
+/**
+ * A code is valid if it is one of the static PASS_CODES (constant-time
+ * membership) or a minted code whose signature verifies (see mintCode).
+ */
 export function redeemCode(raw: string, cfg: PassConfig): boolean {
   const code = Buffer.from(normaliseCode(raw));
   if (code.length === 0) return false;
@@ -150,7 +153,50 @@ export function redeemCode(raw: string, cfg: PassConfig): boolean {
     const want = Buffer.from(c);
     if (want.length === code.length && timingSafeEqual(want, code)) ok = true;
   }
+  if (!ok && cfg.secret) ok = verifyMintedCode(raw, cfg.secret);
   return ok;
+}
+
+// ── Minted codes ─────────────────────────────────────────────────────────────
+//
+// Purchases need a code per buyer without a database, so a minted code is a
+// self-verifying token: PH-<BODY>-<SIG>, where BODY is derived from the seed
+// (the Stripe Checkout Session id) and SIG is a truncated HMAC over BODY. The
+// derivation is deterministic, so a retried webhook re-sends the same code
+// rather than a second one. Codes are not single-use — same trade-off as the
+// static list; a datastore can add that later.
+
+const CODE_PREFIX = "PH";
+const CODE_BODY_LEN = 12;
+const CODE_SIG_LEN = 8;
+/** Crockford-ish base32: no I, L, O, U, so codes survive being read aloud. */
+const CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+
+function toCodeChars(buf: Buffer, n: number): string {
+  let out = "";
+  for (let i = 0; i < n; i++) out += CODE_ALPHABET[buf[i] % CODE_ALPHABET.length];
+  return out;
+}
+
+function codeSig(body: string, secret: string): string {
+  return toCodeChars(createHmac("sha256", secret).update(`code-sig:${body}`).digest(), CODE_SIG_LEN);
+}
+
+/** Mint a code for a purchase. Same seed + secret → same code. */
+export function mintCode(secret: string, seed: string): string {
+  const body = toCodeChars(createHmac("sha256", secret).update(`code-body:${seed}`).digest(), CODE_BODY_LEN);
+  return `${CODE_PREFIX}-${body.slice(0, 4)}-${body.slice(4, 8)}-${body.slice(8, 12)}-${codeSig(body, secret)}`;
+}
+
+export function verifyMintedCode(raw: string, secret: string): boolean {
+  const parts = normaliseCode(raw).split("-");
+  if (parts.length !== 5 || parts[0] !== CODE_PREFIX) return false;
+  const body = parts[1] + parts[2] + parts[3];
+  const sig = parts[4];
+  if (body.length !== CODE_BODY_LEN || sig.length !== CODE_SIG_LEN) return false;
+  const want = Buffer.from(codeSig(body, secret));
+  const got = Buffer.from(sig);
+  return want.length === got.length && timingSafeEqual(want, got);
 }
 
 // ── Cookies ──────────────────────────────────────────────────────────────────

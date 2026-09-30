@@ -19,6 +19,8 @@ The following values are placeholders and must be updated before going live.
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | pk_test_... | Publishable key from https://dashboard.stripe.com/test/apikeys. |
 | STRIPE_SECRET_KEY | sk_test_... | Secret key from https://dashboard.stripe.com/test/apikeys. Server only. |
 | STRIPE_WEBHOOK_SECRET | whsec_... | Signing secret for the `/api/stripe-webhook` endpoint from https://dashboard.stripe.com/workbench/webhooks. |
+| RESEND_API_KEY | (empty) | API key from https://resend.com/api-keys. Without it the webhook logs the code instead of emailing it. |
+| PASS_EMAIL_FROM | pass@peptidehormone.com | A sender on a domain verified in Resend. |
 
 ## Configured Parameters
 
@@ -52,11 +54,14 @@ for the embedded form.
 2. Create a Product and one-time Price for the Research Pass in the Dashboard and paste
    the Price ID into `line_items` in the checkout route.
 3. Register a webhook endpoint at `https://peptidehormone.com/api/stripe-webhook`
-   listening for `checkout.session.completed`, and copy its signing secret into
+   listening for `checkout.session.completed` and
+   `checkout.session.async_payment_succeeded`, and copy its signing secret into
    `STRIPE_WEBHOOK_SECRET`. For local testing:
    `stripe listen --forward-to localhost:3000/api/stripe-webhook`.
 4. Set `PASS_CHECKOUT_URL=/research/pass` so the "Get a Research Pass" buttons on
    `/research` point at the embedded checkout.
+5. Verify your sending domain in Resend, then set `RESEND_API_KEY` and
+   `PASS_EMAIL_FROM`. `PASS_SECRET` must be set too — minted codes are signed with it.
 
 Dependency added: `stripe@^22.6.2` (already in `package.json`). No client-side package
 is needed; Stripe.js is loaded from Stripe's CDN as PCI requires.
@@ -66,7 +71,8 @@ is needed; Stripe.js is loaded from Stripe's CDN as PCI requires.
 ```
 src/lib/stripe.ts                              server-side Stripe client (pinned API version)
 src/app/api/create-checkout-session/route.ts   POST → { client_secret }
-src/app/api/stripe-webhook/route.ts            POST ← Stripe events (signature verified)
+src/app/api/stripe-webhook/route.ts            POST ← Stripe events; mints + emails the code
+src/lib/email.ts                               Resend transport + the pass email
 src/components/CheckoutForm.tsx                embedded form (client component)
 src/app/research/pass/page.tsx                 the checkout page
 .env.example                                   variable names used by the code
@@ -81,8 +87,11 @@ src/app/research/pass/page.tsx                 the checkout page
 3. The browser calls `stripe.initCheckoutFormSdk({ clientSecret, appearance })`, creates
    an expanded-layout form, mounts it in `#checkout-form`, and on the form's `confirm`
    event calls `actions.confirm(...)`.
-4. Stripe sends `checkout.session.completed` to `/api/stripe-webhook`. This is where the
-   pass is fulfilled (see next steps).
+4. Stripe sends `checkout.session.completed` to `/api/stripe-webhook`. If the session is
+   paid, the handler mints a code (`mintCode(PASS_SECRET, session.id)` — deterministic,
+   so a retry re-sends the same code) and emails it to `customer_details.email`. The
+   buyer enters it on `/research`; `/api/pass` verifies the signature and sets the pass
+   cookie. No database is involved.
 
 ## Testing
 
@@ -98,10 +107,11 @@ More at https://docs.stripe.com/testing.
 
 ## Next steps
 
-- **Fulfilment.** The webhook currently logs the completed session. Wire it to grant
-  the Research Pass: either email `session.customer_details.email` one of the codes in
-  `PASS_CODES`, or mint a pass with `issuePass()` from `src/lib/pass.ts` and deliver it.
-  The existing `/api/pass` route already redeems codes and sets the pass cookie.
+- **Single-use codes.** Minted codes verify by signature and are not tracked, so one
+  could be shared. Add a datastore keyed on the code (or session id) if that matters.
+- **Email failures.** A failed send is logged with the code and the buyer's address so
+  it can be fulfilled by hand; the webhook still returns 200. Check the Vercel logs for
+  `[stripe]` lines after launch.
 - **Return URL / confirmation.** Add a success message on `/research/pass` after
   confirmation telling the buyer the code is on its way.
 - **Order tracking.** If you later want a record of purchases, persist `session.id`,

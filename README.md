@@ -50,5 +50,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 Readers without a pass get a signed, HttpOnly quota cookie that rolls over at UTC
 midnight; the chat route returns `402` with `code: "quota_exhausted"` once it is spent.
-Redeeming a code at `POST /api/pass` sets the pass cookie. Fulfilment is manual by
-design: sell via the checkout link, email the buyer a code. See `src/lib/pass.ts`.
+Redeeming a code at `POST /api/pass` sets the pass cookie. See `src/lib/pass.ts`.
+
+Purchases go through Stripe embedded Checkout at `/research/pass`. On
+`checkout.session.completed` the webhook mints a signed code from the session id
+(retries re-send the same code) and emails it via Resend when `RESEND_API_KEY` and
+`PASS_EMAIL_FROM` are set; otherwise the code is logged for manual delivery. Minted
+codes verify by signature, so they need no database. `STRIPE_INTEGRATION_TODO.md`
+lists the remaining Stripe setup.

@@ -6,6 +6,8 @@ import {
   hasPass,
   issuePass,
   meteringEnabled,
+  mintCode,
+  verifyMintedCode,
   passConfig,
   quotaCookieValue,
   readQuota,
@@ -107,6 +109,35 @@ describe("pass", () => {
     assert.equal(redeemCode("PH-GAMMA", cfg), false);
     assert.equal(redeemCode("", cfg), false);
     assert.equal(redeemCode("PH-ALPHA-2026", passConfig({ PASS_SECRET: "x" })), false);
+  });
+});
+
+describe("minted codes", () => {
+  const cfg = passConfig({ PASS_SECRET: SECRET });
+
+  it("is deterministic per seed and redeemable", () => {
+    const a = mintCode(SECRET, "cs_test_123");
+    assert.equal(a, mintCode(SECRET, "cs_test_123"));
+    assert.notEqual(a, mintCode(SECRET, "cs_test_124"));
+    assert.match(a, /^PH-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{8}$/);
+    assert.equal(verifyMintedCode(a, SECRET), true);
+    assert.equal(redeemCode(a.toLowerCase(), cfg), true);
+  });
+
+  it("rejects tampering, the wrong secret, and malformed input", () => {
+    const a = mintCode(SECRET, "cs_test_123");
+    assert.equal(verifyMintedCode(a, "other"), false);
+    const flipped = a.slice(0, 3) + (a[3] === "A" ? "B" : "A") + a.slice(4);
+    assert.equal(verifyMintedCode(flipped, SECRET), false);
+    assert.equal(verifyMintedCode("PH-ABCD-EFGH", SECRET), false);
+    assert.equal(verifyMintedCode("", SECRET), false);
+    assert.equal(redeemCode(a, passConfig({})), false);
+  });
+
+  it("never uses ambiguous letters", () => {
+    for (const seed of ["a", "b", "c", "d", "e"]) {
+      assert.doesNotMatch(mintCode(SECRET, seed), /[ILOU]/);
+    }
   });
 });
 
