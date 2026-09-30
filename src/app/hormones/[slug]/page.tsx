@@ -13,7 +13,8 @@ import { hormoneLd } from "@/lib/jsonld";
 import { vendorsFor } from "@/lib/affiliate";
 import { VendorRow, Disclosure } from "@/components/Sourcing";
 import { externalRefs } from "@/lib/identifiers";
-import { compoundTierClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
+import { compoundTierClasses, regulatoryClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
+import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { hormoneFigure } from "@/components/hormone-figures";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 import LiveEvidenceBlock from "@/components/LiveEvidence";
@@ -55,6 +56,8 @@ export default async function HormonePage({
   const parent = h.parent ? getHormone(h.parent) : undefined;
   const typeLabel = h.type === "analog" ? "Analog" : h.type === "research" ? "Research peptide" : "Endogenous";
   const evidence = h.evidence ?? "Established";
+  const regulatory = regulatoryFor(h.slug);
+  const regMeta = regulatory ? regulatoryMeta(regulatory.status) : undefined;
 
   // Lineage = the native hormone plus every analog engineered from it. Show a
   // comparison deep-link whenever this molecule sits in such a lineage.
@@ -133,6 +136,15 @@ export default async function HormonePage({
               <span className={`rounded-full border px-3 py-1 font-medium ${compoundTierClasses(evidence)}`}>
                 {evidence}
               </span>
+              {regMeta && (
+                <a
+                  href="#regulatory"
+                  title={`Regulatory status (US): ${regMeta.clause}`}
+                  className={`rounded-full border px-3 py-1 font-medium transition-opacity hover:opacity-80 ${regulatoryClasses(regMeta.hue)}`}
+                >
+                  {regMeta.label}
+                </a>
+              )}
               {parent && (
                 <span className="text-ink/50">
                   Based on{" "}
@@ -295,6 +307,41 @@ export default async function HormonePage({
                 ))}
               </ul>
             </section>
+
+            {regulatory && regMeta && (
+              <section id="regulatory" className="mt-12 scroll-mt-24">
+                <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h2 className="font-display text-2xl font-semibold">Regulatory status</h2>
+                  <span className="text-xs text-ink/40">
+                    United States · reviewed {formatAsOf(REGULATORY_AS_OF)}
+                  </span>
+                </div>
+                <div className="mt-5 rounded-2xl border border-ink/10 bg-panel/30 p-5">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span
+                      className={`rounded-full border px-3 py-1 text-xs font-medium ${regulatoryClasses(regMeta.hue)}`}
+                    >
+                      {regMeta.label}
+                    </span>
+                    <span className="text-sm leading-6 text-ink/70">
+                      {h.abbr ?? h.name} is {regMeta.clause}.
+                    </span>
+                  </div>
+                  <dl className="mt-4 border-t border-ink/[0.06] pt-4">
+                    <dt className="text-xs font-medium uppercase tracking-wide text-ink/40">Basis</dt>
+                    <dd className="mt-1 text-[15px] leading-7 text-ink/70">{regulatory.basis}</dd>
+                  </dl>
+                </div>
+                <p className="mt-3 text-xs leading-5 text-ink/40">
+                  Status describes the molecule as a drug substance under US law and
+                  is an editorial reading of the public record — approvals, trial
+                  registrations, and the FDA 503A bulk-substances list. It is not
+                  legal advice and it changes; the review date above is the last time
+                  the table was checked. Other jurisdictions are noted only where
+                  they differ materially.
+                </p>
+              </section>
+            )}
 
             {faqs.length > 0 && (
               <section className="mt-12">

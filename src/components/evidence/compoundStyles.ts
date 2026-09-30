@@ -27,3 +27,12 @@ export const COMPOUND_HUE_CLASSES: Record<CompoundHue, string> = {
 export function compoundTierClasses(tier: string): string {
   return COMPOUND_HUE_CLASSES[compoundHue(tier)];
 }
+
+/**
+ * Same token map, keyed by the regulatory-status hue (lib/regulatory). The two
+ * ladders share hue NAMES on purpose — teal for the strongest standing, amber
+ * for the one that needs a disclosure — so one palette serves both chips.
+ */
+export function regulatoryClasses(hue: CompoundHue): string {
+  return COMPOUND_HUE_CLASSES[hue];
+}

@@ -5,6 +5,7 @@
 
 import { COMPOUND_TIERS, type CompoundTier } from "@/lib/evidence/compound";
 import { aliasFaq } from "@/lib/aliases";
+import { regulatoryFaq } from "@/lib/regulatory";
 
 export interface Hormone {
   slug: string;
@@ -2263,6 +2264,8 @@ export function hormoneFaq(h: Hormone): { q: string; a: string }[] {
       a: `The reported circulating half-life of ${label} is ${h.halfLife}.`,
     });
   }
+  const regulatory = regulatoryFaq(h);
+  if (regulatory) faq.push(regulatory);
   const brand = aliasFaq(h);
   if (brand) faq.push(brand);
   return faq;
