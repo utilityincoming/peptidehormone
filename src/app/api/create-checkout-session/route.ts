@@ -24,8 +24,8 @@ export async function POST() {
     automatic_tax: { enabled: false },
     submit_type: "auto",
     integration_identifier: "custom_embedded_web_0001",
-    // TODO: replace with the real Price ID for the Research Pass.
-    line_items: [{ price: "price_...", quantity: 1 }],
+    // Research Pass — one-time price (see STRIPE_INTEGRATION_TODO.md).
+    line_items: [{ price: "price_1ULVcYCzcXl8qKy3Sn3oKwy9", quantity: 1 }],
   };
 
   if (mode === "subscription") {

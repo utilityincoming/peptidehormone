@@ -15,7 +15,7 @@ The following values are placeholders and must be updated before going live.
 | Field | Current Value | What to Set |
 |-------|--------------|-------------|
 | mode | payment | Keep `"payment"` for a one-off annual pass. Set to `"subscription"` if the pass becomes recurring (the route then adds `payment_method_collection: "always"` automatically). |
-| line_items[].price | price_... | Your actual Stripe Price ID for the Research Pass from the Dashboard (https://dashboard.stripe.com/prices) or API. |
+| line_items[].price | price_1ULVcYCzcXl8qKy3Sn3oKwy9 | Set. Price IDs are mode-specific: if this was created in test mode, create the live-mode Price before switching to live keys and update it here. |
 | NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY | pk_test_... | Publishable key from https://dashboard.stripe.com/test/apikeys. |
 | STRIPE_SECRET_KEY | sk_test_... | Secret key from https://dashboard.stripe.com/test/apikeys. Server only. |
 | STRIPE_WEBHOOK_SECRET | whsec_... | Signing secret for the `/api/stripe-webhook` endpoint from https://dashboard.stripe.com/workbench/webhooks. |
@@ -52,8 +52,8 @@ for the embedded form.
 1. Copy `.env.example` to `.env.local` and fill in the three Stripe values above
    (plus `ANTHROPIC_API_KEY` and the `PASS_*` values for the research agent).
    On Vercel, add the same variables under Project → Settings → Environment Variables.
-2. Create a Product and one-time Price for the Research Pass in the Dashboard and paste
-   the Price ID into `line_items` in the checkout route.
+2. Price ID is set (`price_1ULVcYCzcXl8qKy3Sn3oKwy9`). When going live, create the
+   live-mode Price and update `line_items` in the checkout route.
 3. Register a webhook endpoint at `https://peptidehormone.com/api/stripe-webhook`
    listening for `checkout.session.completed` and
    `checkout.session.async_payment_succeeded`, and copy its signing secret into
