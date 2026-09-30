@@ -1,6 +1,20 @@
 import { NextRequest } from "next/server";
 import { AGENT_TOOLS, executeAgentTool } from "@/lib/agent-tools";
 import { FAMILIES } from "@/lib/families";
+import {
+  PASS_COOKIE,
+  QUOTA_COOKIE,
+  QUOTA_MAX_AGE_S,
+  bumpQuota,
+  cookieHeader,
+  hasPass,
+  meteringEnabled,
+  passConfig,
+  quotaCookieValue,
+  readQuota,
+  remaining,
+  type Quota,
+} from "@/lib/pass";
 
 // ── Hardening knobs ──────────────────────────────────────────────────────────
 const MODEL = "claude-opus-4-8";
@@ -162,6 +176,26 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  // ── Research Pass: free daily allowance unless the reader holds a pass ──
+  // Off entirely when PASS_SECRET is unset (see src/lib/pass.ts). The quota is
+  // only charged on a successful answer, so an upstream failure costs nothing.
+  const pass = passConfig();
+  let quota: Quota | null = null;
+  if (meteringEnabled(pass) && !hasPass(request.cookies.get(PASS_COOKIE)?.value, pass.secret)) {
+    quota = readQuota(request.cookies.get(QUOTA_COOKIE)?.value, pass.secret);
+    if (remaining(quota, pass) <= 0) {
+      return Response.json(
+        {
+          error: `You've used today's ${pass.freeDaily} free questions.`,
+          code: "quota_exhausted",
+          quota: { used: quota.used, limit: pass.freeDaily, remaining: 0 },
+          checkoutUrl: pass.checkoutUrl ?? null,
+        },
+        { status: 402 },
+      );
+    }
+  }
+
   let rawMessages: unknown;
   try {
     const body = await request.json();
@@ -259,9 +293,21 @@ export async function POST(request: NextRequest) {
         : "I gathered some data but ran out of research steps before composing a full answer. Please ask again or narrow the question.";
   }
 
-  return Response.json({
-    role: "assistant",
-    content: finalText,
-    ...(lastStop === "refusal" ? { stop: "refusal" } : {}),
-  });
+  const headers = new Headers();
+  let quotaOut: { used: number; limit: number; remaining: number } | undefined;
+  if (quota && meteringEnabled(pass)) {
+    const next = bumpQuota(quota);
+    headers.append("Set-Cookie", cookieHeader(QUOTA_COOKIE, quotaCookieValue(next, pass.secret), QUOTA_MAX_AGE_S));
+    quotaOut = { used: next.used, limit: pass.freeDaily, remaining: remaining(next, pass) };
+  }
+
+  return Response.json(
+    {
+      role: "assistant",
+      content: finalText,
+      ...(lastStop === "refusal" ? { stop: "refusal" } : {}),
+      ...(quotaOut ? { quota: quotaOut } : {}),
+    },
+    { headers },
+  );
 }
