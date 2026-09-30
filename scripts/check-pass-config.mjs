@@ -66,8 +66,9 @@ if (pk && sk && /^pk_(test|live)_/.test(pk) && /^sk_(test|live)_/.test(sk) && pk
 void (placeholder(wh) ? warn(`STRIPE_WEBHOOK_SECRET ${mask(wh)} — webhook accepts UNSIGNED events (fine locally, not in production)`) : ok(`STRIPE_WEBHOOK_SECRET ${mask(wh)}`));
 
 const routeSrc = readFileSync(resolve(root, "src/app/api/create-checkout-session/route.ts"), "utf8");
-const priceMatch = routeSrc.match(/price:\s*"([^"]+)"/);
-const priceId = priceMatch?.[1];
+const priceMatch = routeSrc.match(/"(price_[A-Za-z0-9]+)"/);
+const priceId = env.STRIPE_PRICE_ID?.trim() || priceMatch?.[1];
+if (env.STRIPE_PRICE_ID?.trim()) ok(`STRIPE_PRICE_ID overrides the route default: ${priceId}`);
 void (placeholder(priceId) ? bad(`Price ID in src/app/api/create-checkout-session/route.ts is still "${priceId}" — paste your real price_… id`) : ok(`Price ID in route: ${priceId}`));
 
 if (sk && /^sk_(test|live)_/.test(sk) && priceId && !placeholder(priceId)) {
@@ -79,7 +80,7 @@ if (sk && /^sk_(test|live)_/.test(sk) && priceId && !placeholder(priceId)) {
       ok(`Stripe accepted the key; price ${priceId} is ${mode}, ${j.unit_amount / 100} ${j.currency?.toUpperCase()}, active=${j.active}`);
       if (mode === "recurring") bad('Price is recurring but the route uses mode "payment" — change mode to "subscription"');
       if (!j.active) bad("Price is archived/inactive");
-    } else bad(`Stripe rejected: ${j.error?.message ?? r.status} (wrong key, wrong mode, or price from a different account/mode)`);
+    } else bad(`Stripe rejected: ${j.error?.message ?? r.status}${/live mode/.test(j.error?.message ?? "") ? " → create a TEST-mode Price and set STRIPE_PRICE_ID to it (or switch to live keys)" : ""}`);
   } catch (e) { warn(`Could not reach Stripe: ${e.message}`); }
 }
 
