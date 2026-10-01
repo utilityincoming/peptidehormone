@@ -16,3 +16,18 @@ export function stripe(): Stripe {
   }
   return client;
 }
+
+const keyMode = (key: string | undefined) => key?.trim().match(/^[ps]k_(test|live)_/)?.[1];
+
+/**
+ * A Checkout Session is only visible to keys of the same mode as the one that
+ * created it, so a live publishable key with a test secret key (or vice versa)
+ * mounts an embedded form that never renders. Returns an actionable message
+ * when the two keys disagree, else null.
+ */
+export function keyModeMismatch(publishable: string | undefined, secret: string | undefined): string | null {
+  const pk = keyMode(publishable);
+  const sk = keyMode(secret);
+  if (!pk || !sk || pk === sk) return null;
+  return `Stripe key mode mismatch: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is ${pk} but STRIPE_SECRET_KEY is ${sk}. Set both to the same mode (and STRIPE_PRICE_ID to a Price from that mode).`;
+}

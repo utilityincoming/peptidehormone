@@ -100,6 +100,20 @@ src/app/research/pass/page.tsx                 the checkout page
    the code in KV (`SET NX`, one year TTL) so it cannot be redeemed twice, and sets the
    pass cookie.
 
+## Troubleshooting: the form mounts but stays blank
+
+Stripe.js initialises the embedded form with the **publishable** key, and a Checkout
+Session is only visible to keys of the **same mode** as the secret key that created it.
+If Vercel holds `pk_live_…` alongside `sk_test_…` (or the reverse), the page mounts an
+empty Stripe iframe and the browser console shows a 404 from
+`api.stripe.com/v1/payment_pages/cs_…/init` with *"a similar object exists in test mode,
+but a live mode key was used"*. The route now refuses up front with a 500 whose `error`
+names both modes, and `CheckoutForm` prints it under the form. Fix: set
+`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` and `STRIPE_SECRET_KEY` to the same mode in
+Vercel → Settings → Environment Variables, make `STRIPE_PRICE_ID` match that mode, then
+**redeploy** (`NEXT_PUBLIC_*` values are baked into the client bundle at build time).
+`npm run check:pass` catches the same mismatch locally.
+
 ## Testing
 
 Use test-mode keys. Test cards (any future expiry, any CVC, any postcode):
