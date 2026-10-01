@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
+import { stripe, keyModeMismatch } from "@/lib/stripe";
 
 // Creates an embedded-form Checkout Session for the Research Pass and returns
 // its client secret to the page at /research/pass. Parameters marked
@@ -9,8 +9,21 @@ import { stripe } from "@/lib/stripe";
 export const dynamic = "force-dynamic";
 
 export async function POST() {
-  if (!process.env.STRIPE_SECRET_KEY) {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) {
     return Response.json({ error: "Stripe is not configured." }, { status: 500 });
+  }
+
+  // Stripe.js initialises the embedded form with the *publishable* key, and a
+  // Checkout Session is only visible to keys of the same mode. A pk_live with
+  // an sk_test (or vice versa) yields a session the browser cannot load — the
+  // form mounts, then Stripe's init call 404s with "a similar object exists in
+  // test mode, but a live mode key was used" and nothing renders. Refuse up
+  // front with a message that says what to change.
+  const mismatch = keyModeMismatch(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, secretKey);
+  if (mismatch) {
+    console.error("[stripe]", mismatch);
+    return Response.json({ error: mismatch }, { status: 500 });
   }
 
   // TODO: set to "subscription" if the Research Pass becomes recurring.

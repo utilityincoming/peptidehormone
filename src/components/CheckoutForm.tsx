@@ -65,9 +65,16 @@ export default function CheckoutForm() {
     const clientSecret = fetch("/api/create-checkout-session", { method: "POST" })
       .then((r) => r.json())
       .then((json) => {
-        if (!json.client_secret) throw new Error(json.error ?? "No client secret");
+        if (!json.client_secret) {
+          // Include Stripe's own diagnosis when the route forwards one.
+          const detail = json.stripe?.message ? ` (${json.stripe.message})` : "";
+          throw new Error(`${json.error ?? "No client secret"}${detail}`);
+        }
         return json.client_secret as string;
       });
+    // Stripe.js consumes the promise itself and swallows a rejection, so the
+    // form would simply stay blank. Surface the server's message as well.
+    clientSecret.catch((err: Error) => setError(err.message));
 
     (async () => {
       try {
