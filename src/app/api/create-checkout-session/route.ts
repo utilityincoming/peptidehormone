@@ -22,8 +22,19 @@ export async function POST() {
   // front with a message that says what to change.
   const mismatch = keyModeMismatch(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, secretKey);
   if (mismatch) {
-    console.error("[stripe]", mismatch);
-    return Response.json({ error: mismatch }, { status: 500 });
+    // Non-secret facts about *this* deployment so a stale or shadowed env var
+    // can be told apart from a stale deployment. The account prefix is the
+    // same one the publishable key exposes in the browser bundle.
+    const diagnostics = {
+      secretKeyPrefix: secretKey.trim().slice(0, 12) + "…",
+      secretKeyLength: secretKey.trim().length,
+      vercelEnv: process.env.VERCEL_ENV ?? null,
+      deploymentId: process.env.VERCEL_DEPLOYMENT_ID ?? null,
+      commit: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? null,
+      branch: process.env.VERCEL_GIT_COMMIT_REF ?? null,
+    };
+    console.error("[stripe]", mismatch, diagnostics);
+    return Response.json({ error: mismatch, diagnostics }, { status: 500 });
   }
 
   // TODO: set to "subscription" if the Research Pass becomes recurring.
