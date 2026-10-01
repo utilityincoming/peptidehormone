@@ -59,3 +59,20 @@ Purchases go through Stripe embedded Checkout at `/research/pass`. On
 codes verify by signature; with Vercel KV linked (`KV_REST_API_URL`/`KV_REST_API_TOKEN`)
 each is redeemable exactly once. `STRIPE_INTEGRATION_TODO.md`
 lists the remaining Stripe setup.
+
+## Search Console and indexing
+
+Crawl surface is defined in `src/app/robots.ts` (allows everything but `/api/`) and
+`src/app/sitemap.ts` (hubs, vendors, families, insights, molecules, tools, and one
+direction of each comparison pair). Every indexable page sets its own canonical URL;
+`/search` and `/research/pass` are `noindex`. Comparison pages render in both orders
+(`a-vs-b` and `b-vs-a`) but canonicalise to one — parent/native molecule first, otherwise
+alphabetical (`canonicalComparePair` in `src/lib/compare.ts`) — so Search Console does not
+report them as duplicates.
+
+| Variable | Purpose |
+| --- | --- |
+| `GOOGLE_SITE_VERIFICATION` | Content value of the Search Console HTML-tag verification. Emits `<meta name="google-site-verification">` site-wide; leave unset if the property is verified via DNS or Vercel. |
+
+After deploying, submit `https://peptidehormone.com/sitemap.xml` once under *Sitemaps* in
+Search Console; it is regenerated on every build.
