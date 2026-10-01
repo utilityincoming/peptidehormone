@@ -42,6 +42,13 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
   },
+  // Google Search Console "HTML tag" verification. Set GOOGLE_SITE_VERIFICATION
+  // to the content value GSC gives you; unset, no tag is emitted. (DNS or the
+  // Vercel integration verify the property too — this is the fallback that
+  // needs no domain access.)
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({

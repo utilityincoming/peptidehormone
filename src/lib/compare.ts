@@ -68,7 +68,22 @@ export function staticComparePairs(): [string, string][] {
   return out;
 }
 
-/** Unique undirected pairs, parent/native first when one is a parent of the other. */
+/**
+ * The one direction of a pair that search engines should index. Both
+ * `/compare/a-vs-b` and `/compare/b-vs-a` render (readers do type either), but
+ * they carry the same content, so only one may be canonical: the parent/native
+ * molecule first when one is the parent of the other, otherwise alphabetical.
+ * The reverse route points its canonical here and stays out of the sitemap.
+ */
+export function canonicalComparePair(a: string, b: string): [string, string] {
+  const ha = getHormone(a);
+  const hb = getHormone(b);
+  if (hb?.parent === a) return [a, b];
+  if (ha?.parent === b) return [b, a];
+  return a < b ? [a, b] : [b, a];
+}
+
+/** Unique undirected pairs, each in its canonical direction. */
 export function uniqueComparePairs(): [string, string][] {
   const seen = new Set<string>();
   const out: [string, string][] = [];
@@ -76,11 +91,7 @@ export function uniqueComparePairs(): [string, string][] {
     const key = undirectedKey(a, b);
     if (seen.has(key)) continue;
     seen.add(key);
-    const ha = getHormone(a);
-    const hb = getHormone(b);
-    if (hb?.parent === a) out.push([a, b]);
-    else if (ha?.parent === b) out.push([b, a]);
-    else out.push([a, b]);
+    out.push(canonicalComparePair(a, b));
   }
   return out;
 }

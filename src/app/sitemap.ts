@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { FAMILIES } from "@/lib/families";
 import { HORMONES } from "@/lib/hormones";
 import { INSIGHTS } from "@/lib/insights";
-import { staticComparePairs, comparePairPath } from "@/lib/compare";
+import { uniqueComparePairs, comparePairPath } from "@/lib/compare";
 import { VENDORS } from "@/lib/affiliate";
 
 const BASE = "https://peptidehormone.com";
@@ -76,7 +76,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
-    ...staticComparePairs().map(([a, b]) => ({
+    // One direction per pair: the reverse route canonicalises to this one, and a
+    // sitemap that lists both tells Search Console we have twice the duplicates.
+    ...uniqueComparePairs().map(([a, b]) => ({
       url: `${BASE}/compare/${comparePairPath(a, b)}`,
       changeFrequency: "monthly" as const,
       priority: 0.65,

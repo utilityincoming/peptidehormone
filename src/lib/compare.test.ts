@@ -4,6 +4,8 @@ import {
   comparePairPath,
   parseComparePair,
   staticComparePairs,
+  uniqueComparePairs,
+  canonicalComparePair,
   compareFaq,
 } from "./compare";
 import { HORMONES, getHormone } from "./hormones";
@@ -82,6 +84,39 @@ describe("staticComparePairs", () => {
       assert.ok(catalog.has(a), a);
       assert.ok(catalog.has(b), b);
     }
+  });
+});
+
+describe("canonicalComparePair", () => {
+  it("puts the parent/native molecule first regardless of input order", () => {
+    assert.deepEqual(canonicalComparePair("glp-1", "semaglutide"), ["glp-1", "semaglutide"]);
+    assert.deepEqual(canonicalComparePair("semaglutide", "glp-1"), ["glp-1", "semaglutide"]);
+  });
+
+  it("falls back to alphabetical order for unrelated molecules", () => {
+    assert.deepEqual(canonicalComparePair("tirzepatide", "semaglutide"), ["semaglutide", "tirzepatide"]);
+    assert.deepEqual(canonicalComparePair("semaglutide", "tirzepatide"), ["semaglutide", "tirzepatide"]);
+  });
+
+  it("is idempotent", () => {
+    for (const [a, b] of staticComparePairs()) {
+      const c = canonicalComparePair(a, b);
+      assert.deepEqual(canonicalComparePair(c[0], c[1]), c);
+    }
+  });
+});
+
+describe("uniqueComparePairs", () => {
+  const unique = uniqueComparePairs();
+
+  it("emits exactly one direction per static pair, in canonical order", () => {
+    assert.equal(unique.length, staticComparePairs().length / 2);
+    for (const [a, b] of unique) assert.deepEqual(canonicalComparePair(a, b), [a, b]);
+  });
+
+  it("never lists both directions of a pair", () => {
+    const seen = new Set(unique.map(([a, b]) => comparePairPath(a, b)));
+    for (const [a, b] of unique) assert.ok(!seen.has(comparePairPath(b, a)));
   });
 });
 

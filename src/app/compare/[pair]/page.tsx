@@ -7,6 +7,7 @@ import { CompareTable } from "@/components/tools/CompareTable";
 import { getHormone } from "@/lib/hormones";
 import {
   comparePairPath,
+  canonicalComparePair,
   parseComparePair,
   staticComparePairs,
   compareFaq,
@@ -21,6 +22,11 @@ export function generateStaticParams() {
   return staticComparePairs().map(([a, b]) => ({ pair: comparePairPath(a, b) }));
 }
 
+// Only the enumerated pairs exist. Without this, any two catalog slugs joined by
+// "-vs-" would render on demand — an unbounded crawl surface of thin pages that
+// shows up in Search Console as "Crawled – currently not indexed".
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -34,10 +40,13 @@ export async function generateMetadata({
   if (!a || !b) return { title: "Not found" };
   const title = compareMetaTitle(a, b);
   const description = compareMetaDescription(a, b);
+  // The reverse order of a pair is the same page; both directions declare the
+  // canonical direction so Google consolidates them instead of flagging a duplicate.
+  const [ca, cb] = canonicalComparePair(a.slug, b.slug);
   return {
     title,
     description,
-    alternates: { canonical: `/compare/${pair}` },
+    alternates: { canonical: `/compare/${comparePairPath(ca, cb)}` },
     openGraph: { title: `${title} · Peptide Hormone`, description },
   };
 }
@@ -57,10 +66,12 @@ export default async function ComparePairPage({
   const faqs = compareFaq(a, b);
   const editorial = comparisonEditorial(a.slug, b.slug);
   const reverse = comparePairPath(b.slug, a.slug);
+  // Structured data carries the canonical URL so both directions describe one entity.
+  const canonicalPair = comparePairPath(...canonicalComparePair(a.slug, b.slug));
 
   return (
     <>
-      <JsonLd data={compareLd(a, b, pair, faqs)} />
+      <JsonLd data={compareLd(a, b, canonicalPair, faqs)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <Container className="py-12 md:py-16">
