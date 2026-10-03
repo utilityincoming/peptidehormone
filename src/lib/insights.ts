@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-trial-that-hasnt-reported",
+    hormones: ["bpc-157", "tb-500"],
+    title: "The trial that hasn't reported",
+    dek: "In September 2026 the phrase \u201cfirst human study of BPC-157\u201d went around again. It wasn\u2019t one. We checked the primary record: PubMed for August\u2013September 2026 holds reviews and a critical re-reading of the rodent ischemia-reperfusion literature; ClinicalTrials.gov holds one randomized trial still recruiting and one not yet open. The entire published human record is three uncontrolled reports from a single Florida clinic \u2013 sixteen knee-pain patients surveyed by phone, twelve cystitis patients who all scored 100%, two volunteers infused for three days \u2013 thirty people and no placebo. The first trial that could actually answer the question, 120 hamstring strains randomized and blinded against placebo with MRI endpoints, began in February 2026 and reads out in 2027. And the July FDA advisory vote that gets reported as a verdict was 8\u20136 against the agency\u2019s own scientists, on access grounds, with no new data in the room. What exists, what is still missing, and how to read the next headline. Bullish on the science, sceptical on the page. No dosing.",
+    family: "repair",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
     slug: "wrong-end-of-the-hormone",
     hormones: ["kpv", "pt-141", "alpha-msh"],
     title: "Wrong end of the hormone",

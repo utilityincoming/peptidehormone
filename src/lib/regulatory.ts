@@ -336,7 +336,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   "bpc-157": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: `${FDA_503A}, September 2023. In July 2026 the Pharmacy Compounding Advisory Committee voted 8–6 to recommend adding it to the 503A list, against FDA staff advice; the vote is non-binding and Category 2 stands pending rulemaking.`,
   },
   "tb-500": {
     status: "unapproved",
