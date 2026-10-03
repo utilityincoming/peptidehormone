@@ -1,0 +1,25 @@
+name: Ping IndexNow
+
+# After every successful production deploy (Vercel reports these via the
+# GitHub Deployments API), submit the live sitemap's URLs to IndexNow so
+# Bing/Yandex/Naver/Seznam pick up changes within minutes instead of weeks.
+on:
+  deployment_status:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run indexnow:ping
