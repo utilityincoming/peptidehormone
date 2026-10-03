@@ -1376,19 +1376,21 @@ const BASE: Hormone[] = [
     family: "repair",
     type: "research",
     evidence: "Preclinical",
-    summary: "A synthetic peptide with broad preclinical repair claims and little human data.",
+    summary: "A synthetic peptide with a broad preclinical repair record; the only human data are three uncontrolled pilots, and the first placebo-controlled trial reads out in 2027.",
     class: "Synthetic pentadecapeptide (15 aa)",
     source: "Synthetic; sequence derived from a gastric protein",
     receptor: "No established receptor; proposed effects on angiogenesis and growth-factor pathways",
     mechanism:
-      "BPC-157 is a stable synthetic peptide whose sequence comes from a fragment of a gastric protein. Animal studies report effects on angiogenesis, tendon and gut healing, and nitric-oxide pathways, but its mechanism is not well defined and rigorous human clinical evidence is largely absent.",
+      "BPC-157 is a stable synthetic peptide whose sequence comes from a fragment of a gastric protein. Animal studies report effects on angiogenesis, tendon and gut healing, and nitric-oxide pathways, but its mechanism is not well defined and rigorous human clinical evidence is absent. As of October 2026 the published human record is three small uncontrolled reports from one clinic (knee pain, interstitial cystitis, a two-person infusion safety pilot); the first randomized, placebo-controlled trial (NCT07437547, acute hamstring strain) is recruiting with primary completion expected in 2027.",
     facts: [
-      "The evidence base is predominantly preclinical (rodent); robust human trials are lacking.",
+      "The evidence base is predominantly preclinical (rodent); a September 2026 critical review found it too heterogeneous to meta-analyse.",
+      "Every published human report (30 people in total) is uncontrolled; no randomized trial has reported, and the first is due in 2027.",
       "Its molecular mechanism is proposed rather than firmly established.",
-      "It is widely marketed in the 'research peptide' space — a context where claims often outrun data.",
+      "In July 2026 an FDA advisory committee voted 8–6 to recommend it for 503A compounding against agency staff advice; the vote is non-binding and it remains in Category 2.",
     ],
     questions: [
       "What does the actual evidence show for BPC-157, and what is only claimed?",
+      "Has a controlled human trial of BPC-157 been published?",
       "Why is BPC-157's mechanism considered poorly defined?",
     ],
     mw: 1419.5,
@@ -2167,7 +2169,7 @@ const THREADS: Record<string, string> = {
   "ghk-cu":
     "Copper is not usually thought of as a signal; a three-residue carrier makes it one. The marketing has run a long way ahead of the literature.",
   "bpc-157":
-    "Drawn from a gastric protein, with a striking preclinical record and almost no human data — the widest gap between interest and evidence in this catalog.",
+    "Drawn from a gastric protein, with a striking preclinical record and thirty uncontrolled humans — the widest gap between interest and evidence in this catalog, until the first placebo trial reads out.",
   "tb-500":
     "A synthetic fragment sold under the name of the protein it came from. The parent biology is genuine; the fragment's own human evidence is not yet there.",
   epitalon:

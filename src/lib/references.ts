@@ -221,6 +221,8 @@ export const REFERENCES: Record<string, Reference[]> = {
   "bpc-157": [
     { pmid: "40005999", title: "Multifunctionality and Possible Medical Application of the BPC 157 Peptide-Literature and Patent Review", source: "Pharmaceuticals (Basel, Switzerland)", year: "2025" },
     { pmid: "30915550", title: "Gastric pentadecapeptide body protection compound BPC 157 and its role in accelerating musculoskeletal soft tissue healing", source: "Cell and tissue research", year: "2019" },
+    { pmid: "40789979", title: "Regeneration or Risk? A Narrative Review of BPC-157 for Musculoskeletal Healing", source: "Current reviews in musculoskeletal medicine", year: "2025" },
+    { pmid: "42794771", title: "BPC 157 in Rodent Ischemia-Reperfusion Injury: A Critical Review of Preclinical Evidence", source: "International journal of molecular sciences", year: "2026" },
   ],
   "tb-500": [
     { pmid: "41966639", title: "Safety and Efficacy of Approved and Unapproved Peptide Therapies for Musculoskeletal Injuries and Athletic Performance", source: "Sports medicine (Auckland, N.Z.)", year: "2026" },
