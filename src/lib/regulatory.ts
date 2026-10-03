@@ -91,6 +91,14 @@ export interface RegulatoryEntry {
 const FDA_503A =
   "FDA 503A bulk-substances list, Category 2 (substances that may present significant safety risks)";
 
+// 23–24 July 2026 Pharmacy Compounding Advisory Committee: six nominated
+// peptides were recommended for the 503A list against the advice of FDA
+// review staff. The vote is advisory; nothing changes until the agency
+// completes notice-and-comment rulemaking, so every status below still
+// reflects the pre-vote position.
+const PCAC_2026 = (tally: string) =>
+  `In July 2026 the Pharmacy Compounding Advisory Committee voted ${tally} to recommend adding it to the 503A list, against FDA staff advice; the vote is non-binding and the status stands pending rulemaking.`;
+
 // One entry per catalog slug. Missing an entry is a test failure, not a silent
 // blank — a monograph without a status would look like an oversight rather
 // than a disclosure.
@@ -336,11 +344,11 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   "bpc-157": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. In July 2026 the Pharmacy Compounding Advisory Committee voted 8–6 to recommend adding it to the 503A list, against FDA staff advice; the vote is non-binding and Category 2 stands pending rulemaking.`,
+    basis: `${FDA_503A}, September 2023. ${PCAC_2026("8–6 with one abstention")}`,
   },
   "tb-500": {
     status: "unapproved",
-    basis: "A synthetic Tβ4 fragment with no drug development history; sold research-use-only.",
+    basis: `A synthetic Tβ4 fragment with no drug development history; sold research-use-only. ${PCAC_2026("8–6 with one abstention")}`,
   },
 
   // ── Analogs: somatostatin & GHRH ──
@@ -382,7 +390,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Mitochondrial ──
   "mots-c": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: `${FDA_503A}, September 2023. ${PCAC_2026("7–5 with two abstentions")}`,
   },
   humanin: {
     status: "unapproved",
@@ -392,7 +400,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Neuro & longevity peptides ──
   epitalon: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: `${FDA_503A}, September 2023. ${PCAC_2026("by a narrow margin")}`,
   },
   selank: {
     status: "unapproved",
@@ -408,7 +416,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   kpv: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: `${FDA_503A}, September 2023. ${PCAC_2026("8–6 with one abstention")}`,
   },
   dsip: {
     status: "restricted",
@@ -416,7 +424,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   semax: {
     status: "unapproved",
-    basis: "Approved as a nootropic in Russia; no FDA approval or US trials.",
+    basis: `Approved as a nootropic in Russia; no FDA approval or US trials. ${PCAC_2026("by a narrow margin")}`,
   },
   "ara-290": {
     status: "investigational",
