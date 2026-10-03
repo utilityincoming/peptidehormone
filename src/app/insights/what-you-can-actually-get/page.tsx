@@ -20,6 +20,10 @@ const FAQS: { q: string; a: string }[] = [
     a: "That a molecule is currently stocked in finished, lyophilised form by a source meeting a fixed sourcing standard: a lot-specific certificate of analysis, primary literature cited on the page, and research-use-only framing. A listing is verified, never paid for.",
   },
   {
+    q: "Did the FDA approve BPC-157, KPV, TB-500, MOTS-c, epitalon or semax for compounding in July 2026?",
+    a: "No. On 23–24 July 2026 the Pharmacy Compounding Advisory Committee voted, by narrow margins and against the recommendation of FDA review staff, to recommend adding those six peptides to the 503A bulk-substances list; a seventh, emideltide, was rejected. The committee advises; the agency decides through notice-and-comment rulemaking, which has not begun to conclude. Until it does, the four already in Category 2 (BPC-157, KPV, MOTS-c, epitalon) still may not be compounded, and the two that were never categorised (TB-500, semax) remain unapproved research-use-only material. Nothing on the availability layer changed because of the vote.",
+  },
+  {
     q: "How often does peptide availability change?",
     a: "Constantly. Unlike a sequence or a receptor, reachability moves — candidates cross from clinical trials into research-grade supply, and manufacturing consolidates. That is why availability is tracked as living data rather than stated once.",
   },
@@ -28,7 +32,7 @@ const FAQS: { q: string; a: string }[] = [
 export const metadata: Metadata = {
   title: "Cataloged vs. reachable: which research peptides you can actually source",
   description:
-    "Every catalogue lists what peptides exist. Here's what's actually reachable at research grade now — and why availability, not identity, is the real bottleneck.",
+    "Every catalogue lists what peptides exist. Here's what's actually reachable at research grade now, what the July 2026 FDA compounding vote did and didn't change, and why availability, not identity, is the real bottleneck.",
   alternates: { canonical: "/insights/what-you-can-actually-get" },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
@@ -142,6 +146,51 @@ export default function Article() {
               </P>
             </Section>
 
+            <Section title="What a vote moves, and what it doesn&rsquo;t">
+              <P>
+                Reachability usually moves quietly, one supplier at a time. In July 2026 it
+                moved in public. Over two days the FDA&rsquo;s Pharmacy Compounding Advisory
+                Committee considered seven nominated peptides for the 503A bulk-substances
+                list &ndash; the list that would let a licensed pharmacy compound a molecule
+                under prescription &ndash; and recommended six of them (
+                <a
+                  href="https://www.ajmc.com/view/fda-panel-backs-6-peptides-for-compounding"
+                  className={LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  AJMC
+                </a>
+                ). Four of the six were already sitting in Category 2 of that list, the
+                tier for substances the agency says may present significant safety risks.
+                The agency&rsquo;s own reviewers opposed every one, on the same grounds each
+                time: the studies were short, small, and could not establish safety or
+                effectiveness.
+              </P>
+              <VoteTable />
+              <P>
+                Read the table from right to left and the point makes itself. Every row
+                still carries the status it had the morning of the vote. A recommendation
+                from an advisory committee starts a rulemaking; it does not finish one, and
+                the agency is not bound by it. Until notice-and-comment rulemaking concludes
+                &ndash; a process measured in a year or more &ndash; a Category 2 substance
+                still may not lawfully be compounded, and a never-categorised one is still
+                research-use-only material. For the one molecule with the most to gain, the
+                human evidence in the room was{" "}
+                <Link href="/insights/the-trial-that-hasnt-reported" className={LINK}>
+                  thirty uncontrolled patients
+                </Link>
+                .
+              </P>
+              <Callout label="Why this belongs in an availability essay">
+                A vote is exactly the kind of event that gets reported as a change in what
+                you can get. It is not one. It is a change in what <Em>might</Em> be
+                reachable through a different channel in 2027 or 2028, and the gap between
+                those two sentences is the whole reason reachability has to be published as
+                dated data rather than remembered as news.
+              </Callout>
+            </Section>
+
             <Section title="How a reference publishes this without becoming a store">
               <P>
                 The obvious objection: the moment a reference tells you where to buy, hasn&rsquo;t
@@ -212,6 +261,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Follow the thread</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/the-trial-that-hasnt-reported" label="The trial that hasn&rsquo;t reported — BPC-157&rsquo;s human record" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Where trust starts to mean something" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
                 <CrossLink href="/insights/early-adopters-catalog" label="The community found it first" />
@@ -295,6 +345,71 @@ function ReachableFunnel() {
       <figcaption className="mt-2 text-center text-xs text-ink/40">
         Identity is the whole top of the funnel. Availability is only the bottom — and it&rsquo;s
         the tier you actually act on.
+      </figcaption>
+    </figure>
+  );
+}
+
+/* ── July 2026 PCAC vote: status before, tally, status after ────────────────
+   Six catalog molecules were recommended for the 503A list; the right-hand
+   column is identical to the left because an advisory vote changes nothing
+   until rulemaking completes. That sameness is the figure.                     */
+const VOTES: { slug: string; name: string; before: string; tally: string }[] = [
+  { slug: "bpc-157", name: "BPC-157", before: "Category 2", tally: "8–6, 1 abstain" },
+  { slug: "kpv", name: "KPV", before: "Category 2", tally: "8–6, 1 abstain" },
+  { slug: "tb-500", name: "TB-500", before: "Unapproved", tally: "8–6, 1 abstain" },
+  { slug: "mots-c", name: "MOTS-c", before: "Category 2", tally: "7–5, 2 abstain" },
+  { slug: "epitalon", name: "Epitalon", before: "Category 2", tally: "7–4, 1 abstain" },
+  { slug: "semax", name: "Semax", before: "Unapproved", tally: "8–5, 1 abstain" },
+];
+
+function VoteTable() {
+  return (
+    <figure className="my-2 overflow-x-auto rounded-2xl border border-ink/10 bg-surface p-4">
+      <table className="w-full min-w-[32rem] text-left text-[14px] leading-6">
+        <thead className="font-mono text-[11px] uppercase tracking-wide text-ink/45">
+          <tr>
+            <th scope="col" className="pb-3 pr-4 font-medium">Molecule</th>
+            <th scope="col" className="pb-3 pr-4 font-medium">Status before</th>
+            <th scope="col" className="pb-3 pr-4 font-medium">Committee vote</th>
+            <th scope="col" className="pb-3 pr-4 font-medium">FDA staff</th>
+            <th scope="col" className="pb-3 font-medium">Status today</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-ink/[0.06]">
+          {VOTES.map((v) => (
+            <tr key={v.slug}>
+              <td className="py-2.5 pr-4 font-semibold text-ink">
+                <Link href={`/hormones/${v.slug}`} className="hover:text-accent">{v.name}</Link>
+              </td>
+              <td className="py-2.5 pr-4 text-ink/70">{v.before}</td>
+              <td className="py-2.5 pr-4 font-mono text-[13px] text-accent-teal">Recommend · {v.tally}</td>
+              <td className="py-2.5 pr-4 text-accent-amber">Opposed</td>
+              <td className="py-2.5 text-ink/70">{v.before}</td>
+            </tr>
+          ))}
+          <tr>
+            <td className="py-2.5 pr-4 font-semibold text-ink/50">Emideltide</td>
+            <td className="py-2.5 pr-4 text-ink/50">Not categorised</td>
+            <td className="py-2.5 pr-4 font-mono text-[13px] text-ink/50">Reject · 7–6, 1 abstain</td>
+            <td className="py-2.5 pr-4 text-accent-amber">Opposed</td>
+            <td className="py-2.5 text-ink/50">Not categorised</td>
+          </tr>
+        </tbody>
+      </table>
+      <figcaption className="mt-3 text-center text-xs text-ink/40">
+        Pharmacy Compounding Advisory Committee, 23&ndash;24 July 2026; tallies from the
+        webcast as recorded by{" "}
+        <a
+          href="https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+          className={LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          McDermott Will &amp; Emery
+        </a>
+        , as FDA had not posted summary minutes at review. The last column equals the
+        second because the vote is advisory; it stays that way until rulemaking ends.
       </figcaption>
     </figure>
   );

@@ -242,10 +242,10 @@ export const INSIGHTS: Insight[] = [
   {
     slug: "what-you-can-actually-get",
     title: "Cataloged vs. reachable",
-    dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. Why what's reachable is itself information, and how a reference can publish it as data without becoming a store.",
+    dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. In July 2026 it moved in public: an FDA advisory committee voted, over its own scientists' objections, to recommend six research peptides for pharmacy compounding — and changed nothing yet. Why what's reachable is itself information, what a vote does and doesn't do to it, and how a reference can publish it as data without becoming a store.",
     family: "incretins-metabolic",
-    readingMinutes: 7,
-    reviewed: "August 2026",
+    readingMinutes: 9,
+    reviewed: "October 2026",
   },
   {
     slug: "peptide-half-life-engineering",
