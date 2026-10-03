@@ -93,7 +93,8 @@ const FDA_503A =
 
 // 23–24 July 2026 Pharmacy Compounding Advisory Committee: six nominated
 // peptides were recommended for the 503A list against the advice of FDA
-// review staff. The vote is advisory; nothing changes until the agency
+// review staff. Tallies are from the webcast as recorded by McDermott Will &
+// Emery and Luma Lex; FDA had not posted summary minutes as of October 2026. The vote is advisory; nothing changes until the agency
 // completes notice-and-comment rulemaking, so every status below still
 // reflects the pre-vote position.
 const PCAC_2026 = (tally: string) =>
@@ -400,7 +401,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Neuro & longevity peptides ──
   epitalon: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. ${PCAC_2026("by a narrow margin")}`,
+    basis: `${FDA_503A}, September 2023. ${PCAC_2026("7–4 with one abstention")}`,
   },
   selank: {
     status: "unapproved",
@@ -424,7 +425,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   semax: {
     status: "unapproved",
-    basis: `Approved as a nootropic in Russia; no FDA approval or US trials. ${PCAC_2026("by a narrow margin")}`,
+    basis: `Approved as a nootropic in Russia; no FDA approval or US trials. ${PCAC_2026("8–5 with one abstention")}`,
   },
   "ara-290": {
     status: "investigational",

@@ -359,8 +359,8 @@ const VOTES: { slug: string; name: string; before: string; tally: string }[] = [
   { slug: "kpv", name: "KPV", before: "Category 2", tally: "8–6, 1 abstain" },
   { slug: "tb-500", name: "TB-500", before: "Unapproved", tally: "8–6, 1 abstain" },
   { slug: "mots-c", name: "MOTS-c", before: "Category 2", tally: "7–5, 2 abstain" },
-  { slug: "epitalon", name: "Epitalon", before: "Category 2", tally: "narrow" },
-  { slug: "semax", name: "Semax", before: "Unapproved", tally: "narrow" },
+  { slug: "epitalon", name: "Epitalon", before: "Category 2", tally: "7–4, 1 abstain" },
+  { slug: "semax", name: "Semax", before: "Unapproved", tally: "8–5, 1 abstain" },
 ];
 
 function VoteTable() {
@@ -398,9 +398,18 @@ function VoteTable() {
         </tbody>
       </table>
       <figcaption className="mt-3 text-center text-xs text-ink/40">
-        Pharmacy Compounding Advisory Committee, 23&ndash;24 July 2026. The last column
-        equals the second because the vote is advisory; it stays that way until rulemaking
-        ends.
+        Pharmacy Compounding Advisory Committee, 23&ndash;24 July 2026; tallies from the
+        webcast as recorded by{" "}
+        <a
+          href="https://www.mcdermottlaw.com/insights/bulk-list-bound-pcac-backs-majority-of-peptides-in-two-day-public-meeting/"
+          className={LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          McDermott Will &amp; Emery
+        </a>
+        , as FDA had not posted summary minutes at review. The last column equals the
+        second because the vote is advisory; it stays that way until rulemaking ends.
       </figcaption>
     </figure>
   );
