@@ -49,7 +49,7 @@ export const metadata: Metadata = {
 function seedFromParams(sp: Record<string, string | string[] | undefined>): PlannerInit {
   const str = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
   const g = str(sp.g);
-  const goal = g && (g === "custom" || GOALS.some((x) => x.id === g)) ? g : "injury";
+  const gValid = g && (g === "custom" || GOALS.some((x) => x.id === g)) ? g : null;
 
   const wRaw = parseInt(str(sp.w) ?? "", 10);
   const weeks = Number.isFinite(wRaw) ? Math.min(WEEKS_MAX, Math.max(WEEKS_MIN, wRaw)) : WEEKS_DEFAULT;
@@ -57,14 +57,18 @@ function seedFromParams(sp: Record<string, string | string[] | undefined>): Plan
   const l = str(sp.l);
   const level: Level = (LEVELS as readonly string[]).includes(l ?? "") ? (l as Level) : "beginner";
 
+  // An explicit peptide list (p) is a hand-edited stack: it claims no named goal
+  // unless the link also carried a valid g, so a ?p=-only link doesn't light up
+  // the default goal pill. Without p, seed the chosen goal's stack (default injury).
   const pRaw = str(sp.p);
+  let goal: string;
   let active: string[];
   if (pRaw != null) {
     active = pRaw.split(",").map((s) => s.trim()).filter((id) => PEPTIDES[id]);
-  } else if (goal !== "custom") {
-    active = GOALS.find((x) => x.id === goal)?.stack ?? [];
+    goal = gValid ?? "custom";
   } else {
-    active = [];
+    goal = gValid ?? "injury";
+    active = goal === "custom" ? [] : GOALS.find((x) => x.id === goal)?.stack ?? [];
   }
   active = Array.from(new Set(active)).slice(0, MAX_PEPTIDES);
 
