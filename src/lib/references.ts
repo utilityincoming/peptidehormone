@@ -63,6 +63,11 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "34798060", title: "Once-weekly cagrilintide for weight management in people with overweight and obesity: a multicentre, randomised, double-blind, placebo-controlled and active-controlled, dose-finding phase 2 trial", source: "Lancet (London, England)", year: "2021" },
     { pmid: "40544433", title: "Coadministered Cagrilintide and Semaglutide in Adults with Overweight or Obesity", source: "The New England journal of medicine", year: "2025" },
   ],
+  eloralintide: [
+    { pmid: "41207310", title: "Eloralintide, a selective amylin receptor agonist for the treatment of obesity: a 48-week phase 2, multicentre, double-blind, randomised, placebo-controlled trial", source: "Lancet (London, England)", year: "2025" },
+    { pmid: "41109426", title: "Eloralintide (LY3841136), a novel amylin receptor agonist for the treatment of obesity: From discovery to clinical proof of concept", source: "Molecular metabolism", year: "2025" },
+    { pmid: "41559929", title: "Eloralintide, a selective, long-acting amylin receptor agonist for treatment of obesity: Phase 1 proof of concept", source: "Diabetes, obesity & metabolism", year: "2026" },
+  ],
   amycretin: [
     { pmid: "40550229", title: "Safety, tolerability, pharmacokinetics, and pharmacodynamics of the first-in-class GLP-1 and amylin receptor agonist, amycretin: a first-in-human, phase 1, double-blind, randomised, placebo-controlled trial", source: "Lancet (London, England)", year: "2025" },
     { pmid: "40550231", title: "Amycretin, a novel, unimolecular GLP-1 and amylin receptor agonist administered subcutaneously: results from a phase 1b/2a randomised controlled study", source: "Lancet (London, England)", year: "2025" },

@@ -44,6 +44,7 @@ export const IDENTIFIERS: Record<string, ExternalIds> = {
   "retatrutide": { wikipedia: "Retatrutide", wikidata: "Q120468350", chembl: "CHEMBL5095485", cas: "2381089-83-2" },
   "pramlintide": { wikipedia: "Pramlintide", wikidata: "Q2062094", pubchem: "70691388", drugbank: "DB01278", chebi: "135922", chembl: "CHEMBL2103758", cas: "151126-32-8" },
   "cagrilintide": { wikipedia: "Cagrilintide", wikidata: "Q123428019", pubchem: "171397054", cas: "1415456-99-3" },
+  "eloralintide": { wikipedia: "Eloralintide", wikidata: "Q141202873", pubchem: "175663130" },
   "amycretin": { wikipedia: "Amycretin", wikidata: "Q124767680" },
   "maridebart-cafraglutide": { wikipedia: "Maridebart cafraglutide", wikidata: "Q123448921", cas: "2760218-55-9" },
   "growth-hormone": { wikipedia: "Growth hormone", wikidata: "Q29956617", pubchem: "170907453", chebi: "37845", cas: "9002-72-6" },

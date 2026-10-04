@@ -30,6 +30,7 @@ const EXTRA_PAIRS: [string, string][] = [
   ["tesamorelin", "ipamorelin"],
   ["bpc-157", "tb-500"],
   ["semaglutide", "cagrilintide"],
+  ["eloralintide", "tirzepatide"],
 ];
 
 function undirectedKey(a: string, b: string): string {
