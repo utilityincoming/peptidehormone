@@ -459,6 +459,39 @@ const BASE: Hormone[] = [
     halfLifeMin: 10080,
   },
   {
+    slug: "eloralintide",
+    name: "Eloralintide",
+    family: "incretins-metabolic",
+    type: "analog",
+    evidence: "Investigational",
+    parent: "amylin",
+    summary: "A selective, long-acting amylin agonist that reaches GLP-1-class weight loss without touching the GLP-1 receptor.",
+    class: "Selective long-acting amylin analog (acylated 37 aa peptide)",
+    source: "Synthetic; engineered amylin analog (Eli Lilly, LY3841136)",
+    receptor: "Amylin receptors (calcitonin receptor + RAMP), AMY1-selective",
+    mechanism:
+      "Eloralintide is a 37-residue amylin analog engineered for selectivity at the amylin receptor over the bare calcitonin receptor, stabilised against aggregation, and carrying a C20 fatty-diacid chain that binds albumin for a roughly two-week half-life. At the receptor it reproduces amylin's biology — slowed gastric emptying, suppressed post-meal glucagon, central satiety — without any GLP-1 receptor activity. It is the cleanest test yet of how far the amylin axis can go on its own, and is also being paired with tirzepatide. It is investigational.",
+    facts: [
+      "Receptor-selective by design: the earlier long-acting amylin analog cagrilintide also activates the calcitonin receptor; eloralintide was built to spare it.",
+      "In the 48-week phase 2 obesity trial, weekly doses from 1 to 9 mg cut body weight by about 9.5% to 20.1% versus 0.4% on placebo — a GLP-1-class result from a non-incretin pathway.",
+      "Gastrointestinal side effects were mostly mild to moderate; the trial had no GLP-1 comparator arm, so the tolerability edge the amylin field hopes for is suggested, not yet shown head-to-head.",
+      "Paired with tirzepatide as the combination called EloraTZP: in a 48-week phase 2 trial in obesity with type 2 diabetes, the top dose reached about 23.3% weight loss versus 14.8% on tirzepatide 15 mg alone.",
+      "Investigational — phase 3 trials are under way; not approved.",
+    ],
+    narrative: [
+      "Cagrilintide proved that the amylin axis could be stretched to a weekly clock. Eloralintide asks a sharper question: what does the amylin signal do when it is played cleanly, on its own, with nothing else in the syringe? Native amylin signals through a receptor it borrows — the calcitonin receptor dressed in a RAMP accessory protein — and most amylin analogs, cagrilintide included, also activate the undressed calcitonin receptor. Eloralintide was engineered to prefer the dressed form. That selectivity is the molecular point of the drug, and it is why its results are read as a verdict on amylin specifically rather than on a blend.",
+      "The engineering is the familiar long-acting playbook applied to a hormone that resists it. Thirty-seven residues, the fibril-forming tendency stabilised out, and a C20 fatty-diacid chain on a lysine that latches the peptide onto albumin, buying a half-life of roughly two weeks from a hormone that natively lasts minutes. The phase 2 readout was what made the molecule a headline: at 48 weeks, weekly doses from 1 to 9 milligrams took off between about a tenth and a fifth of body weight, against essentially nothing on placebo. That upper figure sits where semaglutide and tirzepatide sit — without the drug ever touching an incretin receptor.",
+      "What comes with it is the thing the whole amylin field is betting on: gut side effects that were mostly mild to moderate, with no GLP-1 arm in the trial to prove the edge directly. The next experiment is the obvious one. Paired with tirzepatide as EloraTZP, in people with obesity and type 2 diabetes, the combination reached about 23% weight loss at 48 weeks where tirzepatide alone reached about 15% — two satiety signals from two different receptor families, stacked. Phase 3 trials of eloralintide alone and of a co-formulated pair are where that arithmetic gets tested at scale. It is investigational, and the long-term safety record is still being written.",
+    ],
+    questions: [
+      "Why does eloralintide's selectivity for the amylin receptor over the calcitonin receptor matter?",
+      "What did the 48-week phase 2 trial of eloralintide show for weight loss and tolerability?",
+      "How does eloralintide combined with tirzepatide (EloraTZP) compare with tirzepatide alone?",
+    ],
+    halfLife: "~13–15 days (310–366 h)",
+    halfLifeMin: 20160,
+  },
+  {
     slug: "amycretin",
     name: "Amycretin",
     family: "incretins-metabolic",
@@ -2040,6 +2073,8 @@ const THREADS: Record<string, string> = {
     "What disqualifies a hormone as a drug is often a single residue. Correct it, and a molecule the body already makes becomes prescribable.",
   cagrilintide:
     "The amylin axis rebuilt on a weekly clock, on the wager that the incretins were never the only lever worth pulling.",
+  eloralintide:
+    "The amylin note played alone and in tune — selective at its receptor, and the first proof that a non-incretin signal can carry GLP-1-class weight loss by itself.",
   amycretin:
     "Two hormones written into one chain rather than mixed in one syringe — the difference between a combination and a molecule.",
   "maridebart-cafraglutide":

@@ -161,6 +161,10 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
     status: "investigational",
     basis: "Phase 3 REDEFINE program with semaglutide (CagriSema, Novo Nordisk); not approved alone.",
   },
+  eloralintide: {
+    status: "investigational",
+    basis: "Phase 3 program (Eli Lilly) in obesity, alone and co-formulated with tirzepatide as EloraTZP; no approval.",
+  },
   amycretin: {
     status: "investigational",
     basis: "Phase 2–3 trials (Novo Nordisk) in obesity; no approval.",
