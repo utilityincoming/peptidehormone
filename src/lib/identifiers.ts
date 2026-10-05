@@ -42,6 +42,7 @@ export const IDENTIFIERS: Record<string, ExternalIds> = {
   "liraglutide": { wikipedia: "Liraglutide", wikidata: "Q2526479", pubchem: "16134956", drugbank: "DB06655", chebi: "71193", chembl: "CHEMBL1201866", cas: "204656-20-2" },
   "exenatide": { wikipedia: "Exenatide", wikidata: "Q417762", pubchem: "45588096", drugbank: "DB01276", chebi: "64073", chembl: "CHEMBL414357", cas: "141758-74-9" },
   "retatrutide": { wikipedia: "Retatrutide", wikidata: "Q120468350", chembl: "CHEMBL5095485", cas: "2381089-83-2" },
+  "brenipatide": { wikipedia: "Brenipatide", wikidata: "Q137841098", cas: "2408921-49-1" },
   "pramlintide": { wikipedia: "Pramlintide", wikidata: "Q2062094", pubchem: "70691388", drugbank: "DB01278", chebi: "135922", chembl: "CHEMBL2103758", cas: "151126-32-8" },
   "cagrilintide": { wikipedia: "Cagrilintide", wikidata: "Q123428019", pubchem: "171397054", cas: "1415456-99-3" },
   "eloralintide": { wikipedia: "Eloralintide", wikidata: "Q141202873", pubchem: "175663130" },
