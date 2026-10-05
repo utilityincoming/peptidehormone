@@ -398,7 +398,7 @@ function BrenipatideRewardArm(): ReactNode {
           Brenipatide
         </text>
         <text x={pepX} y={pepY + 14} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">
-          once-monthly
+          long-acting
         </text>
       </g>
 
