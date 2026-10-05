@@ -488,6 +488,7 @@ const BASE: Hormone[] = [
       "What did the 48-week phase 2 trial of eloralintide show for weight loss and tolerability?",
       "How does eloralintide combined with tirzepatide (EloraTZP) compare with tirzepatide alone?",
     ],
+    mw: 4526,
     halfLife: "~13–15 days (310–366 h)",
     halfLifeMin: 20160,
   },
