@@ -379,13 +379,14 @@ const BASE: Hormone[] = [
     mechanism:
       "Brenipatide engages the same two receptors as tirzepatide — GIP and GLP-1 — from a single acylated peptide, but is engineered for a far longer duration, targeting once-monthly dosing. Its development is unusual for the class: the lead RENEW program studies neuropsychiatric and addiction indications, betting that incretin co-agonism modulates the dopamine reward pathways behind craving and mood, not only appetite. It is investigational.",
     facts: [
-      "A dual GIP/GLP-1 agonist — the same receptor pair as tirzepatide — but tuned for once-monthly rather than weekly dosing.",
-      "Its lead indications are neuropsychiatric: the RENEW program studies alcohol use disorder and bipolar disorder, with further trials in major depression, smoking cessation, and obesity.",
+      "A dual GIP/GLP-1 agonist — the same receptor pair as tirzepatide — engineered for a far longer dosing interval than the weekly incretins.",
+      "Phase 3 first in psychiatry: the RENEW program runs two 1,100-participant trials in alcohol use disorder (RENEW-ALC) and two 1,000-participant trials of adjunctive treatment in major depressive disorder (RENEW-MDD), each 56 weeks, reading out from 2028.",
+      "Phase 2 trials span bipolar disorder, schizophrenia, opioid use disorder, smoking relapse, irritable bowel syndrome, asthma, and COPD; obesity, the class's home ground, is still at Phase 1.",
       "The wager is that GIP/GLP-1 signalling reaches the brain's dopamine reward circuitry, extending the class from metabolism into addiction and mood.",
       "Developed by Eli Lilly and investigational — not approved for any use.",
     ],
     narrative: [
-      "For a decade the incretin story was a metabolic one: hold blood sugar, quiet appetite, lower weight. Brenipatide shares the machinery — two receptors, GIP and GLP-1, read by one engineered peptide, armoured to outlast the enzymes that clear the native hormones — yet it is pointed somewhere else. Lilly is leading its development not with obesity but with alcohol use disorder and bipolar disorder, chasing the growing evidence that these gut signals also speak to the brain's reward system.",
+      "For a decade the incretin story was a metabolic one: hold blood sugar, quiet appetite, lower weight. Brenipatide shares the machinery — two receptors, GIP and GLP-1, read by one engineered peptide, armoured to outlast the enzymes that clear the native hormones — yet it is pointed somewhere else. Lilly is leading its development not with obesity but with alcohol use disorder and major depression — the two Phase 3 arms of the RENEW program — with bipolar disorder, schizophrenia, opioid use disorder and smoking relapse following at Phase 2, chasing the growing evidence that these gut signals also speak to the brain's reward system.",
       "The design choices follow the ambition. A drug meant to blunt craving over months, not meals, benefits from the longest possible reach; brenipatide is built toward once-monthly dosing, a cadence that would make it among the most durable peptides in the class. Whether co-agonism that reshapes metabolism can also quiet the dopamine loops behind addiction and mood is the open question the RENEW trials exist to settle — a bet that the incretin sentence, once written for the pancreas, can be read by the brain.",
     ],
     questions: [
