@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-note-without-the-incretin",
+    hormones: ["eloralintide", "amylin", "cagrilintide", "tirzepatide", "pramlintide"],
+    title: "The note without the incretin",
+    dek: "In December 2025 The Lancet published a 48-week trial in which a once-weekly injection took off a mean 20% of body weight, and the GLP-1 receptor was nowhere in the molecule. Eloralintide is Lilly\u2019s amylin analog: 37 residues on the hormone insulin is co-secreted with, the native disulfide swapped for a methylene-thioacetal ring that cannot be opened, backbone methyls the ribosome cannot make, and a C20 fatty diacid on an engineered lysine that binds albumin for a fortnight. It was tuned to prefer the amylin-1 receptor twelve-fold over the bare calcitonin receptor it is built from, which is the whole argument for calling it gentler, and the only evidence for that is a rat taste-aversion assay. We read the structure off the public registry record, walk the three monotherapy trials and the EloraTZP combination that reached 23.3% in type 2 diabetes in September 2026, and separate what selectivity has proved from what a press release with a 27% discontinuation rate has not. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 14,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-trial-that-hasnt-reported",
     hormones: ["bpc-157", "tb-500"],
     title: "The trial that hasn't reported",

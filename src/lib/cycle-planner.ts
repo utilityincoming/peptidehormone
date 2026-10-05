@@ -160,6 +160,12 @@ export const PEPTIDES: Record<string, Peptide> = {
     note: "Long-acting amylin analog trialed for weight management, often with semaglutide.",
     vialMg: 5, vialUsd: 130,
   },
+  eloralintide: {
+    id: "eloralintide", name: "Eloralintide", doseLow: 1000, doseHigh: 9000, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.teal,
+    note: "Selective amylin agonist in phase 3; 48-week phase 2 ran 1–9 mg weekly, titrated.",
+    vialMg: 10, vialUsd: 180, catalogSlug: "eloralintide",
+  },
   "pt-141": {
     id: "pt-141", name: "PT-141 (Bremelanotide)", doseLow: 1000, doseHigh: 2000, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.rose,
@@ -271,6 +277,7 @@ const SCHEDULE: Record<string, Partial<Peptide>> = {
   "melanotan-2": { timing: "PM", withFood: "Any" },
   retatrutide: { timing: "Any day", withFood: "Any" },
   cagrilintide: { timing: "Any day", withFood: "Any" },
+  eloralintide: { timing: "Any day", withFood: "Any" },
   "pt-141": { timing: "As needed (~45 min prior)", withFood: "Empty stomach" },
   "kisspeptin-10": { timing: "AM", withFood: "Any" },
   sermorelin: { timing: "Pre-sleep", withFood: "Empty stomach" },
