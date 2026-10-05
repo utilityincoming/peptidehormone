@@ -393,7 +393,7 @@ const BASE: Hormone[] = [
       "How does brenipatide's dual GIP/GLP-1 agonism differ from tirzepatide's beyond dosing interval?",
       "What is the rationale for studying an incretin agonist in addiction and mood disorders?",
     ],
-    halfLife: "engineered for once-monthly dosing",
+    halfLife: "engineered for an extended dosing interval (not yet disclosed)",
     mw: 4900,
     mwApprox: true,
   },
