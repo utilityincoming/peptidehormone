@@ -195,7 +195,7 @@ export default function Article() {
               <P>
                 The proof is in what already ships nasally. <Em>Desmopressin</Em> (a
                 small vasopressin analog) and the GnRH analogs{" "}
-                <Link href="/families/reproductive" className={LINK}>nafarelin and buserelin</Link>{" "}
+                <Link href="/families/reproductive-gonadal" className={LINK}>nafarelin and buserelin</Link>{" "}
                 are routine nasal sprays. Salmon{" "}
                 <Link href="/hormones/calcitonin" className={LINK}>calcitonin</Link> is
                 delivered nasally despite being larger than the ideal cutoff — it gets
