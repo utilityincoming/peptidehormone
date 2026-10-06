@@ -10,8 +10,8 @@ import type { CompoundTier } from "@/lib/evidence/compound";
 // This is the report-not-prescribe line made visible: the figure is reported as
 // a convention with its evidence tier attached, never as a recommendation. The
 // single source of truth is cycle-planner.ts — the range shown here is the same
-// number the dosing tool and cycle planner already carry, so the three surfaces
-// can never disagree.
+// number the cycle planner already carries, so the two surfaces
+// can never disagree. The link opens the planner seeded with this one molecule.
 //
 // The planner grades its reference peptides on a four-step ladder (clinical →
 // anecdotal); map to the shared compound-tier palette so one colour system holds
@@ -72,7 +72,7 @@ export function DocumentedRange({ id }: { id: string }) {
           {EVIDENCE_LABEL[p.evidence]}
         </span>
         <Link
-          href={`/tools/dosing?q=${encodeURIComponent(p.name)}`}
+          href={`/tools/cycle-planner?p=${encodeURIComponent(p.id)}`}
           className="text-xs text-accent-blue underline underline-offset-2 hover:text-ink"
         >
           Full dosing reference →
