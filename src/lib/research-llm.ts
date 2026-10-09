@@ -39,10 +39,9 @@ export interface ModelCallConfig {
 
 const ANTHROPIC_MODEL = "claude-opus-4-8";
 const VENICE_URL = "https://api.venice.ai/api/v1/chat/completions";
-// Default to a Venice trait alias rather than a concrete id so the mapping
-// tracks Venice's current catalog instead of pinning a model that may be
-// retired. See GET /models/traits.
-const VENICE_MODEL = process.env.VENICE_MODEL?.trim() || "default_reasoning";
+// Pin Kimi as the default Venice model. A concrete id (not a trait alias) so
+// the agent deterministically runs this model; override via VENICE_MODEL.
+const VENICE_MODEL = process.env.VENICE_MODEL?.trim() || "kimi-k3";
 
 // ── Anthropic provider ───────────────────────────────────────────────────────
 

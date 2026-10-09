@@ -49,7 +49,7 @@ site's educational, no-dosing system prompt stays authoritative on both.
 | Variable | Purpose |
 | --- | --- |
 | `VENICE_API_KEY` | Primary research-agent provider (OpenAI-compatible). When set, used first. |
-| `VENICE_MODEL` | Venice model id or trait alias (default `default_reasoning`). |
+| `VENICE_MODEL` | Venice model id or trait alias (default `kimi-k3`). |
 | `ANTHROPIC_API_KEY` | Failover provider; used when Venice is unset or fails. One of this or `VENICE_API_KEY` is required for the agent to run. |
 | `PASS_SECRET` | HMAC key for the quota and pass cookies. Setting it turns metering on. |
 | `PASS_FREE_DAILY` | Free questions per UTC day per device (default `5`). |
