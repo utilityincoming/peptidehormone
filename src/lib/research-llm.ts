@@ -39,7 +39,10 @@ export interface ModelCallConfig {
 
 const ANTHROPIC_MODEL = "claude-opus-4-8";
 const VENICE_URL = "https://api.venice.ai/api/v1/chat/completions";
-const VENICE_MODEL = process.env.VENICE_MODEL?.trim() || "llama-3.3-70b";
+// Default to a Venice trait alias rather than a concrete id so the mapping
+// tracks Venice's current catalog instead of pinning a model that may be
+// retired. See GET /models/traits.
+const VENICE_MODEL = process.env.VENICE_MODEL?.trim() || "default_reasoning";
 
 // ── Anthropic provider ───────────────────────────────────────────────────────
 
