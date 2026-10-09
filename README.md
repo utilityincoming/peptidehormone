@@ -43,13 +43,27 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 The research agent calls **Venice first, then fails over to Anthropic** on any
 upstream failure (misconfiguration, non-2xx, timeout, malformed or empty
 completion). Configuring at least one provider is required; configuring both
-gives primary + failover. Venice's own default system prompt is disabled so the
-site's educational, no-dosing system prompt stays authoritative on both.
+gives primary + failover. A tool-capable research model gathers sources; a separate
+text-only answer stage uses Venice's `most_uncensored` trait (a rotating alias,
+not a medical-quality rating). If that model fails, the answer stage retries the
+research model before Anthropic. The same evidence and harm-reduction policy is
+sent to every model; Venice's additional default system prompt is disabled.
+
+Published dosing information is allowed when the retrieved source text actually
+supports it. Responses must distinguish human trials, approved labels, preclinical
+research, and anecdotes; cite each numeric regimen; and state missing evidence.
+Personalized prescriptions and invented research-only self-injection protocols
+remain out of scope. This is prompt-level guidance, not a guarantee of accuracy:
+readers must verify the cited sources. Trial records/abstracts may omit dose details;
+the agent must say so rather than guess. The current tools do not retrieve current
+approved prescribing labels, so label-specific approval or dosing claims cannot
+be verified through this agent's sources. An extra answer call adds latency and cost.
 
 | Variable | Purpose |
 | --- | --- |
 | `VENICE_API_KEY` | Primary research-agent provider (OpenAI-compatible). When set, used first. |
-| `VENICE_MODEL` | Venice model id or trait alias (default `kimi-k3`). |
+| `VENICE_MODEL` | Tool-capable Venice research model (default `kimi-k3`). |
+| `VENICE_ANSWER_MODEL` | Venice final-answer model id or trait alias (default `most_uncensored`). Server-side only; independent of `VENICE_MODEL`. |
 | `ANTHROPIC_API_KEY` | Failover provider; used when Venice is unset or fails. One of this or `VENICE_API_KEY` is required for the agent to run. |
 | `PASS_SECRET` | HMAC key for the quota and pass cookies. Setting it turns metering on. |
 | `PASS_FREE_DAILY` | Free questions per UTC day per device (default `5`). |

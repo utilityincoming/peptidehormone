@@ -11,7 +11,7 @@
 // Guardrails are intentionally preserved across providers: the site's system
 // prompt is sent verbatim to both, and Venice's own default system prompt is
 // disabled (`include_venice_system_prompt: false`) so the educational,
-// no-dosing positioning in route.ts stays authoritative.
+// evidence-literacy positioning in route.ts stays authoritative.
 
 import type { AgentTool } from "@/lib/agent-tools";
 
@@ -51,6 +51,7 @@ async function callAnthropic(
   cfg: ModelCallConfig,
 ): Promise<ModelResult> {
   let res: Response;
+  let text: string;
   try {
     res = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -72,12 +73,12 @@ async function callAnthropic(
       }),
       signal: AbortSignal.timeout(cfg.timeoutMs),
     });
+    text = await res.text();
   } catch (err) {
     const msg = err instanceof Error ? err.message : "network error";
     return { ok: false, status: 0, errorText: msg, provider: "anthropic" };
   }
 
-  const text = await res.text();
   if (!res.ok) return { ok: false, status: res.status, errorText: text, provider: "anthropic" };
   try {
     return { ok: true, status: res.status, data: JSON.parse(text), provider: "anthropic" };
@@ -196,8 +197,10 @@ async function callVenice(
   apiKey: string,
   messages: Msg[],
   cfg: ModelCallConfig,
+  model: string,
 ): Promise<ModelResult> {
   let res: Response;
+  let text: string;
   try {
     res = await fetch(VENICE_URL, {
       method: "POST",
@@ -206,7 +209,7 @@ async function callVenice(
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: VENICE_MODEL,
+        model,
         max_tokens: cfg.maxTokens,
         messages: toOpenAIMessages(cfg.system, messages),
         tools: toOpenAITools(cfg.tools),
@@ -216,12 +219,12 @@ async function callVenice(
       }),
       signal: AbortSignal.timeout(cfg.timeoutMs),
     });
+    text = await res.text();
   } catch (err) {
     const msg = err instanceof Error ? err.message : "network error";
     return { ok: false, status: 0, errorText: msg, provider: "venice" };
   }
 
-  const text = await res.text();
   if (!res.ok) return { ok: false, status: res.status, errorText: text, provider: "venice" };
 
   let parsed: {
@@ -236,6 +239,10 @@ async function callVenice(
   try {
     parsed = JSON.parse(text);
   } catch {
+    return { ok: false, status: 502, errorText: "Malformed Venice response", provider: "venice" };
+  }
+
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
     return { ok: false, status: 502, errorText: "Malformed Venice response", provider: "venice" };
   }
 
@@ -285,7 +292,16 @@ export async function callResearchModel(messages: Msg[], cfg: ModelCallConfig): 
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
 
   const providers: (() => Promise<ModelResult>)[] = [];
-  if (veniceKey) providers.push(() => callVenice(veniceKey, messages, cfg));
+  if (veniceKey) {
+    const model = cfg.forceText
+      ? process.env.VENICE_ANSWER_MODEL?.trim() || "most_uncensored"
+      : VENICE_MODEL;
+    providers.push(() => callVenice(veniceKey, messages, cfg, model));
+    // Keep the agent usable if the rotating answer trait is unavailable.
+    if (cfg.forceText && model !== VENICE_MODEL) {
+      providers.push(() => callVenice(veniceKey, messages, cfg, VENICE_MODEL));
+    }
+  }
   if (anthropicKey) providers.push(() => callAnthropic(anthropicKey, messages, cfg));
 
   let last: ModelResult = {
