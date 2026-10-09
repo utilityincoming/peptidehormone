@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
 import { AGENT_TOOLS, executeAgentTool } from "@/lib/agent-tools";
+import { callResearchModel, researchModelConfigured, type Msg } from "@/lib/research-llm";
 import { FAMILIES } from "@/lib/families";
 import {
   PASS_COOKIE,
@@ -17,7 +18,8 @@ import {
 } from "@/lib/pass";
 
 // ── Hardening knobs ──────────────────────────────────────────────────────────
-const MODEL = "claude-opus-4-8";
+// The model provider (Venice-primary, Anthropic-failover) lives in
+// @/lib/research-llm; these knobs are passed into every call there.
 const EFFORT = process.env.AGENT_EFFORT ?? "medium"; // low | medium | high | max
 const MAX_TOKENS = 8000; // non-streaming; well under SDK HTTP timeout
 const MAX_TOOL_ROUNDS = 5; // cap the agentic loop
@@ -66,57 +68,15 @@ RESPONSE GUIDELINES:
 
 ${INTERNAL_PAGES}`;
 
-type Msg = { role: "user" | "assistant"; content: unknown };
-
-interface AnthResult {
-  ok: boolean;
-  status: number;
-  data?: { content: unknown[]; stop_reason?: string };
-  errorText?: string;
-}
-
-interface CallOpts {
-  /** Forbid tool calls so the model must answer in text (final round). */
-  forceText?: boolean;
-}
-
-async function callModel(apiKey: string, messages: Msg[], opts: CallOpts = {}): Promise<AnthResult> {
-  let res: Response;
-  try {
-    res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: MAX_TOKENS,
-        thinking: { type: "adaptive" },
-        output_config: { effort: EFFORT },
-        // Static system prompt sent as a cached block so reuse bills at ~0.1x.
-        system: [{ type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } }],
-        tools: AGENT_TOOLS,
-        ...(opts.forceText ? { tool_choice: { type: "none" } } : {}),
-        messages,
-      }),
-      // Abort a hung connection so it fails fast instead of stalling the function.
-      signal: AbortSignal.timeout(MODEL_TIMEOUT_MS),
-    });
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : "network error";
-    return { ok: false, status: 0, errorText: msg };
-  }
-
-  const text = await res.text();
-  if (!res.ok) return { ok: false, status: res.status, errorText: text };
-  try {
-    return { ok: true, status: res.status, data: JSON.parse(text) };
-  } catch {
-    return { ok: false, status: 502, errorText: "Malformed upstream response" };
-  }
-}
+// Shared config for every model call this route makes.
+const callConfig = {
+  system: SYSTEM_PROMPT,
+  tools: AGENT_TOOLS,
+  maxTokens: MAX_TOKENS,
+  effort: EFFORT,
+  timeoutMs: MODEL_TIMEOUT_MS,
+  debug: DEBUG,
+};
 
 function extractText(content: unknown[]): string {
   return content
@@ -155,10 +115,9 @@ function rateLimited(ip: string, limit = 12, windowMs = 60_000): boolean {
 }
 
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
+  if (!researchModelConfigured()) {
     return Response.json(
-      { error: "ANTHROPIC_API_KEY is not configured. Add it to .env.local." },
+      { error: "No model provider is configured. Set VENICE_API_KEY and/or ANTHROPIC_API_KEY in .env.local." },
       { status: 500 },
     );
   }
@@ -241,7 +200,7 @@ export async function POST(request: NextRequest) {
   let lastStop: string | undefined;
 
   for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
-    const result = await callModel(apiKey, messages);
+    const result = await callResearchModel(messages, callConfig);
 
     if (!result.ok || !result.data) {
       console.error(`[chat] upstream error ${result.status}: ${result.errorText?.slice(0, 500)}`);
@@ -279,7 +238,7 @@ export async function POST(request: NextRequest) {
   // If we exhausted the tool rounds mid-tool-use, give the model one final,
   // tool-free turn to compose an answer from the data it already gathered.
   if (!finalText && lastStop === "tool_use") {
-    const forced = await callModel(apiKey, messages, { forceText: true });
+    const forced = await callResearchModel(messages, { ...callConfig, forceText: true });
     if (forced.ok && forced.data) {
       lastStop = forced.data.stop_reason;
       finalText = extractText(forced.data.content);
