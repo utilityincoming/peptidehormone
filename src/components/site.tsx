@@ -86,6 +86,7 @@ export function SiteFooter() {
           <div>
             <p className="font-medium text-ink/40">Explore</p>
             <ul className="mt-3 space-y-2 text-ink/65">
+              <li><Link href="/research" className="hover:text-ink">Research agent</Link></li>
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
