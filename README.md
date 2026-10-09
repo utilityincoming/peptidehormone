@@ -37,12 +37,20 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Research Pass (metered research agent)
 
-`/research` bills the Anthropic API per question, so it can be metered. Metering is
+`/research` bills a model provider per question, so it can be metered. Metering is
 **off** unless `PASS_SECRET` is set; with it unset the agent behaves as before.
+
+The research agent calls **Venice first, then fails over to Anthropic** on any
+upstream failure (misconfiguration, non-2xx, timeout, malformed or empty
+completion). Configuring at least one provider is required; configuring both
+gives primary + failover. Venice's own default system prompt is disabled so the
+site's educational, no-dosing system prompt stays authoritative on both.
 
 | Variable | Purpose |
 | --- | --- |
-| `ANTHROPIC_API_KEY` | Required for the research agent at all. |
+| `VENICE_API_KEY` | Primary research-agent provider (OpenAI-compatible). When set, used first. |
+| `VENICE_MODEL` | Venice model id (default `llama-3.3-70b`). |
+| `ANTHROPIC_API_KEY` | Failover provider; used when Venice is unset or fails. One of this or `VENICE_API_KEY` is required for the agent to run. |
 | `PASS_SECRET` | HMAC key for the quota and pass cookies. Setting it turns metering on. |
 | `PASS_FREE_DAILY` | Free questions per UTC day per device (default `5`). |
 | `PASS_CODES` | Comma-separated access codes that unlock a pass for a year. |
