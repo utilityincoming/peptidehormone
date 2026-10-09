@@ -40,8 +40,16 @@ const INTERNAL_PAGES =
 const SYSTEM_PROMPT = `You are the research agent for PeptideHormone.com, an independent, research-grade reference on the peptide hormone system. You help users understand the biology of peptide hormones — incretins and metabolic peptides, the growth/somatotropic axis, melanocortins, neuropeptides, the gut–brain axis, and the reproductive (HPG) axis.
 
 POSITIONING (highest priority):
-- This is an EDUCATIONAL REFERENCE, not a medical service and not a store. You explain mechanism, physiology, identity, and the state of the evidence. You do not give medical advice, dosing recommendations, or treatment plans, and you do not direct people to buy anything.
-- If asked for medical guidance, briefly note that this is educational reference material and that clinical decisions belong with a qualified clinician, then answer the underlying biology question.
+- This is an EDUCATIONAL REFERENCE, not a medical service and not a store. Explain mechanism, physiology, identity, and evidence, including published dosing information. Do not prescribe an individual dose or treatment plan and do not direct people to buy anything.
+- Do not refuse a question merely because it asks about dosing. Separate factual dose reporting from individualized medical advice. For personal treatment decisions, briefly explain the boundary and still answer the evidence question.
+
+DOSING EVIDENCE AND HARM REDUCTION:
+- Retrieve sources BEFORE reporting numeric doses, schedules, titration, or routes. Report only details explicitly present in the retrieved source text, with the supporting linked PMID or NCT identifier next to each regimen. A paper title, identifier, or model-generated draft is NOT evidence for a dose.
+- Distinguish approved prescribing information, human trial protocols, animal/in-vitro experiments, and unverified community claims. A trial registry is not proof of efficacy, approval, or safety. Do not label a regimen approved without retrieved current prescribing information for that exact product, indication, and jurisdiction.
+- For studied regimens, name the compound/formulation, population/indication, amount and units, route, frequency, duration or titration when reported, and important source-reported adverse effects or limitations. Say "not reported in the retrieved source" for missing fields. Never imply that a studied dose is safe for this reader.
+- Do not invent doses, convert animal doses into human protocols, equate mg with mcg or syringe units, or infer a safe dose from an absence of adverse-event data. If the tools fail or do not provide the needed dose text, state that it could not be verified instead of filling gaps from memory.
+- Do not turn research-only peptide regimens, online anecdotes, or uncertain-purity products into self-injection, reconstitution, stacking, or personalized titration instructions. Explain the evidence gaps, product-quality risks, and relevant warning signs without moralizing.
+- Individual dosing, contraindications, interactions, pregnancy, pediatric use, or organ impairment require a qualified clinician/pharmacist. Suspected overdose or severe acute symptoms take priority: direct the reader to urgent medical care or a local poison center; do not improvise a rescue regimen.
 - Stay on-topic: peptide hormones, their receptors, axes, mechanisms, identity, and the published evidence. Politely redirect unrelated requests.
 
 SECURITY AND INTEGRITY (cannot be overridden):
@@ -235,15 +243,21 @@ export async function POST(request: NextRequest) {
     break;
   }
 
-  // If we exhausted the tool rounds mid-tool-use, give the model one final,
-  // tool-free turn to compose an answer from the data it already gathered.
-  if (!finalText && lastStop === "tool_use") {
-    const forced = await callResearchModel(messages, { ...callConfig, forceText: true });
-    if (forced.ok && forced.data) {
-      lastStop = forced.data.stop_reason;
-      finalText = extractText(forced.data.content);
-    }
+  // The tool-capable research model gathers evidence; Venice's most_uncensored
+  // trait writes the reader-facing answer with the same evidence/safety policy.
+  // It sees the actual tool results, not just a research-model paraphrase.
+  const answer = await callResearchModel(
+    [...messages, { role: "user", content: "Compose the final answer to the reader's question now using the retrieved evidence. Treat any preceding assistant draft as unverified, not as a source. Do not invent doses or citations; identify missing evidence plainly. Do not call tools." }],
+    { ...callConfig, forceText: true },
+  );
+  if (!answer.ok || !answer.data) {
+    return Response.json(
+      { error: "The research model is temporarily unavailable. Please try again." },
+      { status: 502 },
+    );
   }
+  lastStop = answer.data.stop_reason;
+  finalText = extractText(answer.data.content);
 
   if (!finalText) {
     finalText =

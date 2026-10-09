@@ -31,7 +31,7 @@ export const AGENT_TOOLS: AgentTool[] = [
   {
     name: "search_clinical_trials",
     description:
-      "Search ClinicalTrials.gov for registered human clinical trials by compound name or condition. Call this whenever the user asks about trial status, phase, or whether trials exist for a compound or indication, before stating any clinical-trial facts.",
+      "Search ClinicalTrials.gov for registered human clinical trials by compound name or condition, including arm/intervention descriptions and eligibility/population. Call this before stating clinical-trial facts or describing studied dosing, routes, schedules, or populations. Report numeric doses only when explicitly present in returned source text, with the NCT citation and study population. Registry protocols are not proof of efficacy or treatment recommendations; missing or truncated details must not be inferred.",
     input_schema: {
       type: "object",
       properties: {
@@ -46,7 +46,7 @@ export const AGENT_TOOLS: AgentTool[] = [
   {
     name: "search_pubmed",
     description:
-      "Search PubMed for published peer-reviewed literature. Call this when the user asks what published research or evidence exists for a compound or claim, or before asserting that specific studies were published.",
+      "Search PubMed for published literature with abstracts retrieved from matching Europe PMC PubMed records. Call this before asserting published evidence or describing studied dosing. Report numeric doses, routes, schedules, and populations only when explicitly present in returned source text, with the PMID citation; metadata alone cannot support dosing claims. Abstracts may retain source markup. Research regimens are not treatment recommendations. Missing, unavailable, or truncated abstracts are not evidence of no research, and missing details must not be inferred.",
     input_schema: {
       type: "object",
       properties: {
@@ -76,7 +76,51 @@ const TOOL_TIMEOUT_MS = 8000;
 const MAX_TOOL_RESULT_CHARS = 6000;
 
 function truncate(s: string, max = MAX_TOOL_RESULT_CHARS): string {
-  return s.length > max ? s.slice(0, max) + "\n…[truncated]" : s;
+  if (s.length <= max) return s;
+  let data: Record<string, unknown>;
+  try {
+    data = JSON.parse(s);
+  } catch {
+    return s.slice(0, max - 13) + "…[truncated]";
+  }
+  // Remove whole lower-ranked results before clipping evidence. Never slice
+  // serialized JSON: escaping and closing delimiters must remain intact.
+  data.truncated = true;
+  data.warning = "Partial evidence: records or text omitted. Consult the cited source for the complete regimen and population; do not extrapolate missing details.";
+  const resultKey = ["studies", "articles", "entries"].find((key) => Array.isArray(data[key]));
+  if (resultKey) {
+    const results = data[resultKey] as unknown[];
+    const originalCount = results.length;
+    data.omittedResults = 0;
+    while (results.length > 1 && JSON.stringify(data).length > max) {
+      results.pop();
+      data.count = results.length;
+      data.omittedResults = originalCount - results.length;
+    }
+  }
+  if (JSON.stringify(data).length <= max) return JSON.stringify(data);
+
+  function clip(value: unknown, textLimit: number, arrayLimit: number, key = ""): unknown {
+    if (typeof value === "string") {
+      // Citation identifiers/URLs must not be rewritten into broken references.
+      if (["url", "pmid", "nctId", "accession", "source", "warning"].includes(key) || value.length <= textLimit) return value;
+      const prefix = value.slice(0, textLimit);
+      // Prefer complete sentences, avoiding a cut in a decimal dose or unit.
+      const sentenceEnd = [...prefix.matchAll(/[.!?](?=\s)/g)].at(-1)?.index;
+      return prefix.slice(0, sentenceEnd === undefined ? (prefix.lastIndexOf(" ") > 0 ? prefix.lastIndexOf(" ") : 0) : sentenceEnd + 1) + " …[truncated]";
+    }
+    if (Array.isArray(value)) return value.slice(0, arrayLimit).map((item) => clip(item, textLimit, arrayLimit));
+    if (value && typeof value === "object") {
+      return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, clip(v, textLimit, arrayLimit, k)]));
+    }
+    return value;
+  }
+  for (const [textLimit, arrayLimit] of [[2000, 8], [1000, 4], [500, 2], [250, 1], [100, 1]]) {
+    const bounded = JSON.stringify(clip(data, textLimit, arrayLimit));
+    if (bounded.length <= max) return bounded;
+  }
+  // Defensive fallback for malformed upstream objects with excessive keys.
+  return JSON.stringify({ truncated: true, warning: "Upstream evidence too large to return safely. Narrow the search or consult the source directly." });
 }
 
 async function fetchJson(url: string): Promise<unknown> {
@@ -130,7 +174,7 @@ async function searchTrials(query: string): Promise<string> {
   );
   const raw = pick(data, "studies");
   const studies = Array.isArray(raw)
-    ? raw.map((s) => {
+    ? raw.slice(0, 5).map((s) => {
         const nctId = (pick(s, "protocolSection", "identificationModule", "nctId") as string) ?? null;
         return {
           nctId,
@@ -138,6 +182,12 @@ async function searchTrials(query: string): Promise<string> {
           status: pick(s, "protocolSection", "statusModule", "overallStatus") ?? null,
           phases: pick(s, "protocolSection", "designModule", "phases") ?? null,
           conditions: pick(s, "protocolSection", "conditionsModule", "conditions") ?? null,
+          studyType: pick(s, "protocolSection", "designModule", "studyType") ?? null,
+          enrollment: pick(s, "protocolSection", "designModule", "enrollmentInfo") ?? null,
+          // Source descriptions, not inferred doses or treatment recommendations.
+          armGroups: pick(s, "protocolSection", "armsInterventionsModule", "armGroups") ?? [],
+          interventions: pick(s, "protocolSection", "armsInterventionsModule", "interventions") ?? [],
+          eligibility: pick(s, "protocolSection", "eligibilityModule") ?? null,
           // Canonical link, for parity with the PubChem/PubMed tools — gives the
           // model a verifiable URL to cite so it surfaces the NCT id, not just a title.
           url: nctId ? `https://clinicaltrials.gov/study/${nctId}` : null,
@@ -154,16 +204,42 @@ async function searchPubmed(query: string): Promise<string> {
     `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=${enc}&retmax=5&retmode=json`,
   );
   const idsRaw = pick(search, "esearchresult", "idlist");
-  const ids = Array.isArray(idsRaw) ? (idsRaw as string[]) : [];
+  const ids = Array.isArray(idsRaw)
+    ? [...new Set(idsRaw.filter((id): id is string => typeof id === "string" && /^[1-9]\d{0,9}$/.test(id)))].slice(0, 5)
+    : [];
   if (ids.length === 0) return `No PubMed results for "${query}".`;
   const sum = await fetchJson(
     `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${ids.join(",")}&retmode=json`,
   );
+  // Europe PMC's JSON core records carry PubMed abstracts without an XML
+  // dependency. Match both source namespace and PMID; result order can differ.
+  // Keep upstream markup/entities verbatim as evidence (never render as HTML).
+  const abstractQuery = `SRC:MED AND (${ids.map((id) => `EXT_ID:${id}`).join(" OR ")})`;
+  let records: unknown;
+  let abstractsUnavailable = false;
+  try {
+    const abstracts = await fetchJson(
+      `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(abstractQuery)}&resultType=core&format=json&pageSize=5`,
+    );
+    records = pick(abstracts, "resultList", "result");
+    abstractsUnavailable = !Array.isArray(records);
+  } catch {
+    // The secondary provider must not discard already-fetched PubMed citations.
+    abstractsUnavailable = true;
+  }
   const articles = ids.map((id) => {
+    const record = Array.isArray(records)
+      ? records.find((r) => pick(r, "source") === "MED" && pick(r, "id") === id)
+      : undefined;
+    const rawAbstract = pick(record, "abstractText");
+    const abstract = typeof rawAbstract === "string" && rawAbstract.trim() ? rawAbstract : null;
     const r = pick(sum, "result", id) as Record<string, unknown> | undefined;
     const authors = pick(r, "authors");
     return {
       pmid: id,
+      abstract,
+      abstractSource: "Europe PMC (PubMed record)",
+      abstractStatus: abstract ? "available" : abstractsUnavailable ? "unavailable" : "not_found",
       title: r?.title ?? null,
       source: r?.source ?? null,
       pubdate: r?.pubdate ?? null,
