@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-molecule-that-is-both-halves",
+    hormones: ["amycretin", "amylin", "cagrilintide", "semaglutide", "eloralintide"],
+    title: "The molecule that is both halves",
+    dek: "CagriSema proved the GLP-1-plus-amylin bet with two engineered peptides in two pens. Amycretin asks the obvious next question — why two? — and answers it with a single molecule that agonizes the GLP-1 receptor and the amylin receptors at once, the unimolecular version of the same combination. In June 2025 two trials landed together in The Lancet: a subcutaneous phase 1b/2a in which the top dose took off a mean 24.3% of body weight by week 36 with the curve still falling, and a first-in-human study of an oral form — a daily pill — that reached ~13% in twelve weeks. The numbers are large and the biology is sound; the asterisks are the whole point. These are small, short, early-phase studies with no head-to-head arm, so the tempting cross-trial ranking against tirzepatide or retatrutide is exactly the comparison the data cannot support. And writing a combination as one word costs something a two-drug stack keeps free: the GLP-1-to-amylin ratio, welded fixed in a single chain. Why amylin belongs next to GLP-1, why the pill is the real story, and what the unimolecular bet trades away. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
     slug: "two-ways-to-ask-for-growth",
     hormones: ["ghrh", "tesamorelin", "cjc-1295", "sermorelin", "ghrelin", "ipamorelin", "growth-hormone", "igf-1"],
     title: "Two ways to ask for growth",
