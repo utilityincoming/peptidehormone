@@ -27,6 +27,42 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-gene-the-parents-fight-over",
+    hormones: ["igf-2", "igf-1", "insulin"],
+    title: "The gene the parents fight over",
+    dek: "IGF-1 has a sibling, nearly identical in shape and name — IGF-2 — and by most measures it is the stranger and in some ways the more important of the two: the dominant growth factor before birth, and the more abundant IGF in adult human blood, yet rarely discussed because it answers to none of the growth-hormone machinery the IGF-1 story runs on. It is governed instead by something older and odder, a genetic tug-of-war between the two parents written into the gene itself. IGF2 is imprinted: in most tissues only the father’s copy is switched on and the mother’s is silenced — proven in mice, where losing the paternal copy stunts growth and losing the silent maternal one does nothing. The leading explanation is a conflict of interest: a father’s genes favor a larger, more demanding offspring, a mother’s favor restraint, and the conflict is literally encoded as two oppositely imprinted genes — the paternally expressed IGF2 accelerator and the maternally expressed IGF2R clearance receptor, a brake whose only job is to destroy IGF-2. It signals growth through a borrowed insulin receptor as well as IGF-1R, and when the balance tips it reads out as overgrowth (Beckwith-Wiedemann), growth restriction (Silver-Russell), or tumor-driven hypoglycemia. The sibling that grew first is the clearest case in the body of growth governed by genetic conflict. Bullish on the science, which here is genuinely strange. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "read-by-the-brain",
+    hormones: ["brenipatide", "glp-1", "gip", "tirzepatide", "semaglutide"],
+    title: "Read by the brain",
+    dek: "For a decade the incretin story was a metabolic one — hold blood sugar, quiet appetite, lower weight. Brenipatide takes the same sentence and asks whether the brain can read it. Mechanically it is close to familiar ground: a single peptide that agonizes both GIP and GLP-1, the same receptor pair as tirzepatide, engineered for a far longer, roughly once-monthly reach. What is unfamiliar is the direction — Eli Lilly is leading its development not with obesity but with alcohol use disorder and major depression, on the bet that incretin signaling touches the brain’s reward and mood circuitry. The rationale is real: GLP-1 receptors sit in the mesolimbic dopamine pathway, and in animals GLP-1 agonists cut self-administration of alcohol and other drugs. The first human signal is real too, and comes with a built-in asterisk — semaglutide lowered alcohol quantity and craving in a small trial, but drinking days didn’t change and weight fell, leaving the field’s central question open: a specific effect on craving, or general consumption suppression wearing a new label? And brenipatide itself has zero published efficacy, yet its RENEW program goes straight to large Phase 3 trials in psychiatry, reading out around 2028. A well-reasoned, high-conviction, unproven bet — the incretin sentence carried to the clinic on the wager that the brain can read it. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "the-chain-of-command",
+    hormones: ["crh", "acth", "trh"],
+    title: "The chain of command",
+    dek: "The hypothalamus doesn’t run the body’s slow glands by wire — it runs them through a chain. A tiny releasing hormone tells the pituitary to release a tropic hormone, which tells a peripheral gland to do its work: three tiers, each commanding the next. This site has walked two of them, the reproductive axis under GnRH and the growth axis under GHRH; here are the other two, which complete the set. The stress axis: CRH drives ACTH drives adrenal cortisol. The thyroid axis: TRH drives TSH drives the thyroid. The architecture earns its complexity twice over — it amplifies on the way down, so a whisper of CRH becomes a flood of cortisol, and it reports back on the way up, with the output hormone feeding back to silence its own commanders, the governor that holds a setpoint. ACTH turns out to be cut from POMC, the same precursor as α-MSH; TRH is a three-residue tripeptide that runs an entire axis, proof that potency is about fitting a receptor, not size. And because each axis is a feedback cascade, medicine tests it by perturbing the top — dexamethasone suppression flags Cushing’s, cosyntropin stimulation flags Addison’s — turning the releasing and tropic hormones into diagnostic reagents. Amplify down, report up, diagnose by provocation. Bullish on the science, plainly told. No dosing.",
+    family: "neuropeptides",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "epo-without-the-blood",
+    hormones: ["ara-290"],
+    title: "EPO without the blood",
+    dek: "Erythropoietin is famous for one thing — making red blood cells, the property that treats anemia and powers blood doping. But across the 2000s the lab kept seeing EPO protect tissue, brain, heart and nerve from injury in ways the red-cell effect couldn’t explain. The resolution is that EPO does two jobs through two receptors: a homodimeric EPO receptor builds red cells, while a separate ‘innate repair receptor’ — an EPO-receptor joined to the β-common chain that appears only on injured, inflamed tissue — carries a tissue-protective, anti-inflammatory signal. ARA-290 (cibinetide) is what you get when you keep the second job and discard the first: an eleven-residue peptide modeled on EPO’s helix-B face that engages the repair receptor but not the red-cell one, delivering the protection with no rise in hematocrit. The receptor story is genuinely elegant, and the ‘keep one clause’ design echoes KPV. The clinical record is much thinner: the most-cited result is a 22-patient pilot in sarcoidosis small-fiber neuropathy, with later corneal-nerve gains, all small, mostly single-group, and never confirmed in a phase 3 before development stalled. Elegant mechanism, promising pilot, not proven at scale — held honestly. Bullish on the science, sceptical on the page. No dosing.",
+    family: "repair",
+    readingMinutes: 10,
+    reviewed: "October 2026",
+  },
+  {
     slug: "two-residues-apart",
     hormones: ["vasopressin", "oxytocin"],
     title: "Two residues apart",
