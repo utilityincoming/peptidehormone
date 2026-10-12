@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-gene-the-parents-fight-over",
+    hormones: ["igf-2", "igf-1", "insulin"],
+    title: "The gene the parents fight over",
+    dek: "IGF-1 has a sibling, nearly identical in shape and name — IGF-2 — and by most measures it is the stranger and in some ways the more important of the two: the dominant growth factor before birth, and the more abundant IGF in adult human blood, yet rarely discussed because it answers to none of the growth-hormone machinery the IGF-1 story runs on. It is governed instead by something older and odder, a genetic tug-of-war between the two parents written into the gene itself. IGF2 is imprinted: in most tissues only the father’s copy is switched on and the mother’s is silenced — proven in mice, where losing the paternal copy stunts growth and losing the silent maternal one does nothing. The leading explanation is a conflict of interest: a father’s genes favor a larger, more demanding offspring, a mother’s favor restraint, and the conflict is literally encoded as two oppositely imprinted genes — the paternally expressed IGF2 accelerator and the maternally expressed IGF2R clearance receptor, a brake whose only job is to destroy IGF-2. It signals growth through a borrowed insulin receptor as well as IGF-1R, and when the balance tips it reads out as overgrowth (Beckwith-Wiedemann), growth restriction (Silver-Russell), or tumor-driven hypoglycemia. The sibling that grew first is the clearest case in the body of growth governed by genetic conflict. Bullish on the science, which here is genuinely strange. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
     slug: "two-residues-apart",
     hormones: ["vasopressin", "oxytocin"],
     title: "Two residues apart",
