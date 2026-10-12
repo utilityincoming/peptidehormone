@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "teriparatide-backwards",
+    hormones: ["pth", "pthrp", "calcitonin"],
+    title: "Teriparatide, backwards",
+    dek: "Parathyroid hormone is the body’s fast defense against low blood calcium, and its reputation in bone is fearsome: let it run continuously, as a parathyroid tumor does, and it mines the skeleton for calcium — the bone-wasting disease of hyperparathyroidism. So the drug built from it is one of the strangest objects in endocrinology. Teriparatide is PTH(1-34), the hormone’s active fragment, given as a once-daily injection, and it does the opposite of what its parent’s reputation predicts: it builds bone, the first anabolic osteoporosis drug, where every older option only slowed the loss. The whole paradox resolves to one variable — the same one that runs the reproductive axis. Bone reads how long PTH stays, not whether it is present: a brief daily spike switches on the osteoblast formation program and opens an ‘anabolic window’ before resorption catches up, while a permanently high level keeps driving osteoclasts through RANKL. Same PTH1 receptor, opposite outcome, written by the shape of the exposure in time. PTHrP obeys the identical law — intermittent as abaloparatide it builds bone, continuous from a tumor it causes hypercalcemia of malignancy. The drug isn’t a new molecule; it’s a new schedule. Bullish on the science, sceptical on the page. No dosing.",
+    family: "calcium-bone",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-off-switch",
     hormones: ["somatostatin", "octreotide", "lanreotide", "pasireotide"],
     title: "The off switch",
