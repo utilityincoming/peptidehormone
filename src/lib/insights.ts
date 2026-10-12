@@ -36,6 +36,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "October 2026",
   },
   {
+    slug: "read-by-the-brain",
+    hormones: ["brenipatide", "glp-1", "gip", "tirzepatide", "semaglutide"],
+    title: "Read by the brain",
+    dek: "For a decade the incretin story was a metabolic one — hold blood sugar, quiet appetite, lower weight. Brenipatide takes the same sentence and asks whether the brain can read it. Mechanically it is close to familiar ground: a single peptide that agonizes both GIP and GLP-1, the same receptor pair as tirzepatide, engineered for a far longer, roughly once-monthly reach. What is unfamiliar is the direction — Eli Lilly is leading its development not with obesity but with alcohol use disorder and major depression, on the bet that incretin signaling touches the brain’s reward and mood circuitry. The rationale is real: GLP-1 receptors sit in the mesolimbic dopamine pathway, and in animals GLP-1 agonists cut self-administration of alcohol and other drugs. The first human signal is real too, and comes with a built-in asterisk — semaglutide lowered alcohol quantity and craving in a small trial, but drinking days didn’t change and weight fell, leaving the field’s central question open: a specific effect on craving, or general consumption suppression wearing a new label? And brenipatide itself has zero published efficacy, yet its RENEW program goes straight to large Phase 3 trials in psychiatry, reading out around 2028. A well-reasoned, high-conviction, unproven bet — the incretin sentence carried to the clinic on the wager that the brain can read it. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-chain-of-command",
     hormones: ["crh", "acth", "trh"],
     title: "The chain of command",
