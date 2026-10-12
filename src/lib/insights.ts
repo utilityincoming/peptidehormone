@@ -27,6 +27,33 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-hormone-discovered-twice",
+    hormones: ["leptin", "adiponectin", "amylin", "pramlintide"],
+    title: "The hormone discovered twice",
+    dek: "In 1994 a lab cloned the gene a famously fat strain of mouse was missing and found leptin — the hormone fat tissue uses to report its own size to the brain, proof that adipose is an endocrine organ and not inert storage. The logic was irresistible: a hormone that signals fat stores and curbs appetite should, given in excess, melt weight away. It emptied the fat mouse and was licensed as the coming cure for obesity. Then it barely moved ordinary obese humans in trial, and leptin had to be understood a second time — not as a satiety brake but as a starvation alarm, a signal of plenty whose most powerful action is its own absence, in a body that defends the fat it has. Common obesity runs on high leptin the brain has stopped hearing (leptin resistance), which is why more of it does little; replacement works only where leptin is genuinely missing, as in congenital deficiency and lipodystrophy. Its second act is stranger and more current: amylin can partly re-sensitize the brain to it, the thread that runs straight into today’s amylin era. Why the landmark hormone was never the drug. Bullish on the science, sceptical on the page. No dosing.",
+    family: "adipokines",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "the-clock-you-cant-audit",
+    hormones: ["epitalon"],
+    title: "The clock you can't audit",
+    dek: "Epitalon is four amino acids — Ala-Glu-Asp-Gly — carrying one of the largest claims in peptide science: that so small a molecule can switch on telomerase, the enzyme that rebuilds the caps on our chromosomes, and bend the course of ageing. It is the defined tetrapeptide distilled from epithalamin, a crude pineal-gland extract, by a St. Petersburg school — the same ‘white box from a black box’ move behind cartalax and thymalin. The mechanism is a pleasure to trace, and a cell-culture study really did show telomerase induction and telomere elongation in human fibroblasts. But read honestly, the lifespan data is thinner than the brochure: in mice epitalon left mean lifespan unchanged while nudging maximum lifespan and cutting some tumors, and the striking human mortality claim rests on a single non-randomized report. The weakness isn’t that the mechanism is absurd — it’s that almost every result traces to one research network and none of the lifespan findings has been replicated by an outside lab. Telomerase activation is also a hallmark of cancer, so the hoped-for upside and the feared downside are the same event. Not proven, not debunked — unaudited. Bullish on the science, sceptical on the page. No dosing.",
+    family: "repair",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "written-for-the-brain",
+    hormones: ["semax", "selank", "dsip"],
+    title: "Written for the brain",
+    dek: "Semax and selank are real registered medicines — just not where most readers live. Both were developed and are prescribed in Russia, both are near-unknown to Western medicine, and both were engineered the same way: take an endogenous human peptide, keep the fragment that does the one thing you want, and armor it against the enzymes that would destroy it. Semax is ACTH(4-10) with the cortisol-releasing activity stripped out and a peptidase-resistant tail added, repointed toward cognition through the BDNF/TrkB system; selank is a modified tuftsin fragment used as an anxiolytic — the same ‘keep one clause’ move as KPV. The biology is plausible and in places elegant, the domestic use is decades deep, and the independent Western-standard evidence is thin to absent: semax’s BDNF mechanism is animal-grade, and selank’s best result is a single home-grown trial calling it comparable to a benzodiazepine without the sedation. DSIP — named for a sleep effect that never reliably replicated — is the standing warning that a brain peptide can be real, named and studied for fifty years and still have no confirmed job. Real mechanism, real use, missing audit, held honestly. Bullish on the science, sceptical on the page. No dosing.",
+    family: "neuropeptides",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-molecule-that-is-both-halves",
     hormones: ["amycretin", "amylin", "cagrilintide", "semaglutide", "eloralintide"],
     title: "The molecule that is both halves",
