@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "two-residues-apart",
+    hormones: ["vasopressin", "oxytocin"],
+    title: "Two residues apart",
+    dek: "Vincent du Vigneaud synthesized oxytocin in 1953 — the first peptide hormone ever made in a lab, a Nobel-winning feat — and then vasopressin, and the two turned out to be almost the same object: nine amino acids, the same disulfide ring, both released from the posterior pituitary, differing at only two positions out of nine. Yet they share almost nothing in what they do. Oxytocin drives labor, milk let-down and the famous bonding story; vasopressin runs water balance and blood pressure — the cleanest proof in the body that peptide specificity is written in small sequence differences, not size. And here is the twist: the quieter twin became by far the more useful drug. Where oxytocin’s bonding sprays mostly failed the replication record, vasopressin spun off a whole shelf of real medicines, each tuned to one of its receptor subtypes — desmopressin at V2 (diabetes insipidus, bedwetting, and, via clotting-factor release, von Willebrand disease), the vaptans blocking V2 for hyponatremia and polycystic kidney disease, and vasopressin itself as a V1a pressor in shock. Its brain arm is real too — V1a drives vole pair-bonding — but a vole is not a person, and the human behavioral drugs stay thin. Why the molecule that reads less romantic is the one you’re far more likely to be prescribed. Bullish on the science, sceptical on the page. No dosing.",
+    family: "neuropeptides",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-door-swings-both-ways",
     title: "The door swings both ways",
     dek: "A molecule’s biology is climate — its sequence and receptor don’t change from one quarter to the next. What you can actually get is weather, and in 2026 the weather turned in two opposite directions at once. One door swung shut: semaglutide and tirzepatide came off the FDA shortage list (December 2024 and February 2025), the enforcement grace periods for 503A pharmacies and 503B outsourcing facilities expired through spring 2025, and in April 2026 the agency proposed dropping all three leading incretins from the 503B bulks list outright — the approved blockbusters walled off from the compounding the shortage years had made routine. Another door cracked open: the research peptides the FDA had restricted in 2023 got their day in front of the Pharmacy Compounding Advisory Committee on 23–24 July 2026, which voted 8–6, against the agency’s own review staff, to recommend adding six of them — BPC-157, KPV, TB-500, MOTS-c, epitalon, semax — to the 503A bulk list, rejecting a seventh. Read quickly that sounds like six peptides became legal; read correctly, almost nothing changed, because a committee advises and rulemaking decides. Meanwhile the powder’s source tightens under China’s 2026 drug-law reforms. A delisting is a fact that already bit, a proposed rule a signal that hasn’t, a vote a forecast — three tenses the field keeps reading as one. Bullish on the science, sceptical on the paperwork. No dosing.",
