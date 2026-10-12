@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-door-swings-both-ways",
+    title: "The door swings both ways",
+    dek: "A molecule’s biology is climate — its sequence and receptor don’t change from one quarter to the next. What you can actually get is weather, and in 2026 the weather turned in two opposite directions at once. One door swung shut: semaglutide and tirzepatide came off the FDA shortage list (December 2024 and February 2025), the enforcement grace periods for 503A pharmacies and 503B outsourcing facilities expired through spring 2025, and in April 2026 the agency proposed dropping all three leading incretins from the 503B bulks list outright — the approved blockbusters walled off from the compounding the shortage years had made routine. Another door cracked open: the research peptides the FDA had restricted in 2023 got their day in front of the Pharmacy Compounding Advisory Committee on 23–24 July 2026, which voted 8–6, against the agency’s own review staff, to recommend adding six of them — BPC-157, KPV, TB-500, MOTS-c, epitalon, semax — to the 503A bulk list, rejecting a seventh. Read quickly that sounds like six peptides became legal; read correctly, almost nothing changed, because a committee advises and rulemaking decides. Meanwhile the powder’s source tightens under China’s 2026 drug-law reforms. A delisting is a fact that already bit, a proposed rule a signal that hasn’t, a vote a forecast — three tenses the field keeps reading as one. Bullish on the science, sceptical on the paperwork. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "October 2026",
+  },
+  {
     slug: "teriparatide-backwards",
     hormones: ["pth", "pthrp", "calcitonin"],
     title: "Teriparatide, backwards",
