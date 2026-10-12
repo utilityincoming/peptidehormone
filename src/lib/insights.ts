@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-off-switch",
+    hormones: ["somatostatin", "octreotide", "lanreotide", "pasireotide"],
+    title: "The off switch",
+    dek: "Most hormones say a specific thing to a specific tissue. Somatostatin says one thing to almost everything — stop. It shuts down growth hormone and TSH from the pituitary, insulin and glucagon from the islet, and a long list of gut secretions, through five receptor subtypes, and in the growth-hormone axis it is the brake the accelerators have to overcome. It is also the rare hormone whose entire drug strategy is inverted: you don’t supply it to boost a signal, you rebuild it to last and install it as a brake. Native somatostatin is useless as a drug — a two-minute half-life and rebound hypersecretion — so octreotide and lanreotide were engineered to last weeks and narrowed to grip mainly SSTR2, enough to silence the growth hormone of acromegaly and the hormones of neuroendocrine tumors without flattening every secretion in the body; the CLARINET trial showed they slow the tumors too, not just quiet them. Pasireotide goes broader — SSTR1, 2, 3 and 5 — which unlocks Cushing’s disease through SSTR5, but the same SSTR5 on the beta cell drives hyperglycemia in most patients: the breadth that makes it work is the breadth that costs. Why receptor-subtype selectivity, not strength, is the whole game. Bullish on the science, sceptical on the page. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 11,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-hormone-discovered-twice",
     hormones: ["leptin", "adiponectin", "amylin", "pramlintide"],
     title: "The hormone discovered twice",
