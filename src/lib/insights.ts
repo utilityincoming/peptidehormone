@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "two-ways-to-ask-for-growth",
+    hormones: ["ghrh", "tesamorelin", "cjc-1295", "sermorelin", "ghrelin", "ipamorelin", "growth-hormone", "igf-1"],
+    title: "Two ways to ask for growth",
+    dek: "Growth hormone comes out of the pituitary in pulses, and there are exactly two ways to ask for more of it without injecting the hormone itself: push the accelerator the hypothalamus uses — GHRH, and its analogs sermorelin, tesamorelin and CJC-1295 — or press the second button ghrelin discovered, the GHS-R1a receptor the GHRPs and ipamorelin hit. The whole case for secretagogues over straight HGH is that they ask the gland to fire its own pulse instead of flattening it, and leave IGF-1 feedback intact so the loop self-limits. Both halves of that case are real, and both get complicated fast. The only one of these molecules with an approved label and an outcome trial is tesamorelin, for visceral fat in HIV; the oral ghrelin mimetic MK-677 raises IGF-1 and lean mass for a year but moves no strength and nudges glucose up; and the long-acting CJC-1295-with-DAC trick quietly erases the very pulsatility that was the argument. Why you’d press both buttons at once, why the synergy is more than additive, and where the surrogate markers stop and the evidence runs out. Bullish on the science, sceptical on the page. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 13,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-note-without-the-incretin",
     hormones: ["eloralintide", "amylin", "cagrilintide", "tirzepatide", "pramlintide"],
     title: "The note without the incretin",
