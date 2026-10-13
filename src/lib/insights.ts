@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-half-that-did-nothing",
+    hormones: ["aod-9604", "growth-hormone", "igf-1"],
+    title: "The half that did nothing",
+    dek: "Growth hormone does several things at once — grow tissue, raise IGF-1, push glucose up, mobilize fat — and AOD-9604 is its tail, the C-terminal fragment hGH(176-191), isolated on a clean and appealing theory: that the fat-burning lives in that fragment and can be cut away from everything else. A fat-loss drug with none of growth hormone’s baggage. It is the same ‘keep one clause’ move that gave KPV and ARA-290 their appeal — and the instructive case where it didn’t pay off. In the narrow sense the separation worked: in obese mice AOD-9604 drove lipolysis through the β3-adrenergic pathway, with no IGF-1 rise and none of the insulin-sensitivity harm chronic GH can cause. The fragment really had been split from the rest of GH biology. But the kept clause was empty in people: controlled human obesity trials showed no significant weight loss over placebo, and development as a weight-loss drug was discontinued. The rodent effect didn’t translate — you had cleanly isolated a clause that, in humans, said almost nothing. And yet it still sells, marketed for fat loss on exactly the mechanism story its own pivotal trial failed to support: the sharpest small case of the gap between a molecule’s mechanism and its proven effect. Bullish on the method, sceptical on this result. No dosing.",
+    family: "growth-repair",
+    readingMinutes: 8,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-gene-the-parents-fight-over",
     hormones: ["igf-2", "igf-1", "insulin"],
     title: "The gene the parents fight over",
