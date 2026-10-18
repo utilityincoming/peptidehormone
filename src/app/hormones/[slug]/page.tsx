@@ -5,7 +5,8 @@ import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink, hormoneFaq } f
 import { hormoneMetaTitle, hormoneMetaDescription, aliasesFor } from "@/lib/aliases";
 import { comparePairPath } from "@/lib/compare";
 import { referencesFor } from "@/lib/references";
-import { getFamily } from "@/lib/families";
+import { getFamily, accentRGB } from "@/lib/families";
+import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { insightsForHormone } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
@@ -101,8 +102,7 @@ export default async function HormonePage({
           <div
             className="pointer-events-none absolute inset-0 opacity-40"
             style={{
-              background:
-                "radial-gradient(55% 55% at 80% 0%, rgba(124,131,255,0.13), transparent 70%)",
+              background: `radial-gradient(55% 55% at 80% 0%, rgba(${accentRGB(accent)}, 0.13), transparent 70%)`,
             }}
           />
           <Container className="relative py-14 md:py-18">
@@ -119,7 +119,19 @@ export default async function HormonePage({
               <span aria-hidden>/</span>
               <span className="text-ink/70">{h.abbr ?? h.name}</span>
             </nav>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            {family && (
+              <Link
+                href={`/families/${family.slug}`}
+                aria-label={`${family.name} family`}
+                className={`mt-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${accent} transition-transform hover:-translate-y-0.5`}
+                style={{
+                  backgroundColor: "color-mix(in oklab, currentColor 12%, transparent)",
+                }}
+              >
+                <FamilyGlyph slug={family.slug} className="h-7 w-7" />
+              </Link>
+            )}
+            <h1 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl">
               {h.name}
               {h.abbr && <span className={`ml-3 text-2xl font-medium ${accent}`}>{h.abbr}</span>}
             </h1>
