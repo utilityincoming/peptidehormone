@@ -27,6 +27,23 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "mechanism-is-not-proof",
+    title: "Mechanism is not proof",
+    dek: "Every deep-dive here ends the same way — bullish on the science, sceptical on the page — and it isn’t a hedge. It’s a claim that two things people routinely merge are separate and graded on different evidence: the science is the mechanism (a receptor, a pathway, a plausible chain of cause and effect), and the page is the benefit (what the molecule actually does in a person). A compound can have landmark-grade science and an empty page, and most of the peptide world lives in that gap. This is the map of it: the ladder the whole reference grades against, told as an argument rather than a standard. Evidence comes in rungs — plausible mechanism, cell data, animal efficacy, human surrogate markers, controlled human outcome, independent replication — and each rung up is rarer and more predictive, so a claim’s confidence should track its highest real rung, not its most flattering sentence. Three failures recur: the surrogate trap, where a marker moves but the outcome doesn’t follow or worsens (CAST’s arrhythmia drugs raised mortality; MK-677 lifted IGF-1 and lean mass but not strength); the cross-trial trap, where numbers from separate studies get ranked as if on one ruler (amycretin’s 24%); and the missing replication rung, where a striking single-source result is unaudited, not proven (epitalon) — and below even that, the headlines that confuse a trial that has enrolled with one that has reported. None of this is dismissal: low-rung evidence is real science and where discovery lives; the sin is selling it as proof. One question cuts through every confusing claim — what is the best evidence, and which rung is it on? Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
+    slug: "keep-one-clause",
+    hormones: ["alpha-msh", "kpv", "acth", "ara-290", "aod-9604"],
+    title: "Keep one clause",
+    dek: "A hormone is rarely a single instruction. Growth hormone grows tissue, raises IGF-1, pushes glucose and mobilizes fat; α-MSH colors skin, curbs appetite and calms inflammation; EPO builds red cells and protects tissue; ACTH makes cortisol and is separately neuroactive. One molecule, several clauses — and the side effects of a hormone drug are usually just its other clauses firing when you didn’t ask. So a recurring move in peptide design is to cut the hormone down to the fragment that carries the clause you want and throw the rest away, armored against the enzymes that would destroy it. This site has met that move again and again; here it is as one playbook. Done well it produces real medicine — teriparatide is PTH(1-34), tesamorelin and sermorelin are GRF fragments, cosyntropin is ACTH(1-24). Applied to the research frontier it fans into very different verdicts: KPV keeps α-MSH’s anti-inflammatory clause (real but lightly evidenced), ARA-290 splits EPO’s tissue protection from its red cells (elegant, unproven), semax keeps ACTH’s neuroactivity (registered abroad, thin), and AOD-9604 executed the split perfectly and kept a clause that was empty in humans (failed trials). The design has two halves of unequal trust: the subtraction — you dropped the other activities — is easy and verifiable; the retention — the kept clause still works in people — is the hard, trial-dependent half, and the only one that decides whether you have a drug. ‘None of the side effects’ describes the easy half. Judge the clause you kept, never the elegance of the cut. Bullish on the method, exact about the verdicts. No dosing.",
+    family: "melanocortins",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-body-keeps-time",
     hormones: ["gnrh", "pth", "growth-hormone", "insulin"],
     title: "The body keeps time",
