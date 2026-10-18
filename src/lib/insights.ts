@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "keep-one-clause",
+    hormones: ["alpha-msh", "kpv", "acth", "ara-290", "aod-9604"],
+    title: "Keep one clause",
+    dek: "A hormone is rarely a single instruction. Growth hormone grows tissue, raises IGF-1, pushes glucose and mobilizes fat; α-MSH colors skin, curbs appetite and calms inflammation; EPO builds red cells and protects tissue; ACTH makes cortisol and is separately neuroactive. One molecule, several clauses — and the side effects of a hormone drug are usually just its other clauses firing when you didn’t ask. So a recurring move in peptide design is to cut the hormone down to the fragment that carries the clause you want and throw the rest away, armored against the enzymes that would destroy it. This site has met that move again and again; here it is as one playbook. Done well it produces real medicine — teriparatide is PTH(1-34), tesamorelin and sermorelin are GRF fragments, cosyntropin is ACTH(1-24). Applied to the research frontier it fans into very different verdicts: KPV keeps α-MSH’s anti-inflammatory clause (real but lightly evidenced), ARA-290 splits EPO’s tissue protection from its red cells (elegant, unproven), semax keeps ACTH’s neuroactivity (registered abroad, thin), and AOD-9604 executed the split perfectly and kept a clause that was empty in humans (failed trials). The design has two halves of unequal trust: the subtraction — you dropped the other activities — is easy and verifiable; the retention — the kept clause still works in people — is the hard, trial-dependent half, and the only one that decides whether you have a drug. ‘None of the side effects’ describes the easy half. Judge the clause you kept, never the elegance of the cut. Bullish on the method, exact about the verdicts. No dosing.",
+    family: "melanocortins",
+    readingMinutes: 12,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-body-keeps-time",
     hormones: ["gnrh", "pth", "growth-hormone", "insulin"],
     title: "The body keeps time",
