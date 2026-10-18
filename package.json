@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "npx --yes tsx --tsconfig tsconfig.json --test src/lib/*.test.ts",
+    "gsc": "node scripts/gsc-report.mjs",
     "check:identifiers": "node scripts/fetch-identifiers.mjs --check",
     "evidence:refresh": "node scripts/fetch-evidence.mjs",
     "check:pass": "node scripts/check-pass-config.mjs",
