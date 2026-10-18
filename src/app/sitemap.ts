@@ -37,6 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/available",
     "/tools",
     "/glossary",
+    "/what-is-a-peptide-hormone",
     "/why-peptides",
     "/methodology",
     "/research",

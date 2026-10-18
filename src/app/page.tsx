@@ -116,6 +116,16 @@ export default function Home() {
                   Browse the catalog
                 </Link>
               </div>
+              <p className="mt-5 text-sm text-ink/45">
+                New to the subject? Start with{" "}
+                <Link
+                  href="/what-is-a-peptide-hormone"
+                  className="text-ink/70 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-accent"
+                >
+                  what a peptide hormone is
+                </Link>
+                .
+              </p>
             </div>
 
             <div className="mx-auto w-full max-w-sm md:max-w-none">

@@ -83,6 +83,7 @@ export function GET() {
   out.push(
     "",
     "## Reference",
+    `- [What is a peptide hormone?](${SITE}/what-is-a-peptide-hormone): the primer — what a peptide hormone is, how it is synthesized from a preprohormone, how it signals at the cell surface (and how that differs from a steroid hormone), with examples grouped by family.`,
     `- [Glossary](${SITE}/glossary): plain-language definitions of the peptide-science vocabulary — receptors, agonism, pharmacokinetics, and molecule classes — each term linked to its record in the wider knowledge graph.`,
     "",
     "## About",
