@@ -46,3 +46,6 @@ next-env.d.ts
 
 # identifier resolver audit output (scratch)
 /identifier-audit.json
+
+# GSC reports + service-account keys (never commit query data or credentials)
+/reports/
