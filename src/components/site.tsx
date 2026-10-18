@@ -91,6 +91,7 @@ export function SiteFooter() {
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
               <li><Link href="/glossary" className="hover:text-ink">Glossary</Link></li>
+              <li><Link href="/what-is-a-peptide-hormone" className="hover:text-ink">What is a peptide hormone?</Link></li>
               <li><Link href="/available" className="hover:text-ink">Availability</Link></li>
               <li><Link href="/why-peptides" className="hover:text-ink">Why peptides</Link></li>
               <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
