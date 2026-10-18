@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-body-keeps-time",
+    hormones: ["gnrh", "pth", "growth-hormone", "insulin"],
+    title: "The body keeps time",
+    dek: "Most of physiology speaks in amounts — a gland releases more or less, a receptor reads the concentration, the response scales. But a surprising share of the endocrine system, and nearly all of its master controls, speaks a second language the amount model misses: time. The same molecule, at the same total dose, means different and sometimes opposite things depending on its rhythm. This reference has met the idea four times in separate corners — GnRH, growth hormone, PTH, cortisol — and here it is as one principle. It rests on a single mechanism: receptor desensitization. Pulsed with gaps, a receptor recovers between beats and answers each one; bathed in a continuous high level, it downregulates and goes silent — so a steady maximal input is not a louder ‘on’ but the erasure of the pattern, which many systems read as ‘off’. That one fact unifies the paradoxes: why pulsatile GnRH switches the reproductive axis on while continuous GnRH switches it off, why a brief daily PTH spike builds the bone that continuous PTH dissolves, why injected growth hormone is a worse signal than the gland’s own nightly bursts, why even cortisol runs on ultradian pulses and insulin on five-minute portal bursts. Evolution encodes in time because a frequency resists noise an absolute level can’t, carries two messages on one line, and can’t be spoofed by flooding. And modern endocrinology has learned to write to the clock: the drug is often less a molecule than a schedule. Bullish on the science — biology over benefits at its clearest. No dosing.",
+    family: "reproductive-gonadal",
+    readingMinutes: 13,
+    reviewed: "October 2026",
+  },
+  {
     slug: "the-half-that-did-nothing",
     hormones: ["aod-9604", "growth-hormone", "igf-1"],
     title: "The half that did nothing",
