@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so each trial claim stays checkable.
+const REF = {
+  surmount1: "https://doi.org/10.1056/NEJMoa2206038", // Jastreboff et al. 2022, NEJM — SURMOUNT-1 tirzepatide (GIP+GLP-1) obesity
+  maritide: "https://doi.org/10.1056/NEJMoa2504214", // Jastreboff et al. 2025, NEJM — maridebart cafraglutide (GLP-1 agonist, GIP antagonist) phase 2
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -87,7 +93,11 @@ export default function Article() {
             <Section title="The case for turning it on">
               <P>
                 In tirzepatide, GIP agonism rides alongside GLP-1 agonism, and the pairing
-                clearly outperforms GLP-1 alone. The leading explanations are that GIP-receptor
+                clearly outperforms GLP-1 alone (
+                <a href={REF.surmount1} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  SURMOUNT-1; Jastreboff et&nbsp;al., NEJM, 2022
+                </a>
+                ). The leading explanations are that GIP-receptor
                 activation adds a complementary appetite signal through the brain, and that it
                 may <Em>blunt the nausea</Em> of GLP-1 agonism — letting the GLP-1 arm be
                 pushed further before tolerability caps it. On this view GIP is a genuine
@@ -99,7 +109,11 @@ export default function Article() {
               <P>
                 Maridebart takes the opposite tack — an anti-GIP-receptor antibody carrying
                 GLP-1 peptides, so it agonizes GLP-1 while <Em>antagonizing</Em> GIP — and it
-                too drives large weight loss. The rationale draws on GIP&rsquo;s older
+                too drives large weight loss (
+                <a href={REF.maritide} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Jastreboff et&nbsp;al., NEJM, 2025
+                </a>
+                ). The rationale draws on GIP&rsquo;s older
                 association with fat storage (block it, and you remove a pro-storage signal)
                 and on a subtler receptor argument we will come to. The antibody scaffold is
                 its own payoff: a long half-life that supports{" "}

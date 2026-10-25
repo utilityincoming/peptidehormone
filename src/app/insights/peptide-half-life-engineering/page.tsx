@@ -17,6 +17,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so each engineering claim stays checkable.
+const REF = {
+  eng: "https://pubmed.ncbi.nlm.nih.gov/1313797/", // Eng et al. 1992, JBC — exendin-4, the DPP-4-resistant lizard peptide
+  lau: "https://doi.org/10.1021/acs.jmedchem.5b00726", // Lau et al. 2015, J Med Chem — discovery of once-weekly semaglutide (acylation)
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -109,9 +115,13 @@ export default function Article() {
                 <Link href="/hormones/exenatide" className={LINK}>Exenatide</Link> is
                 synthetic exendin-4, a peptide from Gila monster venom that happens to
                 activate the human GLP-1 receptor while carrying a different amino acid at
-                the position DPP-4 checks. The lizard peptide is not a cleverer drug than
-                GLP-1 — it just isn&rsquo;t legible to the enzyme, and that alone stretches
-                two minutes into a couple of hours.
+                the position DPP-4 checks (
+                <a href={REF.eng} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Eng et&nbsp;al., JBC, 1992
+                </a>
+                ). The lizard peptide is not a cleverer drug than GLP-1 — it just
+                isn&rsquo;t legible to the enzyme, and that alone stretches two minutes into
+                a couple of hours.
               </P>
               <P>
                 Semaglutide does the same thing deliberately, swapping in an unnatural
@@ -143,7 +153,11 @@ export default function Article() {
                 carries a 16-carbon chain on a short spacer and reaches about thirteen
                 hours: once daily. Semaglutide lengthens the chain to an 18-carbon diacid
                 and adds a longer, more flexible spacer between peptide and fat, which
-                tightens albumin binding considerably — about a week.{" "}
+                tightens albumin binding considerably — about a week (
+                <a href={REF.lau} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Lau et&nbsp;al., J&nbsp;Med&nbsp;Chem, 2015
+                </a>
+                ).{" "}
                 <Link href="/hormones/tirzepatide" className={LINK}>Tirzepatide</Link>{" "}
                 pushes to twenty carbons. Three drugs, one idea, refined by a few atoms at
                 a time.

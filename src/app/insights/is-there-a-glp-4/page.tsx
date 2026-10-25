@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so each claim stays checkable.
+const REF = {
+  drucker: "https://doi.org/10.1172/JCI175634", // Drucker 2024, JCI — proglucagon-derived peptides, discovery to clinic
+  orforglipron: "https://doi.org/10.1056/NEJMoa2302392", // Wharton et al. 2023, NEJM — non-peptide oral GLP-1 agonist orforglipron, phase 2
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -78,7 +84,12 @@ export default function Article() {
                 glucagon-like peptide-<Em>1</Em>, and glucagon-like peptide-<Em>2</Em>,
                 plus a few others. GLP-1 and GLP-2 are simply the first and second
                 GLP-shaped fragments researchers named as they mapped the precursor. The
-                number is a <Em>catalog index</Em>, not a performance tier.
+                number is a <Em>catalog index</Em>, not a performance tier (for the
+                proglucagon-products story, see{" "}
+                <a href={REF.drucker} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Drucker, JCI, 2024
+                </a>
+                ).
               </P>
               <P>
                 And GLP-2 — the one number that does exist beyond GLP-1 — proves the point,
@@ -157,7 +168,11 @@ export default function Article() {
                 biology into a tablet is its own kind of breakthrough, and it&rsquo;s
                 arriving two ways: oral formulations of existing peptides, and non-peptide
                 small molecules like orforglipron that hit the GLP-1 receptor but survive
-                the stomach because they were never peptides to begin with. A once-daily
+                the stomach because they were never peptides to begin with (
+                <a href={REF.orforglipron} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Wharton et&nbsp;al., NEJM, 2023
+                </a>
+                ). A once-daily
                 pill — or a once-monthly injection, another active direction — changes who
                 will actually use these drugs far more than a marginal bump in receptor
                 count ever could.

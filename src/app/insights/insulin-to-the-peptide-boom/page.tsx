@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so the history stays checkable.
+const REF = {
+  eng: "https://pubmed.ncbi.nlm.nih.gov/1313797/", // Eng et al. 1992, JBC — exendin-4 from Gila monster venom (basis of exenatide)
+  lau: "https://doi.org/10.1021/acs.jmedchem.5b00726", // Lau et al. 2015, J Med Chem — acylation and the once-weekly semaglutide
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -133,12 +139,20 @@ export default function Article() {
                 <Link href="/hormones/exenatide" className={LINK}>exendin-4</Link>, that
                 activated the human{" "}
                 <Link href="/hormones/glp-1" className={LINK}>GLP-1</Link> receptor but —
-                unlike the body&rsquo;s own GLP-1 — resisted rapid breakdown. Approved in
-                2005, it was the first of the incretin drugs: not a replacement hormone,
-                but a re-engineered <Em>signal</Em>. Acylation — bolting a fatty-acid
-                chain onto the peptide so it clings to albumin — then stretched the
-                two-minute half-life of native GLP-1 into the week-long action of{" "}
-                <Link href="/hormones/semaglutide" className={LINK}>semaglutide</Link>.{" "}
+                unlike the body&rsquo;s own GLP-1 — resisted rapid breakdown (
+                <a href={REF.eng} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Eng et&nbsp;al., JBC, 1992
+                </a>
+                ). Approved in 2005, it was the first of the incretin drugs: not a
+                replacement hormone, but a re-engineered <Em>signal</Em>. Acylation —
+                bolting a fatty-acid chain onto the peptide so it clings to albumin — then
+                stretched the two-minute half-life of native GLP-1 into the week-long action
+                of{" "}
+                <Link href="/hormones/semaglutide" className={LINK}>semaglutide</Link> (
+                <a href={REF.lau} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Lau et&nbsp;al., J&nbsp;Med&nbsp;Chem, 2015
+                </a>
+                ).{" "}
                 <span className="text-ink/55">(For the receptor-level story, see{" "}
                 <Link href="/insights/glp-1-signaling" className={LINK}>how GLP-1 actually works</Link>.)</span>
               </P>
