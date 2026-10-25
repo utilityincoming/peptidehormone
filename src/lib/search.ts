@@ -74,6 +74,14 @@ function truncate(text: string, max = 160): string {
 export function buildSearchIndex(): SearchRecord[] {
   const records: SearchRecord[] = [];
 
+// Extra search-only terms per molecule: development codes and closely associated
+// names readers type that are NOT formal brand aliases (those live in aliases.ts).
+// Matched for ranking, never displayed. EloraTZP is the eloralintide+tirzepatide
+// combination — associated with the molecule, so it should find this page.
+const HORMONE_SEARCH_TERMS: Record<string, string[]> = {
+  eloralintide: ["LY3841136", "EloraTZP"],
+};
+
   for (const h of HORMONES) {
     const family = getFamily(h.family);
     const keywords = [
@@ -83,6 +91,7 @@ export function buildSearchIndex(): SearchRecord[] {
       family?.name,
       h.type,
       ...aliasesFor(h.slug),
+      ...(HORMONE_SEARCH_TERMS[h.slug] ?? []),
     ]
       .filter(Boolean)
       .join(" ");
