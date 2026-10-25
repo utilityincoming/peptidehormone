@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so the discovery history stays checkable.
+const REF = {
+  eng: "https://pubmed.ncbi.nlm.nih.gov/1313797/", // Eng et al. 1992, JBC — isolation of exendin-4 from Heloderma suspectum venom
+  drucker: "https://doi.org/10.1172/JCI175634", // Drucker 2024, JCI — the GLP-1 journey from discovery to therapeutic impact
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -95,8 +101,12 @@ export default function Article() {
                 with Joel Habener at Massachusetts General, showed the body clips off
                 the first six residues, and that the truncated form —{" "}
                 <Em>GLP-1(7&ndash;37)</Em> — was the potent one. Daniel Drucker then
-                demonstrated it actually stimulated insulin in a glucose-dependent way.
-                By the late 1980s the physiology was gorgeous and the drug was
+                demonstrated it actually stimulated insulin in a glucose-dependent way (for the
+                full discovery-to-clinic arc, see{" "}
+                <a href={REF.drucker} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Drucker, JCI, 2024
+                </a>
+                ). By the late 1980s the physiology was gorgeous and the drug was
                 hopeless.
               </P>
               <Callout>
@@ -128,7 +138,11 @@ export default function Article() {
                 isolated it: <Em>exendin-4</Em>, a 39-residue peptide from the
                 lizard&rsquo;s salivary venom, about 53% identical to human GLP-1 — close
                 enough to activate the human GLP-1 receptor, foreign enough to behave
-                differently.
+                differently (
+                <a href={REF.eng} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Eng et&nbsp;al., JBC, 1992
+                </a>
+                ).
               </P>
               <P>
                 The difference that mattered was a single amino acid. Human GLP-1 has

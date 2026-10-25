@@ -373,3 +373,21 @@ export const FAMILIES: Family[] = [
 export function getFamily(slug: string): Family | undefined {
   return FAMILIES.find((f) => f.slug === slug);
 }
+
+// Raw RGB triplet for each family-accent class, mirroring the tokens in
+// globals.css. Tailwind text-color classes can tint `currentColor`, but a
+// radial-gradient needs an actual colour value — this is the bridge, so a
+// family's wash and its glyph are keyed off the same accent with one source.
+const ACCENT_RGB: Record<string, string> = {
+  "text-accent": "124, 131, 255",
+  "text-accent-teal": "45, 212, 168",
+  "text-accent-blue": "94, 168, 250",
+  "text-accent-purple": "181, 140, 250",
+  "text-accent-amber": "245, 181, 68",
+  "text-accent-rose": "244, 114, 182",
+};
+
+/** The `r, g, b` triplet behind a family accent class, for gradients and tints. */
+export function accentRGB(accent: string): string {
+  return ACCENT_RGB[accent] ?? ACCENT_RGB["text-accent"];
+}

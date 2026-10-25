@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary source — named inline so the one true oral success stays checkable.
+const REF = {
+  buckley: "https://doi.org/10.1126/scitranslmed.aar7047", // Buckley et al. 2018, Sci Transl Med — oral semaglutide gastric absorption via SNAC
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -148,7 +153,11 @@ export default function Article() {
                 machinery is required. Oral semaglutide reaches the market only by being
                 co-formulated with a permeation enhancer, SNAC, that locally buffers
                 stomach acid and briefly loosens the gastric lining to let a sliver of
-                drug slip through. Even then, bioavailability is around <Em>1%</Em> — so
+                drug slip through (
+                <a href={REF.buckley} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Buckley et&nbsp;al., Sci&nbsp;Transl&nbsp;Med, 2018
+                </a>
+                ). Even then, bioavailability is around <Em>1%</Em> — so
                 the tablet must carry many times more drug than the injection to
                 compensate. And it is fragile: it works only taken on an empty stomach
                 under strict water and timing constraints, and absorption still varies
@@ -195,7 +204,7 @@ export default function Article() {
               <P>
                 The proof is in what already ships nasally. <Em>Desmopressin</Em> (a
                 small vasopressin analog) and the GnRH analogs{" "}
-                <Link href="/families/reproductive" className={LINK}>nafarelin and buserelin</Link>{" "}
+                <Link href="/families/reproductive-gonadal" className={LINK}>nafarelin and buserelin</Link>{" "}
                 are routine nasal sprays. Salmon{" "}
                 <Link href="/hormones/calcitonin" className={LINK}>calcitonin</Link> is
                 delivered nasally despite being larger than the ideal cutoff — it gets

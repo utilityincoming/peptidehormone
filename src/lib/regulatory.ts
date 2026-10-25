@@ -151,7 +151,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   brenipatide: {
     status: "investigational",
-    basis: "Registered human trials; not approved for any indication.",
+    basis: "Phase 3 RENEW program (Eli Lilly) in alcohol use disorder and major depressive disorder; Phase 2 across psychiatric, addiction, gut and airway indications. No approval.",
   },
   pramlintide: {
     status: "approved",

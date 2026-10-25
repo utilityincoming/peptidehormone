@@ -23,7 +23,7 @@ const SUGGESTIONS = [
   "What is the incretin effect, and why is it blunted in type 2 diabetes?",
   "How do oxytocin and vasopressin differ despite near-identical sequences?",
   "Why does pulsatile vs continuous GnRH exposure have opposite effects?",
-  "What does UniProt list as the molecular function of proglucagon?",
+  "What doses of semaglutide were studied in STEP 1, and what were the risks?",
 ];
 
 export default function ResearchAgent() {
@@ -124,8 +124,9 @@ export default function ResearchAgent() {
               </h1>
               <p className="mt-4 max-w-xl text-ink/60">
                 Ask about any peptide hormone — mechanism, identity, receptors, or
-                the state of the evidence. Answers are grounded in PubChem,
-                UniProt, ClinicalTrials.gov, and PubMed, with linked citations.
+                the state of the evidence, including published dosing regimens.
+                The agent checks PubChem, UniProt, ClinicalTrials.gov, and PubMed
+                and links its sources. Study doses are not personal prescriptions.
               </p>
               <div className="mt-8 grid gap-2 sm:grid-cols-2">
                 {SUGGESTIONS.map((s) => (

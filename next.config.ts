@@ -69,6 +69,12 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     dangerouslyAllowSVG: false,
   },
+  async redirects() {
+    return [
+      // A mistyped family slug that was linked and crawled.
+      { source: "/families/reproductive", destination: "/families/reproductive-gonadal", permanent: true },
+    ];
+  },
   async headers() {
     const stripeHeaders = securityHeaders.map((h) =>
       h.key === "Content-Security-Policy"

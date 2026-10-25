@@ -316,6 +316,59 @@ export function aboutPageLd(opts: {
   return graph([page, crumbs]);
 }
 
+// ── Topic primer: Article about an entity + FAQPage + breadcrumb ──
+/**
+ * A definitional explainer keyed to a public entity. `about.sameAs` anchors the
+ * page to the canonical concept (Wikipedia / Wikidata) so answer engines resolve
+ * it as the topic, not just a string; the FAQPage carries the questions readers
+ * actually type. Entity URLs are caller-supplied and must be verified, never
+ * guessed — a wrong sameAs is worse than none.
+ */
+export function primerLd(opts: {
+  path: string;
+  name: string;
+  description: string;
+  topic: { name: string; sameAs: string[] };
+  faqs: { q: string; a: string }[];
+}): Node {
+  const url = `${SITE_URL}${opts.path}`;
+  const article: Node = {
+    "@type": "Article",
+    "@id": url,
+    headline: opts.name,
+    description: opts.description,
+    url,
+    inLanguage: "en",
+    image: `${SITE_URL}${opts.path}/opengraph-image`,
+    author: PUBLISHER,
+    publisher: PUBLISHER,
+    isPartOf: SITE_REF,
+    mainEntityOfPage: url,
+    about: { "@type": "Thing", name: opts.topic.name, sameAs: opts.topic.sameAs },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+  };
+  const crumbs = breadcrumbLd(
+    [
+      { name: "Home", path: "/" },
+      { name: opts.name, path: opts.path },
+    ],
+    `${url}#breadcrumb`,
+  );
+  const nodes: Node[] = [article, crumbs];
+  if (opts.faqs.length) {
+    nodes.push({
+      "@type": "FAQPage",
+      "@id": `${url}#faq`,
+      mainEntity: opts.faqs.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    });
+  }
+  return graph(nodes);
+}
+
 // ── Static A-vs-B comparison: WebPage + FAQPage + breadcrumb ──
 export function compareLd(
   a: Hormone,

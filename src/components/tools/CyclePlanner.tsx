@@ -568,9 +568,8 @@ export default function CyclePlanner({
                 </button>
               </div>
               <p className="mt-4 border-t border-ink/10 pt-3 text-[11px] leading-4 text-ink/40">
-                Educational reference only — not medical advice, and not a sourcing service. Verify
-                legality and third-party testing in your region, and review any protocol with a
-                qualified clinician.
+                Educational reference only — not medical advice. Verify legality and third-party
+                testing in your region, and review any protocol with a qualified clinician.
               </p>
             </div>
           </div>

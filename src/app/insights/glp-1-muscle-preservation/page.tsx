@@ -10,10 +10,16 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("glp-1-muscle-preservation")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  // Editorial H1 lives in `insight.title`; the browser/SERP title carries the
+  // descriptive, keyword-first phrasing per the site's headline convention.
+  title:
+    "Muscle Loss on GLP-1: How to Keep Muscle While Losing Weight — Myostatin Inhibition, the Trials, and the Surrogate Trap",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
-  openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
+  openGraph: {
+    title: "Muscle Loss on GLP-1: How to Keep Muscle While Losing Weight · Peptide Hormone",
+    description: insight.dek,
+  },
 };
 
 // External primary sources — named inline so the evidence grade stays checkable.
@@ -24,10 +30,30 @@ const REF = {
   embraze: "https://clinicaltrials.gov/study/NCT06445075",
 } as const;
 
+// FAQ — surfaced as FAQPage JSON-LD via insightLd().
+const FAQS = [
+  {
+    q: "Does Ozempic or Wegovy cause muscle loss?",
+    a: "Some of the weight lost on a GLP-1 drug is skeletal muscle, but that is not the drug being toxic to muscle — it is the arithmetic of an energy deficit, the same reason any diet or fast costs some muscle. In semaglutide's STEP 1 body-composition analysis, lean mass was close to 40% of the total weight lost; across the wider literature the figure runs from about a quarter to nearly half. Whether that lean loss matters for strength and function is a separate question the trials are only now measuring directly.",
+  },
+  {
+    q: "How can you preserve muscle while losing weight on a GLP-1?",
+    a: "The approach furthest along is to pair the GLP-1 drug with an antibody that releases the body's natural brake on muscle — the myostatin/activin pathway. In phase-2 obesity trials, adding apitegromab, trevogrumab, or bimagrumab shifted a markedly larger share of the weight lost toward fat, and bimagrumab even added lean mass on its own. Outside of trials, the established levers are adequate protein intake and resistance training; this article covers the mechanism, not a dosing or treatment recommendation.",
+  },
+  {
+    q: "What is bimagrumab and how does it preserve muscle?",
+    a: "Bimagrumab is an antibody that blocks the activin type II receptor (ActRII) on muscle cells — the shared dock for myostatin and activin A. Because it acts at the receptor rather than on a single ligand, it is the broadest lever of the muscle-sparing class, and the only one shown to visibly build muscle even used alone. In the peer-reviewed BELIEVE trial, bimagrumab with semaglutide directed roughly 93% of weight lost to fat.",
+  },
+  {
+    q: "Is lean mass on a DEXA scan the same as strength?",
+    a: "No — and this is the central caveat. The headline trial numbers are DEXA-measured lean mass, which is a surrogate marker, not strength, mobility, or physical function. A drug can preserve lean mass on a scan without that translating into measurable strength, so these body-composition results are a genuine proof of concept rather than proof of functional benefit. The next wave of trials is wiring in direct strength and function endpoints to close that gap.",
+  },
+];
+
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -177,6 +203,17 @@ export default function Article() {
                 receptor-level block is the standout — it does not merely{" "}
                 <Em>preserve</Em> lean mass but adds it, even used alone.
               </P>
+              <Callout label="Read the rung, not the headline">
+                Every number above is <Em>DEXA-measured lean mass</Em> — a{" "}
+                <Link href="/insights/mechanism-is-not-proof" className={LINK}>surrogate
+                marker</Link>, not strength, mobility, or physical function. Preserving a
+                kilogram on a body-composition scan is a strong signal, but it is one rung
+                below the outcome anyone actually wants, and a marker can move without the
+                outcome following. So the honest grade here is proof of concept, not proof
+                of benefit: the brake is druggable and body composition shifts toward fat —
+                while the question of whether that <Em>keeps people stronger and more
+                capable</Em> is still being measured.
+              </Callout>
             </Section>
 
             <Section title="The frontier from here">
@@ -213,6 +250,7 @@ export default function Article() {
                 <CrossLink href="/insights/one-receptor-a-whole-family" label="One receptor, a whole family - the shared dock" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin reference (the brake itself)" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Why you can't just buy a myostatin inhibitor" />
+                <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof - why lean mass on a scan is a surrogate" />
                 <CrossLink href="/families/muscle-tgfb" label="The muscle & TGF-β family" />
                 <CrossLink href="/research?q=What%20does%20the%20clinical%20trial%20evidence%20show%20for%20myostatin%20inhibitors%20preserving%20lean%20mass%20during%20GLP-1%20weight%20loss%3F" label="Ask the research agent for current trials" />
               </ul>
@@ -355,8 +393,9 @@ function TrialTable() {
         </tbody>
       </table>
       <figcaption className="border-t border-ink/10 p-3 text-center text-xs text-ink/40">
-        Phase-2 data as of mid-2026. Evidence grade varies — one peer-reviewed, two
-        topline/interim. All are body-composition, not yet functional-outcome, results.
+        Phase-2 data as reviewed October 2026. Evidence grade varies — one peer-reviewed,
+        two topline/interim, and interim figures are routinely revised on full
+        publication. All are body-composition, not yet functional-outcome, results.
       </figcaption>
     </figure>
   );

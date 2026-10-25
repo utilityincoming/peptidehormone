@@ -9,6 +9,12 @@ import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/
 
 const insight = getInsight("the-arm-that-points-at-the-liver")!;
 
+// External primary sources — named inline so each trial claim stays checkable.
+const REF = {
+  leroux: "https://doi.org/10.1016/S2213-8587(23)00356-X", // le Roux et al. 2024, Lancet Diabetes Endocrinol — survodutide phase 2 obesity
+  sanyal: "https://doi.org/10.1056/NEJMoa2401755", // Sanyal et al. 2024, NEJM — survodutide phase 2 in MASH and fibrosis
+} as const;
+
 export const metadata: Metadata = {
   title: insight.title,
   description: insight.dek,
@@ -114,18 +120,23 @@ export default function Article() {
               <P>
                 Survodutide can move the scale: in a phase 2 obesity trial the
                 highest dose cut body weight by roughly 19% at 46 weeks, and the
-                curve had not flattened by the end (Le Roux et al.,{" "}
-                <Em>Lancet</Em> 2024). That is a strong number — but it is not what
-                sets the molecule apart, because tirzepatide and retatrutide reach
-                the same territory.
+                curve had not flattened by the end (
+                <a href={REF.leroux} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  le&nbsp;Roux et&nbsp;al., Lancet&nbsp;Diabetes&nbsp;Endocrinol, 2024
+                </a>
+                ). That is a strong number — but it is not what sets the molecule apart,
+                because tirzepatide and retatrutide reach the same territory.
               </P>
               <P>
                 The differentiator is the liver. In a phase 2 trial in{" "}
                 <Em>MASH</Em> — metabolic dysfunction-associated steatohepatitis, the
                 inflammatory, fibrosing form of fatty-liver disease — up to about
-                83% of participants on survodutide had a histological improvement in
-                MASH without worsening fibrosis, versus roughly 18% on placebo
-                (Sanyal et al., <Em>NEJM</Em> 2024). That is a class-leading liver
+                62% of participants on survodutide had a histological improvement in
+                MASH without worsening fibrosis, versus 14% on placebo (
+                <a href={REF.sanyal} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Sanyal et&nbsp;al., NEJM, 2024
+                </a>
+                ). That is a class-leading liver
                 signal, and it is the reason the molecule carries an FDA{" "}
                 <Em>Breakthrough Therapy</Em> designation in MASH — a status the
                 pure incretin agonists have not matched on the liver endpoint.
@@ -138,7 +149,7 @@ export default function Article() {
                   ],
                   [
                     "Liver",
-                    "the standout: MASH resolution without fibrosis worsening in the large majority of treated participants, the glucagon arm's signature contribution.",
+                    "the standout: MASH improvement without fibrosis worsening in the majority of treated participants at the best dose, the glucagon arm's signature contribution.",
                   ],
                   [
                     "Mechanism tell",
