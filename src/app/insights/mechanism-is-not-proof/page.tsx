@@ -27,6 +27,8 @@ export const metadata: Metadata = {
 const REF = {
   cast: "https://pubmed.ncbi.nlm.nih.gov/1900101/", // Echt et al. 1991, NEJM — CAST: antiarrhythmics suppressed the surrogate, raised mortality
   nass: "https://doi.org/10.7326/0003-4819-149-9-200811040-00003", // Nass et al. 2008, Ann Intern Med — MK-677 raised IGF-1/lean mass, no strength gain
+  fleming: "https://doi.org/10.7326/0003-4819-125-7-199610010-00011", // Fleming & DeMets 1996, Ann Intern Med — the canonical surrogate-endpoint critique
+  ioannidis: "https://doi.org/10.1371/journal.pmed.0020124", // Ioannidis 2005, PLoS Med — Why Most Published Research Findings Are False
 } as const;
 
 // FAQ — surfaced as FAQPage JSON-LD via insightLd().
@@ -159,6 +161,17 @@ export default function Article() {
                 fragments judged by a marker in a mouse. A surrogate is a promissory note. The
                 outcome is the only thing that pays it, and sometimes it bounces.
               </P>
+              <P>
+                This is not a fringe caution; it is the settled view of the people who design
+                trials for a living. The canonical statement is Fleming and DeMets&rsquo;s —
+                a surrogate is trustworthy only if the treatment&rsquo;s effect on the marker
+                reliably predicts its effect on the outcome, a condition that fails far more
+                often than intuition expects (
+                <a href={REF.fleming} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Fleming &amp; DeMets, Ann&nbsp;Intern&nbsp;Med, 1996
+                </a>
+                ). Their line has outlived the paper: a correlate does not a surrogate make.
+              </P>
               <Callout label="The surrogate rule">
                 A moving marker is a hypothesis, not a result. Whenever a claim rests on a
                 biomarker — IGF-1, lean mass, a lab value — ask what happened to the outcome the
@@ -186,7 +199,14 @@ export default function Article() {
                 The second is the top rung itself: <Em>independent replication</Em>. A striking
                 finding produced by a single group and never reproduced by anyone else is not
                 proven — it is <Em>unaudited</Em>, which is a more honest word than true or
-                false.{" "}
+                false. The reasons a lone result tends to be wrong — small studies, small
+                effects, flexible analysis, and a stake in the answer — are the ones Ioannidis
+                laid out in the most-cited argument for why most published findings don&rsquo;t
+                hold up (
+                <a href={REF.ioannidis} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Ioannidis, PLoS&nbsp;Med, 2005
+                </a>
+                ).{" "}
                 <Link href="/insights/the-clock-you-cant-audit" className={LINK}>
                   Epitalon&rsquo;s
                 </Link>{" "}
