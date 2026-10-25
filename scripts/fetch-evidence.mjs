@@ -70,6 +70,7 @@ const SKIP_ABBR = new Set(["GH", "GIP", "MGF", "CNP", "ADH", "SST", "IAPP", "Tβ
 // Molecule-specific extra terms the catalog name alone would miss — verified
 // INNs and the spellings the literature actually uses. Additive only.
 const EXTRA_TERMS = {
+  eloralintide: ["LY3841136"],
   "growth-hormone": ["somatropin"],
   "alpha-msh": ["alpha-melanocyte-stimulating hormone", "alpha-MSH"],
   "thymosin-beta-4": ["thymosin beta4", "thymosin beta-4"],
