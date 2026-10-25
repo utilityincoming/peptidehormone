@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -9,16 +10,54 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("glp-1-signaling")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  // Editorial H1 lives in `insight.title`; the browser/SERP title carries the
+  // descriptive, keyword-first phrasing per the site's headline convention.
+  title:
+    "What Does GLP-1 Do? The Receptor, the Second Messenger, and Why It Only Works When Glucose Is High — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
-  openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
+  openGraph: {
+    title: "What Does GLP-1 Do? How the Hormone Actually Works · Peptide Hormone",
+    description: insight.dek,
+  },
 };
+
+// External primary sources — named inline so each mechanistic claim stays checkable.
+const REF = {
+  nauck: "https://doi.org/10.1007/BF02427280", // Nauck et al. 1986, Diabetologia — reduced incretin effect in type 2 diabetes
+  thorens: "https://doi.org/10.1073/pnas.89.18.8641", // Thorens 1992, PNAS — GLP-1R expression cloning; 7TM, couples to adenylyl cyclase
+  eng: "https://pubmed.ncbi.nlm.nih.gov/1313797/", // Eng et al. 1992, JBC — isolation of exendin-4 from Heloderma suspectum venom
+  drucker: "https://doi.org/10.1172/JCI175634", // Drucker 2024, JCI — "The GLP-1 journey: from discovery science to therapeutic impact"
+} as const;
+
+// FAQ — surfaced as FAQPage JSON-LD via insightLd().
+const FAQS = [
+  {
+    q: "What does GLP-1 do?",
+    a: "GLP-1 (glucagon-like peptide-1) is a hormone released from intestinal L-cells after a meal. Its core job is to tell the pancreas that food has arrived: it binds the GLP-1 receptor on beta cells and amplifies glucose-triggered insulin secretion. It also suppresses glucagon, slows gastric emptying, and acts on appetite centers in the brain to reduce food intake — the combination behind both the glycemic and weight effects of GLP-1 receptor-agonist drugs.",
+  },
+  {
+    q: "Why doesn't GLP-1 cause low blood sugar?",
+    a: "Because GLP-1's signal only amplifies insulin secretion when glucose is already elevated. The hormone raises cAMP inside the beta cell, but that signal does not by itself eject insulin granules — it turns up the gain on the cell's own glucose-sensing step. When blood sugar is normal, there is little to amplify, so the risk of hypoglycemia is low, unlike sulfonylureas or injected insulin, which force secretion regardless of blood sugar. This glucose-dependence is the safety crux of the whole drug class.",
+  },
+  {
+    q: "What is the incretin effect?",
+    a: "The incretin effect is the observation that oral glucose triggers far more insulin release than the same amount of glucose given intravenously — because the gut signals the pancreas that food is coming, before blood sugar fully rises. GLP-1 carries most of that message. In type 2 diabetes the incretin effect is blunted, and that single fact is what turned GLP-1 from a piece of physiology into a major drug target.",
+  },
+  {
+    q: "Why is GLP-1's half-life so short, and how do the drugs last a week?",
+    a: "Native GLP-1 survives only about one to two minutes in blood: the enzyme DPP-4 clips its N-terminus into an inactive fragment and the kidney clears the rest. Drugs get around this two ways — DPP-4 inhibitors slow the breakdown of the GLP-1 your own gut makes, while engineered agonists are built to resist DPP-4 (exendin-4, from Gila monster venom, is naturally resistant) and often carry a fatty-acid chain that binds albumin to evade clearance, stretching the half-life from minutes to days.",
+  },
+  {
+    q: "What is the difference between a GLP-1 agonist and a DPP-4 inhibitor?",
+    a: "A GLP-1 receptor agonist is an engineered molecule that binds and activates the GLP-1 receptor directly, at pharmacological levels, for days at a time. A DPP-4 inhibitor does not touch the receptor — it blocks the enzyme that degrades your own GLP-1 and GIP, raising the level of the incretins you already produce. Agonists push the system harder; inhibitors simply slow the brakes on the body's own signal.",
+  },
+];
 
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -58,10 +97,13 @@ export default function Article() {
                 peptide-1, released from intestinal L-cells after a meal.
               </P>
               <P>
-                In type 2 diabetes this incretin effect is blunted. That single
-                observation — a gut-to-pancreas signal that weakens in disease — is
-                what turned GLP-1 from a piece of physiology into one of the most
-                consequential drug targets in modern medicine.
+                In type 2 diabetes this incretin effect is blunted (
+                <a href={REF.nauck} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Nauck et&nbsp;al., Diabetologia, 1986
+                </a>
+                ). That single observation — a gut-to-pancreas signal that weakens in
+                disease — is what turned GLP-1 from a piece of physiology into one of the
+                most consequential drug targets in modern medicine.
               </P>
             </Section>
 
@@ -70,7 +112,13 @@ export default function Article() {
                 GLP-1 binds the <Em>GLP-1 receptor</Em> (GLP-1R), a class B
                 G-protein-coupled receptor on the pancreatic beta cell. The receptor
                 couples to G&alpha;s, which switches on adenylyl cyclase, which raises
-                the cell&rsquo;s level of the second messenger <Em>cAMP</Em>. Elevated
+                the cell&rsquo;s level of the second messenger <Em>cAMP</Em> (the receptor
+                was expression-cloned and shown to be a seven-transmembrane protein coupled
+                to adenylyl cyclase by{" "}
+                <a href={REF.thorens} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Thorens, PNAS, 1992
+                </a>
+                ). Elevated
                 cAMP acts through two effectors — protein kinase A (PKA) and Epac2 —
                 and the net result is to potentiate insulin secretion.
               </P>
@@ -125,9 +173,17 @@ export default function Article() {
               <Bullets
                 items={[
                   ["Block the enzyme", "DPP-4 inhibitors slow the degradation of the GLP-1 (and GIP) your own gut already makes, raising endogenous incretin tone."],
-                  ["Build a resistant agonist", "Exendin-4 — a peptide from Gila monster venom — is naturally DPP-4-resistant. Attaching a fatty-acid chain (acylation) lets engineered analogs bind albumin and evade clearance, stretching the half-life from minutes to days."],
+                  ["Build a resistant agonist", "Exendin-4 — a peptide first isolated from Gila monster venom — is naturally DPP-4-resistant. Attaching a fatty-acid chain (acylation) lets engineered analogs bind albumin and evade clearance, stretching the half-life from minutes to days."],
                 ]}
               />
+              <P>
+                Exendin-4&rsquo;s discovery in the venom of <em>Heloderma suspectum</em> (
+                <a href={REF.eng} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Eng et&nbsp;al., JBC, 1992
+                </a>
+                ) is the origin of the first clinical GLP-1 agonist and the template for the
+                half-life engineering that followed.
+              </P>
               <P>
                 That half-life engineering is exactly what the{" "}
                 <Link href="/tools/half-life" className={LINK}>dosing calculator</Link>{" "}
@@ -155,7 +211,12 @@ export default function Article() {
                 <Em>Established:</Em> glucose-dependent insulin secretion, glucagon
                 suppression, slowed gastric emptying, and central appetite reduction
                 through this pathway, with substantial weight and glycemic effects and
-                cardiovascular and renal outcome signals in large trials.
+                cardiovascular and renal outcome signals in large trials (for a current
+                mechanism-to-clinic overview, see{" "}
+                <a href={REF.drucker} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Drucker, JCI, 2024
+                </a>
+                ).
               </P>
               <P>
                 <Em>Open:</Em> the precise split between gastric, central, and other
@@ -173,6 +234,7 @@ export default function Article() {
                 <CrossLink href="/hormones/glp-1" label="GLP-1 reference (identity, MW, half-life)" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
                 <CrossLink href="/tools/half-life?t12=1.5&unit=min" label="Model GLP-1's half-life & dosing" />
+                <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof — how to grade a GLP-1 claim by its evidence rung" />
                 <CrossLink href="/research?q=What%20does%20the%20clinical%20trial%20evidence%20show%20for%20GLP-1%2FGIP%20co-agonism%3F" label="Ask the research agent for current trials" />
               </ul>
             </div>
@@ -189,60 +251,6 @@ export default function Article() {
       </main>
       <SiteFooter />
     </>
-  );
-}
-
-const LINK = "text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent";
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="font-display text-2xl font-semibold sm:text-[1.7rem]">{title}</h2>
-      <div className="mt-5 space-y-4">{children}</div>
-    </section>
-  );
-}
-
-function P({ children }: { children: React.ReactNode }) {
-  return <p className="text-[15px] leading-7 text-ink/75">{children}</p>;
-}
-
-function Em({ children }: { children: React.ReactNode }) {
-  return <strong className="font-semibold text-ink">{children}</strong>;
-}
-
-function Callout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-2xl border-l-2 border-accent bg-accent/[0.06] p-5">
-      <div className="mb-1 font-mono text-[11px] uppercase tracking-wide text-accent">Key insight</div>
-      <p className="text-[15px] leading-7 text-ink/80">{children}</p>
-    </div>
-  );
-}
-
-function Bullets({ items }: { items: [string, string][] }) {
-  return (
-    <ul className="space-y-3">
-      {items.map(([head, body]) => (
-        <li key={head} className="flex gap-3 text-[15px] leading-7 text-ink/75">
-          <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-          <span>
-            <strong className="font-semibold text-ink">{head}.</strong> {body}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function CrossLink({ href, label }: { href: string; label: string }) {
-  return (
-    <li>
-      <Link href={href} className="group flex items-start gap-2 text-ink/75 transition-colors hover:text-accent">
-        <span className="mt-0.5 text-ink/30 transition-colors group-hover:text-accent" aria-hidden>→</span>
-        <span>{label}</span>
-      </Link>
-    </li>
   );
 }
 

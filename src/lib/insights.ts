@@ -530,8 +530,8 @@ export const INSIGHTS: Insight[] = [
     featuredRank: 1,
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",
-    readingMinutes: 9,
-    reviewed: "June 2026",
+    readingMinutes: 10,
+    reviewed: "October 2026",
   },
 ];
 
