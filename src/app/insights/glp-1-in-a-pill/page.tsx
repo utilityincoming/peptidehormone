@@ -11,16 +11,48 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("glp-1-in-a-pill")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  // Editorial H1 lives in `insight.title`; the browser/SERP title carries the
+  // descriptive, keyword-first phrasing per the site's headline convention.
+  title:
+    "GLP-1 in a Pill: Oral Semaglutide vs Orforglipron — How a Peptide Drug Became a Tablet · Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
-  openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
+  openGraph: {
+    title: "GLP-1 in a Pill: How the Peptide Drug Became a Tablet · Peptide Hormone",
+    description: insight.dek,
+  },
 };
+
+// External primary sources — named inline so each claim stays checkable.
+const REF = {
+  buckley: "https://doi.org/10.1126/scitranslmed.aar7047", // Buckley et al. 2018, Sci Transl Med — oral semaglutide gastric absorption via SNAC
+  orforglipron: "https://doi.org/10.1056/NEJMoa2302392", // Wharton et al. 2023, NEJM — oral non-peptide orforglipron phase 2 obesity
+} as const;
+
+// FAQ — surfaced as FAQPage JSON-LD via insightLd().
+const FAQS = [
+  {
+    q: "Why can't you just put a GLP-1 drug in a pill?",
+    a: "A peptide is chemically food: the acid and enzymes of the gut take it apart for amino acids before it can act, which is why injectable GLP-1 drugs use the needle to bypass digestion. Getting the biology into a tablet means either forcing the fragile peptide across the gut wall with an absorption enhancer, or abandoning the peptide and rebuilding its message as a digestion-proof small molecule.",
+  },
+  {
+    q: "How does oral semaglutide work if peptides are destroyed in the gut?",
+    a: "Oral semaglutide is the same peptide as the injection, co-formulated with an absorption enhancer called SNAC that locally raises the pH and loosens the stomach lining so a sliver of the dose slips across. Only on the order of one percent of an oral dose reaches the bloodstream, so the tablet carries far more drug to compensate — and it must be taken fasting, with a little water and nothing else for a while, because food or extra fluid sends absorption toward zero.",
+  },
+  {
+    q: "What is orforglipron, and how is it different?",
+    a: "Orforglipron is a non-peptide small molecule that activates the same GLP-1 receptor but was engineered in a chemical class the gut has no machinery to digest. It isn't smuggled across the gut wall — it simply crosses like ordinary small-molecule pills, with no absorption enhancer, no one-percent tax, and, as reported so far, none of oral semaglutide's strict food-and-water choreography. In a phase 2 obesity trial it produced substantial weight loss.",
+  },
+  {
+    q: "Why is a small-molecule pill a bigger deal than just avoiding the needle?",
+    a: "The deeper consequence is manufacturing. Peptides need specialized synthesis or fermentation, cold storage, and injection — a supply chain with real limits, as the injectable-era shortages showed. A small molecule is classical pharmaceutical chemistry: made in bulk, stable at room temperature, pressed into a tablet, and shipped anywhere a pill can go. That changes the economics of supply, not just the convenience.",
+  },
+];
 
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -85,7 +117,11 @@ export default function Article() {
               <P>
                 &ldquo;A sliver&rdquo; is not an exaggeration: only on the order of{" "}
                 <Em>one percent</Em> of an oral semaglutide dose actually makes it into the
-                bloodstream. It works anyway, because the molecule is potent enough that you
+                bloodstream (the gastric-absorption mechanism was worked out by{" "}
+                <a href={REF.buckley} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Buckley et&nbsp;al., Sci&nbsp;Transl&nbsp;Med, 2018
+                </a>
+                ). It works anyway, because the molecule is potent enough that you
                 can dose around the enormous waste — swallow a large amount so that the
                 surviving one percent is still a real dose. The catch is that the smuggling
                 is fragile: it has to be taken fasting, with a sip of water and then nothing
@@ -107,7 +143,12 @@ export default function Article() {
               <P>
                 That is what orforglipron is — a <Em>non-peptide small molecule</Em> that
                 switches on the very same GLP-1 receptor, engineered from the ground up in a
-                chemical class the gut has no machinery to digest. It isn&rsquo;t smuggled
+                chemical class the gut has no machinery to digest (a phase 2 obesity trial
+                reported substantial weight loss;{" "}
+                <a href={REF.orforglipron} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Wharton et&nbsp;al., NEJM, 2023
+                </a>
+                ). It isn&rsquo;t smuggled
                 across the gut wall; it simply walks across, the way ordinary small-molecule
                 pills always have, because there was never a peptide for the gut to attack.
                 No absorption enhancer, no one-percent tax, and — as reported so far — none

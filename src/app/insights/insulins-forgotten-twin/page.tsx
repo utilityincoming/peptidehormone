@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary sources — named inline so each claim stays checkable.
+const REF = {
+  cooper: "https://doi.org/10.1073/pnas.84.23.8628", // Cooper et al. 1987, PNAS — isolation of islet amyloid polypeptide (amylin)
+  hollander: "https://pubmed.ncbi.nlm.nih.gov/12610038/", // Hollander et al. 2003, Diabetes Care — pramlintide as adjunct in insulin-treated diabetes
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -67,7 +73,11 @@ export default function Article() {
                 new hormone but in the wrong place entirely: buried in the{" "}
                 <Em>amyloid</Em> — the pathological protein clumps — that scar the islets of
                 a diabetic pancreas. Its formal name still carries that origin: islet
-                amyloid polypeptide, IAPP. The twin was discovered as debris.
+                amyloid polypeptide, IAPP (
+                <a href={REF.cooper} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Cooper et&nbsp;al., PNAS, 1987
+                </a>
+                ). The twin was discovered as debris.
               </P>
             </Section>
 
@@ -141,7 +151,11 @@ export default function Article() {
                 cannot bottle a peptide that clumps in the vial. The fix was engineering.
                 The approved analog pramlintide borrows a trick from rodent amylin, whose
                 sequence resists aggregation, substituting a few proline residues to break
-                the misfolding-prone stretch while keeping the biology. Newer long-acting
+                the misfolding-prone stretch while keeping the biology (
+                <a href={REF.hollander} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Hollander et&nbsp;al., Diabetes&nbsp;Care, 2003
+                </a>
+                ). Newer long-acting
                 analogs like cagrilintide extend that idea for once-weekly dosing. The
                 &ldquo;amylin drugs&rdquo; are, in a real sense, amylin with its
                 self-destruct sequence edited out.

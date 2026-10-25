@@ -3,20 +3,55 @@ import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, CrossLink } from "@/components/insight";
 import { DocumentedRange } from "@/components/DocumentedRange";
+import { JsonLd } from "@/components/JsonLd";
+import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
+import { getFamily } from "@/lib/families";
 
 const insight = getInsight("the-triple-agonist")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  // Editorial H1 lives in `insight.title`; the browser/SERP title carries the
+  // descriptive, keyword-first phrasing per the site's headline convention.
+  title:
+    "What Is Retatrutide? The Triple Agonist (GLP-1, GIP, Glucagon) and the Glucagon Paradox — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
-  openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
+  openGraph: {
+    title: "What Is Retatrutide? The Triple Agonist · Peptide Hormone",
+    description: insight.dek,
+  },
 };
+
+// External primary sources — named inline so the evidence grade stays checkable.
+const REF = {
+  reta: "https://doi.org/10.1056/NEJMoa2301972", // Jastreboff et al. 2023, NEJM — retatrutide phase 2 obesity trial
+} as const;
+
+// FAQ — surfaced as FAQPage JSON-LD via insightLd().
+const FAQS = [
+  {
+    q: "What is retatrutide?",
+    a: "Retatrutide (LY3437943) is an investigational once-weekly peptide that activates three receptors at once — GLP-1, GIP, and glucagon. It is the next step beyond single agonists like semaglutide (GLP-1) and dual agonists like tirzepatide (GLP-1 + GIP), adding the glucagon receptor to the combination. It is under study, not approved.",
+  },
+  {
+    q: "Why would a weight-loss drug activate the glucagon receptor, which raises blood sugar?",
+    a: "Glucagon does more than raise blood sugar — glucagon-receptor activation also increases energy expenditure, so the body burns more fuel. On its own that comes with an unwanted glucose-raising effect, but paired with two incretins (GLP-1 and GIP) that drive glucose-dependent insulin release and curb appetite, the glucose-raising arm is held in check while the energy-expenditure arm is recruited. A hormone's effect depends on the company it keeps.",
+  },
+  {
+    q: "How much weight did retatrutide produce in trials?",
+    a: "In a phase 2 trial, body-weight reductions were among the largest reported for the class, reaching roughly a quarter of body weight by 48 weeks in the most-exposed dose group. That is a mid-stage result; the large phase 3 TRIUMPH program is running now, and until it reports the honest label is promising but unproven at scale.",
+  },
+  {
+    q: "Is more receptors automatically better?",
+    a: "No. Each receptor carries its own effects and liabilities, and the three have to be engaged in a deliberate ratio — enough glucagon signal to raise energy expenditure, enough incretin signal to keep glucose in line. Get the balance wrong and the glucose-raising arm wins. The engineering challenge is not hitting three targets; it is balancing them.",
+  },
+];
 
 export default function Article() {
   return (
     <>
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -133,9 +168,12 @@ export default function Article() {
                 Retatrutide is <Em>investigational</Em> — under study, not approved. In a
                 mid-stage (phase 2) trial, the reductions in body weight were among the
                 largest reported for this class, reaching roughly a quarter of body weight
-                by 48 weeks in the most-exposed group. A large phase 3 program (TRIUMPH),
-                enrolling thousands of participants over a longer horizon, is running now,
-                with results anticipated around 2026.
+                by 48 weeks in the most-exposed group (
+                <a href={REF.reta} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Jastreboff et&nbsp;al., NEJM, 2023
+                </a>
+                ). A large phase 3 program (TRIUMPH), enrolling thousands of participants
+                over a longer horizon, is running now, with results anticipated around 2026.
               </P>
               <P>
                 Until those read out, the honest label is <Em>promising but unproven at

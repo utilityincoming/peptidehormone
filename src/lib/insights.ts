@@ -511,8 +511,8 @@ export const INSIGHTS: Insight[] = [
     featuredRank: 4,
     dek: "The next leap in weight loss isn't losing more — it's losing better. Pair a GLP-1 drug with myostatin inhibition and you can strip fat while sparing, even building, muscle. Inside the TGF-β biology and the combination therapies engineering it.",
     family: "muscle-tgfb",
-    readingMinutes: 10,
-    reviewed: "July 2026",
+    readingMinutes: 11,
+    reviewed: "October 2026",
   },
   {
     slug: "insulin-to-the-peptide-boom",
@@ -530,8 +530,8 @@ export const INSIGHTS: Insight[] = [
     featuredRank: 1,
     dek: "From an intestinal cell to a closed potassium channel: the receptor, the second messenger, and why the whole system only fires when glucose is high.",
     family: "incretins-metabolic",
-    readingMinutes: 9,
-    reviewed: "June 2026",
+    readingMinutes: 10,
+    reviewed: "October 2026",
   },
 ];
 

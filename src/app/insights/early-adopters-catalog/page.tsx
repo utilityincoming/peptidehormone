@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
 };
 
+// External primary source — the randomized-trial anchor behind the "vindication" claim.
+const REF = {
+  surmount1: "https://doi.org/10.1056/NEJMoa2206038", // Jastreboff et al. 2022, NEJM — SURMOUNT-1 tirzepatide obesity RCT
+} as const;
+
 export default function Article() {
   return (
     <>
@@ -128,7 +133,11 @@ export default function Article() {
                 <Link href="/hormones/semaglutide" className={LINK}>semaglutide</Link> and{" "}
                 <Link href="/hormones/tirzepatide" className={LINK}>tirzepatide</Link> —
                 is, at its core, a rigorous, randomized-trial vindication of{" "}
-                <Em>metabolic control as the foundation</Em>. Get glucose and insulin
+                <Em>metabolic control as the foundation</Em> (
+                <a href={REF.surmount1} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  SURMOUNT-1; Jastreboff et&nbsp;al., NEJM, 2022
+                </a>
+                ). Get glucose and insulin
                 signaling working right, and a cascade of health benefits follows. That
                 was the community&rsquo;s bet all along; the difference now is that it has
                 outcome data behind it.
