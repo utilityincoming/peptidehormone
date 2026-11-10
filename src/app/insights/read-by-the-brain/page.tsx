@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 
 // External sources — a primary human trial plus the brenipatide trial registry.
 const REF = {
+  phase1: "https://assets.ctfassets.net/mpejy6umgthp/1DBu0eLHcS9NjjpujOaamF/f0d57d38b14a73d659c3504020088e79/Brenipatide_a_GIP_GLP-1_Receptor_Agonist_DV-041369-MDD.pdf", // Lilly Psych Congress 2026 poster: PK, safety and dose-selection PD
   semaglutide: "https://pubmed.ncbi.nlm.nih.gov/39937469/", // Hendershot et al. 2025, JAMA Psychiatry — semaglutide in alcohol use disorder
   renewAlc: "https://clinicaltrials.gov/study/NCT07219966", // RENEW-ALC — brenipatide in moderate-to-severe alcohol use disorder
   renewMdd: "https://clinicaltrials.gov/study/NCT07775300", // RENEW-MDD — brenipatide adjunctive in major depressive disorder
@@ -34,7 +35,7 @@ const REF = {
 const FAQS = [
   {
     q: "What is brenipatide?",
-    a: "Brenipatide (LY3537031) is an investigational Eli Lilly peptide that agonizes the same two receptors as tirzepatide — GIP and GLP-1 — from a single molecule, but is engineered for a far longer, roughly once-monthly dosing interval. What makes it unusual is where it is pointed: its lead development is not obesity but psychiatry and addiction. The Phase 3 RENEW program studies it in alcohol use disorder and as an add-on in major depression, on the bet that incretin signaling reaches the brain's reward and mood circuitry, not just metabolism.",
+    a: "Brenipatide (LY3537031) is an investigational Eli Lilly peptide that agonizes the same two receptors as tirzepatide — GIP and GLP-1 — from a single molecule, but is engineered for a far longer, once-weekly maintenance schedule supported by Lilly’s 2026 Phase 1 pharmacokinetic poster. What makes it unusual is where it is pointed: its lead development is not obesity but psychiatry and addiction. The Phase 3 RENEW program studies it in alcohol use disorder and as an add-on in major depression, on the bet that incretin signaling reaches the brain's reward and mood circuitry, not just metabolism.",
   },
   {
     q: "Why would a diabetes/obesity drug class be tested for addiction and depression?",
@@ -49,8 +50,8 @@ const FAQS = [
     a: "RENEW is brenipatide's Phase 3 clinical program, and it is notable for leading in psychiatry rather than metabolism. It includes large trials in moderate-to-severe alcohol use disorder and in major depressive disorder (as adjunctive treatment), each enrolling on the order of a thousand participants, with results expected around 2028. Phase 2 work spans bipolar disorder, schizophrenia, opioid use disorder and smoking. Obesity, the class's home ground, sits in earlier-stage development.",
   },
   {
-    q: "Does brenipatide have efficacy results yet?",
-    a: "No. As of 2026, no efficacy or safety results from any brenipatide trial have been published. The case for it rests on the mechanism and on class-level evidence from other incretin drugs — it is a well-reasoned bet taken straight into large Phase 3 psychiatry trials, not a proven therapy. The honest status is: strong rationale, real but early class data, and zero published results for this specific molecule.",
+    q: "What do LY3537031 clinical trials show so far?",
+    a: "Lilly presented Phase 1 safety, pharmacokinetic, and dose-selection pharmacodynamic data at Psych Congress in September 2026. The poster reports a roughly 9–12.5-day half-life supporting weekly maintenance dosing and body-weight changes as a surrogate for dose selection. These are not efficacy results for alcohol use disorder or depression; the Phase 3 RENEW trials have not reported disease outcomes. The poster is a sponsor presentation, not a peer-reviewed clinical efficacy publication.",
   },
 ];
 
@@ -101,7 +102,9 @@ export default function Article() {
               <P>
                 It is, mechanically, close to familiar ground: a single peptide that agonizes
                 both GIP and GLP-1, the same receptor pair as tirzepatide, engineered for a far
-                longer — roughly once-monthly — reach. What is unfamiliar is the direction.
+                longer half-life — roughly 9 to 12.5 days in Lilly&rsquo;s{" "}
+                <a href={REF.phase1} target="_blank" rel="noopener noreferrer" className={LINK}>2026 Phase 1 poster</a>,
+                supporting weekly dosing. What is unfamiliar is the direction.
                 Eli Lilly is leading brenipatide&rsquo;s development not with obesity but with
                 <Em> alcohol use disorder</Em> and <Em>major depression</Em>, on the bet that
                 incretin signaling touches the brain&rsquo;s reward and mood circuitry. This is
@@ -171,12 +174,14 @@ export default function Article() {
             <Section title="What brenipatide actually is">
               <P>
                 Against that backdrop, brenipatide&rsquo;s design choices make sense. It shares
-                tirzepatide&rsquo;s two-receptor machinery but is built for an extended interval
-                Lilly has not fully disclosed — on the order of monthly — and a drug meant to
-                hold craving down for months, not meals, benefits from the longest possible
-                reach and the fewest possible missed doses. Adherence is where addiction and
-                depression treatments fail most; a once-monthly injection is a serious answer to
-                that failure mode, independent of any reward-circuit effect.
+                tirzepatide&rsquo;s two-receptor machinery, but Lilly&rsquo;s Phase 1 pharmacokinetic
+                data support <Em>weekly</Em>, not monthly, maintenance dosing ({" "}
+                <a href={REF.phase1} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Lilly, Psych Congress 2026
+                </a>). That sponsor poster also reported body-weight change as a
+                pharmacodynamic marker for dose selection and treatment-emergent adverse
+                events in 57.6% of 184 treated participants. Neither is proof of
+                efficacy for addiction or depression; those clinical outcomes remain unreported.
               </P>
               <P>
                 Two honest unknowns sit inside the molecule. The first: what the GIP arm
@@ -207,7 +212,7 @@ export default function Article() {
                 smoking. Obesity, the class&rsquo;s home ground, is the <Em>late</Em> program
                 here, not the lead. A company is taking a molecule straight into large,
                 expensive psychiatric Phase 3 trials on the strength of class evidence and
-                mechanism, ahead of a single published efficacy result for the drug itself.
+                mechanism, ahead of reported clinical efficacy for either psychiatric indication. Lilly has presented Phase 1 safety and dose-selection data, not a disease-outcome result.
               </P>
               <P>
                 That is a defensible bet and a real gamble at once. The upside is a genuinely new
@@ -231,18 +236,18 @@ export default function Article() {
                 nothing to do with weight — and it is almost entirely a promissory note. The
                 mechanism is real: the receptors are in the reward circuitry, and the animal and
                 early human data point the right way. The strategy is bold: lead in psychiatry,
-                dose monthly, go big early. And the evidence specific to this molecule is
-                nonexistent. Hold all three together and brenipatide is what a well-reasoned,
+                dose weekly, go big early. Phase 1 safety and pharmacology data
+                exist, but efficacy for addiction or depression remains unproven. Hold all three together and brenipatide is what a well-reasoned,
                 high-conviction, unproven bet looks like — the incretin sentence, written for the
                 pancreas, carried to the clinic on the wager that the brain can read it.
               </P>
               <Bullets
                 items={[
-                  ["A dual GIP/GLP-1 agonist pointed at the brain", "Brenipatide (LY3537031) hits tirzepatide's two receptors from one peptide, engineered for a ~monthly interval — but leads in addiction and depression, not obesity."],
+                  ["A dual GIP/GLP-1 agonist pointed at the brain", "Brenipatide (LY3537031) hits tirzepatide's two receptors from one peptide, with weekly maintenance dosing supported by Phase 1 PK — but leads in addiction and depression, not obesity."],
                   ["The reward-circuit rationale is genuine", "GLP-1 receptors sit in the mesolimbic dopamine pathway; in animals, GLP-1 agonists cut self-administration of alcohol and other drugs."],
                   ["The first human signal has a built-in caveat", "Semaglutide lowered alcohol quantity and craving in a small RCT — but drinking days didn't change and weight fell. Reward-specific effect, or general consumption suppression? Unresolved."],
-                  ["Monthly dosing targets the real failure mode", "Adherence is where addiction and depression drugs fail; a once-monthly injection is a serious answer — independent of any craving effect. The GIP arm's brain role is uncharted."],
-                  ["Phase 3 ahead of its own data", "The RENEW program runs ~1,000-participant trials in alcohol use disorder and MDD, reading out ~2028, with no published brenipatide efficacy yet. A high-conviction bet, not a result."],
+                  ["Weekly dosing, not monthly", "Lilly’s 2026 Phase 1 poster supports weekly maintenance dosing; its safety and dose-selection signals are not evidence of benefit for addiction or depression."],
+                  ["Phase 3 ahead of its own data", "The RENEW program runs ~1,000-participant trials in alcohol use disorder and MDD, reading out ~2028, with no reported psychiatric efficacy yet. A high-conviction bet, not a clinical outcome."],
                 ]}
               />
             </Section>

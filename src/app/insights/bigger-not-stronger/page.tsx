@@ -18,10 +18,10 @@ export const metadata: Metadata = {
 
 // External primary sources — named inline so the evidence grade stays checkable.
 const REF = {
-  ace083: "https://onlinelibrary.wiley.com/doi/full/10.1002/mus.27558",
+  ace083: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9321022/",
   ace031: "https://onlinelibrary.wiley.com/doi/abs/10.1002/mus.25268",
   sapphire:
-    "https://investors.scholarrock.com/news-releases/news-release-details/scholar-rock-reports-apitegromab-meets-primary-endpoint-phase-3",
+    "https://orbi.uliege.be/bitstream/2268/339849/1/Safety%20and%20efficacy%20of%20apitegromab%20in%20nonambulatory%20type%202%20or%20type%203%20spinal%20muscular%20atrophy.pdf",
   crl: "https://investors.scholarrock.com/news-releases/news-release-details/fda-issues-complete-response-letter-crl-apitegromab-treatment",
   pdufa:
     "https://www.managedhealthcareexecutive.com/view/fda-delays-apitegromab-approval-cites-facility-concerns",
@@ -101,7 +101,9 @@ export default function Article() {
                 ). Then the secondary endpoints came in. The functional tests — the
                 measures of whether patients could actually <Em>do</Em> more — showed no
                 statistically significant improvement. Bigger muscle, unchanged function.
-                Acceleron stopped the FSHD program.
+                Acceleron stopped the FSHD program. This trial did not establish
+                functional benefit or a cure for FSHD; the MRI change was a surrogate,
+                not a disease-modifying outcome.
               </P>
               <SizeVsFunction />
               <P>
@@ -203,12 +205,17 @@ export default function Article() {
                 ACE-083 could not: it improved a <Em>functional</Em> motor score, not just
                 a scan (
                 <a href={REF.sapphire} target="_blank" rel="noopener noreferrer" className={LINK}>
-                  Scholar Rock, 2024/25
+                  Crawford et&nbsp;al., Lancet Neurology, 2025
                 </a>
                 ).
               </P>
               <P>
-                The reason it worked is the whole thesis in one experiment. Apitegromab
+                This is a result in spinal muscular atrophy (SMA), <Em>not FSHD</Em>.
+                The prespecified combined-dose comparison in children aged 2–12
+                improved the HFMSE motor score by 1.8 points over placebo at 12 months;
+                the separate 20 mg/kg comparison did not reach statistical significance.
+                SAPPHIRE does not show apitegromab treats FSHD, let alone cures it.
+                The proposed reason the SMA result differs is the whole thesis here: Apitegromab
                 was added <Em>on top of</Em> the SMA drugs that repair the underlying
                 fault — the SMN-restoring therapies that get the motor neuron talking to
                 the muscle again. Fix the wiring, then release the brake, and the extra
