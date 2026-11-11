@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, accentHex, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, accentHex, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { HORMONES, getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 
@@ -23,6 +23,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       subtitle: h?.summary,
       accent: accentHex(family?.accent),
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

@@ -134,21 +134,19 @@ export function SourcingNote({ slug, molecule }: { slug?: string; molecule?: str
  * sources. Outbound links carry rel="sponsored" as the honest signal for a paid link.
  */
 export function SourcingLine() {
-  const withCode = VENDORS.find((v) => v.code);
+  // The homepage has one primary outbound partner; the availability page
+  // retains the full, disclosed vendor comparison.
+  const withCode = VENDORS.find((v) => v.key === "aminoclub");
   return (
     <p className="text-sm leading-6 text-ink/60">
       Sourcing your own research material? Our{" "}
-      <span className="text-ink/75">American Peptide</span> network vetted {vendorCount}{" "}
-      research-use-only sources you can actually reason about —{" "}
-      {VENDORS.map((v, i) => (
-        <span key={v.key}>
-          <AffiliateLink href={v.home} vendor={v.key} surface="line" className={AFF_LINK}>
-            {v.name}
-          </AffiliateLink>
-          {i < VENDORS.length - 2 ? ", " : i === VENDORS.length - 2 ? " and " : ""}
-        </span>
-      ))}
-      .{" "}
+      <span className="text-ink/75">American Peptide</span> network links to{" "}
+      {withCode && (
+        <AffiliateLink href={withCode.home} vendor={withCode.key} surface="line" className={AFF_LINK}>
+          {withCode.name}
+        </AffiliateLink>
+      )}
+      {" "}for research-use-only materials. We may earn a commission.{" "}
       {withCode && (
         <>
           Code <CopyCode code={withCode.code!} /> at {withCode.name}.{" "}

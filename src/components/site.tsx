@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import SearchDialog from "@/components/SearchDialog";
+import MobileNav from "@/components/MobileNav";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-6 ${className}`}>{children}</div>;
@@ -40,7 +41,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-ink/[0.06] bg-surface/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-3 sm:gap-6">
           <nav className="hidden items-center gap-8 text-sm text-ink/60 sm:flex">
             <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
             <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
@@ -48,6 +49,7 @@ export function SiteHeader() {
             <Link href="/available" className="transition-colors hover:text-ink">Availability</Link>
           </nav>
           <SearchDialog />
+          <MobileNav />
           <Link
             href="/catalog"
             className="hidden rounded-full border border-ink/15 px-4 py-1.5 text-sm text-ink/90 transition-colors hover:border-accent hover:text-accent sm:inline-block"

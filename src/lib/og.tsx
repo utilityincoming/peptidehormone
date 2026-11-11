@@ -1,8 +1,10 @@
 import type { ReactElement } from "react";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 // Shared Open Graph image layout (1200×630). Satori-safe: flexbox + inline
-// styles only, no Tailwind, no external fonts. Used by the opengraph-image
-// route segments for the home page, family hubs, and hormone pages.
+// styles only, no Tailwind. Used by the opengraph-image route segments for the
+// home page, family hubs, and hormone pages.
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
@@ -20,6 +22,27 @@ export function accentHex(cls?: string): string {
   return (cls && map[cls]) || "#7C83FF";
 }
 
+// The site's display face, bundled (latin subset, OFL — see src/assets/fonts)
+// so share cards match the headings instead of falling back to a system sans.
+// Satori cannot read woff2 or variable fonts, hence the static woff files.
+// Every opengraph-image route passes this as ImageResponse's `fonts`.
+const FONT_DIR = join(process.cwd(), "src/assets/fonts");
+let fontCache: Promise<
+  { name: string; data: Buffer; weight: 400 | 600; style: "normal" }[]
+> | null = null;
+
+export function ogFonts() {
+  fontCache ??= Promise.all(
+    ([400, 600] as const).map(async (weight) => ({
+      name: "Space Grotesk",
+      data: await readFile(join(FONT_DIR, `space-grotesk-latin-${weight}-normal.woff`)),
+      weight,
+      style: "normal" as const,
+    })),
+  );
+  return fontCache;
+}
+
 const DOTS = ["#7C83FF", "#2DD4A8", "#5EA8FA", "#F5B544", "#B58CFA", "#F472B6"];
 
 // The house tri-residue brand mark, matching the site header, as an inline SVG
@@ -32,11 +55,14 @@ export function ogImage({
   title,
   subtitle,
   accent = "#7C83FF",
+  art,
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
   accent?: string;
+  /** Optional graphic rendered under the subtitle (Satori-safe markup). */
+  art?: ReactElement;
 }): ReactElement {
   return (
     <div
@@ -51,7 +77,7 @@ export function ogImage({
         backgroundImage:
           "radial-gradient(900px 500px at 85% -10%, rgba(124,131,255,0.22), transparent), radial-gradient(700px 500px at 0% 120%, rgba(45,212,168,0.12), transparent)",
         color: "#ffffff",
-        fontFamily: "sans-serif",
+        fontFamily: "Space Grotesk, sans-serif",
       }}
     >
       {/* Wordmark */}
@@ -82,7 +108,7 @@ export function ogImage({
           style={{
             display: "flex",
             fontSize: 70,
-            fontWeight: 700,
+            fontWeight: 600,
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
             maxWidth: 1000,
@@ -104,6 +130,7 @@ export function ogImage({
             {subtitle}
           </div>
         )}
+        {art}
       </div>
 
       {/* Footer */}

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("distilled-to-three-letters")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "A whole cartilage extract reduced to one tripeptide — Ala-Glu-Asp — and the boldest claim in peptide science: that it tunes chondrocyte genes. Bullish on the science, sceptical on the page.",
       accent: "#5EA8FA",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

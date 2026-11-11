@@ -14,7 +14,7 @@ const FAMILY_COUNT = FAMILIES.length;
 // Lead doubles as the meta description and the snippet an answer engine lifts,
 // so it opens with the plain definition before the house voice takes over.
 const DESCRIPTION =
-  "A peptide hormone is a short chain of amino acids — from three residues to around fifty — that one set of cells releases to signal another. Here is what that means: how they are made, how they work, and the families they fall into.";
+  "Peptide hormones are amino-acid chains released by cells to signal other cells. Learn their definition, synthesis from preprohormones, functions, and examples including insulin, GLP-1, and oxytocin.";
 
 // The questions readers actually type, answered in the page body and emitted as
 // FAQPage structured data. Answers are self-contained (snippet-ready) and stay
@@ -22,10 +22,10 @@ const DESCRIPTION =
 const FAQS: { q: string; a: string }[] = [
   {
     q: "What is a peptide hormone?",
-    a: "A peptide hormone is a hormone made of a short chain of amino acids — typically from three residues to about fifty — that is released by one group of cells to change the behavior of another. Insulin, glucagon, GLP-1, oxytocin, and growth hormone are all peptide hormones. Being water-soluble, they act on receptors at the cell surface rather than entering the cell.",
+    a: "Peptide hormones are amino-acid chains released by cells to signal other cells. Examples include insulin, glucagon, GLP-1, oxytocin, and growth hormone. They generally act through receptors at the cell surface rather than crossing the membrane; their functions span blood-sugar control, growth, reproduction, and fluid balance.",
   },
   {
-    q: "How are peptide hormones made?",
+    q: "How are peptide hormones synthesized?",
     a: "A gene is transcribed and translated into a larger inactive precursor called a preprohormone. Its signal peptide is removed in the endoplasmic reticulum to give a prohormone, which enzymes called convertases cut at specific sites to release the mature, active peptide. The products are packaged into secretory vesicles and released by exocytosis. One precursor can yield several hormones: proglucagon is cut into GLP-1, glucagon, and GLP-2.",
   },
   {
@@ -39,7 +39,7 @@ const FAQS: { q: string; a: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "What a peptide hormone is",
+  title: "Peptide hormones: definition, synthesis, function & examples",
   alternates: { canonical: "/what-is-a-peptide-hormone" },
   description: DESCRIPTION,
   openGraph: {
@@ -105,7 +105,7 @@ export default function WhatIsAPeptideHormone() {
               </P>
             </Section>
 
-            <Section title="How a peptide hormone is made">
+            <Section title="How peptide hormones are synthesized">
               <P>
                 A peptide hormone is not translated in its final form. The gene is
                 read into a longer, inactive precursor called a{" "}
@@ -126,7 +126,7 @@ export default function WhatIsAPeptideHormone() {
               <BiosynthesisFigure />
             </Section>
 
-            <Section title="How peptide hormones work">
+            <Section title="What peptide hormones do: their functions">
               <P>
                 Water-solubility is the fork in the road. A peptide hormone cannot
                 slip through the fatty cell membrane, so it never goes inside the
