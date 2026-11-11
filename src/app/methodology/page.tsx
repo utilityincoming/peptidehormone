@@ -9,10 +9,22 @@ import { REFERENCES } from "@/lib/references";
 import { TierBadge, EvidenceFloor } from "@/components/evidence";
 import { TIERS as TIER_META, TIER_ORDER, type Claim, type Tier } from "@/lib/evidence/types";
 import { COMPOUND_TIERS, type CompoundTier } from "@/lib/evidence/compound";
+import { VENDORS } from "@/lib/affiliate";
 
 const MOLECULES = HORMONES.length;
 const FAMILY_COUNT = FAMILIES.length;
 const REFERENCE_COUNT = Object.values(REFERENCES).reduce((n, list) => n + list.length, 0);
+
+// Derived from the network roster so this disclosure can't drift out of sync with
+// the vendor list in @/lib/affiliate — add or drop a supplier there and both the
+// count and the names update here.
+const SUPPLIER_COUNT_WORDS = ["zero", "one", "two", "three", "four", "five", "six"];
+const SUPPLIER_COUNT = SUPPLIER_COUNT_WORDS[VENDORS.length] ?? `${VENDORS.length}`;
+const SUPPLIER_NAMES = VENDORS.map((v) => v.name).reduce(
+  (acc, name, i) =>
+    i === 0 ? name : i === VENDORS.length - 1 ? `${acc} and ${name}` : `${acc}, ${name}`,
+  "",
+);
 
 export const metadata: Metadata = {
   title: "Methodology & standards",
@@ -231,8 +243,8 @@ export default function Methodology() {
                 PeptideHormone hosts no storefront and sells no peptides — but it isn&rsquo;t
                 pretending to be a lone island, either. It is part of the{" "}
                 <Em>American Peptide</Em> network, and that network holds disclosed
-                affiliate relationships with three research-peptide suppliers — AminoClub,
-                ElyriaBio and Paramount Peptides: buy through a sourcing link here and we may earn a commission, at
+                affiliate relationships with {SUPPLIER_COUNT} research-peptide suppliers —{" "}
+                {SUPPLIER_NAMES}: buy through a sourcing link here and we may earn a commission, at
                 no extra cost to you. We&rsquo;re open about the connection because hiding it
                 would be the actual betrayal.
               </P>
