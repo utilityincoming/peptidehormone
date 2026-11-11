@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("two-ways-to-ask-for-growth")!;
   return new ImageResponse(
     ogImage({
@@ -16,6 +16,6 @@ export default function Image() {
       subtitle: "GHRH or ghrelin — two receptors, one pulsatile gland.",
       accent: "#5EA8FA", // growth-repair family accent (blue)
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

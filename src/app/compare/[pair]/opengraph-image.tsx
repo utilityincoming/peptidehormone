@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getHormone } from "@/lib/hormones";
 import { parseComparePair, staticComparePairs, comparePairPath } from "@/lib/compare";
 
@@ -23,6 +23,6 @@ export default async function Image({ params }: { params: Promise<{ pair: string
       title,
       subtitle: a && b ? `${a.summary} ${b.summary}` : undefined,
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

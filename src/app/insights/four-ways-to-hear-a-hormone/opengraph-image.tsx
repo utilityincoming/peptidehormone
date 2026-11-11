@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("four-ways-to-hear-a-hormone")!;
   return new ImageResponse(
     ogImage({
@@ -16,6 +16,6 @@ export default function Image() {
       subtitle: "GPCR, tyrosine kinase, cytokine receptor, guanylyl cyclase — the class decides the biology.",
       accent: "#7C83FF", // house indigo — a site-level mechanistic synthesis
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

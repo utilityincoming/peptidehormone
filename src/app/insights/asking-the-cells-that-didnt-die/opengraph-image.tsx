@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("asking-the-cells-that-didnt-die")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "Humanin was overheard, not designed: pulled from the surviving neurons of an Alzheimer's brain, written in mitochondrial DNA. A hormone outside the cell, a Bax-blocker inside it. Reference-grade, and honest about how little is tested in people.",
       accent: "#B58CFA",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

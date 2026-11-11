@@ -4,6 +4,8 @@ import { INSIGHTS, featuredInsights } from "@/lib/insights";
 import { HORMONES } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
+import { InsightCover } from "@/components/InsightCover";
+import { HeroStory, ToolPreview, type ToolPreviewKind } from "@/components/home";
 import { SourcingLine } from "@/components/Sourcing";
 import type { Metadata } from "next";
 
@@ -31,7 +33,14 @@ const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
 
 // Homepage tools band — a compact echo of the canonical registry in
 // src/app/tools/page.tsx, with shorter blurbs sized for the landing page.
-const HOME_TOOLS: { href: string; tag: string; name: string; blurb: string; accent: string }[] = [
+const HOME_TOOLS: {
+  href: string;
+  tag: string;
+  name: string;
+  blurb: string;
+  accent: string;
+  preview: ToolPreviewKind;
+}[] = [
   {
     href: "/tools/half-life",
     tag: "Pharmacokinetics",
@@ -39,6 +48,7 @@ const HOME_TOOLS: { href: string; tag: string; name: string; blurb: string; acce
     blurb:
       "Model how long a compound stays bioactive and how dose frequency vs half-life builds to steady state.",
     accent: "text-accent",
+    preview: "half-life",
   },
   {
     href: "/tools/compare",
@@ -47,6 +57,7 @@ const HOME_TOOLS: { href: string; tag: string; name: string; blurb: string; acce
     blurb:
       "Put a native hormone beside the analogs engineered from it — receptor, weight, half-life, and evidence tier on one axis.",
     accent: "text-accent-teal",
+    preview: "compare",
   },
   {
     href: "/tools/cycle-planner",
@@ -55,6 +66,7 @@ const HOME_TOOLS: { href: string; tag: string; name: string; blurb: string; acce
     blurb:
       "Sketch a research cycle from a goal stack: week-by-week timeline, reference dosing, and a supply estimate. Shareable by URL.",
     accent: "text-accent-amber",
+    preview: "cycle",
   },
 ];
 
@@ -68,7 +80,8 @@ const STATS: { n: string; label: string }[] = [
 ];
 
 export default function Home() {
-  const featured = featuredInsights();
+  const [lead, ...rest] = featuredInsights();
+  const leadFamily = lead ? getFamily(lead.family) : undefined;
   return (
     <>
       <SiteHeader />
@@ -83,7 +96,7 @@ export default function Home() {
                 "radial-gradient(60% 60% at 75% 0%, rgba(124,131,255,0.18), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(45,212,168,0.10), transparent 70%)",
             }}
           />
-          <Container className="relative grid items-center gap-12 py-20 md:grid-cols-[1.05fr_0.95fr] md:py-28">
+          <Container className="relative grid items-center gap-10 py-14 md:grid-cols-[1fr_1fr] md:gap-12 md:py-24">
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -93,15 +106,11 @@ export default function Home() {
                 The peptide frontier,
                 <span className="text-accent"> mapped from the source.</span>
               </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink/65">
-                Short chains of amino acids, outsized reach — from the signals
-                that run the body to the compounds redrawing the edge of research
-                and discovery. PeptideHormone is the independent, research-grade
-                catalog of peptide science: every signaling family, the molecules
-                that matter, and the evidence behind them — sourced, graded, and
-                cross-linked, with pharmacokinetic tools.
+              <p className="mt-6 max-w-xl text-lg leading-8 text-ink/65">
+                Every signaling family, the molecules that matter, and the
+                evidence behind them — sourced, graded, and cross-linked.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#families"
                   className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-medium text-surface-deep transition-transform hover:-translate-y-0.5"
@@ -116,11 +125,11 @@ export default function Home() {
                   Browse the catalog
                 </Link>
               </div>
-              <p className="mt-5 text-sm text-ink/45">
+              <p className="mt-5 text-sm text-ink/60">
                 New to the subject? Start with{" "}
                 <Link
                   href="/what-is-a-peptide-hormone"
-                  className="text-ink/70 underline decoration-ink/20 underline-offset-2 transition-colors hover:text-accent"
+                  className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
                 >
                   what a peptide hormone is
                 </Link>
@@ -128,9 +137,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="mx-auto w-full max-w-sm md:max-w-none">
-              <HeroChain />
-            </div>
+            <HeroStory />
           </Container>
         </section>
 
@@ -229,34 +236,72 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
-              {featured.map((post) => {
+            {lead && (
+              <Link
+                href={`/insights/${lead.slug}`}
+                className="group mt-12 grid overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
+              >
+                <InsightCover
+                  slug={lead.slug}
+                  family={lead.family}
+                  accent={leadFamily?.accent}
+                  className="aspect-[16/9] md:aspect-auto md:min-h-72"
+                />
+                <div className="flex flex-col justify-center p-7 md:p-10">
+                  <div className="flex items-center gap-4">
+                    <span
+                      className={`font-mono text-[11px] uppercase tracking-wide ${leadFamily?.accent ?? "text-accent"}`}
+                    >
+                      {leadFamily?.name ?? "Peptide science"}
+                    </span>
+                    <span className="font-mono text-[11px] text-ink/60">
+                      {lead.readingMinutes} min
+                    </span>
+                  </div>
+                  <h3 className="mt-3 font-display text-2xl font-semibold leading-snug sm:text-3xl">
+                    {lead.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-4 leading-7 text-ink/65">{lead.dek}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
+                    Read the deep-dive <span aria-hidden>→</span>
+                  </span>
+                </div>
+              </Link>
+            )}
+
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {rest.map((post) => {
                 const fam = getFamily(post.family);
                 return (
                   <Link
                     key={post.slug}
                     href={`/insights/${post.slug}`}
-                    className="group block bg-surface p-7 transition-colors hover:bg-panel"
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <span
-                        className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}
-                      >
-                        {fam?.name ?? "Peptide science"}
-                      </span>
-                      <span className="font-mono text-[11px] text-ink/40">
-                        {post.readingMinutes} min
-                      </span>
+                    <InsightCover
+                      slug={post.slug}
+                      family={post.family}
+                      accent={fam?.accent}
+                      className="aspect-[16/9]"
+                    />
+                    <div className="flex flex-1 flex-col p-5">
+                      <div className="flex items-center justify-between gap-3">
+                        <span
+                          className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}
+                        >
+                          {fam?.name ?? "Peptide science"}
+                        </span>
+                        <span className="font-mono text-[11px] text-ink/60">
+                          {post.readingMinutes} min
+                        </span>
+                      </div>
+                      <h3 className="mt-3 font-display text-lg font-semibold leading-snug">
+                        {post.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-3 text-sm leading-6 text-ink/60">
+                        {post.dek}
+                      </p>
                     </div>
-                    <h3 className="mt-3 font-display text-xl font-semibold leading-snug">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 line-clamp-3 text-sm leading-6 text-ink/60">
-                      {post.dek}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
-                      Read the deep-dive <span aria-hidden>→</span>
-                    </span>
                   </Link>
                 );
               })}
@@ -304,7 +349,10 @@ export default function Home() {
                       →
                     </span>
                   </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold">{t.name}</h3>
+                  <div className="mt-4">
+                    <ToolPreview kind={t.preview} />
+                  </div>
+                  <h3 className="mt-5 font-display text-lg font-semibold">{t.name}</h3>
                   <p className="mt-2 text-sm leading-6 text-ink/60">{t.blurb}</p>
                 </Link>
               ))}
@@ -365,91 +413,6 @@ export default function Home() {
 
       <SiteFooter />
     </>
-  );
-}
-
-/* ── Hero visual: a peptide chain docking into its receptor ──
-   The brand story in one image — a signal (the residue chain, left) meeting the
-   structure that reads it (the receptor cradle, right). Backbone dashes travel
-   toward the pocket; a bind-pulse breathes at the opening. Pure SVG + CSS, so it
-   honours prefers-reduced-motion (see globals.css). */
-function HeroChain() {
-  const nodes = [
-    { x: 56, y: 150, c: "var(--accent)" },
-    { x: 126, y: 214, c: "var(--accent-blue)" },
-    { x: 196, y: 136, c: "var(--accent-teal)" },
-    { x: 266, y: 210, c: "var(--accent-purple)" },
-    { x: 346, y: 150, c: "var(--accent-amber)" },
-  ];
-  return (
-    <div className="hero-float">
-      <svg
-        viewBox="0 0 460 340"
-        className="w-full"
-        role="img"
-        aria-label="A peptide chain docking into its receptor"
-      >
-        <defs>
-          <linearGradient id="bbStroke" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="var(--accent)" />
-            <stop offset="1" stopColor="var(--accent-amber)" />
-          </linearGradient>
-          <radialGradient id="heroAmbient" cx="0.72" cy="0.4" r="0.6">
-            <stop offset="0" stopColor="var(--accent)" stopOpacity="0.16" />
-            <stop offset="1" stopColor="var(--accent)" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        {/* ambient glow */}
-        <rect x="0" y="0" width="460" height="340" fill="url(#heroAmbient)" />
-
-        {/* receptor cradle the terminal residue docks into */}
-        <g fill="none" stroke="var(--accent)" strokeLinecap="round">
-          <path d="M392 108 A42 42 0 0 1 392 192" strokeWidth="2.5" opacity="0.4" />
-          <path d="M390 122 A30 30 0 0 1 390 178" strokeWidth="2.5" opacity="0.6" />
-        </g>
-        {/* bind-pulse at the opening */}
-        <circle
-          className="hero-bind"
-          cx="360"
-          cy="150"
-          fill="none"
-          stroke="var(--accent-amber)"
-          strokeWidth="2"
-        />
-
-        {/* backbone */}
-        <path
-          d="M56 150 L126 214 L196 136 L266 210 L346 150"
-          fill="none"
-          stroke="url(#bbStroke)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.45"
-          className="hero-bond"
-        />
-
-        {/* residues */}
-        {nodes.map((n, i) => (
-          <g key={i}>
-            <circle
-              className="hero-node"
-              style={{ animationDelay: `${i * 0.5}s`, transformOrigin: `${n.x}px ${n.y}px` }}
-              cx={n.x}
-              cy={n.y}
-              r="22"
-              fill={n.c}
-              opacity="0.12"
-            />
-            <circle cx={n.x} cy={n.y} r="11" fill={n.c} opacity="0.95" />
-            <circle cx={n.x} cy={n.y} r="11" fill="none" stroke="#fff" strokeOpacity="0.14" />
-            <circle cx={n.x} cy={n.y} r="4" fill="var(--surface-deep)" />
-            <circle cx={n.x - 3.4} cy={n.y - 3.4} r="2.2" fill="#fff" opacity="0.45" />
-          </g>
-        ))}
-      </svg>
-    </div>
   );
 }
 
