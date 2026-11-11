@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { FAMILIES, getFamily } from "@/lib/families";
 import { INSIGHTS, featuredInsights } from "@/lib/insights";
-import { HORMONES } from "@/lib/hormones";
+import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { InsightCover } from "@/components/InsightCover";
-import { HeroStory, ToolPreview, type ToolPreviewKind } from "@/components/home";
+import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
+import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
+import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
+import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { SourcingLine } from "@/components/Sourcing";
 import type { Metadata } from "next";
 
@@ -79,7 +82,66 @@ const STATS: { n: string; label: string }[] = [
   { n: "3", label: "research tools" },
 ];
 
+// The hero's lineage: native GLP-1 and the three molecules engineered from it,
+// one receptor at a time. Only the presentation lives here — half-lives, the
+// evidence tier and the regulatory standing are all read from the catalog, so
+// the landing page cannot disagree with the monographs it links to.
+const LINEAGE: {
+  slug: string;
+  name: string;
+  alias?: string;
+  receptors: string[];
+  color: string;
+  lead?: boolean;
+}[] = [
+  { slug: "glp-1", name: "Native GLP-1", receptors: ["GLP-1"], color: "var(--accent-amber)" },
+  { slug: "semaglutide", name: "Semaglutide", receptors: ["GLP-1"], color: "var(--accent-blue)" },
+  {
+    slug: "tirzepatide",
+    name: "Tirzepatide",
+    receptors: ["GIP", "GLP-1"],
+    color: "var(--accent-teal)",
+  },
+  {
+    slug: "retatrutide",
+    name: "Retatrutide",
+    alias: "GLP-3",
+    receptors: ["GIP", "GLP-1", "glucagon"],
+    color: "var(--accent)",
+    lead: true,
+  },
+];
+
+function lineageSeries(): TimelineSeries[] {
+  return LINEAGE.flatMap((l) => {
+    const h = getHormone(l.slug);
+    const reg = regulatoryFor(l.slug);
+    if (!h?.halfLifeMin || !reg) return [];
+    const meta = regulatoryMeta(reg.status);
+    return [
+      {
+        ...l,
+        halfLifeMin: h.halfLifeMin,
+        halfLifeLabel: shortHalfLife(h.halfLifeMin),
+        tier: h.evidence
+          ? { label: `Evidence: ${h.evidence}`, classes: compoundTierClasses(h.evidence) }
+          : undefined,
+        regulatory: {
+          // Spell the standing out where it matters most: a molecule in trials
+          // is, in plain words, not an approved drug.
+          label: reg.status === "investigational" ? "Not FDA-approved · in trials" : meta.label,
+          classes: regulatoryClasses(reg.status === "investigational" ? "amber" : meta.hue),
+        },
+      },
+    ];
+  });
+}
+
 export default function Home() {
+  const series = lineageSeries();
+  const frontier = getHormone("retatrutide");
+  const frontierReg = regulatoryFor("retatrutide");
+  const frontierLink = frontier?.halfLifeMin ? halfLifeForLink(frontier.halfLifeMin) : undefined;
   const [lead, ...rest] = featuredInsights();
   const leadFamily = lead ? getFamily(lead.family) : undefined;
   return (
@@ -96,8 +158,8 @@ export default function Home() {
                 "radial-gradient(60% 60% at 75% 0%, rgba(124,131,255,0.18), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(45,212,168,0.10), transparent 70%)",
             }}
           />
-          <Container className="relative grid items-center gap-10 py-14 md:grid-cols-[1fr_1fr] md:gap-12 md:py-24">
-            <div>
+          <Container className="relative py-14 md:py-20">
+            <div className="max-w-3xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 Independent · research-grade · no products
@@ -137,7 +199,78 @@ export default function Home() {
               </p>
             </div>
 
-            <HeroStory />
+            {/* ── Lead figure: from a two-minute hormone to three receptors ── */}
+            <figure className="mt-14 md:mt-20">
+              <figcaption className="max-w-3xl">
+                <p className="font-mono text-[11px] uppercase tracking-wide text-accent">
+                  Where the frontier is now
+                </p>
+                <h2 className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl">
+                  Lasting a week is solved. The race is now receptors.
+                </h2>
+                <p className="mt-3 text-base leading-7 text-ink/65">
+                  Native GLP-1 is gone minutes after the gut releases it. Semaglutide
+                  made the same signal last a week; tirzepatide added a second
+                  receptor, and retatrutide a third. Drag through two weeks to see
+                  what is left of a single dose.
+                </p>
+              </figcaption>
+
+              <div className="mt-8">
+                <HeroTimeline series={series} />
+              </div>
+
+              {frontier && frontierReg && (
+                <div className="mt-4 rounded-2xl border border-accent-amber/30 bg-accent-amber/[0.06] p-4 text-sm leading-6 text-ink/75 sm:p-5">
+                  <p>
+                    <span className="font-medium text-accent-amber">
+                      Retatrutide is not an approved medicine.
+                    </span>{" "}
+                    {frontierReg.basis} &ldquo;GLP-3&rdquo; is a market nickname
+                    for it, not a hormone — there is no GLP-3 — and material sold
+                    under that name is research-use-only, outside the approved-drug
+                    system.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+                    {[
+                      { href: "/insights/the-triple-agonist", label: "What the triple agonist is" },
+                      { href: "/insights/is-there-a-glp-4", label: "Is there a GLP-4?" },
+                      ...(frontierLink
+                        ? [
+                            {
+                              href: `/tools/half-life?t12=${frontierLink.value}&unit=${frontierLink.unit}`,
+                              label: "Model its half-life",
+                            },
+                          ]
+                        : []),
+                    ].map((l) => (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        className="inline-flex items-center gap-1.5 font-medium text-ink/90 transition-colors hover:text-accent"
+                      >
+                        {l.label}
+                        <span aria-hidden>→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <p className="mt-4 text-xs leading-5 text-ink/60">
+                Half-lives are the representative values on each linked monograph.
+                Curves show first-order elimination of one dose — a simplification
+                with no absorption phase or accumulation, and not dosing guidance.
+                Regulatory status: United States, reviewed{" "}
+                {formatAsOf(REGULATORY_AS_OF)}.{" "}
+                <Link
+                  href="/methodology"
+                  className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
+                >
+                  How we grade evidence
+                </Link>
+              </p>
+            </figure>
           </Container>
         </section>
 
