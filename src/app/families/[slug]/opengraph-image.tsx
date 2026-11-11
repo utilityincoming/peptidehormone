@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, accentHex, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, accentHex, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { FAMILIES, getFamily } from "@/lib/families";
 
 export function generateStaticParams() {
@@ -20,6 +20,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       subtitle: family?.tagline,
       accent: accentHex(family?.accent),
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("two-ways-to-bottle-a-gland")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "The thymus, bottled two ways: thymalin, a crude extract with a startling longevity claim you cannot audit — and thymosin α1, one defined 28-residue peptide with a TLR9 receptor and a drug label. Bullish on the science, sceptical on the page.",
       accent: "#F472B6",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

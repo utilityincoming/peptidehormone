@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("the-lizard-that-ate-twice-a-year")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "A Gila monster fasts between a few meals a year. The peptide that kept its pancreas intact became exenatide, the first GLP-1 drug — and the template for semaglutide, tirzepatide, retatrutide and cagrilintide. The whole lineage, no dosing.",
       accent: "#7C83FF",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

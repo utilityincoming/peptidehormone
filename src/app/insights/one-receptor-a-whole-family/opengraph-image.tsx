@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("one-receptor-a-whole-family")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "Myostatin, activin A, and GDF-11 share one receptor. The redundancy, not any single molecule, decides how you drug it.",
       accent: "#B58CFA",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

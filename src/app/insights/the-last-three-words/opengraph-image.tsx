@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("the-last-three-words")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "Cut α-MSH down to Lys-Pro-Val and it keeps one job — calm the inflammation — delivered from inside the cell, no receptor required.",
       accent: "#F5B544",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

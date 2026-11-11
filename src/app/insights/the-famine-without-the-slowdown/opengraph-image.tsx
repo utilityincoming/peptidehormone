@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("the-famine-without-the-slowdown")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "Ninety years of ageing biology said restriction works by slowing the engine. Twenty-month-old mice on semaglutide lived about as much longer as calorie-restricted ones — and kept their metabolic rate. What that separates, and what it doesn't yet prove.",
       accent: "#7C83FF",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }

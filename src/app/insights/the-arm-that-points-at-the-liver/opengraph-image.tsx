@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { ogImage, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
+import { ogImage, ogFonts, OG_SIZE, OG_CONTENT_TYPE } from "@/lib/og";
 import { getInsight } from "@/lib/insights";
 
 export const alt =
@@ -7,7 +7,7 @@ export const alt =
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 
-export default function Image() {
+export default async function Image() {
   const insight = getInsight("the-arm-that-points-at-the-liver")!;
   return new ImageResponse(
     ogImage({
@@ -17,6 +17,6 @@ export default function Image() {
         "Survodutide adds one receptor to GLP-1 and picks the strange one: glucagon, the hormone diabetes drugs are built to fight. Why its headline result is a liver-disease signal, not its weight loss. Bullish on the science, sceptical on the page.",
       accent: "#7C83FF",
     }),
-    { ...size },
+    { ...size, fonts: await ogFonts() },
   );
 }
