@@ -91,7 +91,23 @@ body {
   cursor: ew-resize;
 }
 
+/* ── Structure hero (homepage): the bound peptide breathes ── */
+@keyframes structureGlow {
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.34;
+  }
+}
+.structure-glow {
+  opacity: 0.2;
+  animation: structureGlow 4.5s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .structure-glow,
   .curve-reveal,
   .signal-bar {
     animation: none;

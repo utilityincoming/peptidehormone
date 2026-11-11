@@ -12,6 +12,8 @@
     "check:identifiers": "node scripts/fetch-identifiers.mjs --check",
     "evidence:refresh": "node scripts/fetch-evidence.mjs",
     "check:pass": "node scripts/check-pass-config.mjs",
+    "structure:build": "node scripts/build-structure-figure.mjs",
+    "check:structure": "node scripts/build-structure-figure.mjs --check",
     "indexnow:ping": "node scripts/ping-indexnow.mjs"
   },
   "dependencies": {
