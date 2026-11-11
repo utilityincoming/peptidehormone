@@ -72,7 +72,27 @@ body {
   animation: signalGrow 1.1s cubic-bezier(0.2, 0.8, 0.25, 1) both;
 }
 
+/* ── Hero timeline (homepage): the curves sweep in from the dose, and the
+   scrubber takes the brand accent ── */
+@keyframes curveReveal {
+  from {
+    clip-path: inset(-12px 100% -12px -12px);
+  }
+  to {
+    clip-path: inset(-12px -12px -12px -12px);
+  }
+}
+.curve-reveal {
+  animation: curveReveal 1.6s cubic-bezier(0.3, 0.7, 0.2, 1) both;
+}
+.hero-range {
+  accent-color: var(--accent);
+  height: 1.5rem;
+  cursor: ew-resize;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .curve-reveal,
   .signal-bar {
     animation: none;
   }
