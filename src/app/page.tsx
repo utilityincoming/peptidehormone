@@ -7,6 +7,7 @@ import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { InsightCover } from "@/components/InsightCover";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
+import { StructureHero } from "@/components/StructureHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { SourcingLine } from "@/components/Sourcing";
@@ -159,7 +160,8 @@ export default function Home() {
             }}
           />
           <Container className="relative py-14 md:py-20">
-            <div className="max-w-3xl">
+            <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
+            <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 Independent · research-grade · no products
@@ -197,6 +199,9 @@ export default function Home() {
                 </Link>
                 .
               </p>
+            </div>
+
+            <StructureHero />
             </div>
 
             {/* ── Lead figure: from a two-minute hormone to three receptors ── */}
