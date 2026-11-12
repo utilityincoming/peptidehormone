@@ -265,6 +265,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-complexity-ladder" label="Where trust starts to mean something" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
                 <CrossLink href="/insights/early-adopters-catalog" label="The community found it first" />
+                <CrossLink href="/insights/the-door-swings-both-ways" label="The door swings both ways — the 2026 availability shift" />
                 <CrossLink href="/methodology" label="Methodology & standards" />
                 <CrossLink href="/catalog" label="Browse the full catalog" />
               </ul>

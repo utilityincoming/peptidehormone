@@ -252,6 +252,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-complexity-ladder" label="Why you can't just buy a myostatin inhibitor" />
                 <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof - why lean mass on a scan is a surrogate" />
                 <CrossLink href="/families/muscle-tgfb" label="The muscle & TGF-β family" />
+                <CrossLink href="/insights/the-famine-without-the-slowdown" label="The famine without the slowdown — semaglutide and ageing" />
                 <CrossLink href="/research?q=What%20does%20the%20clinical%20trial%20evidence%20show%20for%20myostatin%20inhibitors%20preserving%20lean%20mass%20during%20GLP-1%20weight%20loss%3F" label="Ask the research agent for current trials" />
               </ul>
             </div>

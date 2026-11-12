@@ -292,6 +292,7 @@ export default function Article() {
                 <CrossLink href="/hormones/humanin" label="Humanin — the family's cytoprotectant" />
                 <CrossLink href="/families/mitochondrial" label="The mitochondrial-derived peptide family" />
                 <CrossLink href="/insights/the-other-pedal" label="The IGF-1 accelerator on muscle" />
+                <CrossLink href="/insights/asking-the-cells-that-didnt-die" label="Asking the cells that didn’t die — humanin" />
                 <CrossLink href="/research?q=What%20does%20the%20human%20evidence%20show%20for%20MOTS-c%20as%20an%20exercise%20mimetic%2C%20and%20how%20does%20its%20timing%20around%20training%20work%3F" label="Ask the research agent what the human data shows" />
               </ul>
             </div>

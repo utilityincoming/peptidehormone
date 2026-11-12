@@ -174,6 +174,7 @@ export default function Article() {
                 <CrossLink href="/hormones/activin-a" label="Activin A reference" />
                 <CrossLink href="/hormones/follistatin" label="Follistatin - the shared trap" />
                 <CrossLink href="/families/muscle-tgfb" label="The muscle & TGF-β family" />
+                <CrossLink href="/insights/four-ways-to-hear-a-hormone" label="Four ways to hear a hormone — the receptor classes" />
                 <CrossLink href="/research?q=Which%20ligands%20signal%20through%20the%20activin%20type%20II%20receptors%2C%20and%20how%20does%20GDF-11%20differ%20from%20myostatin%3F" label="Ask the research agent about the receptor" />
               </ul>
             </div>

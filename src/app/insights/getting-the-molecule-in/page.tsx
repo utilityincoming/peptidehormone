@@ -270,6 +270,7 @@ export default function Article() {
                 <CrossLink href="/insights/glp-1-signaling" label="How half-life engineering rescued GLP-1" />
                 <CrossLink href="/tools/half-life" label="Model a peptide's half-life & duration" />
                 <CrossLink href="/hormones/calcitonin" label="Calcitonin — the potent nasal exception" />
+                <CrossLink href="/insights/how-to-reconstitute-peptides" label="How to reconstitute peptides: the vial is not a recipe" />
                 <CrossLink href="/research?q=What%20pharmacokinetic%20evidence%20exists%20for%20oral%20or%20nasal%20peptide%20bioavailability%3F" label="Ask the research agent about delivery routes" />
               </ul>
             </div>

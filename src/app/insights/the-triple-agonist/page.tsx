@@ -204,6 +204,7 @@ export default function Article() {
                 <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does: how the hormone actually works" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
                 <CrossLink href="/insights/the-gip-paradox" label="The GIP paradox: two drugs, one receptor" />
+                <CrossLink href="/insights/the-arm-that-points-at-the-liver" label="The arm that points at the liver — survodutide’s glucagon bet" />
                 <CrossLink href="/research?q=How%20does%20retatrutide%27s%20glucagon%20agonism%20add%20fat%20loss%20on%20top%20of%20GLP-1%20and%20GIP%20receptor%20activation%3F" label="Ask the research agent about the third axis" />
               </ul>
             </div>
