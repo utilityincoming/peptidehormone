@@ -269,12 +269,13 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/tools/half-life" label="Half-life calculator — see accumulation and swing" />
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the week-long analog" />
                 <CrossLink href="/hormones/maridebart-cafraglutide" label="Maridebart cafraglutide — the monthly scaffold" />
+                <CrossLink href="/research?q=What%20molecular%20strategies%20such%20as%20lipidation%2C%20albumin%20binding%2C%20and%20antibody%20scaffolds%20extend%20a%20peptide%27s%20half-life%20from%20minutes%20to%20days%3F" label="Ask the research agent about half-life design" />
               </ul>
             </div>
 

@@ -224,7 +224,7 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/early-adopters-catalog" label="The community found it first" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />

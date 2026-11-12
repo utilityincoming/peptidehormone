@@ -180,7 +180,7 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom (the century-long arc)" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: foundation + stack, in trials" />

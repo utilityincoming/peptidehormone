@@ -197,12 +197,14 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/retatrutide" label="Retatrutide — the triple agonist" />
                 <CrossLink href="/hormones/glucagon" label="Glucagon — the counter-regulatory hormone" />
                 <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does: how the hormone actually works" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
+                <CrossLink href="/insights/the-gip-paradox" label="The GIP paradox: two drugs, one receptor" />
+                <CrossLink href="/research?q=How%20does%20retatrutide%27s%20glucagon%20agonism%20add%20fat%20loss%20on%20top%20of%20GLP-1%20and%20GIP%20receptor%20activation%3F" label="Ask the research agent about the third axis" />
               </ul>
             </div>
 

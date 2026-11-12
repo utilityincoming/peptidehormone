@@ -204,12 +204,14 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/insulin" label="Insulin — where it all began" />
                 <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does (the mechanism)" />
                 <CrossLink href="/families/reproductive-gonadal" label="The gonadotropins behind fertility medicine" />
                 <CrossLink href="/catalog" label="See the evidence-graded catalog" />
+                <CrossLink href="/insights/insulins-forgotten-twin" label="Insulin’s forgotten twin: amylin" />
+                <CrossLink href="/research?q=How%20did%20peptide%20drug%20development%20progress%20from%20the%20discovery%20of%20insulin%20in%201922%20to%20today%27s%20incretin%20boom%3F" label="Ask the research agent about the timeline" />
               </ul>
             </div>
 

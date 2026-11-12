@@ -185,12 +185,14 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/maridebart-cafraglutide" label="Maridebart cafraglutide — GLP-1 on, GIP off" />
                 <CrossLink href="/hormones/gip" label="GIP — the other incretin" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
                 <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist" />
+                <CrossLink href="/insights/the-body-keeps-time" label="The body keeps time: receptor desensitization" />
+                <CrossLink href="/research?q=How%20can%20a%20GIP%20receptor%20agonist%20and%20a%20GIP%20receptor%20antagonist%20both%20produce%20weight%20loss%3F" label="Ask the research agent about the paradox" />
               </ul>
             </div>
 
