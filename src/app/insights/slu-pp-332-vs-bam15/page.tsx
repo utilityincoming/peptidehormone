@@ -150,6 +150,7 @@ export default function Article() {
               <CrossLink href="/families/mitochondrial" label="Mitochondrial-derived peptides: the actual family" />
               <CrossLink href="/insights/bigger-not-stronger" label="Bigger, but not stronger: another endpoint trap" />
               <CrossLink href="/methodology" label="How this reference grades evidence" />
+              <CrossLink href="/research?q=What%20is%20the%20mechanistic%20difference%20between%20a%20mitochondrial%20uncoupler%20like%20BAM15%20and%20an%20ERR%20agonist%20like%20SLU-PP-332%3F" label="Ask the research agent about the mechanisms" />
             </ul>
           </div>
           <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">Educational reference on mechanism, summarized from public scientific literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. SLU-PP-332, SLU-PP-915 and BAM15 evidence discussed here is preclinical; human HU6 trials concern a different molecule. Specific compounds and trials are named to explain the science; verify any claim against the linked primary sources.</p>

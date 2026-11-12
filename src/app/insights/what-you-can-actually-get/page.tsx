@@ -259,7 +259,7 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/the-trial-that-hasnt-reported" label="The trial that hasn&rsquo;t reported — BPC-157&rsquo;s human record" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Where trust starts to mean something" />

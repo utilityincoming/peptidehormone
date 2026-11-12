@@ -249,12 +249,14 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist — one, two, three" />
                 <CrossLink href="/hormones/amylin" label="Amylin — the next axis in the chord" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: keeping muscle while losing weight" />
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
+                <CrossLink href="/insights/the-gip-paradox" label="The GIP paradox: agonist and antagonist, same result" />
+                <CrossLink href="/research?q=Beyond%20GLP-1%2C%20GIP%20and%20glucagon%2C%20which%20other%20gut-hormone%20receptors%20are%20being%20added%20to%20next-generation%20obesity%20drugs%3F" label="Ask the research agent about the next axes" />
               </ul>
             </div>
 

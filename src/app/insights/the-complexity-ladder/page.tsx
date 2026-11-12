@@ -322,12 +322,13 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable" />
                 <CrossLink href="/available" label="What's verified in stock" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="Muscle loss on GLP-1: keeping muscle while losing weight" />
                 <CrossLink href="/hormones/myostatin" label="Myostatin — the brake itself" />
+                <CrossLink href="/research?q=Why%20are%20small%2C%20well-characterized%20peptides%20easier%20to%20source%20reliably%20than%20large%20glycosylated%20proteins%3F" label="Ask the research agent about sourcing complexity" />
               </ul>
             </div>
 

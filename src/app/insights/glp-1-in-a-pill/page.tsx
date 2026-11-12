@@ -238,12 +238,14 @@ export default function Article() {
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
-              <h3 className="font-display text-base font-semibold">Follow the thread</h3>
+              <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the peptide going oral" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
+                <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does: how the hormone actually works" />
+                <CrossLink href="/research?q=How%20does%20oral%20semaglutide%20use%20the%20absorption%20enhancer%20SNAC%20to%20cross%20the%20stomach%20lining%2C%20and%20why%20is%20its%20bioavailability%20so%20low%3F" label="Ask the research agent about oral absorption" />
               </ul>
             </div>
 
