@@ -309,6 +309,7 @@ export default function Article() {
                 <CrossLink href="/hormones/cetrorelix" label="Cetrorelix reference (the antagonist mirror)" />
                 <CrossLink href="/families/reproductive-gonadal" label="The reproductive & gonadal family" />
                 <CrossLink href="/insights/glp-1-in-a-pill" label="Oral GLP-1 — the same small-molecule move" />
+                <CrossLink href="/insights/the-rest-of-the-cascade" label="The rest of the cascade — LH, FSH and hCG" />
                 <CrossLink href="/research?q=Why%20does%20pulsatile%20GnRH%20stimulate%20the%20reproductive%20axis%20while%20continuous%20GnRH%20agonist%20exposure%20suppresses%20it%2C%20and%20how%20do%20GnRH%20antagonists%20and%20kisspeptin%20differ%3F" label="Ask the research agent about the pulse" />
               </ul>
             </div>
