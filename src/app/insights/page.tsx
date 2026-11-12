@@ -58,7 +58,7 @@ export default function InsightsIndex() {
                 <span className="text-ink/80">{familyCount}</span> families
               </span>
               <span aria-hidden className="text-ink/20">·</span>
-              <span>Sourced, reviewed — no dosing</span>
+              <span>Sourced, reviewed — evidence you can check</span>
             </div>
           </Container>
         </section>

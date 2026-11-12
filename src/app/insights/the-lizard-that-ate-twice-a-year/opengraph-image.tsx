@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · history",
       title: insight.title,
       subtitle:
-        "A Gila monster fasts between a few meals a year. The peptide that kept its pancreas intact became exenatide, the first GLP-1 drug — and the template for semaglutide, tirzepatide, retatrutide and cagrilintide. The whole lineage, no dosing.",
+        "A Gila monster fasts between a few meals a year. The peptide that kept its pancreas intact became exenatide, the first GLP-1 drug — and the template for semaglutide, tirzepatide, retatrutide and cagrilintide. The whole lineage, from the source.",
       accent: "#7C83FF",
     }),
     { ...size, fonts: await ogFonts() },

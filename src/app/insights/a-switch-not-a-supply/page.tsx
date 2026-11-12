@@ -188,8 +188,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific literature and
-              simplified in places. Not medical advice, dosing guidance, or a recommendation to
-              use any compound. GHK-Cu&rsquo;s remodeling biology is best evidenced in skin; the
+              simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. GHK-Cu&rsquo;s remodeling biology is best evidenced in skin; the
               cycling rationale here is mechanistic, and the specific weeks-on / weeks-off schedule
               is a convention from observed practice, not a conclusion from controlled human
               trials. Verify any claim against the linked primary sources.

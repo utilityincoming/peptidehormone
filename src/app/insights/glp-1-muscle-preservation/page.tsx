@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "How can you preserve muscle while losing weight on a GLP-1?",
-    a: "The approach furthest along is to pair the GLP-1 drug with an antibody that releases the body's natural brake on muscle — the myostatin/activin pathway. In phase-2 obesity trials, adding apitegromab, trevogrumab, or bimagrumab shifted a markedly larger share of the weight lost toward fat, and bimagrumab even added lean mass on its own. Outside of trials, the established levers are adequate protein intake and resistance training; this article covers the mechanism, not a dosing or treatment recommendation.",
+    a: "The approach furthest along is to pair the GLP-1 drug with an antibody that releases the body's natural brake on muscle — the myostatin/activin pathway. In phase-2 obesity trials, adding apitegromab, trevogrumab, or bimagrumab shifted a markedly larger share of the weight lost toward fat, and bimagrumab even added lean mass on its own. Outside of trials, the established levers are adequate protein intake and resistance training; this article covers the mechanism and the published trial evidence so you can weigh it yourself, not an individualized protocol.",
   },
   {
     q: "What is bimagrumab and how does it preserve muscle?",
@@ -258,8 +258,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
-              literature and clinical-trial disclosures and simplified in places. Not
-              medical advice, dosing guidance, or a recommendation to use any compound.
+              literature and clinical-trial disclosures and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose.
               Specific compounds and trials are named to explain the science; verify any
               claim against the linked primary sources.
             </p>

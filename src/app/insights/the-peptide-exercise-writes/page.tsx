@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: "When is the optimal time to take MOTS-c around training?",
-    a: "There is no established human timing protocol. MOTS-c is preclinical for performance use, has no published human dose-response, and — because it works downstream of the same AMPK/energy-stress signal that exercise itself triggers — the training and lifestyle that generate that signal are the real variable, not the clock time of an injection. This article explains the mechanism; it is not dosing guidance.",
+    a: "There is no established human timing protocol. MOTS-c is preclinical for performance use, has no published human dose-response, and — because it works downstream of the same AMPK/energy-stress signal that exercise itself triggers — the training and lifestyle that generate that signal are the real variable, not the clock time of an injection. This article explains the mechanism and the open question so you can read the evidence yourself; it is not an individualized protocol.",
   },
   {
     q: "How is SS-31 different from MOTS-c?",
@@ -185,8 +185,8 @@ export default function Article() {
                 swallows most of it — there is <Em>no published human dose-response for
                 native MOTS-c</Em>, the performance evidence is preclinical, and the
                 circulating peptide is cleared quickly. Any timing scheme is therefore
-                reasoning from mechanism, not from human trials, and this reference does
-                not give dosing guidance.
+                reasoning from mechanism, not from human trials — read what follows as
+                literacy about the open question, not an individualized protocol.
               </P>
               <P>
                 On mechanism alone, two logics pull in opposite directions, which is itself
@@ -298,8 +298,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
-              literature and simplified in places. Not medical advice, dosing guidance, or
-              a recommendation to use any compound. MOTS-c performance claims are largely
+              literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. MOTS-c performance claims are largely
               preclinical, and the peptide is prohibited in tested sport; specific
               compounds and trials are named to explain the science — verify any claim
               against the linked primary sources.

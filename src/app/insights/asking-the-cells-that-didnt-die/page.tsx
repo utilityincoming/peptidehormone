@@ -273,8 +273,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific literature and
-              simplified in places. Not medical advice, dosing guidance, or a recommendation to use
-              any compound. Humanin is an unapproved research peptide; the cytoprotective findings
+              simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. Humanin is an unapproved research peptide; the cytoprotective findings
               described here are preclinical &mdash; cell and animal models, often using the
               engineered analog HNG &mdash; and the human data is associative, not interventional.
               Verify any claim against the linked primary sources.

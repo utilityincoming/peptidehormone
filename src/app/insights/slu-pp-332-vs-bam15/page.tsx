@@ -152,7 +152,7 @@ export default function Article() {
               <CrossLink href="/methodology" label="How this reference grades evidence" />
             </ul>
           </div>
-          <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">Educational reference on mechanism, summarized from public scientific literature and simplified in places. Not medical advice, dosing guidance, or a recommendation to use any compound. SLU-PP-332, SLU-PP-915 and BAM15 evidence discussed here is preclinical; human HU6 trials concern a different molecule. Specific compounds and trials are named to explain the science; verify any claim against the linked primary sources.</p>
+          <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">Educational reference on mechanism, summarized from public scientific literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. SLU-PP-332, SLU-PP-915 and BAM15 evidence discussed here is preclinical; human HU6 trials concern a different molecule. Specific compounds and trials are named to explain the science; verify any claim against the linked primary sources.</p>
         </article>
       </Container>
     </main>

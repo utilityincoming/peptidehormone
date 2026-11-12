@@ -334,8 +334,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
-              literature and simplified in places. Not medical advice, dosing guidance,
-              or a recommendation to use any compound. The strongest evidence here
+              literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. The strongest evidence here
               concerns hCG&rsquo;s maintenance of intratesticular testosterone and
               estradiol&rsquo;s role in male physiology; the neurosteroid account of a
               mood benefit is mechanistic and has not been established by controlled
