@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("is-there-a-glp-4")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Is There a GLP-4? Why the Next Incretin Isn't a Bigger Number — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

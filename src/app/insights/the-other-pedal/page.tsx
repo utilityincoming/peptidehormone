@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("the-other-pedal")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "IGF-1 and Muscle Growth: The Accelerator Opposite Myostatin — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

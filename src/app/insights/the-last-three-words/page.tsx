@@ -11,7 +11,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("the-last-three-words")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "What is KPV? The Anti-Inflammatory α-MSH Fragment — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

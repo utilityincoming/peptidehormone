@@ -16,7 +16,7 @@ const REF = {
 } as const;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "What is Survodutide? The GLP-1/Glucagon Dual Agonist for the Liver — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

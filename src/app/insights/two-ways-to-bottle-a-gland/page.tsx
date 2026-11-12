@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("two-ways-to-bottle-a-gland")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Thymalin vs Thymosin Alpha-1: The Thymic Peptides Explained — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

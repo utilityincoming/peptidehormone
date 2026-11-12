@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("bigger-not-stronger")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Do Myostatin Inhibitors Build Strength? Why Muscle Grew But Strength Didn't — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

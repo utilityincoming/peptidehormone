@@ -9,7 +9,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("the-lizard-that-ate-twice-a-year")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Exenatide & the Gila Monster: How GLP-1 Drugs Began — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

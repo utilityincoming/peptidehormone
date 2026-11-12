@@ -9,7 +9,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("getting-the-molecule-in")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Why Are Peptides Injected? The Peptide Delivery Problem — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

@@ -9,7 +9,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("the-famine-without-the-slowdown")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Caloric Restriction & Longevity: The Famine Without the Metabolic Slowdown — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

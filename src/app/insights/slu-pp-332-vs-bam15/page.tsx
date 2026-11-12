@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "SLU-PP-332 vs BAM15: mechanisms, evidence and safety",
   description,
   alternates: { canonical: `/insights/${insight.slug}` },
-  openGraph: { title: insight.title, description },
+  openGraph: { title: "SLU-PP-332 vs BAM15: Exercise Mimetics & Mitochondrial Uncouplers — Reference Guide", description },
 };
 const REF = {
   exercise: "https://pubmed.ncbi.nlm.nih.gov/36988910/",
