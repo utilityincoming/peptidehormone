@@ -11,7 +11,7 @@ import { SourcingNote } from "@/components/Sourcing";
 const insight = getInsight("where-the-powder-comes-from")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Where Do Research Peptides Come From? The China Supply Chain — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

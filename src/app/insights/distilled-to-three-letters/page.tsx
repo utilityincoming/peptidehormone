@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("distilled-to-three-letters")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "What is Cartalax? The Ala-Glu-Asp Cartilage Tripeptide — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

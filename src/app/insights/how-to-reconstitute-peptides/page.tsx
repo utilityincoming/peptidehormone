@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("how-to-reconstitute-peptides")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "How to Reconstitute Peptides: Water, Concentration & Storage — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

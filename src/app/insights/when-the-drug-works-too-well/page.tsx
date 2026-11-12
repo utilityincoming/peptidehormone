@@ -11,7 +11,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("when-the-drug-works-too-well")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Stopping Ozempic: What Happens When You Quit GLP-1 Drugs — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

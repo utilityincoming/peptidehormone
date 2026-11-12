@@ -9,7 +9,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("wrong-end-of-the-hormone")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Does KPV Help Libido? The Melanocortin Mix-Up Explained — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

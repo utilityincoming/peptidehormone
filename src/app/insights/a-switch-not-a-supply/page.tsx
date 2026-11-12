@@ -11,7 +11,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("a-switch-not-a-supply")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "GHK-Cu: How the Copper Peptide Signals Skin & Collagen Repair — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

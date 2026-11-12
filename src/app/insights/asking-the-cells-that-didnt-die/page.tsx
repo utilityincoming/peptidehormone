@@ -11,7 +11,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("asking-the-cells-that-didnt-die")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "What is Humanin? The Mitochondrial Survival Peptide — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

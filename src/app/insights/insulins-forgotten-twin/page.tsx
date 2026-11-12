@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("insulins-forgotten-twin")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "What is Amylin? Insulin's Twin Hormone and the Amylin Analogs — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },

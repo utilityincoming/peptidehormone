@@ -10,7 +10,7 @@ import { getFamily } from "@/lib/families";
 const insight = getInsight("one-receptor-a-whole-family")!;
 
 export const metadata: Metadata = {
-  title: insight.title,
+  title: "Activin A, GDF-11 & Myostatin: One Receptor, the Whole Muscle-Brake Family — Reference Guide",
   description: insight.dek,
   alternates: { canonical: `/insights/${insight.slug}` },
   openGraph: { title: `${insight.title} · Peptide Hormone`, description: insight.dek },
