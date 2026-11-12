@@ -238,8 +238,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
-              literature and simplified in places. Not medical advice, dosing guidance, or a
-              recommendation to use any compound. Thymosin α1 (thymalfasin/Zadaxin) is an
+              literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. Thymosin α1 (thymalfasin/Zadaxin) is an
               approved drug in some countries and unapproved in others; thymalin is a thymic
               polypeptide extract used mainly in the former USSR and not approved as a drug in
               the US or EU. The longevity figures described here come from open, largely

@@ -234,9 +234,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism and trial evidence, summarized from
-              public scientific literature and simplified in places. Not medical
-              advice, dosing guidance, or a recommendation to use or source any
-              compound. Survodutide is investigational and not approved for any use.
+              public scientific literature and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. Survodutide is investigational and not approved for any use.
               Specific compounds and trials are named to explain the science; verify
               any claim against primary sources.
             </p>

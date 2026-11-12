@@ -163,8 +163,8 @@ export default function Article() {
 
             <Section title="A label-first reconstitution sequence">
               <P>
-                This is the general safety sequence—not a substitute for the product&rsquo;s
-                Instructions for Use and not a dosing protocol.
+                This is the general safety sequence—read it alongside, not instead of, the
+                product&rsquo;s own Instructions for Use, which govern the exact volume and dose.
               </P>
               <Bullets
                 items={[
@@ -298,9 +298,7 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
-              literature and regulatory guidance and simplified in places. Not medical
-              advice, dosing guidance, or a recommendation to use or reconstitute any
-              compound. Follow the approved product label and instructions from a licensed
+              literature and regulatory guidance and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose. Follow the approved product label and instructions from a licensed
               prescriber and dispensing pharmacist. Specific products are named to explain
               why formulations differ; verify any claim against the linked primary sources.
             </p>
