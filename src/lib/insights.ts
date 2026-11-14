@@ -539,6 +539,7 @@ export const INSIGHTS: Insight[] = [
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why glucagon earns a seat, and what phase 3 actually measured: 25% weight loss at the top dose over 80 weeks on the analysis that counts everyone randomized. The 28% headline is the on-treatment figure from the same trial. Still investigational — a U.S. filing is planned, not granted.",
     family: "incretins-metabolic",
     readingMinutes: 11,
+    readingMinutes: 8,
     reviewed: "November 2026",
   },
   {
