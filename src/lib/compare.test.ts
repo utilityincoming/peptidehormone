@@ -122,14 +122,16 @@ describe("uniqueComparePairs", () => {
 
 describe("compareFaq", () => {
   it("is composed only from each molecule's existing fields", () => {
+    // Use a pair without a hand-written editorial so this exercises the generic
+    // composer (semaglutide/tirzepatide now has a pair-specific editorial).
     const a = getHormone("semaglutide");
-    const b = getHormone("tirzepatide");
+    const b = getHormone("liraglutide");
     assert.ok(a && b);
     const faqs = compareFaq(a, b);
     assert.ok(faqs.length >= 1);
     const blob = faqs.map((f) => f.a).join(" ");
     assert.match(blob, /semaglutide/i);
-    assert.match(blob, /tirzepatide/i);
+    assert.match(blob, /liraglutide/i);
     assert.match(blob, new RegExp(a.receptor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   });
 });

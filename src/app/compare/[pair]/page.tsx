@@ -17,6 +17,7 @@ import {
 import { compareLd } from "@/lib/jsonld";
 import { comparisonEditorial } from "@/lib/compare-editorials";
 import { BpcTbComparison } from "@/components/compare-bpc-tb";
+import { SemaTirzComparison } from "@/components/compare-sema-tirz";
 
 export function generateStaticParams() {
   return staticComparePairs().map(([a, b]) => ({ pair: comparePairPath(a, b) }));
@@ -102,6 +103,7 @@ export default async function ComparePairPage({
           </p>
 
           {editorial?.id === "bpc-tb" && <BpcTbComparison />}
+          {editorial?.id === "sema-tirz" && <SemaTirzComparison />}
 
           {faqs.length > 0 && (
             <section className="mt-14 max-w-2xl">
