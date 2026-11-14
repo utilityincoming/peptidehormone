@@ -309,13 +309,13 @@ const BASE: Hormone[] = [
       "A 'triple agonist' — incretin co-agonism extended to a third receptor.",
       "Glucagon-receptor agonism adds an energy-expenditure arm to the GLP-1/GIP effects.",
       "In a phase 2 obesity trial, the highest dose produced roughly a quarter of body weight lost by 48 weeks — the steepest curve reported for an incretin-class agent at the time (Jastreboff et al., NEJM 2023).",
-      "The phase 3 TRIUMPH program is the deciding evidence; retatrutide is investigational and not approved for any use.",
+      "Phase 3 held: in TRIUMPH-1, 2,339 adults with obesity lost about 25% of body weight at the highest dose over 80 weeks versus ~4% on placebo (Jastreboff et al., NEJM 2026). Retatrutide remains investigational and not approved for any use.",
       "Beyond weight, it is being studied in fatty-liver disease (MASH), osteoarthritis of the knee, and heart failure with preserved ejection fraction.",
     ],
     narrative: [
       "Metabolic peptides started as a single note. A GLP-1 agonist activates one receptor; tirzepatide added a second, the GIP receptor, from one molecule. Retatrutide adds a third — the glucagon receptor — turning the chord into a triad. All three signals travel on one acylated peptide, engineered like its predecessors to resist the enzymes that clear the native hormones in minutes so a weekly dose can hold.",
       "The third note is the interesting one. Glucagon on its own raises blood glucose — the opposite of what a diabetes drug wants — but it also spends energy, nudging the body's resting burn upward. The design bet is that the GLP-1 and GIP arms supply enough glucose-dependent insulin to hold blood sugar in check while the glucagon arm quietly turns up expenditure. Balance the three and you recruit weight loss from both sides of the ledger: less taken in, more spent.",
-      "So far the numbers have matched the ambition. The phase 2 readout showed the largest weight reductions yet reported for the class, without a new safety signal that stopped the program. Whether that lead survives contact with phase 3 — at scale, over longer horizons, against a field that is itself moving fast — is exactly what the TRIUMPH trials exist to answer. Retatrutide is a wager on triple agonism, not yet a settled result.",
+      "So far the numbers have matched the ambition. The phase 2 readout showed the largest weight reductions yet reported for the class, and phase 3 has now backed it up: in TRIUMPH-1, adults with obesity lost about a quarter of their body weight at the top dose over 80 weeks, with gastrointestinal effects the most common adverse events — the escalation-phase tax the whole class pays. The open questions are no longer whether the triple agonist works but how it compares head-to-head with the dual agonists, how much of the effect the glucagon arm is really contributing, and whether regulators clear it. Retatrutide is still investigational, but it is no longer only a wager — it is a reported phase 3 result.",
     ],
     questions: [
       "What does adding glucagon agonism contribute in a tri-agonist?",

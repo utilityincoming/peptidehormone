@@ -26,6 +26,7 @@ export const metadata: Metadata = {
 // External primary sources — named inline so the evidence grade stays checkable.
 const REF = {
   reta: "https://doi.org/10.1056/NEJMoa2301972", // Jastreboff et al. 2023, NEJM — retatrutide phase 2 obesity trial
+  reta3: "https://pubmed.ncbi.nlm.nih.gov/42814954/", // Jastreboff et al. 2026, NEJM — retatrutide phase 3 (TRIUMPH-1)
 } as const;
 
 // FAQ — surfaced as FAQPage JSON-LD via insightLd().
@@ -40,7 +41,7 @@ const FAQS = [
   },
   {
     q: "How much weight did retatrutide produce in trials?",
-    a: "In a phase 2 trial, body-weight reductions were among the largest reported for the class, reaching roughly a quarter of body weight by 48 weeks in the most-exposed dose group. That is a mid-stage result; the large phase 3 TRIUMPH program is running now, and until it reports the honest label is promising but unproven at scale.",
+    a: "A lot, and phase 3 has now confirmed it. After the phase 2 signal, the TRIUMPH-1 phase 3 trial randomized 2,339 adults with obesity and reported a mean body-weight reduction of about 25% at the highest dose over 80 weeks, versus roughly 4% on placebo (Jastreboff et al., NEJM 2026). Gastrointestinal effects were the most common adverse events, as with the rest of the class. Retatrutide is still investigational and not approved.",
   },
   {
     q: "Is more receptors automatically better?",
@@ -165,21 +166,40 @@ export default function Article() {
 
             <Section title="What the evidence shows so far">
               <P>
-                Retatrutide is <Em>investigational</Em> — under study, not approved. In a
-                mid-stage (phase 2) trial, the reductions in body weight were among the
+                Retatrutide is <Em>investigational</Em> — under study, not approved. The
+                mid-stage (phase 2) trial first showed reductions in body weight among the
                 largest reported for this class, reaching roughly a quarter of body weight
                 by 48 weeks in the most-exposed group (
                 <a href={REF.reta} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Jastreboff et&nbsp;al., NEJM, 2023
                 </a>
-                ). A large phase 3 program (TRIUMPH), enrolling thousands of participants
-                over a longer horizon, is running now, with results anticipated around 2026.
+                ). The question was whether that held at scale, and the phase 3 program
+                has now reported.
               </P>
               <P>
-                Until those read out, the honest label is <Em>promising but unproven at
-                scale</Em> — which is exactly why its entry in the{" "}
-                <Link href="/hormones/retatrutide" className={LINK}>catalog</Link> carries
-                an <Em>Investigational</Em> badge rather than an established one.
+                In <Em>TRIUMPH-1</Em>, 2,339 adults with obesity and without diabetes were
+                randomized to retatrutide or placebo for 80 weeks. Mean body weight fell by
+                about 25% at the highest dose against roughly 4% on placebo, with
+                gastrointestinal effects the most common adverse events (
+                <a href={REF.reta3} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Jastreboff et&nbsp;al., NEJM, 2026
+                </a>
+                ). The headline survived contact with phase 3. What it does <Em>not</Em>{" "}
+                settle is how much of the effect the glucagon arm specifically contributes
+                — the trial compared the whole molecule with placebo, not with a version
+                lacking the third receptor, the gap taken up in{" "}
+                <Link href="/insights/the-hormone-we-tried-to-block" className={LINK}>
+                  the hormone we tried to block
+                </Link>
+                .
+              </P>
+              <P>
+                So the honest label has moved from <Em>promising but unproven at scale</Em>{" "}
+                to <Em>a reported phase 3 result, not yet approved</Em> — which is why its
+                entry in the{" "}
+                <Link href="/hormones/retatrutide" className={LINK}>catalog</Link> still
+                carries an <Em>Investigational</Em> badge: regulatory review, not trial
+                evidence, is now the thing outstanding.
               </P>
             </Section>
 

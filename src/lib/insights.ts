@@ -539,7 +539,7 @@ export const INSIGHTS: Insight[] = [
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
     family: "incretins-metabolic",
     readingMinutes: 8,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "the-arm-that-points-at-the-liver",

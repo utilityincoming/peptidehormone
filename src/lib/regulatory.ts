@@ -143,7 +143,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   retatrutide: {
     status: "investigational",
-    basis: "Phase 3 TRIUMPH program (Lilly) reporting; no approval as of the review date.",
+    basis: "Phase 3 TRIUMPH-1 (Lilly) reported ~25% mean weight loss at 80 weeks in adults with obesity (Jastreboff et al., NEJM 2026); still investigational, no approval as of the review date.",
   },
   survodutide: {
     status: "investigational",
