@@ -143,7 +143,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   retatrutide: {
     status: "investigational",
-    basis: "Phase 3 TRIUMPH program (Lilly) reporting; no approval as of the review date.",
+    basis: "Phase 3 TRIUMPH-1 obesity trial (Lilly) published in NEJM in 2026 (PMID 42814954); no approval as of the review date.",
   },
   survodutide: {
     status: "investigational",
