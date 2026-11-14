@@ -536,10 +536,10 @@ export const INSIGHTS: Insight[] = [
     hormones: ["retatrutide", "glucagon"],
     title: "What is retatrutide? The triple agonist explained",
     featuredRank: 4,
-    dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why the field moved from a single signal to a chord, and why glucagon, of all things, earns a seat.",
+    dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why glucagon earns a seat, and what phase 3 actually measured: 25% weight loss at the top dose over 80 weeks on the analysis that counts everyone randomized. The 28% headline is the on-treatment figure from the same trial. Still investigational — a U.S. filing is planned, not granted.",
     family: "incretins-metabolic",
-    readingMinutes: 8,
-    reviewed: "July 2026",
+    readingMinutes: 11,
+    reviewed: "November 2026",
   },
   {
     slug: "the-arm-that-points-at-the-liver",

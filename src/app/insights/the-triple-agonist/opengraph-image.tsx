@@ -12,7 +12,7 @@ export default async function Image() {
     ogImage({
       eyebrow: "Insight · mechanism",
       title: insight.title,
-      subtitle: "One receptor, then two, then three — and why glucagon earns a seat.",
+      subtitle: "Phase 3 has reported. The 28% headline is not the published primary analysis.",
     }),
     { ...size, fonts: await ogFonts() },
   );

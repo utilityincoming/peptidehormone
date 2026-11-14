@@ -143,7 +143,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   retatrutide: {
     status: "investigational",
-    basis: "Phase 3 TRIUMPH program (Lilly) reporting; no approval as of the review date.",
+    basis: "Phase 3 obesity and diabetes results published (TRIUMPH-1, TRIUMPH-2). Lilly has said it plans a U.S. BLA in Q1 2027. Not approved.",
   },
   survodutide: {
     status: "investigational",
