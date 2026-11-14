@@ -32,11 +32,66 @@ export const BPC_TB_COMPARISON = {
   ],
 };
 
+export const SEMA_TIRZ_COMPARISON = {
+  id: "sema-tirz",
+  updated: "2026-11-14",
+  description:
+    "Semaglutide vs tirzepatide, read through the gut: how both slow gastric emptying, why that drives the early nausea and the bowel changes, why the slowing fades while the appetite effect stays, and where the next molecules are trying to take the trade-off.",
+  intro:
+    "Semaglutide and tirzepatide are the two most effective weight-loss drugs in wide use, and in the head-to-head SURMOUNT-5 trial tirzepatide produced more weight loss. But the number most people actually feel first is not on the scale — it is in the stomach. Both drugs work in large part by slowing the gut, and that single mechanism explains the fullness, the nausea and the changed bowel habits that dominate the first months. Read side by side through the gut, the two molecules are more alike than the marketing suggests, and the differences point straight at what the next generation is trying to fix.",
+  faqs: [
+    {
+      q: "Do semaglutide and tirzepatide slow digestion?",
+      a: "Yes. Both slow the rate at which the stomach empties into the intestine, most strongly in the first hour after a meal, and both slow movement through the small bowel. This is a core part of how they curb appetite and blunt the post-meal glucose rise, and it is also the main reason for the early nausea, fullness and bloating. Semaglutide's effect is a GLP-1 receptor effect; tirzepatide produces a comparable delay despite also engaging the GIP receptor.",
+    },
+    {
+      q: "Is tirzepatide easier on the stomach than semaglutide?",
+      a: "The evidence is mixed and does not establish a clear tolerability winner. Tirzepatide delays gastric emptying to a degree comparable to a GLP-1 drug, so the fullness mechanism is similar. There is a biological reason it might cause less nausea — GIP receptor activity blunted GLP-1-induced nausea and vomiting in animal studies — but that has not been cleanly shown to translate into fewer symptoms in people. In both drugs, gastrointestinal effects are most common during dose escalation.",
+    },
+    {
+      q: "Why does the nausea get better over time?",
+      a: "Because the gut slowing fades even as the appetite effect lasts. The delay in gastric emptying undergoes tachyphylaxis — the body adapts, and the effect measured after a single dose is largely gone within a couple of weeks of continued treatment. The central appetite suppression does not fade the same way. That split is why slow dose escalation works: it lets the stomach adapt to each step before the next.",
+    },
+    {
+      q: "Do these drugs cause constipation or diarrhea?",
+      a: "Both are common and both can occur, because the drugs slow motility along the whole upper gut, not just the stomach. Slowed transit tends toward constipation and bloating; some people instead have diarrhea, and nausea and vomiting are frequent early on. Most of these are mild to moderate and ease after the escalation phase, but delayed gastric emptying has practical consequences — for example, retained stomach contents noted before endoscopy or surgery.",
+    },
+    {
+      q: "Will the next weight-loss drugs have fewer gut side effects?",
+      a: "That is an explicit goal of current drug design, not a solved problem. The levers are real: slower dose escalation, the GIP receptor's apparent anti-nausea contribution, and biased signaling that separates the useful effects from the ones that drive nausea. Retatrutide, the triple agonist, still had gastrointestinal effects as its most common adverse events in trials, reduced by starting at a low dose. Whether adding the glucagon receptor or tuning the signaling can genuinely decouple strong weight loss from a slowed gut is still being worked out.",
+    },
+    {
+      q: "Is retatrutide a 'GLP-3'?",
+      a: "No. There is no hormone or receptor called GLP-3; the name is informal shorthand sometimes used for the newest agents. Retatrutide is a triple agonist of three receptors — GIP, GLP-1 and glucagon. Semaglutide is a single (GLP-1) agonist and tirzepatide is a dual (GIP/GLP-1) agonist, so retatrutide is the three-receptor step in that sequence, which is probably what the nickname is reaching for.",
+    },
+  ],
+};
+
 export function comparisonEditorial(a: string, b: string) {
-  return (a === "bpc-157" && b === "tb-500") || (a === "tb-500" && b === "bpc-157")
-    ? BPC_TB_COMPARISON
-    : undefined;
+  if ((a === "bpc-157" && b === "tb-500") || (a === "tb-500" && b === "bpc-157")) {
+    return BPC_TB_COMPARISON;
+  }
+  if (
+    (a === "semaglutide" && b === "tirzepatide") ||
+    (a === "tirzepatide" && b === "semaglutide")
+  ) {
+    return SEMA_TIRZ_COMPARISON;
+  }
+  return undefined;
 }
+
+// External primary sources for the semaglutide/tirzepatide GI comparison.
+export const SEMA_TIRZ_SOURCES = {
+  surmount5: { title: "Aronne et al. Tirzepatide as Compared with Semaglutide for the Treatment of Obesity (SURMOUNT-5). N Engl J Med, 2025.", url: "https://pubmed.ncbi.nlm.nih.gov/40353578/" },
+  semaGe: { title: "Hjerpsted et al. Semaglutide improves postprandial glucose and lipid metabolism, and delays first-hour gastric emptying. Diabetes Obes Metab, 2018.", url: "https://pubmed.ncbi.nlm.nih.gov/28941314/" },
+  oralSemaGe: { title: "Dahl et al. Oral semaglutide improves postprandial glucose and lipid metabolism, and delays gastric emptying, in subjects with type 2 diabetes. Diabetes Obes Metab, 2021.", url: "https://pubmed.ncbi.nlm.nih.gov/33710717/" },
+  tirzGe: { title: "Urva et al. The dual GIP and GLP-1 receptor agonist tirzepatide transiently delays gastric emptying similarly to selective GLP-1 receptor agonists. Diabetes Obes Metab, 2020.", url: "https://pubmed.ncbi.nlm.nih.gov/32519795/" },
+  liraTachy: { title: "Halawi et al. Effects of liraglutide on weight, satiation, and gastric functions in obesity. Lancet Gastroenterol Hepatol, 2017.", url: "https://pubmed.ncbi.nlm.nih.gov/28958851/" },
+  clinical: { title: "Jalleh et al. Clinical Consequences of Delayed Gastric Emptying With GLP-1 Receptor Agonists and Tirzepatide. J Clin Endocrinol Metab, 2024.", url: "https://pubmed.ncbi.nlm.nih.gov/39418085/" },
+  giNausea: { title: "Borner et al. GIP Receptor Agonism Attenuates GLP-1 Receptor Agonist-Induced Nausea and Emesis in Preclinical Models. Diabetes, 2021.", url: "https://pubmed.ncbi.nlm.nih.gov/34380697/" },
+  reta2: { title: "Jastreboff et al. Triple-Hormone-Receptor Agonist Retatrutide for Obesity — A Phase 2 Trial. N Engl J Med, 2023.", url: "https://pubmed.ncbi.nlm.nih.gov/37366315/" },
+  reta3: { title: "Jastreboff et al. Retatrutide, a Triple Hormone Receptor Agonist, for Treatment of Obesity (TRIUMPH-1). N Engl J Med, 2026.", url: "https://pubmed.ncbi.nlm.nih.gov/42814954/" },
+} as const;
 
 export const BPC_TB_SOURCES = {
   review: { title: "Vasireddi et al. Emerging Use of BPC-157 in Orthopaedic Sports Medicine: A Systematic Review (2025; search through June 3, 2024).", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12313605/" },
