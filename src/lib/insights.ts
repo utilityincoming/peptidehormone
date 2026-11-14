@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-fat-hormone-that-falls-as-fat-rises",
+    hormones: ["adiponectin", "leptin"],
+    title: "The fat hormone that falls as fat rises",
+    dek: "Adiponectin is made almost entirely by fat cells and fills the blood at levels far above most hormones, yet people with more fat have less of it. Low adiponectin predicts type 2 diabetes about as reliably as any blood marker, and in mice adding it reverses insulin resistance. So why is there no adiponectin drug? Partly because the protein is too large and complex to replace, and partly because human genetics suggests it is a readout of unhealthy fat more than a cause of disease. The two adiponectin paradoxes, and what a hormone that never became a medicine has to teach.",
+    family: "adipokines",
+    readingMinutes: 8,
+    reviewed: "November 2026",
+  },
+  {
     slug: "the-hormone-we-tried-to-block",
     hormones: ["glucagon", "retatrutide", "survodutide", "insulin"],
     title: "The hormone we tried to block",
