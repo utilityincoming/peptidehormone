@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "not-two-drugs-in-one",
+    hormones: ["tirzepatide", "gip", "glp-1", "semaglutide"],
+    title: "Why tirzepatide isn’t two drugs in one",
+    dek: "The usual account of tirzepatide is that semaglutide hits one receptor, tirzepatide hits two, and two beat one — a story the head-to-head weight-loss result seems to confirm. The pharmacology is stranger. Tirzepatide is built on the GIP sequence, leans more on the GIP receptor than the GLP-1 receptor, and at the GLP-1 receptor it signals in a biased way that native GLP-1 does not. An imbalanced, biased single molecule, not a tidy pairing of two drugs. What “imbalanced” and “biased” mean, why the GIP half still earns its place, and the one thing the trial cannot tell you.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "the-fat-hormone-that-falls-as-fat-rises",
     hormones: ["adiponectin", "leptin"],
     title: "The fat hormone that falls as fat rises",
@@ -233,7 +242,7 @@ export const INSIGHTS: Insight[] = [
     slug: "the-note-without-the-incretin",
     hormones: ["eloralintide", "amylin", "cagrilintide", "tirzepatide", "pramlintide"],
     title: "The note without the incretin",
-    dek: "In December 2025 The Lancet published a 48-week trial in which a once-weekly injection took off a mean 20% of body weight, and the GLP-1 receptor was nowhere in the molecule. Eloralintide is Lilly\u2019s amylin analog: 37 residues on the hormone insulin is co-secreted with, the native disulfide swapped for a methylene-thioacetal ring that cannot be opened, backbone methyls the ribosome cannot make, and a C20 fatty diacid on an engineered lysine that binds albumin for a fortnight. It was tuned to prefer the amylin-1 receptor twelve-fold over the bare calcitonin receptor it is built from, which is the whole argument for calling it gentler, and the only evidence for that is a rat taste-aversion assay. We read the structure off the public registry record, walk the three monotherapy trials and the EloraTZP combination that reached 23.3% in type 2 diabetes in September 2026, and separate what selectivity has proved from what a press release with a 27% discontinuation rate has not. Bullish on the science, sceptical on the page. No dosing.",
+    dek: "In December 2025 The Lancet published a 48-week trial in which a once-weekly injection took off a mean 20% of body weight, and the GLP-1 receptor was nowhere in the molecule. Eloralintide is Lilly’s amylin analog: 37 residues on the hormone insulin is co-secreted with, the native disulfide swapped for a methylene-thioacetal ring that cannot be opened, backbone methyls the ribosome cannot make, and a C20 fatty diacid on an engineered lysine that binds albumin for a fortnight. It was tuned to prefer the amylin-1 receptor twelve-fold over the bare calcitonin receptor it is built from, which is the whole argument for calling it gentler, and the only evidence for that is a rat taste-aversion assay. We read the structure off the public registry record, walk the three monotherapy trials and the EloraTZP combination that reached 23.3% in type 2 diabetes in September 2026, and separate what selectivity has proved from what a press release with a 27% discontinuation rate has not. Bullish on the science, sceptical on the page. No dosing.",
     family: "incretins-metabolic",
     readingMinutes: 14,
     reviewed: "October 2026",
@@ -243,7 +252,7 @@ export const INSIGHTS: Insight[] = [
     slug: "the-trial-that-hasnt-reported",
     hormones: ["bpc-157", "tb-500"],
     title: "The trial that hasn't reported",
-    dek: "In September 2026 the phrase \u201cfirst human study of BPC-157\u201d went around again. It wasn\u2019t one. We checked the primary record: PubMed for August\u2013September 2026 holds reviews and a critical re-reading of the rodent ischemia-reperfusion literature; ClinicalTrials.gov holds one randomized trial still recruiting and one not yet open. The entire published human record is three uncontrolled reports from a single Florida clinic \u2013 sixteen knee-pain patients surveyed by phone, twelve cystitis patients who all scored 100%, two volunteers infused for three days \u2013 thirty people and no placebo. The first trial that could actually answer the question, 120 hamstring strains randomized and blinded against placebo with MRI endpoints, began in February 2026 and reads out in 2027. And the July FDA advisory vote that gets reported as a verdict was 8\u20136 against the agency\u2019s own scientists, on access grounds, with no new data in the room. What exists, what is still missing, and how to read the next headline. Bullish on the science, sceptical on the page. No dosing.",
+    dek: "In September 2026 the phrase “first human study of BPC-157” went around again. It wasn’t one. We checked the primary record: PubMed for August\u2013September 2026 holds reviews and a critical re-reading of the rodent ischemia-reperfusion literature; ClinicalTrials.gov holds one randomized trial still recruiting and one not yet open. The entire published human record is three uncontrolled reports from a single Florida clinic \u2013 sixteen knee-pain patients surveyed by phone, twelve cystitis patients who all scored 100%, two volunteers infused for three days \u2013 thirty people and no placebo. The first trial that could actually answer the question, 120 hamstring strains randomized and blinded against placebo with MRI endpoints, began in February 2026 and reads out in 2027. And the July FDA advisory vote that gets reported as a verdict was 8\u20136 against the agency’s own scientists, on access grounds, with no new data in the room. What exists, what is still missing, and how to read the next headline. Bullish on the science, sceptical on the page. No dosing.",
     family: "repair",
     readingMinutes: 11,
     reviewed: "October 2026",
@@ -252,7 +261,7 @@ export const INSIGHTS: Insight[] = [
     slug: "wrong-end-of-the-hormone",
     hormones: ["kpv", "pt-141", "alpha-msh"],
     title: "Wrong end of the hormone",
-    dek: "Somewhere between the catalog page and the group chat, KPV picked up a claim it never earned: that it does something for low sexual desire. The confusion is understandable, because the melanocortin family really does contain an approved drug for hypoactive sexual desire disorder \u2013 bremelanotide, PT-141 \u2013 and both molecules descend from the same thirteen-residue hormone, \u03b1-MSH. But they were cut from opposite ends of it. Bremelanotide keeps the middle four residues that bind the MC4 receptor and drive the whole desire story; KPV is the last three, which bind no melanocortin receptor at all and were kept precisely because they don\u2019t. There is no study of KPV and sexual function in any species. And the drug that does work is a smaller story than its reputation: a third of a point on a desire scale, no difference in satisfying sexual events, nausea in four of ten. Where the erection in a tanning trial came from, why it can\u2019t be in the tail, and what the record actually says. Bullish on the science, sceptical on the page. No dosing.",
+    dek: "Somewhere between the catalog page and the group chat, KPV picked up a claim it never earned: that it does something for low sexual desire. The confusion is understandable, because the melanocortin family really does contain an approved drug for hypoactive sexual desire disorder \u2013 bremelanotide, PT-141 \u2013 and both molecules descend from the same thirteen-residue hormone, \u03b1-MSH. But they were cut from opposite ends of it. Bremelanotide keeps the middle four residues that bind the MC4 receptor and drive the whole desire story; KPV is the last three, which bind no melanocortin receptor at all and were kept precisely because they don’t. There is no study of KPV and sexual function in any species. And the drug that does work is a smaller story than its reputation: a third of a point on a desire scale, no difference in satisfying sexual events, nausea in four of ten. Where the erection in a tanning trial came from, why it can’t be in the tail, and what the record actually says. Bullish on the science, sceptical on the page. No dosing.",
     family: "melanocortins",
     readingMinutes: 11,
     reviewed: "September 2026",
