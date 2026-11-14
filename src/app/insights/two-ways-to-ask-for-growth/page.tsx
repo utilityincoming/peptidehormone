@@ -322,6 +322,7 @@ export default function Article() {
                 <CrossLink href="/families/growth-repair" label="The growth & repair family" />
                 <CrossLink href="/insights/the-pulse-is-the-message" label="The pulse is the message — the same rhythm logic, one axis over" />
                 <CrossLink href="/insights/the-other-pedal" label="The other pedal — the IGF-1 accelerator this axis feeds" />
+                <CrossLink href="/insights/the-hormone-found-after-its-drug" label="The hormone found after its drug — ghrelin as the hunger signal" />
                 <CrossLink href="/research?q=How%20do%20GHRH%20analogs%20and%20ghrelin-receptor%20GHRPs%20differ%20in%20mechanism%2C%20and%20why%20are%20they%20synergistic%20when%20combined%3F" label="Ask the research agent about the two pathways" />
               </ul>
             </div>
