@@ -149,9 +149,9 @@ export const PEPTIDES: Record<string, Peptide> = {
     vialMg: 10, vialUsd: 40,
   },
   retatrutide: {
-    id: "retatrutide", name: "Retatrutide", doseLow: 2000, doseHigh: 6000, perWeek: 1,
+    id: "retatrutide", name: "Retatrutide", doseLow: 4000, doseHigh: 12000, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.blue,
-    note: "Triple GIP/GLP-1/glucagon agonist in late-stage trials; weekly, titrated.",
+    note: "Phase 3 targets were 4, 9, or 12 mg once weekly, stepped from 2 mg (TRIUMPH-1). Not approved.",
     vialMg: 10, vialUsd: 160, catalogSlug: "retatrutide",
   },
   cagrilintide: {

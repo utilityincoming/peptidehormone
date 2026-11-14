@@ -64,7 +64,7 @@ const FAQS = [
   },
   {
     q: "How much of retatrutide's effect comes from glucagon?",
-    a: "That cannot be read from the trials. Retatrutide activates three receptors at once (GIP, GLP-1 and glucagon), and its phase 3 obesity trial compared the whole molecule with placebo, not with a version lacking the glucagon component. The weight loss was large, about 25% at the highest dose over 80 weeks, but how much of that is owed to glucagon specifically is an inference from mechanism, not a measured result.",
+    a: "That cannot be read from the trials. Retatrutide activates three receptors at once (GIP, GLP-1 and glucagon), and its phase 3 obesity trial compared the whole molecule with placebo, not with a version lacking the glucagon component. On the treatment-regimen analysis, weight fell 25.0% at the highest dose over 80 weeks against 3.9% on placebo. How much of that is owed to glucagon specifically is an inference from mechanism, not a measured result.",
   },
   {
     q: "Is glucagon itself used as a medicine?",
@@ -328,7 +328,8 @@ export default function Article() {
                 <Link href="/hormones/retatrutide" className={LINK}>Retatrutide</Link>{" "}
                 adds a third receptor, GIP. In its phase 3 obesity trial, 2,339 adults
                 without diabetes were followed for 80 weeks, and mean body weight fell
-                by 25.0% on the highest dose against 3.9% on placebo (
+                by 25.0% on the highest dose against 3.9% on placebo, on the
+                treatment-regimen analysis that counts everyone randomized (
                 <a href={REF.triumph} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Jastreboff et&nbsp;al., NEJM, 2026
                 </a>

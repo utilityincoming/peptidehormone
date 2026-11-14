@@ -53,6 +53,8 @@ export const REFERENCES: Record<string, Reference[]> = {
   ],
   retatrutide: [
     { pmid: "42814954", title: "Retatrutide, a Triple Hormone Receptor Agonist, for Treatment of Obesity", source: "The New England journal of medicine", year: "2026" },
+    { pmid: "42810372", title: "Retatrutide in adults with obesity and type 2 diabetes (TRIUMPH-2): a double-blind, parallel-group, randomised, placebo-controlled, phase 3 trial", source: "Lancet (London, England)", year: "2026" },
+    { pmid: "43001755", title: "Retatrutide Once Weekly in Adults with Knee Osteoarthritis Pain and Obesity", source: "The New England journal of medicine", year: "2026" },
     { pmid: "39318607", title: "Effects of once-weekly subcutaneous retatrutide on weight and metabolic markers: A systematic review and meta-analysis of randomized controlled trials", source: "Metabolism open", year: "2024" },
     { pmid: "38843460", title: "Efficacy and Safety of GLP-1 Medicines for Type 2 Diabetes and Obesity", source: "Diabetes care", year: "2024" },
   ],
