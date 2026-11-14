@@ -80,6 +80,10 @@ export function buildSearchIndex(): SearchRecord[] {
 // combination — associated with the molecule, so it should find this page.
 const HORMONE_SEARCH_TERMS: Record<string, string[]> = {
   eloralintide: ["LY3841136", "EloraTZP"],
+  // "GLP-3" is the research-market nickname readers actually type for retatrutide
+  // (the molecule, not a real receptor); LY3437943 is its development code. Both
+  // are search-only — never shown, and deliberately not brand aliases.
+  retatrutide: ["GLP-3", "GLP3", "LY3437943"],
 };
 
   for (const h of HORMONES) {

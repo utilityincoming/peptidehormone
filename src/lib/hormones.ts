@@ -299,7 +299,7 @@ const BASE: Hormone[] = [
     type: "analog",
     evidence: "Investigational",
     parent: "glp-1",
-    summary: "An investigational GIP/GLP-1/glucagon triple receptor agonist.",
+    summary: "The triple agonist — GIP, GLP-1 and glucagon in one weekly peptide, and the most-watched step beyond tirzepatide, with about 25% mean weight loss in its phase 3 obesity trial. Investigational; not an approved medicine.",
     class: "GIP/GLP-1/glucagon triple agonist (acylated peptide)",
     source: "Synthetic; engineered tri-agonist",
     receptor: "GIP + GLP-1 + glucagon receptors",
@@ -320,6 +320,7 @@ const BASE: Hormone[] = [
     questions: [
       "What does adding glucagon agonism contribute in a tri-agonist?",
       "What is the current clinical trial status of retatrutide?",
+      "Is “GLP-3” the same as retatrutide, and is it an approved drug?",
     ],
     halfLife: "~6 days",
     halfLifeMin: 8640,
