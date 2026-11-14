@@ -292,6 +292,7 @@ export default function Article() {
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Where analytical trust starts to mean something" />
                 <CrossLink href="/methodology" label="How Peptide Hormone grades evidence" />
+                <CrossLink href="/insights/how-to-read-a-peptide-coa" label="How to read a peptide COA — what the certificate can and can't prove" />
                 <CrossLink href="/research?q=How%20do%20diluent%2C%20pH%2C%20temperature%2C%20concentration%2C%20and%20agitation%20affect%20the%20stability%20of%20a%20specific%20lyophilized%20peptide%20after%20reconstitution%3F" label="Ask the research agent about formulation stability" />
               </ul>
             </div>

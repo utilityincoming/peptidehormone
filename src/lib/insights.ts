@@ -27,6 +27,41 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-hormone-we-tried-to-block",
+    hormones: ["glucagon", "retatrutide", "survodutide", "insulin"],
+    title: "The hormone we tried to block",
+    dek: "Glucagon was discovered in 1923 as the impurity in insulin extracts that pushed blood sugar the wrong way, and for most of a century it was understood as insulin’s opposite and a cause of diabetes. Drugs that blocked its receptor did lower blood sugar. They also raised liver fat, blood pressure and body weight, because raising glucose was only one of four things glucagon was telling the liver to do. The same hormone is now designed into survodutide and retatrutide for the calorie burning and liver-fat clearing the blockers took away. What the trials show, and what they cannot yet attribute to glucagon itself.",
+    family: "incretins-metabolic",
+    readingMinutes: 8,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "the-neuron-behind-the-hot-flash",
+    hormones: ["kisspeptin", "gnrh", "lh"],
+    title: "The neuron behind the hot flash",
+    dek: "In 1979 researchers noticed that menopausal hot flashes arrive in step with pulses of LH, and could not say why. The answer was a single type of hypothalamic neuron that makes three peptides: kisspeptin, neurokinin B and dynorphin. It is the pulse generator of the reproductive axis, estrogen is its brake, and one of its outputs runs to the brain’s thermostat. How a peptide named after a chocolate led to that cell, how the idea was tested in both directions in people, and why the drugs that came out of it are pills that contain no peptide at all.",
+    family: "reproductive-gonadal",
+    readingMinutes: 8,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "the-hormone-found-after-its-drug",
+    hormones: ["ghrelin", "ipamorelin"],
+    title: "The hormone found after its drug",
+    dek: "Ghrelin’s story runs backwards. The synthetic peptides that imitate it were made in 1984, the receptor they act on was cloned in 1996, and the hormone itself was not found until 1999, in the stomach, carrying a fatty acid no other hormone needs. It turned out to be the body’s one clear hunger signal: it rises before meals, rises when people diet, and makes them eat more. Blocking it looked like an obvious weight-loss drug and never became one. Why the hunger hormone is low in obesity, what it is actually for, and which ghrelin drugs did reach patients.",
+    family: "gut-appetite",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "how-to-read-a-peptide-coa",
+    title: "How to read a peptide COA: what the certificate can and can’t prove",
+    dek: "“Check the COA” is the standard advice for judging a peptide source, and almost nobody explains how. A certificate of analysis is a report on a sample from one lot, and every line on it answers a narrow question. HPLC purity is one peak’s share of what a detector saw, not how much peptide is in the vial. A matching mass is the right weight, not a confirmed sequence. Content, endotoxin and sterility are usually missing altogether. A line-by-line guide to what each test measures, what it is blind to, and the three things no PDF can show.",
+    family: "growth-repair",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "four-ways-to-hear-a-hormone",
     title: "Four ways to hear a hormone",
     dek: "Seventy-odd molecules sit in this reference and they look bewilderingly unrelated — a gut peptide, a bone hormone, a fat-cell signal, a pituitary burst. But the receptors they talk to are not bewildering at all: almost the entire catalog collapses into four ways a cell can hear a peptide, and which one a hormone uses tells you more about how it behaves than the hormone’s own name does. The overwhelming majority are heard by a G-protein-coupled receptor — a seven-pass membrane coil that, when the peptide binds, switches on an internal G-protein and usually a second messenger, cAMP or calcium: GLP-1, glucagon, PTH, the melanocortins, oxytocin and vasopressin, GnRH and the gonadotropins, somatostatin, ghrelin, the gut peptides, amylin, the whole crowd. The second way is a receptor tyrosine kinase, a receptor that is itself an enzyme: insulin and the IGFs bind and the receptor phosphorylates itself into a signalling scaffold — a fundamentally different, growth-and-metabolism machine. The third is the cytokine receptor, which owns no enzyme of its own and borrows a JAK kinase hooked to a STAT that walks straight to the nucleus: growth hormone, leptin and EPO are heard this way, which is why they read as gene-expression hormones. The fourth is the rarest and tidiest — a receptor that is a guanylyl cyclase, making cGMP directly — and in this catalog it belongs almost entirely to the natriuretic peptides of the heart. Learn the four and the field reorganizes: the receptor class predicts the speed (seconds for a GPCR second messenger, hours for a STAT’s gene programme), the failure mode (GPCRs desensitize, which is the whole reason pulsatility and schedule matter), and the druggability (a GPCR is the most tractable target in pharmacology; an intracellular one barely a target at all). It also sets a limit the page keeps forgetting: a receptor and a second messenger are the bottom rung of the evidence ladder — knowing exactly how a hormone is heard tells you nothing about whether a given molecule helps a person. Bullish on the science — this is biology over benefits at its most unifying. No dosing.",

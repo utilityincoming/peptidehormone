@@ -228,6 +228,7 @@ export default function Article() {
                 <CrossLink href="/insights/is-there-a-glp-4" label="Why there is no GLP-4" />
                 <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable" />
                 <CrossLink href="/compare/survodutide-vs-tirzepatide" label="Survodutide vs tirzepatide" />
+                <CrossLink href="/insights/the-hormone-we-tried-to-block" label="The hormone we tried to block — why glucagon blockers fattened the liver" />
                 <CrossLink href="/research?q=What%20does%20adding%20glucagon-receptor%20agonism%20contribute%20in%20a%20GLP-1%2Fglucagon%20dual%20agonist%20like%20survodutide%3F" label="Ask the research agent for primary sources" />
               </ul>
             </div>
