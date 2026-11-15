@@ -212,6 +212,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist" />
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom" />
                 <CrossLink href="/insights/the-note-without-the-incretin" label="The note without the incretin — amylin analogs" />
+                <CrossLink href="/insights/finished-sooner" label="Finished sooner — what cagrilintide feels like" />
                 <CrossLink href="/insights/the-hormone-discovered-twice" label="The hormone discovered twice — amylin’s two lives" />
                 <CrossLink href="/research?q=What%20does%20amylin%20do%20alongside%20insulin%2C%20and%20how%20do%20amylin%20analogs%20like%20cagrilintide%20contribute%20to%20weight%20loss%3F" label="Ask the research agent about amylin" />
               </ul>
