@@ -8,6 +8,8 @@
    Dark-only for now; tokens are CSS variables so a light mode can be added
    later with a single class swap on <html>. */
 :root {
+  --text-secondary: #b8bfce;
+  --text-muted: #929db2;
   --ink: #ffffff;          /* foreground + light overlays (borders, panels) */
   --surface: #0A0E1A;      /* page background — cooler/violet vs AP's blue-navy */
   --surface-deep: #05070F; /* deepest background (footers, wells) */
@@ -27,6 +29,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-ink: var(--ink);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
   --color-surface: var(--surface);
   --color-surface-deep: var(--surface-deep);
   --color-panel: var(--panel);
@@ -49,6 +53,11 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 /* Display typeface for headings, site-wide. */

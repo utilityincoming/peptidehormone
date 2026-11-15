@@ -96,7 +96,7 @@ export function StructureHero() {
                 href={`https://www.rcsb.org/structure/${s.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-0.5 text-center font-mono text-[11px] text-ink/60 underline decoration-ink/25 underline-offset-2 transition-colors hover:text-accent"
+                className="mt-0.5 text-center font-mono text-xs text-secondary underline decoration-ink/25 underline-offset-2 transition-colors hover:text-accent"
               >
                 PDB {s.id} · {s.resolution.toFixed(1)} Å
               </a>
@@ -105,26 +105,22 @@ export function StructureHero() {
         })}
       </div>
 
-      <figcaption className="mt-5 text-xs leading-5 text-ink/60">
-        <span className="font-medium text-ink/85">
-          One molecule, three receptors — from the deposited coordinates.
-        </span>{" "}
-        Retatrutide <span className="text-accent">(violet)</span> seated in each
-        receptor it activates; the dot marks its N-terminus, deepest in the
-        receptor core. Backbone traces of cryo-EM models, lightly smoothed. Only
-        resolved residues are drawn — the first {lo === hi ? hi : `${lo}–${hi}`} of
-        the peptide, without its fatty-acid side chain; the G protein and
-        nanobody that stabilise each complex are omitted.{" "}
+      <figcaption className="mt-5 text-sm leading-6 text-secondary">
+        <p>Retatrutide <span className="text-accent">(violet)</span> bound to the three receptors it activates.</p>
         {paper.doi && (
-          <a
-            href={`https://doi.org/${paper.doi}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
-          >
-            {paper.journal} {paper.year}
+          <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-accent">
+            Source: {paper.journal} {paper.year}
           </a>
         )}
+        <details className="mt-3 text-xs leading-5 text-muted">
+          <summary className="cursor-pointer text-secondary">How to read these structures</summary>
+          <p className="mt-2">
+            Backbone traces of deposited cryo-EM models, lightly smoothed. The dot marks
+            the peptide’s N-terminus, deepest in the receptor core. Only resolved residues
+            are drawn — the first {lo === hi ? hi : `${lo}–${hi}`} of the peptide.
+            Its fatty-acid side chain, the G protein, and the stabilizing nanobody are omitted.
+          </p>
+        </details>
       </figcaption>
     </figure>
   );
