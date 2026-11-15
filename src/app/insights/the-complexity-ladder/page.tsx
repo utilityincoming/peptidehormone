@@ -25,7 +25,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Is any myostatin- or activin-pathway drug FDA-approved?",
-    a: "Yes — two. Sotatercept (Merck's Winrevair), an ActRII ligand trap that dampens activin signaling, was approved in 2024 for pulmonary arterial hypertension; it was the first approved member of the axis. Apitegromab (Scholar Rock's Isembyld) followed in September 2026 for spinal muscular atrophy. The rest: trevogrumab (Regeneron, in Phase 2 as a lean-mass-preserving add-on to GLP-1 agonists), garetosmab (submitted to the FDA in early 2026 for fibrodysplasia ossificans progressiva; this page has not confirmed a decision), and bimagrumab (a Lilly obesity asset). All are complex recombinant biologics, not synthetic peptides.",
+    a: "Yes — three. Sotatercept (Merck's Winrevair), an ActRII ligand trap that dampens activin signaling, was approved in 2024 for pulmonary arterial hypertension; it was the first approved member of the axis. Apitegromab (Scholar Rock's Isembyld) followed in September 2026 for spinal muscular atrophy. Garetosmab (Regeneron's Pasatru, filed for fibrodysplasia ossificans progressiva) now carries a US label too. Still investigational: trevogrumab (Regeneron, in Phase 2 as a lean-mass-preserving add-on to GLP-1 agonists) and bimagrumab (a Lilly obesity asset). All are complex recombinant biologics, not synthetic peptides.",
   },
   {
     q: "What is the difference between a peptide and a peptide-hormone antibody?",
@@ -229,8 +229,8 @@ export default function Article() {
                 fully human IgG4 that neutralizes mature GDF-8, in Phase 2 as a lean-mass-preserving
                 add-on to GLP-1 agonists) and apitegromab (Scholar Rock, which binds the pro- and
                 latent forms). <Em>Anti-activin and receptor-blocking antibodies</Em>: garetosmab
-                (Regeneron, anti-activin-A, as of mid-2026 under FDA review for fibrodysplasia
-                ossificans progressiva) and bimagrumab (a Lilly obesity asset that blocks the ActRII
+                (Regeneron, anti-activin-A, filed in 2026 for fibrodysplasia
+                ossificans progressiva and now labelled in the US as Pasatru) and bimagrumab (a Lilly obesity asset that blocks the ActRII
                 receptor itself — mechanistically distinct from the ligand-neutralizers, inhibiting
                 myostatin and activin signaling at once). <Em>Fc-fusion ligand traps</Em>: sotatercept
                 (Winrevair, Merck), the first approved, marketed member of the axis, cleared in

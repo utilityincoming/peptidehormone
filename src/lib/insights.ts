@@ -27,6 +27,22 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "two-numbers-one-trial",
+    title: "Two numbers, one trial",
+    dek: "Retatrutide’s pivotal trial reported 25.0% weight loss at the top dose. It also reported 28.3%, for the same people at the same week. Neither is an error: one counts what happened to everyone assigned the drug, the other models what would have happened had nobody stopped. Every modern obesity trial reports both, the label carries the smaller and the headline the larger, and the gap is wide enough to reorder drugs when the two kinds are mixed. What an estimand is, why the gap varies, and which number to use for what.",
+    family: "incretins-metabolic",
+    readingMinutes: 8,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "how-peptide-compounding-rules-work",
+    title: "Can a pharmacy compound it? How the peptide rules work",
+    dek: "Every compounding headline leaves the same question open: can a pharmacy lawfully make this today? The answer never depends on the news event. It depends on four tests in federal law, and a molecule must pass all of them. BPC-157 fails at one, semaglutide at a different one, which is why they are different stories. What 503A and 503B are, the three ways an ingredient qualifies, why leaving Category 2 put a peptide nowhere, how a shortage switches the copy rule off, and four questions that sort any future headline.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "permeation-enhancers",
     title: "What else gets through?",
     dek: "SNAC and sodium caprate (C10) help peptides cross the gastrointestinal barrier, but they are not the same enhancer. What they change, whether the lining recovers, what might cross alongside the drug, and why neither ‘leaky gut’ panic nor food-additive reassurance answers the safety question.",

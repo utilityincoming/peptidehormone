@@ -391,6 +391,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/two-numbers-one-trial" label="Two numbers, one trial — why the headline and the label disagree" />
                 <CrossLink href="/hormones/retatrutide" label="Retatrutide — the triple agonist monograph" />
                 <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The mechanism explainer" />
                 <CrossLink href="/insights/not-two-drugs-in-one" label="Why tirzepatide isn’t two drugs in one — the dual agonist it must beat" />
