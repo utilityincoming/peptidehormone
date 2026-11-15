@@ -37,7 +37,7 @@ export const REGULATORY_STATUSES = [
 export type RegulatoryStatus = (typeof REGULATORY_STATUSES)[number];
 
 /** Month the table was last reviewed against the public record. */
-export const REGULATORY_AS_OF = "2026-09";
+export const REGULATORY_AS_OF = "2026-11";
 
 export type RegulatoryHue = "teal" | "blue" | "purple" | "slate" | "amber";
 
@@ -77,7 +77,7 @@ export const REGULATORY_META: Record<RegulatoryStatus, RegulatoryStatusMeta> = {
   },
   restricted: {
     label: "Compounding restricted",
-    clause: "an unapproved substance the FDA has placed in Category 2 of its 503A bulk-substances list, citing significant safety risks, so it may not lawfully be compounded",
+    clause: "an unapproved substance the FDA placed in Category 2 of its interim 503A bulk-substances policy, citing significant safety risks; the nomination was later withdrawn and it is still not on the 503A list, so it may not lawfully be compounded",
     hue: "amber",
   },
 };
@@ -88,17 +88,32 @@ export interface RegulatoryEntry {
   basis: string;
 }
 
+// Category 2 is history for every catalog row except kisspeptin-10. FDA's page
+// "Certain Bulk Drug Substances for Use in Compounding that May Present
+// Significant Safety Risks" (content current 22 April 2026) moves these
+// substances to a "nominated but withdrawn" table: the nominators withdrew, so
+// the interim-policy category no longer applies. Leaving Category 2 is not
+// permission. None is on the 503A list, in Category 1, the subject of a USP
+// monograph or a component of an approved drug, so none may be compounded.
 const FDA_503A =
-  "FDA 503A bulk-substances list, Category 2 (substances that may present significant safety risks)";
+  "Placed in Category 2 of the FDA's interim 503A bulk-substances policy (substances that may present significant safety risks) in September 2023";
+
+/** The nomination was withdrawn; FDA's withdrawn table gives no date for these. */
+const WITHDRAWN = `${FDA_503A}; the nomination was later withdrawn and it is not on the 503A list, so it still may not be compounded.`;
+
+/** One of the twelve peptides FDA removed from Category 2 in April 2026. */
+const WITHDRAWN_2026 = `${FDA_503A}; removed in April 2026 after the nomination was withdrawn. It is not on the 503A list, so it still may not be compounded.`;
 
 // 23–24 July 2026 Pharmacy Compounding Advisory Committee: six nominated
 // peptides were recommended for the 503A list against the advice of FDA
 // review staff. Tallies are from the webcast as recorded by McDermott Will &
 // Emery and Luma Lex; FDA had not posted summary minutes as of October 2026. The vote is advisory; nothing changes until the agency
 // completes notice-and-comment rulemaking, so every status below still
-// reflects the pre-vote position.
+// reflects the pre-vote position. By the time of the vote none of the six was
+// in Category 2 any longer (see above); FDA brought them to the committee on
+// its own initiative.
 const PCAC_2026 = (tally: string) =>
-  `In July 2026 the Pharmacy Compounding Advisory Committee voted ${tally} to recommend adding it to the 503A list, against FDA staff advice; the vote is non-binding and the status stands pending rulemaking.`;
+  `In July 2026 the Pharmacy Compounding Advisory Committee voted ${tally} to recommend adding it to the 503A list, against FDA staff advice; the vote is non-binding and nothing changes unless the agency completes rulemaking.`;
 
 // One entry per catalog slug. Missing an entry is a test failure, not a silent
 // blank — a monograph without a status would look like an oversight rather
@@ -127,7 +142,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   semaglutide: {
     status: "approved",
-    basis: "Ozempic (2017), Rybelsus (2019) and Wegovy (2021) approved for type 2 diabetes and chronic weight management.",
+    basis: "Ozempic (2017), Rybelsus (2019) and Wegovy (2021) approved for type 2 diabetes and chronic weight management; a once-daily Wegovy tablet followed in December 2025.",
   },
   tirzepatide: {
     status: "approved",
@@ -147,7 +162,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   survodutide: {
     status: "investigational",
-    basis: "Phase 3 SYNCHRONIZE program (Boehringer Ingelheim / Zealand) in obesity and MASH.",
+    basis: "Phase 3 SYNCHRONIZE obesity program (Boehringer Ingelheim / Zealand) read out during 2026, ending with the cardiovascular safety trial in November. Boehringer says it is preparing regulatory submissions. Not approved.",
   },
   brenipatide: {
     status: "investigational",
@@ -159,7 +174,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   cagrilintide: {
     status: "investigational",
-    basis: "Phase 3 REDEFINE program with semaglutide (CagriSema, Novo Nordisk); not approved alone.",
+    basis: "Novo Nordisk submitted the fixed combination with semaglutide (CagriSema) to the FDA in December 2025 on the phase 3 REDEFINE program; no decision had been announced when checked. Not approved alone or in combination.",
   },
   eloralintide: {
     status: "investigational",
@@ -267,7 +282,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   kisspeptin: {
     status: "investigational",
-    basis: "Kisspeptin-54 and -10 are in human trials for reproductive and metabolic indications; kisspeptin-10 also sits on the FDA 503A Category 2 list.",
+    basis: "Kisspeptin-54 and -10 are in human trials for reproductive and metabolic indications; kisspeptin-10 remains in Category 2 of the FDA's interim 503A policy and may not be compounded.",
   },
   hcg: {
     status: "approved",
@@ -327,7 +342,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Muscle & TGF-β ──
   myostatin: {
     status: "endogenous",
-    basis: "Not a drug itself; myostatin-pathway inhibitors (e.g. apitegromab) are in late-stage trials.",
+    basis: "Not a drug itself; the anti-myostatin antibody apitegromab (Isembyld) was approved in September 2026 for spinal muscular atrophy.",
   },
   "activin-a": {
     status: "endogenous",
@@ -345,15 +360,15 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   "ghk-cu": {
     status: "unapproved",
-    basis: "Used in cosmetics; no drug approval and no registered human drug trials.",
+    basis: "Used in cosmetics; no drug approval and no registered human drug trials. Injectable GHK-Cu was in Category 2 of the FDA's interim 503A policy until April 2026, when the nomination was withdrawn; it still may not be compounded.",
   },
   "bpc-157": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. ${PCAC_2026("8–6 with one abstention")}`,
+    basis: `${WITHDRAWN_2026} ${PCAC_2026("8–6 with one abstention")}`,
   },
   "tb-500": {
-    status: "unapproved",
-    basis: `A synthetic Tβ4 fragment with no drug development history; sold research-use-only. ${PCAC_2026("8–6 with one abstention")}`,
+    status: "restricted",
+    basis: `A synthetic Tβ4 fragment with no drug development history. ${WITHDRAWN_2026} ${PCAC_2026("8–6 with one abstention")}`,
   },
 
   // ── Analogs: somatostatin & GHRH ──
@@ -375,7 +390,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   "cjc-1295": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: WITHDRAWN,
   },
   sermorelin: {
     status: "withdrawn",
@@ -383,7 +398,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   ipamorelin: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: WITHDRAWN,
   },
 
   // ── Melanocortin analog ──
@@ -395,7 +410,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Mitochondrial ──
   "mots-c": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. ${PCAC_2026("7–5 with two abstentions")}`,
+    basis: `${WITHDRAWN_2026} ${PCAC_2026("7–5 with two abstentions")}`,
   },
   humanin: {
     status: "unapproved",
@@ -405,11 +420,11 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   // ── Neuro & longevity peptides ──
   epitalon: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. ${PCAC_2026("7–4 with one abstention")}`,
+    basis: `${WITHDRAWN_2026} ${PCAC_2026("7–4 with one abstention")}`,
   },
   selank: {
-    status: "unapproved",
-    basis: "Approved as an anxiolytic in Russia; no FDA approval or US trials.",
+    status: "restricted",
+    basis: `Approved as an anxiolytic in Russia; no FDA approval or US trials. ${WITHDRAWN}`,
   },
   "ss-31": {
     status: "approved",
@@ -417,19 +432,19 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   "aod-9604": {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: WITHDRAWN,
   },
   kpv: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023. ${PCAC_2026("8–6 with one abstention")}`,
+    basis: `${WITHDRAWN_2026} ${PCAC_2026("8–6 with one abstention")}`,
   },
   dsip: {
     status: "restricted",
-    basis: `${FDA_503A}, September 2023.`,
+    basis: `${WITHDRAWN_2026} In July 2026 the Pharmacy Compounding Advisory Committee declined to recommend it for the 503A list.`,
   },
   semax: {
-    status: "unapproved",
-    basis: `Approved as a nootropic in Russia; no FDA approval or US trials. ${PCAC_2026("8–5 with one abstention")}`,
+    status: "restricted",
+    basis: `Approved as a nootropic in Russia; no FDA approval or US trials. ${WITHDRAWN_2026} ${PCAC_2026("8–5 with one abstention")}`,
   },
   "ara-290": {
     status: "investigational",

@@ -21,7 +21,7 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Did the FDA approve BPC-157, KPV, TB-500, MOTS-c, epitalon or semax for compounding in July 2026?",
-    a: "No. On 23–24 July 2026 the Pharmacy Compounding Advisory Committee voted, by narrow margins and against the recommendation of FDA review staff, to recommend adding those six peptides to the 503A bulk-substances list; a seventh, emideltide, was rejected. The committee advises; the agency decides through notice-and-comment rulemaking, which has not begun to conclude. Until it does, the four already in Category 2 (BPC-157, KPV, MOTS-c, epitalon) still may not be compounded, and the two that were never categorised (TB-500, semax) remain unapproved research-use-only material. Nothing on the availability layer changed because of the vote.",
+    a: "No. On 23–24 July 2026 the Pharmacy Compounding Advisory Committee voted, by narrow margins and against the recommendation of FDA review staff, to recommend adding those six peptides to the 503A bulk-substances list; a seventh, emideltide, was rejected. The committee advises; the agency decides through notice-and-comment rulemaking, which has not begun to conclude. All six had been in Category 2 of the FDA's interim policy since 2023 and were removed in April 2026, when their nominations were withdrawn. Removal was not permission: none is on the 503A list, so none may be compounded until a rule says otherwise. Nothing on the availability layer changed because of the vote.",
   },
   {
     q: "How often does peptide availability change?",
@@ -161,9 +161,21 @@ export default function Article() {
                 >
                   AJMC
                 </a>
-                ). Four of the six were already sitting in Category 2 of that list, the
-                tier for substances the agency says may present significant safety risks.
-                The agency&rsquo;s own reviewers opposed every one, on the same grounds each
+                ). All seven had spent 2023 to early 2026 in Category 2 of the agency&rsquo;s
+                interim policy, the tier for substances it says may present significant
+                safety risks. They left it in April 2026, when the nominations were
+                withdrawn, and the agency brought them to the committee on its own
+                initiative (
+                <a
+                  href="https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks"
+                  className={LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  FDA
+                </a>
+                ). Leaving Category 2 did not put any of them on the list. The
+                agency&rsquo;s own reviewers opposed every one, on the same grounds each
                 time: the studies were short, small, and could not establish safety or
                 effectiveness.
               </P>
@@ -173,9 +185,9 @@ export default function Article() {
                 still carries the status it had the morning of the vote. A recommendation
                 from an advisory committee starts a rulemaking; it does not finish one, and
                 the agency is not bound by it. Until notice-and-comment rulemaking concludes
-                &ndash; a process measured in a year or more &ndash; a Category 2 substance
-                still may not lawfully be compounded, and a never-categorised one is still
-                research-use-only material. For the one molecule with the most to gain, the
+                &ndash; a process measured in a year or more &ndash; a substance that is
+                not on the 503A list still may not lawfully be compounded, whatever
+                category it used to sit in. For the one molecule with the most to gain, the
                 human evidence in the room was{" "}
                 <Link href="/insights/the-trial-that-hasnt-reported" className={LINK}>
                   thirty uncontrolled patients
@@ -356,12 +368,12 @@ function ReachableFunnel() {
    column is identical to the left because an advisory vote changes nothing
    until rulemaking completes. That sameness is the figure.                     */
 const VOTES: { slug: string; name: string; before: string; tally: string }[] = [
-  { slug: "bpc-157", name: "BPC-157", before: "Category 2", tally: "8–6, 1 abstain" },
-  { slug: "kpv", name: "KPV", before: "Category 2", tally: "8–6, 1 abstain" },
-  { slug: "tb-500", name: "TB-500", before: "Unapproved", tally: "8–6, 1 abstain" },
-  { slug: "mots-c", name: "MOTS-c", before: "Category 2", tally: "7–5, 2 abstain" },
-  { slug: "epitalon", name: "Epitalon", before: "Category 2", tally: "7–4, 1 abstain" },
-  { slug: "semax", name: "Semax", before: "Unapproved", tally: "8–5, 1 abstain" },
+  { slug: "bpc-157", name: "BPC-157", before: "Not on 503A list", tally: "8–6, 1 abstain" },
+  { slug: "kpv", name: "KPV", before: "Not on 503A list", tally: "8–6, 1 abstain" },
+  { slug: "tb-500", name: "TB-500", before: "Not on 503A list", tally: "8–6, 1 abstain" },
+  { slug: "mots-c", name: "MOTS-c", before: "Not on 503A list", tally: "7–5, 2 abstain" },
+  { slug: "epitalon", name: "Epitalon", before: "Not on 503A list", tally: "7–4, 1 abstain" },
+  { slug: "semax", name: "Semax", before: "Not on 503A list", tally: "8–5, 1 abstain" },
 ];
 
 function VoteTable() {
@@ -391,10 +403,10 @@ function VoteTable() {
           ))}
           <tr>
             <td className="py-2.5 pr-4 font-semibold text-ink/50">Emideltide</td>
-            <td className="py-2.5 pr-4 text-ink/50">Not categorised</td>
+            <td className="py-2.5 pr-4 text-ink/50">Not on 503A list</td>
             <td className="py-2.5 pr-4 font-mono text-[13px] text-ink/50">Reject · 7–6, 1 abstain</td>
             <td className="py-2.5 pr-4 text-accent-amber">Opposed</td>
-            <td className="py-2.5 text-ink/50">Not categorised</td>
+            <td className="py-2.5 text-ink/50">Not on 503A list</td>
           </tr>
         </tbody>
       </table>

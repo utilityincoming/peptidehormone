@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 const REF = {
   buckley: "https://doi.org/10.1126/scitranslmed.aar7047", // Buckley et al. 2018, Sci Transl Med — oral semaglutide gastric absorption via SNAC
   orforglipron: "https://doi.org/10.1056/NEJMoa2302392", // Wharton et al. 2023, NEJM — oral non-peptide orforglipron phase 2 obesity
+  foundayo: "https://investor.lilly.com/news-releases/news-release-details/fda-approves-lillys-foundayotm-orforglipron-only-glp-1-pill", // 1 April 2026 — orforglipron approval
 } as const;
 
 // FAQ — surfaced as FAQPage JSON-LD via insightLd().
@@ -41,7 +42,7 @@ const FAQS = [
   },
   {
     q: "What is orforglipron, and how is it different?",
-    a: "Orforglipron is a non-peptide small molecule that activates the same GLP-1 receptor but was engineered in a chemical class the gut has no machinery to digest. It isn't smuggled across the gut wall — it simply crosses like ordinary small-molecule pills, with no absorption enhancer, no one-percent tax, and, as reported so far, none of oral semaglutide's strict food-and-water choreography. In a phase 2 obesity trial it produced substantial weight loss.",
+    a: "Orforglipron is a non-peptide small molecule that activates the same GLP-1 receptor but was engineered in a chemical class the gut has no machinery to digest. It isn't smuggled across the gut wall — it simply crosses like ordinary small-molecule pills, with no absorption enhancer, no one-percent tax, and, as reported so far, none of oral semaglutide's strict food-and-water choreography. In a phase 2 obesity trial it produced substantial weight loss, and the FDA approved it for chronic weight management in April 2026 under the brand name Foundayo.",
   },
   {
     q: "Why is a small-molecule pill a bigger deal than just avoiding the needle?",
@@ -148,6 +149,11 @@ export default function Article() {
                 <a href={REF.orforglipron} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Wharton et&nbsp;al., NEJM, 2023
                 </a>
+                ), and the FDA approved it for chronic weight management in April 2026 as
+                Foundayo (
+                <a href={REF.foundayo} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Lilly, 2026
+                </a>
                 ). It isn&rsquo;t smuggled
                 across the gut wall; it simply walks across, the way ordinary small-molecule
                 pills always have, because there was never a peptide for the gut to attack.
@@ -252,8 +258,8 @@ export default function Article() {
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism and the state of the evidence, summarized
               and simplified from the public record. Not medical advice. Compounds are named
-              to explain the science, not to endorse any use; oral semaglutide is approved,
-              while orforglipron is investigational and not an approved treatment.
+              to explain the science, not to endorse any use. Oral semaglutide and
+              orforglipron (approved April 2026) are both prescription medicines.
             </p>
           </article>
         </Container>

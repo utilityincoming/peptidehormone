@@ -23,8 +23,8 @@ const REF = {
   sapphire:
     "https://orbi.uliege.be/bitstream/2268/339849/1/Safety%20and%20efficacy%20of%20apitegromab%20in%20nonambulatory%20type%202%20or%20type%203%20spinal%20muscular%20atrophy.pdf",
   crl: "https://investors.scholarrock.com/news-releases/news-release-details/fda-issues-complete-response-letter-crl-apitegromab-treatment",
-  pdufa:
-    "https://www.managedhealthcareexecutive.com/view/fda-delays-apitegromab-approval-cites-facility-concerns",
+  approval:
+    "https://investors.scholarrock.com/news-releases/news-release-details/scholar-rock-announces-fda-approval-isembyldtm-apitegromab-mstn", // 11 Sept 2026
 } as const;
 
 export default function Article() {
@@ -233,11 +233,13 @@ export default function Article() {
                 </a>
                 ) — but the letter was about a third-party fill-finish facility, with no
                 question raised about the drug&rsquo;s safety or how well it worked. After
-                a resubmission, the decision date now sits at{" "}
-                <a href={REF.pdufa} target="_blank" rel="noopener noreferrer" className={LINK}>
-                  September&nbsp;30,&nbsp;2026
+                a resubmission with a different facility, the FDA approved it for
+                spinal muscular atrophy in{" "}
+                <a href={REF.approval} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  September&nbsp;2026
                 </a>
-                . Manufacturing, not mechanism, is the last gate.
+                , under the brand name Isembyld. Manufacturing, not mechanism, was the
+                last gate.
               </P>
             </Section>
 

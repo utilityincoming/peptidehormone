@@ -182,7 +182,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A molecule’s biology is climate — its sequence and receptor don’t change from one quarter to the next. What you can actually get is weather, and in 2026 the weather turned in two opposite directions at once. One door swung shut: semaglutide and tirzepatide came off the FDA shortage list (December 2024 and February 2025), the enforcement grace periods for 503A pharmacies and 503B outsourcing facilities expired through spring 2025, and in April 2026 the agency proposed dropping all three leading incretins from the 503B bulks list outright — the approved blockbusters walled off from the compounding the shortage years had made routine. Another door cracked open: the research peptides the FDA had restricted in 2023 got their day in front of the Pharmacy Compounding Advisory Committee on 23–24 July 2026, which voted 8–6, against the agency’s own review staff, to recommend adding six of them — BPC-157, KPV, TB-500, MOTS-c, epitalon, semax — to the 503A bulk list, rejecting a seventh. Read quickly that sounds like six peptides became legal; read correctly, almost nothing changed, because a committee advises and rulemaking decides. Meanwhile the powder’s source tightens under China’s 2026 drug-law reforms. A delisting is a fact that already bit, a proposed rule a signal that hasn’t, a vote a forecast — three tenses the field keeps reading as one. Bullish on the science, sceptical on the paperwork. No dosing.",
     family: "incretins-metabolic",
     readingMinutes: 10,
-    reviewed: "October 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "teriparatide-backwards",
@@ -264,7 +264,7 @@ export const INSIGHTS: Insight[] = [
     dek: "In September 2026 the phrase “first human study of BPC-157” went around again. It wasn’t one. We checked the primary record: PubMed for August\u2013September 2026 holds reviews and a critical re-reading of the rodent ischemia-reperfusion literature; ClinicalTrials.gov holds one randomized trial still recruiting and one not yet open. The entire published human record is three uncontrolled reports from a single Florida clinic \u2013 sixteen knee-pain patients surveyed by phone, twelve cystitis patients who all scored 100%, two volunteers infused for three days \u2013 thirty people and no placebo. The first trial that could actually answer the question, 120 hamstring strains randomized and blinded against placebo with MRI endpoints, began in February 2026 and reads out in 2027. And the July FDA advisory vote that gets reported as a verdict was 8\u20136 against the agency’s own scientists, on access grounds, with no new data in the room. What exists, what is still missing, and how to read the next headline. Bullish on the science, sceptical on the page. No dosing.",
     family: "repair",
     readingMinutes: 11,
-    reviewed: "October 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "wrong-end-of-the-hormone",
@@ -334,7 +334,7 @@ export const INSIGHTS: Insight[] = [
     dek: "For fifteen years the drugs that release muscle's brake kept failing the same strange way — not by doing nothing, but by working. ACE-083 grew its target muscle by double digits on the scan and left patients no stronger; ACE-031 built lean mass and had to be pulled for nosebleeds. Buried in both is the fact the field kept relearning: making a muscle bigger and making it work are different problems. The same ligand-trap platform that failed in muscle quietly became two approved drugs for the blood and the lung — and in 2026 apitegromab finally moved a functional endpoint in spinal muscular atrophy, but only by being added on top of therapy that had already repaired the nerve. Why size was never the finish line, and what all of it means for the muscle everyone is now racing to save from GLP-1 weight loss.",
     family: "muscle-tgfb",
     readingMinutes: 11,
-    reviewed: "September 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "the-rest-of-the-cascade",
@@ -468,7 +468,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Short synthetic peptides are cheap to make and, more to the point, cheap to verify — reversed-phase HPLC and a mass spec settle what they are in an afternoon, and a competitive market keeps them honest. Trust and availability only become live variables higher up the complexity ladder, at the folded biologics — antibodies, ligand traps, the myostatin inhibitors — where correctness lives in the fold, not the sequence, and only a bioassay can confirm it. Why complexity, not fraud, governs what you can actually source.",
     family: "muscle-tgfb",
     readingMinutes: 8,
-    reviewed: "August 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "what-you-can-actually-get",
@@ -476,7 +476,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A reference will tell you what a molecule is down to the receptor. None of them tell you the thing you actually act on: whether you can get it, in what form, this month. Availability is the frontier's real bottleneck — and unlike a sequence, it moves. In July 2026 it moved in public: an FDA advisory committee voted, over its own scientists' objections, to recommend six research peptides for pharmacy compounding — and changed nothing yet. Why what's reachable is itself information, what a vote does and doesn't do to it, and how a reference can publish it as data without becoming a store.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "October 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "peptide-half-life-engineering",
@@ -504,7 +504,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A peptide is food — swallow it and your gut digests it before it works, which is why this class has lived on the needle. Yet the pill is arriving, by two philosophically opposite routes: smuggle the fragile peptide across the gut wall, or stop using a peptide at all and rebuild the signal from a rugged small molecule. The second one is the real revolution, and it comes down to a quiet truth about receptors — they read the message, not the messenger.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "insulins-forgotten-twin",
@@ -522,7 +522,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Single agonist, then dual, then triple — so the next breakthrough must be a bigger number, right? There is no GLP-4. GLP-1's \"1\" was never a version number, and seeing why reveals where the field is actually going: not up the same axis, but sideways — into amylin, into GIP antagonism, into the pill and the quality of the weight you keep.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "getting-the-molecule-in",
@@ -557,7 +557,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Every co-agonist so far added receptors like verses — one, then two, then three. Survodutide adds only one to GLP-1, and picks the strange one: the glucagon receptor, the same hormone a diabetes drug is built to fight. The bet is that glucagon's other job — spending energy and burning the liver's own fat — is worth its cost in glucose, so long as a GLP-1 arm is there to hold the line. It is why survodutide's headline result is not its ~19% weight loss but a class-leading liver-disease signal and a Breakthrough Therapy tag in MASH. Now it is reaching the grey market ahead of its phase 3 verdict, so here is what the near-future buyer is actually reaching for: why glucagon earns a seat, why the liver and not the scale is the story, why the dose has to be crept up rather than started at target, and how far availability has run in front of the evidence. Bullish on the science, sceptical on the page. No dosing.",
     family: "incretins-metabolic",
     readingMinutes: 10,
-    reviewed: "September 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "early-adopters-catalog",

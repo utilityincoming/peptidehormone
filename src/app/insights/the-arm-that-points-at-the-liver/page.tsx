@@ -174,14 +174,17 @@ export default function Article() {
                 promising. The marketplace read is more sober, and it is the same
                 one this site keeps returning to: <Em>cataloged is not proven</Em>,
                 and <Link href="/insights/what-you-can-actually-get" className={LINK}>reachable is not the same as ready</Link>.
-                Survodutide is arriving on research-chemical shelves ahead of its
-                phase 3 verdict — the SYNCHRONIZE obesity program and a phase 3 MASH
-                trial are the readouts that will decide whether the phase 2 promise
-                holds at scale, and they are not in yet.
+                Survodutide reached research-chemical shelves ahead of its phase 3
+                verdict. That verdict has since started to arrive: the SYNCHRONIZE
+                obesity trials reported during 2026, ending with the cardiovascular
+                safety trial in November, and Boehringer says it is preparing
+                regulatory submissions. The phase 3 MASH readout, the one this
+                article&rsquo;s liver thesis rests on, had not reported when this page
+                was checked in November 2026, and no regulator has approved the drug.
               </P>
               <P>
                 So a buyer reaching for grey-market survodutide today is reaching
-                for a molecule whose case rests on phase 2, whose long-horizon
+                for a molecule that no regulator has reviewed, whose long-horizon
                 safety has simply not been measured, and whose glucagon arm makes
                 the <Em>dose</Em> matter more than usual — start-at-target is exactly
                 the mistake the titration schedule exists to prevent. Stack on top of
@@ -210,8 +213,9 @@ export default function Article() {
                 cancel each other&rsquo;s downside — is elegant and well supported.
               </P>
               <P>
-                <Em>Open:</Em> whether the ~19% weight loss and the MASH resolution
-                survive phase 3 at scale and over longer horizons; how the glucagon
+                <Em>Open:</Em> whether the MASH resolution survives phase 3; how the
+                phase 3 obesity results, once published in full, compare with the
+                ~19% phase 2 figure; how the glucagon
                 arm&rsquo;s glucose and heart-rate effects behave across a broad
                 population; and, for anyone reaching a grey-market vial, everything
                 that sits between a promising trial molecule and a known quantity in

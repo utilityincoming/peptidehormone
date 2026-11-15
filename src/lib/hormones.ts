@@ -1423,7 +1423,7 @@ const BASE: Hormone[] = [
       "The evidence base is predominantly preclinical (rodent); a September 2026 critical review found it too heterogeneous to meta-analyse.",
       "Every published human report (30 people in total) is uncontrolled; no randomized trial has reported, and the first is due in 2027.",
       "Its molecular mechanism is proposed rather than firmly established.",
-      "In July 2026 an FDA advisory committee voted 8–6 to recommend it for 503A compounding against agency staff advice; the vote is non-binding and it remains in Category 2.",
+      "In July 2026 an FDA advisory committee voted 8–6 to recommend it for 503A compounding against agency staff advice; the vote is non-binding. It left Category 2 in April 2026 when its nomination was withdrawn, but it is not on the 503A list and still may not be compounded.",
     ],
     questions: [
       "What does the actual evidence show for BPC-157, and what is only claimed?",

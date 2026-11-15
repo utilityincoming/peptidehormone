@@ -264,8 +264,9 @@ export default function Article() {
               Educational reference on mechanism and the state of the evidence, summarized
               and simplified from the public record. Not medical advice. Compounds and
               investigational candidates are named to explain the science, not to endorse
-              any use; cagrilintide, amycretin, maridebart cafraglutide, orforglipron, and
-              retatrutide are investigational and not approved treatments.
+              any use; cagrilintide, amycretin, maridebart cafraglutide, and
+              retatrutide are investigational and not approved treatments. Orforglipron
+              was approved in April 2026.
             </p>
           </article>
         </Container>

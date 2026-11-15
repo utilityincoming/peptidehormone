@@ -51,7 +51,7 @@ const FAQS = [
   },
   {
     q: "What did the FDA advisory committee decide in July 2026?",
-    a: "On 23 July 2026 the Pharmacy Compounding Advisory Committee voted 8–6, with one abstention, to recommend adding BPC-157 to the 503A bulk-substances list — against the recommendation of FDA review staff, who cited the absence of controlled human data, unresolved questions about what the compounded substance actually is, and inadequate safety information. The vote is advisory. BPC-157 remains in Category 2 of the 503A list until the agency completes rulemaking, which is expected to take a year or more.",
+    a: "On 23 July 2026 the Pharmacy Compounding Advisory Committee voted 8–6, with one abstention, to recommend adding BPC-157 to the 503A bulk-substances list — against the recommendation of FDA review staff, who cited the absence of controlled human data, unresolved questions about what the compounded substance actually is, and inadequate safety information. The vote is advisory. BPC-157 left Category 2 of the FDA's interim policy in April 2026, when its nomination was withdrawn, but it is not on the 503A list and may not be compounded unless the agency completes rulemaking, which is expected to take a year or more.",
   },
   {
     q: "Is BPC-157 allowed in sport?",
@@ -274,7 +274,7 @@ export default function Article() {
               </P>
               <Bullets
                 items={[
-                  ["It is advisory", "The committee recommends; the agency decides, through rulemaking that is expected to take twelve to twenty-four months. Until then BPC-157 remains in Category 2 of the 503A list, as it has been since September 2023, and may not lawfully be compounded."],
+                  ["It is advisory", "The committee recommends; the agency decides, through rulemaking that is expected to take twelve to twenty-four months. BPC-157 sat in Category 2 of the interim policy from September 2023 until April 2026, when the nomination was withdrawn. That removal did not add it to the 503A list, so it still may not lawfully be compounded."],
                   ["It was not an evidence review", "Several yes votes were cast explicitly on patient-demand and access grounds, with members acknowledging the data were incomplete. A vote on access policy is not a finding of efficacy, and it adds nothing to the human evidence table above."],
                   ["Identity is a safety question", "A peptide that is sold under one name but reaches patients as more than one sequence, with impurity profiles no one has characterised, cannot have a safety record in any meaningful sense. That was the staff objection, and it stands regardless of the vote."],
                 ]}
@@ -347,8 +347,8 @@ export default function Article() {
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference for research and laboratory contexts only. Not medical
               advice, and not a recommendation to use BPC-157. BPC-157 is not approved by
-              any drug regulator for human use, sits in Category 2 of the FDA 503A
-              bulk-substances list pending rulemaking, and is prohibited in sport at all
+              any drug regulator for human use, is not on the FDA 503A
+              bulk-substances list, and is prohibited in sport at all
               times under WADA S0. Specific studies, trials and votes are named to explain
               the evidence &ndash; verify any claim against the linked primary sources.
             </p>

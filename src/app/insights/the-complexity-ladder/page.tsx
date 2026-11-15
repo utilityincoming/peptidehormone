@@ -21,11 +21,11 @@ const FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Is apitegromab FDA-approved?",
-    a: "As of 2026, no. Apitegromab (Scholar Rock) is a Phase-3-positive anti-myostatin antibody with a strong safety and efficacy profile, but it received a 2025 FDA Complete Response Letter — and notably, the letter raised no safety or efficacy concern at all. It was solely a third-party fill-finish manufacturing observation, with resubmission underway. A fully de-risked antibody gated by the accountability of its supply chain is the single clearest illustration of why the folded-biologic frontier differs from the commodity peptide tier.",
+    a: "Yes, since September 2026, for spinal muscular atrophy, under the brand name Isembyld. The route there is the instructive part. Apitegromab (Scholar Rock) was a Phase-3-positive anti-myostatin antibody when it received a 2025 FDA Complete Response Letter — and notably, the letter raised no safety or efficacy concern at all. It was solely a third-party fill-finish manufacturing observation, and approval followed a resubmission with a different facility. A fully de-risked antibody held up for a year by the accountability of its supply chain is the single clearest illustration of why the folded-biologic frontier differs from the commodity peptide tier.",
   },
   {
     q: "Is any myostatin- or activin-pathway drug FDA-approved?",
-    a: "Yes — one. Sotatercept (Merck's Winrevair), an ActRII ligand trap that dampens activin signaling, was approved in 2024 for pulmonary arterial hypertension; it is the first-in-class, fully approved member of the axis. The rest remain investigational as of 2026: trevogrumab (Regeneron, in Phase 2 as a lean-mass-preserving add-on to GLP-1 agonists), apitegromab (2025 Complete Response Letter, resubmitting), garetosmab (under FDA review for fibrodysplasia ossificans progressiva), and bimagrumab (a Lilly obesity asset). All are complex recombinant biologics, not synthetic peptides.",
+    a: "Yes — two. Sotatercept (Merck's Winrevair), an ActRII ligand trap that dampens activin signaling, was approved in 2024 for pulmonary arterial hypertension; it was the first approved member of the axis. Apitegromab (Scholar Rock's Isembyld) followed in September 2026 for spinal muscular atrophy. The rest: trevogrumab (Regeneron, in Phase 2 as a lean-mass-preserving add-on to GLP-1 agonists), garetosmab (submitted to the FDA in early 2026 for fibrodysplasia ossificans progressiva; this page has not confirmed a decision), and bimagrumab (a Lilly obesity asset). All are complex recombinant biologics, not synthetic peptides.",
   },
   {
     q: "What is the difference between a peptide and a peptide-hormone antibody?",
@@ -233,16 +233,17 @@ export default function Article() {
                 ossificans progressiva) and bimagrumab (a Lilly obesity asset that blocks the ActRII
                 receptor itself — mechanistically distinct from the ligand-neutralizers, inhibiting
                 myostatin and activin signaling at once). <Em>Fc-fusion ligand traps</Em>: sotatercept
-                (Winrevair, Merck), the one fully approved, marketed member of the axis, cleared in
+                (Winrevair, Merck), the first approved, marketed member of the axis, cleared in
                 2024 for pulmonary arterial hypertension. Every antibody here is a roughly 150 kDa,
                 multi-chain, disulfide-linked, glycosylated recombinant protein — categorically
                 outside synthesis and outside cheap self-verification.
               </P>
               <P>
-                Two status notes prove the framing rather than complicate it. Apitegromab is
+                Two status notes prove the framing rather than complicate it. Apitegromab was
                 Phase-3-positive and de-risked on biology, yet its 2025 FDA Complete Response Letter
                 raised no safety or efficacy concern at all — it was solely a third-party fill-finish
-                manufacturing observation. A fully validated antibody, gated by the accountability of
+                manufacturing observation, and approval came only in September 2026, after a
+                resubmission. A fully validated antibody, held up for a year by the accountability of
                 its supply chain. And emugrobart (Chugai/Roche), a sophisticated latent-myostatin
                 recycling antibody, was discontinued for SMA and FSHD in 2026 after showing target
                 engagement but no functional benefit, even as its obesity program continued — the
