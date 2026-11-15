@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FAMILIES, getFamily } from "@/lib/families";
-import { INSIGHTS, featuredInsights } from "@/lib/insights";
+import { INSIGHTS } from "@/lib/insights";
+import { homeReading } from "@/lib/home-reading";
+import styles from "./home.module.css";
 import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
@@ -9,6 +11,7 @@ import { MechanismCover, hasMechanismCover } from "@/components/MechanismCover";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
 import { StructureHero } from "@/components/StructureHero";
+import { SequenceSignalHero } from "@/components/SequenceSignalHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { SourcingLine } from "@/components/Sourcing";
@@ -20,6 +23,10 @@ export const metadata: Metadata = {
 
 // Short card copy; article introductions remain unchanged.
 const HOME_SUMMARIES: Record<string, string> = {
+  "two-residues-apart": "Oxytocin and vasopressin differ by just two amino acids. How small sequence changes separate reproductive signaling from water balance — and why their clinical evidence differs.",
+  "the-fat-hormone-that-falls-as-fat-rises": "Adiponectin links fat tissue to metabolism. Why a strong disease association has not translated into a replacement medicine.",
+  "the-neuron-behind-the-hot-flash": "Kisspeptin, neurokinin B, and dynorphin connect reproductive pulses to temperature regulation. Follow the mechanism from neuron to clinical test.",
+  "the-gene-the-parents-fight-over": "IGF-2 and genomic imprinting: how parental gene expression shapes growth, and what happens when that regulation changes.",
   "glp-1-signaling": "How GLP-1 links a meal to insulin release: the receptor, the intracellular signal, and why glucose matters.",
   "the-note-without-the-incretin": "Eloralintide targets amylin receptors rather than GLP-1. What its molecular design and human trials show — and what tolerability claims still need to prove.",
   "glp-1-in-a-pill": "Two routes to an oral GLP-1 drug: help a peptide cross the gut barrier, or activate the receptor with a small molecule.",
@@ -153,36 +160,30 @@ export default function Home() {
   const frontier = getHormone("retatrutide");
   const frontierReg = regulatoryFor("retatrutide");
   const frontierLink = frontier?.halfLifeMin ? halfLifeForLink(frontier.halfLifeMin) : undefined;
-  const [lead, ...rest] = featuredInsights();
+  const [lead, ...rest] = homeReading();
   const leadFamily = lead ? getFamily(lead.family) : undefined;
   return (
     <>
       <SiteHeader />
 
-      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+      <main id="main" tabIndex={-1} className={`${styles.atlas} flex-1 outline-none`}>
         {/* ── Hero ── */}
-        <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.5]"
-            style={{
-              background:
-                "radial-gradient(60% 60% at 75% 0%, rgba(124,131,255,0.18), transparent 70%), radial-gradient(50% 50% at 0% 100%, rgba(45,212,168,0.10), transparent 70%)",
-            }}
-          />
-          <Container className="relative py-14 md:py-20">
-            <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+        <section className={styles.hero} aria-labelledby="atlas-title">
+          <Container className="relative py-10 md:py-16">
+            <div className={styles.masthead}>
+              <span>PeptideHormone / Research atlas</span>
+              <Link href="/methodology">Evidence standards <span aria-hidden>↗</span></Link>
+            </div>
+            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-secondary">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Peptide biology · evidence · reference
-              </span>
-              <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] sm:text-5xl">
-                Peptide science.
-                <span className="text-accent"> Mechanisms, evidence, and what remains unproven.</span>
+              <p className={styles.eyebrow}>Molecules / mechanisms / evidence</p>
+              <h1 id="atlas-title" className={styles.title}>
+                An atlas of<br />peptide signaling.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
-                Explore native hormones and engineered analogs by receptor, half-life,
-                clinical evidence, and approval status.
+                From growth and reproduction to appetite and repair. Explore native
+                hormones and engineered analogs through their receptors, biological
+                roles, and the evidence behind them.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -209,9 +210,25 @@ export default function Home() {
                 </Link>
                 .
               </p>
+              <nav aria-label="Explore signaling families" className={styles.familyIndex}>
+                <p className={styles.eyebrow}>Browse by biological system</p>
+                <div>
+                  {FAMILIES.map((family) => (
+                    <Link key={family.slug} href={`/families/${family.slug}`}>
+                      {family.name}<span aria-hidden>↗</span>
+                    </Link>
+                  ))}
+                </div>
+              </nav>
             </div>
 
-            <StructureHero />
+            <aside className={styles.specimen} aria-label="From sequence to signal: oxytocin">
+              <div className={styles.specimenLabel}><span>Plate 01 / Endogenous signals</span><span>OXT → OXTR</span></div>
+              <h2 className="mt-5 font-display text-2xl font-medium">From sequence to signal</h2>
+              <p className="mt-2 mb-3 text-sm leading-6 text-secondary">Nine residues. A constrained fold. A message across a membrane.</p>
+              <SequenceSignalHero />
+              <Link href="/hormones/oxytocin" className={styles.specimenLink}>Explore oxytocin <span aria-hidden>→</span></Link>
+            </aside>
             </div>
 
 
@@ -235,11 +252,11 @@ export default function Home() {
         </section>
 
         {/* ── Families ── */}
-        <section id="families" className="border-b border-ink/[0.06] py-20 md:py-24">
+        <section id="families" className={`${styles.families} border-b border-ink/[0.06] py-14 md:py-16`}>
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                The catalog, by signaling family
+                Find your field of study
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
                 Explore peptide signaling families grouped by receptors and biological
@@ -292,89 +309,12 @@ export default function Home() {
           </Container>
         </section>
 
-        <section aria-label="Featured explainer" className="bg-panel/40 border-b border-ink/[0.06] py-16 md:py-20">
-          <Container>
-            {/* ── Lead figure: from a two-minute hormone to three receptors ── */}
-            <figure>
-              <figcaption className="max-w-3xl">
-                <p className="text-xs font-medium text-accent">
-                  Featured explainer
-                </p>
-                <h2 className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl">
-                  From minutes to days. From one receptor to three.
-                </h2>
-                <p className="mt-3 text-base leading-7 text-secondary">
-                  Native GLP-1 has a half-life of minutes; semaglutide has a half-life
-                  of about a week. Tirzepatide activates GIP and GLP-1 receptors;
-                  retatrutide also activates the glucagon receptor. Drag through
-                  two weeks to compare modeled elimination after a single dose.
-                </p>
-              </figcaption>
-
-              <div className="mt-8">
-                <HeroTimeline series={series} />
-              </div>
-
-              {frontier && frontierReg && (
-                <div className="mt-4 rounded-2xl border border-accent-amber/30 bg-accent-amber/[0.06] p-4 text-sm leading-6 text-ink/75 sm:p-5">
-                  <p>
-                    <span className="font-medium text-accent-amber">
-                      Retatrutide is not an approved medicine.
-                    </span>{" "}
-                    {frontierReg.basis} &ldquo;GLP-3&rdquo; is a market nickname
-                    for it, not a hormone — there is no GLP-3 — and material sold
-                    under that name is research-use-only, outside the approved-drug
-                    system.
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-                    {[
-                      { href: "/insights/the-triple-agonist", label: "What the triple agonist is" },
-                      { href: "/insights/is-there-a-glp-4", label: "Is there a GLP-4?" },
-                      ...(frontierLink
-                        ? [
-                            {
-                              href: `/tools/half-life?t12=${frontierLink.value}&unit=${frontierLink.unit}`,
-                              label: "Model its half-life",
-                            },
-                          ]
-                        : []),
-                    ].map((l) => (
-                      <Link
-                        key={l.href}
-                        href={l.href}
-                        className="inline-flex items-center gap-1.5 font-medium text-ink/90 transition-colors hover:text-accent"
-                      >
-                        {l.label}
-                        <span aria-hidden>→</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <p className="mt-4 text-xs leading-5 text-secondary">
-                Half-lives are the representative values on each linked monograph.
-                Curves show first-order elimination of one dose — a simplification
-                with no absorption phase or accumulation, and not dosing guidance.
-                Regulatory status: United States, reviewed{" "}
-                {formatAsOf(REGULATORY_AS_OF)}.{" "}
-                <Link
-                  href="/methodology"
-                  className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
-                >
-                  How we grade evidence
-                </Link>
-              </p>
-            </figure>
-          </Container>
-        </section>
-
         {/* ── Insights rail ── */}
         <section id="insights" className="border-b border-ink/[0.06] py-20 md:py-24">
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                The mechanisms, in long form
+                Across the research atlas
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
                 Long-form deep-dives that trace one molecule — or one question — back
@@ -471,6 +411,87 @@ export default function Home() {
           </Container>
         </section>
 
+        <section aria-label="Featured explainer" className="bg-panel/40 border-b border-ink/[0.06] py-16 md:py-20">
+          <Container>
+            {/* ── Lead figure: from a two-minute hormone to three receptors ── */}
+            <figure>
+              <figcaption className="max-w-3xl">
+                <p className="text-xs font-medium text-accent">
+                  Featured explainer
+                </p>
+                <h2 className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl">
+                  From minutes to days. From one receptor to three.
+                </h2>
+                <p className="mt-3 text-base leading-7 text-secondary">
+                  Native GLP-1 has a half-life of minutes; semaglutide has a half-life
+                  of about a week. Tirzepatide activates GIP and GLP-1 receptors;
+                  retatrutide also activates the glucagon receptor. Drag through
+                  two weeks to compare modeled elimination after a single dose.
+                </p>
+              </figcaption>
+
+              <details className="mt-8 max-w-2xl border border-ink/15 p-5">
+                <summary className="cursor-pointer text-sm text-accent">Structural companion: retatrutide at three receptors</summary>
+                <div className="mt-5"><StructureHero /></div>
+              </details>
+              <div className="mt-8">
+                <HeroTimeline series={series} />
+              </div>
+
+              {frontier && frontierReg && (
+                <div className="mt-4 rounded-2xl border border-accent-amber/30 bg-accent-amber/[0.06] p-4 text-sm leading-6 text-ink/75 sm:p-5">
+                  <p>
+                    <span className="font-medium text-accent-amber">
+                      Retatrutide is not an approved medicine.
+                    </span>{" "}
+                    {frontierReg.basis} &ldquo;GLP-3&rdquo; is a market nickname
+                    for it, not a hormone — there is no GLP-3 — and material sold
+                    under that name is research-use-only, outside the approved-drug
+                    system.
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+                    {[
+                      { href: "/insights/the-triple-agonist", label: "What the triple agonist is" },
+                      { href: "/insights/is-there-a-glp-4", label: "Is there a GLP-4?" },
+                      ...(frontierLink
+                        ? [
+                            {
+                              href: `/tools/half-life?t12=${frontierLink.value}&unit=${frontierLink.unit}`,
+                              label: "Model its half-life",
+                            },
+                          ]
+                        : []),
+                    ].map((l) => (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        className="inline-flex items-center gap-1.5 font-medium text-ink/90 transition-colors hover:text-accent"
+                      >
+                        {l.label}
+                        <span aria-hidden>→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <p className="mt-4 text-xs leading-5 text-secondary">
+                Half-lives are the representative values on each linked monograph.
+                Curves show first-order elimination of one dose — a simplification
+                with no absorption phase or accumulation, and not dosing guidance.
+                Regulatory status: United States, reviewed{" "}
+                {formatAsOf(REGULATORY_AS_OF)}.{" "}
+                <Link
+                  href="/methodology"
+                  className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
+                >
+                  How we grade evidence
+                </Link>
+              </p>
+            </figure>
+          </Container>
+        </section>
+
         {/* ── Tools band ── */}
         <section id="tools" className="bg-panel/40 border-b border-ink/[0.06] py-20 md:py-24">
           <Container>
@@ -527,8 +548,8 @@ export default function Home() {
           <Container className="grid gap-12 md:grid-cols-[0.9fr_1.1fr]">
             <div>
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                Bullish on the science.
-                <span className="text-accent"> Sceptical on the page.</span>
+                Follow the mechanism.
+                <span className="text-accent"> Question the claim.</span>
               </h2>
               <p className="mt-4 max-w-md text-lg leading-8 text-secondary">
                 Peptide engineering is changing what a hormone can do and how long
