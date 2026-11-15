@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -334,8 +334,8 @@ export default function Article() {
               Educational reference on how clinical trial results are analysed and
               reported, summarized and simplified from the public record. Not medical
               advice. Trial figures are quoted to explain the method, not to rank or
-              endorse any drug; retatrutide and CagriSema were not approved treatments
-              when this page was reviewed.
+              endorse any drug.{" "}
+              <StatusNote of={["retatrutide", "cagrisema", "semaglutide", "tirzepatide"]} />
             </p>
           </article>
         </Container>

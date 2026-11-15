@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -264,9 +264,8 @@ export default function Article() {
               Educational reference on mechanism and the state of the evidence, summarized
               and simplified from the public record. Not medical advice. Compounds and
               investigational candidates are named to explain the science, not to endorse
-              any use; cagrilintide, amycretin, maridebart cafraglutide, and
-              retatrutide are investigational and not approved treatments. Orforglipron
-              was approved in April 2026.
+              any use.{" "}
+              <StatusNote of={["cagrilintide", "amycretin", "maridebart-cafraglutide", "retatrutide", "orforglipron"]} />
             </p>
           </article>
         </Container>

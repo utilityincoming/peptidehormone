@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { statusNote } from "@/lib/status-note";
 
 // Shared presentational components for /insights long-form articles.
 
@@ -45,6 +46,15 @@ export function Bullets({ items }: { items: [string, string][] }) {
       ))}
     </ul>
   );
+}
+
+/**
+ * The regulatory-status sentence for an article's disclaimer, written from the
+ * regulatory table rather than by hand. `of` takes catalog slugs or WATCHED
+ * keys; see lib/status-note.
+ */
+export function StatusNote({ of }: { of: string[] }) {
+  return <>{statusNote(of)}</>;
 }
 
 export function CrossLink({ href, label }: { href: string; label: string }) {
