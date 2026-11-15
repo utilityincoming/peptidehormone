@@ -132,6 +132,8 @@ export default function Article() {
               </P>
             </Section>
 
+            <DerivationFigure />
+
             <Section title="The mechanism that has animal support">
               <P>
                 Semax has the more worked-out mechanism. Rather than acting as a
@@ -248,5 +250,47 @@ export default function Article() {
       </main>
       <SiteFooter />
     </>
+  );
+}
+
+/* ── Same play, two parents: keep the brain clause, drop the rest ── */
+function DerivationFigure() {
+  const Row = ({
+    y, parent, parentSub, frag, keep, drop, tone,
+  }: { y: number; parent: string; parentSub: string; frag: string; keep: string; drop: string; tone: string }) => (
+    <>
+      {/* parent */}
+      <rect x="34" y={y - 20} width="112" height="40" rx="10" fill="var(--color-ink)" fillOpacity="0.06" stroke="var(--color-ink)" strokeOpacity="0.15" strokeWidth="1" />
+      <text x="90" y={y - 2} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.8" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">{parent}</text>
+      <text x="90" y={y + 13} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="9.5" fontFamily="var(--font-geist-mono), monospace">{parentSub}</text>
+      {/* arrow */}
+      <line x1="150" y1={y} x2="246" y2={y} stroke={tone} strokeWidth="2" strokeOpacity="0.7" />
+      <polygon points={`254,${y} 242,${y - 6} 242,${y + 6}`} fill={tone} />
+      <text x="200" y={y - 12} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="9.5" fontFamily="var(--font-geist-mono), monospace">cut + armor</text>
+      {/* fragment */}
+      <rect x="262" y={y - 20} width="104" height="40" rx="10" fill={tone} fillOpacity="0.14" stroke={tone} strokeOpacity="0.5" strokeWidth="1.5" />
+      <text x="314" y={y + 5} textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.85" fontSize="13.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">{frag}</text>
+      {/* keep / drop */}
+      <text x="386" y={y - 4} fill={tone} fontSize="11" fontWeight="600" fontFamily="var(--font-geist-mono), monospace">keep · {keep}</text>
+      <text x="386" y={y + 14} fill="var(--color-ink)" fillOpacity="0.4" fontSize="11" fontFamily="var(--font-geist-mono), monospace">✕ drop · {drop}</text>
+    </>
+  );
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 600 196"
+        className="w-full"
+        role="img"
+        aria-label="Semax is cut from ACTH, keeping the neuroactive clause and dropping cortisol release; Selank is cut from tuftsin, keeping an anxiolytic effect and dropping immune signaling."
+      >
+        <Row y={54} parent="ACTH" parentSub="stress hormone" frag="Semax" keep="neuroactive · BDNF/TrkB" drop="cortisol release" tone="var(--accent-blue)" />
+        <line x1="34" y1="104" x2="566" y2="104" stroke="var(--color-ink)" strokeOpacity="0.08" strokeWidth="1" />
+        <Row y={148} parent="Tuftsin" parentSub="immune peptide" frag="Selank" keep="re-pointed to anxiety" drop="immune signaling" tone="var(--accent-teal)" />
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        The same fragment-engineering play on two parents: keep the one clause that reaches the brain, armor it against
+        peptidases, drop the rest. The cut is the believable half; what the kept clause does in a person still needs the trial.
+      </figcaption>
+    </figure>
   );
 }

@@ -80,6 +80,7 @@ export default function Article() {
             <P>The gut is not a sheet of plastic with one hole-size setting. Proteases can destroy a peptide before it reaches the wall; mucus changes its access to the surface; epithelial membranes resist large polar molecules; junctions restrict travel between cells. An enteric coating can postpone release until the intestine without making the released peptide cross it. A protease inhibitor can preserve intact drug without solving permeability. An enhancer can improve crossing while leaving degradation as the limiting step.<Cite n={4} /></P>
             <P>Nor is all peptide absorption the same outcome. Absorbing amino acids or small dietary fragments is not equivalent to absorbing an intact receptor-active drug. Conversely, a peptide intended to act locally in the gastrointestinal tract need not achieve high systemic exposure to have a local effect. The relevant experiment must match the claim: intact circulating drug for a systemic claim, or appropriately demonstrated local pharmacology for a local one.<Cite n={4} /></P>
           </Section>
+          <RouteFigure />
           <Section title="SNAC: a small patch of stomach, not a gut-wide opening">
             <P>Buckley and colleagues combined clinical and preclinical work to show something counterintuitive: co-formulated semaglutide was absorbed from the <Em>stomach</Em>, close to the tablet surface. SNAC buffered the local environment, protecting against enzymatic degradation, and transiently facilitated absorption. The reported route was <Em>transcellular</Em>—through epithelial cells—with no evidence of an effect on tight junctions in those experiments.<Cite n={1} /></P>
             <P>That is why “loosens the stomach lining” is an unhelpful shorthand. It sounds like the cells separate, or a large region loses its seal. The semaglutide evidence instead supports a localized, compound-specific process. Reviews describe reduced pepsin activity at the raised local pH, changes favoring semaglutide monomers rather than aggregates, and membrane interactions that help passage. Local buffering is not permanent suppression of acid production throughout the stomach.<Cite n={1} /><Cite n={2} /></P>
@@ -157,4 +158,47 @@ export default function Article() {
     </main>
     <SiteFooter />
   </>;
+}
+
+/* ── Two helpers, two doors across the epithelium ── */
+function RouteFigure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 600 236"
+        className="w-full"
+        role="img"
+        aria-label="SNAC carries semaglutide through a stomach epithelial cell (the transcellular route), while sodium caprate opens the junction between intestinal cells (the paracellular route)."
+      >
+        {/* lumen / blood framing */}
+        <text x="300" y="22" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="11" fontFamily="var(--font-geist-mono), monospace">LUMEN · swallowed peptide</text>
+        <text x="300" y="228" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="11" fontFamily="var(--font-geist-mono), monospace">BLOODSTREAM</text>
+        <line x1="300" y1="42" x2="300" y2="196" stroke="var(--color-ink)" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="3 4" />
+
+        {/* ── LEFT: SNAC, transcellular ── */}
+        <text x="150" y="50" textAnchor="middle" fill="var(--accent-blue)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">SNAC</text>
+        <rect x="105" y="92" width="90" height="72" rx="11" fill="var(--accent-blue)" fillOpacity="0.1" stroke="var(--accent-blue)" strokeOpacity="0.4" strokeWidth="1.5" />
+        <line x1="150" y1="60" x2="150" y2="182" stroke="var(--accent-blue)" strokeWidth="2.5" />
+        <polygon points="150,192 143,178 157,178" fill="var(--accent-blue)" />
+        <circle cx="150" cy="60" r="4.5" fill="var(--accent-blue)" />
+        <text x="150" y="212" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.6" fontSize="11.5" fontFamily="var(--font-geist-mono), monospace">transcellular — through the cell</text>
+
+        {/* ── RIGHT: C10, paracellular ── */}
+        <text x="450" y="50" textAnchor="middle" fill="var(--accent-amber)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Sodium caprate (C10)</text>
+        <rect x="378" y="92" width="62" height="72" rx="11" fill="var(--accent-amber)" fillOpacity="0.08" stroke="var(--accent-amber)" strokeOpacity="0.35" strokeWidth="1.5" />
+        <rect x="462" y="92" width="62" height="72" rx="11" fill="var(--accent-amber)" fillOpacity="0.08" stroke="var(--accent-amber)" strokeOpacity="0.35" strokeWidth="1.5" />
+        {/* opened junction marks */}
+        <line x1="445" y1="96" x2="457" y2="104" stroke="var(--accent-amber)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <line x1="457" y1="96" x2="445" y2="104" stroke="var(--accent-amber)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <line x1="451" y1="60" x2="451" y2="182" stroke="var(--accent-amber)" strokeWidth="2.5" />
+        <polygon points="451,192 444,178 458,178" fill="var(--accent-amber)" />
+        <circle cx="451" cy="60" r="4.5" fill="var(--accent-amber)" />
+        <text x="451" y="212" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.6" fontSize="11.5" fontFamily="var(--font-geist-mono), monospace">paracellular — between the cells</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        Same job title, different doors: SNAC ushers semaglutide through the stomach cell itself; C10 loosens the junction
+        between intestinal cells. Different routes raise different safety questions — and neither result transfers to the other.
+      </figcaption>
+    </figure>
+  );
 }

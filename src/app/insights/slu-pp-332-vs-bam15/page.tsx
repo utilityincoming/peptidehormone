@@ -97,6 +97,7 @@ export default function Article() {
             <P>In <Cite source="bam15">Alexopoulos and colleagues&rsquo; 2020 Nature Communications study</Cite>, BAM15 reduced adiposity in mice without reducing food intake or lean mass under the tested conditions. Liver fat improved, and hyperinsulinemic-euglycemic clamp experiments supported improved insulin sensitivity in multiple tissues. Those clamp measurements are a substantive physiological result, not a marketing synonym for feeling more energetic.</P>
             <P>The same paper reported no detected increase in body temperature or adverse changes in selected blood markers under its experimental conditions. That is encouraging preclinical tolerability. It is not a demonstrated human therapeutic window, and it does not mean arbitrarily high exposure is harmless. Solubility and formulation constrained the upper-exposure experiments; transient lethargy at the upper end could not be clearly separated from the thick preparation used for administration.</P>
           </Section>
+          <MechanismFigure />
           <MechanismTable />
           <Section title="BAM15 is not DNP. That does not make it proven safe.">
             <P>DNP, or 2,4-dinitrophenol, is the historical warning attached to uncoupling: a drug can increase energy expenditure and still have a dangerously narrow separation between desired and toxic effects. The <Cite source="bam15">BAM15 paper</Cite>{" "}explicitly addresses that drug-development problem and describes BAM15 as structurally unrelated to DNP.</P>
@@ -181,4 +182,48 @@ function MechanismTable() {
     </div>
     <p className="mt-3 text-xs leading-5 text-ink/45">Comparison of separate research programs. No head-to-head or combination efficacy is implied. Sources: Billon 2023/2024/2026, Hampton 2023, Xu 2024 and Alexopoulos 2020, linked above.</p>
   </section>;
+}
+
+/* ── Two engines, two places in the cell ── */
+function MechanismFigure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 600 248"
+        className="w-full"
+        role="img"
+        aria-label="SLU-PP-332 acts at the nucleus, switching on an oxidative gene program; BAM15 acts at the inner mitochondrial membrane, letting protons leak so more fuel must be burned."
+      >
+        <line x1="300" y1="40" x2="300" y2="208" stroke="var(--color-ink)" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="3 4" />
+
+        {/* ── LEFT: SLU-PP-332/915 → nucleus → gene program ── */}
+        <text x="150" y="44" textAnchor="middle" fill="var(--accent-blue)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">SLU-PP-332 / 915</text>
+        <text x="150" y="62" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11" fontFamily="var(--font-geist-mono), monospace">change the program</text>
+        <line x1="150" y1="78" x2="150" y2="96" stroke="var(--accent-blue)" strokeWidth="2.5" />
+        <polygon points="150,104 143,91 157,91" fill="var(--accent-blue)" />
+        <circle cx="150" cy="146" r="40" fill="var(--accent-blue)" fillOpacity="0.1" stroke="var(--accent-blue)" strokeOpacity="0.45" strokeWidth="1.5" />
+        <text x="150" y="151" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.8" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">ERR · nucleus</text>
+        <text x="150" y="214" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.6" fontSize="11.5" fontFamily="var(--font-geist-mono), monospace">↑ oxidative gene program</text>
+
+        {/* ── RIGHT: BAM15 → inner membrane → proton leak ── */}
+        <text x="450" y="44" textAnchor="middle" fill="var(--accent-amber)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">BAM15</text>
+        <text x="450" y="62" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11" fontFamily="var(--font-geist-mono), monospace">change the accounting</text>
+        <line x1="450" y1="78" x2="450" y2="96" stroke="var(--accent-amber)" strokeWidth="2.5" />
+        <polygon points="450,104 443,91 457,91" fill="var(--accent-amber)" />
+        {/* mitochondrion: outer + inner membrane */}
+        <ellipse cx="450" cy="150" rx="60" ry="40" fill="var(--accent-amber)" fillOpacity="0.07" stroke="var(--accent-amber)" strokeOpacity="0.4" strokeWidth="1.5" />
+        <ellipse cx="450" cy="150" rx="46" ry="27" fill="none" stroke="var(--accent-amber)" strokeOpacity="0.45" strokeWidth="1.2" strokeDasharray="4 3" />
+        {/* protons leaking across */}
+        <text x="430" y="146" textAnchor="middle" fill="var(--accent-amber)" fontSize="11" fontWeight="700" fontFamily="var(--font-geist-mono), monospace">H⁺</text>
+        <text x="452" y="158" textAnchor="middle" fill="var(--accent-amber)" fontSize="11" fontWeight="700" fontFamily="var(--font-geist-mono), monospace">H⁺</text>
+        <line x1="456" y1="150" x2="500" y2="150" stroke="var(--accent-amber)" strokeWidth="2" strokeOpacity="0.8" />
+        <polygon points="508,150 496,144 496,156" fill="var(--accent-amber)" />
+        <text x="450" y="214" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.6" fontSize="11.5" fontFamily="var(--font-geist-mono), monospace">proton leak → burn more fuel</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        Same slogan, different engines — and different addresses in the cell. One rewrites the instructions at the nucleus;
+        the other loosens the energy accounting at the mitochondrial membrane. &ldquo;Mitochondrial booster&rdquo; hides the gap.
+      </figcaption>
+    </figure>
+  );
 }
