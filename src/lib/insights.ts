@@ -289,6 +289,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "October 2026",
   },
   {
+    slug: "finished-sooner",
+    hormones: ["cagrilintide", "amylin", "semaglutide", "pramlintide", "eloralintide"],
+    title: "Finished sooner",
+    dek: "Cagrilintide gets talked about as a stronger GLP-1. It is a different signal. Amylin ends a meal; GLP-1 turns down the wanting of one, and the two live in neighboring circuits, one of which is also the nausea center. On its own, in a 26-week phase 2 trial, once-weekly cagrilintide took off a mean 10.8% of body weight at the top dose — a little past liraglutide, with nausea in up to 47% and discontinuations no worse than placebo. The number people quote, −20.4% at 68 weeks, is CagriSema, the combination with semaglutide, and in that trial gastrointestinal events reached 79.6%. What the experience is likely to be, which result belongs to which vial, and the expectations an approved label would have set if one existed. Investigational. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
+  {
     slug: "the-note-without-the-incretin",
     hormones: ["eloralintide", "amylin", "cagrilintide", "tirzepatide", "pramlintide"],
     title: "The note without the incretin",
