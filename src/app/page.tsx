@@ -14,7 +14,8 @@ import { StructureHero } from "@/components/StructureHero";
 import { SequenceSignalHero } from "@/components/SequenceSignalHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
-import { SourcingLine } from "@/components/Sourcing";
+import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
+import { getVendor } from "@/lib/affiliate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -156,6 +157,7 @@ function lineageSeries(): TimelineSeries[] {
 }
 
 export default function Home() {
+  const sourcingVendor = getVendor("aminoclub");
   const series = lineageSeries();
   const frontier = getHormone("retatrutide");
   const frontierReg = regulatoryFor("retatrutide");
@@ -591,12 +593,36 @@ export default function Home() {
           </Container>
         </section>
 
-        <aside aria-label="Affiliate sourcing" className="border-t border-ink/[0.06] py-8">
+        {sourcingVendor && (
+        <aside aria-labelledby="home-sourcing-title" className={styles.sourcing}>
           <Container>
-            <p className="mb-3 text-sm font-medium text-ink/75">Affiliate sourcing</p>
-            <SourcingLine />
+            <div className={styles.sourcingCard}>
+              <div className={styles.sourcingCopy}>
+                <p className={styles.eyebrow}>Affiliate sourcing</p>
+                <h2 id="home-sourcing-title" className={styles.sourcingTitle}>Research materials, one click away.</h2>
+                <p className={styles.sourcingIntro}>Browse the supplier’s catalog and review product details at the source. Copy the code first if you want it applied at checkout.</p>
+                <Link href="/available" className={styles.sourcingDetails}>View sourcing details <span aria-hidden>→</span></Link>
+              </div>
+              <div className={styles.sourcingActions}>
+                {sourcingVendor.code && (
+                  <div className={styles.sourcingCode}>
+                    <span>Paste at checkout</span>
+                    <CopyCode code={sourcingVendor.code} size="comfortable" />
+                  </div>
+                )}
+                <AffiliateLink href={sourcingVendor.home} vendor={sourcingVendor.key} surface="line" className={styles.sourcingCta}>
+                  Browse {sourcingVendor.name}
+                  <span aria-hidden>↗</span>
+                </AffiliateLink>
+                <p className={styles.sourcingTab}>Opens in a new tab · research-use-only</p>
+              </div>
+              <p className={styles.sourcingDisclosure}>
+                American Peptide network. We may earn a commission on purchases through this link. Research-use-only. Not for human use.
+              </p>
+            </div>
           </Container>
         </aside>
+        )}
       </main>
 
       <SiteFooter />

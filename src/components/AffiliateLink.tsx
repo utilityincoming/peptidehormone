@@ -53,8 +53,17 @@ export function AffiliateLink({
   );
 }
 
-export function CopyCode({ code, className = "" }: { code: string; className?: string }) {
+export function CopyCode({
+  code,
+  className = "",
+  size = "compact",
+}: {
+  code: string;
+  className?: string;
+  size?: "compact" | "comfortable";
+}) {
   const [copied, setCopied] = useState(false);
+  const comfortable = size === "comfortable";
   return (
     <button
       type="button"
@@ -69,10 +78,19 @@ export function CopyCode({ code, className = "" }: { code: string; className?: s
       }}
       title="Copy code"
       aria-label={`Copy code ${code}`}
-      className={`inline-flex items-center gap-1.5 rounded-md border border-dashed border-accent-teal/50 bg-accent-teal/[0.08] px-2 py-0.5 font-mono text-[12px] tracking-wide text-accent-teal transition-colors hover:bg-accent-teal/[0.14] ${className}`}
+      className={`inline-flex items-center tracking-wide transition-colors ${
+        comfortable
+          ? "w-full justify-between gap-3 rounded-md border border-accent/40 bg-accent/[0.08] px-3.5 py-2.5 font-mono text-sm text-accent hover:bg-accent/[0.14]"
+          : "gap-1.5 rounded-md border border-dashed border-accent-teal/50 bg-accent-teal/[0.08] px-2 py-0.5 font-mono text-[12px] text-accent-teal hover:bg-accent-teal/[0.14]"
+      } ${className}`}
     >
       {code}
-      <span aria-hidden className="text-[10px] font-sans font-medium uppercase text-accent-teal/70">
+      <span
+        aria-hidden
+        className={`font-sans font-medium uppercase ${
+          comfortable ? "text-xs tracking-[0.12em] text-accent" : "text-[10px] text-accent-teal/70"
+        }`}
+      >
         {copied ? "copied" : "copy"}
       </span>
     </button>
