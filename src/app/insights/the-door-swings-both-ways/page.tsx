@@ -146,7 +146,10 @@ export default function Article() {
                 significant safety concerns, which in effect barred them from compounding.
                 Compounders and prescribers pushed back; a lawsuit over the opacity of that
                 process settled in 2024; and the settlement forced the agency to actually
-                convene its advisory committee and hear the nominations.
+                convene its advisory committee and hear the nominations. In April 2026 the
+                nominators withdrew, the agency took the peptides out of Category 2, and it
+                sent them to the committee on its own initiative. Leaving Category 2 was
+                not permission to compound: none of them was added to the list.
               </P>
               <P>
                 That hearing was the 23&ndash;24 July 2026 meeting of the Pharmacy Compounding
@@ -173,8 +176,8 @@ export default function Article() {
                 through notice-and-comment rulemaking that is slow, public, and free to land
                 differently from the committee. Between the July vote and a final rule sits an
                 indefinite gap in which the legal status of these peptides has not moved at
-                all. The four that were in Category 2 still may not be compounded; the two
-                that were never categorized remain research-use-only material.
+                all. None of the six is on the 503A list, so none may be compounded, and
+                outside a pharmacy they remain research-use-only material.
               </P>
               <P>
                 This is the same discipline the{" "}
@@ -291,6 +294,7 @@ function RegulatoryTimeline() {
   const research: { t: number; label: string }[] = [
     { t: 0.02, label: "2023\nCategory 2" },
     { t: 0.26, label: "2024\nsettlement" },
+    { t: 0.5, label: "Apr 2026\nnominations\nwithdrawn" },
     { t: 0.66, label: "Jul 2026\nPCAC 8–6\nrecommends" },
     { t: 0.95, label: "rulemaking\npending" },
   ];
@@ -319,7 +323,7 @@ function RegulatoryTimeline() {
         viewBox={`0 0 ${W} ${H}`}
         className="mx-auto w-full max-w-2xl"
         role="img"
-        aria-label="A two-lane regulatory timeline running 2024 to 2027. The upper lane, GLP-1 compounding, closes: shortages end in December 2024, enforcement grace periods end in spring 2025, and in April 2026 the FDA proposes removing semaglutide, tirzepatide and liraglutide from the 503B bulks list. The lower lane, research peptides, moves the other way: Category 2 restriction in 2023, a 2024 settlement, a July 2026 advisory-committee 8 to 6 recommendation to add six peptides to the 503A list, and rulemaking still pending. The two lanes diverge — one closing, one cracking open."
+        aria-label="A two-lane regulatory timeline running 2024 to 2027. The upper lane, GLP-1 compounding, closes: shortages end in December 2024, enforcement grace periods end in spring 2025, and in April 2026 the FDA proposes removing semaglutide, tirzepatide and liraglutide from the 503B bulks list. The lower lane, research peptides, moves the other way: Category 2 restriction in 2023, a 2024 settlement, nominations withdrawn in April 2026, a July 2026 advisory-committee 8 to 6 recommendation to add six peptides to the 503A list, and rulemaking still pending. The two lanes diverge — one closing, one cracking open."
       >
         <text x={W / 2} y={22} textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.55} fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
           Two doors, one year, opposite directions
