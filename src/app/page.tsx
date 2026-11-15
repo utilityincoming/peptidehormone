@@ -5,6 +5,7 @@ import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { InsightCover } from "@/components/InsightCover";
+import { MechanismCover, hasMechanismCover } from "@/components/MechanismCover";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
 import { StructureHero } from "@/components/StructureHero";
@@ -17,11 +18,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Short card copy; article introductions remain unchanged.
+const HOME_SUMMARIES: Record<string, string> = {
+  "glp-1-signaling": "How GLP-1 links a meal to insulin release: the receptor, the intracellular signal, and why glucose matters.",
+  "the-note-without-the-incretin": "Eloralintide targets amylin receptors rather than GLP-1. What its molecular design and human trials show — and what tolerability claims still need to prove.",
+  "glp-1-in-a-pill": "Two routes to an oral GLP-1 drug: help a peptide cross the gut barrier, or activate the receptor with a small molecule.",
+  "the-triple-agonist": "Retatrutide activates three receptors. Read the trial results, the difference between headline estimates, and its investigational status.",
+  "glp-1-muscle-preservation": "Why weight loss can include muscle, and what the evidence says about preserving it — from established measures to investigational combinations.",
+};
+
 const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   {
     icon: "sourced",
     title: "Sourced, not asserted",
-    body: "Every mechanism traces to primary literature, structural data, and registered trials — cited, not paraphrased into authority.",
+    body: "Monographs and explainers link to primary literature, structural data, and trial records so you can check the evidence and its limits.",
   },
   {
     icon: "research",
@@ -30,8 +40,8 @@ const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   },
   {
     icon: "independent",
-    title: "Editorially independent",
-    body: "No storefront, no sponsored conclusions. Disclosed affiliate links fund the work — but the incentive that shapes the catalog is to be correct, never to sell.",
+    title: "How this is funded",
+    body: "This site does not sell peptides. Affiliate links help fund the reference, and we may earn a commission on purchases through them. Those commercial relationships are disclosed.",
   },
 ];
 
@@ -50,7 +60,7 @@ const HOME_TOOLS: {
     tag: "Pharmacokinetics",
     name: "Half-life & dosing",
     blurb:
-      "Model how long a compound stays bioactive and how dose frequency vs half-life builds to steady state.",
+      "Model elimination and accumulation from half-life and dose intervals. These estimates do not establish how long biological effects last.",
     accent: "text-accent",
     preview: "half-life",
   },
@@ -160,36 +170,36 @@ export default function Home() {
             }}
           />
           <Container className="relative py-14 md:py-20">
-            <div className="grid items-center gap-12 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
+            <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
+              <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-secondary">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                Independent · research-grade · no products
+                Peptide biology · evidence · reference
               </span>
-              <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] sm:text-5xl md:text-6xl">
-                The peptide frontier,
-                <span className="text-accent"> mapped from the source.</span>
+              <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] sm:text-5xl">
+                Peptide science.
+                <span className="text-accent"> Mechanisms, evidence, and what remains unproven.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-ink/65">
-                Every signaling family, the molecules that matter, and the
-                evidence behind them — sourced, graded, and cross-linked.
+              <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
+                Explore native hormones and engineered analogs by receptor, half-life,
+                clinical evidence, and approval status.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#families"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-medium text-surface-deep transition-transform hover:-translate-y-0.5"
-                >
-                  Explore the families
-                  <span aria-hidden>→</span>
-                </a>
                 <Link
                   href="/catalog"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-medium text-surface-deep transition-transform hover:-translate-y-0.5"
                 >
                   Browse the catalog
+                  <span aria-hidden>→</span>
+                </Link>
+                <Link
+                  href="/insights"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
+                >
+                  Explore the science
                 </Link>
               </div>
-              <p className="mt-5 text-sm text-ink/60">
+              <p className="mt-5 text-sm text-secondary">
                 New to the subject? Start with{" "}
                 <Link
                   href="/what-is-a-peptide-hormone"
@@ -204,20 +214,100 @@ export default function Home() {
             <StructureHero />
             </div>
 
+
+          </Container>
+        </section>
+
+        {/* ── At a glance ── */}
+        <section className="border-b border-ink/[0.06]">
+          <Container className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="px-3 text-center">
+                <div className="font-display text-3xl font-semibold text-accent sm:text-4xl">
+                  {s.n}
+                </div>
+                <div className="mt-1.5 text-sm text-muted">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </Container>
+        </section>
+
+        {/* ── Families ── */}
+        <section id="families" className="border-b border-ink/[0.06] py-20 md:py-24">
+          <Container>
+            <div className="max-w-2xl">
+              <h2 className="font-display text-3xl font-semibold sm:text-4xl">
+                The catalog, by signaling family
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-secondary">
+                Explore peptide signaling families grouped by receptors and biological
+                roles. Each hub connects native hormones, engineered analogs, and
+                the evidence behind them.
+              </p>
+              <Link
+                href="/catalog"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
+              >
+                Browse the full catalog
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+              {FAMILIES.map((f) => (
+                <Link
+                  key={f.slug}
+                  href={`/families/${f.slug}`}
+                  className="group block bg-surface p-7 transition-colors hover:bg-panel"
+                >
+                  <div className="flex items-start justify-between">
+                    <span
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${f.accent}`}
+                      style={{
+                        backgroundColor:
+                          "color-mix(in oklab, currentColor 12%, transparent)",
+                      }}
+                    >
+                      <FamilyGlyph slug={f.slug} className="h-[22px] w-[22px]" />
+                    </span>
+                    <span
+                      className="text-ink/25 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
+                      aria-hidden
+                    >
+                      →
+                    </span>
+                  </div>
+                  <h3 className={`mt-5 font-display text-lg font-semibold ${f.accent}`}>
+                    {f.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-secondary">{f.blurb}</p>
+                  <p className="mt-4 text-xs font-medium text-muted">
+                    {f.examples}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+
+        <section aria-label="Featured explainer" className="bg-panel/40 border-b border-ink/[0.06] py-16 md:py-20">
+          <Container>
             {/* ── Lead figure: from a two-minute hormone to three receptors ── */}
-            <figure className="mt-14 md:mt-20">
+            <figure>
               <figcaption className="max-w-3xl">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-accent">
-                  Where the frontier is now
+                <p className="text-xs font-medium text-accent">
+                  Featured explainer
                 </p>
                 <h2 className="mt-2 font-display text-2xl font-semibold leading-tight sm:text-3xl">
-                  Lasting a week is solved. The race is now receptors.
+                  From minutes to days. From one receptor to three.
                 </h2>
-                <p className="mt-3 text-base leading-7 text-ink/65">
-                  Native GLP-1 is gone minutes after the gut releases it. Semaglutide
-                  made the same signal last a week; tirzepatide added a second
-                  receptor, and retatrutide a third. Drag through two weeks to see
-                  what is left of a single dose.
+                <p className="mt-3 text-base leading-7 text-secondary">
+                  Native GLP-1 has a half-life of minutes; semaglutide has a half-life
+                  of about a week. Tirzepatide activates GIP and GLP-1 receptors;
+                  retatrutide also activates the glucagon receptor. Drag through
+                  two weeks to compare modeled elimination after a single dose.
                 </p>
               </figcaption>
 
@@ -262,7 +352,7 @@ export default function Home() {
                 </div>
               )}
 
-              <p className="mt-4 text-xs leading-5 text-ink/60">
+              <p className="mt-4 text-xs leading-5 text-secondary">
                 Half-lives are the representative values on each linked monograph.
                 Curves show first-order elimination of one dose — a simplification
                 with no absorption phase or accumulation, and not dosing guidance.
@@ -279,80 +369,6 @@ export default function Home() {
           </Container>
         </section>
 
-        {/* ── At a glance ── */}
-        <section className="border-b border-ink/[0.06]">
-          <Container className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="px-3 text-center">
-                <div className="font-display text-3xl font-semibold text-accent sm:text-4xl">
-                  {s.n}
-                </div>
-                <div className="mt-1.5 text-xs font-medium uppercase tracking-wide text-ink/50">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </Container>
-        </section>
-
-        {/* ── Families ── */}
-        <section id="families" className="border-b border-ink/[0.06] py-20 md:py-24">
-          <Container>
-            <div className="max-w-2xl">
-              <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                The catalog, by signaling family
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-ink/60">
-                The whole landscape, mapped into the families that share receptors,
-                anatomy, and logic — each a hub of the molecules that matter and the
-                evidence behind them. Open any one for the full reference.
-              </p>
-              <Link
-                href="/catalog"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
-              >
-                Browse the full catalog
-                <span aria-hidden>→</span>
-              </Link>
-            </div>
-
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
-              {FAMILIES.map((f) => (
-                <Link
-                  key={f.slug}
-                  href={`/families/${f.slug}`}
-                  className="group block bg-surface p-7 transition-colors hover:bg-panel"
-                >
-                  <div className="flex items-start justify-between">
-                    <span
-                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${f.accent}`}
-                      style={{
-                        backgroundColor:
-                          "color-mix(in oklab, currentColor 12%, transparent)",
-                      }}
-                    >
-                      <FamilyGlyph slug={f.slug} className="h-[22px] w-[22px]" />
-                    </span>
-                    <span
-                      className="text-ink/25 transition-all group-hover:translate-x-0.5 group-hover:text-ink/70"
-                      aria-hidden
-                    >
-                      →
-                    </span>
-                  </div>
-                  <h3 className={`mt-5 font-display text-lg font-semibold ${f.accent}`}>
-                    {f.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/65">{f.blurb}</p>
-                  <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-ink/40">
-                    {f.examples}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </section>
-
         {/* ── Insights rail ── */}
         <section id="insights" className="border-b border-ink/[0.06] py-20 md:py-24">
           <Container>
@@ -360,7 +376,7 @@ export default function Home() {
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
                 The mechanisms, in long form
               </h2>
-              <p className="mt-4 text-lg leading-8 text-ink/60">
+              <p className="mt-4 text-lg leading-8 text-secondary">
                 Long-form deep-dives that trace one molecule — or one question — back
                 to the source: receptors, second messengers, and the evidence behind
                 them. Biology over benefits.
@@ -379,27 +395,31 @@ export default function Home() {
                 href={`/insights/${lead.slug}`}
                 className="group mt-12 grid overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
               >
-                <InsightCover
+                {hasMechanismCover(lead.slug) ? (
+                      <MechanismCover slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
+                    ) : (
+                      <InsightCover
                   slug={lead.slug}
                   family={lead.family}
                   accent={leadFamily?.accent}
                   className="aspect-[16/9] md:aspect-auto md:min-h-72"
                 />
+                    )}
                 <div className="flex flex-col justify-center p-7 md:p-10">
                   <div className="flex items-center gap-4">
                     <span
-                      className={`font-mono text-[11px] uppercase tracking-wide ${leadFamily?.accent ?? "text-accent"}`}
+                      className={`text-xs font-medium ${leadFamily?.accent ?? "text-accent"}`}
                     >
                       {leadFamily?.name ?? "Peptide science"}
                     </span>
-                    <span className="font-mono text-[11px] text-ink/60">
+                    <span className="font-mono text-[11px] text-secondary">
                       {lead.readingMinutes} min
                     </span>
                   </div>
                   <h3 className="mt-3 font-display text-2xl font-semibold leading-snug sm:text-3xl">
                     {lead.title}
                   </h3>
-                  <p className="mt-3 line-clamp-4 leading-7 text-ink/65">{lead.dek}</p>
+                  <p className="mt-3 leading-7 text-secondary">{HOME_SUMMARIES[lead.slug] ?? lead.dek}</p>
                   <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform group-hover:translate-x-0.5">
                     Read the deep-dive <span aria-hidden>→</span>
                   </span>
@@ -416,28 +436,32 @@ export default function Home() {
                     href={`/insights/${post.slug}`}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel"
                   >
-                    <InsightCover
+                    {hasMechanismCover(post.slug) ? (
+                      <MechanismCover slug={post.slug} className="aspect-[16/9]" />
+                    ) : (
+                      <InsightCover
                       slug={post.slug}
                       family={post.family}
                       accent={fam?.accent}
                       className="aspect-[16/9]"
                     />
+                    )}
                     <div className="flex flex-1 flex-col p-5">
                       <div className="flex items-center justify-between gap-3">
                         <span
-                          className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}
+                          className={`text-xs font-medium ${fam?.accent ?? "text-accent"}`}
                         >
                           {fam?.name ?? "Peptide science"}
                         </span>
-                        <span className="font-mono text-[11px] text-ink/60">
+                        <span className="font-mono text-[11px] text-secondary">
                           {post.readingMinutes} min
                         </span>
                       </div>
                       <h3 className="mt-3 font-display text-lg font-semibold leading-snug">
                         {post.title}
                       </h3>
-                      <p className="mt-2 line-clamp-3 text-sm leading-6 text-ink/60">
-                        {post.dek}
+                      <p className="mt-2 text-sm leading-6 text-secondary">
+                        {HOME_SUMMARIES[post.slug] ?? post.dek}
                       </p>
                     </div>
                   </Link>
@@ -448,13 +472,13 @@ export default function Home() {
         </section>
 
         {/* ── Tools band ── */}
-        <section id="tools" className="border-b border-ink/[0.06] py-20 md:py-24">
+        <section id="tools" className="bg-panel/40 border-b border-ink/[0.06] py-20 md:py-24">
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
                 Run the numbers yourself
               </h2>
-              <p className="mt-4 text-lg leading-8 text-ink/60">
+              <p className="mt-4 text-lg leading-8 text-secondary">
                 Free, in-browser, no sign-up — the pharmacokinetics the vendor pages
                 skip. Educational, not dosing advice.
               </p>
@@ -476,7 +500,7 @@ export default function Home() {
                 >
                   <div className="flex items-center justify-between">
                     <span
-                      className={`font-mono text-[11px] uppercase tracking-wide ${t.accent}`}
+                      className={`text-xs font-medium ${t.accent}`}
                     >
                       {t.tag}
                     </span>
@@ -491,7 +515,7 @@ export default function Home() {
                     <ToolPreview kind={t.preview} />
                   </div>
                   <h3 className="mt-5 font-display text-lg font-semibold">{t.name}</h3>
-                  <p className="mt-2 text-sm leading-6 text-ink/60">{t.blurb}</p>
+                  <p className="mt-2 text-sm leading-6 text-secondary">{t.blurb}</p>
                 </Link>
               ))}
             </div>
@@ -506,13 +530,13 @@ export default function Home() {
                 Bullish on the science.
                 <span className="text-accent"> Sceptical on the page.</span>
               </h2>
-              <p className="mt-4 max-w-md text-lg leading-8 text-ink/60">
-                A signaling system this old, this economical, and this suddenly
-                writable has earned real enthusiasm — pretending otherwise would be
-                its own kind of dishonesty. But enthusiasm that outruns its citations
-                is just marketing with better vocabulary. So every claim here carries
-                its evidence, graded by how far it actually goes — settled where the
-                science is settled, the frontier where it isn&rsquo;t.
+              <p className="mt-4 max-w-md text-lg leading-8 text-secondary">
+                Peptide engineering is changing what a hormone can do and how long
+                it can last. That deserves attention, not a free pass. Our evidence
+                labels distinguish established findings from investigational and
+                preclinical work; approval status is tracked separately. A receptor
+                mechanism can explain a hypothesis. It cannot, by itself, prove a
+                clinical benefit.
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
                 <Link
@@ -524,7 +548,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/why-peptides"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-ink/60 transition-colors hover:text-ink"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-secondary transition-colors hover:text-ink"
                 >
                   Why this exists
                   <span aria-hidden>→</span>
@@ -537,16 +561,21 @@ export default function Home() {
                   <div key={p.title} className="bg-surface p-7">
                     <PrincipleIcon name={p.icon} className="h-6 w-6 text-accent" />
                     <h3 className="mt-4 font-display text-lg font-semibold">{p.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-ink/65">{p.body}</p>
+                    <p className="mt-2 text-sm leading-6 text-secondary">{p.body}</p>
                   </div>
                 ))}
               </div>
-              <div className="mt-6">
-                <SourcingLine />
-              </div>
+
             </div>
           </Container>
         </section>
+
+        <aside aria-label="Affiliate sourcing" className="border-t border-ink/[0.06] py-8">
+          <Container>
+            <p className="mb-3 text-sm font-medium text-ink/75">Affiliate sourcing</p>
+            <SourcingLine />
+          </Container>
+        </aside>
       </main>
 
       <SiteFooter />

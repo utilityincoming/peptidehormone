@@ -208,6 +208,7 @@ export default function HeroTimeline({ series }: { series: TimelineSeries[] }) {
         </div>
 
         {/* scrubber */}
+        <p className="mt-4 text-sm text-secondary">Drag to compare · or focus the slider and use arrow keys.</p>
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <label htmlFor={sliderId} className="shrink-0 text-sm font-medium text-ink/90 sm:w-56">
             {dayLabel(day)}

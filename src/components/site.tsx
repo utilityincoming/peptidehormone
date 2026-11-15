@@ -30,7 +30,7 @@ export function Wordmark({ className = "" }: { className?: string }) {
     <Link href="/" className={`flex items-center gap-2.5 ${className}`}>
       <PeptideMark className="h-6 w-6 text-accent" />
       <span className="font-display text-[15px] font-semibold tracking-tight">
-        Peptide<span className="text-ink/40">Hormone</span>
+        Peptide<span className="text-muted">Hormone</span>
       </span>
     </Link>
   );
@@ -42,7 +42,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
         <div className="flex items-center gap-3 sm:gap-6">
-          <nav className="hidden items-center gap-8 text-sm text-ink/60 sm:flex">
+          <nav className="hidden items-center gap-8 text-sm text-secondary sm:flex">
             <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
             <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
             <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
@@ -68,7 +68,7 @@ export function SiteFooter() {
       <Container className="flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
           <Wordmark />
-          <p className="mt-4 text-sm leading-6 text-ink/45">
+          <p className="mt-4 text-sm leading-6 text-muted">
             An editorially independent, research-grade reference on the peptide
             hormone system. Educational only — not medical advice, diagnosis, or
             treatment.
@@ -76,8 +76,8 @@ export function SiteFooter() {
         </div>
         <div className="flex gap-14 text-sm">
           <div>
-            <p className="font-medium text-ink/40">Families</p>
-            <ul className="mt-3 space-y-2 text-ink/65">
+            <p className="font-medium text-muted">Families</p>
+            <ul className="mt-3 space-y-2 text-secondary">
               {FAMILIES.slice(0, 3).map((f) => (
                 <li key={f.slug}>
                   <Link href={`/families/${f.slug}`} className="hover:text-ink">{f.name}</Link>
@@ -86,23 +86,19 @@ export function SiteFooter() {
             </ul>
           </div>
           <div>
-            <p className="font-medium text-ink/40">Explore</p>
-            <ul className="mt-3 space-y-2 text-ink/65">
+            <p className="font-medium text-muted">Explore</p>
+            <ul className="mt-3 space-y-2 text-secondary">
               <li><Link href="/research" className="hover:text-ink">Research agent</Link></li>
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
               <li><Link href="/glossary" className="hover:text-ink">Glossary</Link></li>
-              <li><Link href="/what-is-a-peptide-hormone" className="hover:text-ink">What is a peptide hormone?</Link></li>
-              <li><Link href="/available" className="hover:text-ink">Availability</Link></li>
-              <li><Link href="/why-peptides" className="hover:text-ink">Why peptides</Link></li>
-              <li><Link href="/methodology" className="hover:text-ink">Methodology</Link></li>
             </ul>
           </div>
         </div>
       </Container>
       <Container className="border-t border-ink/[0.06] py-6">
-        <p className="text-xs text-ink/35">
+        <p className="text-xs text-muted">
           © {new Date().getFullYear()} Peptide Hormone · peptidehormone.com
         </p>
       </Container>
