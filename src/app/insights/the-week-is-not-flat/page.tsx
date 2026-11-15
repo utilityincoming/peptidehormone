@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -98,6 +99,16 @@ export default function Article() {
                 Late-week hunger is the fade the half-life predicts. It is a weak reason to
                 decide the drug has quit, and a weak reason to shorten the week.
               </Callout>
+              <DocumentedRange id="cagrilintide" />
+              <P>
+                The box is the upper phase-2 span — 2.4 to 4.5&nbsp;mg once weekly —
+                not the 0.3&nbsp;mg start and not a dose to pick. How to tell a target
+                from a titration start is{" "}
+                <Link href="/insights/how-to-read-peptide-dosing" className={LINK}>
+                  how to read a peptide dose
+                </Link>
+                .
+              </P>
             </Section>
 
             <Section title="The ramp is a large part of the trial">
@@ -238,7 +249,9 @@ export default function Article() {
               Educational reading of published pharmacokinetics and trial design. The
               within-week fall of about half is what a 159–195 hour half-life implies at a
               seven-day interval. It is not a personal curve, and nothing here is a schedule
-              to follow. Not medical advice.{" "}
+              to follow. Not individualized medical advice or a prescription. Where a dose or
+              regimen appears it is reported from its source as research literacy — so you
+              can read the evidence yourself — not an instruction to dose.{" "}
               <StatusNote of={["cagrilintide", "pramlintide", "semaglutide"]} />
             </p>
           </article>

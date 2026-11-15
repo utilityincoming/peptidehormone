@@ -6,14 +6,30 @@ import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
 import { getFamily } from "@/lib/families";
 import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 
 const insight = getInsight("the-arm-that-points-at-the-liver")!;
 
 // External primary sources — named inline so each trial claim stays checkable.
 const REF = {
-  leroux: "https://doi.org/10.1016/S2213-8587(23)00356-X", // le Roux et al. 2024, Lancet Diabetes Endocrinol — survodutide phase 2 obesity
+  leroux: "https://pubmed.ncbi.nlm.nih.gov/38330987/", // le Roux et al. 2024, Lancet Diabetes Endocrinol — survodutide phase 2 obesity
   sanyal: "https://doi.org/10.1056/NEJMoa2401755", // Sanyal et al. 2024, NEJM — survodutide phase 2 in MASH and fibrosis
 } as const;
+
+const FAQS = [
+  {
+    q: "What doses of survodutide were studied in obesity?",
+    a: "The phase 2 dose-finding trial assigned 0.6, 2.4, 3.6, or 4.8 mg subcutaneously once weekly for 46 weeks, of which 20 weeks were escalation and 26 were maintenance (le Roux et al., 2024). The documented-range box on this page is the 2.4–4.8 mg target span, not the 0.6 mg start. The drug is not approved.",
+  },
+  {
+    q: "How much weight did survodutide lose in phase 2?",
+    a: "On the primary planned-treatment analysis, mean weight change at week 46 was −6.2% at 0.6 mg, −12.5% at 2.4 mg, −13.2% at 3.6 mg, and −14.9% at 4.8 mg, against −2.8% on placebo. The ~19% figure that travels with the molecule is the actual-treatment reading of the same trial, not a second study.",
+  },
+  {
+    q: "Why does survodutide have to be titrated?",
+    a: "The glucagon arm can raise glucose and lift heart rate. The GLP-1 arm is the counterweight, but the balance only holds if the dose is walked up. Phase 2 spent 20 of 46 weeks escalating. Starting at the 4.8 mg target is the mistake that schedule exists to prevent.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "What is Survodutide? The GLP-1/Glucagon Dual Agonist for the Liver — Reference Guide",
@@ -25,7 +41,7 @@ export const metadata: Metadata = {
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -114,17 +130,31 @@ export default function Article() {
                 the reason this whole class is escalated over weeks. It is a
                 molecule built around a tension, not a free lunch.
               </Callout>
+              <DocumentedRange id="survodutide" />
+              <P>
+                The box is the 2.4–4.8&nbsp;mg once-weekly target span from that
+                phase 2 protocol, not the 0.6&nbsp;mg start and not a dose to pick.
+                How the four kinds of milligram come apart is{" "}
+                <Link href="/insights/how-to-read-peptide-dosing" className={LINK}>
+                  how to read a peptide dose
+                </Link>
+                .
+              </P>
             </Section>
 
             <Section title="The liver is the story, not the scale">
               <P>
                 Survodutide can move the scale: in a phase 2 obesity trial the
-                highest dose cut body weight by roughly 19% at 46 weeks, and the
-                curve had not flattened by the end (
+                assigned arms were 0.6, 2.4, 3.6, or 4.8&nbsp;mg once weekly for 46
+                weeks, with 20 weeks of escalation. On the primary planned-treatment
+                analysis, mean weight change at the 4.8&nbsp;mg target was 14.9%
+                against 2.8% on placebo (
                 <a href={REF.leroux} target="_blank" rel="noopener noreferrer" className={LINK}>
                   le&nbsp;Roux et&nbsp;al., Lancet&nbsp;Diabetes&nbsp;Endocrinol, 2024
                 </a>
-                ). That is a strong number — but it is not what sets the molecule apart,
+                ). The ~19% figure that travels with the molecule is the
+                actual-treatment reading of the same trial, not a second study. That
+                is a strong number — but it is not what sets the molecule apart,
                 because tirzepatide and retatrutide reach the same territory.
               </P>
               <P>
@@ -145,7 +175,7 @@ export default function Article() {
                 items={[
                   [
                     "Weight",
-                    "≈19% at the top phase-2 dose over 46 weeks — competitive with the incretin co-agonists, not clearly ahead of them.",
+                    "Primary planned-treatment analysis: 14.9% at 4.8 mg over 46 weeks vs 2.8% placebo. The ~19% headline is the actual-treatment figure from the same trial — competitive with the incretin co-agonists, not clearly ahead of them.",
                   ],
                   [
                     "Liver",
@@ -215,7 +245,8 @@ export default function Article() {
               <P>
                 <Em>Open:</Em> whether the MASH resolution survives phase 3; how the
                 phase 3 obesity results, once published in full, compare with the
-                ~19% phase 2 figure; how the glucagon
+                14.9% planned-treatment phase 2 figure (and its ~19% actual-treatment
+                twin); how the glucagon
                 arm&rsquo;s glucose and heart-rate effects behave across a broad
                 population; and, for anyone reaching a grey-market vial, everything
                 that sits between a promising trial molecule and a known quantity in
@@ -223,12 +254,25 @@ export default function Article() {
               </P>
             </Section>
 
+            <section>
+              <h2 className="font-display text-2xl font-semibold sm:text-[1.7rem]">Common questions</h2>
+              <dl className="mt-6 space-y-5">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/40 p-5">
+                    <dt className="font-display text-base font-semibold text-ink">{f.q}</dt>
+                    <dd className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/survodutide" label="Survodutide reference monograph" />
                 <CrossLink href="/insights/the-triple-agonist" label="Retatrutide: the triple agonist" />
+                <CrossLink href="/insights/how-to-read-peptide-dosing" label="How to read a peptide dose — four kinds of milligram" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Why there is no GLP-4" />
                 <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable" />
                 <CrossLink href="/compare/survodutide-vs-tirzepatide" label="Survodutide vs tirzepatide" />

@@ -120,6 +120,15 @@ export default function Article() {
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
             <DocumentedRange id="retatrutide" />
+            <P>
+              The box is the TRIUMPH-1 target span — 4, 9, or 12&nbsp;mg once weekly —
+              not the 2&nbsp;mg start and not a dose to pick. How a trial milligram
+              differs from a labeled one is{" "}
+              <Link href="/insights/how-to-read-peptide-dosing" className={LINK}>
+                how to read a peptide dose
+              </Link>
+              .
+            </P>
             <Section title="From one signal to a chord">
               <P>
                 The first metabolic peptides played a single note. A{" "}

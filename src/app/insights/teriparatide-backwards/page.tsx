@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: "What is teriparatide?",
-    a: "Teriparatide is the first 34 amino acids of parathyroid hormone — PTH(1-34), the active N-terminal fragment — given as a once-daily injection. That single daily pulse makes it the first true bone-anabolic osteoporosis drug: unlike the antiresorptives, which slow bone loss, teriparatide actually builds new bone. In its pivotal trial it reduced vertebral and non-vertebral fractures in postmenopausal women with osteoporosis. It works precisely because it is given intermittently, not continuously.",
+    a: "Teriparatide is the first 34 amino acids of parathyroid hormone — PTH(1-34), the active N-terminal fragment — given as a once-daily 20 mcg subcutaneous injection on the Forteo label. That single daily pulse makes it the first true bone-anabolic osteoporosis drug: unlike the antiresorptives, which slow bone loss, teriparatide actually builds new bone. In its pivotal trial it reduced vertebral and non-vertebral fractures in postmenopausal women with osteoporosis. It works precisely because it is given intermittently, not continuously.",
   },
   {
     q: "If PTH raises blood calcium by taking it from bone, how can it be good for bone?",

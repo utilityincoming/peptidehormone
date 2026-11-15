@@ -24,13 +24,14 @@ const TIER: Record<Evidence, CompoundTier> = {
   anecdotal: "Limited",
 };
 
-// Provenance prose, tier-aware: a clinical-tier figure comes from human trials,
-// a preclinical one from animal/cell work, an anecdotal one from community
-// convention. The sentence must never claim "no human trials" for a compound
-// that has them — and must always stop short of prescribing.
+// Provenance prose, tier-aware: a clinical-tier figure comes from human trials
+// or a labeled product, a preclinical one from animal/cell work, an anecdotal
+// one from community convention. The sentence must never claim "no human
+// trials" for a compound that has them — and must always stop short of
+// prescribing.
 const PROSE: Record<Evidence, (name: string) => string> = {
   clinical: (name) =>
-    `A reference range from published clinical work. ${name} is studied in human trials, so this reflects what those trials report — still not a prescription and not a recommendation.`,
+    `A published maintenance or target span for ${name}, from the labeled product or the trial that reported it. Titration, when used, starts lower. This box is that span — not a dose to pick and not a prescription.`,
   emerging: (name) =>
     `A reference range from early human and strong preclinical work. ${name} has no approved human dosing, so treat this as investigational rather than clinical guidance.`,
   preclinical: (name) =>
@@ -39,11 +40,27 @@ const PROSE: Record<Evidence, (name: string) => string> = {
     `A reference range reported in the community literature. ${name} has no controlled human trials, so this figure is community convention — passed between research and bodybuilding communities — not clinical evidence of what is safe or effective.`,
 };
 
+/** Display milligrams once the figure is at least 1 mg; otherwise micrograms. */
+function mgText(mcg: number): string {
+  const mg = mcg / 1000;
+  return Number.isInteger(mg) ? String(mg) : String(Number(mg.toFixed(2)));
+}
+
+function formatAmount(mcg: number): string {
+  return mcg >= 1000 ? `${mgText(mcg)} mg` : `${mcg} mcg`;
+}
+
+function formatRange(low: number, high: number): string {
+  if (low === high) return formatAmount(low);
+  if (low >= 1000 && high >= 1000) return `${mgText(low)}–${mgText(high)} mg`;
+  if (low < 1000 && high < 1000) return `${low}–${high} mcg`;
+  return `${formatAmount(low)}–${formatAmount(high)}`;
+}
+
 export function DocumentedRange({ id }: { id: string }) {
   const p = PEPTIDES[id];
   if (!p) return null;
-  const range =
-    p.doseLow === p.doseHigh ? `${p.doseLow}` : `${p.doseLow}–${p.doseHigh}`;
+  const range = formatRange(p.doseLow, p.doseHigh);
 
   return (
     <aside className="rounded-2xl border border-ink/10 bg-panel/40 p-5">
@@ -52,7 +69,7 @@ export function DocumentedRange({ id }: { id: string }) {
       </p>
 
       <p className="mt-2 font-display text-lg font-semibold text-ink">
-        {range} mcg
+        {range}
         <span className="font-mono text-sm font-normal text-ink/50">
           {" "}
           · {p.route} · {p.perWeek}×/wk
