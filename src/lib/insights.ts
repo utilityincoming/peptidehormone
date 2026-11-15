@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "eloratzp",
+    hormones: ["eloralintide", "tirzepatide", "cagrilintide", "amycretin", "amylin"],
+    title: "Two families, one syringe",
+    dek: "EloraTZP is Lilly’s name for eloralintide given with tirzepatide: a selective amylin agonist stacked on a dual GIP/GLP-1 agonist, two satiety families in one co-formulation. In a 48-week phase 2b trial in obesity with type 2 diabetes, reported at EASD in September 2026, the top combination reached 23.3% mean weight loss versus 14.8% on tirzepatide 15 mg alone. The arithmetic is less than fully additive, discontinuation for adverse events ran as high as 27% on a combination arm, and the result is still a press release, not a paper. Why the stack is a third answer after CagriSema and amycretin, what the numbers actually say, and what phase 3 has to survive. Bullish on the science, sceptical on the page.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "glp-3-bull-case",
     hormones: ["retatrutide", "tirzepatide", "semaglutide", "glucagon"],
     title: "The GLP-3 bull case",
