@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "one-molecule-five-approvals",
+    title: "One molecule, five approvals",
+    dek: "Semaglutide was approved in 2017, then again in 2021, in 2024, and twice in 2025. The molecule never changed. Each approval added one claim to the label, and each claim had to be earned by a trial that measured something different: a blood marker, the scale, counted heart attacks, counted kidney failures, a liver biopsy. What an endpoint is, why the weight bar is only five points, why safe for the heart is not the same as good for it, and what accelerated approval leaves unproven.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "two-numbers-one-trial",
     title: "Two numbers, one trial",
     dek: "Retatrutide’s pivotal trial reported 25.0% weight loss at the top dose. It also reported 28.3%, for the same people at the same week. Neither is an error: one counts what happened to everyone assigned the drug, the other models what would have happened had nobody stopped. Every modern obesity trial reports both, the label carries the smaller and the headline the larger, and the gap is wide enough to reorder drugs when the two kinds are mixed. What an estimand is, why the gap varies, and which number to use for what.",
