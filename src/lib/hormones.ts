@@ -449,14 +449,15 @@ const BASE: Hormone[] = [
     mechanism:
       "Cagrilintide is an acylated amylin analog engineered for once-weekly dosing. It agonizes amylin receptors to drive satiety and slow gastric emptying, and is studied both on its own and — as the combination known as CagriSema — alongside semaglutide, stacking an amylin axis onto a GLP-1 axis for additive appetite suppression. It is investigational.",
     facts: [
-      "Designed for once-weekly dosing, unlike the mealtime-injected first-generation amylin analog pramlintide.",
-      "Studied in combination with semaglutide (CagriSema), pairing amylin and GLP-1 pathways in one regimen.",
-      "Investigational — under clinical study, not approved.",
+      "Designed for once-weekly dosing, unlike the mealtime-injected first-generation amylin analog pramlintide. Reported human half-life is about 159–195 hours, so the level is not flat across the week.",
+      "A drug on its own. In phase 2 it cut weight by a mean 6.0–10.8% at 26 weeks. The −20.4% figure is CagriSema, the combination with semaglutide, not this molecule.",
+      "The feeling is meal termination — eating starts, then stops early — with nausea living next to that signal. It is not a stronger copy of a GLP-1.",
+      "Investigational — under clinical study, not approved alone or in combination.",
     ],
     narrative: [
       "Every incretin story on this page starts from a gut hormone; cagrilintide starts from the pancreas's quieter second secretion. Amylin is co-released with insulin after every meal and does the jobs insulin cannot — slowing gastric emptying, suppressing post-meal glucagon, telling the brain the meal is enough. Native human amylin is a terrible drug: it clumps into fibrils in the vial. Cagrilintide is that same hormone rebuilt as a week-long molecule, its aggregation engineered out and a fatty-acid chain added for albumin binding, so a single injection can hold the amylin note for days rather than minutes.",
       "The clinical logic is stacking, not replacing. Semaglutide plays the GLP-1 axis; cagrilintide plays the amylin axis. On their own each suppresses appetite and slows the gut. Together, as the combination known as CagriSema, they are meant to add up to more than either alone — two distinct satiety signals run in parallel, in two separate pens. The phase 3 REDEFINE trials are where that arithmetic is being tested at scale.",
-      "That design — two molecules, two receptors, one regimen — is also its limitation. It is a combination, not a single agent, which is why the next molecule on the shelf tries to collapse the same two signals into one peptide: amycretin keeps the GLP-1-plus-amylin bet but writes it unimolecular. Cagrilintide is the proof the axis works; amycretin is the attempt to make it elegant.",
+      "Cagrilintide itself is one molecule. CagriSema is the combination, and the −20.4% at 68 weeks belongs to both drugs together; cagrilintide alone, in phase 2, was a mean 6.0% to 10.8% at 26 weeks, in the liraglutide range. The experience is also its own: a meal that ends early, a stomach that empties slowly, and a level that fades across the week because the half-life is about a week, not a flat line from injection to injection. Amycretin is the later attempt to write GLP-1 and amylin into one chain. That is a different product, with the ratio welded in.",
     ],
     questions: [
       "Why is amylin agonism combined with GLP-1 agonism in CagriSema?",

@@ -289,6 +289,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "October 2026",
   },
   {
+    slug: "the-week-is-not-flat",
+    hormones: ["cagrilintide", "amylin", "pramlintide", "semaglutide"],
+    title: "The week is not flat",
+    dek: "A weekly drug teaches people to expect a weekly mood. Cagrilintide’s reported half-life is on the order of a week — 159 to 195 hours — so the level falls by about half before the next injection, and appetite late in the week is the curve, not proof the drug quit. The phase 2 trial spent up to six of its twenty-six weeks escalating, then followed people for six weeks off treatment: the hard part is the ramp, and the effect leaves when the drug does. Gastrointestinal events in that trial were nausea, constipation, and diarrhea together, plus injection-site reactions, which the folk account drops. How to read a single week without turning it into a dose. Investigational. Bullish on the science, sceptical on the page. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "finished-sooner",
     hormones: ["cagrilintide", "amylin", "semaglutide", "pramlintide", "eloralintide"],
     title: "Finished sooner",
