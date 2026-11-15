@@ -149,11 +149,12 @@ export default function Article() {
                 bloodstream at all.</Em>
               </P>
               <P>
-                Consider the one true success story, precisely because it shows how much
+                Consider oral semaglutide, precisely because it shows how much
                 machinery is required. Oral semaglutide reaches the market only by being
                 co-formulated with a permeation enhancer, SNAC, that locally buffers
-                stomach acid and briefly loosens the gastric lining to let a sliver of
-                drug slip through (
+                stomach acid and transiently promotes transport through gastric epithelial
+                                cells near the tablet, without evidence of tight-junction opening in the
+                                mechanism study (
                 <a href={REF.buckley} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Buckley et&nbsp;al., Sci&nbsp;Transl&nbsp;Med, 2018
                 </a>
@@ -263,10 +264,13 @@ export default function Article() {
               </P>
             </Section>
 
+            <P>For the mechanism and safety questions behind the helper—not just the absorbed percentage—read <Link href="/insights/permeation-enhancers" className={LINK}>SNAC versus sodium caprate (C10): barrier effects, recovery and what else might cross</Link>. These are different enhancers, and evidence for one formulation does not validate another.</P>
+
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/permeation-enhancers" label="SNAC vs C10: what else gets through?" />
                 <CrossLink href="/insights/glp-1-signaling" label="How half-life engineering rescued GLP-1" />
                 <CrossLink href="/tools/half-life" label="Model a peptide's half-life & duration" />
                 <CrossLink href="/hormones/calcitonin" label="Calcitonin — the potent nasal exception" />

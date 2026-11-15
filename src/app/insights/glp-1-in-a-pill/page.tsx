@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How does oral semaglutide work if peptides are destroyed in the gut?",
-    a: "Oral semaglutide is the same peptide as the injection, co-formulated with an absorption enhancer called SNAC that locally raises the pH and loosens the stomach lining so a sliver of the dose slips across. Only on the order of one percent of an oral dose reaches the bloodstream, so the tablet carries far more drug to compensate — and it must be taken fasting, with a little water and nothing else for a while, because food or extra fluid sends absorption toward zero.",
+    a: "Oral semaglutide is the same peptide as the injection, co-formulated with an absorption enhancer called SNAC that locally buffers pH and transiently promotes absorption through stomach epithelial cells near the tablet, without evidence of tight-junction opening in the mechanism study. Only on the order of one percent of an oral dose reaches the bloodstream, so the tablet carries far more drug to compensate — and it must be taken fasting, with a little water and nothing else for a while, because food or extra fluid sends absorption toward zero.",
   },
   {
     q: "What is orforglipron, and how is it different?",
@@ -110,9 +110,9 @@ export default function Article() {
                 Oral{" "}
                 <Link href="/hormones/semaglutide" className={LINK}>semaglutide</Link> is the
                 same molecule as the injection, co-formulated with an absorption enhancer —
-                a small helper compound (SNAC) that locally raises the pH and loosens the
-                stomach lining just enough for a sliver of the dose to slip across before it
-                is destroyed.
+                a helper compound (SNAC) that locally buffers pH and transiently promotes
+                                passage through stomach epithelial cells near the tablet. The mechanism
+                                study did not find evidence of tight-junction opening.
               </P>
               <P>
                 &ldquo;A sliver&rdquo; is not an exaggeration: only on the order of{" "}
@@ -236,10 +236,13 @@ export default function Article() {
               </P>
             </Section>
 
+            <P>For the mechanism and safety questions behind the helper—not just the absorbed percentage—read <Link href="/insights/permeation-enhancers" className={LINK}>SNAC versus sodium caprate (C10): barrier effects, recovery and what else might cross</Link>. These are different enhancers, and evidence for one formulation does not validate another.</P>
+
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/permeation-enhancers" label="SNAC vs C10: what else gets through?" />
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why peptides need the needle: the delivery problem" />
                 <CrossLink href="/hormones/semaglutide" label="Semaglutide — the peptide going oral" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
