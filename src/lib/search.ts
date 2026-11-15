@@ -108,7 +108,8 @@ const HORMONE_SEARCH_TERMS: Record<string, string[]> = {
 
   for (const i of INSIGHTS) {
     const family = getFamily(i.family);
-    const keywords = [family?.name, ...(i.hormones ?? [])].filter(Boolean).join(" ");
+    const extra = i.slug === "eloratzp" ? "EloraTZP elora tzp" : "";
+    const keywords = [family?.name, ...(i.hormones ?? []), extra].filter(Boolean).join(" ");
     records.push({
       id: `insight:${i.slug}`,
       kind: "Insight",

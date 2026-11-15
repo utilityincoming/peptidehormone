@@ -272,6 +272,7 @@ export default function Article() {
                 <CrossLink href="/hormones/cagrilintide" label="Cagrilintide reference (the amylin half of CagriSema)" />
                 <CrossLink href="/insights/insulins-forgotten-twin" label="Insulin's forgotten twin — what amylin is" />
                 <CrossLink href="/insights/the-note-without-the-incretin" label="The note without the incretin — amylin without GLP-1" />
+                <CrossLink href="/insights/eloratzp" label="EloraTZP — Lilly's two-molecule stack" />
                 <CrossLink href="/insights/glp-1-in-a-pill" label="Oral GLP-1 — the pill the oral arm rides" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4? — why the field moved sideways, not up" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
