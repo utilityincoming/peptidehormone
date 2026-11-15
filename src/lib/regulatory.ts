@@ -289,8 +289,8 @@ const ROWS: Record<string, RegulatoryRow> = {
 
   // ── Reproductive & gonadal ──
   gnrh: {
-    status: "approved",
-    basis: "Gonadorelin (Factrel) was approved as a diagnostic; supply is limited and most clinical use is via analogs.",
+    status: "withdrawn",
+    basis: "Gonadorelin (Factrel) was approved as a human diagnostic and is no longer marketed for people; the gonadorelin labels current in the US are veterinary. Clinical use is via analogs such as leuprolide.",
   },
   lh: {
     status: "withdrawn",
@@ -551,6 +551,96 @@ export const REGULATORY: Record<string, RegulatoryEntry> = Object.fromEntries(
     },
   ]),
 );
+// ── Molecules the insights discuss that are not in the catalog ───────────────
+// The catalog test guarantees a row for every monograph, but articles also make
+// status claims about drugs that have no monograph. Those claims went stale
+// unnoticed (orforglipron and apitegromab were both approved while articles
+// still called them investigational), so they are tracked here on the same
+// terms: a status, a basis, a check month and a record to recheck against.
+// regulatory.test.ts reads this list to catch prose that contradicts it.
+export interface WatchedEntry extends RegulatoryEntry {
+  /** Name as the articles write it. */
+  name: string;
+}
+
+export const WATCHED: Record<string, WatchedEntry> = {
+  orforglipron: {
+    name: "orforglipron",
+    status: "approved",
+    basis: "Foundayo approved in April 2026 for chronic weight management.",
+    verified: "2026-11",
+    source: dailymed("orforglipron"),
+  },
+  apitegromab: {
+    name: "apitegromab",
+    status: "approved",
+    basis: "Isembyld approved in September 2026 for spinal muscular atrophy.",
+    verified: "2026-11",
+    source: dailymed("apitegromab"),
+  },
+  garetosmab: {
+    name: "garetosmab",
+    status: "approved",
+    basis: "Pasatru has a current US label; the application was for fibrodysplasia ossificans progressiva.",
+    verified: "2026-11",
+    source: dailymed("garetosmab"),
+  },
+  sotatercept: {
+    name: "sotatercept",
+    status: "approved",
+    basis: "Winrevair approved in 2024 for pulmonary arterial hypertension.",
+    verified: "2026-11",
+    source: dailymed("sotatercept"),
+  },
+  fezolinetant: {
+    name: "fezolinetant",
+    status: "approved",
+    basis: "Veozah has a current US label.",
+    verified: "2026-11",
+    source: dailymed("fezolinetant"),
+  },
+  elinzanetant: {
+    name: "elinzanetant",
+    status: "approved",
+    basis: "Lynkuet has a current US label.",
+    verified: "2026-11",
+    source: dailymed("elinzanetant"),
+  },
+  cagrisema: {
+    name: "CagriSema",
+    status: "investigational",
+    basis: "Submitted to the FDA in December 2025; no cagrilintide label existed when checked.",
+    verified: "2026-11",
+    source: trials("cagrilintide"),
+  },
+  bimagrumab: {
+    name: "bimagrumab",
+    status: "investigational",
+    basis: "No US label when checked; in trials for obesity.",
+    verified: "2026-11",
+    source: trials("bimagrumab"),
+  },
+  trevogrumab: {
+    name: "trevogrumab",
+    status: "investigational",
+    basis: "No US label when checked; in trials as an add-on to GLP-1 agonists.",
+    verified: "2026-11",
+    source: trials("trevogrumab"),
+  },
+};
+
+/**
+ * Sentences that call `name` investigational, in already-flattened article
+ * text. Two shapes are caught: "X is investigational" and a list such as
+ * "X, Y and Z are investigational" with the name anywhere in it. Used to find prose that an approval has
+ * overtaken.
+ */
+export function investigationalClaims(text: string, name: string): string[] {
+  const n = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const single = new RegExp(`\\b${n}\\b( \\([^)]*\\))? (is|remains|is still) (an )?investigational[^.]*`, "gi");
+  const list = new RegExp(`\\b${n}\\b(,| and | or )[\\w\\s,-]{0,90}\\bare investigational[^.]*|\\b${n} are investigational[^.]*`, "gi");
+  return [...(text.match(single) ?? []), ...(text.match(list) ?? [])];
+}
 
 /** Status record for a slug, or undefined when the table has no row. */
 export function regulatoryFor(slug: string): RegulatoryEntry | undefined {
