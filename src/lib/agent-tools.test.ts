@@ -3,7 +3,7 @@ import test from "node:test";
 import { AGENT_TOOLS, executeAgentTool } from "./agent-tools";
 
 test("evidence tool descriptions require source-grounded dosing rather than recommendations", () => {
-  for (const name of ["search_pubmed", "search_clinical_trials"]) {
+  for (const name of ["search_pubmed", "search_clinical_trials", "search_drug_label"]) {
     const description = AGENT_TOOLS.find((tool) => tool.name === name)!.description;
     assert.match(description, /dos(e|ing)/i);
     assert.match(description, /source text/i);
@@ -175,6 +175,52 @@ test("missing and malformed abstracts are explicit rather than invented", async 
     assert.equal(data.articles[0].abstract, null);
     assert.equal(data.articles[0].abstractStatus, "not_found");
   }
+});
+
+test("drug labels return verbatim dosage excerpts with a DailyMed citation", async (t) => {
+  t.mock.method(globalThis, "fetch", async (url: string | URL | Request) => {
+    const endpoint = new URL(String(url));
+    assert.equal(endpoint.origin, "https://api.fda.gov");
+    assert.equal(endpoint.pathname, "/drug/label.json");
+    assert.match(endpoint.searchParams.get("search") ?? "", /semaglutide/);
+    return Response.json({ results: [{
+      set_id: "abc-set",
+      effective_time: "20260130",
+      indications_and_usage: ["Indicated to improve glycemic control in adults with type 2 diabetes."],
+      dosage_and_administration: ["Start at 0.25 mg subcutaneously once weekly for 4 weeks, then 0.5 mg once weekly."],
+      boxed_warning: ["Risk of thyroid C-cell tumors."],
+      openfda: {
+        brand_name: ["OZEMPIC"],
+        generic_name: ["SEMAGLUTIDE"],
+        manufacturer_name: ["Novo Nordisk"],
+        route: ["SUBCUTANEOUS"],
+        is_original_packager: true,
+      },
+    }, {
+      set_id: "other",
+      openfda: { brand_name: ["REPACK"], is_original_packager: false },
+      dosage_and_administration: ["Repackaged."],
+    }, {
+      set_id: "third",
+      openfda: { is_original_packager: false },
+      dosage_and_administration: ["Dropped by the two-label cap."],
+    }] });
+  });
+  const result = await executeAgentTool("search_drug_label", { query: "semaglutide" });
+  assert.equal(result.isError, false);
+  const data = JSON.parse(result.content);
+  assert.equal(data.count, 2);
+  assert.equal(data.labels[0].setId, "abc-set");
+  assert.match(data.labels[0].dosage, /0\.25 mg subcutaneously once weekly/);
+  assert.equal(data.labels[0].url, "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=abc-set");
+  assert.match(data.warning, /not a personal dosing recommendation/i);
+});
+
+test("a missing US label is an explicit miss, not a tool error", async (t) => {
+  t.mock.method(globalThis, "fetch", async () => new Response("not found", { status: 404 }));
+  const result = await executeAgentTool("search_drug_label", { query: "retatrutide" });
+  assert.equal(result.isError, false);
+  assert.match(result.content, /No current US prescribing label/);
 });
 
 test("HTTP failures remain tool errors", async (t) => {

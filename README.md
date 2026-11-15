@@ -55,9 +55,10 @@ research, and anecdotes; cite each numeric regimen; and state missing evidence.
 Personalized prescriptions and invented research-only self-injection protocols
 remain out of scope. This is prompt-level guidance, not a guarantee of accuracy:
 readers must verify the cited sources. Trial records/abstracts may omit dose details;
-the agent must say so rather than guess. The current tools do not retrieve current
-approved prescribing labels, so label-specific approval or dosing claims cannot
-be verified through this agent's sources. An extra answer call adds latency and cost.
+the agent must say so rather than guess. `search_drug_label` can retrieve a current
+US Structured Product Label excerpt (openFDA / DailyMed) so approval and labeled
+dosing can be checked for that named US product; a miss is not evidence about
+other countries or unapproved substances. An extra answer call adds latency and cost.
 
 | Variable | Purpose |
 | --- | --- |

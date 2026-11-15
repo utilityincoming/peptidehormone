@@ -70,6 +70,21 @@ export const AGENT_TOOLS: AgentTool[] = [
       required: ["query"],
     },
   },
+  {
+    name: "search_drug_label",
+    description:
+      "Look up current US prescribing labels (FDA SPL via openFDA / DailyMed) for an approved drug by generic or brand name. Call this before stating that a product is approved or reporting label dosing, titration, route, indication, or boxed warnings. Report numeric doses only when explicitly present in the returned source text, with the set id and DailyMed link, and only for that named product, indication, and US label. A label is not a treatment recommendation. No matching label means approval and label dosing could not be verified — do not infer them.",
+    input_schema: {
+      type: "object",
+      properties: {
+        query: {
+          type: "string",
+          description: 'Generic or brand name, e.g. "semaglutide" or "Wegovy".',
+        },
+      },
+      required: ["query"],
+    },
+  },
 ];
 
 const TOOL_TIMEOUT_MS = 8000;
@@ -87,7 +102,7 @@ function truncate(s: string, max = MAX_TOOL_RESULT_CHARS): string {
   // serialized JSON: escaping and closing delimiters must remain intact.
   data.truncated = true;
   data.warning = "Partial evidence: records or text omitted. Consult the cited source for the complete regimen and population; do not extrapolate missing details.";
-  const resultKey = ["studies", "articles", "entries"].find((key) => Array.isArray(data[key]));
+  const resultKey = ["studies", "articles", "entries", "labels"].find((key) => Array.isArray(data[key]));
   if (resultKey) {
     const results = data[resultKey] as unknown[];
     const originalCount = results.length;
@@ -103,7 +118,7 @@ function truncate(s: string, max = MAX_TOOL_RESULT_CHARS): string {
   function clip(value: unknown, textLimit: number, arrayLimit: number, key = ""): unknown {
     if (typeof value === "string") {
       // Citation identifiers/URLs must not be rewritten into broken references.
-      if (["url", "pmid", "nctId", "accession", "source", "warning"].includes(key) || value.length <= textLimit) return value;
+      if (["url", "pmid", "nctId", "accession", "setId", "source", "warning"].includes(key) || value.length <= textLimit) return value;
       const prefix = value.slice(0, textLimit);
       // Prefer complete sentences, avoiding a cut in a decimal dose or unit.
       const sentenceEnd = [...prefix.matchAll(/[.!?](?=\s)/g)].at(-1)?.index;
@@ -291,6 +306,79 @@ async function searchUniprot(query: string): Promise<string> {
   return JSON.stringify({ source: "UniProt", count: entries.length, entries });
 }
 
+function labelExcerpt(value: unknown, max = 1400): string | null {
+  const text = Array.isArray(value)
+    ? value.filter((part): part is string => typeof part === "string").join("\n")
+    : typeof value === "string"
+      ? value
+      : "";
+  const trimmed = text.replace(/\s+/g, " ").trim();
+  if (!trimmed) return null;
+  return trimmed.length > max ? `${trimmed.slice(0, max)}…` : trimmed;
+}
+
+// Current US Structured Product Labeling. openFDA returns HTTP 404 when the
+// search matches nothing; that is "no label", not a failed tool.
+async function searchDrugLabel(query: string): Promise<string> {
+  const term = query.trim().replace(/[^\p{L}\p{N} .+'-]/gu, " ").replace(/\s+/g, " ").slice(0, 80);
+  if (!term) return "No drug name provided for a label search.";
+  const quoted = `"${term}"`;
+  const search = [
+    `openfda.generic_name:${quoted}`,
+    `openfda.brand_name:${quoted}`,
+    `openfda.substance_name:${quoted}`,
+  ].join(" OR ");
+  let data: unknown;
+  try {
+    data = await fetchJson(
+      `https://api.fda.gov/drug/label.json?search=${encodeURIComponent(search)}&limit=5`,
+    );
+  } catch (err) {
+    if (err instanceof Error && err.message === "HTTP 404") {
+      return `No current US prescribing label found for "${term}". Absence of a label is not evidence about non-US products or unapproved substances.`;
+    }
+    throw err;
+  }
+  const raw = pick(data, "results");
+  const labels = Array.isArray(raw)
+    ? raw
+        .map((row) => {
+          const setId = pick(row, "set_id");
+          const id = typeof setId === "string" ? setId : null;
+          const brands = pick(row, "openfda", "brand_name");
+          const generics = pick(row, "openfda", "generic_name");
+          const original = pick(row, "openfda", "is_original_packager");
+          return {
+            setId: id,
+            brand: Array.isArray(brands) ? brands.slice(0, 4) : null,
+            generic: Array.isArray(generics) ? generics.slice(0, 2) : null,
+            manufacturer: Array.isArray(pick(row, "openfda", "manufacturer_name"))
+              ? (pick(row, "openfda", "manufacturer_name") as unknown[]).slice(0, 1)
+              : null,
+            route: pick(row, "openfda", "route") ?? null,
+            effectiveTime: pick(row, "effective_time") ?? null,
+            originalPackager: original === true,
+            indications: labelExcerpt(pick(row, "indications_and_usage"), 700),
+            dosage: labelExcerpt(pick(row, "dosage_and_administration")),
+            boxedWarning: labelExcerpt(pick(row, "boxed_warning"), 500),
+            url: id ? `https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=${id}` : null,
+          };
+        })
+        .sort((a, b) => Number(b.originalPackager) - Number(a.originalPackager))
+        .slice(0, 2)
+    : [];
+  if (labels.length === 0) {
+    return `No current US prescribing label found for "${term}". Absence of a label is not evidence about non-US products or unapproved substances.`;
+  }
+  return JSON.stringify({
+    source: "openFDA drug labels (US SPL)",
+    warning:
+      "Excerpt of a current US label for the named product only. It is not a personal dosing recommendation and does not cover other products, indications, or jurisdictions.",
+    count: labels.length,
+    labels,
+  });
+}
+
 export async function executeAgentTool(
   name: string,
   input: Record<string, unknown>,
@@ -309,6 +397,9 @@ export async function executeAgentTool(
         break;
       case "search_uniprot":
         out = await searchUniprot(String(input.query ?? ""));
+        break;
+      case "search_drug_label":
+        out = await searchDrugLabel(String(input.query ?? ""));
         break;
       default:
         return { content: `Unknown tool: ${name}`, isError: true };
