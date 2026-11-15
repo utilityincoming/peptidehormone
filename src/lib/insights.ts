@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "glp-3-bull-case",
+    hormones: ["retatrutide", "tirzepatide", "semaglutide", "glucagon"],
+    title: "The GLP-3 bull case",
+    dek: "The internet named retatrutide “GLP-3” before any phase 3 trial had reported. Now five of them have. This is the strongest evidence-backed version of the bull thesis — and the four honest asterisks it must survive: the two numbers problem, the missing head-to-head against tirzepatide, the unresolved heart question, and the name itself. Bullish on the science; the page is where the risk lives.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "November 2026",
+  },
+  {
     slug: "not-two-drugs-in-one",
     hormones: ["tirzepatide", "gip", "glp-1", "semaglutide"],
     title: "Why tirzepatide isn’t two drugs in one",
@@ -539,7 +548,6 @@ export const INSIGHTS: Insight[] = [
     dek: "The newest metabolic peptides don't mimic one hormone — they play three at once. Why glucagon earns a seat, and what phase 3 actually measured: 25% weight loss at the top dose over 80 weeks on the analysis that counts everyone randomized. The 28% headline is the on-treatment figure from the same trial. Still investigational — a U.S. filing is planned, not granted.",
     family: "incretins-metabolic",
     readingMinutes: 11,
-    readingMinutes: 8,
     reviewed: "November 2026",
   },
   {
