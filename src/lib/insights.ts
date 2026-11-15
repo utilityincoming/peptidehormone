@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "permeation-enhancers",
+    title: "What else gets through?",
+    dek: "SNAC and sodium caprate (C10) help peptides cross the gastrointestinal barrier, but they are not the same enhancer. What they change, whether the lining recovers, what might cross alongside the drug, and why neither ‘leaky gut’ panic nor food-additive reassurance answers the safety question.",
+    family: "incretins-metabolic",
+    readingMinutes: 15,
+    reviewed: "November 2026",
+  },
+  {
     slug: "eloratzp",
     hormones: ["eloralintide", "tirzepatide", "cagrilintide", "amycretin", "amylin"],
     title: "Two families, one syringe",
