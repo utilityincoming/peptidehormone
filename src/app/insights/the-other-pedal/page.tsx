@@ -206,6 +206,7 @@ export default function Article() {
                 <CrossLink href="/hormones/igf-2" label="IGF-2 — the imprinted sibling" />
                 <CrossLink href="/insights/igf-1-lr3" label="The half-life, backwards — the IGF-1 LR3 reference" />
                 <CrossLink href="/insights/glp-1-muscle-preservation" label="The other pedal: releasing the brake" />
+                <CrossLink href="/insights/two-ways-to-ask-for-growth" label="Two ways to ask for growth — GH versus IGF-1" />
                 <CrossLink href="/research?q=What%20does%20the%20human%20evidence%20show%20for%20IGF-1%20analogs%20like%20LR3%20or%20MGF%20building%20skeletal%20muscle%3F" label="Ask the research agent what the human data shows" />
               </ul>
             </div>

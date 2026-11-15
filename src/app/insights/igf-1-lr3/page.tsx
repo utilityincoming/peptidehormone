@@ -394,6 +394,7 @@ export default function Article() {
                 <CrossLink href="/hormones/mgf" label="MGF — the local, load-triggered pulse" />
                 <CrossLink href="/insights/the-other-pedal" label="The other pedal — the whole IGF-1 accelerator" />
                 <CrossLink href="/tools/half-life" label="Half-life & dosing calculator (correct molar mass)" />
+                <CrossLink href="/insights/the-gene-the-parents-fight-over" label="The gene the parents fight over — IGF-2 imprinting" />
                 <CrossLink href="/research?q=What%20does%20the%20human%20evidence%20actually%20show%20for%20IGF-1%20LR3%2C%20and%20what%20is%20its%20true%20half-life%3F" label="Ask the research agent what the human data shows" />
               </ul>
             </div>

@@ -328,6 +328,7 @@ export default function Article() {
                 <CrossLink href="/families/reproductive-gonadal" label="Reproductive & gonadal — the HPG axis, end to end" />
                 <CrossLink href="/insights/the-pulse-is-the-message" label="The pulse is the message — how rhythm, not level, runs the axis" />
                 <CrossLink href="/insights/a-switch-not-a-supply" label="A switch, not a supply — the replace-versus-restore distinction, on repair biology" />
+                <CrossLink href="/insights/the-neuron-behind-the-hot-flash" label="The neuron behind the hot flash — KNDy and GnRH" />
                 <CrossLink href="/research?q=Is%20there%20any%20controlled%20human%20evidence%20that%20adding%20hCG%20to%20testosterone%20therapy%20improves%20mood%20or%20wellbeing%2C%20or%20is%20the%20reported%20benefit%20better%20explained%20by%20estradiol%20and%20expectancy%3F" label="Ask the research agent what the human data shows" />
               </ul>
             </div>

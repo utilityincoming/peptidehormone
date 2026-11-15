@@ -326,6 +326,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-gip-paradox" label="The GIP paradox — why activating and blocking GIP both cause weight loss" />
                 <CrossLink href="/insights/the-triple-agonist" label="The triple agonist explained — adding the glucagon receptor" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
+                <CrossLink href="/insights/glp-3-bull-case" label="The GLP-3 bull case" />
                 <CrossLink href="/research?q=What%20does%20it%20mean%20that%20tirzepatide%20is%20an%20imbalanced%20and%20biased%20dual%20GIP%2FGLP-1%20receptor%20agonist%2C%20and%20how%20much%20does%20the%20GIP%20receptor%20contribute%3F" label="Ask the research agent about tirzepatide's mechanism" />
               </ul>
             </div>

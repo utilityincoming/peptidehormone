@@ -399,6 +399,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-arm-that-points-at-the-liver" label="The arm that points at the liver — survodutide and MASH" />
                 <CrossLink href="/insights/insulin-to-the-peptide-boom" label="From insulin to the peptide boom — the century this story sits in" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4? — the proglucagon family tree" />
+                <CrossLink href="/insights/glp-3-bull-case" label="The GLP-3 bull case — glucagon as the third axis" />
                 <CrossLink href="/research?q=Why%20did%20glucagon%20receptor%20antagonists%20increase%20liver%20fat%2C%20and%20what%20does%20glucagon%20agonism%20add%20to%20retatrutide%20and%20survodutide%3F" label="Ask the research agent about glucagon" />
               </ul>
             </div>

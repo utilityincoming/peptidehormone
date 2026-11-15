@@ -432,6 +432,7 @@ export default function Article() {
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why are peptides injected? The delivery problem" />
                 <CrossLink href="/families/neuropeptides" label="The neuropeptide family" />
                 <CrossLink href="/families/melanocortins" label="The melanocortin family (drive half of the circuit)" />
+                <CrossLink href="/insights/two-residues-apart" label="Two residues apart — oxytocin and vasopressin" />
                 <CrossLink href="/research?q=What%20evidence%20supports%20behavioral%20oxytocin%20release%20(touch%2C%20hugs)%20for%20couples%2C%20and%20how%20does%20bremelanotide%20compare%20for%20desire%3F" label="Ask the research agent for current evidence" />
               </ul>
             </div>
