@@ -33,7 +33,6 @@ const REF = {
   lilly23: "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-successful-two-additional", // 23 July 2026 — TRIUMPH-2/3 topline; BLA plan
   lilly2: "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-delivered-substantial-weight", // 29 Sept 2026 — TRIUMPH-2 efficacy estimand; BLA plan restated
   transcend: "https://investor.lilly.com/news-releases/news-release-details/lillys-triple-agonist-retatrutide-demonstrated-significant", // 19 March 2026 — TRANSCEND-T2D-1 topline
-  triumph1: "https://pubmed.ncbi.nlm.nih.gov/42814954/", // Jastreboff et al. 2026, NEJM 395(18):1781-1793 — TRIUMPH-1, retatrutide phase 3 obesity trial (doi 10.1056/NEJMoa2604169)
 } as const;
 
 // FAQ — surfaced as FAQPage JSON-LD via insightLd().
@@ -57,8 +56,6 @@ const FAQS = [
   {
     q: "What dose of retatrutide was studied in phase 3?",
     a: "In TRIUMPH-1 and TRIUMPH-2 the assigned once-weekly subcutaneous targets were 4 mg, 9 mg, and 12 mg. Participants started at 2 mg and the dose was increased every four weeks until the assigned target. Those figures are the trial regimens, reported so the evidence can be read, not a dose for an individual. Retatrutide is not an approved medicine.",
-    q: "How much weight did retatrutide produce in trials?",
-    a: "In the phase 3 TRIUMPH-1 trial (Jastreboff et al., NEJM 2026; PubMed 42814954), 2,339 adults with obesity and without diabetes received once-weekly retatrutide or placebo for 80 weeks. Mean body-weight change was −17.6% at 4 mg, −23.7% at 9 mg and −25.0% at 12 mg, against −3.9% with placebo. The most common adverse events were gastrointestinal. The trial compared the whole molecule with placebo, so it does not show how much of the effect comes from the glucagon or GIP arm, and retatrutide remains investigational and not approved.",
   },
   {
     q: "Is more receptors automatically better?",
@@ -333,32 +330,6 @@ export default function Article() {
                 <Link href="/hormones/retatrutide" className={LINK}>catalog</Link> entry
                 keeps the <Em>Investigational</Em> badge for that reason. Phase 3
                 answered the weight question. It did not turn the molecule into a medicine.
-                ).
-              </P>
-              <P>
-                The first phase 3 trial has now been published. TRIUMPH-1 randomized
-                2,339 adults with obesity and without diabetes to once-weekly
-                retatrutide (4, 9 or 12&nbsp;mg) or placebo for 80 weeks (
-                <a href={REF.triumph1} target="_blank" rel="noopener noreferrer" className={LINK}>
-                  Jastreboff et&nbsp;al., NEJM, 2026
-                </a>
-                ). Mean body-weight change was &minus;17.6%, &minus;23.7% and
-                &minus;25.0% across the three doses, against &minus;3.9% with placebo.
-                In the 574 participants with knee osteoarthritis, the 9 and 12&nbsp;mg
-                doses lowered the WOMAC pain score by 3.5 and 3.6 points, against 1.9
-                with placebo; in the 243 with obstructive sleep apnea, the
-                apnea-hypopnea index fell by 34.3 and 31.7 events per hour, against 9.9.
-                The most common adverse events were gastrointestinal.
-              </P>
-              <P>
-                What the trial does not settle is the question this article opened with.
-                TRIUMPH-1 compared the <Em>whole molecule</Em> with placebo, so it cannot
-                say how much of the effect the glucagon arm or the GIP arm contributes;
-                it also was not a head-to-head comparison with any other drug. And a
-                published trial is not an approval: retatrutide remains under study,
-                which is why its entry in the{" "}
-                <Link href="/hormones/retatrutide" className={LINK}>catalog</Link> still
-                carries an <Em>Investigational</Em> badge.
               </P>
             </Section>
 
@@ -388,6 +359,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-arm-that-points-at-the-liver" label="The arm that points at the liver — survodutide’s glucagon bet" />
                 <CrossLink href="/insights/the-hormone-we-tried-to-block" label="The hormone we tried to block — glucagon's century, from villain to drug target" />
                 <CrossLink href="/insights/not-two-drugs-in-one" label="Why tirzepatide isn’t two drugs in one — the imbalanced, biased dual agonist" />
+                <CrossLink href="/insights/glp-3-bull-case" label="The GLP-3 bull case — what the phase 3 data support" />
                 <CrossLink href="/research?q=How%20does%20retatrutide%27s%20glucagon%20agonism%20add%20fat%20loss%20on%20top%20of%20GLP-1%20and%20GIP%20receptor%20activation%3F" label="Ask the research agent about the third axis" />
               </ul>
             </div>

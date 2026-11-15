@@ -144,7 +144,6 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   retatrutide: {
     status: "investigational",
     basis: "Phase 3 obesity and diabetes results published (TRIUMPH-1, TRIUMPH-2). Lilly has said it plans a U.S. BLA in Q1 2027. Not approved.",
-    basis: "Phase 3 TRIUMPH-1 obesity trial (Lilly) published in NEJM in 2026 (PMID 42814954); no approval as of the review date.",
   },
   survodutide: {
     status: "investigational",
