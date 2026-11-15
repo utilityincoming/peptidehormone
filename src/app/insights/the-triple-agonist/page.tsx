@@ -351,6 +351,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/two-numbers-one-trial" label="Two numbers, one trial — why the headline and the label disagree" />
                 <CrossLink href="/hormones/retatrutide" label="Retatrutide — the triple agonist" />
                 <CrossLink href="/hormones/glucagon" label="Glucagon — the counter-regulatory hormone" />
                 <CrossLink href="/insights/glp-1-signaling" label="What GLP-1 does: how the hormone actually works" />
