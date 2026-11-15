@@ -419,6 +419,7 @@ export default function Article() {
                 <CrossLink href="/compare/eloralintide-vs-tirzepatide" label="Eloralintide vs tirzepatide, side by side" />
                 <CrossLink href="/insights/insulins-forgotten-twin" label="What is amylin? Insulin's forgotten twin" />
                 <CrossLink href="/insights/peptide-half-life-engineering" label="How a peptide is made to last" />
+                <CrossLink href="/insights/the-molecule-that-is-both-halves" label="The molecule that is both halves — cagrilintide" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4?" />
               </ul>
             </div>

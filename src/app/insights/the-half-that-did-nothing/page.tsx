@@ -103,6 +103,8 @@ export default function Article() {
               </P>
             </Section>
 
+            <ClauseFigure />
+
             <Section title="The separation worked">
               <P>
                 In the narrow technical sense, the split succeeded. In obese mice, AOD-9604
@@ -198,5 +200,49 @@ export default function Article() {
       </main>
       <SiteFooter />
     </>
+  );
+}
+
+/* ── Keep one clause: isolate the GH tail, lose the payoff ── */
+function ClauseFigure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 600 236"
+        className="w-full"
+        role="img"
+        aria-label="Growth hormone carries several clauses; AOD-9604 isolates the C-terminal tail hGH(176-191) to keep the fat-mobilizing clause. The separation works in mice but the kept clause is empty in humans."
+      >
+        {/* clause labels above the GH chain */}
+        <text x="118" y="26" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">grow tissue</text>
+        <text x="250" y="26" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">↑ IGF-1</text>
+        <text x="368" y="26" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">↑ glucose</text>
+        <text x="505" y="26" textAnchor="middle" fill="var(--accent-blue)" fontSize="10.5" fontWeight="600" fontFamily="var(--font-geist-mono), monospace">mobilize fat</text>
+
+        {/* GH chain */}
+        <text x="300" y="46" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.55" fontSize="11" fontFamily="var(--font-space-grotesk), sans-serif">Growth hormone — hGH(1–191)</text>
+        <rect x="70" y="54" width="460" height="26" rx="8" fill="var(--color-ink)" fillOpacity="0.06" stroke="var(--color-ink)" strokeOpacity="0.15" strokeWidth="1" />
+        {/* highlighted tail 176-191 */}
+        <rect x="492" y="54" width="38" height="26" rx="8" fill="var(--accent-blue)" fillOpacity="0.18" stroke="var(--accent-blue)" strokeOpacity="0.55" strokeWidth="1.5" />
+        <text x="76" y="71" fill="var(--color-ink)" fillOpacity="0.4" fontSize="10" fontFamily="var(--font-geist-mono), monospace">1</text>
+        <text x="511" y="98" textAnchor="middle" fill="var(--accent-blue)" fontSize="10" fontFamily="var(--font-geist-mono), monospace">176–191</text>
+
+        {/* cut-away arrow */}
+        <line x1="511" y1="104" x2="511" y2="128" stroke="var(--accent-blue)" strokeWidth="2.5" />
+        <polygon points="511,136 504,123 518,123" fill="var(--accent-blue)" />
+
+        {/* AOD-9604 fragment */}
+        <rect x="455" y="138" width="75" height="24" rx="8" fill="var(--accent-blue)" fillOpacity="0.14" stroke="var(--accent-blue)" strokeOpacity="0.5" strokeWidth="1.5" />
+        <text x="300" y="155" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.7" fontSize="12.5" fontFamily="var(--font-space-grotesk), sans-serif">AOD-9604 = the fat clause, cut clean and kept →</text>
+
+        {/* outcomes */}
+        <text x="300" y="192" textAnchor="middle" fill="var(--accent-teal)" fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">In mice — lipolysis works ✓</text>
+        <text x="300" y="214" textAnchor="middle" fill="var(--accent-amber)" fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">In humans — no weight loss ✗</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        The subtraction is the easy, verifiable half: the tail really does drop GH&rsquo;s growth, IGF-1 and glucose clauses.
+        The hard half is whether the kept clause still speaks in a person — and here it didn&rsquo;t.
+      </figcaption>
+    </figure>
   );
 }

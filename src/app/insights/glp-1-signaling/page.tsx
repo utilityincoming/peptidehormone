@@ -235,6 +235,7 @@ export default function Article() {
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
                 <CrossLink href="/tools/half-life?t12=1.5&unit=min" label="Model GLP-1's half-life & dosing" />
                 <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof — how to grade a GLP-1 claim by its evidence rung" />
+                <CrossLink href="/insights/glp-1-in-a-pill" label="Oral GLP-1: can you take semaglutide as a pill?" />
                 <CrossLink href="/research?q=What%20does%20the%20clinical%20trial%20evidence%20show%20for%20GLP-1%2FGIP%20co-agonism%3F" label="Ask the research agent for current trials" />
               </ul>
             </div>
