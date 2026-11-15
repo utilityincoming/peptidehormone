@@ -12,6 +12,10 @@ describe("aliasesFor", () => {
     assert.deepEqual(aliasesFor("tirzepatide"), ["Mounjaro", "Zepbound"]);
   });
 
+  it("returns the documented media nickname for retatrutide", () => {
+    assert.deepEqual(aliasesFor("retatrutide"), ["GLP-3"]);
+  });
+
   it("returns empty for endogenous GLP-1 (no brand)", () => {
     assert.deepEqual(aliasesFor("glp-1"), []);
   });
@@ -36,6 +40,12 @@ describe("hormoneMetaTitle", () => {
     const h = getHormone("glp-1");
     assert.ok(h);
     assert.equal(hormoneMetaTitle(h), "Glucagon-like peptide-1 (GLP-1)");
+  });
+
+  it("puts GLP-3 in the title for retatrutide", () => {
+    const h = getHormone("retatrutide");
+    assert.ok(h);
+    assert.equal(hormoneMetaTitle(h), "Retatrutide (GLP-3)");
   });
 });
 
@@ -71,5 +81,16 @@ describe("hormoneFaq brand question", () => {
     assert.ok(h);
     const qs = hormoneFaq(h).map((f) => f.q);
     assert.equal(qs.some((q) => /also known as|brand name/i.test(q)), false);
+  });
+
+  it("explains the GLP-3 nickname instead of calling it a brand", () => {
+    const h = getHormone("retatrutide");
+    assert.ok(h);
+    const faqs = hormoneFaq(h);
+    const glp3 = faqs.find((f) => /GLP-3/.test(f.q));
+    assert.ok(glp3, "expected a GLP-3 FAQ");
+    assert.match(glp3.q, /Why is retatrutide called GLP-3/);
+    assert.match(glp3.a, /media nickname/i);
+    assert.equal(/brand name/i.test(glp3.a), false);
   });
 });

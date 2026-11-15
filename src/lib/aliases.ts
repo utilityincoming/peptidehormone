@@ -5,11 +5,17 @@
 // Only FDA/EMA brand names and official INNs that resolve to this molecule.
 // Investigational compounds with no marketed brand are intentionally absent.
 // A wrong alias is worse than none.
+//
+// One documented exception: retatrutide's media nickname "GLP-3". It is not a
+// brand or an INN, but it is the search term most of the public actually types,
+// and it resolves to exactly one molecule. The per-molecule override below is
+// keyed by slug so the carve-out stays visible and reversible.
 
 import type { Hormone } from "./hormones";
 import { composeMetaDescription } from "./meta";
 
 export const ALIASES: Record<string, string[]> = {
+  retatrutide: ["GLP-3"],
   semaglutide: ["Ozempic", "Wegovy", "Rybelsus"],
   tirzepatide: ["Mounjaro", "Zepbound"],
   liraglutide: ["Victoza", "Saxenda"],
@@ -53,6 +59,13 @@ export function hormoneMetaDescription(h: Hormone): string {
 export function aliasFaq(h: Hormone): { q: string; a: string } | null {
   const aliases = aliasesFor(h.slug);
   if (!aliases.length) return null;
+  // "GLP-3" is a media nickname, not a brand — the FAQ reads differently.
+  if (h.slug === "retatrutide") {
+    return {
+      q: "Why is retatrutide called GLP-3?",
+      a: "GLP-3 is a media nickname, not a hormone or an official drug class — Lilly itself calls the label scientifically inaccurate. It stuck because retatrutide is a triple agonist of the GLP-1, GIP, and glucagon receptors (\"three receptors,\" hence the 3). There is a genuine GLP-3 peptide fragment of proglucagon, but no drug bears that name. Searching \"GLP-3\" almost always means this molecule.",
+    };
+  }
   const list =
     aliases.length === 1
       ? aliases[0]

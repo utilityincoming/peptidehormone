@@ -124,7 +124,9 @@ export function compareFaq(a: Hormone, b: Hormone): { q: string; a: string }[] {
     });
   }
   const aAliases = aliasesFor(a.slug);
-  if (aAliases.length) {
+  // Brand-name FAQ only. Retatrutide's alias is a media nickname (GLP-3), not a brand —
+  // the monograph FAQ explains that; a compare page must not call it a brand name.
+  if (aAliases.length && a.slug !== "retatrutide") {
     faqs.push({
       q: `Is ${a.name} the same as ${aAliases[0]}?`,
       a: `${aAliases.join(", ")} ${aAliases.length === 1 ? "is a brand name" : "are brand names"} of ${a.name}. This comparison describes the molecules, not branded products.`,
