@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "how-peptide-compounding-rules-work",
+    title: "Can a pharmacy compound it? How the peptide rules work",
+    dek: "Every compounding headline leaves the same question open: can a pharmacy lawfully make this today? The answer never depends on the news event. It depends on four tests in federal law, and a molecule must pass all of them. BPC-157 fails at one, semaglutide at a different one, which is why they are different stories. What 503A and 503B are, the three ways an ingredient qualifies, why leaving Category 2 put a peptide nowhere, how a shortage switches the copy rule off, and four questions that sort any future headline.",
+    family: "incretins-metabolic",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "permeation-enhancers",
     title: "What else gets through?",
     dek: "SNAC and sodium caprate (C10) help peptides cross the gastrointestinal barrier, but they are not the same enhancer. What they change, whether the lining recovers, what might cross alongside the drug, and why neither ‘leaky gut’ panic nor food-additive reassurance answers the safety question.",
