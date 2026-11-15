@@ -34,6 +34,28 @@ describe("regulatory table", () => {
     assert.match(formatAsOf(REGULATORY_AS_OF), /^[A-Z][a-z]+ \d{4}$/);
   });
 
+  it("dates every row and never later than the latest pass", () => {
+    for (const [slug, row] of Object.entries(REGULATORY)) {
+      assert.match(row.verified, /^\d{4}-(0[1-9]|1[0-2])$/, slug);
+      assert.ok(row.verified <= REGULATORY_AS_OF, `${slug}: verified after the latest pass`);
+    }
+  });
+
+  it("links every status that can move to a public record", () => {
+    for (const [slug, row] of Object.entries(REGULATORY)) {
+      if (!["approved", "investigational", "restricted"].includes(row.status)) continue;
+      assert.ok(row.source, `${slug}: no source`);
+      assert.match(row.source.url, /^https:\/\/(dailymed\.nlm\.nih\.gov|clinicaltrials\.gov|www\.fda\.gov)\//, slug);
+      assert.ok(row.source.label.length > 5, slug);
+    }
+  });
+
+  it("answers the FAQ with the row's own check month", () => {
+    const h = getHormone("glp-1");
+    assert.ok(h);
+    assert.match(regulatoryFaq(h)?.a ?? "", /as of September 2026/);
+  });
+
   it("grades approved analogs and restricted research peptides as expected", () => {
     assert.equal(regulatoryFor("semaglutide")?.status, "approved");
     assert.equal(regulatoryFor("bpc-157")?.status, "restricted");

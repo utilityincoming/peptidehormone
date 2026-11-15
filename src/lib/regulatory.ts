@@ -15,9 +15,9 @@
 //     "approved"; a native hormone with no product of its own but approved
 //     analogs (GLP-1, GHRH) reads "endogenous" with the analogs named.
 //   • Every entry carries a one-line `basis` naming the product, trial stage
-//     or FDA list the status rests on — sourced, not asserted — and the whole
-//     table carries one review date, because this is the field most likely to
-//     go stale.
+//     or FDA list the status rests on, the month that row was last checked,
+//     and (where a status can move) a link to the public record it can be
+//     rechecked against, because this is the field most likely to go stale.
 //
 // Palette follows §6 of the Standard: never red. "Restricted" is the closest
 // thing to a warning here and it takes amber, the same hue the evidence ladder
@@ -36,8 +36,11 @@ export const REGULATORY_STATUSES = [
 
 export type RegulatoryStatus = (typeof REGULATORY_STATUSES)[number];
 
-/** Month the table was last reviewed against the public record. */
+/** Month of the most recent review pass. Each row carries its own `verified` month. */
 export const REGULATORY_AS_OF = "2026-11";
+
+/** Rows not rechecked in the latest pass keep the month of the last full-table review. */
+const BASELINE = "2026-09";
 
 export type RegulatoryHue = "teal" | "blue" | "purple" | "slate" | "amber";
 
@@ -82,10 +85,27 @@ export const REGULATORY_META: Record<RegulatoryStatus, RegulatoryStatusMeta> = {
   },
 };
 
-export interface RegulatoryEntry {
+export interface RegulatorySource {
+  /** Names the record, not the claim: "DailyMed: current US labels". */
+  label: string;
+  url: string;
+}
+
+interface RegulatoryRow {
   status: RegulatoryStatus;
   /** What the status rests on: product name, trial stage, FDA list. One line. */
   basis: string;
+}
+
+export interface RegulatoryEntry extends RegulatoryRow {
+  /** Month (YYYY-MM) this row was last checked against the record in `source`. */
+  verified: string;
+  /**
+   * The public record the row can be rechecked against. Present for every
+   * approved, investigational and restricted row; absent where the status is
+   * the absence of a product (endogenous, unapproved, withdrawn).
+   */
+  source?: RegulatorySource;
 }
 
 // Category 2 is history for every catalog row except kisspeptin-10. FDA's page
@@ -118,7 +138,7 @@ const PCAC_2026 = (tally: string) =>
 // One entry per catalog slug. Missing an entry is a test failure, not a silent
 // blank — a monograph without a status would look like an oversight rather
 // than a disclosure.
-export const REGULATORY: Record<string, RegulatoryEntry> = {
+const ROWS: Record<string, RegulatoryRow> = {
   // ── Incretins & metabolic ──
   "glp-1": {
     status: "endogenous",
@@ -182,7 +202,7 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
   amycretin: {
     status: "investigational",
-    basis: "Phase 2–3 trials (Novo Nordisk) in obesity; no approval.",
+    basis: "Phase 3 AMAZE program (Novo Nordisk) under way; no approval.",
   },
   "maridebart-cafraglutide": {
     status: "investigational",
@@ -273,8 +293,8 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
     basis: "Gonadorelin (Factrel) was approved as a diagnostic; supply is limited and most clinical use is via analogs.",
   },
   lh: {
-    status: "approved",
-    basis: "Lutropin alfa (Luveris) approved for ovarian stimulation; LH activity is now mostly supplied via hCG or menotropins.",
+    status: "withdrawn",
+    basis: "Lutropin alfa (Luveris) was approved for ovarian stimulation but has no current US label; LH activity is now supplied via hCG or menotropins (Menopur).",
   },
   fsh: {
     status: "approved",
@@ -331,8 +351,8 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
     basis: "Carperitide (recombinant ANP) is approved in Japan, not the US.",
   },
   bnp: {
-    status: "approved",
-    basis: "Nesiritide (Natrecor, 2001) approved for acute decompensated heart failure; commercially discontinued.",
+    status: "withdrawn",
+    basis: "Nesiritide (Natrecor, 2001) was approved for acute decompensated heart failure and later discontinued; it has no current US label.",
   },
   cnp: {
     status: "endogenous",
@@ -452,6 +472,86 @@ export const REGULATORY: Record<string, RegulatoryEntry> = {
   },
 };
 
+// ── Where each row can be rechecked ──────────────────────────────────────────
+// Three records cover every status that can move. An approved row points at
+// DailyMed, where a current US label either exists or does not. A trial-stage
+// row points at the ClinicalTrials.gov records for the molecule. A restricted
+// row points at FDA's page on bulk substances that may present safety risks.
+
+const dailymed = (drug: string): RegulatorySource => ({
+  label: "DailyMed: current US labels",
+  url: `https://dailymed.nlm.nih.gov/dailymed/search.cfm?labeltype=all&query=${encodeURIComponent(drug)}`,
+});
+
+const trials = (term: string): RegulatorySource => ({
+  label: "ClinicalTrials.gov records",
+  url: `https://clinicaltrials.gov/search?intr=${encodeURIComponent(term)}`,
+});
+
+const FDA_SAFETY_RISKS: RegulatorySource = {
+  label: "FDA: bulk substances that may present significant safety risks",
+  url: "https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks",
+};
+
+/** Search term per row, where the catalog slug is not the name the record uses. */
+const LABEL_NAME: Record<string, string> = {
+  insulin: "insulin human",
+  "growth-hormone": "somatropin",
+  "igf-1": "mecasermin",
+  acth: "corticotropin",
+  crh: "corticorelin",
+  cck: "sincalide",
+  secretin: "human secretin",
+  gnrh: "gonadorelin",
+  fsh: "follitropin",
+  hcg: "chorionic gonadotropin",
+  leptin: "metreleptin",
+  pth: "teriparatide",
+  "pt-141": "bremelanotide",
+  "ss-31": "elamipretide",
+};
+
+const TRIAL_TERM: Record<string, string> = {
+  amycretin: "amycretin OR NNC0487-0111",
+  "maridebart-cafraglutide": "maridebart cafraglutide",
+  "ara-290": 'cibinetide OR "ARA 290"',
+};
+
+/** Rows whose source is not the default for their status. */
+const SOURCE_OVERRIDE: Record<string, RegulatorySource> = {
+  myostatin: dailymed("apitegromab"),
+  "ghk-cu": FDA_SAFETY_RISKS,
+};
+
+function sourceFor(slug: string, status: RegulatoryStatus): RegulatorySource | undefined {
+  if (SOURCE_OVERRIDE[slug]) return SOURCE_OVERRIDE[slug];
+  if (status === "approved") return dailymed(LABEL_NAME[slug] ?? slug);
+  if (status === "investigational") return trials(TRIAL_TERM[slug] ?? slug);
+  if (status === "restricted") return FDA_SAFETY_RISKS;
+  return undefined;
+}
+
+// November 2026 pass. Every approved row was checked for a current label on
+// DailyMed, every investigational row for registered trials and the absence of
+// a label, every restricted row against FDA's safety-risks page, and the four
+// withdrawn rows for the absence of a label. Endogenous and unapproved rows
+// were not rechecked, apart from the two named here, and keep the baseline.
+const RECHECKED_STATUSES: RegulatoryStatus[] = ["approved", "investigational", "restricted", "withdrawn"];
+const RECHECKED_ROWS = new Set(["myostatin", "ghk-cu"]);
+
+// One entry per catalog slug: the row above plus its check month and source.
+export const REGULATORY: Record<string, RegulatoryEntry> = Object.fromEntries(
+  Object.entries(ROWS).map(([slug, row]) => [
+    slug,
+    {
+      ...row,
+      verified:
+        RECHECKED_STATUSES.includes(row.status) || RECHECKED_ROWS.has(slug) ? REGULATORY_AS_OF : BASELINE,
+      source: sourceFor(slug, row.status),
+    },
+  ]),
+);
+
 /** Status record for a slug, or undefined when the table has no row. */
 export function regulatoryFor(slug: string): RegulatoryEntry | undefined {
   return REGULATORY[slug];
@@ -480,7 +580,7 @@ export function regulatoryFaq(h: Hormone): { q: string; a: string } | undefined 
   const yes = entry.status === "approved";
   return {
     q: `Is ${label} FDA-approved?`,
-    a: `${yes ? "Yes" : "No"} — as of ${formatAsOf(REGULATORY_AS_OF)}, ${label} is ${meta.clause}. ${entry.basis} Status is US-centric and can change; check the FDA record for the current position.`,
+    a: `${yes ? "Yes" : "No"} — as of ${formatAsOf(entry.verified)}, ${label} is ${meta.clause}. ${entry.basis} Status is US-centric and can change; check the FDA record for the current position.`,
   };
 }
 

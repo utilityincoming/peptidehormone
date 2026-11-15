@@ -15,7 +15,7 @@ import { vendorsFor } from "@/lib/affiliate";
 import { VendorRow, Disclosure } from "@/components/Sourcing";
 import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, regulatoryClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
-import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
+import { regulatoryFor, regulatoryMeta, formatAsOf } from "@/lib/regulatory";
 import { hormoneFigure } from "@/components/hormone-figures";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 import LiveEvidenceBlock from "@/components/LiveEvidence";
@@ -325,7 +325,7 @@ export default async function HormonePage({
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                   <h2 className="font-display text-2xl font-semibold">Regulatory status</h2>
                   <span className="text-xs text-ink/40">
-                    United States · reviewed {formatAsOf(REGULATORY_AS_OF)}
+                    United States · verified {formatAsOf(regulatory.verified)}
                   </span>
                 </div>
                 <div className="mt-5 rounded-2xl border border-ink/10 bg-panel/30 p-5">
@@ -342,14 +342,29 @@ export default async function HormonePage({
                   <dl className="mt-4 border-t border-ink/[0.06] pt-4">
                     <dt className="text-xs font-medium uppercase tracking-wide text-ink/40">Basis</dt>
                     <dd className="mt-1 text-[15px] leading-7 text-ink/70">{regulatory.basis}</dd>
+                    {regulatory.source && (
+                      <>
+                        <dt className="mt-4 text-xs font-medium uppercase tracking-wide text-ink/40">Check it yourself</dt>
+                        <dd className="mt-1 text-[15px] leading-7">
+                          <a
+                            href={regulatory.source.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
+                          >
+                            {regulatory.source.label}
+                          </a>
+                        </dd>
+                      </>
+                    )}
                   </dl>
                 </div>
                 <p className="mt-3 text-xs leading-5 text-ink/40">
                   Status describes the molecule as a drug substance under US law and
                   is an editorial reading of the public record — approvals, trial
                   registrations, and the FDA 503A bulk-substances list. It is not
-                  legal advice and it changes; the review date above is the last time
-                  the table was checked. Other jurisdictions are noted only where
+                  legal advice and it changes; the date above is the last time
+                  this row was checked. Other jurisdictions are noted only where
                   they differ materially.
                 </p>
               </section>
