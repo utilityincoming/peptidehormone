@@ -308,6 +308,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/the-week-is-not-flat" label="The week is not flat — how to read one week of it" />
                 <CrossLink href="/hormones/cagrilintide" label="Cagrilintide — the catalog entry" />
                 <CrossLink href="/hormones/amylin" label="Amylin — the hormone being mimicked" />
                 <CrossLink href="/insights/insulins-forgotten-twin" label="Insulin’s forgotten twin" />
