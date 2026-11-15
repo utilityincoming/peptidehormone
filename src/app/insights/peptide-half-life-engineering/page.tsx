@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
@@ -284,8 +284,8 @@ export default function Article() {
               simplified from the public record; half-life figures are approximate
               population averages that vary by individual and by study. Nothing here is
               dosing guidance or medical advice. Compounds are named to explain the
-              science; maridebart cafraglutide is investigational and not an approved
-              treatment.
+              science.{" "}
+              <StatusNote of={["maridebart-cafraglutide", "semaglutide", "liraglutide"]} />
             </p>
           </article>
         </Container>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -428,9 +428,8 @@ export default function Article() {
               and simplified from the public record. The structural reading above is taken
               from the public registry record and the Lilly discovery paper; residue
               positions are as reported there. Not medical advice. Compounds are named to
-              explain the science, not to endorse any use; eloralintide and the
-              eloralintide–tirzepatide combination are investigational and not approved
-              treatments.
+              explain the science, not to endorse any use.{" "}
+              <StatusNote of={["eloralintide", "eloratzp"]} />
             </p>
           </article>
         </Container>

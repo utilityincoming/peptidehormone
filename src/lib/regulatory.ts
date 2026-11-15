@@ -606,6 +606,13 @@ export const WATCHED: Record<string, WatchedEntry> = {
     verified: "2026-11",
     source: dailymed("elinzanetant"),
   },
+  eloratzp: {
+    name: "EloraTZP",
+    status: "investigational",
+    basis: "Eloralintide given with tirzepatide (Eli Lilly); phase 2b reported in 2026, with no label for either the combination or eloralintide when checked.",
+    verified: "2026-11",
+    source: trials("eloralintide"),
+  },
   cagrisema: {
     name: "CagriSema",
     status: "investigational",

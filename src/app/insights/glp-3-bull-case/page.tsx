@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Callout, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Callout, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -408,8 +408,8 @@ export default function Article() {
               disclosures and simplified in places. Not individualized medical advice
               or a prescription. Where a dose or regimen appears it is reported from
               its source as research literacy — so you can read the evidence yourself
-              — not an instruction to dose. Compounds are named to explain the science;
-              retatrutide is investigational and not an approved treatment.
+              — not an instruction to dose. Compounds are named to explain the science.{" "}
+              <StatusNote of={["retatrutide"]} />
             </p>
           </article>
         </Container>

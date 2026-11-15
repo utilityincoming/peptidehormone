@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -264,7 +264,7 @@ export default function Article() {
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism, summarized from public scientific
               literature and clinical-trial disclosures and simplified in places. Not individualized medical advice or a prescription. Where a dose or regimen appears it is reported from its source as research literacy — so you can read the evidence yourself — not an instruction to dose.
-              Eloralintide and EloraTZP are investigational and not approved.
+              {" "}<StatusNote of={["eloralintide", "eloratzp", "tirzepatide"]} />{" "}
               Specific compounds and trials are named to explain the science; verify any
               claim against the linked primary sources.
             </p>

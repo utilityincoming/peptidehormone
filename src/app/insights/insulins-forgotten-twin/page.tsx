@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -218,9 +218,8 @@ export default function Article() {
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational reference on mechanism and the state of the evidence, summarized
               and simplified from the public record. Not medical advice. Compounds are named
-              to explain the science, not to endorse any use; pramlintide is an approved
-              amylin analog, while cagrilintide and amycretin are investigational and not
-              approved treatments.
+              to explain the science, not to endorse any use.{" "}
+              <StatusNote of={["cagrilintide", "amycretin", "pramlintide"]} />
             </p>
           </article>
         </Container>

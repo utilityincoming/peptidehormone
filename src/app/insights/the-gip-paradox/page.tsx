@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -201,8 +201,8 @@ export default function Article() {
               Educational reference on mechanism and the state of the evidence, summarized
               and simplified from the public record; the mechanisms behind GIP agonism versus
               antagonism are an area of active, unsettled research. Not medical advice.
-              Compounds are named to explain the science; maridebart cafraglutide is
-              investigational and not an approved treatment.
+              Compounds are named to explain the science.{" "}
+              <StatusNote of={["maridebart-cafraglutide", "tirzepatide"]} />
             </p>
           </article>
         </Container>

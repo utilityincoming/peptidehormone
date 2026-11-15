@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -321,6 +321,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/one-molecule-five-approvals" label="One molecule, five approvals — what each claim has to prove" />
                 <CrossLink href="/insights/the-triple-agonist" label="What is retatrutide? The triple agonist explained" />
                 <CrossLink href="/insights/glp-3-bull-case" label="The GLP-3 bull case" />
                 <CrossLink href="/insights/not-two-drugs-in-one" label="Why tirzepatide isn't two drugs in one" />
@@ -334,8 +335,8 @@ export default function Article() {
               Educational reference on how clinical trial results are analysed and
               reported, summarized and simplified from the public record. Not medical
               advice. Trial figures are quoted to explain the method, not to rank or
-              endorse any drug; retatrutide and CagriSema were not approved treatments
-              when this page was reviewed.
+              endorse any drug.{" "}
+              <StatusNote of={["retatrutide", "cagrisema", "semaglutide", "tirzepatide"]} />
             </p>
           </article>
         </Container>
