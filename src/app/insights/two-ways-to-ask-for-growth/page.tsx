@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -27,7 +28,8 @@ export const metadata: Metadata = {
 const REF = {
   bowers: "https://doi.org/10.1210/endo-128-4-2027", // Bowers et al. 1991, Endocrinology — GHRP dual hypothalamic/pituitary site, GHRH synergy not via somatostatin
   ionescu: "https://pubmed.ncbi.nlm.nih.gov/17018654/", // Ionescu & Frohman 2006, JCEM — single CJC-1295 injection preserves GH pulsatility, raises trough
-  falutz: "https://pubmed.ncbi.nlm.nih.gov/18057338/", // Falutz et al. 2007, NEJM — tesamorelin reduces visceral adipose tissue in HIV lipodystrophy
+  falutz: "https://pubmed.ncbi.nlm.nih.gov/18057338/", // Falutz et al. 2007, NEJM — tesamorelin 2 mg daily reduces visceral adipose tissue in HIV lipodystrophy
+  egriftaWr: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/022505s020lbl.pdf",
   raun: "https://pubmed.ncbi.nlm.nih.gov/9849822/", // Raun et al. 1998, Eur J Endocrinol — ipamorelin, the first selective GH secretagogue (no ACTH/cortisol rise)
   nass: "https://doi.org/10.7326/0003-4819-149-9-200811040-00003", // Nass et al. 2008, Ann Intern Med — oral MK-677 raises GH/IGF-1 and fat-free mass, no strength gain, glucose rises
 } as const;
@@ -48,7 +50,11 @@ const FAQS = [
   },
   {
     q: "Is any growth-hormone secretagogue actually FDA-approved?",
-    a: "One, for one thing. Tesamorelin (Egrifta), a stabilized GHRH analog, is approved to reduce excess visceral abdominal fat in people with HIV-associated lipodystrophy, on the strength of a randomized trial in which visceral fat fell about 15% versus a rise on placebo. No GHRP and no ghrelin mimetic has an approval for body composition, recovery, or anti-aging; ipamorelin's one completed human efficacy trial (for post-operative ileus) failed, and MK-677 remains investigational. All of these compounds are prohibited in sport by WADA.",
+    a: "One, for one thing. Tesamorelin (Egrifta), a stabilized GHRH analog, is approved to reduce excess visceral abdominal fat in people with HIV-associated lipodystrophy, on the strength of a randomized trial in which 2 mg subcutaneously once daily cut visceral fat about 15% versus a rise on placebo. Egrifta WR is a later formulation labeled at 1.28 mg daily — same active, different product, not an interchangeable milligram. No GHRP and no ghrelin mimetic has an approval for body composition, recovery, or anti-aging; ipamorelin's one completed human efficacy trial (for post-operative ileus) failed, and MK-677 remains investigational. All of these compounds are prohibited in sport by WADA.",
+  },
+  {
+    q: "What dose of tesamorelin was studied?",
+    a: "Falutz et al. gave 2 mg subcutaneously once daily for 26 weeks. That is the trial milligram. Current US labels differ by formulation: Egrifta WR is 1.28 mg once daily. Neither figure is a secretagogue-class dose, and neither transfers to sermorelin, CJC-1295, or a GHRP.",
   },
   {
     q: "What does MK-677 (ibutamoren) actually do in people?",
@@ -168,14 +174,22 @@ export default function Article() {
                 is the same fragment with a stabilizing group on the N-terminus, and
                 it is the one GHRH analog that carries a real outcome trial and an
                 FDA label. In a randomized study of 412 people with HIV-associated
-                abdominal fat accumulation, daily tesamorelin cut visceral adipose
-                tissue by about 15% while placebo rose (
+                abdominal fat accumulation, 2&nbsp;mg of tesamorelin subcutaneously
+                once daily cut visceral adipose tissue by about 15% while placebo
+                rose (
                 <a href={REF.falutz} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Falutz et&nbsp;al., NEJM, 2007
                 </a>
                 ). That is the high-water mark for evidence in this entire family —
-                one molecule, one population, one body-composition endpoint.
+                one molecule, one population, one body-composition endpoint, one
+                reported milligram. Egrifta WR, a later formulation, is labeled at
+                1.28&nbsp;mg once daily (
+                <a href={REF.egriftaWr} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Egrifta WR prescribing information
+                </a>
+                ); the milligram is part of the product, not a class constant.
               </P>
+              <DocumentedRange id="tesamorelin" />
               <P>
                 <Link href="/hormones/cjc-1295" className={LINK}>CJC-1295</Link>{" "}
                 is where the engineering gets interesting, and where the pulsatility
@@ -310,6 +324,18 @@ export default function Article() {
               />
             </Section>
 
+            <section>
+              <h2 className="font-display text-2xl font-semibold sm:text-[1.7rem]">Common questions</h2>
+              <dl className="mt-6 space-y-5">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/40 p-5">
+                    <dt className="font-display text-base font-semibold text-ink">{f.q}</dt>
+                    <dd className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
@@ -317,6 +343,7 @@ export default function Article() {
                 <CrossLink href="/hormones/ghrh" label="GHRH reference (the accelerator)" />
                 <CrossLink href="/hormones/ghrelin" label="Ghrelin reference (the second button)" />
                 <CrossLink href="/hormones/tesamorelin" label="Tesamorelin reference (the one with a label)" />
+                <CrossLink href="/insights/how-to-read-peptide-dosing" label="How to read a peptide dose — four kinds of milligram" />
                 <CrossLink href="/hormones/ipamorelin" label="Ipamorelin reference (the selective GHRP)" />
                 <CrossLink href="/hormones/cjc-1295" label="CJC-1295 reference (and the DAC trade-off)" />
                 <CrossLink href="/families/growth-repair" label="The growth & repair family" />

@@ -83,9 +83,9 @@ export const PEPTIDES: Record<string, Peptide> = {
     vialMg: 5, vialUsd: 40,
   },
   tesamorelin: {
-    id: "tesamorelin", name: "Tesamorelin", doseLow: 1000, doseHigh: 2000, perWeek: 7,
+    id: "tesamorelin", name: "Tesamorelin", doseLow: 2000, doseHigh: 2000, perWeek: 7,
     route: "SubQ", evidence: "clinical", hue: HUE.green,
-    note: "Stabilized GHRH analog; the one FDA-approved entry here (HIV lipodystrophy).",
+    note: "Egrifta SV and the Falutz 2007 trial used 2 mg SC once daily. Egrifta WR is a different formulation at 1.28 mg daily — not interchangeable milligrams. Titration is not used.",
     vialMg: 5, vialUsd: 90,
   },
   "aod-9604": {
@@ -95,15 +95,15 @@ export const PEPTIDES: Record<string, Peptide> = {
     vialMg: 5, vialUsd: 45,
   },
   semaglutide: {
-    id: "semaglutide", name: "Semaglutide", doseLow: 250, doseHigh: 1000, perWeek: 1,
+    id: "semaglutide", name: "Semaglutide", doseLow: 1700, doseHigh: 2400, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.teal,
-    note: "Long-acting GLP-1 receptor agonist; titrated weekly for metabolic effect.",
+    note: "Wegovy maintenance is 1.7 or 2.4 mg once weekly; titration starts at 0.25 mg. Ozempic T2D maintenance is 0.5, 1, or 2 mg. This span is Wegovy's obesity maintenance, not a start dose.",
     vialMg: 5, vialUsd: 120, catalogSlug: "semaglutide",
   },
   tirzepatide: {
-    id: "tirzepatide", name: "Tirzepatide", doseLow: 2500, doseHigh: 5000, perWeek: 1,
+    id: "tirzepatide", name: "Tirzepatide", doseLow: 5000, doseHigh: 15000, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.blue,
-    note: "Dual GIP/GLP-1 co-agonist; weekly dosing, stepwise titration.",
+    note: "Zepbound/Mounjaro maintenance is 5, 10, or 15 mg once weekly (SURMOUNT-1). Titration starts at 2.5 mg, which is not a maintenance dose.",
     vialMg: 10, vialUsd: 150, catalogSlug: "tirzepatide",
   },
   "mots-c": {
@@ -151,14 +151,20 @@ export const PEPTIDES: Record<string, Peptide> = {
   retatrutide: {
     id: "retatrutide", name: "Retatrutide", doseLow: 4000, doseHigh: 12000, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.blue,
-    note: "Phase 3 targets were 4, 9, or 12 mg once weekly, stepped from 2 mg (TRIUMPH-1). Not approved.",
+    note: "Phase 3 targets were 4, 9, or 12 mg once weekly, stepped from 2 mg (TRIUMPH-1). Not approved. This box is that target span, not a start dose.",
     vialMg: 10, vialUsd: 160, catalogSlug: "retatrutide",
   },
   cagrilintide: {
-    id: "cagrilintide", name: "Cagrilintide", doseLow: 300, doseHigh: 2400, perWeek: 1,
+    id: "cagrilintide", name: "Cagrilintide", doseLow: 2400, doseHigh: 4500, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.teal,
-    note: "Long-acting amylin analog trialed for weight management, often with semaglutide.",
+    note: "Phase 2 obesity arms were 0.3, 0.6, 1.2, 2.4, or 4.5 mg once weekly, with up to 6 weeks of escalation (Lau 2021). Not approved. This box is the upper trial span, not the 0.3 mg start.",
     vialMg: 5, vialUsd: 130,
+  },
+  survodutide: {
+    id: "survodutide", name: "Survodutide", doseLow: 2400, doseHigh: 4800, perWeek: 1,
+    route: "SubQ", evidence: "clinical", hue: HUE.amber,
+    note: "Phase 2 obesity arms were 0.6, 2.4, 3.6, or 4.8 mg once weekly after 20 weeks of escalation (le Roux 2024). Not approved. This box is the 2.4–4.8 mg target span, not the 0.6 mg start.",
+    vialMg: 10, vialUsd: 160, catalogSlug: "survodutide",
   },
   eloralintide: {
     id: "eloralintide", name: "Eloralintide", doseLow: 1000, doseHigh: 9000, perWeek: 1,
@@ -167,9 +173,9 @@ export const PEPTIDES: Record<string, Peptide> = {
     vialMg: 10, vialUsd: 180, catalogSlug: "eloralintide",
   },
   "pt-141": {
-    id: "pt-141", name: "PT-141 (Bremelanotide)", doseLow: 1000, doseHigh: 2000, perWeek: 1,
+    id: "pt-141", name: "PT-141 (Bremelanotide)", doseLow: 1750, doseHigh: 1750, perWeek: 1,
     route: "SubQ", evidence: "clinical", hue: HUE.rose,
-    note: "Melanocortin agonist approved for HSDD; used as-needed, not continuously.",
+    note: "Vyleesi label is 1.75 mg SC as needed, at least 45 minutes before activity — not a weekly schedule.",
     vialMg: 10, vialUsd: 50,
   },
   "kisspeptin-10": {
@@ -277,6 +283,7 @@ const SCHEDULE: Record<string, Partial<Peptide>> = {
   "melanotan-2": { timing: "PM", withFood: "Any" },
   retatrutide: { timing: "Any day", withFood: "Any" },
   cagrilintide: { timing: "Any day", withFood: "Any" },
+  survodutide: { timing: "Any day", withFood: "Any" },
   eloralintide: { timing: "Any day", withFood: "Any" },
   "pt-141": { timing: "As needed (~45 min prior)", withFood: "Empty stomach" },
   "kisspeptin-10": { timing: "AM", withFood: "Any" },

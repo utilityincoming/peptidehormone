@@ -398,6 +398,7 @@ export default function Article() {
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/insights/how-to-reconstitute-peptides" label="How to reconstitute peptides — what happens after the vial is opened" />
+                <CrossLink href="/insights/how-to-read-peptide-dosing" label="How to read a peptide dose — four kinds of milligram" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from — the supply chain behind the certificate" />
                 <CrossLink href="/insights/what-you-can-actually-get" label="Cataloged vs. reachable — the sourcing standard this site applies" />
                 <CrossLink href="/insights/the-complexity-ladder" label="The complexity ladder — why longer peptides are harder to make cleanly" />

@@ -83,6 +83,15 @@ export default function Article() {
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
             <DocumentedRange id="semaglutide" />
+            <P>
+              The box is Wegovy&rsquo;s published maintenance span — 1.7 or 2.4&nbsp;mg
+              once weekly — not the 0.25&nbsp;mg titration start, and not Ozempic&rsquo;s
+              0.5–2&nbsp;mg diabetes label. How those milligrams come apart is{" "}
+              <Link href="/insights/how-to-read-peptide-dosing" className={LINK}>
+                how to read a peptide dose
+              </Link>
+              .
+            </P>
             <Section title="The needle was never a choice">
               <P>
                 A peptide is, chemically,{" "}

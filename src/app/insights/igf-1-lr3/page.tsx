@@ -51,6 +51,10 @@ const FAQS = [
     a: "There are no controlled human trials of IGF-1 LR3. The closest anchor is mecasermin (Increlex), FDA-approved recombinant human IGF-1 for severe primary IGF-1 deficiency — the same core molecule acting on the same receptor. Its label documents hypoglycemia, tonsillar/lymphoid hypertrophy, intracranial hypertension, systemic hypersensitivity, and a contraindication in active or suspected malignancy. That label is the best-characterized window we have into what sustained IGF-1R agonism does in humans.",
   },
   {
+    q: "What dose of IGF-1 LR3 do people use?",
+    a: "There is no approved human dose and no trial regimen. The range this reference documents is 100–500 mcg per administration, labeled anecdotal — community convention, not a clinical figure. Mecasermin (Increlex) starts at 0.04–0.08 mg/kg twice daily, maximum 0.12 mg/kg twice daily, for severe primary IGF-1 deficiency. That is a different analog, a weight-based pediatric endocrine regimen, and not a conversion factor for LR3.",
+  },
+  {
     q: "Is IGF-1 LR3 legal, or allowed in sport?",
     a: "It is sold as a research chemical — unapproved for human use, which is not the same as unregulated; distribution for human consumption is not lawful. In sport it is prohibited at all times under WADA category S2 (peptide hormones, growth factors and mimetics); IGF-1 and its analogs are named there, as is MGF, with no in- or out-of-competition distinction. The 2026 Prohibited List took effect January 1, 2026.",
   },
@@ -394,6 +398,7 @@ export default function Article() {
                 <CrossLink href="/hormones/mgf" label="MGF — the local, load-triggered pulse" />
                 <CrossLink href="/insights/the-other-pedal" label="The other pedal — the whole IGF-1 accelerator" />
                 <CrossLink href="/tools/half-life" label="Half-life & dosing calculator (correct molar mass)" />
+                <CrossLink href="/insights/how-to-read-peptide-dosing" label="How to read a peptide dose — four kinds of milligram" />
                 <CrossLink href="/insights/the-gene-the-parents-fight-over" label="The gene the parents fight over — IGF-2 imprinting" />
                 <CrossLink href="/research?q=What%20does%20the%20human%20evidence%20actually%20show%20for%20IGF-1%20LR3%2C%20and%20what%20is%20its%20true%20half-life%3F" label="Ask the research agent what the human data shows" />
               </ul>
