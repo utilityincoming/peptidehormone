@@ -6,8 +6,7 @@ import styles from "./home.module.css";
 import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
-import { InsightCover } from "@/components/InsightCover";
-import { MechanismCover, hasMechanismCover } from "@/components/MechanismCover";
+import { HomeReadingPlate } from "@/components/HomeReadingPlate";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
 import { StructureHero } from "@/components/StructureHero";
@@ -337,16 +336,7 @@ export default function Home() {
                 href={`/insights/${lead.slug}`}
                 className="group mt-12 grid overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
               >
-                {hasMechanismCover(lead.slug) ? (
-                      <MechanismCover slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
-                    ) : (
-                      <InsightCover
-                  slug={lead.slug}
-                  family={lead.family}
-                  accent={leadFamily?.accent}
-                  className="aspect-[16/9] md:aspect-auto md:min-h-72"
-                />
-                    )}
+                <HomeReadingPlate slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
                 <div className="flex flex-col justify-center p-7 md:p-10">
                   <div className="flex items-center gap-4">
                     <span
@@ -378,16 +368,7 @@ export default function Home() {
                     href={`/insights/${post.slug}`}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel"
                   >
-                    {hasMechanismCover(post.slug) ? (
-                      <MechanismCover slug={post.slug} className="aspect-[16/9]" />
-                    ) : (
-                      <InsightCover
-                      slug={post.slug}
-                      family={post.family}
-                      accent={fam?.accent}
-                      className="aspect-[16/9]"
-                    />
-                    )}
+                    <HomeReadingPlate slug={post.slug} className="aspect-[16/9]" />
                     <div className="flex flex-1 flex-col p-5">
                       <div className="flex items-center justify-between gap-3">
                         <span
