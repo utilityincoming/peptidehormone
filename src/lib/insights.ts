@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "when-the-mix-goes-solid",
+    hormones: ["glucagon", "insulin", "pramlintide", "amylin"],
+    title: "When the mix goes solid",
+    dek: "A peptide blend that clouds, strings, or sets into a gel has not “thickened.” It has left solution. Opposite net charge builds an insoluble complex in seconds; a sequence parked near its isoelectric point, or one that wants a β-sheet, gels over hours; the molecules that stay dissolved keep reacting — deamidation, oxidation, disulfide scrambling — and each of those edits changes what a receptor can still read. Why the brick is a missing dose, why a designed precipitate (insulin glargine) is not the same object as an accidental one, and why the clear supernatant is not proof the hormone survived.",
+    family: "incretins-metabolic",
+    readingMinutes: 12,
+    reviewed: "November 2026",
+  },
+  {
     slug: "how-to-read-peptide-dosing",
     title: "How to read a peptide dose: four kinds of milligram",
     dek: "A milligram on a label, a milligram in a trial protocol, a milligram in a mouse paper, and a milligram in a group chat are not the same object. Mixing them is how people 10× a compounded GLP-1, or treat a research-chemical range as if it were Wegovy. How to tell the four kinds apart, which number the documented-range box actually reports, and why the start of a titration is not the dose the trial judged.",
