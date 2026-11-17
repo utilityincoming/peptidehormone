@@ -288,6 +288,7 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/insights/when-the-mix-goes-solid" label="When the mix goes solid — charge, gels, and what the receptor still reads" />
                 <CrossLink href="/insights/getting-the-molecule-in" label="Why are peptides injected? The delivery problem" />
                 <CrossLink href="/insights/where-the-powder-comes-from" label="Where the powder comes from" />
                 <CrossLink href="/insights/the-complexity-ladder" label="Where analytical trust starts to mean something" />
