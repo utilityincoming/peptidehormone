@@ -13,14 +13,13 @@ export function SequenceSignalHero() {
         <title id="signal-title">Oxytocin: from sequence to signal</title>
         <desc id="signal-description">Read downward: the mature nine-residue oxytocin sequence CYIQNCPLG, with a Cys1–Cys6 disulfide and amidated Gly9. An enlarged receptor-bound peptide conformation leads to the oxytocin receptor across a schematic membrane. Peptide and receptor alpha-carbon traces are projected from PDB 7RYC; connecting paths are conceptual, not a folding trajectory. A schematic Gq signal continues into the cell.</desc>
         <defs>
-          <radialGradient id="signal-halo"><stop stopColor="#a5adff" stopOpacity=".16"/><stop offset="1" stopColor="#a5adff" stopOpacity="0"/></radialGradient>
+          <radialGradient id="signal-halo"><stop stopColor="#7C83FF" stopOpacity=".16"/><stop offset="1" stopColor="#7C83FF" stopOpacity="0"/></radialGradient>
           <linearGradient id="signal-membrane" x2="0" y2="1"><stop stopColor="#94a9cb" stopOpacity=".02"/><stop offset=".5" stopColor="#94a9cb" stopOpacity=".12"/><stop offset="1" stopColor="#94a9cb" stopOpacity=".02"/></linearGradient>
-          <marker id="signal-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L5 3L0 6" fill="none" stroke="#a5adff"/></marker>
+          <marker id="signal-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L5 3L0 6" fill="none" stroke="#7C83FF"/></marker>
           <pattern id="signal-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#b5c5ec" strokeOpacity=".045"/></pattern>
         </defs>
         <rect width="480" height="600" fill="url(#signal-grid)"/>
         <ellipse cx="255" cy="320" rx="220" ry="255" fill="url(#signal-halo)"/>
-        <g className={styles.rule}><path d="M0 18h14M7 11v14M466 18h14M473 11v14M0 582h14M7 575v14M466 582h14M473 575v14"/></g>
         <text x="24" y="27" className={styles.label}>01 / SEQUENCE</text>
         <text x="456" y="27" textAnchor="end" className={styles.micro}>MATURE OXYTOCIN</text>
         <path d="M35 76H435" className={styles.rule}/>
@@ -37,8 +36,8 @@ export function SequenceSignalHero() {
         <circle cx="154" cy="216" r="56" className={styles.orbit}/>
         <circle cx="154" cy="216" r="66" className={styles.orbit} strokeDasharray="2 7"/>
         <g transform="translate(166 218) scale(5)">
-          <path d={peptidePath} fill="none" stroke="#a5adff" strokeWidth="1.5" strokeLinejoin="round"/>
-          {data.peptide.map((p,i)=><circle key={i} cx={p[0]} cy={p[1]} r="1.15" fill="#e3e5ff" stroke="#a5adff" strokeWidth=".4"/>)}
+          <path d={peptidePath} fill="none" stroke="#7C83FF" strokeWidth="1.5" strokeLinejoin="round"/>
+          {data.peptide.map((p,i)=><circle key={i} cx={p[0]} cy={p[1]} r="1.15" fill="#e3e5ff" stroke="#7C83FF" strokeWidth=".4"/>)}
         </g>
         <text x="259" y="190" className={styles.note}>A ring and a tail.</text>
         <text x="259" y="211" className={styles.micro}>BOUND CONFORMATION</text>
@@ -61,10 +60,10 @@ export function SequenceSignalHero() {
         <text x="456" y="453" textAnchor="end" className={styles.micro}>INSIDE</text>
         <path d="M281 443C282 467 251 467 251 487" className={styles.flow} markerEnd="url(#signal-arrow)"/>
         <text x="24" y="485" className={styles.label}>04 / RESPOND</text>
-        <ellipse cx="252" cy="509" rx="28" ry="18" fill="#202e48" stroke="#a5adff"/>
+        <ellipse cx="252" cy="509" rx="28" ry="18" fill="#202e48" stroke="#7C83FF"/>
         <text x="252" y="514" textAnchor="middle" className={styles.residue}>Gq</text>
         <path d="M252 530V547M252 547C210 547 175 557 146 568M252 547V570M252 547C295 547 328 557 357 568" className={styles.flow}/>
-        {[146,252,357].map((x,i)=><g key={x}><circle cx={x} cy="572" r="4" fill="#a5adff"/><circle cx={x} cy="572" r={11+i*3} className={styles.orbit}/></g>)}
+        {[146,252,357].map((x,i)=><g key={x}><circle cx={x} cy="572" r="4" fill="#7C83FF"/><circle cx={x} cy="572" r={11+i*3} className={styles.orbit}/></g>)}
         <text x="24" y="531" className={styles.micro}>SIGNAL RELAY</text>
         <text x="24" y="549" className={styles.micro}>SCHEMATIC</text>
         </g>

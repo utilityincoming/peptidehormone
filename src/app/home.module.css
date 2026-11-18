@@ -10,7 +10,7 @@
   gap: 22px 40px;
   padding: 28px 32px 24px;
   border: 1px solid #ffffff25;
-  border-top: 2px solid var(--plate-gold);
+  border-top: 2px solid var(--accent);
   border-radius: 4px;
   background: var(--panel);
 }
@@ -55,12 +55,6 @@
 .masthead a:hover { color: var(--accent); }
 .eyebrow { font-size: 13px; line-height: 1.5; color: var(--accent); }
 .title { margin-top: 18px; font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
-.familyIndex { margin-top: 32px; }
-.familyIndex > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; border-top: 1px solid #ffffff25; }
-.familyIndex a { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 44px; padding: 10px 8px 10px 0; border-bottom: 1px solid #ffffff16; font-size: 12px; color: var(--text-secondary); }
-.familyIndex a:nth-child(even) { padding-left: 12px; border-left: 1px solid #ffffff16; }
-.familyIndex a:hover { color: var(--accent); background: var(--panel); }
-.familyIndex a span { color: var(--accent); }
 .specimen { padding: 24px; border: 1px solid #ffffff25; border-top: 2px solid var(--plate-gold); border-radius: 4px; background: var(--panel); }
 .specimenLabel { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: 10px/1.6 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
 .specimenLink { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px solid #ffffff25; font-size: 12px; color: var(--accent); }
@@ -70,5 +64,4 @@
 @media (max-width: 639px) {
   .masthead { margin-bottom: 28px; font-size: 13px; }
   .specimen { padding: 18px 14px; }
-  .familyIndex a { font-size: 11px; }
 }
