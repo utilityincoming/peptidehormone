@@ -7,7 +7,7 @@ const home = readFileSync("src/app/page.tsx", "utf8");
 
 test("homepage offers a separate, disclosed research sourcing card using the shared referral controls", () => {
   assert.match(home, /aria-labelledby="home-sourcing-title"/);
-  assert.match(home, /id="home-sourcing-title"[^>]*>Research materials, one click away\./);
+  assert.match(home, /id="home-sourcing-title"[^>]*>A supplier we link to, disclosed\./);
   assert.match(home, /Browse the supplier’s catalog and review product details at the source\. Copy the code first if you want it applied at checkout\./);
   assert.match(home, /We may earn a commission on purchases through this link\./);
   assert.match(home, /Research-use-only\. Not for human use\./);

@@ -1,10 +1,5 @@
-/* Local atlas treatment: shared navigation, monographs and evidence hues stay intact. */
+/* Homepage uses the site palette. Gold is reserved for plate labels and evidence ticks. */
 .atlas {
-  --surface: #0d1525;
-  --panel: #142037;
-  --accent: #a5adff;
-  --text-secondary: #c0c9da;
-  --text-muted: #9daec5;
   background: var(--surface);
 }
 .sourcing { border-top: 1px solid #ffffff16; padding: 40px 0; }
@@ -15,7 +10,7 @@
   gap: 22px 40px;
   padding: 28px 32px 24px;
   border: 1px solid #ffffff25;
-  border-top: 2px solid var(--accent);
+  border-top: 2px solid var(--plate-gold);
   border-radius: 4px;
   background: var(--panel);
 }
@@ -25,8 +20,8 @@
 .sourcingDetails { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 13px; color: var(--text-secondary); text-decoration: underline; text-underline-offset: 4px; }
 .sourcingDetails:hover { color: var(--accent); }
 .sourcingActions { grid-area: actions; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-.sourcingCta { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 12px 18px; border-radius: 4px; background: var(--accent); color: #0d1525; font-size: 15px; font-weight: 600; transition: background .15s, transform .15s; }
-.sourcingCta:hover { background: #c1c6ff; }
+.sourcingCta { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 12px 18px; border-radius: 4px; background: var(--accent); color: var(--surface); font-size: 15px; font-weight: 600; transition: background .15s, transform .15s; }
+.sourcingCta:hover { background: #9aa0ff; }
 .sourcingCta:active { transform: translateY(1px); }
 .sourcingTab { margin-top: 10px; text-align: center; font-size: 12px; color: var(--text-muted); }
 .sourcingCode { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; color: var(--text-secondary); font-size: 12px; }
@@ -46,39 +41,34 @@
 .hero { border-bottom: 1px solid #ffffff16; }
 .masthead {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 40px;
   padding-bottom: 18px;
   border-bottom: 1px solid #ffffff25;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font-size: 14px;
   color: var(--text-secondary);
 }
+.mastMark { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-family: var(--font-display), sans-serif; font-weight: 600; letter-spacing: -.02em; }
 .masthead a:hover { color: var(--accent); }
-.eyebrow { font: 11px/1.6 var(--font-geist-mono), monospace; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); }
+.eyebrow { font-size: 13px; line-height: 1.5; color: var(--accent); }
 .title { margin-top: 18px; font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
-.hero a[class*="rounded-full"] { border-radius: 4px; }
 .familyIndex { margin-top: 32px; }
 .familyIndex > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; border-top: 1px solid #ffffff25; }
 .familyIndex a { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 44px; padding: 10px 8px 10px 0; border-bottom: 1px solid #ffffff16; font-size: 12px; color: var(--text-secondary); }
 .familyIndex a:nth-child(even) { padding-left: 12px; border-left: 1px solid #ffffff16; }
 .familyIndex a:hover { color: var(--accent); background: var(--panel); }
 .familyIndex a span { color: var(--accent); }
-.specimen { padding: 24px; border: 1px solid #ffffff25; border-top: 2px solid var(--accent); background: var(--surface); }
+.specimen { padding: 24px; border: 1px solid #ffffff25; border-top: 2px solid var(--plate-gold); border-radius: 4px; background: var(--panel); }
 .specimenLabel { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font: 10px/1.6 var(--font-geist-mono), monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--text-muted); }
 .specimenLink { display: flex; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 1px solid #ffffff25; font-size: 12px; color: var(--accent); }
 .specimen :global(.structure-glow) { animation: none; opacity: .12; }
 .families a[class*="group"] { padding: 24px; }
-.families h3 { color: var(--ink); }
 .atlas section[id] { scroll-margin-top: 90px; }
-.atlas section[id] > div > div[class*="rounded-2xl"],
-.atlas section[id] a[class*="rounded-2xl"] { border-radius: 4px; }
 @media (max-width: 639px) {
-  .masthead { margin-bottom: 28px; font-size: 10px; }
+  .masthead { margin-bottom: 28px; font-size: 13px; }
   .specimen { padding: 18px 14px; }
   .familyIndex a { font-size: 11px; }
 }

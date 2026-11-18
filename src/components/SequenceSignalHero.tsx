@@ -8,6 +8,7 @@ const sequence = data.sequence.split("");
 export function SequenceSignalHero() {
   return (
     <figure className={styles.plate}>
+      <div className={styles.viewport}>
       <svg className={styles.diagram} viewBox="0 0 480 600" role="img" aria-labelledby="signal-title" aria-describedby="signal-description">
         <title id="signal-title">Oxytocin: from sequence to signal</title>
         <desc id="signal-description">Read downward: the mature nine-residue oxytocin sequence CYIQNCPLG, with a Cys1–Cys6 disulfide and amidated Gly9. An enlarged receptor-bound peptide conformation leads to the oxytocin receptor across a schematic membrane. Peptide and receptor alpha-carbon traces are projected from PDB 7RYC; connecting paths are conceptual, not a folding trajectory. A schematic Gq signal continues into the cell.</desc>
@@ -43,6 +44,7 @@ export function SequenceSignalHero() {
         <text x="259" y="211" className={styles.micro}>BOUND CONFORMATION</text>
         <text x="259" y="229" className={styles.micro}>Cα TRACE / ENLARGED</text>
         <path d="M209 241C250 260 257 276 271 294" className={styles.flow} markerEnd="url(#signal-arrow)"/>
+        <g className={styles.late}>
         <text x="24" y="297" className={styles.label}>03 / BIND</text>
         <text x="456" y="279" textAnchor="end" className={styles.micro}>OUTSIDE</text>
         <rect x="12" y="330" width="456" height="98" fill="url(#signal-membrane)"/>
@@ -65,7 +67,9 @@ export function SequenceSignalHero() {
         {[146,252,357].map((x,i)=><g key={x}><circle cx={x} cy="572" r="4" fill="#a5adff"/><circle cx={x} cy="572" r={11+i*3} className={styles.orbit}/></g>)}
         <text x="24" y="531" className={styles.micro}>SIGNAL RELAY</text>
         <text x="24" y="549" className={styles.micro}>SCHEMATIC</text>
+        </g>
       </svg>
+      </div>
       <figcaption className={styles.caption}>
         <p><strong>Oxytocin, an endogenous peptide.</strong> Its mature sequence is released from a larger precursor; the Cys1–Cys6 disulfide constrains the ring and Gly9 is amidated.<a href="https://www.uniprot.org/uniprotkb/P01178/entry" aria-label="Source 1: UniProt oxytocin">[1]</a></p>
         <p className={styles.key}><span>Solid traces: deposited structure</span><span>Dashed paths: conceptual transitions</span></p>

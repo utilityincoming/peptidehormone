@@ -4,7 +4,7 @@ import { INSIGHTS } from "@/lib/insights";
 import { homeReading } from "@/lib/home-reading";
 import styles from "./home.module.css";
 import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
-import { Container, SiteHeader, SiteFooter } from "@/components/site";
+import { Container, PeptideMark, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { HomeReadingPlate } from "@/components/HomeReadingPlate";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
@@ -67,7 +67,7 @@ const HOME_TOOLS: {
     tag: "Pharmacokinetics",
     name: "Half-life & dosing",
     blurb:
-      "Model elimination and accumulation from half-life and dose intervals. These estimates do not establish how long biological effects last.",
+      "Model elimination from a half-life and a dose interval. An estimate of concentration, not of how long an effect lasts.",
     accent: "text-accent",
     preview: "half-life",
   },
@@ -94,10 +94,10 @@ const HOME_TOOLS: {
 // At-a-glance coverage — counts driven from the data so they never drift.
 // The page is a server component, so the large HORMONES array stays server-side.
 const STATS: { n: string; label: string }[] = [
-  { n: `${HORMONES.length}`, label: "molecules, graded" },
+  { n: `${HORMONES.length}`, label: "molecules in the catalog" },
   { n: `${FAMILIES.length}`, label: "signaling families" },
-  { n: `${INSIGHTS.length}`, label: "long-form deep-dives" },
-  { n: "3", label: "research tools" },
+  { n: `${INSIGHTS.length}`, label: "essays" },
+  { n: "3", label: "calculators" },
 ];
 
 // The hero's lineage: native GLP-1 and the three molecules engineered from it,
@@ -172,33 +172,35 @@ export default function Home() {
         <section className={styles.hero} aria-labelledby="atlas-title">
           <Container className="relative py-10 md:py-16">
             <div className={styles.masthead}>
-              <span>PeptideHormone / Research atlas</span>
+              <span className={styles.mastMark}>
+                <PeptideMark className="h-5 w-5 text-accent" />
+                PeptideHormone
+              </span>
               <Link href="/methodology">Evidence standards <span aria-hidden>↗</span></Link>
             </div>
             <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
             <div>
-              <p className={styles.eyebrow}>Molecules / mechanisms / evidence</p>
+              <p className={styles.eyebrow}>Reference atlas · not medical advice</p>
               <h1 id="atlas-title" className={styles.title}>
-                An atlas of<br />peptide signaling.
+                Peptide hormones,<br />from sequence to evidence.
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
-                From growth and reproduction to appetite and repair. Explore native
-                hormones and engineered analogs through their receptors, biological
-                roles, and the evidence behind them.
+                Look up a molecule, follow its receptor, and see how far the human
+                evidence goes — native hormones and the analogs engineered from them.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/catalog"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 font-medium text-surface-deep transition-transform hover:-translate-y-0.5"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 font-medium text-surface transition-transform hover:-translate-y-0.5"
                 >
-                  Browse the catalog
+                  Look up a molecule
                   <span aria-hidden>→</span>
                 </Link>
                 <Link
                   href="/insights"
-                  className="inline-flex h-12 items-center justify-center rounded-full border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
+                  className="inline-flex h-12 items-center justify-center rounded-[4px] border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
                 >
-                  Explore the science
+                  Read a deep-dive
                 </Link>
               </div>
               <p className="mt-5 text-sm text-secondary">
@@ -257,7 +259,7 @@ export default function Home() {
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                Find your field of study
+                Twelve signaling families
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
                 Explore peptide signaling families grouped by receptors and biological
@@ -273,7 +275,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
               {FAMILIES.map((f) => (
                 <Link
                   key={f.slug}
@@ -315,12 +317,11 @@ export default function Home() {
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                Across the research atlas
+                Essays that start from the paper
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
-                Long-form deep-dives that trace one molecule — or one question — back
-                to the source: receptors, second messengers, and the evidence behind
-                them. Biology over benefits.
+                Each essay follows one molecule or one question back to the receptor,
+                the signal, and the human evidence.
               </p>
               <Link
                 href="/insights"
@@ -334,7 +335,7 @@ export default function Home() {
             {lead && (
               <Link
                 href={`/insights/${lead.slug}`}
-                className="group mt-12 grid overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
+                className="group mt-12 grid overflow-hidden rounded-[4px] border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
               >
                 <HomeReadingPlate slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
                 <div className="flex flex-col justify-center p-7 md:p-10">
@@ -366,7 +367,7 @@ export default function Home() {
                   <Link
                     key={post.slug}
                     href={`/insights/${post.slug}`}
-                    className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-surface transition-colors hover:bg-panel"
+                    className="group flex flex-col overflow-hidden rounded-[4px] border border-ink/10 bg-surface transition-colors hover:bg-panel"
                   >
                     <HomeReadingPlate slug={post.slug} className="aspect-[16/9]" />
                     <div className="flex flex-1 flex-col p-5">
@@ -406,25 +407,24 @@ export default function Home() {
                   From minutes to days. From one receptor to three.
                 </h2>
                 <p className="mt-3 text-base leading-7 text-secondary">
-                  Native GLP-1 has a half-life of minutes; semaglutide has a half-life
-                  of about a week. Tirzepatide activates GIP and GLP-1 receptors;
-                  retatrutide also activates the glucagon receptor. Drag through
-                  two weeks to compare modeled elimination after a single dose.
+                  Native GLP-1 clears in minutes. Semaglutide lasts about a week.
+                  Tirzepatide adds the GIP receptor; retatrutide also activates
+                  glucagon. Drag across two weeks to compare one modeled dose.
                 </p>
               </figcaption>
 
-              <details className="mt-8 max-w-2xl border border-ink/15 p-5">
-                <summary className="cursor-pointer text-sm text-accent">Structural companion: retatrutide at three receptors</summary>
-                <div className="mt-5"><StructureHero /></div>
-              </details>
-              <div className="mt-8">
+              <div className="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
+                <div>
+                  <p className="text-sm text-plate-gold">Retatrutide at three receptors</p>
+                  <StructureHero />
+                </div>
                 <HeroTimeline series={series} />
               </div>
 
               {frontier && frontierReg && (
-                <div className="mt-4 rounded-2xl border border-accent-amber/30 bg-accent-amber/[0.06] p-4 text-sm leading-6 text-ink/75 sm:p-5">
+                <div className="mt-4 rounded-[4px] border border-plate-gold/40 bg-plate-gold/[0.06] p-4 text-sm leading-6 text-ink/75 sm:p-5">
                   <p>
-                    <span className="font-medium text-accent-amber">
+                    <span className="font-medium text-plate-gold">
                       Retatrutide is not an approved medicine.
                     </span>{" "}
                     {frontierReg.basis} &ldquo;GLP-3&rdquo; is a market nickname
@@ -480,11 +480,11 @@ export default function Home() {
           <Container>
             <div className="max-w-2xl">
               <h2 className="font-display text-3xl font-semibold sm:text-4xl">
-                Run the numbers yourself
+                Check a half-life before you trust a claim
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
-                Free, in-browser, no sign-up — the pharmacokinetics the vendor pages
-                skip. Educational, not dosing advice.
+                In-browser estimates from the numbers on each monograph. No account.
+                Not dosing advice.
               </p>
               <Link
                 href="/tools"
@@ -495,7 +495,7 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-3">
+            <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-ink/10 bg-ink/10 sm:grid-cols-3">
               {HOME_TOOLS.map((t) => (
                 <Link
                   key={t.href}
@@ -560,7 +560,7 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <div className="space-y-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">
+              <div className="space-y-px overflow-hidden rounded-[4px] border border-ink/10 bg-ink/10">
                 {PRINCIPLES.map((p) => (
                   <div key={p.title} className="bg-surface p-7">
                     <PrincipleIcon name={p.icon} className="h-6 w-6 text-accent" />
@@ -580,7 +580,7 @@ export default function Home() {
             <div className={styles.sourcingCard}>
               <div className={styles.sourcingCopy}>
                 <p className={styles.eyebrow}>Affiliate sourcing</p>
-                <h2 id="home-sourcing-title" className={styles.sourcingTitle}>Research materials, one click away.</h2>
+                <h2 id="home-sourcing-title" className={styles.sourcingTitle}>A supplier we link to, disclosed.</h2>
                 <p className={styles.sourcingIntro}>Browse the supplier’s catalog and review product details at the source. Copy the code first if you want it applied at checkout.</p>
                 <Link href="/available" className={styles.sourcingDetails}>View sourcing details <span aria-hidden>→</span></Link>
               </div>

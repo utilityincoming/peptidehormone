@@ -20,6 +20,7 @@
   --accent-purple: #B58CFA;
   --accent-amber: #F5B544;
   --accent-rose: #F472B6;
+  --plate-gold: #d3bb82; /* diagram rules and evidence ticks */
 
   --background: var(--surface);
   --foreground: var(--ink);
@@ -40,6 +41,7 @@
   --color-accent-purple: var(--accent-purple);
   --color-accent-amber: var(--accent-amber);
   --color-accent-rose: var(--accent-rose);
+  --color-plate-gold: var(--plate-gold);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-space-grotesk);
