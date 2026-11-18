@@ -4,7 +4,7 @@ import { INSIGHTS } from "@/lib/insights";
 import { homeReading } from "@/lib/home-reading";
 import styles from "./home.module.css";
 import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
-import { Container, PeptideMark, SiteHeader, SiteFooter } from "@/components/site";
+import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { HomeReadingPlate } from "@/components/HomeReadingPlate";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
@@ -19,6 +19,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  description:
+    "Look up a peptide hormone, follow its receptor, and see how far the human evidence goes. Native hormones, engineered analogs, and the papers behind them. Not medical advice.",
 };
 
 // Short card copy; article introductions remain unchanged.
@@ -77,7 +79,7 @@ const HOME_TOOLS: {
     name: "Analog comparison",
     blurb:
       "Put a native hormone beside the analogs engineered from it — receptor, weight, half-life, and evidence tier on one axis.",
-    accent: "text-accent-teal",
+    accent: "text-accent",
     preview: "compare",
   },
   {
@@ -85,8 +87,8 @@ const HOME_TOOLS: {
     tag: "Protocol planning",
     name: "Cycle planner",
     blurb:
-      "Sketch a research cycle from a goal stack: week-by-week timeline, reference dosing, and a supply estimate. Shareable by URL.",
-    accent: "text-accent-amber",
+      "Lay out a week-by-week research timeline from a goal. Doses are the monograph figures, not a protocol.",
+    accent: "text-accent",
     preview: "cycle",
   },
 ];
@@ -172,10 +174,7 @@ export default function Home() {
         <section className={styles.hero} aria-labelledby="atlas-title">
           <Container className="relative py-10 md:py-16">
             <div className={styles.masthead}>
-              <span className={styles.mastMark}>
-                <PeptideMark className="h-5 w-5 text-accent" />
-                PeptideHormone
-              </span>
+              <span className={styles.mastMark}>Research atlas</span>
               <Link href="/methodology">Evidence standards <span aria-hidden>↗</span></Link>
             </div>
             <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
@@ -213,16 +212,6 @@ export default function Home() {
                 </Link>
                 .
               </p>
-              <nav aria-label="Explore signaling families" className={styles.familyIndex}>
-                <p className={styles.eyebrow}>Browse by biological system</p>
-                <div>
-                  {FAMILIES.map((family) => (
-                    <Link key={family.slug} href={`/families/${family.slug}`}>
-                      {family.name}<span aria-hidden>↗</span>
-                    </Link>
-                  ))}
-                </div>
-              </nav>
             </div>
 
             <aside className={styles.specimen} aria-label="From sequence to signal: oxytocin">
@@ -262,9 +251,8 @@ export default function Home() {
                 Twelve signaling families
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
-                Explore peptide signaling families grouped by receptors and biological
-                roles. Each hub connects native hormones, engineered analogs, and
-                the evidence behind them.
+                Each family groups the native hormone, the analogs made from it, and
+                how far the evidence goes.
               </p>
               <Link
                 href="/catalog"
@@ -284,7 +272,7 @@ export default function Home() {
                 >
                   <div className="flex items-start justify-between">
                     <span
-                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${f.accent}`}
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-[4px] ${f.accent}`}
                       style={{
                         backgroundColor:
                           "color-mix(in oklab, currentColor 12%, transparent)",
@@ -579,7 +567,7 @@ export default function Home() {
           <Container>
             <div className={styles.sourcingCard}>
               <div className={styles.sourcingCopy}>
-                <p className={styles.eyebrow}>Affiliate sourcing</p>
+                <p className={styles.eyebrow}>Disclosed affiliate</p>
                 <h2 id="home-sourcing-title" className={styles.sourcingTitle}>A supplier we link to, disclosed.</h2>
                 <p className={styles.sourcingIntro}>Browse the supplier’s catalog and review product details at the source. Copy the code first if you want it applied at checkout.</p>
                 <Link href="/available" className={styles.sourcingDetails}>View sourcing details <span aria-hidden>→</span></Link>

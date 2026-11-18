@@ -6,21 +6,21 @@
 }
 .diagram { display: block; width: 100%; height: auto; overflow: visible; }
 .diagram text { font-family: var(--font-geist-mono), monospace; }
-.label { fill: #b8bfff; font-size: 11px; letter-spacing: 1.2px; }
+.label { fill: #9aa0ff; font-size: 11px; letter-spacing: 1.2px; }
 .micro { fill: #a8b7cf; font-size: 10px; letter-spacing: .4px; }
 .note { fill: #e2e7f4; font-size: 13px; }
 .residue { fill: #f0f0ff; font-size: 15px; }
 .gold { fill: #d3bb82; font-size: 11px; }
 .rule { fill: none; stroke: #8293b4; stroke-opacity: .35; }
-.orbit { fill: none; stroke: #a5adff; stroke-opacity: .22; }
-.flow { fill: none; stroke: #a5adff; stroke-width: 1.2; stroke-dasharray: 3 5; opacity: .75; }
+.orbit { fill: none; stroke: #7C83FF; stroke-opacity: .22; }
+.flow { fill: none; stroke: #7C83FF; stroke-width: 1.2; stroke-dasharray: 3 5; opacity: .75; }
 .caption { border-top: 1px solid #ffffff20; padding-top: 14px; color: #c0c9da; font-size: 12px; line-height: 1.7; }
 .caption strong { color: #e2e7f4; font-weight: 500; }
-.caption a { color: #bcc3ff; text-decoration: underline; text-underline-offset: 3px; }
+.caption a { color: #9aa0ff; text-decoration: underline; text-underline-offset: 3px; }
 .key { display: flex; flex-wrap: wrap; gap: 3px 16px; margin: 12px 0; color: #a8b7cf; font-size: 10px; }
 .key span::before { content: ''; display: inline-block; width: 16px; border-top: 1px solid #a5adff; margin-right: 6px; vertical-align: middle; }
 .key span:last-child::before { border-top-style: dashed; }
-.caption summary { cursor: pointer; padding: 10px 0; color: #bcc3ff; }
+.caption summary { cursor: pointer; padding: 10px 0; color: #9aa0ff; }
 .caption summary:hover { color: #fff; }
 .caption summary:focus-visible, .caption a:focus-visible { outline: 2px solid #bcc3ff; outline-offset: 4px; }
 .notes { display: grid; gap: 12px; padding: 8px 0; }
