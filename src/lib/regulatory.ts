@@ -358,6 +358,14 @@ const ROWS: Record<string, RegulatoryRow> = {
     status: "endogenous",
     basis: "No CNP product; its analog vosoritide (Voxzogo, 2021) is approved for achondroplasia.",
   },
+  apelin: {
+    status: "endogenous",
+    basis: "No approved apelin product. Human evidence is from short intravenous infusions; the small-molecule agonist AMG 986 reached phase 1 without a clinically meaningful cardiac effect.",
+  },
+  elabela: {
+    status: "endogenous",
+    basis: "No elabela product. It is the second endogenous ligand of the apelin receptor, studied for development and cardiovascular effects, with no approved drug.",
+  },
 
   // ── Muscle & TGF-β ──
   myostatin: {

@@ -32,6 +32,9 @@ const REF = {
   barnes: "https://pubmed.ncbi.nlm.nih.gov/23519586/", // Barnes et al. 2013, Circ Heart Fail — sustained APJ agonism in heart failure
   vinel: "https://pubmed.ncbi.nlm.nih.gov/30061698/", // Vinel et al. 2018, Nat Med — apelin and age-associated muscle loss
   amg: "https://pubmed.ncbi.nlm.nih.gov/35460392/", // Winkle et al. 2022, Clin Transl Sci — AMG 986 first-in-human
+  boucher: "https://pubmed.ncbi.nlm.nih.gov/15677759/", // Boucher et al. 2005, Endocrinology — apelin as an adipokine
+  ace2: "https://pubmed.ncbi.nlm.nih.gov/11815627/", // Vickers et al. 2002, JBC — ACE2 hydrolyzes apelin-13
+  brash: "https://pubmed.ncbi.nlm.nih.gov/29876530/", // Brash et al. 2018, JACC Basic Transl Sci — apelin in PAH
 } as const;
 
 const FAQS = [
@@ -54,6 +57,18 @@ const FAQS = [
   {
     q: "Is there an apelin drug?",
     a: "No apelin-receptor drug is approved. The native peptide is cleared within minutes, so the human evidence is from intravenous infusions. A long-acting small-molecule agonist, AMG 986, was well tolerated in a first-in-human study of healthy volunteers and people with heart failure, and over that short exposure it did not produce a clinically meaningful change in heart function. The biology that makes the infusion interesting is real; a medicine that holds the effect has not been shown.",
+  },
+  {
+    q: "Does apelin go up or down in obesity?",
+    a: "Up, when insulin is high. Fat cells make and secrete apelin, and both the fat-cell expression and the blood level rise in obese, hyperinsulinemic mice and in obese patients. Insulin itself drives that expression. This is the opposite pattern from adiponectin, which falls as fat mass rises. A higher level is not evidence that more apelin would cause weight loss.",
+  },
+  {
+    q: "What does ACE2 do to apelin?",
+    a: "ACE2 removes the C-terminal phenylalanine from apelin-13, the same single-residue clip it uses on angiotensin II. In the original enzyme screen, apelin-13 was one of the three peptides ACE2 cut most efficiently. Losing that phenylalanine inactivates the peptide at the receptor, which is a large part of why an apelin infusion has to be continuous.",
+  },
+  {
+    q: "Has apelin been infused in pulmonary hypertension?",
+    a: "Yes, acutely. In a randomized crossover study, 19 patients with pulmonary arterial hypertension received intravenous [Pyr1]apelin-13 during right-heart catheterization. Pulmonary vascular resistance fell and cardiac output rose, and the effect was larger in people already taking a PDE5 inhibitor. It was a short hemodynamic study, not a treatment trial.",
   },
 ];
 
@@ -198,10 +213,12 @@ export default function Article() {
 
             <Section title="What the infusion does in a person">
               <P>
-                The human evidence is infusion evidence, because the peptide is gone
-                in minutes. In healthy volunteers, intravenous [Pyr<sup>1</sup>]apelin-13
-                raised cardiac output and lowered blood pressure and peripheral
-                resistance (
+                The human evidence is infusion evidence, because the                 peptide is gone
+                in minutes. In healthy volunteers and in patients with chronic heart
+                failure, intravenous [Pyr<sup>1</sup>]apelin-13 raised cardiac index
+                and lowered mean arterial pressure and peripheral resistance. The
+                same program found that forearm dilatation to apelin was preserved
+                in heart failure, where dilatation to acetylcholine was not (
                 <a href={REF.japp} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Japp et&nbsp;al., 2010
                 </a>
@@ -219,11 +236,11 @@ export default function Article() {
                 <a href={REF.barnes} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Barnes et&nbsp;al., 2013
                 </a>
-                ). Twelve patients and six hours is a pharmacological demonstration,
-                not an outcomes trial. Nobody counted hospitalizations. The result
-                says the receptor still answers in a failing heart, including while
-                the renin-angiotensin system is switched on, which is the background
-                of modern heart-failure treatment.
+                ). These are pharmacological demonstrations, not outcomes trials.
+                Nobody counted hospitalizations. The result says the receptor still
+                answers in a failing heart, including while the renin-angiotensin
+                system is switched on, which is the background of modern
+                heart-failure treatment.
               </P>
               <P>
                 The same peptide has a second, older job in fluid balance. Apelin and
@@ -250,6 +267,103 @@ export default function Article() {
                 a hormone uses still predicts the speed: a GPCR second messenger
                 answers in seconds, which is why an apelin infusion is felt as
                 hemodynamics and gone when the drip stops.
+              </P>
+            </Section>
+
+            <Section title="Where it comes from">
+              <P>
+                Apelin is not a single-gland hormone. The precursor is expressed in
+                endothelium, cardiomyocytes, adipocytes, and the magnocellular
+                neurons that also make{" "}
+                <Link href="/hormones/vasopressin" className={LINK}>vasopressin</Link>.
+                Tatemoto found it in stomach extracts because that is where the
+                purification started, not because the stomach is its only source.
+                Which tissue is speaking depends on the question: the heart and
+                vessels for the hemodynamic infusion, the hypothalamus for water
+                balance, fat for the insulin-linked rise, muscle for the signal
+                that falls with age.
+              </P>
+              <P>
+                The circulating species is mostly the pyroglutamyl 13-mer, sequence
+                written Pyr-Arg-Pro-Arg-Leu-Ser-His-Lys-Gly-Pro-Met-Pro-Phe. The
+                C-terminal phenylalanine is not decorative. Cut it off and the
+                receptor largely stops hearing the peptide.
+              </P>
+            </Section>
+
+            <Section title="The enzyme that erases it">
+              <P>
+                ACE2 is usually introduced as the enzyme that converts angiotensin II
+                into angiotensin-(1–7), a counterweight inside the renin-angiotensin
+                system. When the enzyme was first screened against a panel of
+                biological peptides, apelin-13 was hydrolyzed as efficiently as
+                angiotensin II. In both cases ACE2 removes exactly one C-terminal
+                residue (
+                <a href={REF.ace2} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Vickers et&nbsp;al., 2002
+                </a>
+                ). For apelin that residue is the phenylalanine the receptor needs.
+              </P>
+              <P>
+                The practical consequence is the short half-life. Commercial blood
+                tests have a second problem on top of the speed: many ELISAs do not
+                distinguish the active 13-mer from inactive pieces of the same
+                precursor, so a reported &ldquo;apelin level&rdquo; can mix a signal
+                with its own wreckage. A selective mass-spectrometry assay, and a
+                blood-collection protocol that stops the peptidases in the tube, were
+                required before an infused concentration could even be measured in
+                animals. Curiosity about a number on a lab report should start there.
+              </P>
+            </Section>
+
+            <Section title="Why it rises as fat rises">
+              <P>
+                Fat cells make apelin and secrete it. In mice, expression in
+                adipocytes and the level in blood rise together in obesities that
+                come with high insulin, and they fall when insulin is absent. Insulin
+                itself increases apelin expression in human and mouse fat cells.
+                Obese patients in the same study had higher plasma apelin and higher
+                insulin (
+                <a href={REF.boucher} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Boucher et&nbsp;al., 2005
+                </a>
+                ).
+              </P>
+              <P>
+                That is the opposite of{" "}
+                <Link href="/hormones/adiponectin" className={LINK}>adiponectin</Link>,
+                the fat hormone whose blood level falls as fat mass rises. Apelin
+                behaves more like a readout of the insulin-rich fat depot than like a
+                missing brake. Raising it further is not, on this evidence, a
+                weight-loss strategy. The paper&rsquo;s own question was whether the
+                extra apelin is a friend or a foe. The answer is still split by
+                tissue: useful as a vasodilator and an insulin-sensitizing signal in
+                rodents, unproven as a drug in people, and already high in the state
+                people most want to treat.
+              </P>
+            </Section>
+
+            <Section title="The lung, for an afternoon">
+              <P>
+                Pulmonary arterial hypertension is a high-resistance lung circuit.
+                A drug that dilates pulmonary vessels and raises cardiac output is
+                the shape of the existing treatments, which is why apelin was taken
+                into a catheterization lab. Nineteen patients received intravenous
+                [Pyr<sup>1</sup>]apelin-13 or saline, in random order, during
+                right-heart catheterization. Resistance in the lung vessels fell and
+                cardiac output rose. The change was larger in the patients already
+                taking a PDE5 inhibitor, a class that raises cGMP (
+                <a href={REF.brash} target="_blank" rel="noopener noreferrer" className={LINK}>
+                  Brash et&nbsp;al., 2018
+                </a>
+                ).
+              </P>
+              <P>
+                An afternoon of invasive measurements is the right size of claim.
+                It shows the human pulmonary circulation still answers the peptide.
+                It does not show that a course of treatment changes walking
+                distance, hospitalizations, or survival. The trial registration is
+                NCT01457170, and the paper stops at hemodynamics.
               </P>
             </Section>
 
@@ -318,7 +432,8 @@ export default function Article() {
                   ["One receptor, found first", "APJ was cloned in 1993 as an angiotensin-receptor lookalike that did not bind angiotensin. Apelin, its ligand, was isolated in 1998."],
                   ["Several lengths, one name", "[Pyr1]apelin-13 is the main circulating form and the stronger G-protein agonist. Apelin-36 lasts on the receptor and internalizes it."],
                   ["A second ligand", "Elabela (Toddler) activates the same receptor, shares little sequence, and carries the embryonic heart-development job."],
-                  ["The human effect is an infusion", "In volunteers and in twelve heart-failure patients, apelin-13 raised cardiac output while pressure and resistance fell. The drip is the experiment."],
+                  ["The human effect is an infusion", "Acute infusions raise cardiac output and lower resistance in heart failure and in pulmonary arterial hypertension. The drip is the experiment."],
+                  ["Fat raises it; ACE2 erases it", "Adipocytes secrete more apelin when insulin is high. ACE2 clips the C-terminal phenylalanine and the peptide goes quiet."],
                   ["No approved drug", "AMG 986 was tolerated and, over a short exposure, did not move heart function enough to matter. Mechanism is ahead of the page."],
                 ]}
               />
@@ -327,6 +442,8 @@ export default function Article() {
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+                <CrossLink href="/hormones/apelin" label="Apelin reference" />
+                <CrossLink href="/hormones/elabela" label="Elabela reference (the second ligand)" />
                 <CrossLink href="/families/cardiovascular" label="Cardiovascular & natriuretic peptides" />
                 <CrossLink href="/insights/the-heart-is-a-gland" label="The heart is a gland — ANP, BNP, and CNP" />
                 <CrossLink href="/insights/four-ways-to-hear-a-hormone" label="Four ways a cell hears a peptide" />
