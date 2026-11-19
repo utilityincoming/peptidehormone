@@ -209,6 +209,15 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "8959763", title: "C-type natriuretic peptide", source: "Peptides", year: "1996" },
     { pmid: "33894277", title: "The natriuretic peptide system in heart failure: Diagnostic and therapeutic implications", source: "Pharmacology & therapeutics", year: "2021" },
   ],
+  apelin: [
+    { pmid: "9792798", title: "Isolation and characterization of a novel endogenous peptide ligand for the human APJ receptor", source: "Biochemical and biophysical research communications", year: "1998" },
+    { pmid: "20385929", title: "Acute cardiovascular effects of apelin in humans: potential role in patients with chronic heart failure", source: "Circulation", year: "2010" },
+    { pmid: "29876530", title: "Short-Term Hemodynamic Effects of Apelin in Patients With Pulmonary Arterial Hypertension", source: "JACC. Basic to translational science", year: "2018" },
+  ],
+  elabela: [
+    { pmid: "24316148", title: "ELABELA: a hormone essential for heart development signals via the apelin receptor", source: "Developmental cell", year: "2013" },
+    { pmid: "24407481", title: "Toddler: an embryonic signal that promotes cell movement via Apelin receptors", source: "Science (New York, N.Y.)", year: "2014" },
+  ],
   myostatin: [
     { pmid: "23517348", title: "Mechanisms regulating skeletal muscle growth and atrophy", source: "The FEBS journal", year: "2013" },
     { pmid: "34520530", title: "Myostatin/Activin Receptor Ligands in Muscle and the Development Status of Attenuating Drugs", source: "Endocrine reviews", year: "2022" },

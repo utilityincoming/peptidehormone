@@ -1283,6 +1283,61 @@ const BASE: Hormone[] = [
     halfLife: "~2–3 min",
     halfLifeMin: 2.5,
   },
+  {
+    slug: "apelin",
+    name: "Apelin",
+    family: "cardiovascular",
+    type: "endogenous",
+    evidence: "Established",
+    summary: "The APJ peptide that strengthens the heartbeat while lowering pressure.",
+    class: "Preproapelin-derived peptide; circulating form is [Pyr1]apelin-13",
+    source: "Endothelium, heart, fat, and hypothalamic neurons",
+    receptor: "Apelin receptor (APLNR, also called APJ), a class A GPCR",
+    mechanism:
+      "Apelin is cut from a 77-amino-acid precursor into several active lengths. The dominant circulating form, [Pyr1]apelin-13, binds the apelin receptor and, through Gi, strengthens cardiac contraction while dilating vessels, so output rises as pressure falls. Longer forms such as apelin-36 lean more on β-arrestin and pull the receptor inside the cell. A second endogenous ligand, elabela, uses the same receptor.",
+    facts: [
+      "The receptor was cloned in 1993 as an angiotensin-receptor lookalike that does not bind angiotensin; apelin was isolated in 1998.",
+      "[Pyr1]apelin-13 is the main form in human plasma and heart. Apelin-36 is a weaker immediate agonist and a stronger driver of receptor internalization.",
+      "ACE2 clips the C-terminal phenylalanine of apelin-13 with catalytic efficiency comparable to angiotensin II, which is why the native peptide lasts only minutes.",
+      "In people, intravenous [Pyr1]apelin-13 raises cardiac output and lowers peripheral resistance, including in heart failure and, acutely, in pulmonary arterial hypertension. No APJ agonist is an approved drug.",
+    ],
+    questions: [
+      "Why does apelin raise cardiac output while lowering blood pressure?",
+      "How do apelin-13 and apelin-36 differ at the same receptor?",
+      "What does elabela do that apelin does not?",
+    ],
+    mw: 1534,
+    mwApprox: true,
+    halfLife: "Minutes (ACE2 and other peptidases)",
+    halfLifeMin: 5,
+  },
+  {
+    slug: "elabela",
+    name: "Elabela",
+    abbr: "ELA",
+    family: "cardiovascular",
+    type: "endogenous",
+    evidence: "Established",
+    summary: "The second ligand of the apelin receptor, required for early heart development.",
+    class: "APELA-derived peptide (mature form ~32 aa)",
+    source: "Embryo; adult endothelium, kidney, and prostate",
+    receptor: "Apelin receptor (APLNR / APJ)",
+    mechanism:
+      "Elabela, also called Toddler, is encoded by APELA, a gene once annotated as non-coding. It shares little sequence with apelin and still activates the same receptor. In the embryo it is required for heart formation at a stage when apelin is dispensable for that step. In adults it can dilate vessels and support cardiac contraction, the same hemodynamic direction as apelin.",
+    facts: [
+      "Found independently in 2013 (elabela) and 2014 (Toddler) and treated by IUPHAR as a second endogenous apelin-receptor ligand.",
+      "The precursor is cleaved to shorter active pieces, including forms of about 32, 22, and 11 residues.",
+      "Sequence identity with apelin is low. The receptor reads a shared shape, not a shared sentence.",
+    ],
+    questions: [
+      "Why does the apelin receptor have two endogenous ligands?",
+      "What does elabela do in heart development that apelin does not?",
+    ],
+    mw: 3600,
+    mwApprox: true,
+    halfLife: "Minutes (peptide ligand)",
+    halfLifeMin: 5,
+  },
 
   // ── Muscle & TGF-β signaling ────────────────────────────────────────────
   {
@@ -2199,6 +2254,10 @@ const THREADS: Record<string, string> = {
     "A signal so faithful to cardiac strain that medicine measures it instead of asking the heart directly.",
   cnp:
     "The natriuretic peptide that mostly stayed out of the bloodstream, working locally in vessel wall and growth plate instead.",
+  apelin:
+    "A stronger beat and a lower pressure from the same short peptide — and a receptor that waited five years to learn the name of its ligand.",
+  elabela:
+    "The second sentence the apelin receptor knows, written in a different sequence and spoken first, while the heart is still being built.",
 
   // ── Muscle & TGF-β ──
   myostatin:

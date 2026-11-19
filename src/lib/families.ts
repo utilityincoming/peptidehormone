@@ -269,16 +269,17 @@ export const FAMILIES: Family[] = [
     name: "Cardiovascular & natriuretic",
     accent: "text-accent-teal",
     blurb: "Peptides the heart and vessels use to manage pressure and fluid.",
-    examples: "ANP · BNP · CNP",
+    examples: "ANP · BNP · CNP · apelin",
     tagline: "The heart as an endocrine organ — releasing peptides to shed the load that stretches it.",
     overview: [
       "The heart is also an endocrine organ. When its chambers stretch under volume or pressure load, cardiac myocytes release natriuretic peptides that promote sodium and water excretion and relax blood vessels — lowering the load that triggered them.",
-      "ANP and BNP act through a guanylyl-cyclase-linked receptor to raise cGMP; BNP's blood level is a routine clinical marker of heart failure. Alongside them sit the vasoactive peptides angiotensin II and endothelin-1, which push the other way.",
+      "ANP and BNP act through a guanylyl-cyclase-linked receptor to raise cGMP; BNP's blood level is a routine clinical marker of heart failure. Apelin is the other cardiac peptide in this family: a GPCR ligand that strengthens contraction while it dilates vessels. Alongside them sit the vasoactive peptides angiotensin II and endothelin-1, which push the other way.",
     ],
     signals: [
       { name: "ANP", role: "Atrial peptide; promotes natriuresis and vasodilation." },
       { name: "BNP", role: "Ventricular peptide; a widely used heart-failure biomarker." },
       { name: "CNP", role: "Endothelial/CNS peptide; vascular tone and endochondral bone growth." },
+      { name: "Apelin", role: "APJ ligand; inotrope and vasodilator. Elabela is the receptor's second ligand." },
     ],
     notes: [
       "Natriuretic peptides signal through membrane guanylyl-cyclase receptors (NPR-A/B), raising cGMP — a different second messenger from the cAMP/GPCR families.",
