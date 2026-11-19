@@ -227,6 +227,7 @@ export default function Article() {
                 Apelin asks for more stroke volume while it reduces the resistance
                 downstream.
               </P>
+              <BeatAndPressure />
               <P>
                 That effect survived the situations where a vasodilator often quits.
                 During sodium depletion, and during a co-infusion of angiotensin II,
@@ -304,6 +305,7 @@ export default function Article() {
                 </a>
                 ). For apelin that residue is the phenylalanine the receptor needs.
               </P>
+              <Ace2Clip />
               <P>
                 The practical consequence is the short half-life. Commercial blood
                 tests have a second problem on top of the speed: many ELISAs do not
@@ -469,32 +471,95 @@ export default function Article() {
 
 /** Precursor cut into lengths that differ in potency and receptor residence. */
 function IsoformLadder() {
-  const rows = [
-    { name: "Preproapelin", width: 500 },
-    { name: "Apelin-36", width: 300 },
-    { name: "Apelin-17", width: 210 },
-    { name: "[Pyr1]apelin-13", width: 150 },
+  const forms = [
+    { y: 78, name: "Apelin-36", note: "Weaker Gi signal · holds β-arrestin · internalizes APJ", hot: false },
+    { y: 148, name: "Apelin-17", note: "Intermediate length · active at the same receptor", hot: false },
+    { y: 218, name: "[Pyr1]apelin-13", note: "Dominant in blood and heart · strongest quick signal", hot: true },
   ];
   return (
     <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
-      <svg viewBox="0 0 700 250" className="mx-auto w-full max-w-2xl" role="img" aria-label="Four horizontal bars, longest at the top. Preproapelin is the full precursor. Apelin-36, apelin-17, and pyroglutamyl apelin-13 are successively shorter C-terminal pieces. The shortest bar is marked as the form that dominates in blood and gives the strongest immediate signal.">
-        <text x="350" y="22" textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.55} fontSize="12.5" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
-          One chain, cut shorter as it becomes the signal
+      <svg viewBox="0 0 720 300" className="mx-auto w-full max-w-2xl" role="img" aria-label="Preproapelin, 77 amino acids, is cut at its C-terminus into apelin-36, apelin-17, and pyroglutamyl apelin-13. The 13-residue form is highlighted as the one that dominates in blood and gives the strongest immediate signal. Apelin-36 is labeled as the form that internalizes the receptor.">
+        <text x="360" y="28" textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.55} fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          One precursor, three signals
         </text>
-        {rows.map((r, i) => {
-          const y = 46 + i * 48;
+        <rect x="24" y="118" width="168" height="72" rx="14" fill="color-mix(in srgb, var(--accent-teal) 10%, transparent)" stroke="var(--accent-teal)" strokeOpacity={0.55} strokeWidth="1.4" />
+        <text x="108" y="148" textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Preproapelin</text>
+        <text x="108" y="168" textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.5} fontSize="11">77 amino acids</text>
+        <path d="M192 154 H228" fill="none" stroke="var(--color-ink)" strokeOpacity={0.35} strokeWidth="1.4" />
+        {forms.map((f) => (
+          <g key={f.name}>
+            <path d={`M228 154 C 250 154, 250 ${f.y + 22}, 272 ${f.y + 22}`} fill="none" stroke="var(--accent-teal)" strokeOpacity={f.hot ? 0.85 : 0.35} strokeWidth={f.hot ? 2 : 1.3} />
+            <rect x="272" y={f.y} width="424" height="46" rx="12" fill={f.hot ? "color-mix(in srgb, var(--accent-teal) 14%, transparent)" : "var(--panel)"} stroke={f.hot ? "var(--accent-teal)" : "var(--color-ink)"} strokeOpacity={f.hot ? 0.7 : 0.18} strokeWidth="1.3" />
+            <text x="290" y={f.y + 20} fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">{f.name}</text>
+            <text x="290" y={f.y + 36} fill="var(--color-ink)" fillOpacity={0.5} fontSize="11">{f.note}</text>
+          </g>
+        ))}
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        The cut is at the C-terminus. Shorter is more potent at the immediate G-protein
+        signal. Apelin-36 stays on the receptor long enough to pull it inside. The
+        pyroglutamate cap is what lets the 13-residue form persist in blood.
+      </figcaption>
+    </figure>
+  );
+}
+
+/** Output up, pressure down — the infusion result drawn as two arrows from one peptide. */
+function BeatAndPressure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg viewBox="0 0 720 250" className="mx-auto w-full max-w-2xl" role="img" aria-label="Pyroglutamyl apelin-13 binds the apelin receptor and splits into two effects: cardiac output rises, shown with an upward arrow, and blood pressure and vascular resistance fall, shown with a downward arrow.">
+        <text x="360" y="26" textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.55} fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          One peptide, two directions
+        </text>
+        <circle cx="118" cy="132" r="62" fill="color-mix(in srgb, var(--accent-teal) 14%, transparent)" stroke="var(--accent-teal)" strokeOpacity="0.7" strokeWidth="1.6" />
+        <text x="118" y="126" textAnchor="middle" fill="var(--color-ink)" fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">[Pyr1]apelin-13</text>
+        <text x="118" y="146" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">APJ · Gi</text>
+        <path d="M180 100 C 250 100, 280 78, 330 78" fill="none" stroke="var(--accent-teal)" strokeWidth="2" />
+        <path d="M330 78 l -8 4 v -8 z" fill="var(--accent-teal)" />
+        <path d="M180 164 C 250 164, 280 186, 330 186" fill="none" stroke="var(--accent-blue)" strokeWidth="2" />
+        <path d="M330 186 l -8 -4 v 8 z" fill="var(--accent-blue)" />
+        <rect x="348" y="50" width="340" height="56" rx="12" fill="var(--panel)" stroke="var(--accent-teal)" strokeOpacity="0.55" />
+        <text x="368" y="74" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Cardiac output rises</text>
+        <text x="368" y="92" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">stronger contraction · higher stroke volume</text>
+        <rect x="348" y="158" width="340" height="56" rx="12" fill="var(--panel)" stroke="var(--accent-blue)" strokeOpacity="0.55" />
+        <text x="368" y="182" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Pressure falls</text>
+        <text x="368" y="200" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">vessels widen · peripheral resistance drops</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        The infusion result in volunteers and in heart failure: more output against
+        less resistance. Most inotropes tighten the circuit they ask the heart to push against.
+      </figcaption>
+    </figure>
+  );
+}
+
+/** ACE2 removes the C-terminal phenylalanine that the receptor needs. */
+function Ace2Clip() {
+  const letters = ["Pyr", "R", "P", "R", "L", "S", "H", "K", "G", "P", "M", "P", "F"];
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg viewBox="0 0 720 168" className="mx-auto w-full max-w-2xl" role="img" aria-label="The thirteen residues of pyroglutamyl apelin-13 in a row. ACE2 is shown cutting between the final proline and the C-terminal phenylalanine. The phenylalanine is marked inactive once removed.">
+        <text x="360" y="22" textAnchor="middle" fill="var(--color-ink)" fillOpacity={0.55} fontSize="13" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">
+          ACE2 takes one residue, and the signal stops
+        </text>
+        {letters.map((aa, i) => {
+          const x = 28 + i * 52;
+          const last = i === letters.length - 1;
           return (
-            <g key={r.name}>
-              <text x="16" y={y + 18} fill="var(--color-ink)" fontSize="11" fontWeight="700">{r.name}</text>
-              <rect x="168" y={y} width={r.width} height="26" rx="6" fill="#2DD4A8" fillOpacity={0.18 + i * 0.16} stroke="#2DD4A8" strokeOpacity={0.75} />
+            <g key={aa + i}>
+              <rect x={x} y="48" width="44" height="44" rx="8" fill={last ? "color-mix(in srgb, var(--accent-amber) 16%, transparent)" : "color-mix(in srgb, var(--accent-teal) 12%, transparent)"} stroke={last ? "var(--accent-amber)" : "var(--accent-teal)"} strokeOpacity={last ? 0.85 : 0.45} />
+              <text x={x + 22} y="75" textAnchor="middle" fill="var(--color-ink)" fontSize={aa === "Pyr" ? 11 : 14} fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">{aa}</text>
             </g>
           );
         })}
+        <path d="M648 42 v56" stroke="var(--accent-amber)" strokeWidth="1.6" strokeDasharray="3 3" />
+        <text x="648" y="40" textAnchor="middle" fill="var(--accent-amber)" fontSize="10" fontWeight="600">ACE2</text>
+        <text x="360" y="122" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.55" fontSize="12">Phe off · what remains is quiet at the receptor</text>
       </svg>
       <figcaption className="mt-2 text-center text-xs text-ink/40">
-        Shorter is more potent at the immediate signal. Longer occupies the receptor
-        and pulls it inside. The pyroglutamate cap is what lets the 13-residue form
-        persist in blood.
+        Same enzyme, same single-residue clip as angiotensin II. The amber residue is
+        the one the receptor needs, which is why the native peptide has to be infused.
       </figcaption>
     </figure>
   );

@@ -1168,6 +1168,31 @@ function SurvodutideDualAgonist(): ReactNode {
   );
 }
 
+/** Apelin: one receptor, output up and pressure down, with elabela as the second ligand. */
+function ApelinTwoDirections(): ReactNode {
+  return (
+    <svg viewBox="0 0 640 280" className="w-full" role="img" aria-label="Apelin and elabela both reach the apelin receptor. From the receptor, one arrow rises to higher cardiac output and one arrow falls to lower blood pressure.">
+      <text x="150" y="36" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="12" fontFamily="var(--font-space-grotesk), sans-serif">two ligands</text>
+      <rect x="36" y="52" width="228" height="48" rx="12" fill="color-mix(in srgb, var(--accent-teal) 14%, transparent)" stroke="var(--accent-teal)" strokeOpacity="0.65" />
+      <text x="150" y="82" textAnchor="middle" fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Apelin</text>
+      <rect x="36" y="112" width="228" height="48" rx="12" fill="var(--panel)" stroke="var(--color-ink)" strokeOpacity="0.2" />
+      <text x="150" y="142" textAnchor="middle" fill="var(--color-ink)" fontSize="15" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Elabela</text>
+      <path d="M264 76 H300 V140 H264" fill="none" stroke="var(--accent-teal)" strokeOpacity="0.55" strokeWidth="1.6" />
+      <path d="M300 108 H338" fill="none" stroke="var(--accent-teal)" strokeWidth="1.8" />
+      <path d="M338 108 l -7 -4 v 8 z" fill="var(--accent-teal)" />
+      <circle cx="392" cy="140" r="52" fill="color-mix(in srgb, var(--accent-teal) 12%, transparent)" stroke="var(--accent-teal)" strokeOpacity="0.6" />
+      <text x="392" y="136" textAnchor="middle" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">APJ</text>
+      <text x="392" y="154" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.5" fontSize="11">one receptor</text>
+      <path d="M444 118 C 490 90, 500 70, 520 62" fill="none" stroke="var(--accent-teal)" strokeWidth="2" />
+      <path d="M520 62 l -9 2 4 8 z" fill="var(--accent-teal)" />
+      <path d="M444 162 C 490 190, 500 214, 520 222" fill="none" stroke="var(--accent-blue)" strokeWidth="2" />
+      <path d="M520 222 l -9 -2 4 -8 z" fill="var(--accent-blue)" />
+      <text x="534" y="66" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Output rises</text>
+      <text x="534" y="228" fill="var(--color-ink)" fontSize="14" fontWeight="600" fontFamily="var(--font-space-grotesk), sans-serif">Pressure falls</text>
+    </svg>
+  );
+}
+
 const FIGURES: Record<string, HormoneFigure> = {
   semaglutide: {
     alt: "Semaglutide's single peptide signalling through one incretin receptor",
@@ -1284,6 +1309,28 @@ const FIGURES: Record<string, HormoneFigure> = {
       </>
     ),
     svg: <LiraglutideDurabilityLadder />,
+  },
+  apelin: {
+    alt: "Apelin and elabela converging on one receptor, which raises cardiac output and lowers blood pressure",
+    caption: (
+      <>
+        Two ligands, one receiver. Apelin is the peptide in the blood; elabela
+        is the second endogenous agonist, and the one the embryo uses to build
+        the heart. From APJ the instruction splits: a stronger beat, a lower pressure.
+      </>
+    ),
+    svg: <ApelinTwoDirections />,
+  },
+  elabela: {
+    alt: "Elabela joining apelin at the apelin receptor, with the same split into higher output and lower pressure",
+    caption: (
+      <>
+        Elabela does not look like apelin and still docks the same receptor.
+        The developmental job is its own. The adult hemodynamic job — output
+        up, pressure down — is the one it shares.
+      </>
+    ),
+    svg: <ApelinTwoDirections />,
   },
   pramlintide: {
     alt: "Native amylin tangling into fibrils versus pramlintide — the same peptide with three proline edits — flowing straight to the amylin receptor",
