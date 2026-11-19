@@ -195,7 +195,7 @@ export default function CyclePlanner({
       {/* Print-only protocol header — populates the exported PDF */}
       <div className="cp-print-only border-b border-ink/20 pb-4">
         <p className="font-[family-name:var(--font-plex-mono)] text-xs uppercase tracking-wide text-ink/50">
-          Protocol summary
+          List summary
         </p>
         <p className="mt-1 text-sm text-ink/80">
           {goalMeta ? goalMeta.label : "Custom stack"} · {weeks}-week cycle · {level} level ·{" "}
@@ -206,7 +206,7 @@ export default function CyclePlanner({
       {/* ── Quick-add goal stacks ── */}
       <section aria-labelledby="goals-h" className="cp-no-print">
         <h2 id="goals-h" className="mb-3 text-xs font-medium uppercase tracking-wide text-ink/40">
-          Quick-add a goal stack
+          Lists grouped by the job being sold
         </h2>
         <div className="flex flex-wrap gap-2">
           {GOALS.map((g) => {
@@ -293,7 +293,7 @@ export default function CyclePlanner({
         </h2>
         {peptides.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-ink/15 bg-panel/20 p-10 text-center text-ink/45">
-            Pick a goal stack above, or add a peptide to start a protocol.
+            Open a list above, or add a peptide. The line under the list says whether the clocks match.
           </div>
         ) : (
           <div className="overflow-x-auto rounded-2xl border border-ink/10 bg-surface p-5">
@@ -409,9 +409,15 @@ export default function CyclePlanner({
       {/* ── Reference dosing table ── */}
       {peptides.length > 0 && (
         <section aria-labelledby="dosing-h">
-          <h2 id="dosing-h" className="mb-4 font-display text-xl font-semibold">
+          <h2 id="dosing-h" className="mb-2 font-display text-xl font-semibold">
             Reference dosing
           </h2>
+          <p className="mb-4 max-w-2xl text-sm leading-6 text-ink/50">
+            Timing is the hour a catalog repeats, not a measured peak. Frequency is how this
+            list is drawn, which you can compare with half-life in the calculator when one has
+            been published. Evidence is the rung, and it does not rise because a name sits next
+            to another name.
+          </p>
           <div className="overflow-x-auto rounded-2xl border border-ink/10">
             <table className="w-full border-collapse text-left text-sm">
               <caption className="sr-only">Reference dosing ranges for the selected peptides</caption>

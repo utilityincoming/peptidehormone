@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 const DESCRIPTION =
-  "Plan a peptide research cycle — quick-add goal stacks, an animated week-by-week timeline, reference dosing, and an estimated supply list. Shareable via URL. Research-use only, not medical advice.";
+  "The peptide lists sellers group by goal, read as clocks: which names share a receptor, which half-lives are actually measured, and which morning or bedtime labels are convention. Reference ranges and a supply estimate. Research-use only, not medical advice.";
 
 export const metadata: Metadata = {
   title: "Peptide cycle planner",
@@ -91,7 +91,7 @@ export default async function CyclePlannerPage({
           path: "/tools/cycle-planner",
           name: "Peptide cycle planner",
           description:
-            "Plan a peptide research cycle — goal stacks, a week-by-week timeline, reference dosing, and an estimated supply list. Educational, not medical advice.",
+            "Seller goal lists read as pharmacokinetics: shared receptors, measured half-lives, and timing labels that are convention. Educational, not medical advice.",
         })}
       />
       <a
@@ -112,10 +112,12 @@ export default async function CyclePlannerPage({
             Peptide cycle planner
           </h1>
           <p className="cp-no-print mt-4 max-w-2xl text-lg leading-8 text-ink/65">
-            Sketch a research cycle from a goal stack or build your own: pick a length and
-            experience level, see the week-by-week schedule, reference dosing, and a rough
-            supply estimate. Every plan is encoded in the URL, so it&rsquo;s shareable.
-            Educational only — most listed compounds are research-use, not approved for human use.
+            These are the lists a catalog groups by the job you want. Open one and read the
+            clock under it: two names on one receptor are one signal, a weekly drug is still
+            present on day six, and a morning label with no published human half-life is
+            convention. Length, reference range, and a supply estimate update together.
+            The URL holds the list. Educational only — most of these compounds are
+            research-use, not approved for human use.
           </p>
 
           <div id="planner" className="mt-10 scroll-mt-20">
@@ -126,25 +128,32 @@ export default async function CyclePlannerPage({
             <h2 className="font-display text-2xl font-semibold">How to read this</h2>
             <div className="mt-5 space-y-4 text-[15px] leading-7 text-ink/70">
               <p>
-                A <strong className="text-ink">goal stack</strong> is a starting point, not a
-                prescription — a common grouping of compounds studied for a given aim. Adjust the
-                length and level, add or remove peptides, and the timeline, dosing table, and supply
-                estimate update together.
+                A <strong className="text-ink">goal list</strong> is how a seller page is
+                organized, not a finding that the names belong together. The line under each
+                button says what the pharmacokinetics actually are: a shared receptor, mismatched
+                half-lives, or a clock nobody has measured. The{" "}
+                <Link href="/insights/the-clock-under-the-list" className="text-[var(--accent-amber)] underline decoration-[var(--accent-amber)]/40 underline-offset-2 hover:decoration-[var(--accent-amber)]">
+                  essay on reading a list by its clock
+                </Link>{" "}
+                is the argument; this page is the same test with the names filled in.
               </p>
               <p>
-                The <strong className="text-ink">experience level</strong> only moves doses within
-                each compound&rsquo;s published reference range — beginner sits at the low end,
-                advanced at the high end. It is a presentation choice, not an endorsement of higher
-                doses.
-              </p>
-              <p>
-                Curious about the biology behind a compound? Several link to their{" "}
-                <Link href="/catalog" className="text-[var(--accent-amber)] underline decoration-[var(--accent-amber)]/40 underline-offset-2 hover:decoration-[var(--accent-amber)]">
-                  catalog monographs
-                </Link>
-                , and you can model any half-life in the{" "}
+                Cells marked <strong className="text-ink">timing</strong> are the hours catalogs
+                repeat — morning, pre-sleep, post-workout. They are not a measured time to peak.
+                Where a human half-life exists you can put it in the{" "}
                 <Link href="/tools/half-life" className="text-[var(--accent-amber)] underline decoration-[var(--accent-amber)]/40 underline-offset-2 hover:decoration-[var(--accent-amber)]">
-                  dosing calculator
+                  half-life calculator
+                </Link>{" "}
+                and see whether the interval makes a pulse or a plateau. Where it does not, the
+                word on the calendar cannot invent one.
+              </p>
+              <p>
+                The <strong className="text-ink">experience level</strong> only slides a number
+                inside the reference span printed for that compound. It does not promote a dose,
+                and it does not make two compounds on the same receptor into two effects.
+                Monographs, where we have them, sit on the{" "}
+                <Link href="/catalog" className="text-[var(--accent-amber)] underline decoration-[var(--accent-amber)]/40 underline-offset-2 hover:decoration-[var(--accent-amber)]">
+                  catalog
                 </Link>
                 .
               </p>

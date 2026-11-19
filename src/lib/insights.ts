@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-clock-under-the-list",
+    hormones: ["cjc-1295", "ipamorelin", "tesamorelin", "bpc-157", "semaglutide"],
+    title: "The clock under the list",
+    dek: "A seller page sorts peptides by the job you want — energy, recovery, a top five — and then hangs a clock on each name: morning, bedtime, post-workout, a cycle. That clock is a pharmacokinetic claim, and most of the lists never measure one. Half-life decides whether a receptor sees a pulse or a plateau. Two names on the same receptor are one signal, however the menu is written. And a timing instruction for a molecule with no published human half-life is a costume. How to read a stack by the clock underneath it, using the growth-hormone list sellers actually print, and why the repair list cannot be scheduled the same way.",
+    family: "growth-repair",
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "what-is-apelin",
     hormones: ["apelin", "elabela"],
     title: "A stronger beat at a lower pressure",

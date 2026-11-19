@@ -64,7 +64,7 @@ export function GET() {
   out.push(
     "",
     "## Tools",
-    `- [Peptide cycle planner](${SITE}/tools/cycle-planner): plan a research cycle — goal stacks, a week-by-week timeline, reference dosing, and a supply estimate.`,
+    `- [Peptide cycle planner](${SITE}/tools/cycle-planner): the lists sellers group by goal, read as clocks — shared receptors, measured half-lives, and timing labels that are convention. Reference ranges and a supply estimate. Research-use only.`,
     `- [Half-life & dosing calculator](${SITE}/tools/half-life): model bioactive duration, accumulation, and steady state from a half-life and dosing interval.`,
     `- [Analog comparison](${SITE}/tools/compare): compare the molecules in a lineage side by side.`,
     "",

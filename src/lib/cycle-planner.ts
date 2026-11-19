@@ -314,19 +314,19 @@ export interface Goal {
 }
 
 export const GOALS: Goal[] = [
-  { id: "injury", label: "Injury recovery", blurb: "Tissue repair & connective-tissue signaling", stack: ["bpc-157", "tb-500", "ghk-cu"] },
-  { id: "fat-loss", label: "Fat loss", blurb: "Metabolic & lipolytic pathways", stack: ["tesamorelin", "aod-9604", "semaglutide"] },
-  { id: "muscle", label: "Muscle growth", blurb: "GH-axis secretagogue stack", stack: ["cjc-1295", "ipamorelin", "tesamorelin"] },
-  { id: "recomp", label: "Body recomposition", blurb: "GH axis + incretin co-agonist", stack: ["cjc-1295", "ipamorelin", "tirzepatide"] },
-  { id: "longevity", label: "Longevity", blurb: "Mitochondrial & cellular-aging signaling", stack: ["epitalon", "mots-c", "humanin"] },
-  { id: "cognitive", label: "Cognitive", blurb: "Neuroprotective & nootropic peptides", stack: ["semax", "selank", "pinealon"] },
-  { id: "sleep", label: "Sleep", blurb: "Sleep architecture & calming signaling", stack: ["dsip", "selank"] },
-  { id: "aesthetic", label: "Aesthetic", blurb: "Skin, pigmentation & melanocortin", stack: ["ghk-cu", "melanotan-2"] },
-  { id: "immune", label: "Immune", blurb: "Immune modulation & resilience", stack: ["thymosin-alpha-1", "ll-37", "thymalin"] },
-  { id: "libido", label: "Libido", blurb: "Sexual health & melanocortin/kisspeptin signaling", stack: ["pt-141", "kisspeptin-10", "melanotan-2"] },
-  { id: "gut", label: "Gut health", blurb: "Mucosal repair & barrier integrity", stack: ["bpc-157", "kpv", "larazotide"] },
-  { id: "anti-aging", label: "Anti-aging", blurb: "GH-axis & cellular-aging signaling", stack: ["sermorelin", "epitalon", "ghk-cu"] },
-  { id: "metabolic", label: "Metabolic", blurb: "Incretin & amylin co-agonism", stack: ["retatrutide", "cagrilintide"] },
+  { id: "injury", label: "Injury recovery", blurb: "Three repair names. None has a published human half-life a morning dose can be hung on.", stack: ["bpc-157", "tb-500", "ghk-cu"] },
+  { id: "fat-loss", label: "Fat loss", blurb: "A daily GHRH analog, a GH fragment, and a weekly GLP-1. One wish, three clocks.", stack: ["tesamorelin", "aod-9604", "semaglutide"] },
+  { id: "muscle", label: "Muscle growth", blurb: "CJC-1295 (no DAC) and tesamorelin hit the same receptor. Ipamorelin hits the other. Not three benefits.", stack: ["cjc-1295", "ipamorelin", "tesamorelin"] },
+  { id: "recomp", label: "Body recomposition", blurb: "A short GH pulse beside a week-long incretin. The exposures barely share a day.", stack: ["cjc-1295", "ipamorelin", "tirzepatide"] },
+  { id: "longevity", label: "Longevity", blurb: "Three preclinical names. A shared hope is not a measured half-life.", stack: ["epitalon", "mots-c", "humanin"] },
+  { id: "cognitive", label: "Cognitive", blurb: "Semax and selank are registered medicines in Russia. Pinealon is not that evidence.", stack: ["semax", "selank", "pinealon"] },
+  { id: "sleep", label: "Sleep", blurb: "A bedtime label is not a half-life. DSIP’s sleep effect never reliably replicated.", stack: ["dsip", "selank"] },
+  { id: "aesthetic", label: "Aesthetic", blurb: "A copper tripeptide and a melanocortin agonist. Different receptors, different rungs.", stack: ["ghk-cu", "melanotan-2"] },
+  { id: "immune", label: "Immune", blurb: "Thymosin α1 has human trials. LL-37 and thymalin are not on that rung.", stack: ["thymosin-alpha-1", "ll-37", "thymalin"] },
+  { id: "libido", label: "Libido", blurb: "PT-141 is the labeled melanocortin. Melanotan II and kisspeptin-10 are not that label.", stack: ["pt-141", "kisspeptin-10", "melanotan-2"] },
+  { id: "gut", label: "Gut health", blurb: "Larazotide has an oral celiac trial. BPC-157 and KPV do not.", stack: ["bpc-157", "kpv", "larazotide"] },
+  { id: "anti-aging", label: "Anti-aging", blurb: "Sermorelin is a short GHRH pulse. Epitalon and GHK-Cu are different claims, lower rungs.", stack: ["sermorelin", "epitalon", "ghk-cu"] },
+  { id: "metabolic", label: "Metabolic", blurb: "Two weekly investigational agonists, glucagon/GLP-1/GIP and amylin. Long clocks, no approval.", stack: ["retatrutide", "cagrilintide"] },
 ];
 
 export const LEVELS = ["beginner", "intermediate", "advanced"] as const;
