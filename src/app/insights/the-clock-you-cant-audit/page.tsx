@@ -228,6 +228,7 @@ export default function Article() {
               <h3 className="font-display text-base font-semibold">Keep going</h3>
               <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
                 <CrossLink href="/hormones/epitalon" label="Epitalon reference (the pineal tetrapeptide)" />
+                <CrossLink href="/insights/the-packet-and-the-peptide" label="The packet and the peptide — the 2026 nomination, read separately from the science" />
                 <CrossLink href="/insights/distilled-to-three-letters" label="Distilled to three letters — cartalax, the same lineage" />
                 <CrossLink href="/insights/two-ways-to-bottle-a-gland" label="Two ways to bottle a gland — thymalin vs thymosin α1" />
                 <CrossLink href="/families/repair" label="The repair & regenerative family" />

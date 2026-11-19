@@ -288,6 +288,15 @@ export const INSIGHTS: Insight[] = [
     reviewed: "October 2026",
   },
   {
+    slug: "the-packet-and-the-peptide",
+    hormones: ["epitalon"],
+    title: "The packet and the peptide",
+    dek: "In July 2026 the Pharmacy Compounding Advisory Committee recommended Epitalon free base for the 503A bulks list, 7–4 with one abstention, against FDA review staff. The write-ups of that day settled on a tidy line: the nomination failed to capture the record, so a good substance was judged on a bad packet. The line is half the story. A nomination, a literature, and a vote are three different objects, and Epitalon’s day mixed them. The packet named insomnia, longevity, circadian rhythm and cellular ageing, then gave the agency a reviewable question only for insomnia — and the one human study in the briefing was sublingual, twenty days, in seventy-five women, and measured a urinary melatonin metabolite rather than sleep. The literature that commenters said was missing is real and mostly one St. Petersburg network: a fibroblast telomerase assay, a mouse study that moved maximum lifespan and not the mean, a non-randomized mortality report. Completing the packet would not have turned any of those into an insomnia trial or into a carcinogenicity study. The vote applied the four-factor bulks test, a lower bar than drug approval, and it did not audit the science. A committee can find the factors close enough for a patient-specific prescription while the molecule stays on the cell-culture rung. Those are different verdicts. Bullish on reading the meeting; sceptical on treating the tally as the evidence.",
+    family: "repair",
+    readingMinutes: 12,
+    reviewed: "November 2026",
+  },
+  {
     slug: "written-for-the-brain",
     hormones: ["semax", "selank", "dsip"],
     title: "Written for the brain",
