@@ -27,6 +27,14 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "what-is-apelin",
+    title: "A stronger beat at a lower pressure",
+    dek: "Apelin is a peptide hormone that binds one receptor, APJ, and does two things most heart drugs cannot do together: it strengthens the heartbeat and it widens blood vessels, so pressure falls while output rises. The receptor was found five years before the peptide, a second natural ligand (elabela) shares it, and the native peptide lasts only minutes in blood. What apelin is, why the short forms and the long form are not interchangeable, and why an infusion that works in people has not yet become a drug.",
+    family: "cardiovascular",
+    readingMinutes: 8,
+    reviewed: "November 2026",
+  },
+  {
     slug: "when-the-mix-goes-solid",
     hormones: ["glucagon", "insulin", "pramlintide", "amylin"],
     title: "When the mix goes solid",
