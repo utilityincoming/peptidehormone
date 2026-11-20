@@ -25,6 +25,7 @@ const HALF_LIFE_TIER: Record<string, Tier> = {
   // Poorly characterized in humans - no rigorous PK behind the figure.
   "thymosin-beta-4": "community",
   "ghk-cu": "community",
+  glutathione: "community",
   "bpc-157": "community",
   "tb-500": "community",
   "mots-c": "community",

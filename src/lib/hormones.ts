@@ -1469,6 +1469,34 @@ const BASE: Hormone[] = [
     halfLife: "Minutes in plasma (poorly characterized)",
   },
   {
+    slug: "glutathione",
+    name: "Glutathione",
+    abbr: "GSH",
+    family: "repair",
+    type: "endogenous",
+    evidence: "Established",
+    summary:
+      "The cell's main thiol tripeptide — a redox buffer and enzyme cofactor, made enzymatically rather than released as a hormone.",
+    class: "Tripeptide (γ-L-glutamyl-L-cysteinylglycine)",
+    source: "Synthesized in the cytosol of nearly every cell by glutamate-cysteine ligase and glutathione synthetase",
+    receptor: "No hormone receptor; functions as a cofactor and as a substrate for glutathione peroxidases, transferases, and reductases",
+    mechanism:
+      "Glutathione is kept at millimolar concentrations inside cells, mostly in the reduced form (GSH). Its cysteine thiol donates electrons to peroxides through the glutathione peroxidases, conjugates electrophiles through the glutathione S-transferases, and is restored from the oxidized dimer (GSSG) by glutathione reductase at the expense of NADPH. Two ATP-dependent enzymes build it: glutamate-cysteine ligase, which is rate-limiting, and glutathione synthetase. The unusual γ-glutamyl bond is what keeps ordinary peptidases from cutting it; outside the cell, γ-glutamyl transpeptidase breaks that bond and clears circulating GSH within minutes. That intracellular redox job is settled biochemistry. It is not a secreted signal, and claims that an injected or oral dose reproduces the intracellular pool are a separate, much thinner question.",
+    facts: [
+      "GSH is a tripeptide, but it is assembled by enzymes, not cut from a preprohormone, and it is not a hormone.",
+      "The reduced thiol (GSH) and the oxidized dimer (GSSG) are the pair cells use to buffer oxidative stress.",
+      "Circulating glutathione is short-lived because γ-glutamyl transpeptidase degrades it outside the cell.",
+      "The core biochemistry is textbook. Marketing claims for systemic 'detox' or skin lightening from exogenous glutathione are not that biochemistry.",
+    ],
+    questions: [
+      "How do cells make glutathione, and why is the bond a γ-glutamyl link?",
+      "What is the difference between reduced GSH and oxidized GSSG?",
+      "Why does injected glutathione not simply refill the intracellular pool?",
+    ],
+    mw: 307.3,
+    halfLife: "Minutes in plasma (cleared by γ-glutamyl transpeptidase)",
+  },
+  {
     slug: "bpc-157",
     name: "BPC-157",
     family: "repair",
@@ -2272,6 +2300,8 @@ const THREADS: Record<string, string> = {
     "An actin-binding protein that turns out to matter in healing — a reminder that structural molecules can carry signals too.",
   "ghk-cu":
     "Copper is not usually thought of as a signal; a three-residue carrier makes it one. The marketing has run a long way ahead of the literature.",
+  glutathione:
+    "The shortest peptide almost every cell makes, and it is not a message at all. It is the spare chemistry the cell keeps on hand for itself.",
   "bpc-157":
     "Drawn from a gastric protein, with a striking preclinical record and thirty uncontrolled humans — the widest gap between interest and evidence in this catalog, until the first placebo trial reads out.",
   "tb-500":

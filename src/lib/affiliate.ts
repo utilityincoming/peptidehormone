@@ -2,7 +2,7 @@
 //
 // PeptideHormone hosts no storefront. It is part of the American Peptide network,
 // which holds disclosed affiliate relationships with research-peptide suppliers —
-// AminoClub and ElyriaBio, plus Peptira at a lighter placement — set out in full on
+// AminoClub, plus Peptira at a lighter placement — set out in full on
 // /methodology. Every outbound link is
 // research-use-only and we describe each source only by what's visible from the
 // outside, never asserting a per-lot COA we can't see. Where a vendor surfaces a
@@ -109,42 +109,7 @@ const AMINOCLUB = vendor({
     semax: "/us/products/semax",
     selank: "/us/products/selank",
     "ara-290": "/us/products/ara-290",
-  },
-});
-
-const ELYRIA = vendor({
-  key: "elyriabio",
-  name: "ElyriaBio",
-  prominence: "primary",
-  // Referral link carries attribution only — no reader discount code (so `code` is
-  // unset; ElyriaBio's own new-customer offer is not ours to surface as a reader code).
-  home: "https://elyriabio.com/?ref=PEPTIDE",
-  base: "https://elyriabio.com",
-  ref: "ref=PEPTIDE",
-  blurb:
-    "a research-use-only source that commits to a per-lot third-party COA (a ≥99% HPLC purity floor)",
-  coa: "commits to a per-lot independent US-lab COA (RP-HPLC purity, identity vs. reference) and states nothing ships without it",
-  shipping: "free US shipping over $150, free express over $250",
-  products: {
-    "bpc-157": "/products/bpc-157.html",
-    "tb-500": "/products/tb-500.html",
-    "ghk-cu": "/products/ghk-cu.html",
-    kisspeptin: "/products/kisspeptin.html",
-    "mots-c": "/products/mots-c.html",
-    "ss-31": "/products/ss-31.html",
-    tesamorelin: "/products/tesamorelin.html",
-    tirzepatide: "/products/glp-2.html",
-    retatrutide: "/products/glp-3.html",
-    ipamorelin: "/products/ipamorelin.html",
-    epitalon: "/products/epithalon.html",
-    semax: "/products/semax.html",
-    selank: "/products/selank.html",
-    dsip: "/products/dsip.html",
-    kpv: "/products/kpv.html",
-    "pt-141": "/products/pt-141.html",
-    "aod-9604": "/products/aod-9604.html",
-    cagrilintide: "/products/cagrilintide.html",
-    "igf-1-lr3": "/products/igf-1-lr3.html",
+    glutathione: "/us/products/glutathione",
   },
 });
 
@@ -187,13 +152,14 @@ const PEPTIRA = vendor({
     tesamorelin: "/product/tesamorelin-2",
     retatrutide: "/product/reta3-9",
     tirzepatide: "/product/tirz2-13",
+    glutathione: "/product/glutathione-2",
   },
 });
 
 /** Every vendor in the network, in display order. Primary vendors lead; secondary
  *  vendors stay in the roster at a lighter placement. Order within a tier is tenure,
  *  not a ranking. */
-export const VENDORS: readonly Vendor[] = [AMINOCLUB, ELYRIA, PEPTIRA];
+export const VENDORS: readonly Vendor[] = [AMINOCLUB, PEPTIRA];
 
 export function isPrimaryVendor(v: Vendor): boolean {
   return v.prominence !== "secondary";

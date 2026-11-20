@@ -30,7 +30,7 @@ export interface ExternalIds {
   cas?: string;
 }
 
-// slug -> verified external identifiers. Catalog order. 72 of 73 molecules.
+// slug -> verified external identifiers. Catalog order. 73 of 74 molecules.
 export const IDENTIFIERS: Record<string, ExternalIds> = {
   "glp-1": { wikipedia: "Glucagon-like peptide-1", wikidata: "Q424611", pubchem: "16133831", chebi: "80270" },
   "gip": { wikipedia: "Gastric inhibitory polypeptide", wikidata: "Q22677256", uniprot: "P09681" },
@@ -84,6 +84,7 @@ export const IDENTIFIERS: Record<string, ExternalIds> = {
   "follistatin": { wikipedia: "Follistatin", wikidata: "Q408122", uniprot: "P19883" },
   "thymosin-beta-4": { wikipedia: "Thymosin beta-4", wikidata: "Q7799643", uniprot: "P62328" },
   "ghk-cu": { wikipedia: "Copper peptide GHK-Cu", wikidata: "Q5168796", pubchem: "71587328", drugbank: "DB14683", cas: "49557-75-7" },
+  glutathione: { wikipedia: "Glutathione", wikidata: "Q116907", pubchem: "124886" },
   "bpc-157": { wikipedia: "BPC-157", wikidata: "Q27270252", pubchem: "9941957", drugbank: "DB11882", cas: "137525-51-0" },
   "tb-500": { wikipedia: "TB-500", wikidata: "Q137400007", pubchem: "62707662" },
   "leuprolide": { wikipedia: "Leuprorelin", wikidata: "Q907160", pubchem: "657181", drugbank: "DB00007", chebi: "6427", chembl: "CHEMBL1201199", cas: "53714-56-0" },

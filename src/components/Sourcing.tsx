@@ -22,8 +22,9 @@ export const CTA_PILL =
   "inline-flex items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15";
 
 const PRIMARY = VENDORS.filter(isPrimaryVendor);
-const primaryCount =
-  PRIMARY.length === 2 ? "two" : PRIMARY.length === 3 ? "three" : `${PRIMARY.length}`;
+const PRIMARY_COUNT_WORDS = ["zero", "one", "two", "three", "four"];
+const primaryCount = PRIMARY_COUNT_WORDS[PRIMARY.length] ?? `${PRIMARY.length}`;
+const primaryNoun = PRIMARY.length === 1 ? "source" : "sources";
 
 /** Affiliate disclosure, the same words everywhere. */
 export function Disclosure({ className = "" }: { className?: string }) {
@@ -127,7 +128,7 @@ export function SourcingNote({ slug, molecule }: { slug?: string; molecule?: str
         We don&rsquo;t run a storefront — but the question we hear most is where to actually
         get {what} that clears the bar this site holds. Our sister project{" "}
         <span className="font-medium text-ink/90">American Peptide</span> did the legwork and
-        vetted {primaryCount} research-use-only sources you can reason about:
+        vetted {primaryCount} research-use-only {primaryNoun} you can reason about:
       </p>
       <ul className="mt-5 space-y-5">
         {list.filter(isPrimaryVendor).map((v) => (

@@ -234,6 +234,11 @@ export const REFERENCES: Record<string, Reference[]> = {
     { pmid: "17468232", title: "beta-Thymosins", source: "Annals of the New York Academy of Sciences", year: "2007" },
     { pmid: "38994967", title: "Thymosin β(4) and β(10) Expression in Human Organs during Development: A Review", source: "Cells", year: "2024" },
   ],
+  glutathione: [
+    { pmid: "6137189", title: "Glutathione.", source: "Annual review of biochemistry", year: "1983" },
+    { pmid: "18796312", title: "Glutathione: overview of its protective roles, measurement, and biosynthesis.", source: "Molecular aspects of medicine", year: "2009" },
+    { pmid: "22995213", title: "Glutathione synthesis.", source: "Biochimica et biophysica acta", year: "2013" },
+  ],
   "ghk-cu": [
     { pmid: "29986520", title: "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data", source: "International journal of molecular sciences", year: "2018" },
     { pmid: "39963574", title: "Topically applied GHK as an anti-wrinkle peptide: Advantages, problems and prospective", source: "BioImpacts : BI", year: "2025" },

@@ -245,8 +245,8 @@ export default function Methodology() {
                 <Em>American Peptide</Em> network, and that network holds disclosed
                 affiliate relationships with {SUPPLIER_COUNT} research-peptide suppliers —{" "}
                 {SUPPLIER_NAMES}: buy through a sourcing link here and we may earn a commission, at
-                no extra cost to you. Peptira is listed with less prominence than AminoClub
-                and ElyriaBio. We&rsquo;re open about the connection because hiding it
+                no extra cost to you. Peptira is listed with less prominence than AminoClub.
+                We&rsquo;re open about the connection because hiding it
                 would be the actual betrayal.
               </P>
               <P>

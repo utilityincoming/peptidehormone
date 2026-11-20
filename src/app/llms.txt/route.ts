@@ -53,7 +53,7 @@ export function GET() {
     out.push(
       "",
       "## Availability",
-      `- [What the network sources](${SITE}/available): the molecules in this catalog you can reach at research grade, sourced through the American Peptide network via AminoClub and ElyriaBio, with Peptira linked more quietly, research-use-only. Availability is disclosed data, not a storefront — the site sells nothing. Per-vendor pages at /available/aminoclub, /available/elyriabio, and /available/peptira list what each carries, with product links and the reader code where one exists.`,
+      `- [What the network sources](${SITE}/available): the molecules in this catalog you can reach at research grade, sourced through the American Peptide network via AminoClub, with Peptira linked more quietly, research-use-only. Availability is disclosed data, not a storefront — the site sells nothing. Per-vendor pages at /available/aminoclub and /available/peptira list what each carries, with product links and the reader code where one exists.`,
     );
     for (const h of sourced) {
       const name = h.abbr ? `${h.name} (${h.abbr})` : h.name;

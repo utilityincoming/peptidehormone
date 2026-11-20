@@ -322,7 +322,7 @@ export const FAMILIES: Family[] = [
     name: "Repair & regenerative",
     accent: "text-accent-rose",
     blurb: "Endogenous repair signals — and the community 'research peptides' that target them.",
-    examples: "thymosin β4 · GHK-Cu · BPC-157 · TB-500",
+    examples: "thymosin β4 · GHK-Cu · glutathione · BPC-157",
     tagline: "Where tissue-repair biology meets the most-hyped corner of the peptide world — graded honestly.",
     overview: [
       "Tissue repair is coordinated by peptide signals that regulate the cytoskeleton, angiogenesis, and inflammation. Thymosin β4 sequesters actin and supports wound healing; the copper-binding tripeptide GHK influences skin remodeling.",
@@ -331,6 +331,7 @@ export const FAMILIES: Family[] = [
     signals: [
       { name: "Thymosin β4", role: "Endogenous actin-sequestering peptide; wound healing and angiogenesis." },
       { name: "GHK-Cu", role: "Endogenous copper-binding tripeptide; skin remodeling and repair signaling." },
+      { name: "Glutathione", role: "Intracellular thiol tripeptide; the cell's main redox buffer, not a secreted hormone." },
       { name: "BPC-157", role: "Synthetic peptide with broad preclinical repair claims; limited human data." },
       { name: "TB-500", role: "Synthetic thymosin β4 fragment marketed for recovery; preclinical evidence." },
     ],
