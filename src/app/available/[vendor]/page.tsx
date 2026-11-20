@@ -122,7 +122,7 @@ export default async function VendorPage({ params }: Props) {
               {v.name} is {v.blurb}
               {isPrimaryVendor(v)
                 ? " — one of the sources our sister project American Peptide leads with."
-                : ". It is disclosed alongside AminoClub and ElyriaBio, and linked more quietly than either of them."}{" "}
+                : ". It is disclosed alongside AminoClub, and linked more quietly."}{" "}
               Below: the {items.length} molecules in this catalog it carries, each linked
               straight to the product, and what we can see about how it operates.
             </p>
