@@ -458,8 +458,10 @@ export default async function HormonePage({
                 </div>
                 <p className="mt-3 text-sm leading-6 text-ink/60">
                   Research-grade {h.abbr ?? h.name} is reachable, research-use-only, from{" "}
-                  {vendors.length > 1 ? "either of the network's vetted sources" : "the network's vetted source"} — each
-                  link lands on the product itself.
+                  {vendors.filter((v) => v.prominence !== "secondary").length > 1
+                    ? "the network's vetted sources"
+                    : "the network's vetted source"}
+                  . Each primary link lands on the product itself.
                 </p>
                 <ul className="mt-4 space-y-5">
                   {vendors.map((v) => (

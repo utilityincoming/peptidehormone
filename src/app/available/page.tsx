@@ -5,19 +5,19 @@ import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
-import { sourcedSlugs, vendorsFor, VENDORS, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
+import { sourcedSlugs, vendorsFor, VENDORS, isPrimaryVendor, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
 import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
 import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 
 export const metadata: Metadata = {
   title: "Availability — what the network sources",
   description:
-    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub and ElyriaBio, research-use-only. What you can actually get, not just what exists.",
+    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub and ElyriaBio, with Peptira linked more quietly, research-use-only. What you can actually get, not just what exists.",
   alternates: { canonical: "/available" },
   openGraph: {
     title: "Availability · Peptide Hormone",
     description:
-      "Research-grade peptides you can actually reach, sourced through the network via AminoClub and ElyriaBio.",
+      "Research-grade peptides you can actually reach, sourced through the network via AminoClub and ElyriaBio, with Peptira linked more quietly.",
   },
 };
 
@@ -34,7 +34,7 @@ export default function AvailablePage() {
           path: "/available",
           name: "Availability — what the network sources",
           description:
-            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub and ElyriaBio.",
+            "Peptide hormones you can reach at research grade, sourced through the American Peptide network via AminoClub, ElyriaBio, and Peptira.",
           items: items.map((h) => ({ name: h.name, path: `/hormones/${h.slug}` })),
           crumbs: [
             { name: "Home", path: "/" },
@@ -77,7 +77,7 @@ export default function AvailablePage() {
               . Every button below lands on the product itself, research-use-only.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              {VENDORS.map((v) => (
+              {VENDORS.filter(isPrimaryVendor).map((v) => (
                 <div
                   key={v.key}
                   className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-ink/10 bg-panel/40 px-4 py-3"
@@ -95,6 +95,25 @@ export default function AvailablePage() {
                 </div>
               ))}
             </div>
+            {VENDORS.some((v) => !isPrimaryVendor(v)) && (
+              <p className="mt-3 text-sm text-ink/45">
+                Also linked, with a lighter placement:{" "}
+                {VENDORS.filter((v) => !isPrimaryVendor(v)).map((v, i, arr) => (
+                  <span key={v.key}>
+                    <AffiliateLink
+                      href={v.home}
+                      vendor={v.key}
+                      surface="available"
+                      className="text-ink/60 underline decoration-ink/20 underline-offset-2 hover:text-accent"
+                    >
+                      {v.name}
+                    </AffiliateLink>
+                    {i < arr.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+                .
+              </p>
+            )}
           </Container>
         </section>
 
@@ -163,7 +182,11 @@ export default function AvailablePage() {
                             <Link
                               key={v.key}
                               href={`/available/${v.key}`}
-                              className="shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal hover:bg-accent-teal/20"
+                              className={
+                                isPrimaryVendor(v)
+                                  ? "shrink-0 rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2 py-0.5 text-[11px] font-medium text-accent-teal hover:bg-accent-teal/20"
+                                  : "shrink-0 rounded-full border border-ink/10 px-2 py-0.5 text-[11px] font-medium text-ink/40 hover:text-ink/60"
+                              }
                             >
                               {v.name}
                             </Link>
@@ -176,7 +199,7 @@ export default function AvailablePage() {
                         </p>
                       </div>
                       <div className="flex shrink-0 flex-col gap-2 sm:items-end">
-                        {carriers.map((v) => (
+                        {carriers.filter(isPrimaryVendor).map((v) => (
                           <AffiliateLink
                             key={v.key}
                             href={productUrl(v, h.slug)}
@@ -186,6 +209,18 @@ export default function AvailablePage() {
                             className={`${CTA_PILL} shrink-0`}
                           >
                             Get {h.abbr ?? h.name} at {v.name} <span aria-hidden>→</span>
+                          </AffiliateLink>
+                        ))}
+                        {carriers.filter((v) => !isPrimaryVendor(v)).map((v) => (
+                          <AffiliateLink
+                            key={v.key}
+                            href={productUrl(v, h.slug)}
+                            vendor={v.key}
+                            slug={h.slug}
+                            surface="available"
+                            className="text-xs text-ink/45 underline decoration-ink/15 underline-offset-2 hover:text-accent"
+                          >
+                            Also at {v.name}
                           </AffiliateLink>
                         ))}
                       </div>
