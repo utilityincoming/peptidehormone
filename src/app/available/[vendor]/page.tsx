@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
-import { VENDORS, getVendor, productUrl, SOURCING_STANDARD } from "@/lib/affiliate";
+import { VENDORS, getVendor, productUrl, isPrimaryVendor, SOURCING_STANDARD } from "@/lib/affiliate";
 import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
 import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 
@@ -119,10 +119,12 @@ export default async function VendorPage({ params }: Props) {
               {v.name}, through the network
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              {v.name} is {v.blurb} — one of the {VENDORS.length} sources our sister project
-              American Peptide vetted. Below: the {items.length} molecules in this catalog it
-              carries, each linked straight to the product, and what we can see about how
-              it operates.
+              {v.name} is {v.blurb}
+              {isPrimaryVendor(v)
+                ? " — one of the sources our sister project American Peptide leads with."
+                : ". It is disclosed alongside AminoClub and ElyriaBio, and linked more quietly than either of them."}{" "}
+              Below: the {items.length} molecules in this catalog it carries, each linked
+              straight to the product, and what we can see about how it operates.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
               <AffiliateLink href={v.home} vendor={v.key} surface="vendor" className={CTA_PILL}>
@@ -168,7 +170,8 @@ export default async function VendorPage({ params }: Props) {
             From this catalog, at {v.name}
           </h2>
           <p className="mt-3 max-w-2xl text-sm leading-6 text-ink/55">
-            Every row opens the product page{v.code ? ` with the ${v.code} code already applied` : " with network attribution"}.
+            Every row opens the product page{v.code ? ` with the ${v.code} code already applied` : v.ref ? " with network attribution" : ""}.
+            {!v.code && !v.ref ? " The browse link above is the affiliate entry." : ""}
             Read the monograph first if you haven&rsquo;t — that&rsquo;s the whole point of the site.
           </p>
           <div className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10">

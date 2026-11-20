@@ -286,8 +286,8 @@ export default function Article() {
 
             <p className="rounded-2xl border border-ink/[0.06] bg-surface-deep p-5 text-xs leading-5 text-ink/40">
               Educational and strategic reference on peptide availability and sourcing. The
-              availability layer contains disclosed affiliate links to a single sourcing
-              partner; it does not influence any monograph, mechanism, or evidence grade. Not
+              availability layer contains disclosed affiliate links to the network&rsquo;s
+              research-use-only sources; it does not influence any monograph, mechanism, or evidence grade. Not
               medical advice and not an endorsement to obtain or use any compound — regulatory
               status varies by jurisdiction and by whether a compound is handled as an approved
               drug or a research reagent.

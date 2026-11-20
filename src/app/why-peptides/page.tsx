@@ -121,7 +121,7 @@ export default function WhyPeptides() {
                 rodent. Downgrading a claim is free here; upgrading one requires a source.
               </P>
               <P>
-                We host no storefront. One affiliate relationship is disclosed in full on{" "}
+                We host no storefront. Affiliate relationships are disclosed in full on{" "}
                 <Link href="/methodology" className={LINK}>the methodology page</Link> and
                 gated on data — the sourcing note appears only where a molecule is
                 genuinely stocked, never as a blanket pitch — because the incentive that

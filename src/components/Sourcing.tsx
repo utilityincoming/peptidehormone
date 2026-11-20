@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { VENDORS, productUrl, vendorsFor, type Vendor } from "@/lib/affiliate";
+import { VENDORS, isPrimaryVendor, productUrl, vendorsFor, type Vendor } from "@/lib/affiliate";
 import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
 
 // The referral layer's presentation, in one place. Three intensities of the same
@@ -11,8 +11,9 @@ import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
 //   SourcingNote — the full block, bottom of insights/tools; disclosure inline.
 //   SourcingLine — one sentence for light surfaces (catalog, homepage).
 //
-// Every vendor is presented co-equally — order is tenure, not a ranking. Outbound
-// links are text or a pill, never a banner, and every one carries rel="sponsored".
+// Primary vendors share the pill CTA. A secondary vendor (Peptira) stays in the
+// same disclosure, as a text link under the primary rows. Outbound links are text
+// or a pill, never a banner, and every one carries rel="sponsored".
 
 const AFF_LINK =
   "text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent";
@@ -20,8 +21,9 @@ const AFF_LINK =
 export const CTA_PILL =
   "inline-flex items-center justify-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-accent transition-colors hover:bg-accent/15";
 
-const vendorCount =
-  VENDORS.length === 2 ? "two" : VENDORS.length === 3 ? "three" : `${VENDORS.length}`;
+const PRIMARY = VENDORS.filter(isPrimaryVendor);
+const primaryCount =
+  PRIMARY.length === 2 ? "two" : PRIMARY.length === 3 ? "three" : `${PRIMARY.length}`;
 
 /** Affiliate disclosure, the same words everywhere. */
 export function Disclosure({ className = "" }: { className?: string }) {
@@ -62,6 +64,17 @@ export function VendorRow({
   const deep = slug ? v.products[slug] : undefined;
   const href = slug ? productUrl(v, slug) : v.home;
   const cta = deep && label ? `Get ${label} at ${v.name}` : `Browse ${v.name}`;
+  if (!isPrimaryVendor(v)) {
+    return (
+      <p className="text-sm leading-6 text-ink/50">
+        Also at{" "}
+        <AffiliateLink href={href} vendor={v.key} slug={slug} surface={surface} className={AFF_LINK}>
+          {v.name}
+        </AffiliateLink>
+        {" "}— {v.blurb}.
+      </p>
+    );
+  }
   return (
     <div>
       <p className={`${compact ? "text-sm" : "text-[15px] leading-7"} text-ink/65`}>
@@ -114,15 +127,22 @@ export function SourcingNote({ slug, molecule }: { slug?: string; molecule?: str
         We don&rsquo;t run a storefront — but the question we hear most is where to actually
         get {what} that clears the bar this site holds. Our sister project{" "}
         <span className="font-medium text-ink/90">American Peptide</span> did the legwork and
-        vetted {vendorCount} research-use-only sources you can reason about:
+        vetted {primaryCount} research-use-only sources you can reason about:
       </p>
       <ul className="mt-5 space-y-5">
-        {list.map((v) => (
+        {list.filter(isPrimaryVendor).map((v) => (
           <li key={v.key}>
             <VendorRow v={v} slug={slug} label={molecule} surface="note" />
           </li>
         ))}
       </ul>
+      {list.some((v) => !isPrimaryVendor(v)) && (
+        <div className="mt-4 space-y-2 border-t border-ink/10 pt-4">
+          {list.filter((v) => !isPrimaryVendor(v)).map((v) => (
+            <VendorRow key={v.key} v={v} slug={slug} label={molecule} surface="note" />
+          ))}
+        </div>
+      )}
       <Disclosure className="mt-5" />
     </aside>
   );
