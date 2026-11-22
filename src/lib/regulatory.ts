@@ -390,6 +390,10 @@ const ROWS: Record<string, RegulatoryRow> = {
     status: "unapproved",
     basis: "Used in cosmetics; no drug approval and no registered human drug trials. Injectable GHK-Cu was in Category 2 of the FDA's interim 503A policy until April 2026, when the nomination was withdrawn; it still may not be compounded.",
   },
+  glutathione: {
+    status: "unapproved",
+    basis: "No approved glutathione drug. Oral forms are sold as dietary supplements. Injectable glutathione remains in Category 1 of the FDA's interim 503A bulk-substances policy (under evaluation; list updated May 2026). The 2022 Pharmacy Compounding Advisory Committee recommended adding it to the 503A list against FDA staff advice; the vote is non-binding and it is not on the 503A list.",
+  },
   "bpc-157": {
     status: "restricted",
     basis: `${WITHDRAWN_2026} ${PCAC_2026("8–6 with one abstention")}`,
@@ -545,7 +549,7 @@ function sourceFor(slug: string, status: RegulatoryStatus): RegulatorySource | u
 // withdrawn rows for the absence of a label. Endogenous and unapproved rows
 // were not rechecked, apart from the two named here, and keep the baseline.
 const RECHECKED_STATUSES: RegulatoryStatus[] = ["approved", "investigational", "restricted", "withdrawn"];
-const RECHECKED_ROWS = new Set(["myostatin", "ghk-cu"]);
+const RECHECKED_ROWS = new Set(["myostatin", "ghk-cu", "glutathione"]);
 
 // One entry per catalog slug: the row above plus its check month and source.
 export const REGULATORY: Record<string, RegulatoryEntry> = Object.fromEntries(
