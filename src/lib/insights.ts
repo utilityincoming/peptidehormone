@@ -27,6 +27,15 @@ export interface Insight {
 
 export const INSIGHTS: Insight[] = [
   {
+    slug: "the-residue-argument",
+    title: "The residue argument",
+    dek: "A Gila monster's venom, a prostate-cancer drug, and a bed-wetting nasal spray have nothing in common except the trick that made each one work: swap a single amino acid for one the body's enzymes don't recognize. Natural GLP-1 dies in two minutes because an enzyme cuts it after the eighth residue; replace that one residue and it survives. The same move — one substitution, one deletion, one mirror-image amino acid — recurs in family after unrelated family, which is the real argument of peptide drug design: a hormone and a billion-dollar drug can differ by a single letter. Why that letter is usually position two or eight, how to read a residue count on a label, and why one changed residue can mean a different molecule entirely.",
+    family: "incretins-metabolic",
+    hormones: ["semaglutide", "exenatide", "leuprolide", "vasopressin"],
+    readingMinutes: 9,
+    reviewed: "November 2026",
+  },
+  {
     slug: "the-clock-under-the-list",
     hormones: ["cjc-1295", "ipamorelin", "tesamorelin", "bpc-157", "semaglutide"],
     title: "The clock under the list",
