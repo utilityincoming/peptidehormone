@@ -2404,5 +2404,19 @@ export function hormoneFaq(h: Hormone): { q: string; a: string }[] {
   if (regulatory) faq.push(regulatory);
   const brand = aliasFaq(h);
   if (brand) faq.push(brand);
+  // Code-name / registry queries that already rank a sibling page. Keep the
+  // answers inside this molecule's own facts so schema does not invent news.
+  if (h.slug === "brenipatide") {
+    faq.push(
+      {
+        q: "What is LY3537031?",
+        a: "LY3537031 is Eli Lilly's investigational code name for brenipatide, a long-acting dual GIP/GLP-1 agonist aimed at the brain's reward circuitry rather than the scale. It is not an amylin analog.",
+      },
+      {
+        q: "Is brenipatide (LY3537031) in clinical trials?",
+        a: "Yes. The Phase 3 RENEW program studies alcohol use disorder and major depressive disorder. Phase 2 trials span bipolar disorder, schizophrenia, opioid use disorder, smoking relapse, irritable bowel syndrome, asthma, and COPD; obesity remains at Phase 1. It is not approved for any use.",
+      },
+    );
+  }
   return faq;
 }

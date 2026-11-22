@@ -27,10 +27,33 @@ const REF = {
     "https://investors.scholarrock.com/news-releases/news-release-details/scholar-rock-announces-fda-approval-isembyldtm-apitegromab-mstn", // 11 Sept 2026
 } as const;
 
+// FAQ — surfaced as FAQPage JSON-LD and mirrored in the visible Q&A block.
+// Questions match the queries this URL already ranks (follistatin/FSHD,
+// apitegromab/FSHD, FSHD cure, sotatercept). Answers rest on claims already
+// in the body — no new trial numbers.
+const FAQS = [
+  {
+    q: "Does follistatin treat FSHD?",
+    a: "No. ACE-083 was a locally injected, follistatin-based myostatin antagonist tested in facioscapulohumeral muscular dystrophy. In the phase 2 FSHD trial the injected muscles grew by double digits on MRI (Statland et al., 2022), but functional tests showed no statistically significant improvement. Acceleron stopped the FSHD program. The MRI change was a surrogate, not a disease-modifying outcome or a cure.",
+  },
+  {
+    q: "Does apitegromab treat FSHD? Is it a cure?",
+    a: "No. Apitegromab's phase 3 SAPPHIRE result is in spinal muscular atrophy (SMA), not FSHD. In children aged 2–12 the prespecified combined-dose comparison improved the HFMSE motor score by 1.8 points over placebo at 12 months; the separate 20 mg/kg comparison did not reach statistical significance (Crawford et al., Lancet Neurology, 2025). SAPPHIRE does not show apitegromab treats FSHD, let alone cures it.",
+  },
+  {
+    q: "Is there a cure for FSHD?",
+    a: "Not from the myostatin-pathway drugs reviewed here. ACE-083 grew FSHD muscle on MRI and left function unchanged; the program was stopped. Apitegromab later moved a functional motor score in SMA, on top of SMN-repair therapy — a different disease and a different setup. Neither result is a disease-modifying cure for FSHD.",
+  },
+  {
+    q: "What is sotatercept?",
+    a: "Sotatercept (Winrevair) is an Acceleron ligand-trap approved in 2024 for pulmonary arterial hypertension. It is the same molecular idea as the muscle decoy ACE-031, pointed at overgrown lung vessels rather than at muscle. It is not a myostatin inhibitor for strength or a treatment for FSHD; the muscle programs on that platform (ACE-031, ACE-083) were the ones that failed.",
+  },
+];
+
 export default function Article() {
   return (
     <>
-      <JsonLd data={insightLd(insight, getFamily(insight.family))} />
+      <JsonLd data={insightLd(insight, getFamily(insight.family), FAQS)} />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
@@ -273,6 +296,20 @@ export default function Article() {
                 bigger and stronger in view every time a new lean-mass number lands.
               </P>
             </Section>
+
+            <section>
+              <h2 className="font-display text-2xl font-semibold sm:text-[1.7rem]">
+                Common questions
+              </h2>
+              <dl className="mt-6 space-y-5">
+                {FAQS.map((f) => (
+                  <div key={f.q} className="rounded-2xl border border-ink/10 bg-panel/40 p-5">
+                    <dt className="font-display text-base font-semibold text-ink">{f.q}</dt>
+                    <dd className="mt-2 text-[15px] leading-7 text-ink/70">{f.a}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
 
             {/* Cross-links */}
             <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">
