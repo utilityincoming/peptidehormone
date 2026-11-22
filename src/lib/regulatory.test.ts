@@ -64,6 +64,7 @@ describe("regulatory table", () => {
     assert.equal(regulatoryFor("semaglutide")?.status, "approved");
     assert.equal(regulatoryFor("bpc-157")?.status, "restricted");
     assert.equal(regulatoryFor("glp-1")?.status, "endogenous");
+    assert.equal(regulatoryFor("glutathione")?.status, "unapproved");
     assert.equal(regulatoryFor("not-a-molecule"), undefined);
   });
 });
