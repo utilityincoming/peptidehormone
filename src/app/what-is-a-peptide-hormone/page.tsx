@@ -39,7 +39,7 @@ const FAQS: { q: string; a: string }[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Peptide hormones: definition, synthesis, function & examples",
+  title: "What is a Peptide Hormone? Definition, Synthesis, Function & Examples",
   alternates: { canonical: "/what-is-a-peptide-hormone" },
   description: DESCRIPTION,
   openGraph: {

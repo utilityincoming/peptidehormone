@@ -94,3 +94,20 @@ describe("hormoneFaq brand question", () => {
     assert.equal(/brand name/i.test(glp3.a), false);
   });
 });
+
+describe("hormoneFaq brenipatide code-name queries", () => {
+  it("answers What is LY3537031 and the clinical-trials question from existing facts", () => {
+    const h = getHormone("brenipatide");
+    assert.ok(h);
+    const faqs = hormoneFaq(h);
+    const code = faqs.find((f) => f.q === "What is LY3537031?");
+    assert.ok(code, "expected a LY3537031 FAQ");
+    assert.match(code.a, /brenipatide/i);
+    assert.match(code.a, /not an amylin analog/i);
+    const trials = faqs.find((f) => /clinical trials/i.test(f.q));
+    assert.ok(trials, "expected a clinical-trials FAQ");
+    assert.match(trials.a, /RENEW/);
+    assert.match(trials.a, /asthma/);
+    assert.match(trials.a, /not approved/i);
+  });
+});
