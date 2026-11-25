@@ -5,6 +5,11 @@ import { useMemo, useState } from "react";
 type Unit = "min" | "h" | "d";
 const UNIT_LABEL: Record<Unit, string> = { min: "minutes", h: "hours", d: "days" };
 const LN2 = Math.LN2;
+const AXIS_NUMBER = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+
+function axisNumber(value: number): string {
+  return value > 0 && value < 0.1 ? value.toExponential(1) : AXIS_NUMBER.format(value);
+}
 
 // Illustrative presets — generic, educational ranges, NOT dosing advice.
 const PRESETS: { label: string; halfLife: string; interval: string; unit: Unit }[] = [
@@ -113,12 +118,13 @@ export default function HalfLifeCalculator({
     if (!ready) return null;
     const nDoses = 8;
     const T = nDoses * tau;
+    if (!Number.isFinite(T)) return null;
     const N = 300;
     const single: number[] = [];
     const multi: number[] = [];
     let yMax = 0;
     for (let i = 0; i <= N; i++) {
-      const t = (T * i) / N;
+      const t = T * (i / N);
       const s = d * Math.pow(0.5, t / t12);
       let m = 0;
       for (let j = 0; j < nDoses; j++) {
@@ -129,13 +135,21 @@ export default function HalfLifeCalculator({
       multi.push(m);
       if (m > yMax) yMax = m;
     }
-    const W = 600, H = 240, padX = 8, padTop = 16, padBottom = 8;
-    const x = (i: number) => padX + ((W - 2 * padX) * i) / N;
-    const y = (v: number) => padTop + (H - padTop - padBottom) * (1 - v / (yMax || 1));
-    const toPath = (arr: number[]) =>
-      arr.map((v, i) => `${i === 0 ? "M" : "L"} ${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(" ");
-    const doseMarks = Array.from({ length: nDoses }, (_, j) => x((j * tau) / T * N));
-    return { W, H, multiPath: toPath(multi), singlePath: toPath(single), doseMarks, ssY: y(peakSS) };
+    if (!Number.isFinite(yMax)) return null;
+    const W = 600;
+    const H = 240;
+    const upper = Math.min(Number.MAX_VALUE, yMax * 1.12);
+    const x = (progress: number) => W * progress;
+    const y = (value: number) => H * (1 - value / upper);
+    const toPath = (values: number[]) =>
+      values.map((value, i) => `${i === 0 ? "M" : "L"} ${x(i / N).toFixed(1)} ${y(value).toFixed(1)}`).join(" ");
+    const doseMarks = Array.from({ length: nDoses }, (_, j) => x(j / nDoses));
+    const steadyPeak = Number.isFinite(peakSS) && peakSS <= upper ? y(peakSS) : null;
+    return {
+      W, H, multiPath: toPath(multi), singlePath: toPath(single), doseMarks, steadyPeak,
+      amountTicks: [upper, upper / 2, 0],
+      timeTicks: [0, T / 2, T],
+    };
   }, [ready, d, t12, tau, peakSS]);
 
   return (
@@ -247,32 +261,62 @@ export default function HalfLifeCalculator({
 
       {/* Chart */}
       {chart && (
-        <div className="rounded-2xl border border-ink/10 bg-surface p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h3 className="font-display text-base font-semibold">Bioactivity over the schedule</h3>
-            <div className="flex items-center gap-4 text-xs text-ink/55">
-              <span className="flex items-center gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "var(--accent)" }} /> your schedule
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="h-0 w-4 border-t-2 border-dashed" style={{ borderColor: "var(--accent-teal)" }} /> one dose
-              </span>
+        <figure className="rounded-xl border border-ink/15 bg-surface p-4 sm:p-6">
+          <h3 className="font-display text-lg font-semibold">Modeled concentration over time</h3>
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-xs text-secondary">
+            <li className="flex items-center gap-2">
+              <span aria-hidden className="w-5 border-t-2 border-accent" /> Repeated doses
+            </li>
+            <li className="flex items-center gap-2">
+              <span aria-hidden className="w-5 border-t-2 border-dashed border-accent-teal" /> Single dose
+            </li>
+            {chart.steadyPeak !== null && (
+              <li className="flex items-center gap-2">
+                <span aria-hidden className="w-5 border-t-2 border-dotted border-accent/55" /> Steady-state peak
+              </li>
+            )}
+          </ul>
+
+          <div className="mt-5 rounded-lg border border-ink/10 bg-panel/55 px-3 py-4 sm:px-4">
+            <p className="mb-3 text-xs font-medium text-secondary">Concentration (your units)</p>
+            <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2 text-xs tabular-nums text-secondary sm:gap-x-3">
+              <div className="flex flex-col justify-between text-right" aria-hidden>
+                {chart.amountTicks.map((value, index) => <span key={index}>{axisNumber(value)}</span>)}
+              </div>
+              <svg
+                viewBox={`0 0 ${chart.W} ${chart.H}`}
+                preserveAspectRatio="none"
+                className="h-44 w-full overflow-visible sm:h-64"
+                role="img"
+                aria-label={`Modeled concentration for repeated and single doses over ${axisNumber(chart.timeTicks[2])} ${UNIT_LABEL[unit]}. Concentration scale runs from 0 to ${axisNumber(chart.amountTicks[0])} in your units.`}
+              >
+                {[0, chart.H / 2, chart.H].map((y) => (
+                  <line key={y} x1="0" y1={y} x2={chart.W} y2={y} stroke="currentColor" strokeOpacity=".22" />
+                ))}
+                {chart.doseMarks.map((x, index) => (
+                  <line key={index} x1={x} x2={x} y1="0" y2={chart.H} stroke="currentColor" strokeOpacity=".1" />
+                ))}
+                {chart.steadyPeak !== null && (
+                  <line x1="0" x2={chart.W} y1={chart.steadyPeak} y2={chart.steadyPeak}
+                    stroke="var(--accent)" strokeDasharray="2 4" strokeOpacity=".55" vectorEffect="non-scaling-stroke" />
+                )}
+                <path d={`${chart.multiPath} L${chart.W} ${chart.H} L0 ${chart.H} Z`} fill="var(--accent)" fillOpacity=".07" />
+                <path d={chart.singlePath} fill="none" stroke="var(--accent-teal)" strokeWidth="1.75"
+                  strokeDasharray="5 4" vectorEffect="non-scaling-stroke" />
+                <path d={chart.multiPath} fill="none" stroke="var(--accent)" strokeWidth="2.25"
+                  strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+              </svg>
+              <div className="col-start-2 mt-2 grid grid-cols-3 [&>:last-child]:text-right [&>:nth-child(2)]:text-center" aria-hidden>
+                {chart.timeTicks.map((value, index) => <span key={index}>{axisNumber(value)}</span>)}
+              </div>
+              <p className="col-start-2 mt-2 text-center font-medium">Time ({UNIT_LABEL[unit]})</p>
             </div>
           </div>
-          <svg viewBox={`0 0 ${chart.W} ${chart.H}`} className="w-full" role="img" aria-label="Plasma bioactivity over time across repeated doses">
-            <line x1="0" y1={chart.ssY} x2={chart.W} y2={chart.ssY} stroke="var(--accent)" strokeWidth="1" strokeDasharray="2 6" opacity="0.4" />
-            {chart.doseMarks.map((mx, i) => (
-              <line key={i} x1={mx} y1="0" x2={mx} y2={chart.H} stroke="var(--color-ink)" strokeOpacity="0.06" strokeWidth="1" />
-            ))}
-            <path d={chart.singlePath} fill="none" stroke="var(--accent-teal)" strokeWidth="2" strokeDasharray="5 5" opacity="0.7" />
-            <path d={chart.multiPath} fill="none" stroke="var(--accent)" strokeWidth="2.5" />
-          </svg>
-          <p className="mt-3 text-xs leading-5 text-ink/40">
-            Tighter intervals relative to half-life accumulate higher and fluctuate
-            less; wide intervals barely accumulate and swing more. Concentration
-            math only — not medical or dosing advice.
-          </p>
-        </div>
+          <figcaption className="mt-3 text-xs leading-5 text-secondary">
+            The plot compares a single dose with the same amount repeated at the modeled interval.
+            Educational concentration model only, not medical or dosing advice.
+          </figcaption>
+        </figure>
       )}
     </div>
   );
