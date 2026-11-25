@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { SearchIcon } from "@/components/SearchPresentation";
 import { INSIGHTS, featuredInsights, type Insight } from "@/lib/insights";
 import { FAMILIES, getFamily } from "@/lib/families";
 
@@ -35,36 +36,34 @@ export default function InsightsBrowser() {
 
   return (
     <div>
-      {/* Controls */}
-      <div className="flex flex-col gap-4">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search deep-dives… (e.g. GLP-1, muscle, oral, half-life)"
-          aria-label="Search deep-dives"
-          className="w-full rounded-xl border border-ink/15 bg-panel/40 px-4 py-2.5 text-[15px] text-ink outline-none placeholder:text-ink/35 focus:border-accent/60"
-        />
-        <div className="flex flex-wrap gap-2">
-          <Chip active={family === "all"} onClick={() => setFamily("all")}>
-            All families
-          </Chip>
-          {PRESENT_FAMILIES.map((f) => (
-            <Chip
-              key={f.slug}
-              active={family === f.slug}
-              accent={f.accent}
-              onClick={() => setFamily(f.slug)}
-            >
-              {f.name}
-            </Chip>
-          ))}
+      <div className="grid gap-2.5 sm:grid-cols-[minmax(0,1fr)_minmax(13rem,auto)]">
+        <div className="flex items-center gap-3 rounded-lg border border-ink/20 bg-surface px-3 focus-within:border-accent focus-within:ring-2 focus-within:ring-accent/15">
+          <SearchIcon className="size-5 shrink-0 text-accent" />
+          <input
+            type="search"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search Insights"
+            aria-label="Search deep-dives"
+            className="search-field-input min-w-0 flex-1 bg-transparent py-2.5 text-base text-ink placeholder:text-muted"
+          />
         </div>
+        <select
+          value={family}
+          onChange={(event) => setFamily(event.target.value)}
+          aria-label="Filter by signaling family"
+          className="w-full min-w-0 rounded-lg border border-ink/20 bg-surface px-3 py-2.5 text-base text-ink"
+        >
+          <option value="all">All signaling families</option>
+          {PRESENT_FAMILIES.map((item) => (
+            <option key={item.slug} value={item.slug}>{item.name}</option>
+          ))}
+        </select>
       </div>
 
       {hasFilter ? (
         <>
-          <p className="mt-7 text-sm text-ink/45" aria-live="polite">
+          <p className="mt-5 text-sm text-ink/45" aria-live="polite">
             {filtered.length} {filtered.length === 1 ? "deep-dive" : "deep-dives"}
             {family !== "all" && ` in ${getFamily(family)?.name}`}
             {q && ` matching “${query}”`}
@@ -82,9 +81,9 @@ export default function InsightsBrowser() {
         </>
       ) : (
         <>
-          <section className="mt-10">
+          <section className="mt-6">
             <SectionLabel>Featured — start here</SectionLabel>
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="mt-3 grid gap-4 sm:grid-cols-2">
               {FEATURED.map((post) => (
                 <FeaturedCard key={post.slug} post={post} />
               ))}
@@ -109,11 +108,11 @@ function FeaturedCard({ post }: { post: Insight }) {
   return (
     <Link
       href={`/insights/${post.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-panel/40 p-7 transition-colors hover:border-accent/30 hover:bg-panel"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-panel/40 p-5 transition-colors sm:p-6 hover:border-accent/30 hover:bg-panel"
     >
       {/* Family colour bar — bg-current reads the family accent text colour. */}
       <span className={`absolute inset-x-0 top-0 h-[3px] bg-current ${accent}`} aria-hidden />
-      <div className="flex items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <FamilyLabel accent={accent}>{fam?.name ?? "Peptide science"}</FamilyLabel>
         <Meta post={post} />
       </div>
@@ -209,32 +208,5 @@ function EmptyState({ onClear }: { onClear: () => void }) {
         Clear filters
       </button>
     </div>
-  );
-}
-
-function Chip({
-  active,
-  accent,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  accent?: string;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={`rounded-full border px-3.5 py-1.5 text-sm transition-colors ${
-        active
-          ? `border-accent/50 bg-accent/15 ${accent ?? "text-accent"}`
-          : "border-ink/12 bg-panel/40 text-ink/55 hover:text-ink/85"
-      }`}
-    >
-      {children}
-    </button>
   );
 }

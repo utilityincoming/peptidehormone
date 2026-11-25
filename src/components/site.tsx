@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FAMILIES } from "@/lib/families";
 import SearchDialog from "@/components/SearchDialog";
 import MobileNav from "@/components/MobileNav";
+import SectionNavLink from "@/components/SectionNavLink";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-6 ${className}`}>{children}</div>;
@@ -42,11 +43,21 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
         <div className="flex items-center gap-2 sm:gap-4 lg:gap-5">
-          <nav className="hidden items-center gap-6 text-sm text-secondary md:flex lg:gap-8">
-            <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
-            <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
-            <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
-            <Link href="/available" className="transition-colors hover:text-ink">Availability</Link>
+          <nav aria-label="Site" className="hidden items-center gap-6 text-sm text-secondary md:flex lg:gap-8">
+            {[
+              { href: "/catalog", label: "Catalog" },
+              { href: "/insights", label: "Insights" },
+              { href: "/tools", label: "Tools" },
+              { href: "/available", label: "Availability" },
+            ].map(({ href, label }) => (
+              <SectionNavLink
+                key={href}
+                href={href}
+                className="transition-colors hover:text-ink [&[aria-current]]:text-accent [&[aria-current]]:underline [&[aria-current]]:decoration-2 [&[aria-current]]:underline-offset-8"
+              >
+                {label}
+              </SectionNavLink>
+            ))}
           </nav>
           <div className="md:border-l md:border-ink/10 md:pl-4 lg:pl-5">
             <SearchDialog />
