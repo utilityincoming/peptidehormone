@@ -135,7 +135,7 @@ export default function CatalogBrowser() {
           No molecules match. Try a broader search or clear the filters.
         </div>
       ) : (
-        <div className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((h) => {
             const fam = FAMILY_MAP[h.family];
             const match = catalogNameMatch(h, query);
@@ -143,13 +143,13 @@ export default function CatalogBrowser() {
               <Link
                 key={h.slug}
                 href={`/hormones/${h.slug}`}
-                className="group flex flex-col bg-surface p-6 transition-colors hover:bg-panel"
+                className="group flex min-w-0 flex-col bg-surface p-4 sm:p-6 transition-colors hover:bg-panel"
               >
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
                   <span className={`font-mono text-[11px] uppercase tracking-wide ${fam?.accent ?? "text-accent"}`}>
                     {fam?.name}
                   </span>
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex flex-wrap items-center gap-1.5">
                     {SOURCED_SLUGS.has(h.slug) && (
                       <span
                         title="Reachable at research grade through the network"

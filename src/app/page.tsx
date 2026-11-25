@@ -175,7 +175,7 @@ export default function Home() {
           <Container className="relative py-10 md:py-16">
             <div className={styles.masthead}>
               <span className={styles.mastMark}>Research atlas</span>
-              <Link href="/methodology">Evidence standards <span aria-hidden>↗</span></Link>
+              <Link href="/methodology">Evidence standards</Link>
             </div>
             <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14">
             <div>

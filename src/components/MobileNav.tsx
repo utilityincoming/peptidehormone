@@ -15,7 +15,7 @@ const LINKS: { href: string; label: string }[] = [
 ];
 
 /**
- * Phone-width navigation: a menu button (hidden from `sm` up, where the inline
+ * Phone-width navigation: a menu button (hidden from `md` up, where the inline
  * nav takes over) that drops a panel under the sticky header. Closes on Escape,
  * on navigation, and when a link is chosen.
  */
@@ -37,7 +37,7 @@ export default function MobileNav() {
   }, [open]);
 
   return (
-    <div className="sm:hidden">
+    <div className="md:hidden">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -62,7 +62,7 @@ export default function MobileNav() {
         <nav
           id="mobile-nav"
           aria-label="Site"
-          className="absolute inset-x-0 top-full border-b border-ink/10 bg-surface shadow-2xl shadow-black/50"
+          className="absolute inset-x-0 top-full border-b border-ink/10 bg-surface shadow-lg shadow-ink/15"
         >
           <ul className="mx-auto max-w-6xl px-6 py-3">
             {LINKS.map((l) => (
