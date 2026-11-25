@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
@@ -12,7 +13,9 @@ export const metadata: Metadata = {
     "Long-form, research-grade deep-dives into peptide hormone mechanisms and signaling — biology over benefits, sourced and explained.",
 };
 
-export default function InsightsIndex() {
+export default async function InsightsIndex() {
+  // Render shared filters on the first request as well as after hydration.
+  await connection();
   const familyCount = new Set(INSIGHTS.map((i) => i.family)).size;
   return (
     <>
