@@ -41,14 +41,16 @@ export function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-ink/[0.06] bg-surface/80 backdrop-blur">
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
-        <div className="flex items-center gap-3 sm:gap-6">
+        <div className="flex items-center gap-2 sm:gap-4 lg:gap-5">
           <nav className="hidden items-center gap-6 text-sm text-secondary md:flex lg:gap-8">
             <Link href="/catalog" className="transition-colors hover:text-ink">Catalog</Link>
             <Link href="/insights" className="transition-colors hover:text-ink">Insights</Link>
             <Link href="/tools" className="transition-colors hover:text-ink">Tools</Link>
             <Link href="/available" className="transition-colors hover:text-ink">Availability</Link>
           </nav>
-          <SearchDialog />
+          <div className="md:border-l md:border-ink/10 md:pl-4 lg:pl-5">
+            <SearchDialog />
+          </div>
           <MobileNav />
           <Link
             href="/catalog"

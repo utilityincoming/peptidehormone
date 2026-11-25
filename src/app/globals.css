@@ -57,6 +57,11 @@ body {
   outline-offset: 4px;
 }
 
+/* Search fields draw their focus indicator on the surrounding control. */
+.search-field-input:focus-visible {
+  outline: none;
+}
+
 /* Display typeface for headings, site-wide. */
 :is(h1, h2, h3) {
   font-family: var(--font-space-grotesk), var(--font-geist-sans), sans-serif;

@@ -44,7 +44,7 @@ export default function MobileNav() {
         aria-expanded={open}
         aria-controls="mobile-nav"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/12 bg-panel/40 text-ink/70 transition-colors hover:border-ink/25 hover:text-ink"
+        className="flex size-10 items-center justify-center rounded-full border border-ink/12 bg-panel/40 text-ink/70 transition-colors hover:border-ink/25 hover:text-ink"
       >
         <svg
           viewBox="0 0 24 24"
