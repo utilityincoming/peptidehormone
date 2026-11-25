@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import SectionNavLink from "@/components/SectionNavLink";
 import { usePathname } from "next/navigation";
 
 const LINKS: { href: string; label: string }[] = [
@@ -67,17 +67,16 @@ export default function MobileNav() {
           <ul className="mx-auto max-w-6xl px-6 py-3">
             {LINKS.map((l) => (
               <li key={l.href} className="border-b border-ink/[0.06] last:border-b-0">
-                <Link
+                <SectionNavLink
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  aria-current={pathname === l.href ? "page" : undefined}
-                  className="flex items-center justify-between py-3.5 text-base text-ink/85 aria-[current=page]:text-accent"
+                  className="flex items-center justify-between py-3.5 text-base text-ink/85 [&[aria-current]]:font-semibold [&[aria-current]]:text-accent"
                 >
                   {l.label}
                   <span aria-hidden className="text-ink/30">
                     →
                   </span>
-                </Link>
+                </SectionNavLink>
               </li>
             ))}
           </ul>

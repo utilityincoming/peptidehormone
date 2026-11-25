@@ -31,35 +31,23 @@ export default function InsightsIndex() {
       />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
-        <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <Container className="relative py-16 md:py-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              Biology over benefits
-            </span>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-tight sm:text-5xl">
-              Insights
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Long-form deep-dives into how peptide hormones actually work —
-              receptors, second messengers, and physiology, traced from the source.
-              Mechanistic depth, not marketing.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-ink/45">
-              <span>
-                <span className="text-ink/80">{INSIGHTS.length}</span> deep-dives
-              </span>
-              <span aria-hidden className="text-ink/20">·</span>
-              <span>
-                <span className="text-ink/80">{familyCount}</span> families
-              </span>
-              <span aria-hidden className="text-ink/20">·</span>
-              <span>Sourced, reviewed — evidence you can check</span>
+        <section className="border-b border-ink/10 bg-panel/55" aria-labelledby="insights-title">
+          <Container className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 py-7 sm:py-9">
+            <div>
+              <h1 id="insights-title" className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
+                Insights
+              </h1>
+              <p className="mt-2 max-w-xl text-base leading-7 text-secondary">
+                Research essays on peptide hormones, their receptors, and how they signal.
+              </p>
             </div>
+            <p className="text-sm text-secondary">
+              {INSIGHTS.length} articles <span aria-hidden>·</span> {familyCount} signaling families
+            </p>
           </Container>
         </section>
 
-        <Container className="py-12 md:py-16">
+        <Container className="pb-12 pt-5 sm:pt-6 md:pb-16">
           <InsightsBrowser />
         </Container>
       </main>
