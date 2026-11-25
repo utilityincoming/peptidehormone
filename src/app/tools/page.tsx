@@ -79,9 +79,8 @@ export default function ToolsIndex() {
                 Model half-life, compare analogs, or explore a research timeline.
               </p>
             </div>
-            <p className="max-w-xs border-l border-accent/35 pl-4 text-sm leading-6 text-secondary">
-              Free to use in your browser. No sign-up required.
-              <br className="hidden lg:block" /> For education, not dosing advice.
+            <p className="max-w-xs border-l border-ink/15 pl-4 text-sm leading-6 text-secondary">
+              Free browser tools for research and learning. No sign-up required.
             </p>
           </Container>
         </section>

@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useSyncExternalStore } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { SearchIcon } from "@/components/SearchPresentation";
 import { INSIGHTS, featuredInsights, type Insight } from "@/lib/insights";
@@ -19,9 +20,29 @@ const PRESENT_FAMILIES = FAMILIES.filter((f) =>
 // holds everything else so nothing is shown twice.
 const ARCHIVE = INSIGHTS.filter((i) => !FEATURED_SLUGS.has(i.slug));
 
+const FILTERS_CHANGED = "insights-filters-changed";
+
+function subscribeToFilters(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener(FILTERS_CHANGED, onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener(FILTERS_CHANGED, onChange);
+  };
+}
+
+function getFilterSnapshot() {
+  return window.location.search;
+}
+
 export default function InsightsBrowser() {
-  const [family, setFamily] = useState<string>("all");
-  const [query, setQuery] = useState("");
+  const routeParams = useSearchParams();
+  // Read browser edits synchronously so fast typing does not wait for a router transition.
+  const search = useSyncExternalStore(subscribeToFilters, getFilterSnapshot, () => routeParams.toString());
+  const params = new URLSearchParams(search);
+  const requestedFamily = params.get("family");
+  const family = PRESENT_FAMILIES.find((item) => item.slug === requestedFamily)?.slug ?? "all";
+  const query = params.get("q") ?? "";
 
   const q = query.trim().toLowerCase();
   const hasFilter = family !== "all" || q !== "";
@@ -42,7 +63,7 @@ export default function InsightsBrowser() {
           <input
             type="search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => updateFilters({ q: event.target.value })}
             placeholder="Search Insights"
             aria-label="Search deep-dives"
             className="search-field-input min-w-0 flex-1 bg-transparent py-2.5 text-base text-ink placeholder:text-muted"
@@ -50,7 +71,7 @@ export default function InsightsBrowser() {
         </div>
         <select
           value={family}
-          onChange={(event) => setFamily(event.target.value)}
+          onChange={(event) => updateFilters({ family: event.target.value === "all" ? "" : event.target.value })}
           aria-label="Filter by signaling family"
           className="w-full min-w-0 rounded-lg border border-ink/20 bg-surface px-3 py-2.5 text-base text-ink"
         >
@@ -63,18 +84,13 @@ export default function InsightsBrowser() {
 
       {hasFilter ? (
         <>
-          <p className="mt-5 text-sm text-ink/45" aria-live="polite">
+          <p className="mt-5 wrap-break-word text-sm text-ink/45" aria-live="polite">
             {filtered.length} {filtered.length === 1 ? "deep-dive" : "deep-dives"}
             {family !== "all" && ` in ${getFamily(family)?.name}`}
             {q && ` matching “${query}”`}
           </p>
           {filtered.length === 0 ? (
-            <EmptyState
-              onClear={() => {
-                setFamily("all");
-                setQuery("");
-              }}
-            />
+            <EmptyState onClear={() => updateFilters({ q: "", family: "" })} />
           ) : (
             <ArchiveGrid items={filtered} className="mt-4" />
           )}
@@ -98,6 +114,18 @@ export default function InsightsBrowser() {
       )}
     </div>
   );
+}
+
+function updateFilters(filters: Partial<Record<"q" | "family", string>>) {
+  const url = new URL(window.location.href);
+  for (const [key, value] of Object.entries(filters)) {
+    if (value === "") url.searchParams.delete(key);
+    else url.searchParams.set(key, value);
+  }
+
+  // Keep the filtered URL for Back from an article without adding a step per keystroke.
+  window.history.replaceState(null, "", url);
+  window.dispatchEvent(new Event(FILTERS_CHANGED));
 }
 
 /* ── Cards ─────────────────────────────────────────────────────────────── */
