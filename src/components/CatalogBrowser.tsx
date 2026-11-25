@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
+import { catalogNameMatch } from "@/lib/catalog-search";
 import { FAMILIES } from "@/lib/families";
 import { compoundTierClasses } from "@/components/evidence";
 import { SOURCED_SLUGS } from "@/lib/affiliate";
@@ -41,7 +42,7 @@ export default function CatalogBrowser() {
       if (evidence !== "all" && (h.evidence ?? "Established") !== evidence) return false;
       if (sourced && !SOURCED_SLUGS.has(h.slug)) return false;
       if (!q) return true;
-      return [h.name, h.abbr ?? "", h.summary, h.class, h.source, h.receptor]
+      return Boolean(catalogNameMatch(h, q)) || [h.name, h.abbr ?? "", h.summary, h.class, h.source, h.receptor]
         .join(" ")
         .toLowerCase()
         .includes(q);
@@ -70,7 +71,8 @@ export default function CatalogBrowser() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search molecules, receptors, sources… (e.g. GPCR, pituitary, GLP-1)"
+            aria-label="Search the catalog"
+            placeholder="Search names, aliases, codes, receptors, or sources"
             className="flex-1 rounded-xl border border-ink/15 bg-panel/40 px-4 py-2.5 text-[15px] text-ink outline-none placeholder:text-ink/35 focus:border-accent/60"
           />
           <div className="flex shrink-0 overflow-hidden rounded-xl border border-ink/15 text-sm">
@@ -136,6 +138,7 @@ export default function CatalogBrowser() {
         <div className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((h) => {
             const fam = FAMILY_MAP[h.family];
+            const match = catalogNameMatch(h, query);
             return (
               <Link
                 key={h.slug}
@@ -166,6 +169,11 @@ export default function CatalogBrowser() {
                   {h.name}
                   {h.abbr && <span className="font-mono text-sm font-normal text-ink/40"> · {h.abbr}</span>}
                 </h3>
+                {match && (
+                  <p className="mt-1 text-xs text-ink/60">
+                    Matched {match.label}{match.note && ` · ${match.note}`}
+                  </p>
+                )}
                 <p className="mt-2 flex-1 text-sm leading-6 text-ink/60">{h.summary}</p>
                 <div className="mt-4 border-t border-ink/[0.06] pt-3">
                   <div className="text-xs leading-5 text-ink/40">{h.class}</div>

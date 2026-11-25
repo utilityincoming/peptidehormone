@@ -131,7 +131,12 @@ export default function AvailablePage() {
                 </div>
               ))}
             </div>
-            <p className="mt-5 max-w-3xl text-sm leading-6 text-ink/50">
+            <p className="mt-5 text-sm leading-6 text-ink/60">
+              <Link href="/insights/how-to-read-a-peptide-coa" className="text-accent hover:underline">
+                How to read a peptide certificate of analysis
+              </Link>
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-ink/50">
               Listings are editorial: a compound appears because our network sources it
               research-use-only and it fits the picture above, never because it was paid for.
               Each button opens the vendor&rsquo;s own product page, which is authoritative for

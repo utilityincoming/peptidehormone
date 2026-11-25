@@ -91,6 +91,11 @@ export default function Article() {
 
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
+            <p className="text-sm text-ink/65">
+              <Link href="/hormones/bpc-157#human-evidence" className={LINK}>
+                BPC-157 catalog entry and human evidence summary
+              </Link>
+            </p>
             <Section title="First, the claim that prompted this piece">
               <P>
                 In September 2026 the phrase &ldquo;first human study of BPC-157&rdquo;

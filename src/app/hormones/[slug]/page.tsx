@@ -1,3 +1,4 @@
+import { BpcHumanEvidence } from "@/components/BpcHumanEvidence";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -294,6 +295,8 @@ export default async function HormonePage({
                 </figure>
               )}
             </section>
+
+            {h.slug === "bpc-157" && <BpcHumanEvidence />}
 
             {h.narrative && h.narrative.length > 0 && (
               <section className="mt-12">

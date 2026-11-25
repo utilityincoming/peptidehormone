@@ -48,7 +48,7 @@ export default function CatalogPage() {
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
               Every peptide hormone in one index. Search by molecule, receptor,
-              source, or class, filter by signaling family, and open any entry for
+              source, class, alias, or development code, filter by signaling family, and open any entry for
               the full reference — identity, mechanism, and the evidence behind it.
             </p>
             <div className="mt-6">

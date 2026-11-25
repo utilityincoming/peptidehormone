@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, CrossLink } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
@@ -188,6 +189,17 @@ export default function Methodology() {
                 Downgrading is free; upgrading requires a source.
               </P>
               <ClaimTierStandard />
+            </Section>
+
+            <Section title="Reading lab reports">
+              <P>
+                Our{" "}
+                <Link href="/insights/how-to-read-a-peptide-coa" className="text-accent hover:underline">
+                  guide to peptide certificates of analysis
+                </Link>{" "}
+                uses an annotated example to explain lot matching, identity, purity,
+                peptide content, and contamination tests.
+              </P>
             </Section>
 
             <Section title="How molecules are classified">
