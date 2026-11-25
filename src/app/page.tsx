@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FAMILIES, getFamily } from "@/lib/families";
 import { INSIGHTS } from "@/lib/insights";
-import { homeReading } from "@/lib/home-reading";
+import { homeReading, TWO_RESIDUES_COVER } from "@/lib/home-reading";
 import styles from "./home.module.css";
 import { HORMONES, getHormone, halfLifeForLink } from "@/lib/hormones";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
@@ -323,7 +324,19 @@ export default function Home() {
                 href={`/insights/${lead.slug}`}
                 className="group mt-12 grid overflow-hidden rounded-[4px] border border-ink/10 bg-surface transition-colors hover:bg-panel md:grid-cols-[1.1fr_1fr]"
               >
-                <HomeReadingPlate slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
+                {lead.slug === "two-residues-apart" ? (
+                  <div className="relative aspect-[16/9] overflow-hidden bg-surface-deep md:aspect-auto md:min-h-72">
+                    <Image
+                      src={TWO_RESIDUES_COVER}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1152px) 578px, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.025]"
+                    />
+                  </div>
+                ) : (
+                  <HomeReadingPlate slug={lead.slug} className="aspect-[16/9] md:aspect-auto md:min-h-72" />
+                )}
                 <div className="flex flex-col justify-center p-7 md:p-10">
                   <div className="flex items-center gap-4">
                     <span

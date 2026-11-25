@@ -1,5 +1,7 @@
 import { INSIGHTS } from "./insights";
 
+export const TWO_RESIDUES_COVER = "/editorial/two-residues-water-study.jpg";
+
 // Homepage curation only: the article registry and insights index keep their order.
 const HOME_READING = [
   "two-residues-apart",
