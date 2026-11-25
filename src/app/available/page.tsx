@@ -6,18 +6,18 @@ import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
 import { sourcedSlugs, vendorsFor, VENDORS, isPrimaryVendor, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
-import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
+import { AffiliateLink } from "@/components/AffiliateLink";
 import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 
 export const metadata: Metadata = {
   title: "Availability — what the network sources",
   description:
-    "The peptide hormones this catalog can point you to at research grade — sourced through the American Peptide network via AminoClub, with Peptira linked more quietly, research-use-only. What you can actually get, not just what exists.",
+    "Find cataloged peptide hormones with research-use-only supplier listings and review how sources are selected.",
   alternates: { canonical: "/available" },
   openGraph: {
     title: "Availability · Peptide Hormone",
     description:
-      "Research-grade peptides you can actually reach, sourced through the network via AminoClub, with Peptira linked more quietly.",
+      "Research-use-only supplier listings for compounds in the Peptide Hormone catalog.",
   },
 };
 
@@ -55,61 +55,20 @@ export default function AvailablePage() {
               What&rsquo;s actually reachable
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Every reference tells you what a molecule <span className="font-medium text-ink/80">is</span>.
-              This is the one that tells you whether you can get it — the compounds our
-              network can point you to at research grade, sourced research-use-only rather
-              than left as an open question.
+              Find molecules with research-use-only supplier listings. Open a molecule
+              for the scientific reference or follow a listing for product and lot details.
             </p>
-            <p className="mt-6 max-w-2xl text-sm leading-6 text-ink/55">
-              Sourced through the American Peptide network from {VENDORS.length} research-use-only sources —{" "}
-              {VENDORS.map((v, i) => (
-                <span key={v.key}>
-                  <Link href={`/available/${v.key}`} className="text-accent hover:underline">
-                    {v.name}
+            <p className="mt-5 max-w-2xl text-sm leading-6 text-secondary">
+              Supplier profiles:{' '}
+              {VENDORS.map((vendor, index) => (
+                <span key={vendor.key}>
+                  {index > 0 && " · "}
+                  <Link href={`/available/${vendor.key}`} className="text-accent underline underline-offset-2">
+                    {vendor.name}
                   </Link>
-                  {i < VENDORS.length - 2 ? ", " : i === VENDORS.length - 2 ? " and " : ""}
                 </span>
               ))}
-              . Every button below lands on the product itself, research-use-only.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {VENDORS.filter(isPrimaryVendor).map((v) => (
-                <div
-                  key={v.key}
-                  className="flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-ink/10 bg-panel/40 px-4 py-3"
-                >
-                  <AffiliateLink href={v.home} vendor={v.key} surface="available" className={CTA_PILL}>
-                    Browse {v.name} <span aria-hidden>→</span>
-                  </AffiliateLink>
-                  {v.code ? (
-                    <span className="inline-flex items-center gap-1.5 text-xs text-ink/50">
-                      code <CopyCode code={v.code} />
-                    </span>
-                  ) : (
-                    <span className="text-xs text-ink/45">{v.carries.size} from this catalog</span>
-                  )}
-                </div>
-              ))}
-            </div>
-            {VENDORS.some((v) => !isPrimaryVendor(v)) && (
-              <p className="mt-3 text-sm text-ink/45">
-                Also linked, with a lighter placement:{" "}
-                {VENDORS.filter((v) => !isPrimaryVendor(v)).map((v, i, arr) => (
-                  <span key={v.key}>
-                    <AffiliateLink
-                      href={v.home}
-                      vendor={v.key}
-                      surface="available"
-                      className="text-ink/60 underline decoration-ink/20 underline-offset-2 hover:text-accent"
-                    >
-                      {v.name}
-                    </AffiliateLink>
-                    {i < arr.length - 1 ? ", " : ""}
-                  </span>
-                ))}
-                .
-              </p>
-            )}
           </Container>
         </section>
 
