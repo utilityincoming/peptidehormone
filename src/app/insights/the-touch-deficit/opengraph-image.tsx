@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Neuropeptides",
       title: insight.title,
       subtitle: "Delivery is improvable — but the bonding circuit still only answers to touch.",
-      accent: "#B58CFA", // neuropeptides family accent
+      accent: "#605A79", // neuropeptides family accent
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · maintenance",
       title: insight.title,
       subtitle: "The body defends the weight it lost; the drug holds that defense at bay. Why stopping is hard - and how to do time off well.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

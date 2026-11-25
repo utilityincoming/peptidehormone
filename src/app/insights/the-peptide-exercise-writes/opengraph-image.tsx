@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "MOTS-c isn't a pre-workout — it's the signal hard training writes. Why the stimulus comes first, and where SS-31 fits.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Repair & regenerative",
       title: insight.title,
       subtitle: "ARA-290 keeps EPO's tissue protection, drops the red cells.",
-      accent: "#F472B6", // repair family accent (rose)
+      accent: "#885768", // repair family accent (rose)
     }),
     { ...size, fonts: await ogFonts() },
   );

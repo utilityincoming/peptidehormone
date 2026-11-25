@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · evidence",
       title: insight.title,
       subtitle: "BPC-157 in people: three uncontrolled pilots, one recruiting trial, one advisory vote — and no result yet.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

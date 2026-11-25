@@ -1,29 +1,35 @@
 .plate { margin: 0; min-width: 0; }
-.viewport { min-width: 0; }
-@media (max-width: 639px) {
-  .viewport { aspect-ratio: 480 / 290; overflow: hidden; }
-  .caption > p:not(:first-child) { display: none; }
+.sequence { margin-bottom: 12px; }
+.label { color: var(--text-secondary); font-size: 12px; font-weight: 500; }
+.residues {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: clamp(3px, 1vw, 8px);
+  margin: 6px 0;
+  padding: 0;
+  list-style: none;
 }
-.diagram { display: block; width: 100%; height: auto; overflow: visible; }
-.diagram text { font-family: var(--font-geist-mono), monospace; }
-.label { fill: #9aa0ff; font-size: 11px; letter-spacing: 1.2px; }
-.micro { fill: #a8b7cf; font-size: 10px; letter-spacing: .4px; }
-.note { fill: #e2e7f4; font-size: 13px; }
-.residue { fill: #f0f0ff; font-size: 15px; }
-.gold { fill: #d3bb82; font-size: 11px; }
-.rule { fill: none; stroke: #8293b4; stroke-opacity: .35; }
-.orbit { fill: none; stroke: #7C83FF; stroke-opacity: .22; }
-.flow { fill: none; stroke: #7C83FF; stroke-width: 1.2; stroke-dasharray: 3 5; opacity: .75; }
-.caption { border-top: 1px solid #ffffff20; padding-top: 14px; color: #c0c9da; font-size: 12px; line-height: 1.7; }
-.caption strong { color: #e2e7f4; font-weight: 500; }
-.caption a { color: #9aa0ff; text-decoration: underline; text-underline-offset: 3px; }
-.key { display: flex; flex-wrap: wrap; gap: 3px 16px; margin: 12px 0; color: #a8b7cf; font-size: 10px; }
-.key span::before { content: ''; display: inline-block; width: 16px; border-top: 1px solid #a5adff; margin-right: 6px; vertical-align: middle; }
-.key span:last-child::before { border-top-style: dashed; }
-.caption summary { cursor: pointer; padding: 10px 0; color: #9aa0ff; }
-.caption summary:hover { color: #fff; }
-.caption summary:focus-visible, .caption a:focus-visible { outline: 2px solid #bcc3ff; outline-offset: 4px; }
-.notes { display: grid; gap: 12px; padding: 8px 0; }
-@media (max-width: 639px) { .micro { font-size: 12px; } .label { font-size: 13px; letter-spacing: .5px; } .note { font-size: 15px; } }
-/* Deliberately static: no molecular motion is inferred from a deposited snapshot. */
-@media (prefers-reduced-motion: reduce) { .plate *, .plate *::before { animation: none !important; transition: none !important; } }
+.residues li {
+  display: grid;
+  place-items: center;
+  min-height: 26px;
+  border: 1px solid #aebbb8;
+  border-radius: 4px;
+  background: var(--surface);
+  font: 500 14px var(--font-geist-mono), monospace;
+}
+.residues .cysteine { border-color: #ad956d; background: #ede5d4; }
+.chemistry {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.diagram { display: block; width: 100%; height: auto; }
+.svgLabel { fill: var(--ink); font-size: 18px; font-weight: 600; }
+.svgNote { fill: #3d555b; font-size: 17px; }
+.caption { padding-top: 8px; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
+.caption a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.caption summary { cursor: pointer; padding: 7px 0; color: var(--accent); }
+.notes { display: grid; gap: 8px; padding-bottom: 8px; }

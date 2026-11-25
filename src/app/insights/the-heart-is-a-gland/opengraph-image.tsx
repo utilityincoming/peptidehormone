@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Cardiovascular & natriuretic",
       title: insight.title,
       subtitle: "The peptides the heart secretes to shed the load that stretches it.",
-      accent: "#2DD4A8", // cardiovascular family accent (teal)
+      accent: "#3E6B58", // cardiovascular family accent (teal)
     }),
     { ...size, fonts: await ogFonts() },
   );

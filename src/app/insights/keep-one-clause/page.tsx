@@ -61,10 +61,6 @@ export default function Article() {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 78% 0%, rgba(245,181,68,0.16), transparent 70%)" }}
-          />
           <Container className="relative max-w-3xl py-16 md:py-20">
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/insights" className="hover:text-ink">Insights</Link>

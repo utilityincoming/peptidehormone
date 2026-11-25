@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Ninety years of ageing biology said restriction works by slowing the engine. Twenty-month-old mice on semaglutide lived about as much longer as calorie-restricted ones — and kept their metabolic rate. What that separates, and what it doesn't yet prove.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -9,9 +9,9 @@ export const contentType = OG_CONTENT_TYPE;
 // two minutes; the engineered analogs last about a week. Linear scale, so the
 // native bar is honestly a sliver. Values mirror the catalog's half-lives.
 const ROWS = [
-  { name: "Native GLP-1", value: "~2 min", width: 6, color: "#F5B544" },
-  { name: "Semaglutide", value: "~7 days · 1 receptor", width: 480, color: "#5EA8FA" },
-  { name: "Retatrutide", value: "~6 days · 3 receptors", width: 411, color: "#7C83FF" },
+  { name: "Native GLP-1", value: "~2 min", width: 6, color: "#865C27" },
+  { name: "Semaglutide", value: "~7 days · 1 receptor", width: 480, color: "#386982" },
+  { name: "Retatrutide", value: "~6 days · 3 receptors", width: 411, color: "#34566A" },
 ];
 
 function HalfLifeArt() {
@@ -19,7 +19,7 @@ function HalfLifeArt() {
     <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 34 }}>
       {ROWS.map((r) => (
         <div key={r.name} style={{ display: "flex", alignItems: "center", gap: 18 }}>
-          <div style={{ display: "flex", width: 190, fontSize: 24, color: "rgba(255,255,255,0.7)" }}>
+          <div style={{ display: "flex", width: 190, fontSize: 24, color: "#4A5964" }}>
             {r.name}
           </div>
           <div

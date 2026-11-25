@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "KPV and bremelanotide come from opposite ends of α-MSH. Only one carries the receptor message that desire runs through — and even that one is a modest drug.",
-      accent: "#F5B544",
+      accent: "#865C27",
     }),
     { ...size, fonts: await ogFonts() },
   );

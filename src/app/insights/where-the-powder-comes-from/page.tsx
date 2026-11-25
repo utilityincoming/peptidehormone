@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
@@ -25,10 +26,6 @@ export default function Article() {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 78% 0%, rgba(124,131,255,0.14), transparent 70%)" }}
-          />
           <Container className="relative max-w-3xl py-16 md:py-20">
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/insights" className="hover:text-ink">Insights</Link>
@@ -49,6 +46,19 @@ export default function Article() {
 
         <Container className="max-w-3xl py-14 md:py-18">
           <article className="space-y-12">
+            <figure>
+              <Image
+                src="/editorial/lab-sample-vials.webp"
+                alt="Amber and clear glass sample vials in a stainless-steel rack, with a white powder cake visible in the clear vial."
+                width={1400}
+                height={933}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="h-auto w-full rounded-2xl border border-ink/10"
+              />
+              <figcaption className="mt-2 text-xs text-secondary">
+                Studio illustration of lyophilized material in a sample vial.
+              </figcaption>
+            </figure>
             <Section title="The map most people don't have">
               <P>
                 The center of gravity of the peptide world isn&rsquo;t where the

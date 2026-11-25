@@ -168,7 +168,7 @@ export default function ResearchAgent() {
                 </div>
               )}
               {error && (
-                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300">
+                <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-700">
                   {error}
                 </div>
               )}
@@ -311,12 +311,12 @@ function PassPanel({
           </button>
         </form>
       </div>
-      {err && <p className="mt-3 text-sm text-red-300">{err}</p>}
+      {err && <p className="mt-3 text-sm text-red-700">{err}</p>}
     </div>
   );
 }
 
-/* Markdown renderers tuned for the dark reference theme. */
+/* Markdown renderers for the reference theme. */
 const MD = {
   a: (props: ComponentProps<"a">) => (
     <a

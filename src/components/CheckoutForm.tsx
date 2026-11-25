@@ -103,7 +103,7 @@ export default function CheckoutForm() {
     <>
       <Script src="https://js.stripe.com/dahlia/stripe.js" strategy="afterInteractive" onLoad={() => setReady(true)} />
       <div id="checkout-form" className="rounded-2xl bg-white p-4" />
-      {error && <p className="mt-3 text-sm text-red-300">{error}</p>}
+      {error && <p className="mt-3 text-sm text-red-700">{error}</p>}
     </>
   );
 }

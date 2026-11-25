@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Cut α-MSH down to Lys-Pro-Val and it keeps one job — calm the inflammation — delivered from inside the cell, no receptor required.",
-      accent: "#F5B544",
+      accent: "#865C27",
     }),
     { ...size, fonts: await ogFonts() },
   );

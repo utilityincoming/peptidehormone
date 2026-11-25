@@ -74,10 +74,6 @@ export default function Article() {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 78% 0%, rgba(124,131,255,0.14), transparent 70%)" }}
-          />
           <Container className="relative max-w-3xl py-16 md:py-20">
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/insights" className="hover:text-ink">Insights</Link>
@@ -353,8 +349,8 @@ export default function Article() {
    two-slot categorical pair on the site surface; shape differs as well, so the
    pair never rests on colour alone.                                            */
 function GapChart() {
-  const POLICY = "#7C83FF";
-  const EFFICACY = "#199E7D";
+  const POLICY = "#34566A";
+  const EFFICACY = "#3E6B58";
   const W = 620;
   const LEFT = 150;
   const RIGHT = 36;

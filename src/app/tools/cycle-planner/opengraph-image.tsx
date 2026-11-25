@@ -11,7 +11,7 @@ export default async function Image() {
       eyebrow: "Free tool · no sign-up",
       title: "Read a seller list as a set of clocks.",
       subtitle: "Same receptor or two, a measured half-life or a costume, reference ranges beside the evidence rung.",
-      accent: "#F5B544",
+      accent: "#865C27",
     }),
     { ...size, fonts: await ogFonts() },
   );

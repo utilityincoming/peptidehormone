@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Myostatin ships disabled. Two enzyme cuts arm the muscle brake, and the pro-form is the cleanest way to block it.",
-      accent: "#B58CFA",
+      accent: "#605A79",
     }),
     { ...size, fonts: await ogFonts() },
   );

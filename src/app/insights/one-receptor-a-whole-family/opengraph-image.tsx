@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Myostatin, activin A, and GDF-11 share one receptor. The redundancy, not any single molecule, decides how you drug it.",
-      accent: "#B58CFA",
+      accent: "#605A79",
     }),
     { ...size, fonts: await ogFonts() },
   );

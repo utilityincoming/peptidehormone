@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Gut & appetite",
       title: insight.title,
       subtitle: "GLP-1 is one line of it. Surgery reads the whole thing.",
-      accent: "#2DD4A8", // gut-appetite family accent (teal)
+      accent: "#3E6B58", // gut-appetite family accent (teal)
     }),
     { ...size, fonts: await ogFonts() },
   );

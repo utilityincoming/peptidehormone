@@ -31,13 +31,6 @@ export default function CatalogPage() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background:
-                "radial-gradient(55% 55% at 75% 0%, rgba(124,131,255,0.14), transparent 70%)",
-            }}
-          />
           <Container className="relative py-16 md:py-20">
             <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
               <span className="h-1.5 w-1.5 rounded-full bg-accent" />

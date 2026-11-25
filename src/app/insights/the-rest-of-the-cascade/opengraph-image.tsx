@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Testosterone replacement fixes one hormone and switches off the gland that made it. What some men feel when hCG relights the rest of the steroid cascade — graded honestly.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

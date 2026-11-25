@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · mechanism",
       title: insight.title,
       subtitle: "Pair GLP-1 with myostatin inhibition and you lose fat while sparing muscle. The TGF-β biology behind it.",
-      accent: "#B58CFA",
+      accent: "#605A79",
     }),
     { ...size, fonts: await ogFonts() },
   );

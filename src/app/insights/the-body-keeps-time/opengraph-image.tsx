@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Across the families",
       title: insight.title,
       subtitle: "Pulsatility as a code — why timing, not amount, is the signal.",
-      accent: "#F472B6", // reproductive-gonadal family accent (rose) — GnRH is the flagship case
+      accent: "#885768", // reproductive-gonadal family accent (rose) — GnRH is the flagship case
     }),
     { ...size, fonts: await ogFonts() },
   );

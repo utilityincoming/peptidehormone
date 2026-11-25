@@ -105,10 +105,6 @@ export default async function VendorPage({ params }: Props) {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Hero ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 75% 0%, rgba(45,212,168,0.12), transparent 70%)" }}
-          />
           <Container className="relative py-16 md:py-20">
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/available" className="hover:text-ink">Availability</Link>

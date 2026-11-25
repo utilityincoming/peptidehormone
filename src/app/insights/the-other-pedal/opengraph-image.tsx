@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · mechanism",
       title: insight.title,
       subtitle: "Muscle has a brake and an accelerator. The IGF-1 axis is the accelerator — older, stronger, and harder to steer.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -40,10 +40,6 @@ export default function WhyPeptides() {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 78% 0%, rgba(124,131,255,0.14), transparent 70%)" }}
-          />
           <Container className="relative max-w-3xl py-16 md:py-20">
             <p className="font-mono text-xs uppercase tracking-wide text-accent">Why this exists</p>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight sm:text-5xl">

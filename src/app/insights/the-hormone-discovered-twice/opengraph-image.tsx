@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Adipokines & energy balance",
       title: insight.title,
       subtitle: "Leptin: the fat signal that was never a weight-loss drug.",
-      accent: "#F5B544", // adipokines family accent (amber)
+      accent: "#865C27", // adipokines family accent (amber)
     }),
     { ...size, fonts: await ogFonts() },
   );

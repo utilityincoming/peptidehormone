@@ -1,26 +1,21 @@
 @import "tailwindcss";
 
-/* ── Theme tokens ──────────────────────────────────────────────────────────
-   Sister palette to AmericanPeptide.com, deliberately distinct: the brand
-   accent is periwinkle-indigo (not AP's teal), on a slightly cooler, more
-   violet-neutral surface. AP's teal is retained as a *complementary* secondary
-   accent so the two properties read as a family without being interchangeable.
-   Dark-only for now; tokens are CSS variables so a light mode can be added
-   later with a single class swap on <html>. */
+/* Alabaster paper, slate ink, and restrained accents for figures and links. */
 :root {
-  --text-secondary: #b8bfce;
-  --text-muted: #929db2;
-  --ink: #ffffff;          /* foreground + light overlays (borders, panels) */
-  --surface: #0A0E1A;      /* page background — cooler/violet vs AP's blue-navy */
-  --surface-deep: #05070F; /* deepest background (footers, wells) */
-  --panel: #11162A;        /* raised solid panels */
-  --accent: #7C83FF;       /* periwinkle-indigo — the PeptideHormone brand accent */
-  --accent-teal: #2DD4A8;  /* the AmericanPeptide complement, used sparingly */
-  --accent-blue: #5EA8FA;
-  --accent-purple: #B58CFA;
-  --accent-amber: #F5B544;
-  --accent-rose: #F472B6;
-  --plate-gold: #d3bb82; /* diagram rules and evidence ticks */
+  color-scheme: light;
+  --text-secondary: #4A5964;
+  --text-muted: #586775;
+  --ink: #182B37;
+  --surface: #F8FAFC;
+  --surface-deep: #ECEFEB;
+  --panel: #F0F2EE;
+  --accent: #34566A;
+  --accent-teal: #3E6B58;
+  --accent-blue: #386982;
+  --accent-purple: #605A79;
+  --accent-amber: #865C27;
+  --accent-rose: #885768;
+  --plate-gold: #876332;
 
   --background: var(--surface);
   --foreground: var(--ink);
@@ -102,28 +97,24 @@ body {
   cursor: ew-resize;
 }
 
-/* ── Structure hero (homepage): the bound peptide breathes ── */
-@keyframes structureGlow {
-  0%,
-  100% {
-    opacity: 0.12;
-  }
-  50% {
-    opacity: 0.34;
-  }
-}
-.structure-glow {
-  opacity: 0.2;
-  animation: structureGlow 4.5s ease-in-out infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .structure-glow,
   .curve-reveal,
   .signal-bar {
     animation: none;
   }
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Keep small labels legible on the light paper and panel surfaces. */
+@layer utilities {
+  .text-ink\/35,
+  .text-ink\/40,
+  .text-ink\/45,
+  .text-ink\/50,
+  .text-ink\/55,
+  .placeholder\:text-ink\/35::placeholder {
+    color: var(--text-muted);
   }
 }

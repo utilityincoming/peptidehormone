@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Growth & repair",
       title: insight.title,
       subtitle: "Somatostatin: the brake, and the analogs tuned by receptor subtype.",
-      accent: "#5EA8FA", // growth-repair family accent (blue)
+      accent: "#386982", // growth-repair family accent (blue)
     }),
     { ...size, fonts: await ogFonts() },
   );

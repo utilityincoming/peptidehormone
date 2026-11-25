@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "One amino acid separates a hormone from a drug — in family after unrelated family.",
-      accent: "#7C83FF", // incretins-metabolic family accent (indigo)
+      accent: "#34566A", // incretins-metabolic family accent (indigo)
     }),
     { ...size, fonts: await ogFonts() },
   );

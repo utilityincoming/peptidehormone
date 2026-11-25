@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · history",
       title: insight.title,
       subtitle: "The community was the field's informal R&D — and foundation-first is now getting its trials.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

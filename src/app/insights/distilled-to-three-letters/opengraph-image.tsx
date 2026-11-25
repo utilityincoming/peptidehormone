@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "A whole cartilage extract reduced to one tripeptide — Ala-Glu-Asp — and the boldest claim in peptide science: that it tunes chondrocyte genes. Bullish on the science, sceptical on the page.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

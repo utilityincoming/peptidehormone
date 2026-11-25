@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "What each claim on a drug label has to prove.",
-      accent: "#7C83FF", // incretins-metabolic family accent (indigo)
+      accent: "#34566A", // incretins-metabolic family accent (indigo)
     }),
     { ...size, fonts: await ogFonts() },
   );

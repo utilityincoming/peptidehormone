@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "Glucagon: blamed for diabetes, now built into weight-loss drugs.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

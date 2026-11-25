@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Neuropeptides",
       title: insight.title,
       subtitle: "Vasopressin: oxytocin's quieter, more useful twin.",
-      accent: "#B58CFA", // neuropeptides family accent (purple)
+      accent: "#605A79", // neuropeptides family accent (purple)
     }),
     { ...size, fonts: await ogFonts() },
   );

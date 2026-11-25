@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "2026's two opposite moves in what peptides you can actually get.",
-      accent: "#7C83FF", // incretins-metabolic family accent (indigo)
+      accent: "#34566A", // incretins-metabolic family accent (indigo)
     }),
     { ...size, fonts: await ogFonts() },
   );

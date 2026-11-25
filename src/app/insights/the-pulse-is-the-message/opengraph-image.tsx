@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Reproductive & gonadal",
       title: insight.title,
       subtitle: "The same molecule, pulsed or constant, switches the axis on or off.",
-      accent: "#F472B6", // reproductive-gonadal family accent (rose)
+      accent: "#885768", // reproductive-gonadal family accent (rose)
     }),
     { ...size, fonts: await ogFonts() },
   );

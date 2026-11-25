@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Neuropeptides",
       title: insight.title,
       subtitle: "The stress and thyroid axes — amplify down, report back up.",
-      accent: "#B58CFA", // neuropeptides family accent (purple)
+      accent: "#605A79", // neuropeptides family accent (purple)
     }),
     { ...size, fonts: await ogFonts() },
   );

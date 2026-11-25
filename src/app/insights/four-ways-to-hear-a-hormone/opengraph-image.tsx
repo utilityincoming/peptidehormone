@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · How a cell listens",
       title: insight.title,
       subtitle: "GPCR, tyrosine kinase, cytokine receptor, guanylyl cyclase — the class decides the biology.",
-      accent: "#7C83FF", // house indigo — a site-level mechanistic synthesis
+      accent: "#34566A", // house indigo — a site-level mechanistic synthesis
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "Brenipatide's bet: the incretin signal, read by the reward system.",
-      accent: "#7C83FF", // incretins-metabolic family accent (indigo)
+      accent: "#34566A", // incretins-metabolic family accent (indigo)
     }),
     { ...size, fonts: await ogFonts() },
   );

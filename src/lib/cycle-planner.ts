@@ -43,12 +43,12 @@ export interface Peptide {
 
 // Categorical hues — teal / amber / violet / rose / blue / green.
 const HUE = {
-  teal: "#2DD4A8",
-  amber: "#E8B65A",
-  violet: "#B58CFA",
-  rose: "#F472B6",
-  blue: "#5EA8FA",
-  green: "#34D399",
+  teal: "#3E6B58",
+  amber: "#865C27",
+  violet: "#605A79",
+  rose: "#885768",
+  blue: "#386982",
+  green: "#60744E",
 } as const;
 
 export const PEPTIDES: Record<string, Peptide> = {

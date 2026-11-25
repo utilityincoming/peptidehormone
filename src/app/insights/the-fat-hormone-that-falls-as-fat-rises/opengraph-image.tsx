@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Adipokines & energy balance",
       title: insight.title,
       subtitle: "Adiponectin: made by fat, lowest when there is most of it.",
-      accent: "#F5B544",
+      accent: "#865C27",
     }),
     { ...size, fonts: await ogFonts() },
   );

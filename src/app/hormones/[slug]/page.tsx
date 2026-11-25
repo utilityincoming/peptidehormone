@@ -6,7 +6,7 @@ import { HORMONES, getHormone, hormonesByFamily, halfLifeForLink, hormoneFaq } f
 import { hormoneMetaTitle, hormoneMetaDescription, aliasesFor } from "@/lib/aliases";
 import { comparePairPath } from "@/lib/compare";
 import { referencesFor } from "@/lib/references";
-import { getFamily, accentRGB } from "@/lib/families";
+import { getFamily } from "@/lib/families";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { insightsForHormone } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
@@ -100,12 +100,6 @@ export default async function HormonePage({
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Hero ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background: `radial-gradient(55% 55% at 80% 0%, rgba(${accentRGB(accent)}, 0.13), transparent 70%)`,
-            }}
-          />
           <Container className="relative py-14 md:py-18">
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/#families" className="hover:text-ink">Families</Link>

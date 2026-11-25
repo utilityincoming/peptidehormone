@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Humanin was overheard, not designed: pulled from the surviving neurons of an Alzheimer's brain, written in mitochondrial DNA. A hormone outside the cell, a Bax-blocker inside it. Reference-grade, and honest about how little is tested in people.",
-      accent: "#B58CFA",
+      accent: "#605A79",
     }),
     { ...size, fonts: await ogFonts() },
   );

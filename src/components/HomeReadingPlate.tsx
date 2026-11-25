@@ -18,12 +18,12 @@ export function hasHomeReadingPlate(slug: string): slug is HomePlateSlug {
   return (HOME_PLATES as readonly string[]).includes(slug);
 }
 
-const INK = "#e8ecf6";
-const MUTED = "#9aa8c0";
-const LINE = "#6d7c99";
-const ACCENT = "#7C83FF";
-const GOLD = "#d3bb82";
-const FILL = "#11162A";
+const INK = "#182b37";
+const MUTED = "#4a5964";
+const LINE = "#596e77";
+const ACCENT = "#34566A";
+const GOLD = "#876332";
+const FILL = "#f0f2ee";
 
 function Residue({
   x,
@@ -38,7 +38,7 @@ function Residue({
 }) {
   return (
     <g>
-      <circle r="18" cx={x} cy={y} fill={marked ? "#2a2418" : FILL} stroke={marked ? GOLD : LINE} strokeWidth={marked ? 2 : 1} />
+      <circle r="18" cx={x} cy={y} fill={marked ? "#eee8db" : FILL} stroke={marked ? GOLD : LINE} strokeWidth={marked ? 2 : 1} />
       <text x={x} y={y + 5} textAnchor="middle" fill={marked ? GOLD : INK} fontSize="15" fontFamily="ui-monospace, monospace">
         {letter}
       </text>
@@ -111,7 +111,7 @@ function HotFlash() {
           <path d={`M${c.x} 190 V236`} fill="none" stroke={ACCENT} strokeDasharray="4 5" />
         </g>
       ))}
-      <rect x="150" y="246" width="340" height="56" fill="#2a2418" stroke={GOLD} />
+      <rect x="150" y="246" width="340" height="56" fill="#eee8db" stroke={GOLD} />
       <text x="320" y="280" textAnchor="middle" fill={GOLD} fontSize="16" fontFamily="ui-monospace, monospace">
         Temperature
       </text>
@@ -129,7 +129,7 @@ function ImprintedGene() {
         MATERNAL
       </text>
       <rect x="70" y="120" width="200" height="28" rx="2" fill={ACCENT} />
-      <text x="170" y="140" textAnchor="middle" fill="#0A0E1A" fontSize="14" fontFamily="ui-monospace, monospace">
+      <text x="170" y="140" textAnchor="middle" fill="#f8fafc" fontSize="14" fontFamily="ui-monospace, monospace">
         IGF2 on
       </text>
       <rect x="370" y="120" width="200" height="28" rx="2" fill={FILL} stroke={LINE} />
@@ -166,7 +166,7 @@ function GlpSignal() {
           {i < steps.length - 1 && (
             <path d={`M${s.x + 54} 168 H${steps[i + 1].x - 54}`} stroke={ACCENT} strokeWidth="2" />
           )}
-          <circle cx={s.x} cy="168" r="48" fill={i === 1 ? "#1c2040" : FILL} stroke={i === steps.length - 1 ? GOLD : ACCENT} strokeWidth="1.5" />
+          <circle cx={s.x} cy="168" r="48" fill={i === 1 ? "#e0e9e8" : FILL} stroke={i === steps.length - 1 ? GOLD : ACCENT} strokeWidth="1.5" />
           <text x={s.x} y="174" textAnchor="middle" fill={i === steps.length - 1 ? GOLD : INK} fontSize="15" fontFamily="ui-monospace, monospace">
             {s.t}
           </text>

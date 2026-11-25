@@ -8,7 +8,7 @@ import figure from "@/lib/structures/retatrutide-receptors.json";
    defined frame and projects them. This component only paints the result.
 
    Receptor strands are grouped by depth and painted far → near; each group is
-   laid over a background-coloured halo so nearer strands occlude farther ones
+   laid over a paper-coloured outline so nearer strands occlude farther ones
    and the bundle reads as tubes rather than a tangle. The peptide is the one
    saturated element. Server component — no client JS. */
 
@@ -35,7 +35,7 @@ export function StructureHero() {
             <div key={s.id} className="flex flex-col">
               <svg
                 viewBox={`0 0 ${width} ${height}`}
-                className="w-full"
+                className="w-full rounded-md bg-surface"
                 role="img"
                 aria-label={`Retatrutide bound to the ${s.receptor}: backbone trace of the receptor with the peptide inserted from above, from PDB entry ${s.id}.`}
               >
@@ -59,21 +59,12 @@ export function StructureHero() {
                     />
                   </g>
                 ))}
-                {/* the peptide: halo, glow, body, N-terminus */}
+                {/* Peptide outline, backbone, and N-terminus */}
                 <path
                   d={pep}
                   fill="none"
                   stroke="var(--surface)"
                   strokeWidth="14"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d={pep}
-                  className="structure-glow"
-                  fill="none"
-                  stroke="var(--accent)"
-                  strokeWidth="20"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
@@ -106,7 +97,7 @@ export function StructureHero() {
       </div>
 
       <figcaption className="mt-5 text-sm leading-6 text-secondary">
-        <p>Retatrutide <span className="text-accent">(violet)</span> bound to the three receptors it activates.</p>
+        <p>Retatrutide <span className="text-accent">(navy)</span> bound to the three receptors it activates.</p>
         {paper.doi && (
           <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-accent">
             Source: {paper.journal} {paper.year}

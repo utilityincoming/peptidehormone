@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Incretins & metabolic",
       title: insight.title,
       subtitle: "Imbalanced, biased, and built on GIP — not a tidy pairing.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -69,13 +69,6 @@ export default async function FamilyHub({
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Hub hero ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{
-              background:
-                "radial-gradient(55% 55% at 80% 0%, rgba(124,131,255,0.14), transparent 70%)",
-            }}
-          />
           <Container className="relative py-16 md:py-20">
             <nav className="flex items-center gap-2 text-sm text-ink/45">
               <Link href="/#families" className="hover:text-ink">Families</Link>

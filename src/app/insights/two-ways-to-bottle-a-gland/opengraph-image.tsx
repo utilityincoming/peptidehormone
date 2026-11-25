@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "The thymus, bottled two ways: thymalin, a crude extract with a startling longevity claim you cannot audit — and thymosin α1, one defined 28-residue peptide with a TLR9 receptor and a drug label. Bullish on the science, sceptical on the page.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

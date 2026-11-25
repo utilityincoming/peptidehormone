@@ -27,7 +27,7 @@ import {
 import { compoundTierClasses } from "@/components/evidence";
 import type { CompoundTier } from "@/lib/evidence/compound";
 
-const ACCENT = "#E8B65A";
+const ACCENT = "#865C27";
 
 // Best-to-weakest, so the evidence snapshot reads top-down by strength.
 const EVIDENCE_ORDER: Evidence[] = ["clinical", "emerging", "preclinical", "anecdotal"];

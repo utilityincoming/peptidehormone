@@ -136,7 +136,7 @@ export function scopeNoteRequired(tier: Tier): boolean {
 // Hue is DATA (shared across both properties); the Tailwind classes that render
 // each hue live with the components. Never red — a low tier is a disclosure, not
 // an error. On peptidehormone the "teal" hue maps to --accent-teal (the AP
-// complement), keeping the periwinkle brand accent free for navigation/CTAs.
+// complement), keeping the navy brand accent free for navigation/CTAs.
 export type TierHue = "teal" | "slate" | "amber";
 export const TIER_HUE: Record<Tier, TierHue> = {
   reference: "teal",

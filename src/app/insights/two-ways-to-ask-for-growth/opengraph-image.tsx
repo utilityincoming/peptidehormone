@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Growth & repair",
       title: insight.title,
       subtitle: "GHRH or ghrelin — two receptors, one pulsatile gland.",
-      accent: "#5EA8FA", // growth-repair family accent (blue)
+      accent: "#386982", // growth-repair family accent (blue)
     }),
     { ...size, fonts: await ogFonts() },
   );

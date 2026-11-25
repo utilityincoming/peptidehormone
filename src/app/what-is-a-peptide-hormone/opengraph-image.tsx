@@ -13,7 +13,7 @@ export default async function Image() {
       title: "What a peptide hormone actually is",
       subtitle:
         "A short chain of amino acids that one cell releases to signal another — how they are made, how they work, and the families they fall into.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

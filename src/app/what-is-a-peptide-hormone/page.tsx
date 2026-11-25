@@ -72,10 +72,6 @@ export default function WhatIsAPeptideHormone() {
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Header ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <div
-            className="pointer-events-none absolute inset-0 opacity-40"
-            style={{ background: "radial-gradient(55% 55% at 78% 0%, rgba(124,131,255,0.14), transparent 70%)" }}
-          />
           <Container className="relative max-w-3xl py-16 md:py-20">
             <p className="font-mono text-xs uppercase tracking-wide text-accent">The primer</p>
             <h1 className="mt-4 font-display text-4xl font-semibold leading-tight sm:text-5xl">
@@ -234,7 +230,7 @@ export default function WhatIsAPeptideHormone() {
    preprohormone → (signal peptide removed) → prohormone → (convertases cut) →
    active peptides. Worked with proglucagon, the catalog's own example, so the
    fragments link back to real monographs. Pure inline SVG with theme CSS vars so
-   it renders dark-native and honors the surrounding type scale. */
+   it renders on the surrounding paper surface and honors the surrounding type scale. */
 function BiosynthesisFigure() {
   return (
     <figure className="mt-8 rounded-2xl border border-ink/10 bg-surface-deep/60 p-6">

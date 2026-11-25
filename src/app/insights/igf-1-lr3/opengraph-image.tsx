@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · mechanism",
       title: insight.title,
       subtitle: "Evading the binding proteins doesn't lengthen IGF-1's half-life — it shortens it.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

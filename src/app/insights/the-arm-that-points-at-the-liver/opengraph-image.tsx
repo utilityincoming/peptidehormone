@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "Survodutide adds one receptor to GLP-1 and picks the strange one: glucagon, the hormone diabetes drugs are built to fight. Why its headline result is a liver-disease signal, not its weight loss. Bullish on the science, sceptical on the page.",
-      accent: "#7C83FF",
+      accent: "#34566A",
     }),
     { ...size, fonts: await ogFonts() },
   );

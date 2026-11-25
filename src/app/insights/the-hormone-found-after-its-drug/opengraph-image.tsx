@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Gut & appetite",
       title: insight.title,
       subtitle: "Ghrelin: the drug came first, the hormone fifteen years later.",
-      accent: "#2DD4A8",
+      accent: "#3E6B58",
     }),
     { ...size, fonts: await ogFonts() },
   );

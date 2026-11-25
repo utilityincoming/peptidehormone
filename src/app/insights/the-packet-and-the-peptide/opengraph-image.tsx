@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Repair & regenerative",
       title: insight.title,
       subtitle: "Epitalon: a nomination, a literature, and a vote are three verdicts.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

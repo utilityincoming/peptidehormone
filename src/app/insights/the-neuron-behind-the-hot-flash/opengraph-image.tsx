@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Reproductive & gonadal",
       title: insight.title,
       subtitle: "One cell, three peptides, and a thermostat left without its brake.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

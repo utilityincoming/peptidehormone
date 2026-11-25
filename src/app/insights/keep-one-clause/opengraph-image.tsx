@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Across the families",
       title: insight.title,
       subtitle: "Cut a hormone to one activity — and judge the half you kept.",
-      accent: "#F5B544", // melanocortins family accent (amber) — KPV/α-MSH is the archetype
+      accent: "#865C27", // melanocortins family accent (amber) — KPV/α-MSH is the archetype
     }),
     { ...size, fonts: await ogFonts() },
   );

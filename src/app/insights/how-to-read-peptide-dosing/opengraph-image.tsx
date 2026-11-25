@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · dosing literacy",
       title: insight.title,
       subtitle: "Four kinds of milligram. Mixing them is the error.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

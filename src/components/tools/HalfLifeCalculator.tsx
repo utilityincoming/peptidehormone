@@ -143,12 +143,12 @@ export default function HalfLifeCalculator({
       {/* Load a real compound's native half-life from the catalog */}
       {compoundGroups.length > 0 && (
         <div className="flex flex-wrap items-center gap-3">
-          <label className="text-sm text-ink/55">
-            Load from catalog
+          <label className="flex max-w-full flex-col gap-2 text-sm text-ink/55 sm:flex-row sm:items-center">
+            <span className="shrink-0">Load from catalog</span>
             <select
               value=""
               onChange={(e) => loadCompound(e.target.value)}
-              className="ml-2 rounded-xl border border-ink/15 bg-panel/40 px-3 py-2 text-sm text-ink outline-none focus:border-accent/60"
+              className="min-w-0 max-w-full rounded-xl border border-ink/15 bg-panel/40 px-3 py-2 text-sm text-ink outline-none focus:border-accent/60"
             >
               <option value="" disabled>
                 Choose a compound…

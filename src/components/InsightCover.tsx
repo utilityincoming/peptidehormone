@@ -66,13 +66,6 @@ export function InsightCover({
         preserveAspectRatio="xMidYMid slice"
         className="absolute inset-0 h-full w-full"
       >
-        <defs>
-          <radialGradient id={`cover-${slug}`} cx="0.8" cy="0.1" r="0.9">
-            <stop offset="0" stopColor="currentColor" stopOpacity="0.28" />
-            <stop offset="1" stopColor="currentColor" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        <rect width={W} height={H} fill={`url(#cover-${slug})`} />
         {chains.map((ch, c) => (
           <g key={c} opacity={ch.opacity}>
             <path
@@ -86,7 +79,6 @@ export function InsightCover({
             {ch.pts.map((p, i) =>
               i === ch.lit ? (
                 <g key={i}>
-                  <circle cx={p.x} cy={p.y} r={ch.r * 2.4} fill="currentColor" opacity="0.2" />
                   <circle cx={p.x} cy={p.y} r={ch.r * 1.2} fill="currentColor" />
                 </g>
               ) : (

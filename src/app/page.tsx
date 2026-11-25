@@ -177,7 +177,7 @@ export default function Home() {
               <span className={styles.mastMark}>Research atlas</span>
               <Link href="/methodology">Evidence standards <span aria-hidden>↗</span></Link>
             </div>
-            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14">
             <div>
               <p className={styles.eyebrow}>Reference atlas · not medical advice</p>
               <h1 id="atlas-title" className={styles.title}>
@@ -215,9 +215,7 @@ export default function Home() {
             </div>
 
             <aside className={styles.specimen} aria-label="From sequence to signal: oxytocin">
-              <div className={styles.specimenLabel}><span>Plate 01 / Endogenous signals</span><span>OXT → OXTR</span></div>
-              <h2 className="mt-5 font-display text-2xl font-medium">From sequence to signal</h2>
-              <p className="mt-2 mb-3 text-sm leading-6 text-secondary">Nine residues. A constrained fold. A message across a membrane.</p>
+              <h2 className="mb-4 font-display text-2xl font-medium">Oxytocin, from sequence to signal</h2>
               <SequenceSignalHero />
               <Link href="/hormones/oxytocin" className={styles.specimenLink}>Explore oxytocin <span aria-hidden>→</span></Link>
             </aside>

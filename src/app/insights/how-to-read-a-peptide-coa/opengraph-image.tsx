@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · sourcing & quality",
       title: insight.title,
       subtitle: "Every line answers one narrow question. Read the blind spots too.",
-      accent: "#5EA8FA",
+      accent: "#386982",
     }),
     { ...size, fonts: await ogFonts() },
   );

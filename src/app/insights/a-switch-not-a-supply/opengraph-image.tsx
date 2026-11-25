@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · mechanism",
       title: insight.title,
       subtitle: "GHK-Cu is a signal that starts a program, not a level you top up. Why the mechanism — not any trial — argues for letting each cycle finish.",
-      accent: "#F472B6",
+      accent: "#885768",
     }),
     { ...size, fonts: await ogFonts() },
   );

@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Reading the evidence",
       title: insight.title,
       subtitle: "The ladder from a receptor and a story to a replicated human outcome.",
-      accent: "#7C83FF", // house indigo — a site-level methodological essay
+      accent: "#34566A", // house indigo — a site-level methodological essay
     }),
     { ...size, fonts: await ogFonts() },
   );

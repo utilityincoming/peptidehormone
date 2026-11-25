@@ -15,7 +15,7 @@ export default async function Image() {
       title: insight.title,
       subtitle:
         "ACE-083 grew muscle you couldn't use. Why size was never the endpoint — and how the pathway finally moved function.",
-      accent: "#B58CFA",
+      accent: "#605A79",
     }),
     { ...size, fonts: await ogFonts() },
   );
