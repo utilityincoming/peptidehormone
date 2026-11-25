@@ -17,7 +17,7 @@ import { AFFILIATE_REL } from "@/lib/affiliate";
 // checkout step ("did it apply?") — and it survives a reader who opens the vendor
 // in a fresh tab later.
 
-type Surface = "monograph" | "available" | "vendor" | "note" | "line" | "catalog";
+type Surface = "monograph" | "available" | "vendor" | "note" | "line" | "catalog" | "home";
 
 export function AffiliateLink({
   href,
@@ -25,6 +25,7 @@ export function AffiliateLink({
   slug,
   surface,
   className,
+  describedBy,
   children,
 }: {
   href: string;
@@ -32,6 +33,7 @@ export function AffiliateLink({
   slug?: string;
   surface: Surface;
   className?: string;
+  describedBy?: string;
   children: ReactNode;
 }) {
   return (
@@ -40,6 +42,7 @@ export function AffiliateLink({
       target="_blank"
       rel={AFFILIATE_REL}
       className={className}
+      aria-describedby={describedBy}
       onClick={() => {
         try {
           track("affiliate_click", { vendor, slug: slug ?? "storefront", surface });
