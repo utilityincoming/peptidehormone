@@ -50,7 +50,7 @@ const PRINCIPLES: { icon: PrincipleName; title: string; body: string }[] = [
   {
     icon: "independent",
     title: "How this is funded",
-    body: "This site does not sell peptides. Affiliate links help fund the reference, and we may earn a commission on purchases through them. Those commercial relationships are disclosed.",
+    body: "Affiliate commissions help fund this reference. See our methodology for details on funding and editorial independence.",
   },
 ];
 
@@ -561,34 +561,43 @@ export default function Home() {
         </section>
 
         {sourcingVendor && (
-        <aside aria-labelledby="home-sourcing-title" className={styles.sourcing}>
-          <Container>
-            <div className={styles.sourcingCard}>
-              <div className={styles.sourcingCopy}>
-                <p className={styles.eyebrow}>Disclosed affiliate</p>
-                <h2 id="home-sourcing-title" className={styles.sourcingTitle}>A supplier we link to, disclosed.</h2>
-                <p className={styles.sourcingIntro}>Browse the supplier’s catalog and review product details at the source. Copy the code first if you want it applied at checkout.</p>
-                <Link href="/available" className={styles.sourcingDetails}>View sourcing details <span aria-hidden>→</span></Link>
+          <aside aria-labelledby="home-sourcing-title" className={styles.sourcing}>
+            <Container>
+              <div className={styles.sourcingCard}>
+                <div className={styles.sourcingCopy}>
+                  <h2 id="home-sourcing-title" className={styles.sourcingTitle}>
+                    {sourcingVendor.name} research catalog
+                  </h2>
+                  <p className={styles.sourcingIntro}>
+                    Our research supply partner for lab materials, with product specifications and testing information in one place.
+                  </p>
+                  <p className={styles.sourcingDisclosure}>Research use only.</p>
+                </div>
+                <div className={styles.sourcingActions}>
+                  <p id="home-sourcing-disclosure" className={styles.sourcingAffiliateLabel}>Paid affiliate link</p>
+                  <AffiliateLink
+                    href={sourcingVendor.home}
+                    vendor={sourcingVendor.key}
+                    surface="home"
+                    describedBy="home-sourcing-disclosure"
+                    className={styles.sourcingCta}
+                  >
+                    Browse {sourcingVendor.name} <span className="sr-only">(opens in a new tab)</span>
+                    <span aria-hidden>→</span>
+                  </AffiliateLink>
+                  {sourcingVendor.code && (
+                    <div className={styles.sourcingCode}>
+                      <span>Checkout code</span>
+                      <CopyCode code={sourcingVendor.code} className={styles.sourcingCodeButton} />
+                    </div>
+                  )}
+                </div>
+                <Link href={`/available/${sourcingVendor.key}`} className={styles.sourcingDetails}>
+                  About our {sourcingVendor.name} partnership <span aria-hidden>→</span>
+                </Link>
               </div>
-              <div className={styles.sourcingActions}>
-                {sourcingVendor.code && (
-                  <div className={styles.sourcingCode}>
-                    <span>Paste at checkout</span>
-                    <CopyCode code={sourcingVendor.code} size="comfortable" />
-                  </div>
-                )}
-                <AffiliateLink href={sourcingVendor.home} vendor={sourcingVendor.key} surface="line" className={styles.sourcingCta}>
-                  Browse {sourcingVendor.name}
-                  <span aria-hidden>↗</span>
-                </AffiliateLink>
-                <p className={styles.sourcingTab}>Opens in a new tab · research-use-only</p>
-              </div>
-              <p className={styles.sourcingDisclosure}>
-                American Peptide network. We may earn a commission on purchases through this link. Research-use-only. Not for human use.
-              </p>
-            </div>
-          </Container>
-        </aside>
+            </Container>
+          </aside>
         )}
       </main>
 
