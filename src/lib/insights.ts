@@ -744,6 +744,15 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 10,
     reviewed: "November 2026",
   },
+  {
+    slug: "the-signal-you-cant-turn-up",
+    hormones: ["leptin", "amylin"],
+    title: "The signal you can't turn up",
+    dek: "Leptin should have been the obvious obesity drug: fat makes it in proportion to fat mass, it tells the brain to stop eating, so give more and the brain should stop. It doesn't work, and the reason is more interesting than “leptin resistance” as a phrase lets on. In common obesity leptin is already high, and turning it higher changes almost nothing — a dose-ranging trial of recombinant leptin produced only modest, scattered weight loss. Two mechanisms explain the deafness. The blood-to-brain transport of leptin is saturable, so past a point more leptin in the blood delivers no more signal to the brain — obese people have high blood leptin but a low spinal-fluid-to-serum ratio. And inside the neurons, leptin switches on its own brakes, feedback inhibitors like SOCS-3 that blunt the next signal. The receptor isn't broken; the system is doing exactly what it evolved to do — defend against starvation, not against plenty. Which is why leptin's real power is at the low end, not the high one. Where leptin is genuinely missing, in the lipodystrophies, replacement is transformative. And in the weight-reduced state, after dieting, when leptin has fallen and the body is fighting to regain, a small dose reverses the metabolic slowdown that drives the weight back on. The lever works when the tank is empty. So the way forward was never more leptin but re-sensitizing the brain to it — which is exactly what pairing it with amylin does, the thread that runs into today's amylin drugs. A one-way signal, loudest in its absence. No dosing.",
+    family: "adipokines",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {

@@ -252,6 +252,7 @@ export default function Article() {
                 <CrossLink href="/insights/when-the-drug-works-too-well" label="When the drug works too well — the body defends its fat" />
                 <CrossLink href="/families/adipokines" label="The adipokines & energy-balance family" />
                 <CrossLink href="/insights/the-fat-hormone-that-falls-as-fat-rises" label="The fat hormone that falls as fat rises — adiponectin, leptin's opposite" />
+                <CrossLink href="/insights/the-signal-you-cant-turn-up" label="The signal you can’t turn up — leptin resistance, mechanistically" />
                 <CrossLink href="/research?q=Why%20did%20recombinant%20leptin%20fail%20as%20an%20obesity%20drug%20despite%20leptin%27s%20central%20role%20in%20appetite%2C%20and%20what%20is%20leptin%20resistance%3F" label="Ask the research agent about leptin resistance" />
               </ul>
             </div>
