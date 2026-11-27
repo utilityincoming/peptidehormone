@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
 import { getHormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
-import { sourcedSlugs, vendorsFor, VENDORS, isPrimaryVendor, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
+import { sourcedSlugs, vendorsFor, isPrimaryVendor, SOURCING_STANDARD, productUrl } from "@/lib/affiliate";
 import { AffiliateLink } from "@/components/AffiliateLink";
 import { CTA_PILL, Disclosure } from "@/components/Sourcing";
 
@@ -57,17 +57,6 @@ export default function AvailablePage() {
             <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
               Find molecules with research-use-only supplier listings. Open a molecule
               for the scientific reference or follow a listing for product and lot details.
-            </p>
-            <p className="mt-5 max-w-2xl text-sm leading-6 text-secondary">
-              Supplier profiles:{' '}
-              {VENDORS.map((vendor, index) => (
-                <span key={vendor.key}>
-                  {index > 0 && " · "}
-                  <Link href={`/available/${vendor.key}`} className="text-accent underline underline-offset-2">
-                    {vendor.name}
-                  </Link>
-                </span>
-              ))}
             </p>
           </Container>
         </section>

@@ -100,7 +100,7 @@ export default function Article() {
                 peptide carrying EPO&rsquo;s tissue-protective signal with none of its
                 blood-building effect — EPO without the blood. The receptor story is a genuine
                 pleasure; the clinical evidence is early and thin. Both halves are true.
-                Bullish on the science, sceptical on the page.
+                Elegant mechanism, promising pilot, unproven at scale.
               </P>
             </Section>
 

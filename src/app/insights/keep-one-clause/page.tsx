@@ -244,6 +244,7 @@ export default function Article() {
                 <CrossLink href="/insights/written-for-the-brain" label="Written for the brain — semax, ACTH's neuroactive fragment" />
                 <CrossLink href="/insights/teriparatide-backwards" label="Teriparatide, backwards — PTH(1-34), a fragment that became a drug" />
                 <CrossLink href="/families/melanocortins" label="The melanocortins family (POMC's many clauses)" />
+                <CrossLink href="/insights/the-active-site-sold-as-the-whole" label="The active site, sold as the whole — TB-500 vs thymosin β4" />
                 <CrossLink href="/research?q=How%20does%20peptide%20fragment%20engineering%20isolate%20one%20activity%20of%20a%20hormone%2C%20and%20why%20do%20some%20fragment%20drugs%20succeed%20while%20others%20fail%20in%20humans%3F" label="Ask the research agent about fragment engineering" />
               </ul>
             </div>

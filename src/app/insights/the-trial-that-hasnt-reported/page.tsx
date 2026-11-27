@@ -304,7 +304,7 @@ export default function Article() {
                   ["Is it a result or a record?", "A ClinicalTrials.gov posting, an advisory vote, a review of reviews, and an IRB approval are all reported as news. None is a result. A result has a date, a journal, participants, and numbers you can check against the registry's pre-specified endpoints."],
                 ]}
               />
-              <Callout label="Bullish on the science, sceptical on the page">
+              <Callout label="A plausible mechanism, no reported trial">
                 The preclinical story is real and the first adequate trial is finally
                 running. That is a better position than BPC-157 has ever been in. It is
                 also the position of a molecule whose human evidence currently consists of

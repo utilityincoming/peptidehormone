@@ -103,7 +103,7 @@ export default function Article() {
                 the cleanest demonstration in the body that peptide specificity is written in
                 small sequence differences, not in size. This is the quieter twin&rsquo;s
                 story, and the twist is that the quieter one became by far the more useful
-                drug. Bullish on the science, sceptical on the page.
+                drug. The biology is a marvel; the romance is where the evidence thins.
               </P>
               <TwinDiagram />
             </Section>
