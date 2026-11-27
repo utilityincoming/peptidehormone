@@ -787,6 +787,14 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 11,
     reviewed: "November 2026",
   },
+  {
+    slug: "why-good-hormones-make-bad-drugs",
+    title: "Why good hormones make bad drugs",
+    dek: "Spend enough time in this reference and a pattern repeats across every family: a hormone with a vivid, unmistakable physiological effect turns out to be nearly undruggable, and for reasons that recur. Cholecystokinin ends your meal, yet a CCK agonist produced no weight loss. Leptin tells the brain the fat stores are full, yet giving more barely moves common obesity. Calcitonin lowers calcium cleanly, yet its drug faded. Motilin empties the stomach, yet durable prokinetics never arrived. The biology is real every time; the pharmacology refuses — and this is the taxonomy of that refusal, four recurring ways a good hormone makes a bad drug. Homeostasis compensates: short-term signals like satiety are answered at the next meal, because the body defends a set-point the signal was never in charge of. Continuous exposure desensitizes: flood a receptor and it turns its own gain down, which is why more leptin does nothing and why the body writes its master controls in pulses, not amounts. The lever only works in deficiency: replacing a hormone transforms the patient who lacks it and shrugs at the one who already has plenty. And a real mechanism can simply be aimed at the wrong disease, failing broad trials until it meets the one condition its mechanism was shaped for. None of this says the science is wrong — it says physiology is not a bank of knobs you can turn up, and that a clear mechanism is the start of a drug programme, not the end of one. Vivid biology, uncooperative pharmacology. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {
