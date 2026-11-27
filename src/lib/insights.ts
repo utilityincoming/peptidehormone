@@ -830,3 +830,12 @@ export function insightsForHormone(slug: string): Insight[] {
     return aPrimary - bPrimary;
   });
 }
+
+/**
+ * Deep-dives anchored to a given family, for the family hub's "Deep-dives"
+ * rail. This closes the family ↔ insights loop: every insight breadcrumbs up
+ * to its family, and the family links back down to its insights.
+ */
+export function insightsForFamily(family: string): Insight[] {
+  return INSIGHTS.filter((i) => i.family === family);
+}

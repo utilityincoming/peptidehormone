@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-signal-you-cant-turn-up")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · adipokines",
+      eyebrow: "Insight · Adipokines & energy balance",
       title: insight.title,
       subtitle:
         "Leptin resistance isn't a broken receptor — it's a transport ceiling and a built-in brake. A one-way signal, loudest in its absence.",

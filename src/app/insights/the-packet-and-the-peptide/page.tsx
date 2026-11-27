@@ -89,7 +89,7 @@ export default function Article() {
                 pineal tetrapeptide Ala-Glu-Asp-Gly. The committee recommended adding the
                 free base to the 503A bulk-substances list, 7–4 with one abstention. FDA
                 review staff had recommended against it. Accounts of the day, including{" "}
-                <a href="https://americanpeptide.co/blogs/blog/epitalon-nomination-did-not-capture-full-record" className={LINK}>
+                <a href="https://americanpeptide.co/blogs/blog/epitalon-nomination-did-not-capture-full-record" target="_blank" rel="nofollow noopener noreferrer" className={LINK}>
                   a widely circulated meeting report
                 </a>
                 , landed on a sentence a supporter had offered from the floor: this was a

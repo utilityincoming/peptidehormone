@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("a-mechanism-in-search-of-a-disease")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · mitochondrial",
+      eyebrow: "Insight · mitochondrial peptides",
       title: insight.title,
       subtitle:
         "Elamipretide stabilizes cardiolipin. It missed its big trials — and fit the one disease whose defect is cardiolipin itself.",

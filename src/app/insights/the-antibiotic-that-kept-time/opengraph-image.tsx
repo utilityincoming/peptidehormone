@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-antibiotic-that-kept-time")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · gut & appetite",
+      eyebrow: "Insight · Gut & appetite",
       title: insight.title,
       subtitle:
         "Motilin paces the gut between meals — and erythromycin, by accident, is a motilin agonist. The side effect was the pharmacology.",
