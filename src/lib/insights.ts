@@ -778,6 +778,23 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 10,
     reviewed: "November 2026",
   },
+  {
+    slug: "the-hormone-built-to-stay-home",
+    hormones: ["pthrp", "pth"],
+    title: "The hormone built to stay home",
+    dek: "PTH-related protein shares its business end with parathyroid hormone and signals through the very same receptor — yet it is not, in normal life, a calcium hormone at all. It is a local, paracrine, developmental molecule: it is meant to whisper to the cell next door, not travel the bloodstream. Its masterwork is the growth plate, the cartilage disc that lengthens a child's bones. There, PTHrP and a second signal, Indian Hedgehog, run a feedback loop that sets the pace of the whole process — PTHrP keeps cartilage cells dividing, cells that escape its reach mature and release Indian Hedgehog, and Indian Hedgehog tells the top of the plate to make more PTHrP. That loop is, in effect, the clock that times how long bones grow; knock the pathway out and endochondral bone formation fails. The reason most people have heard of PTHrP, if at all, is the one setting where it stops staying home: a tumor that secretes it dumps it into the blood, where it finally does act like PTH and drives the dangerous high calcium of humoral hypercalcemia of malignancy — which is how it was discovered. The pathology is a geography problem. A paracrine signal only becomes a poison when it is forced to circulate — and, dosed briefly and on purpose as the analog abaloparatide, the same sequence builds bone. A developmental hormone, a cancer's weapon, and a drug — decided by where it acts and how long. No dosing.",
+    family: "calcium-bone",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "why-good-hormones-make-bad-drugs",
+    title: "Why good hormones make bad drugs",
+    dek: "Spend enough time in this reference and a pattern repeats across every family: a hormone with a vivid, unmistakable physiological effect turns out to be nearly undruggable, and for reasons that recur. Cholecystokinin ends your meal, yet a CCK agonist produced no weight loss. Leptin tells the brain the fat stores are full, yet giving more barely moves common obesity. Calcitonin lowers calcium cleanly, yet its drug faded. Motilin empties the stomach, yet durable prokinetics never arrived. The biology is real every time; the pharmacology refuses — and this is the taxonomy of that refusal, four recurring ways a good hormone makes a bad drug. Homeostasis compensates: short-term signals like satiety are answered at the next meal, because the body defends a set-point the signal was never in charge of. Continuous exposure desensitizes: flood a receptor and it turns its own gain down, which is why more leptin does nothing and why the body writes its master controls in pulses, not amounts. The lever only works in deficiency: replacing a hormone transforms the patient who lacks it and shrugs at the one who already has plenty. And a real mechanism can simply be aimed at the wrong disease, failing broad trials until it meets the one condition its mechanism was shaped for. None of this says the science is wrong — it says physiology is not a bank of knobs you can turn up, and that a clear mechanism is the start of a drug programme, not the end of one. Vivid biology, uncooperative pharmacology. No dosing.",
+    family: "incretins-metabolic",
+    readingMinutes: 10,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {

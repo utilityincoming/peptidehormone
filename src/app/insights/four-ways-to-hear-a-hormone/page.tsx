@@ -279,6 +279,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-hormone-discovered-twice" label="The hormone discovered twice — leptin's JAK-STAT, adiponectin's exception" />
                 <CrossLink href="/insights/the-heart-is-a-gland" label="The heart is a gland — the guanylyl-cyclase natriuretic peptides" />
                 <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof — why a receptor is the bottom rung" />
+                <CrossLink href="/insights/why-good-hormones-make-bad-drugs" label="Why good hormones make bad drugs — the druggability failure modes" />
                 <CrossLink href="/research?q=Which%20receptor%20class%20does%20this%20peptide%20signal%20through%2C%20and%20what%20does%20that%20predict%20about%20its%20speed%20and%20druggability%3F" label="Ask the research agent about a receptor" />
               </ul>
             </div>
