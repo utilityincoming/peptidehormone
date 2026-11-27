@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Growth & repair",
       title: insight.title,
       subtitle: "A morning label is a pharmacokinetic claim. Most lists never measure one.",
-      accent: "#386982",
+      accent: "#2C5F86",
     }),
     { ...size, fonts: await ogFonts() },
   );

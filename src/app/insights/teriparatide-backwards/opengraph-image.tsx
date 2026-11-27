@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Calcium & bone",
       title: insight.title,
       subtitle: "The bone-dissolving hormone, turned bone-building by the clock.",
-      accent: "#386982", // calcium-bone family accent (blue)
+      accent: "#2C5F86", // calcium-bone family accent (blue)
     }),
     { ...size, fonts: await ogFonts() },
   );

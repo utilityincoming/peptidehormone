@@ -18,14 +18,15 @@ export async function POST(request: Request) {
   const signature = request.headers.get("stripe-signature");
   const raw = await request.text();
 
+  if (!secret) {
+    console.error("STRIPE_WEBHOOK_SECRET is unset; refusing the webhook.");
+    return new Response("Webhook secret is not configured", { status: 500 });
+  }
+  if (!signature) return new Response("Missing signature", { status: 400 });
+
   let event: Stripe.Event;
   try {
-    if (secret) {
-      if (!signature) return new Response("Missing signature", { status: 400 });
-      event = stripe().webhooks.constructEvent(raw, signature, secret);
-    } else {
-      event = JSON.parse(raw) as Stripe.Event;
-    }
+    event = stripe().webhooks.constructEvent(raw, signature, secret);
   } catch (err) {
     console.log("Webhook signature verification failed.", (err as Error).message);
     return new Response("Bad signature", { status: 400 });

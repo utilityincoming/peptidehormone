@@ -8,6 +8,6 @@ export default async function Image() {
     eyebrow: "Insight · metabolic mechanisms",
     title: "SLU-PP-332 vs BAM15",
     subtitle: "Burning fuel is not the same as getting fit. Two mechanisms, real mouse data, unanswered human questions.",
-    accent: "#386982",
+    accent: "#2C5F86",
   }), { ...size, fonts: await ogFonts() });
 }

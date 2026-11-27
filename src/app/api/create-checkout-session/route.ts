@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { stripe, keyModeMismatch } from "@/lib/stripe";
+import { clientIp, rateLimited } from "@/lib/rate-limit";
 
 // Creates an embedded-form Checkout Session for the Research Pass and returns
 // its client secret to the page at /research/pass. Parameters marked
@@ -8,7 +9,11 @@ import { stripe, keyModeMismatch } from "@/lib/stripe";
 
 export const dynamic = "force-dynamic";
 
-export async function POST() {
+export async function POST(request: Request) {
+  if (await rateLimited("checkout", clientIp(request), 10, 60_000)) {
+    return Response.json({ error: "Too many requests. Please wait a moment and try again." }, { status: 429 });
+  }
+
   const secretKey = process.env.STRIPE_SECRET_KEY;
   if (!secretKey) {
     return Response.json({ error: "Stripe is not configured." }, { status: 500 });

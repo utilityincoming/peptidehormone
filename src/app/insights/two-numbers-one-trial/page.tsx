@@ -350,7 +350,7 @@ export default function Article() {
    pair never rests on colour alone.                                            */
 function GapChart() {
   const POLICY = "#34566A";
-  const EFFICACY = "#3E6B58";
+  const EFFICACY = "#2F6B52";
   const W = 620;
   const LEFT = 150;
   const RIGHT = 36;

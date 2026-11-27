@@ -51,3 +51,22 @@ export async function claimOnce(
   const result = await command(cfg, ["SET", key, String(Date.now()), "NX", "EX", ttlS], f);
   return result === "OK";
 }
+
+/**
+ * Increment a counter and start its TTL on the first hit. Returns the count
+ * inside the window. Throws if the store is unreachable.
+ */
+export async function incrWindow(
+  key: string,
+  windowS: number,
+  cfg: StoreConfig = storeConfig(),
+  f: Fetch = fetch,
+): Promise<number> {
+  if (!storeEnabled(cfg)) throw new Error("store is not configured");
+  const script =
+    "local c = redis.call('INCR', KEYS[1]) if c == 1 then redis.call('EXPIRE', KEYS[1], ARGV[1]) end return c";
+  const result = await command(cfg, ["EVAL", script, 1, key, windowS], f);
+  const n = typeof result === "number" ? result : Number(result);
+  if (!Number.isFinite(n)) throw new Error("store: bad counter");
+  return n;
+}
