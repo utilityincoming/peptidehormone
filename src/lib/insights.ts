@@ -1,6 +1,13 @@
 // Long-form editorial deep-dives — the "depth over benefits" layer. Metadata
 // lives here for the index + cross-links; each article body is a hand-authored
 // page under src/app/insights/[slug] for full control over diagrams and layout.
+//
+// Adding an essay: create src/app/insights/<slug>/page.tsx (and an
+// opengraph-image if you want a card), then append an Insight here. Title,
+// dek, and canonical come from that page's metadata; `hormones` is what
+// links the essay onto molecule pages and molecule pages back to the essay.
+// Put the entry at the top of INSIGHTS so recentInsights() treats it as new.
+// Set featuredRank only when it should lead the homepage rail.
 
 export interface Insight {
   slug: string;
@@ -773,6 +780,11 @@ export function getInsight(slug: string): Insight | undefined {
  * (`featuredRank`, lowest first). Kept data-driven so the homepage rotates
  * without a code change — set or clear `featuredRank` on any insight.
  */
+/** Newest entries, assuming new essays are inserted at the front of INSIGHTS. */
+export function recentInsights(limit = 4): Insight[] {
+  return INSIGHTS.slice(0, limit);
+}
+
 export function featuredInsights(): Insight[] {
   return INSIGHTS.filter((i) => i.featuredRank != null).sort(
     (a, b) => (a.featuredRank ?? 0) - (b.featuredRank ?? 0),

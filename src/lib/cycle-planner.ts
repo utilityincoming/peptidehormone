@@ -43,11 +43,11 @@ export interface Peptide {
 
 // Categorical hues — teal / amber / violet / rose / blue / green.
 const HUE = {
-  teal: "#3E6B58",
+  teal: "#2F6B52",
   amber: "#865C27",
   violet: "#605A79",
   rose: "#885768",
-  blue: "#386982",
+  blue: "#2C5F86",
   green: "#60744E",
 } as const;
 

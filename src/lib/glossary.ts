@@ -379,6 +379,14 @@ export const GLOSSARY: GlossaryGroup[] = [
         def: "This reference's rigor badge — a five-rung grade from Established to Limited marking the weight of evidence behind a molecule, kept separate from how promising it is.",
         see: [{ label: "The Standard", href: "/methodology" }],
       },
+      {
+        slug: "research-use-only",
+        term: "Research-use only",
+        abbr: "RUO",
+        aka: ["research use only"],
+        def: "A label that a material is sold for laboratory research, not as a drug, a food, or a personal protocol. It describes the seller’s framing. It is not evidence that the lot matches the sequence, and it is not permission to use it.",
+        see: [{ label: "Availability", href: "/available" }],
+      },
     ],
   },
 ];

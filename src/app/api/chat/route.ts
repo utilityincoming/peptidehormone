@@ -2,6 +2,7 @@ import { NextRequest } from "next/server";
 import { AGENT_TOOLS, executeAgentTool } from "@/lib/agent-tools";
 import { callResearchModel, researchModelConfigured, type Msg } from "@/lib/research-llm";
 import { FAMILIES } from "@/lib/families";
+import { clientIp, rateLimited, readBoundedJson } from "@/lib/rate-limit";
 import {
   PASS_COOKIE,
   QUOTA_COOKIE,
@@ -111,16 +112,7 @@ function crossOriginBlocked(request: Request): boolean {
   }
 }
 
-// Minimal per-instance IP rate limiter. In-memory only — on multi-instance
-// serverless it is per-instance, which is acceptable as a first line of defense.
-const HITS = new Map<string, number[]>();
-function rateLimited(ip: string, limit = 12, windowMs = 60_000): boolean {
-  const now = Date.now();
-  const recent = (HITS.get(ip) ?? []).filter((t) => now - t < windowMs);
-  recent.push(now);
-  HITS.set(ip, recent);
-  return recent.length > limit;
-}
+const MAX_BODY_CHARS = 70_000;
 
 export async function POST(request: NextRequest) {
   if (!researchModelConfigured()) {
@@ -134,9 +126,8 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: "Cross-origin requests are not allowed." }, { status: 403 });
   }
 
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  if (rateLimited(ip)) {
+  const ip = clientIp(request);
+  if (await rateLimited("chat", ip, 12, 60_000)) {
     return Response.json(
       { error: "Too many requests. Please wait a moment and try again." },
       { status: 429 },
@@ -163,13 +154,14 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  let rawMessages: unknown;
-  try {
-    const body = await request.json();
-    rawMessages = body?.messages;
-  } catch {
-    return Response.json({ error: "Invalid request body" }, { status: 400 });
+  const parsed = await readBoundedJson(request, MAX_BODY_CHARS);
+  if (!parsed.ok) {
+    return Response.json(
+      { error: parsed.status === 413 ? "Request body is too large." : "Invalid request body" },
+      { status: parsed.status },
+    );
   }
+  const rawMessages = (parsed.value as { messages?: unknown } | null)?.messages;
 
   if (!Array.isArray(rawMessages) || rawMessages.length === 0) {
     return Response.json({ error: "messages array is required" }, { status: 400 });

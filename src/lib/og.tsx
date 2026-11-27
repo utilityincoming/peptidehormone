@@ -13,8 +13,8 @@ export const OG_CONTENT_TYPE = "image/png";
 export function accentHex(cls?: string): string {
   const map: Record<string, string> = {
     "text-accent": "#34566A",
-    "text-accent-teal": "#3E6B58",
-    "text-accent-blue": "#386982",
+    "text-accent-teal": "#2F6B52",
+    "text-accent-blue": "#2C5F86",
     "text-accent-amber": "#865C27",
     "text-accent-purple": "#605A79",
     "text-accent-rose": "#885768",

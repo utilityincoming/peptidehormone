@@ -8,6 +8,8 @@ import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { JsonLd } from "@/components/JsonLd";
 import { familyLd } from "@/lib/jsonld";
 import { composeMetaDescription } from "@/lib/meta";
+import { GlanceTable } from "@/components/GlanceTable";
+import { compoundTierClasses } from "@/components/evidence";
 
 // Resolve a family signal label to its hormone detail page, if one exists.
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
@@ -105,6 +107,27 @@ export default async function FamilyHub({
                   <p key={i} className="text-[15px] leading-7 text-ink/70">{p}</p>
                 ))}
               </div>
+            </section>
+
+            <section className="mt-12">
+              <h2 className="font-display text-2xl font-semibold">At a glance</h2>
+              <p className="mt-3 mb-5 text-sm leading-6 text-ink/55">
+                Sort the family by name, evidence, mass, or half-life. The table stays on this page.
+              </p>
+              <GlanceTable
+                rows={famHormones.map((h) => ({
+                  slug: h.slug,
+                  name: h.name,
+                  abbr: h.abbr,
+                  receptor: h.receptor,
+                  evidence: h.evidence ?? "Established",
+                  evidenceClass: compoundTierClasses(h.evidence ?? "Established"),
+                  mw: h.mw,
+                  mwApprox: h.mwApprox,
+                  halfLife: h.halfLife,
+                  halfLifeMin: h.halfLifeMin,
+                }))}
+              />
             </section>
 
             <section className="mt-12">

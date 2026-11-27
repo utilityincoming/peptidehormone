@@ -12,14 +12,18 @@ import { insightsForHormone } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { hormoneLd } from "@/lib/jsonld";
-import { vendorsFor } from "@/lib/affiliate";
-import { VendorRow, Disclosure } from "@/components/Sourcing";
 import { externalRefs } from "@/lib/identifiers";
 import { compoundTierClasses, regulatoryClasses, TierBadge, EvidenceFloor } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, formatAsOf } from "@/lib/regulatory";
 import { hormoneFigure } from "@/components/hormone-figures";
 import { monographClaims, monographFloor } from "@/lib/hormone-evidence";
 import LiveEvidenceBlock from "@/components/LiveEvidence";
+import { SequenceViewer } from "@/components/SequenceViewer";
+import { MechanismSchematic } from "@/components/MechanismSchematic";
+import { RelatedMolecules } from "@/components/RelatedMolecules";
+import { ResearchSources } from "@/components/ResearchSources";
+import { relatedMolecules } from "@/lib/related";
+import { SOURCED_SLUGS } from "@/lib/affiliate";
 
 export function generateStaticParams() {
   return HORMONES.map((h) => ({ slug: h.slug }));
@@ -84,7 +88,7 @@ export default async function HormonePage({
   const figure = hormoneFigure(h.slug);
 
   // Network sources that carry this molecule — gates the sidebar Availability card.
-  const vendors = vendorsFor(h.slug);
+  const neighbors = relatedMolecules(h);
 
   const identity = [
     { label: "Class", value: h.class },
@@ -205,6 +209,17 @@ export default async function HormonePage({
                   </div>
                 ))}
               </dl>
+              <SequenceViewer slug={h.slug} />
+              <p className="mt-4 text-xs leading-5 text-ink/45">
+                Terms:{" "}
+                <Link href="/glossary#prohormone" className="text-accent hover:underline">prohormone</Link>
+                {" · "}
+                <Link href="/glossary#acylation" className="text-accent hover:underline">acylation</Link>
+                {" · "}
+                <Link href="/glossary#evidence-tier" className="text-accent hover:underline">evidence tier</Link>
+                {" · "}
+                <Link href="/glossary#research-use-only" className="text-accent hover:underline">research-use only</Link>
+              </p>
             </section>
 
             {(h.mw || h.halfLife) && (
@@ -280,15 +295,19 @@ export default async function HormonePage({
             <section className="mt-12">
               <h2 className="font-display text-2xl font-semibold">Mechanism</h2>
               <p className="mt-5 text-[15px] leading-7 text-ink/70">{h.mechanism}</p>
-              {figure && (
+              {figure ? (
                 <figure className="mt-8 overflow-hidden rounded-2xl border border-ink/10 bg-panel/30 p-6">
                   {figure.svg}
                   <figcaption className="mt-4 border-t border-ink/[0.06] pt-4 text-sm leading-6 text-ink/55">
                     {figure.caption}
                   </figcaption>
                 </figure>
+              ) : (
+                <MechanismSchematic family={h.family} />
               )}
             </section>
+
+            <RelatedMolecules items={neighbors} />
 
             {h.slug === "bpc-157" && <BpcHumanEvidence />}
 
@@ -445,31 +464,7 @@ export default async function HormonePage({
 
           {/* ── Sidebar ── */}
           <aside className="space-y-8">
-            {vendors.length > 0 && (
-              <div className="rounded-2xl border border-accent/25 bg-accent/[0.04] p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="font-display text-base font-semibold">Get {h.abbr ?? h.name}</h3>
-                  <span className="rounded-full border border-accent-teal/40 bg-accent-teal/10 px-2.5 py-0.5 text-xs font-medium text-accent-teal">
-                    Via the network
-                  </span>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-ink/60">
-                  Research-grade {h.abbr ?? h.name} is reachable, research-use-only, from{" "}
-                  {vendors.filter((v) => v.prominence !== "secondary").length > 1
-                    ? "the network's vetted sources"
-                    : "the network's vetted source"}
-                  . Each primary link lands on the product itself.
-                </p>
-                <ul className="mt-4 space-y-5">
-                  {vendors.map((v) => (
-                    <li key={v.key}>
-                      <VendorRow v={v} slug={h.slug} label={h.abbr ?? h.name} surface="monograph" compact />
-                    </li>
-                  ))}
-                </ul>
-                <Disclosure className="mt-4 text-[11px] leading-4" />
-              </div>
-            )}
+            <ResearchSources slug={h.slug} name={h.abbr ?? h.name} listed={SOURCED_SLUGS.has(h.slug)} />
 
             {deepDives.length > 0 && (
               <div className="rounded-2xl border border-ink/10 bg-panel/40 p-6">

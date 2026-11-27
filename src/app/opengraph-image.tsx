@@ -10,7 +10,7 @@ export const contentType = OG_CONTENT_TYPE;
 // native bar is honestly a sliver. Values mirror the catalog's half-lives.
 const ROWS = [
   { name: "Native GLP-1", value: "~2 min", width: 6, color: "#865C27" },
-  { name: "Semaglutide", value: "~7 days · 1 receptor", width: 480, color: "#386982" },
+  { name: "Semaglutide", value: "~7 days · 1 receptor", width: 480, color: "#2C5F86" },
   { name: "Retatrutide", value: "~6 days · 3 receptors", width: 411, color: "#34566A" },
 ];
 
