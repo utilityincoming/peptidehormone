@@ -178,8 +178,8 @@ export default function Home() {
                 Peptide hormones, from sequence to evidence.
               </h1>
               <p className="mt-4 max-w-xl text-lg leading-7 text-secondary">
-                Look up a molecule, follow its receptor, and see how far the human
-                evidence goes.
+                Find native peptide hormones and their analogs. See which receptors
+                they act on and what human studies have found.
               </p>
               <form action="/search" method="get" role="search" aria-label="Molecule lookup" className="mt-6 max-w-lg">
                 <label htmlFor="home-molecule-query" className="mb-2 block text-sm font-medium">
@@ -204,11 +204,10 @@ export default function Home() {
                 <a href="#families" className="hover:underline">Browse signaling families <span aria-hidden>↓</span></a>
               </div>
               <p className="mt-4 text-sm text-secondary">
-                New to the subject? Start with{" "}
+                New to the subject?{" "}
                 <Link href="/what-is-a-peptide-hormone" className="underline underline-offset-2 hover:text-accent">
-                  what a peptide hormone is
+                  What is a peptide hormone?
                 </Link>
-                .
               </p>
             </div>
 
@@ -216,7 +215,7 @@ export default function Home() {
               <figcaption className="mb-3 font-display text-xl font-medium">Oxytocin, from sequence to signal</figcaption>
               <OxytocinSignalDiagram id="oxytocin-preview" />
               <a href="#oxytocin-figure" className={styles.specimenLink}>
-                View the full plate and sources <span aria-hidden>↓</span>
+                See the sequence and sources <span aria-hidden>↓</span>
               </a>
             </figure>
           </Container>
@@ -230,19 +229,11 @@ export default function Home() {
                 Twelve signaling families
               </h2>
               <p className="mt-4 text-lg leading-8 text-secondary">
-                Each family groups the native hormone, the analogs made from it, and
-                how far the evidence goes.
+                Browse by biological system to find related hormones and their analogs.
               </p>
-              <Link
-                href="/catalog"
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-transform hover:translate-x-0.5"
-              >
-                Browse the full catalog
-                <span aria-hidden>→</span>
-              </Link>
             </div>
 
-            <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-8 grid gap-px overflow-hidden rounded-[4px] border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
               {FAMILIES.map((f) => (
                 <Link
                   key={f.slug}
