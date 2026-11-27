@@ -276,6 +276,7 @@ export default function Article() {
                 <CrossLink href="/insights/early-adopters-catalog" label="The community found it first" />
                 <CrossLink href="/insights/the-door-swings-both-ways" label="The door swings both ways — the 2026 availability shift" />
                 <CrossLink href="/methodology" label="Methodology & standards" />
+                <CrossLink href="/insights/the-clock-under-the-list" label="The clock under the list — reading seller-list timing claims" />
                 <CrossLink href="/catalog" label="Browse the full catalog" />
               </ul>
             </div>

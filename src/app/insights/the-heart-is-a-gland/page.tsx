@@ -288,6 +288,7 @@ export default function Article() {
                 <CrossLink href="/hormones/cnp" label="CNP reference (the vascular and bone-growth peptide)" />
                 <CrossLink href="/families/cardiovascular" label="The cardiovascular & natriuretic family" />
                 <CrossLink href="/insights/peptide-half-life-engineering" label="Half-life engineering — the other side of protecting a peptide" />
+                <CrossLink href="/insights/what-is-apelin" label="A stronger beat at a lower pressure — apelin and the heart" />
                 <CrossLink href="/research?q=How%20do%20the%20natriuretic%20peptides%20ANP%2C%20BNP%20and%20CNP%20differ%2C%20and%20why%20does%20neprilysin%20inhibition%20(sacubitril)%20work%20better%20than%20giving%20recombinant%20BNP%3F" label="Ask the research agent about the natriuretic peptides" />
               </ul>
             </div>
