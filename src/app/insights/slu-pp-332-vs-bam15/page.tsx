@@ -151,6 +151,7 @@ export default function Article() {
               <CrossLink href="/families/mitochondrial" label="Mitochondrial-derived peptides: the actual family" />
               <CrossLink href="/insights/bigger-not-stronger" label="Bigger, but not stronger: another endpoint trap" />
               <CrossLink href="/methodology" label="How this reference grades evidence" />
+              <CrossLink href="/insights/a-mechanism-in-search-of-a-disease" label="A mechanism in search of a disease — elamipretide (SS-31)" />
               <CrossLink href="/research?q=What%20is%20the%20mechanistic%20difference%20between%20a%20mitochondrial%20uncoupler%20like%20BAM15%20and%20an%20ERR%20agonist%20like%20SLU-PP-332%3F" label="Ask the research agent about the mechanisms" />
             </ul>
           </div>
