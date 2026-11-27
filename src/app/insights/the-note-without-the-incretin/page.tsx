@@ -379,7 +379,7 @@ export default function Article() {
                   ],
                 ]}
               />
-              <Callout label="Bullish on the science, sceptical on the page">
+              <Callout label="Selectivity is proven; the efficacy is not">
                 The molecule is a genuine piece of engineering and the monotherapy number is
                 real, peer-reviewed and placebo-controlled. The combination number is a
                 press release with a discontinuation rate attached. Phase 3 will decide
