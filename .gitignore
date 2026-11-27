@@ -49,3 +49,6 @@ next-env.d.ts
 
 # GSC reports + service-account keys (never commit query data or credentials)
 /reports/
+
+# next dev auto-generates this agent-rules file; not source
+/AGENTS.md
