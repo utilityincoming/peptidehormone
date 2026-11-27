@@ -10,7 +10,7 @@ import { HomeReadingPlate } from "@/components/HomeReadingPlate";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
 import { StructureHero } from "@/components/StructureHero";
-import { OxytocinSignalDiagram, SequenceSignalHero } from "@/components/SequenceSignalHero";
+import { OxytocinBindingPreview, SequenceSignalHero } from "@/components/SequenceSignalHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
@@ -213,7 +213,7 @@ export default function Home() {
 
             <figure className={`${styles.specimen} hidden lg:block`}>
               <figcaption className="mb-3 font-display text-xl font-medium">Oxytocin, from sequence to signal</figcaption>
-              <OxytocinSignalDiagram id="oxytocin-preview" />
+              <OxytocinBindingPreview />
               <a href="#oxytocin-figure" className={styles.specimenLink}>
                 See the sequence and sources <span aria-hidden>↓</span>
               </a>
