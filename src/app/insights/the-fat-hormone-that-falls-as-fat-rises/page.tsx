@@ -377,6 +377,7 @@ export default function Article() {
                 <CrossLink href="/insights/mechanism-is-not-proof" label="Mechanism is not proof — the evidence ladder this story tests" />
                 <CrossLink href="/insights/the-heart-is-a-gland" label="The heart is a gland — the natriuretic peptides behind the second paradox" />
                 <CrossLink href="/families/adipokines" label="The adipokines & energy balance family" />
+                <CrossLink href="/insights/the-signal-you-cant-turn-up" label="The signal you can’t turn up — leptin resistance, mechanistically" />
                 <CrossLink href="/research?q=Why%20does%20adiponectin%20fall%20in%20obesity%2C%20and%20what%20does%20Mendelian%20randomization%20say%20about%20whether%20low%20adiponectin%20causes%20type%202%20diabetes%3F" label="Ask the research agent about adiponectin" />
               </ul>
             </div>
