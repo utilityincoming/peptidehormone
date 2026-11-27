@@ -105,6 +105,7 @@ export function SiteFooter() {
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
+              <li><Link href="/methodology" className="hover:text-ink">Evidence standards</Link></li>
               <li><Link href="/glossary" className="hover:text-ink">Glossary</Link></li>
             </ul>
           </div>

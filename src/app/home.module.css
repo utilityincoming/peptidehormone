@@ -37,27 +37,11 @@
   .sourcing { padding: 28px 0; }
 }
 .hero { border-bottom: 1px solid #182b371a; }
-.masthead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 40px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #182b3726;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-.mastMark { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-family: var(--font-display), sans-serif; font-weight: 600; letter-spacing: -.02em; }
-.masthead a:hover { color: var(--accent); }
-.eyebrow { font-size: 13px; line-height: 1.5; color: var(--accent); }
-.title { margin-top: 18px; font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
+.title { font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
 .specimen { padding: 24px; border: 1px solid #182b3726; border-top: 2px solid var(--plate-gold); border-radius: 4px; background: var(--panel); }
 .specimenLink { display: flex; justify-content: space-between; margin-top: 8px; padding-top: 12px; border-top: 1px solid #182b3726; font-size: 12px; color: var(--accent); }
 .families a[class*="group"] { padding: 24px; }
 .atlas section[id] { scroll-margin-top: 90px; }
 @media (max-width: 639px) {
-  .masthead { margin-bottom: 28px; font-size: 13px; }
   .specimen { padding: 18px 14px; }
 }
