@@ -181,6 +181,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-last-three-words" label="The last three words — KPV, a split that kept a real effect" />
                 <CrossLink href="/insights/two-ways-to-ask-for-growth" label="Two ways to ask for growth — the GH axis AOD-9604 comes from" />
                 <CrossLink href="/families/growth-repair" label="The growth & repair family" />
+                <CrossLink href="/insights/the-active-site-sold-as-the-whole" label="The active site, sold as the whole — TB-500 vs thymosin β4" />
                 <CrossLink href="/research?q=What%20is%20AOD-9604%27s%20proposed%20lipolytic%20mechanism%2C%20and%20why%20did%20its%20human%20obesity%20trials%20fail%20to%20show%20weight%20loss%3F" label="Ask the research agent about AOD-9604" />
               </ul>
             </div>

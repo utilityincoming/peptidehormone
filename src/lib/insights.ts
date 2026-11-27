@@ -708,6 +708,15 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 10,
     reviewed: "October 2026",
   },
+  {
+    slug: "the-active-site-sold-as-the-whole",
+    hormones: ["tb-500", "thymosin-beta-4"],
+    title: "The active site, sold as the whole",
+    dek: "Thymosin β4 is a real and important molecule: a 43-residue peptide that is the major store of monomeric actin inside the cell, and through that grip on the cytoskeleton a genuine player in cell migration, angiogenesis and tissue repair — the subject of a landmark 2004 Nature paper on cardiac repair. TB-500 is not that molecule. It is seven of its residues: Ac-LKKTETQ, the acetylated 17–23 fragment that happens to be thymosin β4’s actin-binding active site, sold through the research-peptide market as though it carried the whole peptide’s biology. The cut is real and even has some support — the bare seven-mer promoted dermal wound repair in diabetic and aged mice — so this is not fraud; it is the familiar fragment move, keep the active site and drop the rest. What the marketing quietly borrows is the parent’s evidence, and that is where the story turns: there is no controlled human efficacy trial of TB-500, and the pivotal human trial of full-length thymosin β4 itself — RGN-352, intravenous, for acute myocardial infarction — was withdrawn before it enrolled a single patient. The clearest published literature on TB-500 is not clinical at all; it is the anti-doping assays written to detect it, which tells you where it actually circulates. The subtraction is the easy, verifiable half; the claim that the kept site still works in a person is the hard half, and for TB-500 it is unmade. Real biology, borrowed name, missing trial. No dosing.",
+    family: "repair",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {
