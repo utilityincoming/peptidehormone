@@ -79,6 +79,7 @@ export default function Article() {
                 week has a high end and a low end. Appetite returning on day six is what the
                 low end feels like.
               </P>
+              <WeeklyCurveFigure />
               <P>
                 That return gets misread in both directions. As failure: the drug wore off,
                 so it is not strong enough. As a cue to add more before the week is over. The
@@ -275,5 +276,48 @@ function Grade({ g }: { g: keyof typeof GRADES }) {
     >
       {meta.label}
     </span>
+  );
+}
+
+/* ── One dosing interval: the level falls by about half across the week ── */
+function WeeklyCurveFigure() {
+  return (
+    <figure className="my-2 overflow-hidden rounded-2xl border border-ink/10 bg-surface p-4">
+      <svg
+        viewBox="0 0 600 250"
+        className="w-full"
+        role="img"
+        aria-label="A plasma-concentration curve across one week: the level peaks after the weekly injection and falls to about half by the next dose, so late-week appetite is the declining curve, not the drug quitting."
+      >
+        {/* late-week fade band */}
+        <rect x="406" y="54" width="134" height="136" fill="var(--accent-amber)" fillOpacity="0.07" />
+        <text x="473" y="80" textAnchor="middle" fill="var(--accent-amber)" fontSize="11" fontWeight="600" fontFamily="var(--font-geist-mono), monospace">appetite returns here</text>
+        <text x="473" y="96" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.45" fontSize="10" fontFamily="var(--font-geist-mono), monospace">the fade the curve predicts</text>
+
+        {/* y label + baseline */}
+        <text x="60" y="44" fill="var(--color-ink)" fillOpacity="0.45" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">plasma level</text>
+        <line x1="60" y1="190" x2="548" y2="190" stroke="var(--color-ink)" strokeOpacity="0.15" strokeWidth="1" />
+
+        {/* half-of-peak reference */}
+        <line x1="174" y1="129" x2="548" y2="129" stroke="var(--color-ink)" strokeOpacity="0.22" strokeWidth="1" strokeDasharray="3 4" />
+        <text x="180" y="124" fill="var(--color-ink)" fillOpacity="0.5" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">≈ half the peak</text>
+
+        {/* concentration curve */}
+        <path d="M70,168 C110,118 148,74 174,70 C280,82 420,112 540,129" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" />
+        <circle cx="174" cy="70" r="3.5" fill="var(--accent)" />
+
+        {/* injection markers */}
+        <line x1="70" y1="190" x2="70" y2="176" stroke="var(--accent-amber)" strokeWidth="2" />
+        <polygon points="70,170 65,181 75,181" fill="var(--accent-amber)" />
+        <line x1="540" y1="190" x2="540" y2="176" stroke="var(--accent-amber)" strokeWidth="2" />
+        <polygon points="540,170 535,181 545,181" fill="var(--accent-amber)" />
+        <text x="70" y="208" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.55" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">inject · day 0</text>
+        <text x="540" y="208" textAnchor="middle" fill="var(--color-ink)" fillOpacity="0.55" fontSize="10.5" fontFamily="var(--font-geist-mono), monospace">day 7 · next dose</text>
+      </svg>
+      <figcaption className="mt-2 text-center text-xs text-ink/40">
+        A ~1-week half-life (159–195&nbsp;h) means about half the dose is gone by the next injection. The week has a high end
+        and a low end; appetite on day six is the curve on its way down, not the drug wearing off.
+      </figcaption>
+    </figure>
   );
 }
