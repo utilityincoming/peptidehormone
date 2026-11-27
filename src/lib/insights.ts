@@ -753,6 +753,15 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 11,
     reviewed: "November 2026",
   },
+  {
+    slug: "a-mechanism-in-search-of-a-disease",
+    hormones: ["ss-31"],
+    title: "A mechanism in search of a disease",
+    dek: "Elamipretide is a four-residue synthetic peptide with an almost too-good mechanism: it concentrates in the inner membrane of the mitochondrion and binds cardiolipin, the signature lipid that shapes the cristae where energy is made, stabilizing that structure and helping the electron transport chain run. A molecule that props up the cell's power plant looks like it should help anywhere mitochondria fail — and for a decade it was tried almost everywhere. The controlled trials did not cooperate. In primary mitochondrial myopathy its phase 3, MMPOWER-3, was flat — no change in walking distance or fatigue against placebo. In dry age-related macular degeneration its phase 2, ReCLAIM-2, missed its primary endpoints too. The broad-spectrum mitochondrial fixer didn't fix the broad indications. Where it finally found a foothold is the one disease whose defect is the exact lipid it targets: Barth syndrome, caused by a mutation in the TAZ gene that breaks cardiolipin remodeling. There, elamipretide is a cardiolipin stabilizer aimed at a cardiolipin disease — and an open-label extension in ten patients showed sustained gains in walking distance and in the cardiolipin ratio. That match, more than a clean trial win, is what carried it to approval, which makes it an unusually honest case: the evidence here leans on mechanism, in a disease too rare for the trial you would otherwise demand. An elegant mechanism, a drawer of failed indications, and a home that fit its shape. No dosing.",
+    family: "mitochondrial",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {

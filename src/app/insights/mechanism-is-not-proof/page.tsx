@@ -271,6 +271,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-trial-that-hasnt-reported" label="The trial that hasn't reported — enrolled is not reported" />
                 <CrossLink href="/insights/the-fat-hormone-that-falls-as-fat-rises" label="The fat hormone that falls as fat rises — a marker that genetics says is not a cause" />
                 <CrossLink href="/insights/the-first-word" label="The first word — secretin’s debunked autism fad" />
+                <CrossLink href="/insights/a-mechanism-in-search-of-a-disease" label="A mechanism in search of a disease — elamipretide (SS-31)" />
                 <CrossLink href="/research?q=How%20should%20I%20weigh%20mechanistic%2C%20animal%2C%20surrogate-marker%20and%20controlled-outcome%20evidence%20when%20judging%20whether%20a%20peptide%20actually%20works%3F" label="Ask the research agent to grade a claim" />
               </ul>
             </div>
