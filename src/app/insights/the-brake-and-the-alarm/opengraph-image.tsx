@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-brake-and-the-alarm")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · gut & appetite",
+      eyebrow: "Insight · Gut & appetite",
       title: insight.title,
       subtitle:
         "One peptide, two receptors, two worlds: a satiety brake in the gut, a panic alarm in the head. Vivid biology, uncooperative pharmacology.",

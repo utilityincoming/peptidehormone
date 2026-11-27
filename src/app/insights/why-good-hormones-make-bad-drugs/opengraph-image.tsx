@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("why-good-hormones-make-bad-drugs")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · synthesis",
+      eyebrow: "Insight · Across the families",
       title: insight.title,
       subtitle:
         "Four recurring reasons a vivid hormone resists becoming a drug. Physiology is not a bank of knobs you can turn up.",

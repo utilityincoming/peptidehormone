@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-receptor-outlived-the-drug")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · calcium & bone",
+      eyebrow: "Insight · Calcium & bone",
       title: insight.title,
       subtitle:
         "Calcitonin's drug faded; its receptor, paired with a RAMP, became the amylin receptor behind the obesity agonists.",

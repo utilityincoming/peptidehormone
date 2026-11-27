@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-hormone-built-to-stay-home")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · calcium & bone",
+      eyebrow: "Insight · Calcium & bone",
       title: insight.title,
       subtitle:
         "PTHrP paces the growth plate as a local signal. A developmental hormone, a cancer's weapon, and a drug — set by where it acts.",

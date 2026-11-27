@@ -30,7 +30,8 @@ export interface ExternalIds {
   cas?: string;
 }
 
-// slug -> verified external identifiers. Catalog order. 73 of 74 molecules.
+// slug -> verified external identifiers, in catalog order. Not every molecule
+// carries verified identifiers yet; the count is intentionally not asserted here.
 export const IDENTIFIERS: Record<string, ExternalIds> = {
   "glp-1": { wikipedia: "Glucagon-like peptide-1", wikidata: "Q424611", pubchem: "16133831", chebi: "80270" },
   "gip": { wikipedia: "Gastric inhibitory polypeptide", wikidata: "Q22677256", uniprot: "P09681" },

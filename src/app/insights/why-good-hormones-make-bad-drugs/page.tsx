@@ -42,8 +42,8 @@ export default function Article() {
             <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
               <Link href="/insights" className="hover:text-ink">Insights</Link>
               <span aria-hidden>/</span>
-              <Link href="/families/incretins-metabolic" className="text-accent hover:text-ink">
-                Incretins &amp; metabolic
+              <Link href="/methodology" className="text-accent hover:text-ink">
+                Methodology
               </Link>
             </nav>
             <h1 className="mt-6 font-display text-4xl font-semibold leading-tight sm:text-5xl">

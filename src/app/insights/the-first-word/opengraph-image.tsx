@@ -11,7 +11,7 @@ export default async function Image() {
   const insight = getInsight("the-first-word")!;
   return new ImageResponse(
     ogImage({
-      eyebrow: "Insight · gut & appetite",
+      eyebrow: "Insight · Gut & appetite",
       title: insight.title,
       subtitle:
         "Secretin founded endocrinology in 1902 and named the hormone. Founded a field, survived a fad, earned a second look.",
