@@ -397,6 +397,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-hormone-discovered-twice" label="The hormone discovered twice — leptin, the long-term counterpart" />
                 <CrossLink href="/families/gut-appetite" label="The gut & appetite family" />
                 <CrossLink href="/insights/the-antibiotic-that-kept-time" label="The antibiotic that kept time — motilin, ghrelin’s cousin" />
+                <CrossLink href="/insights/the-brake-and-the-alarm" label="The brake and the alarm — CCK, satiety and panic" />
                 <CrossLink href="/research?q=Why%20does%20ghrelin%20require%20octanoylation%20by%20GOAT%2C%20and%20why%20have%20ghrelin%20antagonists%20failed%20as%20obesity%20drugs%3F" label="Ask the research agent about ghrelin" />
               </ul>
             </div>
