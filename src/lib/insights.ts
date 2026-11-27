@@ -717,6 +717,15 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 11,
     reviewed: "November 2026",
   },
+  {
+    slug: "the-receptor-outlived-the-drug",
+    hormones: ["calcitonin", "amylin", "cagrilintide", "pth"],
+    title: "The receptor outlived the drug",
+    dek: "Calcitonin has the tidiest job description in endocrinology: made by the thyroid’s C-cells, it lowers blood calcium by telling osteoclasts to stop dissolving bone — the mirror image of PTH, which raises it. For a while that clean story made a clean drug: salmon calcitonin, a nasal spray for post-menopausal osteoporosis. Then the drug faded. Its anti-fracture benefit proved modest, and in 2012 a European review found a small but real excess of cancer across long-term use — on the order of 0.7% on the tablets and 2.4% on the nasal spray — and the osteoporosis spray was told it should no longer be used. But a hormone’s drug can fade while the hormone stays interesting, and calcitonin’s second act is the receptor, not the molecule: pair the calcitonin receptor with a RAMP accessory protein and it becomes the amylin receptor — which means the amylin-based obesity drugs the rest of this reference keeps meeting are, in part, signalling through calcitonin’s own receptor. That is the logic behind the dual amylin and calcitonin receptor agonists, and why cagrilintide is described as one. The hormone whose spray was restricted now lends its receptor to the busiest corner of metabolic pharmacology, and its old clinical use survives as a blood test — serum calcitonin remains the marker for medullary thyroid cancer. The receptor outlived the drug. No dosing.",
+    family: "calcium-bone",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {

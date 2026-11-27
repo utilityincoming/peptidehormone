@@ -272,6 +272,7 @@ export default function Article() {
                 <CrossLink href="/insights/glp-1-in-a-pill" label="Oral GLP-1 — the pill the oral arm rides" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Is there a GLP-4? — why the field moved sideways, not up" />
                 <CrossLink href="/families/incretins-metabolic" label="The incretins & metabolic family" />
+                <CrossLink href="/insights/the-receptor-outlived-the-drug" label="The receptor outlived the drug — calcitonin and the amylin receptor" />
                 <CrossLink href="/research?q=What%20does%20amycretin%27s%20early-phase%20evidence%20actually%20show%2C%20and%20how%20does%20a%20unimolecular%20GLP-1%20plus%20amylin%20agonist%20compare%20with%20the%20CagriSema%20combination%3F" label="Ask the research agent about amycretin" />
               </ul>
             </div>
