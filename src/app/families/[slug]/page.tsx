@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { FAMILIES, getFamily } from "@/lib/families";
 import { hormonesByFamily, type Hormone } from "@/lib/hormones";
+import { insightsForFamily } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { JsonLd } from "@/components/JsonLd";
@@ -62,6 +63,7 @@ export default async function FamilyHub({
   const others = FAMILIES.filter((f) => f.slug !== family.slug);
   const famHormones = hormonesByFamily(family.slug);
   const analogs = famHormones.filter((x) => x.type === "analog");
+  const deepDives = insightsForFamily(family.slug);
 
   return (
     <>
@@ -169,6 +171,32 @@ export default async function FamilyHub({
                 ))}
               </ul>
             </section>
+
+            {deepDives.length > 0 && (
+              <section className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">Deep-dives in this family</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">
+                  Long-form articles on how these molecules actually work — mechanism,
+                  evidence, and the state of the science.
+                </p>
+                <div className="mt-5 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
+                  {deepDives.map((d) => (
+                    <Link
+                      key={d.slug}
+                      href={`/insights/${d.slug}`}
+                      className="group bg-surface p-5 transition-colors hover:bg-panel"
+                    >
+                      <span className="font-display text-base font-semibold leading-snug transition-colors group-hover:text-accent">
+                        {d.title}
+                      </span>
+                      <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-ink/40">
+                        {d.readingMinutes} min read
+                      </p>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {family.seeAlso && (
               <section className="mt-12">

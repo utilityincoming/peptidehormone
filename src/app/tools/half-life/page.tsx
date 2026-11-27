@@ -131,6 +131,32 @@ export default async function HalfLifePage({
             </p>
           </section>
 
+          <div className="mt-12 rounded-2xl border border-ink/10 bg-panel/40 p-6">
+            <h3 className="font-display text-base font-semibold">Put it in context</h3>
+            <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
+              <li>
+                <Link href="/catalog" className="text-ink/75 transition-colors hover:text-accent">
+                  → Browse the catalog — every molecule profile lists its half-life
+                </Link>
+              </li>
+              <li>
+                <Link href="/insights/peptide-half-life-engineering" className="text-ink/75 transition-colors hover:text-accent">
+                  → How a peptide&rsquo;s half-life is engineered
+                </Link>
+              </li>
+              <li>
+                <Link href="/insights/the-week-is-not-flat" className="text-ink/75 transition-colors hover:text-accent">
+                  → Why a weekly drug isn&rsquo;t a flat week
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/cycle-planner" className="text-ink/75 transition-colors hover:text-accent">
+                  → Cycle planner — accumulation over a schedule
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           <div className="mt-12 max-w-2xl">
             <SourcingNote />
           </div>
