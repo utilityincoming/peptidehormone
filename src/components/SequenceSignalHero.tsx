@@ -19,7 +19,7 @@ export function SequenceSignalHero() {
         <p className={styles.chemistry}>Cys1–Cys6 disulfide <span>Gly9–NH₂</span></p>
       </div>
 
-      <OxytocinSignalDiagram id="oxytocin-plate" />
+      <OxytocinSignalDiagram />
 
       <figcaption className={styles.caption}>
         <p>Backbone traces from <a href="https://www.rcsb.org/structure/7RYC">PDB 7RYC</a>. Membrane and signaling are schematic.</p>
@@ -37,11 +37,11 @@ export function SequenceSignalHero() {
   );
 }
 
-export function OxytocinSignalDiagram({ id }: { id: string }) {
+function OxytocinSignalDiagram() {
   return (
-    <svg className={styles.diagram} viewBox="0 0 480 176" role="img" aria-labelledby={`${id}-title`} aria-describedby={`${id}-description`}>
-      <title id={`${id}-title`}>Oxytocin fold and receptor binding</title>
-      <desc id={`${id}-description`}>
+    <svg className={styles.diagram} viewBox="0 0 480 176" role="img" aria-labelledby="oxytocin-plate-title" aria-describedby="oxytocin-plate-description">
+      <title id="oxytocin-plate-title">Oxytocin fold and receptor binding</title>
+      <desc id="oxytocin-plate-description">
         The left panel enlarges the receptor-bound oxytocin fold. The right panel
         shows the same peptide bound to OXTR across a schematic membrane, with
         Gq signaling indicated below. The traces use PDB 7RYC coordinates.
@@ -63,16 +63,48 @@ export function OxytocinSignalDiagram({ id }: { id: string }) {
       <path d="M235 63h229m-229 57h229" stroke="#81968a" strokeDasharray="2 4" />
       <text x="247" y="96" className={styles.svgNote}>Membrane</text>
       <g transform="translate(376 61) scale(1.44)">
-        {data.receptor.map(({ points: [[x1, y1], [x2, y2]] }, index) => (
-          <line key={index} x1={x1} y1={y1} x2={x2} y2={y2}
-            stroke="#657981" strokeOpacity={.35 + index / data.receptor.length * .6}
-            strokeWidth="2" strokeLinecap="round" />
-        ))}
-        <path d={peptidePath} fill="none" stroke="#34566a" strokeWidth="3" strokeLinejoin="round" />
+        <ReceptorBindingTraces />
       </g>
       <text x="420" y="95" className={styles.svgLabel}>OXTR</text>
       <path d="M374 133v12m-4-4 4 4 4-4" fill="none" stroke="#34566a" strokeWidth="1.5" />
       <text x="387" y="155" className={styles.svgNote}>Gq signal</text>
     </svg>
+  );
+}
+
+export function OxytocinBindingPreview() {
+  return (
+    <svg className={styles.diagram} viewBox="0 0 204 112" role="img"
+      aria-labelledby="oxytocin-preview-title" aria-describedby="oxytocin-preview-description">
+      <title id="oxytocin-preview-title">Oxytocin bound to its receptor</title>
+      <desc id="oxytocin-preview-description">
+        The gold oxytocin trace sits in the binding pocket of the gray oxytocin
+        receptor (OXTR). Both backbone traces come from PDB 7RYC. The shaded
+        membrane is schematic.
+      </desc>
+      <rect width="204" height="112" rx="4" fill="#e8ece5" />
+      <rect x="10" y="41" width="184" height="46" rx="2" fill="#d9e2da" />
+      <path d="M10 41h184m-184 46h184" fill="none" stroke="#81968a" strokeWidth=".6" strokeDasharray="2 3" />
+      <g transform="translate(102 36) scale(1.2)">
+        <ReceptorBindingTraces peptideColor="#86530d" />
+      </g>
+      <path d="M59 26h20l11 4" fill="none" stroke="#86530d" strokeWidth=".7" />
+      <text x="15" y="29" fill="#86530d" fontSize="10" fontWeight="600">Oxytocin</text>
+      <path d="M119 67h21" fill="none" stroke="#3d555b" strokeWidth=".7" />
+      <text x="144" y="70" fill="#3d555b" fontSize="10" fontWeight="600">OXTR</text>
+    </svg>
+  );
+}
+
+function ReceptorBindingTraces({ peptideColor = "#34566a" }: { peptideColor?: string }) {
+  return (
+    <>
+      {data.receptor.map(({ points: [[x1, y1], [x2, y2]] }, index) => (
+        <line key={index} x1={x1} y1={y1} x2={x2} y2={y2}
+          stroke="#657981" strokeOpacity={.35 + index / data.receptor.length * .6}
+          strokeWidth="2" strokeLinecap="round" />
+      ))}
+      <path d={peptidePath} fill="none" stroke={peptideColor} strokeWidth="3" strokeLinejoin="round" />
+    </>
   );
 }
