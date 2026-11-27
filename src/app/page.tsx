@@ -10,7 +10,7 @@ import { HomeReadingPlate } from "@/components/HomeReadingPlate";
 import { ToolPreview, shortHalfLife, type ToolPreviewKind } from "@/components/home";
 import HeroTimeline, { type TimelineSeries } from "@/components/HeroTimeline";
 import { StructureHero } from "@/components/StructureHero";
-import { SequenceSignalHero } from "@/components/SequenceSignalHero";
+import { OxytocinSignalDiagram, SequenceSignalHero } from "@/components/SequenceSignalHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
 import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
@@ -172,72 +172,53 @@ export default function Home() {
       <main id="main" tabIndex={-1} className={`${styles.atlas} flex-1 outline-none`}>
         {/* ── Hero ── */}
         <section className={styles.hero} aria-labelledby="atlas-title">
-          <Container className="relative py-10 md:py-16">
-            <div className={styles.masthead}>
-              <span className={styles.mastMark}>Research atlas</span>
-              <Link href="/methodology">Evidence standards</Link>
-            </div>
-            <div className="grid items-start gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-14">
+          <Container className="grid items-center gap-8 py-9 md:py-12 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
             <div>
-              <p className={styles.eyebrow}>Reference atlas · not medical advice</p>
               <h1 id="atlas-title" className={styles.title}>
-                Peptide hormones,<br />from sequence to evidence.
+                Peptide hormones, from sequence to evidence.
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-secondary">
+              <p className="mt-4 max-w-xl text-lg leading-7 text-secondary">
                 Look up a molecule, follow its receptor, and see how far the human
-                evidence goes — native hormones and the analogs engineered from them.
+                evidence goes.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Link
-                  href="/catalog"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-[4px] bg-accent px-6 font-medium text-surface transition-transform hover:-translate-y-0.5"
-                >
+              <form action="/search" method="get" role="search" aria-label="Molecule lookup" className="mt-6 max-w-lg">
+                <label htmlFor="home-molecule-query" className="mb-2 block text-sm font-medium">
                   Look up a molecule
-                  <span aria-hidden>→</span>
-                </Link>
-                <Link
-                  href="/insights"
-                  className="inline-flex h-12 items-center justify-center rounded-[4px] border border-ink/15 px-6 font-medium text-ink/85 transition-colors hover:border-ink/40"
-                >
-                  Read a deep-dive
-                </Link>
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    id="home-molecule-query"
+                    name="q"
+                    type="search"
+                    required
+                    placeholder="e.g. oxytocin"
+                    className="h-12 min-w-0 flex-1 rounded border border-ink/20 bg-panel px-3 text-base placeholder:text-muted focus-visible:outline-2 focus-visible:outline-accent"
+                  />
+                  <button className="h-12 rounded bg-accent px-4 font-medium text-surface hover:bg-accent/90">
+                    Search
+                  </button>
+                </div>
+              </form>
+              <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-accent">
+                <Link href="/catalog" className="hover:underline">Browse all molecules <span aria-hidden>→</span></Link>
+                <a href="#families" className="hover:underline">Browse signaling families <span aria-hidden>↓</span></a>
               </div>
-              <p className="mt-5 text-sm text-secondary">
+              <p className="mt-4 text-sm text-secondary">
                 New to the subject? Start with{" "}
-                <Link
-                  href="/what-is-a-peptide-hormone"
-                  className="text-ink/85 underline decoration-ink/30 underline-offset-2 transition-colors hover:text-accent"
-                >
+                <Link href="/what-is-a-peptide-hormone" className="underline underline-offset-2 hover:text-accent">
                   what a peptide hormone is
                 </Link>
                 .
               </p>
             </div>
 
-            <aside className={styles.specimen} aria-label="From sequence to signal: oxytocin">
-              <h2 className="mb-4 font-display text-2xl font-medium">Oxytocin, from sequence to signal</h2>
-              <SequenceSignalHero />
-              <Link href="/hormones/oxytocin" className={styles.specimenLink}>Explore oxytocin <span aria-hidden>→</span></Link>
-            </aside>
-            </div>
-
-
-          </Container>
-        </section>
-
-        {/* ── At a glance ── */}
-        <section className="border-b border-ink/[0.06]">
-          <Container className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="px-3 text-center">
-                <div className="font-display text-3xl font-semibold text-accent sm:text-4xl">
-                  {s.n}
-                </div>
-                <div className="mt-1.5 text-sm text-muted">
-                  {s.label}
-                </div>
-              </div>
-            ))}
+            <figure className={`${styles.specimen} hidden lg:block`}>
+              <figcaption className="mb-3 font-display text-xl font-medium">Oxytocin, from sequence to signal</figcaption>
+              <OxytocinSignalDiagram id="oxytocin-preview" />
+              <a href="#oxytocin-figure" className={styles.specimenLink}>
+                View the full plate and sources <span aria-hidden>↓</span>
+              </a>
+            </figure>
           </Container>
         </section>
 
@@ -295,6 +276,36 @@ export default function Home() {
                 </Link>
               ))}
             </div>
+          </Container>
+        </section>
+
+        <section id="oxytocin-figure" aria-labelledby="oxytocin-title" className="border-b border-ink/[0.06] py-12">
+          <Container>
+            <div className={`${styles.specimen} mx-auto max-w-2xl`}>
+              <h2 id="oxytocin-title" className="mb-4 font-display text-2xl font-medium">
+                Oxytocin, from sequence to signal
+              </h2>
+              <SequenceSignalHero />
+              <Link href="/hormones/oxytocin" className={styles.specimenLink}>
+                Explore oxytocin <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </Container>
+        </section>
+
+        {/* ── At a glance ── */}
+        <section className="border-b border-ink/[0.06]">
+          <Container className="grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="px-3 text-center">
+                <div className="font-display text-3xl font-semibold text-accent sm:text-4xl">
+                  {s.n}
+                </div>
+                <div className="mt-1.5 text-sm text-muted">
+                  {s.label}
+                </div>
+              </div>
+            ))}
           </Container>
         </section>
 
