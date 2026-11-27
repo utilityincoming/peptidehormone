@@ -726,6 +726,24 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 11,
     reviewed: "November 2026",
   },
+  {
+    slug: "the-first-word",
+    hormones: ["secretin", "glp-1"],
+    title: "The first word",
+    dek: "Secretin is where the whole idea of a hormone begins. In 1902 Bayliss and Starling dripped acid into a loop of dog duodenum whose nerves they had cut, and the pancreas still answered — proof that a chemical messenger carried in the blood, not an impulse down a nerve, was giving the order. That messenger was secretin, and the word “hormone” was coined for the class it founded. Its own job is unglamorous and exact: when acidic chyme reaches the duodenum, S-cells release secretin and the pancreas floods the gut with bicarbonate to neutralize the acid. The receptor it acts on is the prototype of the “secretin family” of class B receptors — the same class that later hears glucagon, GLP-1, GIP and PTH — so the molecule that named the field also founded a receptor dynasty. Then its reputation took two strange turns. In the late 1990s secretin became a famous false hope for autism, prescribed on an anecdote and then dismantled by more than a dozen randomized trials and a Cochrane review that found nothing. And in 2018 it earned a real second act: evidence that a meal’s own secretin switches on brown fat to make heat, and that the warmth is part of feeling full. The first hormone is still turning up new jobs a century on. Founded a field, survived a fad, earned a second look. No dosing.",
+    family: "gut-appetite",
+    readingMinutes: 11,
+    reviewed: "November 2026",
+  },
+  {
+    slug: "the-antibiotic-that-kept-time",
+    hormones: ["motilin", "ghrelin"],
+    title: "The antibiotic that kept time",
+    dek: "Most gut hormones are about the meal. Motilin is about the gap between meals. Released in cyclic bursts during fasting, it paces the migrating motor complex — the slow “housekeeper” wave that sweeps leftover food, bacteria and debris out of the stomach and small intestine every hour or two when you are not eating. The strangest thing about it was found by accident: erythromycin, an ordinary macrolide antibiotic, turns out to be a motilin-receptor agonist, which is why it famously causes stomach cramps — and why a dose of it is used to force a sluggish stomach to empty in gastroparesis. The side effect was the pharmacology. Purpose-built motilin agonists followed, but turning that jolt into a durable drug has proved hard, and even erythromycin’s own prokinetic benefit is contested. Motilin keeps unexpected company, too: it is a structural cousin of ghrelin, the hunger hormone, a sibling pair of gut peptides on related receptors — one timing the empty gut’s housekeeping, the other asking you to fill it. A hormone most people have never heard of, hiding inside an antibiotic they have. Real motility signal, borrowed by an antibiotic, still hard to drug. No dosing.",
+    family: "gut-appetite",
+    readingMinutes: 10,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {

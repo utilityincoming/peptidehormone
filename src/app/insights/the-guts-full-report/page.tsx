@@ -366,6 +366,8 @@ export default function Article() {
                 <CrossLink href="/hormones/glp-1" label="GLP-1 reference (the line the drugs read)" />
                 <CrossLink href="/insights/insulins-forgotten-twin" label="Amylin — a different door into satiety" />
                 <CrossLink href="/insights/the-hormone-found-after-its-drug" label="The hormone found after its drug — ghrelin, the one voice that says eat" />
+                <CrossLink href="/insights/the-first-word" label="The first word — secretin, the hormone that named the field" />
+                <CrossLink href="/insights/the-antibiotic-that-kept-time" label="The antibiotic that kept time — motilin, the between-meal signal" />
                 <CrossLink href="/research?q=How%20do%20GLP-1%20and%20PYY%20co-secreted%20from%20intestinal%20L-cells%20work%20together%2C%20and%20what%20is%20the%20evidence%20for%20combination%20gut-hormone%20therapy%20mimicking%20bariatric%20surgery%3F" label="Ask the research agent about the gut-hormone chorus" />
               </ul>
             </div>
