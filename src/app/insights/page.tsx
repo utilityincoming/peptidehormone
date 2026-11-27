@@ -3,7 +3,8 @@ import { connection } from "next/server";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { collectionLd } from "@/lib/jsonld";
-import { INSIGHTS } from "@/lib/insights";
+import { INSIGHTS, recentInsights } from "@/lib/insights";
+import Link from "next/link";
 import InsightsBrowser from "@/components/InsightsBrowser";
 
 export const metadata: Metadata = {
@@ -51,6 +52,19 @@ export default async function InsightsIndex() {
         </section>
 
         <Container className="pb-12 pt-5 sm:pt-6 md:pb-16">
+          <section className="mb-8">
+            <h2 className="font-display text-lg font-semibold">Recently added</h2>
+            <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+              {recentInsights(4).map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/insights/${item.slug}`} className="block rounded-2xl border border-ink/10 p-4 hover:border-accent/40">
+                    <span className="font-display text-base font-semibold text-ink">{item.title}</span>
+                    <span className="mt-1 block text-sm leading-6 text-ink/55">{item.readingMinutes} min · {item.reviewed}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
           <InsightsBrowser />
         </Container>
       </main>

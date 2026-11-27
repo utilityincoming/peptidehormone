@@ -6,6 +6,7 @@ import { HORMONES, EVIDENCE_TIERS } from "@/lib/hormones";
 import { catalogNameMatch } from "@/lib/catalog-search";
 import { FAMILIES } from "@/lib/families";
 import { compoundTierClasses } from "@/components/evidence";
+import { GlanceTable } from "@/components/GlanceTable";
 import { SOURCED_SLUGS } from "@/lib/affiliate";
 
 const PRESENT_TIERS = EVIDENCE_TIERS.filter((t) =>
@@ -26,6 +27,7 @@ export default function CatalogBrowser() {
   const [evidence, setEvidence] = useState<string>("all");
   const [sort, setSort] = useState<Sort>("family");
   const [sourced, setSourced] = useState(false);
+  const [asTable, setAsTable] = useState(false);
 
   // Seed the search from a ?q= param so the homepage sitelinks-searchbox (and any
   // shared /catalog?q=… deep link) lands pre-filtered. Client-only, read after
@@ -90,6 +92,13 @@ export default function CatalogBrowser() {
               </button>
             ))}
           </div>
+          <button
+            type="button"
+            onClick={() => setAsTable((v) => !v)}
+            className="self-start rounded-full border border-ink/15 px-3 py-1.5 text-xs text-ink/60 hover:text-accent"
+          >
+            {asTable ? "Show cards" : "Show comparison table"}
+          </button>
         </div>
 
         {/* Family chips */}
@@ -133,6 +142,23 @@ export default function CatalogBrowser() {
       {results.length === 0 ? (
         <div className="mt-6 rounded-2xl border border-ink/10 bg-panel/30 p-10 text-center text-ink/50">
           No molecules match. Try a broader search or clear the filters.
+        </div>
+      ) : asTable ? (
+        <div className="mt-4">
+          <GlanceTable
+            rows={results.map((h) => ({
+              slug: h.slug,
+              name: h.name,
+              abbr: h.abbr,
+              receptor: h.receptor,
+              evidence: h.evidence ?? "Established",
+              evidenceClass: compoundTierClasses(h.evidence ?? "Established"),
+              mw: h.mw,
+              mwApprox: h.mwApprox,
+              halfLife: h.halfLife,
+              halfLifeMin: h.halfLifeMin,
+            }))}
+          />
         </div>
       ) : (
         <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">

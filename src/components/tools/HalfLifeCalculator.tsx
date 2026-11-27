@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ShareableToolControls } from "@/components/ShareableToolControls";
 
 type Unit = "min" | "h" | "d";
 const UNIT_LABEL: Record<Unit, string> = { min: "minutes", h: "hours", d: "days" };
@@ -56,16 +57,25 @@ const DEFAULT_INTERVAL: Record<Unit, string> = { min: "60", h: "24", d: "1" };
 export default function HalfLifeCalculator({
   initialHalfLife,
   initialUnit,
+  initialInterval,
+  initialDose,
+  initialCompare,
   compounds = [],
 }: {
   initialHalfLife?: string;
   initialUnit?: Unit;
+  initialInterval?: string;
+  initialDose?: string;
+  initialCompare?: string;
   compounds?: CompoundPreset[];
 }) {
   const [unit, setUnit] = useState<Unit>(initialUnit ?? "h");
   const [halfLife, setHalfLife] = useState(initialHalfLife ?? "6");
-  const [dose, setDose] = useState("100");
-  const [interval, setInterval] = useState(initialUnit === "d" ? "1" : initialUnit === "min" ? "60" : "24");
+  const [compare, setCompare] = useState(initialCompare ?? "");
+  const [dose, setDose] = useState(initialDose ?? "100");
+  const [interval, setInterval] = useState(
+    initialInterval ?? (initialUnit === "d" ? "1" : initialUnit === "min" ? "60" : "24"),
+  );
 
   // Group the catalog compounds for the <optgroup> picker, preserving order.
   const compoundGroups = useMemo(() => {
@@ -90,7 +100,18 @@ export default function HalfLifeCalculator({
   };
 
   const t12 = num(halfLife);
+  const t12b = num(compare);
   const d = num(dose);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    params.set("t12", halfLife);
+    params.set("unit", unit);
+    params.set("interval", interval);
+    params.set("dose", dose);
+    if (compare.trim()) params.set("t12b", compare.trim());
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [halfLife, unit, interval, dose, compare]);
   const tau = num(interval);
   const ready = Number.isFinite(t12) && Number.isFinite(tau) && Number.isFinite(d);
 
@@ -122,18 +143,26 @@ export default function HalfLifeCalculator({
     const N = 300;
     const single: number[] = [];
     const multi: number[] = [];
+    const compared: number[] = [];
+    const second = Number.isFinite(t12b);
     let yMax = 0;
     for (let i = 0; i <= N; i++) {
       const t = T * (i / N);
       const s = d * Math.pow(0.5, t / t12);
       let m = 0;
+      let m2 = 0;
       for (let j = 0; j < nDoses; j++) {
         const td = j * tau;
-        if (td <= t) m += d * Math.pow(0.5, (t - td) / t12);
+        if (td <= t) {
+          m += d * Math.pow(0.5, (t - td) / t12);
+          if (second) m2 += d * Math.pow(0.5, (t - td) / t12b);
+        }
       }
       single.push(s);
       multi.push(m);
+      compared.push(m2);
       if (m > yMax) yMax = m;
+      if (m2 > yMax) yMax = m2;
     }
     if (!Number.isFinite(yMax)) return null;
     const W = 600;
@@ -146,11 +175,13 @@ export default function HalfLifeCalculator({
     const doseMarks = Array.from({ length: nDoses }, (_, j) => x(j / nDoses));
     const steadyPeak = Number.isFinite(peakSS) && peakSS <= upper ? y(peakSS) : null;
     return {
-      W, H, multiPath: toPath(multi), singlePath: toPath(single), doseMarks, steadyPeak,
+      W, H, multiPath: toPath(multi), singlePath: toPath(single),
+      comparePath: second ? toPath(compared) : null,
+      doseMarks, steadyPeak,
       amountTicks: [upper, upper / 2, 0],
       timeTicks: [0, T / 2, T],
     };
-  }, [ready, d, t12, tau, peakSS]);
+  }, [ready, d, t12, t12b, tau, peakSS]);
 
   return (
     <div className="space-y-8">
@@ -223,6 +254,7 @@ export default function HalfLifeCalculator({
             </div>
           </div>
           <NumberField label={`Half-life (t½), in ${UNIT_LABEL[unit]}`} value={halfLife} onChange={setHalfLife} />
+          <NumberField label={`Second half-life to overlay, in ${UNIT_LABEL[unit]} (optional)`} value={compare} onChange={setCompare} />
           <NumberField label="Dose (relative units)" value={dose} onChange={setDose} />
           <NumberField label={`Dosing interval, in ${UNIT_LABEL[unit]}`} value={interval} onChange={setInterval} />
           <p className="text-xs leading-5 text-ink/40">
@@ -270,6 +302,11 @@ export default function HalfLifeCalculator({
             <li className="flex items-center gap-2">
               <span aria-hidden className="w-5 border-t-2 border-dashed border-accent-teal" /> Single dose
             </li>
+            {chart.comparePath && (
+              <li className="flex items-center gap-2">
+                <span aria-hidden className="w-5 border-t-2 border-accent-blue" /> Second half-life
+              </li>
+            )}
             {chart.steadyPeak !== null && (
               <li className="flex items-center gap-2">
                 <span aria-hidden className="w-5 border-t-2 border-dotted border-accent/55" /> Steady-state peak
@@ -284,6 +321,7 @@ export default function HalfLifeCalculator({
                 {chart.amountTicks.map((value, index) => <span key={index}>{axisNumber(value)}</span>)}
               </div>
               <svg
+                id="half-life-chart"
                 viewBox={`0 0 ${chart.W} ${chart.H}`}
                 preserveAspectRatio="none"
                 className="h-44 w-full overflow-visible sm:h-64"
@@ -305,12 +343,28 @@ export default function HalfLifeCalculator({
                   strokeDasharray="5 4" vectorEffect="non-scaling-stroke" />
                 <path d={chart.multiPath} fill="none" stroke="var(--accent)" strokeWidth="2.25"
                   strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                {chart.comparePath && (
+                  <path d={chart.comparePath} fill="none" stroke="var(--accent-blue)" strokeWidth="2"
+                    strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+                )}
               </svg>
               <div className="col-start-2 mt-2 grid grid-cols-3 [&>:last-child]:text-right [&>:nth-child(2)]:text-center" aria-hidden>
                 {chart.timeTicks.map((value, index) => <span key={index}>{axisNumber(value)}</span>)}
               </div>
               <p className="col-start-2 mt-2 text-center font-medium">Time ({UNIT_LABEL[unit]})</p>
             </div>
+          </div>
+          <div className="mt-4">
+            <ShareableToolControls
+              chartId="half-life-chart"
+              dataText={[
+                `half-life ${halfLife} ${unit}`,
+                compare.trim() ? `compare ${compare} ${unit}` : "",
+                `dose ${dose}`,
+                `interval ${interval} ${unit}`,
+                ...durationRows.map((r) => `to ${r.pct}: ${dur(r.t, unit)}`),
+              ].filter(Boolean).join("\n")}
+            />
           </div>
           <figcaption className="mt-3 text-xs leading-5 text-secondary">
             The plot compares a single dose with the same amount repeated at the modeled interval.

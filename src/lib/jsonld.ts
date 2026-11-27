@@ -120,6 +120,23 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
   if (sameAs.length) substance.sameAs = sameAs;
   const identifiers = identifierProps(h.slug);
   if (identifiers.length) substance.identifier = identifiers;
+  const props: Node[] = [];
+  if (h.mw) {
+    props.push({
+      "@type": "PropertyValue",
+      name: "molecular weight",
+      value: h.mw,
+      unitText: "Da",
+    });
+  }
+  if (h.halfLife) {
+    props.push({
+      "@type": "PropertyValue",
+      name: "half-life",
+      value: h.halfLife,
+    });
+  }
+  if (props.length) substance.additionalProperty = props;
 
   const refs = referencesFor(h.slug);
   const citation = refs.map((r) => ({

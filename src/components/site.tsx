@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import { FAMILIES } from "@/lib/families";
 import SearchDialog from "@/components/SearchDialog";
 import MobileNav from "@/components/MobileNav";
@@ -86,6 +87,7 @@ export function SiteFooter() {
             hormone system. Educational only — not medical advice, diagnosis, or
             treatment.
           </p>
+          <NewsletterForm />
         </div>
         <div className="flex gap-14 text-sm">
           <div>
