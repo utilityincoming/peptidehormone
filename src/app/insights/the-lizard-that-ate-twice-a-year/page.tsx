@@ -285,6 +285,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-triple-agonist" label="Retatrutide: the triple agonist" />
                 <CrossLink href="/insights/is-there-a-glp-4" label="Why there is no GLP-4" />
                 <CrossLink href="/tools/half-life?t12=1.5&unit=min" label="Model the two-minute-to-a-week leap" />
+                <CrossLink href="/insights/the-residue-argument" label="The residue argument — the single amino-acid swap" />
                 <CrossLink href="/research?q=Trace%20the%20discovery%20history%20of%20GLP-1%20receptor%20agonists%20from%20exendin-4%20to%20retatrutide" label="Ask the research agent for primary sources" />
               </ul>
             </div>
