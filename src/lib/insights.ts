@@ -769,6 +769,15 @@ export const INSIGHTS: Insight[] = [
     readingMinutes: 11,
     reviewed: "November 2026",
   },
+  {
+    slug: "the-brake-and-the-alarm",
+    hormones: ["cck"],
+    title: "The brake and the alarm",
+    dek: "Cholecystokinin is almost two hormones wearing one name. In the gut it is the brake on the meal: released by the duodenum's I-cells when fat and protein arrive, it squeezes the gallbladder, calls out pancreatic enzymes, and — acting through its CCK-1 receptor on the vagus nerve — tells the brain you have eaten enough. It was one of the first satiety signals ever found, and its logic made it an obvious obesity drug: switch the fullness signal on and people should eat less. They didn't. A CCK-1 agonist taken into a clinical trial produced no weight loss at all; the brake is too brief and too easily bypassed to hold a person down. But CCK has a second receptor, CCK-2, in the brain — and there the same peptide does something startling. Its four-residue tail, CCK-4, is one of the most reliable chemical triggers of panic known: given to healthy volunteers it provokes a short, genuine panic attack within seconds. One molecule, two receptors, two worlds — a satiety brake in the gut and a panic alarm in the head. That split is also why CCK resisted becoming a drug at either end: agonists for fullness fizzled, and antagonists for anxiety never became medicines. Vivid biology, uncooperative pharmacology. No dosing.",
+    family: "gut-appetite",
+    readingMinutes: 10,
+    reviewed: "November 2026",
+  },
 ];
 
 export function getInsight(slug: string): Insight | undefined {
