@@ -2,40 +2,6 @@
 .atlas {
   background: var(--surface);
 }
-.sourcing { border-top: 1px solid #182b371a; padding: 40px 0; }
-.sourcingCard {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(240px, 300px);
-  grid-template-areas: "copy actions" "details actions";
-  gap: 8px 32px;
-  padding: 20px 24px;
-  border: 1px solid #182b3726;
-  border-radius: 4px;
-  background: var(--panel);
-}
-.sourcingCopy { grid-area: copy; min-width: 0; }
-.sourcingTitle { font-family: var(--font-display), sans-serif; font-size: clamp(21px, 2.2vw, 26px); font-weight: 500; line-height: 1.15; letter-spacing: -.025em; }
-.sourcingIntro { max-width: 42rem; margin-top: 6px; color: var(--text-secondary); font-size: 14px; line-height: 1.65; }
-.sourcingDetails { grid-area: details; justify-self: start; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); text-decoration: underline; text-underline-offset: 4px; }
-.sourcingDetails:hover { color: var(--accent); }
-.sourcingActions { grid-area: actions; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-.sourcingAffiliateLabel { margin-bottom: 4px; text-align: center; color: var(--text-muted); font-size: 12px; }
-.sourcingCta { display: inline-flex; justify-content: center; align-items: center; gap: 10px; min-height: 48px; padding: 12px 18px; border-radius: 4px; background: var(--accent); color: var(--surface); font-size: 15px; font-weight: 600; transition: background .15s, transform .15s; }
-.sourcingCta:hover { background: #284656; }
-.sourcingCta:active { transform: translateY(1px); }
-.sourcingCode { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px 8px; margin-top: 6px; color: var(--text-secondary); font-size: 12px; }
-.sourcingCodeButton { min-height: 32px; }
-.sourcingCard :is(a, button):focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-.sourcingDisclosure { margin-top: 6px; font-size: 12px; line-height: 1.65; color: var(--text-muted); }
-@media (max-width: 767px) {
-  .sourcingCard {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "copy" "actions" "details";
-    gap: 12px;
-    padding: 16px;
-  }
-  .sourcing { padding: 28px 0; }
-}
 .hero { border-bottom: 1px solid #182b371a; }
 .title { font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
 .specimen { padding: 24px; border: 1px solid #182b3726; border-top: 2px solid var(--plate-gold); border-radius: 4px; background: var(--panel); }

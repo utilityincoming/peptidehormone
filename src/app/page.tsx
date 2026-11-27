@@ -13,8 +13,6 @@ import { StructureHero } from "@/components/StructureHero";
 import { OxytocinBindingPreview, SequenceSignalHero } from "@/components/SequenceSignalHero";
 import { compoundTierClasses, regulatoryClasses } from "@/components/evidence";
 import { regulatoryFor, regulatoryMeta, REGULATORY_AS_OF, formatAsOf } from "@/lib/regulatory";
-import { AffiliateLink, CopyCode } from "@/components/AffiliateLink";
-import { getVendor } from "@/lib/affiliate";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -158,7 +156,6 @@ function lineageSeries(): TimelineSeries[] {
 }
 
 export default function Home() {
-  const sourcingVendor = getVendor("aminoclub");
   const series = lineageSeries();
   const frontier = getHormone("retatrutide");
   const frontierReg = regulatoryFor("retatrutide");
@@ -561,46 +558,6 @@ export default function Home() {
             </div>
           </Container>
         </section>
-
-        {sourcingVendor && (
-          <aside aria-labelledby="home-sourcing-title" className={styles.sourcing}>
-            <Container>
-              <div className={styles.sourcingCard}>
-                <div className={styles.sourcingCopy}>
-                  <h2 id="home-sourcing-title" className={styles.sourcingTitle}>
-                    {sourcingVendor.name} research catalog
-                  </h2>
-                  <p className={styles.sourcingIntro}>
-                    Our research supply partner for lab materials, with product specifications and testing information in one place.
-                  </p>
-                  <p className={styles.sourcingDisclosure}>Research use only.</p>
-                </div>
-                <div className={styles.sourcingActions}>
-                  <p id="home-sourcing-disclosure" className={styles.sourcingAffiliateLabel}>Paid affiliate link</p>
-                  <AffiliateLink
-                    href={sourcingVendor.home}
-                    vendor={sourcingVendor.key}
-                    surface="home"
-                    describedBy="home-sourcing-disclosure"
-                    className={styles.sourcingCta}
-                  >
-                    Browse {sourcingVendor.name} <span className="sr-only">(opens in a new tab)</span>
-                    <span aria-hidden>→</span>
-                  </AffiliateLink>
-                  {sourcingVendor.code && (
-                    <div className={styles.sourcingCode}>
-                      <span>Checkout code</span>
-                      <CopyCode code={sourcingVendor.code} className={styles.sourcingCodeButton} />
-                    </div>
-                  )}
-                </div>
-                <Link href={`/available/${sourcingVendor.key}`} className={styles.sourcingDetails}>
-                  About our {sourcingVendor.name} partnership <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </Container>
-          </aside>
-        )}
       </main>
 
       <SiteFooter />
