@@ -260,6 +260,7 @@ export default function Article() {
                 <CrossLink href="/insights/the-chain-of-command" label="The chain of command — the cortisol axis and its tests" />
                 <CrossLink href="/hormones/gnrh" label="GnRH reference (the frequency signal)" />
                 <CrossLink href="/hormones/insulin" label="Insulin reference (the ~5-minute pulse)" />
+                <CrossLink href="/insights/the-hormone-built-to-stay-home" label="The hormone built to stay home — PTHrP, PTH’s developmental twin" />
                 <CrossLink href="/research?q=Why%20does%20the%20endocrine%20system%20encode%20information%20in%20the%20timing%20of%20hormone%20release%20%28pulsatility%29%20rather%20than%20concentration%2C%20and%20how%20does%20receptor%20desensitization%20make%20it%20work%3F" label="Ask the research agent about pulsatility" />
               </ul>
             </div>

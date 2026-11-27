@@ -247,6 +247,7 @@ export default function Article() {
                 <CrossLink href="/families/calcium-bone" label="The calcium & bone family" />
                 <CrossLink href="/insights/the-body-keeps-time" label="The body keeps time — why PTH timing flips its effect" />
                 <CrossLink href="/insights/the-receptor-outlived-the-drug" label="The receptor outlived the drug — calcitonin, PTH’s counterpart" />
+                <CrossLink href="/insights/the-hormone-built-to-stay-home" label="The hormone built to stay home — PTHrP, PTH’s developmental twin" />
                 <CrossLink href="/research?q=Why%20does%20intermittent%20PTH%20%28teriparatide%29%20build%20bone%20while%20continuous%20PTH%20exposure%20causes%20bone%20loss%2C%20through%20the%20same%20PTH1%20receptor%3F" label="Ask the research agent about PTH timing" />
               </ul>
             </div>
