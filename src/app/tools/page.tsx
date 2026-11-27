@@ -52,6 +52,28 @@ const TOOLS: {
   },
 ];
 
+// Questions a reader (or an answer engine) asks before opening a tool. Rendered
+// visibly below the grid AND emitted as FAQPage structured data from the same
+// source, so the two never drift — the house rule for FAQ markup on this site.
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "Are these tools medical advice?",
+    a: "No. They are estimates for understanding the biology of a molecule — how it clears, how its analogs differ, how a published timeline reads. Nothing here is a dose recommendation, a protocol, or a substitute for a clinician.",
+  },
+  {
+    q: "Do I need an account, and is anything stored?",
+    a: "No account, no sign-up. Every tool runs entirely in your browser; the values you enter are not sent to a server or saved.",
+  },
+  {
+    q: "What does the half-life calculator actually model?",
+    a: "First-order elimination from a half-life and a dose interval, including how repeated doses accumulate. It estimates concentration over time — not how long an effect lasts, which depends on receptor biology a single number cannot capture.",
+  },
+  {
+    q: "Where do the receptor, half-life, and evidence-tier values come from?",
+    a: "The same catalog the hormone monographs draw on, with each figure traced to primary literature. The methodology page explains how evidence is graded and molecules are classified.",
+  },
+];
+
 export default function ToolsIndex() {
   return (
     <>
@@ -65,6 +87,7 @@ export default function ToolsIndex() {
             { name: "Home", path: "/" },
             { name: "Tools", path: "/tools" },
           ],
+          faqs: FAQS,
         })}
       />
       <SiteHeader />
@@ -128,6 +151,22 @@ export default function ToolsIndex() {
             .
           </p>
         </Container>
+
+        <section className="border-t border-ink/10 bg-panel/40" aria-labelledby="tools-faq-title">
+          <Container className="py-10 sm:py-14">
+            <h2 id="tools-faq-title" className="font-display text-2xl font-semibold leading-tight sm:text-3xl">
+              Before you start
+            </h2>
+            <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+              {FAQS.map((faq) => (
+                <div key={faq.q} className="min-w-0">
+                  <dt className="font-display text-base font-semibold leading-snug">{faq.q}</dt>
+                  <dd className="mt-2 max-w-prose text-sm leading-6 text-secondary">{faq.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </Container>
+        </section>
       </main>
       <SiteFooter />
     </>
