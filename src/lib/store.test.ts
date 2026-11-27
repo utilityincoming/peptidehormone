@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { claimOnce, storeConfig, storeEnabled } from "./store";
+import { claimOnce, incrWindow, storeConfig, storeEnabled } from "./store";
 
 function fakeFetch(result: unknown, status = 200) {
   const calls: { url: string; body: unknown; auth: string | null }[] = [];
@@ -47,5 +47,26 @@ describe("claimOnce", () => {
     await assert.rejects(() => claimOnce("k", 60, storeConfig({})));
     const { f } = fakeFetch(null, 500);
     await assert.rejects(() => claimOnce("k", 60, cfg, f));
+  });
+});
+
+describe("incrWindow", () => {
+  const cfg = storeConfig({ KV_REST_API_URL: "https://kv.example", KV_REST_API_TOKEN: "tok" });
+
+  it("issues EVAL that increments and expires on the first hit", async () => {
+    const { f, calls } = fakeFetch(1);
+    assert.equal(await incrWindow("rl:chat:1.2.3.4", 60, cfg, f), 1);
+    const body = calls[0].body as unknown[];
+    assert.equal(body[0], "EVAL");
+    assert.match(String(body[1]), /INCR/);
+    assert.equal(body[2], 1);
+    assert.equal(body[3], "rl:chat:1.2.3.4");
+    assert.equal(body[4], 60);
+  });
+
+  it("coerces a numeric string and throws when unconfigured", async () => {
+    const { f } = fakeFetch("4");
+    assert.equal(await incrWindow("k", 60, cfg, f), 4);
+    await assert.rejects(() => incrWindow("k", 60, storeConfig({})));
   });
 });

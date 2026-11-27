@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Growth & repair",
       title: insight.title,
       subtitle: "AOD-9604: the GH fragment whose fat-loss claim failed in humans.",
-      accent: "#386982", // growth-repair family accent (blue)
+      accent: "#2C5F86", // growth-repair family accent (blue)
     }),
     { ...size, fonts: await ogFonts() },
   );

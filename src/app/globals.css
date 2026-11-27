@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-/* Alabaster paper, slate ink, and restrained accents for figures and links. */
+/* Alabaster paper, slate ink, and separated accents for figures and links.
+   Teal and blue sit far enough apart to read as different families. */
 :root {
   color-scheme: light;
   --text-secondary: #4A5964;
@@ -10,8 +11,8 @@
   --surface-deep: #ECEFEB;
   --panel: #F0F2EE;
   --accent: #34566A;
-  --accent-teal: #3E6B58;
-  --accent-blue: #386982;
+  --accent-teal: #2F6B52;
+  --accent-blue: #2C5F86;
   --accent-purple: #605A79;
   --accent-amber: #865C27;
   --accent-rose: #885768;
@@ -19,6 +20,26 @@
 
   --background: var(--surface);
   --foreground: var(--ink);
+}
+
+/* Same roles on a deep slate paper. Plate gold stays on the homepage plate. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --text-secondary: #C5D0D6;
+    --text-muted: #A8B6BF;
+    --ink: #F3F0E8;
+    --surface: #121A20;
+    --surface-deep: #0C1216;
+    --panel: #1A242C;
+    --accent: #8FB4C9;
+    --accent-teal: #6FBF96;
+    --accent-blue: #7EB4D4;
+    --accent-purple: #B7B0D4;
+    --accent-amber: #E0B56A;
+    --accent-rose: #E0A3B4;
+    --plate-gold: #D4B072;
+  }
 }
 
 @theme inline {

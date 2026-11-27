@@ -13,7 +13,7 @@ export default async function Image() {
       eyebrow: "Insight · Cardiovascular & natriuretic",
       title: insight.title,
       subtitle: "Apelin: one receptor, a stronger beat, a lower pressure.",
-      accent: "#3E6B58",
+      accent: "#2F6B52",
     }),
     { ...size, fonts: await ogFonts() },
   );

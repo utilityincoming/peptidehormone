@@ -14,7 +14,7 @@ export default async function Image() {
       eyebrow: "Insight · Growth & repair",
       title: insight.title,
       subtitle: "IGF-2: imprinting, a borrowed receptor, and a receptor that destroys.",
-      accent: "#386982", // growth-repair family accent (blue)
+      accent: "#2C5F86", // growth-repair family accent (blue)
     }),
     { ...size, fonts: await ogFonts() },
   );
