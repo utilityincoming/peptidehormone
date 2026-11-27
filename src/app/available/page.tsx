@@ -115,8 +115,9 @@ export default function AvailablePage() {
                   const carriers = vendorsFor(h.slug);
                   return (
                     <div
+                      id={h.slug}
                       key={h.slug}
-                      className="flex flex-col gap-4 bg-surface p-6 sm:flex-row sm:items-center sm:justify-between"
+                      className="flex scroll-mt-24 flex-col gap-4 bg-surface p-6 sm:flex-row sm:items-center sm:justify-between"
                     >
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2.5">

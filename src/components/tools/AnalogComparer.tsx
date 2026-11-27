@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ShareableToolControls } from "@/components/ShareableToolControls";
 import Link from "next/link";
 import { HORMONES, getHormone, halfLifeForLink, type Hormone } from "@/lib/hormones";
 import { FAMILIES } from "@/lib/families";
@@ -54,6 +55,12 @@ export default function AnalogComparer({ initialSlugs }: { initialSlugs?: string
   const hlValues = selected.map((h) => h.halfLifeMin).filter((v): v is number => v != null);
   const hlLo = hlValues.length ? Math.min(...hlValues) : 1;
   const hlHi = hlValues.length ? Math.max(...hlValues) : 1;
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (slugs.length) params.set("ids", slugs.join(","));
+    window.history.replaceState(null, "", `?${params.toString()}`);
+  }, [slugs]);
 
   const add = (slug: string) => {
     if (slug && slugs.length < MAX && !slugs.includes(slug)) setSlugs([...slugs, slug]);
@@ -241,6 +248,9 @@ export default function AnalogComparer({ initialSlugs }: { initialSlugs?: string
         </div>
       )}
 
+      <ShareableToolControls
+        dataText={selected.map((h) => `${h.name}\t${h.receptor}\t${h.evidence ?? "Established"}\t${h.halfLife ?? ""}`).join("\n")}
+      />
       <p className="text-xs leading-5 text-ink/40">
         Half-life bars are on a logarithmic scale across the molecules shown, so a
         minutes-long native peptide and a once-weekly analog stay legible together.

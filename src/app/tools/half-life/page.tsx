@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 export default async function HalfLifePage({
   searchParams,
 }: {
-  searchParams: Promise<{ t12?: string; unit?: string }>;
+  searchParams: Promise<{ t12?: string; unit?: string; interval?: string; dose?: string; t12b?: string }>;
 }) {
-  const { t12, unit } = await searchParams;
+  const { t12, unit, interval, dose, t12b } = await searchParams;
   const initialHalfLife =
     t12 && Number.isFinite(parseFloat(t12)) && parseFloat(t12) > 0 ? t12 : undefined;
   const initialUnit = unit === "min" || unit === "h" || unit === "d" ? unit : undefined;
@@ -80,11 +80,14 @@ export default async function HalfLifePage({
           </p>
 
           <div className="mt-10">
-            <HalfLifeCalculator
-              initialHalfLife={initialHalfLife}
-              initialUnit={initialUnit}
-              compounds={compounds}
-            />
+          <HalfLifeCalculator
+            initialHalfLife={initialHalfLife}
+            initialUnit={initialUnit}
+            initialInterval={interval}
+            initialDose={dose}
+            initialCompare={t12b}
+            compounds={compounds}
+          />
           </div>
 
           <section className="mt-16 max-w-2xl">
