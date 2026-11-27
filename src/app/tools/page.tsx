@@ -26,7 +26,7 @@ const TOOLS: {
   {
     href: "/tools/half-life",
     name: "Half-life & dosing calculator",
-    blurb: "Model how concentration changes over time and how repeated doses accumulate.",
+    blurb: "Model elimination from a half-life and dose interval, and watch repeated doses accumulate. An estimate of concentration over time — not of how long an effect lasts.",
     tag: "Pharmacokinetics",
     accent: "text-accent",
     preview: "half-life",
@@ -35,7 +35,7 @@ const TOOLS: {
   {
     href: "/tools/compare",
     name: "Analog comparison",
-    blurb: "Compare native hormones and their analogs by receptor, half-life, molecular weight, and evidence tier.",
+    blurb: "Put a native hormone beside the analogs engineered from it — receptor, half-life, molecular weight, and evidence tier on one axis.",
     tag: "Structure–activity",
     accent: "text-accent-teal",
     preview: "compare",
@@ -44,7 +44,7 @@ const TOOLS: {
   {
     href: "/tools/cycle-planner",
     name: "Cycle planner",
-    blurb: "Read a research timeline alongside each compound’s receptor, half-life evidence, and reference range.",
+    blurb: "Lay a research timeline beside each compound’s receptor, half-life evidence, and reference range. A reading aid, not a recommendation.",
     tag: "Research timelines",
     accent: "text-accent-amber",
     preview: "cycle",
@@ -76,11 +76,12 @@ export default function ToolsIndex() {
                 Research tools &amp; calculators
               </h1>
               <p className="mt-4 max-w-xl text-base leading-7 text-secondary sm:text-lg">
-                Model half-life, compare analogs, or explore a research timeline.
+                Three browser tools for working through the numbers behind a peptide hormone —
+                how fast it clears, how its analogs differ, and how a protocol reads over time.
               </p>
             </div>
             <p className="max-w-xs border-l border-ink/15 pl-4 text-sm leading-6 text-secondary">
-              Free browser tools for research and learning. No sign-up required.
+              Free, no sign-up, nothing stored. Estimates for understanding the biology — not medical advice.
             </p>
           </Container>
         </section>
@@ -111,6 +112,21 @@ export default function ToolsIndex() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 max-w-prose text-sm leading-6 text-secondary">
+            Every receptor, half-life, and evidence tier these tools draw on is explained in the{" "}
+            <Link href="/methodology" className="font-medium text-accent hover:underline">
+              methodology
+            </Link>
+            . To look a molecule up directly, start from the{" "}
+            <Link href="/" className="font-medium text-accent hover:underline">
+              hormone monographs
+            </Link>{" "}
+            or the{" "}
+            <Link href="/compare" className="font-medium text-accent hover:underline">
+              analog comparisons
+            </Link>
+            .
+          </p>
         </Container>
       </main>
       <SiteFooter />
