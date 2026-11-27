@@ -26,7 +26,7 @@ const TOOLS: {
   {
     href: "/tools/half-life",
     name: "Half-life & dosing calculator",
-    blurb: "Model how concentration changes over time and how repeated doses accumulate.",
+    blurb: "Model elimination from a half-life and dose interval, and watch repeated doses accumulate. An estimate of concentration over time — not of how long an effect lasts.",
     tag: "Pharmacokinetics",
     accent: "text-accent",
     preview: "half-life",
@@ -35,7 +35,7 @@ const TOOLS: {
   {
     href: "/tools/compare",
     name: "Analog comparison",
-    blurb: "Compare native hormones and their analogs by receptor, half-life, molecular weight, and evidence tier.",
+    blurb: "Put a native hormone beside the analogs engineered from it — receptor, half-life, molecular weight, and evidence tier on one axis.",
     tag: "Structure–activity",
     accent: "text-accent-teal",
     preview: "compare",
@@ -44,11 +44,33 @@ const TOOLS: {
   {
     href: "/tools/cycle-planner",
     name: "Cycle planner",
-    blurb: "Read a research timeline alongside each compound’s receptor, half-life evidence, and reference range.",
+    blurb: "Lay a research timeline beside each compound’s receptor, half-life evidence, and reference range. A reading aid, not a recommendation.",
     tag: "Research timelines",
     accent: "text-accent-amber",
     preview: "cycle",
     action: "Open cycle planner",
+  },
+];
+
+// Questions a reader (or an answer engine) asks before opening a tool. Rendered
+// visibly below the grid AND emitted as FAQPage structured data from the same
+// source, so the two never drift — the house rule for FAQ markup on this site.
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "Are these tools medical advice?",
+    a: "No. They are estimates for understanding the biology of a molecule — how it clears, how its analogs differ, how a published timeline reads. Nothing here is a dose recommendation, a protocol, or a substitute for a clinician.",
+  },
+  {
+    q: "Do I need an account, and is anything stored?",
+    a: "No account, no sign-up. Every tool runs entirely in your browser; the values you enter are not sent to a server or saved.",
+  },
+  {
+    q: "What does the half-life calculator actually model?",
+    a: "First-order elimination from a half-life and a dose interval, including how repeated doses accumulate. It estimates concentration over time — not how long an effect lasts, which depends on receptor biology a single number cannot capture.",
+  },
+  {
+    q: "Where do the receptor, half-life, and evidence-tier values come from?",
+    a: "The same catalog the hormone monographs draw on, with each figure traced to primary literature. The methodology page explains how evidence is graded and molecules are classified.",
   },
 ];
 
@@ -65,6 +87,7 @@ export default function ToolsIndex() {
             { name: "Home", path: "/" },
             { name: "Tools", path: "/tools" },
           ],
+          faqs: FAQS,
         })}
       />
       <SiteHeader />
@@ -76,11 +99,12 @@ export default function ToolsIndex() {
                 Research tools &amp; calculators
               </h1>
               <p className="mt-4 max-w-xl text-base leading-7 text-secondary sm:text-lg">
-                Model half-life, compare analogs, or explore a research timeline.
+                Three browser tools for working through the numbers behind a peptide hormone —
+                how fast it clears, how its analogs differ, and how a protocol reads over time.
               </p>
             </div>
             <p className="max-w-xs border-l border-ink/15 pl-4 text-sm leading-6 text-secondary">
-              Free browser tools for research and learning. No sign-up required.
+              Free, no sign-up, nothing stored. Estimates for understanding the biology — not medical advice.
             </p>
           </Container>
         </section>
@@ -111,7 +135,38 @@ export default function ToolsIndex() {
               </li>
             ))}
           </ul>
+          <p className="mt-8 max-w-prose text-sm leading-6 text-secondary">
+            Every receptor, half-life, and evidence tier these tools draw on is explained in the{" "}
+            <Link href="/methodology" className="font-medium text-accent hover:underline">
+              methodology
+            </Link>
+            . To look a molecule up directly, start from the{" "}
+            <Link href="/" className="font-medium text-accent hover:underline">
+              hormone monographs
+            </Link>{" "}
+            or the{" "}
+            <Link href="/compare" className="font-medium text-accent hover:underline">
+              analog comparisons
+            </Link>
+            .
+          </p>
         </Container>
+
+        <section className="border-t border-ink/10 bg-panel/40" aria-labelledby="tools-faq-title">
+          <Container className="py-10 sm:py-14">
+            <h2 id="tools-faq-title" className="font-display text-2xl font-semibold leading-tight sm:text-3xl">
+              Before you start
+            </h2>
+            <dl className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+              {FAQS.map((faq) => (
+                <div key={faq.q} className="min-w-0">
+                  <dt className="font-display text-base font-semibold leading-snug">{faq.q}</dt>
+                  <dd className="mt-2 max-w-prose text-sm leading-6 text-secondary">{faq.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </Container>
+        </section>
       </main>
       <SiteFooter />
     </>
