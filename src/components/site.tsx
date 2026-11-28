@@ -103,16 +103,16 @@ export function SiteFooter() {
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
-              <li><Link href="/methodology" className="hover:text-ink">Evidence standards</Link></li>
               <li><Link href="/glossary" className="hover:text-ink">Glossary</Link></li>
             </ul>
           </div>
         </div>
       </Container>
-      <Container className="border-t border-ink/[0.06] py-6">
-        <p className="text-xs text-muted">
-          © {new Date().getFullYear()} Peptide Hormone · peptidehormone.com
-        </p>
+      <Container className="flex flex-col items-start gap-3 border-t border-ink/[0.06] py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-muted">© {new Date().getFullYear()} Peptide Hormone</p>
+        <Link href="/methodology" className="text-secondary hover:text-ink hover:underline">
+          Evidence standards
+        </Link>
       </Container>
     </footer>
   );
