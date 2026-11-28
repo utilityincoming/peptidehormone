@@ -604,7 +604,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Natural GLP-1 is destroyed about two minutes after the gut releases it. Semaglutide — the same signal, essentially the same shape — survives a week. That gap is a five-thousand-fold engineering feat, and it wasn't achieved by making the peptide tougher. It was achieved by attaching it to something the body has already decided to keep. Inside the three tricks that turned a disposable hormone into a weekly drug, and why the next cadence is monthly.",
     family: "incretins-metabolic",
     readingMinutes: 10,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "the-gip-paradox",
@@ -613,7 +613,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Tirzepatide turns the GIP receptor on. Maridebart cafraglutide turns the same receptor off. Both drive weight loss. That should be impossible under a \"more signal is better\" model of pharmacology — and the fact that it isn't is one of the most revealing puzzles on the metabolic frontier. How a receptor can be pushed either way and land in the same place.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "glp-1-in-a-pill",
@@ -632,7 +632,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Every time the pancreas releases insulin, it releases a second hormone from the same granule — amylin. For a century insulin took all the credit while its partner went unnamed. Amylin runs a receptor it borrowed rather than built, sabotages itself by clumping into the amyloid that scars a diabetic pancreas, and is now the metabolic frontier's newest axis. The story of the twin the body never forgot.",
     family: "incretins-metabolic",
     readingMinutes: 10,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "is-there-a-glp-4",
@@ -649,7 +649,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A peptide is, chemically, food — swallow it and your gut digests it; rub it on your skin and it never gets past the surface. The needle isn't a preference, it's physics. Inside the barriers that block every other route, why most \"oral\" peptide claims are marketing, and the narrow cases where a nasal spray genuinely works.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "where-the-powder-comes-from",
@@ -657,7 +657,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Most of the world's finished, lyophilized peptide traces back to a handful of Chinese manufacturing lines — and China's 2026 drug law just pushed that supply chain toward real traceability. The strategic read: \"American made\" often marks more hand-offs, not fewer, and in lyophilized peptide every hand-off is an irreversible chance to lose purity. Fewest transfers, finished direct, wins.",
     family: "incretins-metabolic",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "the-triple-agonist",
@@ -684,7 +684,7 @@ export const INSIGHTS: Insight[] = [
     dek: "Long before GLP-1 went mainstream, the community running peptide protocols was the field's informal R&D — and their demand shaped the catalogs of synthesis companies and compounding pharmacies. Their core instinct, foundation first, is exactly what the metabolic era is proving right.",
     family: "growth-repair",
     readingMinutes: 9,
-    reviewed: "July 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "glp-1-muscle-preservation",
@@ -703,7 +703,7 @@ export const INSIGHTS: Insight[] = [
     dek: "A hundred years of peptide medicine — the first miracle, the families it built, and how the molecules quietly running your body became a 2026 cultural phenomenon.",
     family: "incretins-metabolic",
     readingMinutes: 11,
-    reviewed: "June 2026",
+    reviewed: "November 2026",
   },
   {
     slug: "glp-1-signaling",
