@@ -57,10 +57,6 @@ const TOOLS: {
 // source, so the two never drift — the house rule for FAQ markup on this site.
 const FAQS: { q: string; a: string }[] = [
   {
-    q: "Are these tools medical advice?",
-    a: "No. They are estimates for understanding the biology of a molecule — how it clears, how its analogs differ, how a published timeline reads. Nothing here is a dose recommendation, a protocol, or a substitute for a clinician.",
-  },
-  {
     q: "Do I need an account, and is anything stored?",
     a: "No account, no sign-up. Every tool runs entirely in your browser; the values you enter are not sent to a server or saved.",
   },
@@ -99,12 +95,12 @@ export default function ToolsIndex() {
                 Research tools &amp; calculators
               </h1>
               <p className="mt-4 max-w-xl text-base leading-7 text-secondary sm:text-lg">
-                Three browser tools for working through the numbers behind a peptide hormone —
-                how fast it clears, how its analogs differ, and how a protocol reads over time.
+                Model how peptide hormone concentrations change over time, compare
+                analogs, and explore research timelines alongside catalog data.
               </p>
             </div>
             <p className="max-w-xs border-l border-ink/15 pl-4 text-sm leading-6 text-secondary">
-              Free, no sign-up, nothing stored. Estimates for understanding the biology — not medical advice.
+              Free to use in your browser. No account needed.
             </p>
           </Container>
         </section>
