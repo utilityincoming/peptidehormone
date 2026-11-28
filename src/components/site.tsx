@@ -82,9 +82,7 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-6 text-muted">
-            An editorially independent, research-grade reference on the peptide
-            hormone system. Educational only — not medical advice, diagnosis, or
-            treatment.
+            An independent reference on peptide hormones and the research behind them.
           </p>
         </div>
         <div className="flex gap-14 text-sm">
