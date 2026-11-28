@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote, Term } from "@/components/insight";
 import { DocumentedRange } from "@/components/DocumentedRange";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
@@ -114,7 +114,7 @@ export default function Article() {
 
             <Section title="Trick one: change the letter the enzyme reads">
               <P>
-                DPP-4 is precise about what it cuts, which means it can be fooled by a
+                <Term slug="dpp-4">DPP-4</Term> is precise about what it cuts, which means it can be fooled by a
                 single substitution near the N-terminus. Nature demonstrated this before
                 any pharmacologist did.{" "}
                 <Link href="/hormones/exenatide" className={LINK}>Exenatide</Link> is
@@ -140,7 +140,7 @@ export default function Article() {
               <P>
                 The second trick is the one that changed the field. Attach a{" "}
                 <Em>fatty acid chain</Em> to the peptide, and the fatty acid does what
-                fatty acids do in blood: it binds albumin, the most abundant protein in
+                fatty acids do in blood: it binds <Term slug="albumin">albumin</Term>, the most abundant protein in
                 plasma. The peptide is now, most of the time, a passenger on a 66 kDa
                 carrier — far too large for the kidney&rsquo;s sieve, and largely shielded
                 from circulating enzymes while docked.
@@ -234,7 +234,7 @@ export default function Article() {
                 they measure the same thing. Our{" "}
                 <Link href="/tools/half-life" className={LINK}>half-life calculator</Link>{" "}
                 makes the downstream consequences visible: how many doses until
-                concentrations plateau, how high the accumulation runs at steady state, and
+                concentrations plateau, how high the accumulation runs at <Term slug="steady-state">steady state</Term>, and
                 how far the peak-to-trough swing travels between injections.
               </P>
             </Section>

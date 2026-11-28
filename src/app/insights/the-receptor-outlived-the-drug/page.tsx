@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, Term } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -155,7 +155,7 @@ export default function Article() {
                 Here is where calcitonin stops being a historical footnote. Its receptor has a
                 trick most receptors don&rsquo;t. On its own, the calcitonin receptor reads
                 calcitonin. But pair it with a small accessory protein called a{" "}
-                <Em>RAMP</Em> — a receptor-activity-modifying protein — and the same core
+                <Term slug="ramp"><Em>RAMP</Em></Term> — a receptor-activity-modifying protein — and the same core
                 receptor changes what it hears: it becomes an <Em>amylin receptor</Em> (
                 <a href={REF.amylinRx} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Cao et&nbsp;al., Science, 2022

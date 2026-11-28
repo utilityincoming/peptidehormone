@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
 import { getFamily } from "@/lib/families";
+import { GlossaryTip as Term } from "@/components/GlossaryTip";
 
 const insight = getInsight("the-lizard-that-ate-twice-a-year")!;
 
@@ -76,7 +77,7 @@ export default function Article() {
 
             <Section title="Two incretins, and a gene read the wrong way round">
               <P>
-                The first incretin fell out in the early 1970s: John Brown&rsquo;s{" "}
+                The first <Term slug="incretin">incretin</Term> fell out in the early 1970s: John Brown&rsquo;s{" "}
                 <Link href="/hormones/gip" className={LINK}>GIP</Link>, at first
                 &ldquo;gastric inhibitory polypeptide,&rdquo; later rebadged{" "}
                 <Em>glucose-dependent insulinotropic polypeptide</Em> when its real job
@@ -110,7 +111,7 @@ export default function Article() {
                 <Link href="/hormones/glp-1" className={LINK}>GLP-1</Link>&rsquo;s
                 circulating half-life is roughly{" "}
                 <Link href="/tools/half-life?t12=1.5&unit=min" className={LINK}>one to two minutes</Link>.
-                The enzyme DPP-4 severs it at the His7&ndash;Ala8 bond within minutes;
+                The enzyme <Term slug="dpp-4">DPP-4</Term> severs it at the His7&ndash;Ala8 bond within minutes;
                 the kidney mops up the rest. A hormone this good and this short-lived
                 is a pharmacology problem disguised as a discovery.
               </Callout>

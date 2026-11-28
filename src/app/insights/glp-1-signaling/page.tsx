@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, Term } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -105,10 +105,11 @@ export default function Article() {
 
             <Section title="One receptor, one second messenger">
               <P>
-                GLP-1 binds the <Em>GLP-1 receptor</Em> (GLP-1R), a class B
-                G-protein-coupled receptor on the pancreatic beta cell. The receptor
+                GLP-1 binds the <Em>GLP-1 receptor</Em> (GLP-1R), a{" "}
+                <Term slug="class-b-gpcr">class B G-protein-coupled receptor</Term> on the
+                pancreatic beta cell. The receptor
                 couples to G&alpha;s, which switches on adenylyl cyclase, which raises
-                the cell&rsquo;s level of the second messenger <Em>cAMP</Em> (the receptor
+                the cell&rsquo;s level of the <Term slug="second-messenger">second messenger</Term> <Em>cAMP</Em> (the receptor
                 was expression-cloned and shown to be a seven-transmembrane protein coupled
                 to adenylyl cyclase by{" "}
                 <a href={REF.thorens} target="_blank" rel="noopener noreferrer" className={LINK}>
@@ -120,7 +121,7 @@ export default function Article() {
               </P>
               <PathwayDiagram />
               <P>
-                Nothing in that cascade is exotic; it is textbook GPCR signaling. What
+                Nothing in that cascade is exotic; it is textbook <Term slug="gpcr">GPCR</Term> signaling. What
                 makes GLP-1 remarkable is not the machinery but its <Em>condition</Em>.
               </P>
             </Section>

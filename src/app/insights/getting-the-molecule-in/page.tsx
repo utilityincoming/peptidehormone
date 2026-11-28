@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
 import { getFamily } from "@/lib/families";
+import { GlossaryTip as Term } from "@/components/GlossaryTip";
 
 const insight = getInsight("getting-the-molecule-in")!;
 
@@ -88,7 +89,7 @@ export default function Article() {
                 junctions with angstrom-scale pores — far too small. The route{" "}
                 <Em>through</Em> a cell (transcellular) means crossing a lipid bilayer
                 that actively repels polar, charged molecules. The result is brutal:
-                unmodified peptides typically show oral bioavailability{" "}
+                unmodified peptides typically show oral <Term slug="bioavailability">bioavailability</Term>{" "}
                 <Em>under 1&ndash;2%</Em>, and for larger ones it rounds to zero.
               </P>
               <RoutesDiagram />

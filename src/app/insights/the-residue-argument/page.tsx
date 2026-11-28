@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
-import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote } from "@/components/insight";
+import { LINK, Section, P, Em, Callout, Bullets, CrossLink, StatusNote, Term } from "@/components/insight";
 import { JsonLd } from "@/components/JsonLd";
 import { insightLd } from "@/lib/jsonld";
 import { getInsight } from "@/lib/insights";
@@ -127,7 +127,7 @@ export default function Article() {
               <P>
                 Natural GLP-1, the gut hormone behind the best-selling drugs in
                 this catalog, is destroyed about two minutes after the intestine
-                releases it. An enzyme called DPP-4 reaches in and clips off the
+                releases it. An enzyme called <Term slug="dpp-4">DPP-4</Term> reaches in and clips off the
                 first two residues, and the clipped peptide no longer works (
                 <a href={REF.holst} target="_blank" rel="noopener noreferrer" className={LINK}>
                   Holst, Physiol Rev, 2007
