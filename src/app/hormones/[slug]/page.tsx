@@ -21,6 +21,7 @@ import { SequenceViewer } from "@/components/SequenceViewer";
 import { MechanismSchematic } from "@/components/MechanismSchematic";
 import { RelatedMolecules } from "@/components/RelatedMolecules";
 import { ResearchSources } from "@/components/ResearchSources";
+import { GlossaryTip } from "@/components/GlossaryTip";
 import { relatedMolecules } from "@/lib/related";
 import { SOURCED_SLUGS } from "@/lib/affiliate";
 
@@ -203,13 +204,13 @@ export default async function HormonePage({
               <SequenceViewer slug={h.slug} />
               <p className="mt-4 text-xs leading-5 text-ink/45">
                 Terms:{" "}
-                <Link href="/glossary#prohormone" className="text-accent hover:underline">prohormone</Link>
+                <GlossaryTip slug="prohormone" />
                 {" · "}
-                <Link href="/glossary#acylation" className="text-accent hover:underline">acylation</Link>
+                <GlossaryTip slug="acylation" />
                 {" · "}
-                <Link href="/glossary#evidence-tier" className="text-accent hover:underline">evidence tier</Link>
+                <GlossaryTip slug="evidence-tier">evidence tier</GlossaryTip>
                 {" · "}
-                <Link href="/glossary#research-use-only" className="text-accent hover:underline">research-use only</Link>
+                <GlossaryTip slug="research-use-only">research-use only</GlossaryTip>
               </p>
             </section>
 
