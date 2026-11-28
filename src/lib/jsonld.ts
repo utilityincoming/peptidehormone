@@ -121,6 +121,17 @@ export function hormoneLd(h: Hormone, family?: Family): Node {
   const identifiers = identifierProps(h.slug);
   if (identifiers.length) substance.identifier = identifiers;
   const props: Node[] = [];
+  // Evidence tier as text — the same rigor grade the page displays as a badge,
+  // surfaced in structured data so answer engines can attribute the molecule's
+  // standing, not just its chemistry. Mirrors the page's default of "Established"
+  // for ungraded native hormones, keeping JSON-LD consistent with visible content.
+  props.push({
+    "@type": "PropertyValue",
+    name: "evidence tier",
+    value: h.evidence ?? "Established",
+    description:
+      "This reference's rigor grade (Established → Limited) for the weight of evidence behind the molecule — separate from how promising it is.",
+  });
   if (h.mw) {
     props.push({
       "@type": "PropertyValue",
