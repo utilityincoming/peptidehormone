@@ -85,7 +85,7 @@ export const IDENTIFIERS: Record<string, ExternalIds> = {
   "follistatin": { wikipedia: "Follistatin", wikidata: "Q408122", uniprot: "P19883" },
   "thymosin-beta-4": { wikipedia: "Thymosin beta-4", wikidata: "Q7799643", uniprot: "P62328" },
   "ghk-cu": { wikipedia: "Copper peptide GHK-Cu", wikidata: "Q5168796", pubchem: "71587328", drugbank: "DB14683", cas: "49557-75-7" },
-  glutathione: { wikipedia: "Glutathione", wikidata: "Q116907", pubchem: "124886" },
+  glutathione: { wikipedia: "Glutathione", wikidata: "Q116907", pubchem: "124886", drugbank: "DB00143", chebi: "16856", chembl: "CHEMBL1543", cas: "70-18-8" },
   "bpc-157": { wikipedia: "BPC-157", wikidata: "Q27270252", pubchem: "9941957", drugbank: "DB11882", cas: "137525-51-0" },
   "tb-500": { wikipedia: "TB-500", wikidata: "Q137400007", pubchem: "62707662" },
   "leuprolide": { wikipedia: "Leuprorelin", wikidata: "Q907160", pubchem: "657181", drugbank: "DB00007", chebi: "6427", chembl: "CHEMBL1201199", cas: "53714-56-0" },
@@ -108,6 +108,10 @@ export const IDENTIFIERS: Record<string, ExternalIds> = {
   "dsip": { wikipedia: "Delta-sleep-inducing peptide", wikidata: "Q5254800", pubchem: "68816" },
   "semax": { wikipedia: "Semax", wikidata: "Q4415058", pubchem: "122178", cas: "80714-61-0" },
   "ara-290": { wikipedia: "Cibinetide", wikidata: "Q27273306", pubchem: "91810664", drugbank: "DB13006", chembl: "CHEMBL3545305", cas: "1208243-50-8" },
+  "apelin": { wikipedia: "Apelin", wikidata: "Q2386988", uniprot: "Q9ULZ1" },
+  "elabela": { wikipedia: "Elabela", wikidata: "Q21132229", uniprot: "P0DMC3" },
+  "kpv": { wikipedia: "KPV tripeptide", wikidata: "Q82975228", pubchem: "125672", chebi: "160254", cas: "67727-97-3" },
+  "survodutide": { wikipedia: "Survodutide", wikidata: "Q123907235", pubchem: "171378821", cas: "2805997-46-8" },
 };
 
 const LABELS: Record<keyof ExternalIds, string> = {
