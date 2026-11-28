@@ -4,6 +4,7 @@ import { FAMILIES } from "@/lib/families";
 import SearchDialog from "@/components/SearchDialog";
 import MobileNav from "@/components/MobileNav";
 import SectionNavLink from "@/components/SectionNavLink";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 
 export function Container({ children, className = "" }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto w-full max-w-6xl px-6 ${className}`}>{children}</div>;
@@ -78,6 +79,9 @@ export function SiteFooter() {
           <p className="mt-4 text-sm leading-6 text-muted">
             An independent reference on peptide hormones and the research behind them.
           </p>
+          <div className="mt-6 border-t border-ink/[0.06] pt-6">
+            <NewsletterSignup />
+          </div>
         </div>
         <div className="flex gap-14 text-sm">
           <div>
