@@ -136,7 +136,7 @@ function FeaturedCard({ post }: { post: Insight }) {
   return (
     <Link
       href={`/insights/${post.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-panel/40 p-5 transition-colors sm:p-6 hover:border-accent/30 hover:bg-panel"
+      className="group relative flex flex-col overflow-hidden reference-card bg-panel/40 p-5 transition-colors sm:p-6 hover:border-accent/30 hover:bg-panel"
     >
       {/* Family colour bar — bg-current reads the family accent text colour. */}
       <span className={`absolute inset-x-0 top-0 h-[3px] bg-current ${accent}`} aria-hidden />
@@ -156,7 +156,7 @@ function FeaturedCard({ post }: { post: Insight }) {
 function ArchiveGrid({ items, className = "" }: { items: Insight[]; className?: string }) {
   return (
     <div
-      className={`grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
+      className={`grid gap-px overflow-hidden reference-card bg-ink/10 sm:grid-cols-2 lg:grid-cols-3 ${className}`}
     >
       {items.map((post) => (
         <ArchiveCard key={post.slug} post={post} />
@@ -230,7 +230,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function EmptyState({ onClear }: { onClear: () => void }) {
   return (
-    <div className="mt-6 rounded-2xl border border-ink/10 bg-panel/30 p-10 text-center text-ink/55">
+    <div className="mt-6 reference-card bg-panel/30 p-10 text-center text-ink/55">
       No deep-dives match that filter.{" "}
       <button type="button" onClick={onClear} className="font-medium text-accent hover:underline">
         Clear filters

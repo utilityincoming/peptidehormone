@@ -15,7 +15,7 @@ const LINKS: { href: string; label: string }[] = [
 ];
 
 /**
- * Phone-width navigation: a menu button (hidden from `md` up, where the inline
+ * Phone and tablet navigation: a menu button (hidden from `lg` up, where the inline
  * nav takes over) that drops a panel under the sticky header. Closes on Escape,
  * on navigation, and when a link is chosen.
  */
@@ -37,7 +37,7 @@ export default function MobileNav() {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}

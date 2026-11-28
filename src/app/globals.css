@@ -144,3 +144,29 @@ body {
     color: var(--text-muted);
   }
 }
+
+@layer components {
+  .page-intro {
+    @apply py-9 md:py-12;
+  }
+
+  .page-title {
+    @apply font-display text-4xl font-semibold leading-tight sm:text-5xl;
+  }
+
+  .page-summary {
+    @apply mt-4 max-w-2xl text-lg leading-7 text-secondary;
+  }
+
+  .reference-card {
+    @apply rounded-sm border border-ink/15;
+  }
+
+  .figure-caption {
+    @apply mt-3 border-t border-ink/15 pt-3 text-sm leading-6 text-secondary;
+  }
+
+  .figure-caption a {
+    @apply text-accent underline underline-offset-2;
+  }
+}

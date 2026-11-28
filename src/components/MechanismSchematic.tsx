@@ -128,7 +128,7 @@ export function MechanismSchematic({ family }: { family?: string }): ReactNode {
           );
         })}
       </svg>
-      <figcaption className="mt-4 border-t border-ink/[0.06] pt-4 text-sm leading-6 text-ink/55">{spec.caption}</figcaption>
+      <figcaption className="figure-caption">{spec.caption}</figcaption>
     </figure>
   );
 }
