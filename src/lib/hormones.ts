@@ -82,6 +82,10 @@ const BASE: Hormone[] = [
       "How does GLP-1 receptor agonism produce weight loss beyond glucose control?",
       "Why is DPP-4 resistance central to GLP-1 drug design?",
     ],
+    mw: 3298,
+    mwApprox: true,
+    halfLife: "~1–2 min",
+    halfLifeMin: 2,
   },
   {
     slug: "gip",
@@ -123,6 +127,7 @@ const BASE: Hormone[] = [
       "Why include glucagon agonism in a triple incretin co-agonist?",
       "How is proglucagon processed differently in the gut vs the pancreas?",
     ],
+    mw: 3483,
   },
   {
     slug: "amylin",
@@ -144,6 +149,9 @@ const BASE: Hormone[] = [
       "What does amylin add to insulin in post-meal glucose control?",
       "Why is amylin co-agonism studied alongside GLP-1 pathways?",
     ],
+    mw: 3903,
+    halfLife: "~12 min",
+    halfLifeMin: 12,
   },
   {
     slug: "insulin",
@@ -587,6 +595,8 @@ const BASE: Hormone[] = [
       "How do GHRH and somatostatin together shape GH pulses?",
       "How does endogenous GH release differ from administering GH directly?",
     ],
+    halfLife: "~18 min",
+    halfLifeMin: 18,
   },
   {
     slug: "igf-1",
@@ -707,6 +717,7 @@ const BASE: Hormone[] = [
       "How do GHRH analogs differ from GHRPs in mechanism?",
       "Why does GHRH-driven GH release stay feedback-regulated?",
     ],
+    mw: 5040,
   },
   {
     slug: "ghrelin",
@@ -727,6 +738,8 @@ const BASE: Hormone[] = [
       "How does ghrelin signaling differ from the GHRH pathway?",
       "Why does ghrelin require acylation to be active?",
     ],
+    mw: 3371,
+    mwApprox: true,
   },
   {
     slug: "somatostatin",
@@ -748,6 +761,9 @@ const BASE: Hormone[] = [
       "How does somatostatin shape the pulsatile pattern of GH?",
       "Why does somatostatin suppress such a broad range of secretions?",
     ],
+    mw: 1638,
+    halfLife: "~3 min",
+    halfLifeMin: 3,
   },
 
   // ── Melanocortins ──────────────────────────────────────────────────────
@@ -792,6 +808,7 @@ const BASE: Hormone[] = [
       "Why does MC2R respond to ACTH but not to MSH peptides?",
       "How does ACTH connect the melanocortin family to the HPA axis?",
     ],
+    mw: 4541,
   },
 
   // ── Neuropeptides ──────────────────────────────────────────────────────
@@ -814,6 +831,7 @@ const BASE: Hormone[] = [
       "Why do oxytocin and vasopressin differ so much despite near-identical sequences?",
       "How do oxytocin's central and peripheral roles relate?",
     ],
+    mw: 1007,
   },
   {
     slug: "vasopressin",
@@ -835,6 +853,7 @@ const BASE: Hormone[] = [
       "How do V1 and V2 receptors split vasopressin's actions?",
       "How does plasma osmolality control vasopressin release?",
     ],
+    mw: 1084,
   },
   {
     slug: "crh",
@@ -856,6 +875,8 @@ const BASE: Hormone[] = [
       "How does CRH sit atop the HPA axis?",
       "How does cortisol feedback regulate CRH?",
     ],
+    mw: 4758,
+    mwApprox: true,
   },
   {
     slug: "trh",
@@ -877,6 +898,7 @@ const BASE: Hormone[] = [
       "How does TRH set thyroid-axis tone?",
       "Why can such a small peptide be a potent hormone?",
     ],
+    mw: 362,
   },
 
   // ── Gut & appetite ─────────────────────────────────────────────────────
@@ -900,6 +922,8 @@ const BASE: Hormone[] = [
       "How does PYY3-36 reduce appetite via the Y2 receptor?",
       "How do PYY and GLP-1 work together after a meal?",
     ],
+    mw: 4311,
+    mwApprox: true,
   },
   {
     slug: "cck",
@@ -961,6 +985,8 @@ const BASE: Hormone[] = [
       "What is the migrating motor complex and how does motilin pace it?",
       "Why do some antibiotics act on the motilin receptor?",
     ],
+    mw: 2699,
+    mwApprox: true,
   },
 
   // ── Reproductive & gonadal ─────────────────────────────────────────────
@@ -984,6 +1010,9 @@ const BASE: Hormone[] = [
       "Why does pulsatile vs continuous GnRH exposure have opposite effects?",
       "How does GnRH frequency encode different downstream signals?",
     ],
+    mw: 1182,
+    halfLife: "~5–8 min",
+    halfLifeMin: 6,
   },
   {
     slug: "lh",
@@ -1046,6 +1075,8 @@ const BASE: Hormone[] = [
       "How did kisspeptin reshape the model of how puberty is switched on?",
       "How does kisspeptin gate GnRH pulse generation?",
     ],
+    mw: 1302,
+    mwApprox: true,
   },
   {
     slug: "hcg",
