@@ -394,6 +394,13 @@ export const GLOSSARY: GlossaryGroup[] = [
 /** Flat list of every term, in group order. */
 export const ALL_TERMS: GlossaryTerm[] = GLOSSARY.flatMap((g) => g.terms);
 
+const BY_SLUG: Map<string, GlossaryTerm> = new Map(ALL_TERMS.map((t) => [t.slug, t]));
+
+/** Resolve a glossary term by its anchor slug. Undefined if there is no entry. */
+export function termBySlug(slug: string): GlossaryTerm | undefined {
+  return BY_SLUG.get(slug);
+}
+
 /** Authoritative entity URLs for a term's sameAs (Wikipedia + Wikidata), verified. */
 export function termSameAs(t: GlossaryTerm): string[] {
   const out: string[] = [];
