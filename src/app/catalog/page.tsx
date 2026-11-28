@@ -31,16 +31,12 @@ export default function CatalogPage() {
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <Container className="relative py-16 md:py-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-ink/10 bg-panel/60 px-3 py-1 text-xs font-medium text-ink/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              {HORMONES.length} molecules · {FAMILIES.length} families
-            </span>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-tight sm:text-5xl">
+          <Container className="page-intro">
+            <h1 className="page-title">
               The catalog
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
-              Every peptide hormone in one index. Search by molecule, receptor,
+            <p className="page-summary">
+              Browse {HORMONES.length} molecules across {FAMILIES.length} signaling families. Search by molecule, receptor,
               source, class, alias, or development code, filter by signaling family, and open any entry for
               the full reference — identity, mechanism, and the evidence behind it.
             </p>

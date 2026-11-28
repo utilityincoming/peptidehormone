@@ -35,17 +35,17 @@ export default async function InsightsIndex() {
       />
       <SiteHeader />
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
-        <section className="border-b border-ink/10 bg-panel/55" aria-labelledby="insights-title">
-          <Container className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3 py-7 sm:py-9">
+        <section className="border-b border-ink/[0.06]" aria-labelledby="insights-title">
+          <Container className="page-intro">
             <div>
-              <h1 id="insights-title" className="font-display text-4xl font-semibold leading-tight sm:text-5xl">
+              <h1 id="insights-title" className="page-title">
                 Insights
               </h1>
-              <p className="mt-2 max-w-xl text-base leading-7 text-secondary">
+              <p className="page-summary">
                 Research essays on peptide hormones, their receptors, and how they signal.
               </p>
             </div>
-            <p className="text-sm text-secondary">
+            <p className="mt-3 text-sm text-secondary">
               {INSIGHTS.length} articles <span aria-hidden>·</span> {familyCount} signaling families
             </p>
           </Container>
@@ -57,9 +57,9 @@ export default async function InsightsIndex() {
             <ul className="mt-3 grid gap-3 sm:grid-cols-2">
               {recentInsights(4).map((item) => (
                 <li key={item.slug}>
-                  <Link href={`/insights/${item.slug}`} className="block rounded-2xl border border-ink/10 p-4 hover:border-accent/40">
+                  <Link href={`/insights/${item.slug}`} className="reference-card block p-4 transition-colors hover:border-accent/40 hover:bg-panel">
                     <span className="font-display text-base font-semibold text-ink">{item.title}</span>
-                    <span className="mt-1 block text-sm leading-6 text-ink/55">{item.readingMinutes} min · {item.reviewed}</span>
+                    <span className="mt-1 block text-sm leading-6 text-secondary">{item.readingMinutes} min · {item.reviewed}</span>
                   </Link>
                 </li>
               ))}

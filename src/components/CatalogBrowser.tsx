@@ -140,7 +140,7 @@ export default function CatalogBrowser() {
 
       {/* Grid */}
       {results.length === 0 ? (
-        <div className="mt-6 rounded-2xl border border-ink/10 bg-panel/30 p-10 text-center text-ink/50">
+        <div className="mt-6 reference-card bg-panel/30 p-10 text-center text-ink/50">
           No molecules match. Try a broader search or clear the filters.
         </div>
       ) : asTable ? (
@@ -161,7 +161,7 @@ export default function CatalogBrowser() {
           />
         </div>
       ) : (
-        <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden reference-card bg-ink/10 sm:grid-cols-2 lg:grid-cols-3">
           {results.map((h) => {
             const fam = FAMILY_MAP[h.family];
             const match = catalogNameMatch(h, query);

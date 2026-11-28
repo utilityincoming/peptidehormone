@@ -18,7 +18,7 @@
   background: var(--surface);
   font: 500 14px var(--font-geist-mono), monospace;
 }
-.residues .cysteine { border-color: #ad956d; background: #ede5d4; }
+.residues .cysteine { border-color: #ad956d; background: #ede5d4; color: #182b37; }
 .chemistry {
   display: flex;
   justify-content: space-between;
@@ -27,9 +27,7 @@
   font-size: 12px;
 }
 .diagram { display: block; width: 100%; height: auto; }
-.svgLabel { fill: var(--ink); font-size: 18px; font-weight: 600; }
+.svgLabel { fill: #182b37; font-size: 18px; font-weight: 600; }
 .svgNote { fill: #3d555b; font-size: 17px; }
-.caption { padding-top: 8px; color: var(--text-secondary); font-size: 12px; line-height: 1.6; }
-.caption a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-.caption summary { cursor: pointer; padding: 7px 0; color: var(--accent); }
+.plate summary { cursor: pointer; padding: 7px 0; color: var(--accent); }
 .notes { display: grid; gap: 8px; padding-bottom: 8px; }

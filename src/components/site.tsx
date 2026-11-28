@@ -43,7 +43,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
         <div className="flex items-center gap-2 sm:gap-4 lg:gap-5">
-          <nav aria-label="Site" className="hidden items-center gap-6 text-sm text-secondary md:flex lg:gap-8">
+          <nav aria-label="Site" className="hidden items-center gap-6 text-sm text-secondary lg:flex lg:gap-8">
             {[
               { href: "/catalog", label: "Catalog" },
               { href: "/insights", label: "Insights" },
@@ -59,16 +59,10 @@ export function SiteHeader() {
               </SectionNavLink>
             ))}
           </nav>
-          <div className="md:border-l md:border-ink/10 md:pl-4 lg:pl-5">
+          <div className="lg:border-l lg:border-ink/10 lg:pl-5">
             <SearchDialog />
           </div>
           <MobileNav />
-          <Link
-            href="/catalog"
-            className="hidden rounded-full border border-ink/15 px-4 py-1.5 text-sm text-ink/90 transition-colors hover:border-accent hover:text-accent lg:inline-block"
-          >
-            Browse catalog
-          </Link>
         </div>
       </Container>
     </header>
@@ -82,9 +76,7 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <Wordmark />
           <p className="mt-4 text-sm leading-6 text-muted">
-            An editorially independent, research-grade reference on the peptide
-            hormone system. Educational only — not medical advice, diagnosis, or
-            treatment.
+            An independent reference on peptide hormones and the research behind them.
           </p>
         </div>
         <div className="flex gap-14 text-sm">
@@ -105,16 +97,16 @@ export function SiteFooter() {
               <li><Link href="/catalog" className="hover:text-ink">Catalog</Link></li>
               <li><Link href="/insights" className="hover:text-ink">Insights</Link></li>
               <li><Link href="/tools" className="hover:text-ink">Tools &amp; calculators</Link></li>
-              <li><Link href="/methodology" className="hover:text-ink">Evidence standards</Link></li>
               <li><Link href="/glossary" className="hover:text-ink">Glossary</Link></li>
             </ul>
           </div>
         </div>
       </Container>
-      <Container className="border-t border-ink/[0.06] py-6">
-        <p className="text-xs text-muted">
-          © {new Date().getFullYear()} Peptide Hormone · peptidehormone.com
-        </p>
+      <Container className="flex flex-col items-start gap-3 border-t border-ink/[0.06] py-6 text-xs sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-muted">© {new Date().getFullYear()} Peptide Hormone</p>
+        <Link href="/methodology" className="text-secondary hover:text-ink hover:underline">
+          Evidence standards
+        </Link>
       </Container>
     </footer>
   );

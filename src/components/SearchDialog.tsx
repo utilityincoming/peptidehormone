@@ -50,7 +50,7 @@ function SearchTrigger({ onClick, open }: { onClick: () => void; open: boolean }
       aria-haspopup="dialog"
       aria-expanded={open}
       title="Search the reference (Ctrl+K or Command+K)"
-      className="inline-flex h-10 items-center gap-2 rounded-md border border-ink/15 bg-panel/70 px-2.5 text-sm font-medium text-ink transition-colors hover:border-accent/40 hover:bg-panel aria-expanded:border-accent/50 min-[360px]:px-3 xl:min-w-36"
+      className="inline-flex h-10 items-center gap-2 rounded-sm border border-accent/40 bg-panel px-2.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-surface-deep aria-expanded:border-accent min-[360px]:px-3 xl:min-w-36"
     >
       <SearchIcon className="h-4 w-4 shrink-0 text-accent" />
       <span className="hidden min-[360px]:inline">Search</span>

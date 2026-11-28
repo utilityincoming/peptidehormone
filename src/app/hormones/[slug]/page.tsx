@@ -7,7 +7,6 @@ import { hormoneMetaTitle, hormoneMetaDescription, aliasesFor } from "@/lib/alia
 import { comparePairPath } from "@/lib/compare";
 import { referencesFor } from "@/lib/references";
 import { getFamily } from "@/lib/families";
-import { FamilyGlyph } from "@/components/FamilyGlyph";
 import { insightsForHormone } from "@/lib/insights";
 import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
@@ -104,8 +103,8 @@ export default async function HormonePage({
       <main id="main" tabIndex={-1} className="flex-1 outline-none">
         {/* ── Hero ── */}
         <section className="relative overflow-hidden border-b border-ink/[0.06]">
-          <Container className="relative py-14 md:py-18">
-            <nav className="flex flex-wrap items-center gap-2 text-sm text-ink/45">
+          <Container className="page-intro">
+            <nav className="flex flex-wrap items-center gap-2 text-sm text-secondary">
               <Link href="/#families" className="hover:text-ink">Families</Link>
               <span aria-hidden>/</span>
               {family ? (
@@ -118,29 +117,11 @@ export default async function HormonePage({
               <span aria-hidden>/</span>
               <span className="text-ink/70">{h.abbr ?? h.name}</span>
             </nav>
-            {family && (
-              <Link
-                href={`/families/${family.slug}`}
-                aria-label={`${family.name} family`}
-                className={`mt-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${accent} transition-transform hover:-translate-y-0.5`}
-                style={{
-                  backgroundColor: "color-mix(in oklab, currentColor 12%, transparent)",
-                }}
-              >
-                <FamilyGlyph slug={family.slug} className="h-7 w-7" />
-              </Link>
-            )}
-            <h1 className="mt-5 font-display text-4xl font-semibold leading-tight sm:text-5xl">
+            <h1 className="page-title mt-4">
               {h.name}
               {h.abbr && <span className={`ml-3 text-2xl font-medium ${accent}`}>{h.abbr}</span>}
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-ink/70">{h.summary}</p>
-            {aliasesFor(h.slug).length > 0 && (
-              <p className="mt-3 text-sm text-ink/45">
-                Also known as {aliasesFor(h.slug).join(", ")}.
-              </p>
-            )}
-            <div className="mt-6 flex flex-wrap items-center gap-2.5 text-xs">
+            <div className="mt-4 flex flex-wrap items-center gap-2.5 text-xs">
               <span className="rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/65">
                 {typeLabel}
               </span>
@@ -156,31 +137,41 @@ export default async function HormonePage({
                   {regMeta.label}
                 </a>
               )}
-              {parent && (
-                <span className="text-ink/50">
-                  Based on{" "}
-                  <Link href={`/hormones/${parent.slug}`} className="text-accent hover:underline">
-                    {parent.name}
-                  </Link>
-                </span>
-              )}
-              {parent && (
-                <Link
-                  href={`/compare/${comparePairPath(parent.slug, h.slug)}`}
-                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
-                >
-                  Compare with {parent.abbr ?? parent.name} <span aria-hidden>→</span>
-                </Link>
-              )}
-              {lineageSlugs.length > 1 && (
-                <Link
-                  href={`/tools/compare?ids=${lineageSlugs.join(",")}`}
-                  className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
-                >
-                  Compare lineage <span aria-hidden>→</span>
-                </Link>
-              )}
             </div>
+            <p className="page-summary">{h.summary}</p>
+            {aliasesFor(h.slug).length > 0 && (
+              <p className="mt-3 text-sm text-secondary">
+                Also known as {aliasesFor(h.slug).join(", ")}.
+              </p>
+            )}
+            {(parent || lineageSlugs.length > 1) && (
+              <div className="mt-4 flex flex-wrap items-center gap-2.5 text-xs">
+                {parent && (
+                  <span className="text-secondary">
+                    Based on{" "}
+                    <Link href={`/hormones/${parent.slug}`} className="text-accent hover:underline">
+                      {parent.name}
+                    </Link>
+                  </span>
+                )}
+                {parent && (
+                  <Link
+                    href={`/compare/${comparePairPath(parent.slug, h.slug)}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                  >
+                    Compare with {parent.abbr ?? parent.name} <span aria-hidden>→</span>
+                  </Link>
+                )}
+                {lineageSlugs.length > 1 && (
+                  <Link
+                    href={`/tools/compare?ids=${lineageSlugs.join(",")}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-panel/50 px-3 py-1 font-medium text-ink/70 transition-colors hover:border-accent/50 hover:text-accent"
+                  >
+                    Compare lineage <span aria-hidden>→</span>
+                  </Link>
+                )}
+              </div>
+            )}
           </Container>
         </section>
 
