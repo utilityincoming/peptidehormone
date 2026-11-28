@@ -96,7 +96,7 @@ export function StructureHero() {
         })}
       </div>
 
-      <figcaption className="mt-5 text-sm leading-6 text-secondary">
+      <figcaption className="figure-caption">
         <p>Retatrutide <span className="text-accent">(navy)</span> bound to the three receptors it activates.</p>
         {paper.doi && (
           <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-accent">

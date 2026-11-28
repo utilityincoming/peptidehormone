@@ -21,7 +21,7 @@ export function SequenceSignalHero() {
 
       <OxytocinSignalDiagram />
 
-      <figcaption className={styles.caption}>
+      <figcaption className="figure-caption">
         <p>Backbone traces from <a href="https://www.rcsb.org/structure/7RYC">PDB 7RYC</a>. Membrane and signaling are schematic.</p>
         <details>
           <summary>Sources and how to read the plate</summary>

@@ -43,7 +43,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Wordmark />
         <div className="flex items-center gap-2 sm:gap-4 lg:gap-5">
-          <nav aria-label="Site" className="hidden items-center gap-6 text-sm text-secondary md:flex lg:gap-8">
+          <nav aria-label="Site" className="hidden items-center gap-6 text-sm text-secondary lg:flex lg:gap-8">
             {[
               { href: "/catalog", label: "Catalog" },
               { href: "/insights", label: "Insights" },
@@ -59,16 +59,10 @@ export function SiteHeader() {
               </SectionNavLink>
             ))}
           </nav>
-          <div className="md:border-l md:border-ink/10 md:pl-4 lg:pl-5">
+          <div className="lg:border-l lg:border-ink/10 lg:pl-5">
             <SearchDialog />
           </div>
           <MobileNav />
-          <Link
-            href="/catalog"
-            className="hidden rounded-full border border-ink/15 px-4 py-1.5 text-sm text-ink/90 transition-colors hover:border-accent hover:text-accent lg:inline-block"
-          >
-            Browse catalog
-          </Link>
         </div>
       </Container>
     </header>
