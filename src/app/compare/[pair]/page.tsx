@@ -5,6 +5,7 @@ import { Container, SiteHeader, SiteFooter } from "@/components/site";
 import { JsonLd } from "@/components/JsonLd";
 import { CompareTable } from "@/components/tools/CompareTable";
 import { getHormone } from "@/lib/hormones";
+import { insightsForHormone } from "@/lib/insights";
 import {
   comparePairPath,
   canonicalComparePair,
@@ -67,6 +68,13 @@ export default async function ComparePairPage({
   const faqs = compareFaq(a, b);
   const editorial = comparisonEditorial(a.slug, b.slug);
   const reverse = comparePairPath(b.slug, a.slug);
+  // Deep-dives that treat either molecule — closes the compare ↔ insights loop.
+  // Molecule a's pieces first, then b's, deduped; primary-subject order preserved.
+  const deepDives = Array.from(
+    new Map(
+      [...insightsForHormone(a.slug), ...insightsForHormone(b.slug)].map((i) => [i.slug, i]),
+    ).values(),
+  ).slice(0, 6);
   // Structured data carries the canonical URL so both directions describe one entity.
   const canonicalPair = comparePairPath(...canonicalComparePair(a.slug, b.slug));
 
@@ -116,6 +124,28 @@ export default async function ComparePairPage({
                   </div>
                 ))}
               </dl>
+            </section>
+          )}
+
+          {deepDives.length > 0 && (
+            <section className="mt-14">
+              <h2 className="font-display text-2xl font-semibold">Deep-dives on these molecules</h2>
+              <div className="mt-5 grid gap-px overflow-hidden rounded-2xl border border-ink/10 bg-ink/10 sm:grid-cols-2">
+                {deepDives.map((d) => (
+                  <Link
+                    key={d.slug}
+                    href={`/insights/${d.slug}`}
+                    className="group bg-surface p-5 transition-colors hover:bg-panel"
+                  >
+                    <span className="font-display text-base font-semibold leading-snug transition-colors group-hover:text-accent">
+                      {d.title}
+                    </span>
+                    <p className="mt-1.5 font-mono text-[10px] uppercase tracking-wide text-ink/40">
+                      {d.readingMinutes} min read
+                    </p>
+                  </Link>
+                ))}
+              </div>
             </section>
           )}
 
