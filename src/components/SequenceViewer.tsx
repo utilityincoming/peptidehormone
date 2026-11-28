@@ -56,8 +56,20 @@ export function SequenceViewer({ slug }: { slug: string }) {
                 const y = Math.floor(i / usedCols) * cell + 4;
                 const fill = primary ? `color-mix(in srgb, ${KIND_COLOR[primary.kind]} 28%, transparent)` : "transparent";
                 const stroke = primary ? KIND_COLOR[primary.kind] : "var(--ink)";
+                // Residues the reference annotates are focusable, so keyboard and
+                // screen-reader users can reach each marked site; the label carries
+                // every mark at that position. Plain residues stay decorative.
+                const note = hits.length
+                  ? `${chain.name ? chain.name + " " : ""}residue ${i + 1}, ${aa}${hits.map((m) => `; ${m.label}: ${m.detail}`).join("")}`
+                  : undefined;
                 return (
-                  <g key={i}>
+                  <g
+                    key={i}
+                    tabIndex={note ? 0 : undefined}
+                    role={note ? "img" : undefined}
+                    aria-label={note}
+                    className={note ? "cursor-help outline-none [&:focus-visible>rect]:stroke-[2.5] [&:focus-visible>rect]:[stroke-opacity:1]" : undefined}
+                  >
                     <rect x={x} y={y} width={cell - 4} height={cell - 4} rx={4} fill={fill} stroke={stroke} strokeOpacity={primary ? 0.8 : 0.15} />
                     <text x={x + (cell - 4) / 2} y={y + 16} textAnchor="middle" fontSize="12" fontFamily="ui-monospace, monospace" fill="currentColor">
                       {aa}
@@ -70,6 +82,9 @@ export function SequenceViewer({ slug }: { slug: string }) {
                 );
               })}
             </svg>
+            <p className="mt-2 select-all break-all font-mono text-[11px] leading-5 text-ink/40" aria-hidden>
+              {chain.residues}
+            </p>
           </div>
         );
       })}

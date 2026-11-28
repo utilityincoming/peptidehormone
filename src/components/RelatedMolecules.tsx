@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Hormone } from "@/lib/hormones";
 import { getFamily } from "@/lib/families";
+import { compoundTierClasses } from "@/components/evidence";
 
 export function RelatedMolecules({ items }: { items: Hormone[] }) {
   if (items.length === 0) return null;
@@ -27,8 +28,13 @@ export function RelatedMolecules({ items }: { items: Hormone[] }) {
                   {item.abbr && <span className="ml-2 font-mono text-xs font-normal text-ink/40">{item.abbr}</span>}
                 </span>
                 <span className="mt-2 block text-sm leading-6 text-ink/60">{item.summary}</span>
-                {(item.halfLife || item.mw) && (
-                  <span className="mt-3 flex flex-wrap gap-x-3 font-mono text-[11px] text-ink/45">
+                {(item.evidence || item.halfLife || item.mw) && (
+                  <span className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-mono text-[11px] text-ink/45">
+                    {item.evidence && (
+                      <span className={`rounded-full border px-2 py-0.5 font-medium ${compoundTierClasses(item.evidence)}`}>
+                        {item.evidence}
+                      </span>
+                    )}
                     {item.halfLife && <span>t½ {item.halfLife}</span>}
                     {item.mw && <span>{item.mwApprox ? "≈" : "~"}{item.mw.toLocaleString()} Da</span>}
                   </span>
