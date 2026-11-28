@@ -4,6 +4,13 @@ import { statusNote } from "@/lib/status-note";
 
 // Shared presentational components for /insights long-form articles.
 
+// Inline glossary term for article prose. Same component the monographs use:
+// a dotted-underlined link to /glossary#<slug> that reveals the definition on
+// hover and keyboard focus, with no JavaScript. Wrap the FIRST mention of a
+// genuinely technical term; its dotted underline reads as "defined here",
+// distinct from a solid-underline cross-link (LINK).
+export { GlossaryTip as Term } from "@/components/GlossaryTip";
+
 export const LINK =
   "text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent";
 
