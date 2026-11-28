@@ -107,6 +107,8 @@ const BASE: Hormone[] = [
       "Why is GIP/GLP-1 co-agonism studied rather than GLP-1 alone?",
       "What does the evidence say about GIP receptor agonism vs antagonism?",
     ],
+    mw: 4984,
+    mwApprox: true,
   },
   {
     slug: "glucagon",
@@ -172,6 +174,7 @@ const BASE: Hormone[] = [
       "How does insulin signaling differ mechanistically from GPCR-based hormones?",
       "How do incretins amplify glucose-stimulated insulin secretion?",
     ],
+    mw: 5808,
   },
 
   // ── Incretin analogs & therapeutics ─────────────────────────────────────
@@ -787,6 +790,7 @@ const BASE: Hormone[] = [
       "How does receptor selectivity determine a melanocortin agonist's effects?",
       "How is POMC processed differently across tissues?",
     ],
+    mw: 1664.9,
   },
   {
     slug: "acth",
@@ -831,6 +835,8 @@ const BASE: Hormone[] = [
       "Why do oxytocin and vasopressin differ so much despite near-identical sequences?",
       "How do oxytocin's central and peripheral roles relate?",
     ],
+    halfLife: "~1–6 min",
+    halfLifeMin: 3,
     mw: 1007,
   },
   {
@@ -853,6 +859,8 @@ const BASE: Hormone[] = [
       "How do V1 and V2 receptors split vasopressin's actions?",
       "How does plasma osmolality control vasopressin release?",
     ],
+    halfLife: "~10 min (≤10 min)",
+    halfLifeMin: 10,
     mw: 1084,
   },
   {
